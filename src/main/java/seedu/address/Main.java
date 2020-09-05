@@ -2,6 +2,8 @@ package seedu.address;
 
 import javafx.application.Application;
 
+// This comment is just to initiate the PR
+
 /**
  * The main entry point to the application.
  *
