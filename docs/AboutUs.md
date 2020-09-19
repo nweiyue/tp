@@ -23,15 +23,18 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/erisjacey)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Team Lead; Code Quality; Deliverables and Deadlines
+* Responsibilities:
+   * Responsible for overall project coordination
+   * Looks after code quality, ensures adherance to coding standards, etc.
+   * Ensures project deliverables are done on time and in the right format 
 
-### Johnny Doe
+### Masagca Eris Jacey Dumasis
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/erisjacey.png" width="200px">
 
 [[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
 
