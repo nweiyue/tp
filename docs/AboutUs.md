@@ -38,7 +38,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Ngoh Wei Yue
 
 <img src="images/nweiyue.png" width="200px">
 
