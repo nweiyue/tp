@@ -9,19 +9,19 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Alvin Chee
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/codingcookierookie.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
+[[github](https://github.com/CodingCookieRookie)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
+* Role: Integrator
+* Responsibilities: Integration
 
 ### Jane Doe
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/marcustw.png" width="200px">
 
 [[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
