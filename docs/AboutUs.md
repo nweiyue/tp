@@ -19,9 +19,19 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### Marcus Tan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/marcus.png" width="200px">
+
+[[github](http://github.com/marcustw)]
+[[portfolio](team/johndoe.md)]
+
+* Role: Testing
+* Responsibilities: Looks after testing and ensures the testing of the project is done properly and on time.
+
+### Masagca Eris Jacey Dumasis
+
+<img src="images/erisjacey.png" width="200px">
 
 [[github](http://github.com/erisjacey)]
 [[portfolio](team/johndoe.md)]
@@ -31,15 +41,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
    * Responsible for overall project coordination
    * Looks after code quality, ensures adherance to coding standards, etc.
    * Ensures project deliverables are done on time and in the right format 
-
-### Masagca Eris Jacey Dumasis
-
-<img src="images/erisjacey.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
 
 ### Ngoh Wei Yue
 
@@ -51,7 +52,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Documentation
 * Responsibilities: Looks after the quality of various project documents like user and developer guides
 
-### James Doe
+### Zhang Sheng Yang
 
 <img src="images/yuunokun.png" width="200px">
 
