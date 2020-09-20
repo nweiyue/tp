@@ -40,7 +40,7 @@ You can reach us at the email `e0406158@u.nus.edu`
 * Responsibilities:
    * Responsible for overall project coordination
    * Looks after code quality, ensures adherance to coding standards, etc.
-   * Ensures project deliverables are done on time and in the right format 
+   * Ensures project deliverables are done on time and in the right format
 
 ### Ngoh Wei Yue
 
