@@ -29,8 +29,8 @@ public class EmailTest {
         assertFalse(Email.isValidEmail(" ")); // spaces only
 
         // missing parts
-        assertFalse(Email.isValidEmail("@example.com")); // missing local part
-        assertFalse(Email.isValidEmail("peterjackexample.com")); // missing '@' symbol
+        assertFalse(Email.isValidEmail("@u.nus.edu")); // missing local part
+        assertFalse(Email.isValidEmail("peterjacku.nus.edu")); // missing '@' symbol
         assertFalse(Email.isValidEmail("peterjack@")); // missing domain name
 
         // invalid parts
@@ -49,13 +49,12 @@ public class EmailTest {
         assertFalse(Email.isValidEmail("peterjack@example.com-")); // domain name ends with a hyphen
 
         // valid email
-        assertTrue(Email.isValidEmail("PeterJack_1190@example.com"));
-        assertTrue(Email.isValidEmail("a@bc")); // minimal
-        assertTrue(Email.isValidEmail("test@localhost")); // alphabets only
-        assertTrue(Email.isValidEmail("!#$%&'*+/=?`{|}~^.-@example.org")); // special characters local part
-        assertTrue(Email.isValidEmail("123@145")); // numeric local part and domain name
-        assertTrue(Email.isValidEmail("a1+be!@example1.com")); // mixture of alphanumeric and special characters
-        assertTrue(Email.isValidEmail("peter_jack@very-very-very-long-example.com")); // long domain name
-        assertTrue(Email.isValidEmail("if.you.dream.it_you.can.do.it@example.com")); // long local part
+        assertTrue(Email.isValidEmail("PeterJack_1190@u.nus.edu"));
+        assertTrue(Email.isValidEmail("a@u.nus.edu")); // minimal
+        assertTrue(Email.isValidEmail("test@u.nus.edu")); // alphabets only
+        assertTrue(Email.isValidEmail("!#$%&'*+/=?`{|}~^.-@u.nus.edu")); // special characters local part
+        assertTrue(Email.isValidEmail("123@u.nus.edu")); // numeric local part and domain name
+        assertTrue(Email.isValidEmail("a1+be!@u.nus.edu")); // mixture of alphanumeric and special characters
+        assertTrue(Email.isValidEmail("if.you.dream.it_you.can.do.it@u.nus.edu")); // long local part
     }
 }
