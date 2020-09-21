@@ -40,13 +40,13 @@ ATAS is a **desktop app for managing students’ particulars, optimized for use 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists out all the contacts.
+   * **`list`** : Lists out all the students.
 
    * **`add n/John Cena e/thechamp@example.com`** : Adds a student named `John Cena` to the class list.
 
-   * **`delete 3`** : Deletes the 3rd contact shown in the current list.
+   * **`delete 3`** : Deletes the 3rd student shown in the current list.
 
-   * **`clear`** : Deletes all the contacts.
+   * **`clear`** : Deletes all the students.
 
    * **`bye`** : Exits out of the application.
 
@@ -139,7 +139,7 @@ If yes: deletes the specified student from the class list.
 delete INDEX
 ```
 
-* Deletes the person at the specified `INDEX`.
+* Deletes the student at the specified `INDEX`.
 * The index refers to the index number shown in the displayed class list.
 * The index **must be a positive integer** 1, 2, 3, …
 
