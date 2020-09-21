@@ -65,7 +65,8 @@ public class Person {
 
         return otherPerson != null
                 && otherPerson.getName().equals(getName())
-                && (otherPerson.getMatriculation().equals(getMatriculation()) || otherPerson.getEmail().equals(getEmail()));
+                && (otherPerson.getMatriculation().equals(getMatriculation())
+                    || otherPerson.getEmail().equals(getEmail()));
     }
 
     /**
