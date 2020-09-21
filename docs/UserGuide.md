@@ -7,7 +7,6 @@ title: User Guide
 
 ATAS is a **desktop app for managing students’ particulars, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type really quickly, ATAS will help you to manage your contacts and students’ particulars faster than traditional GUI apps.
 <hr>
---------------------------------------------------------------------------------------------------------------------
 
 ## Table of Contents
 
