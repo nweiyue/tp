@@ -2,20 +2,43 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-{:toc}
+* [**Setting up, getting started**](#su_gs)
+* [**Design**](#design)
+   * [Architecture](#architecture)
+   * [UI component](#ui_component)
+   * [Logic component](#logic_component)
+   * [Model component](#model_component)
+   * [Storage component](#storage_component)
+   * [Common classes](#common_classes)
+* [**Implementation**](#implementation)
+   * [[Proposed] Undo/redo feature](#undo_redo)
+      * [Proposed Implementation](#proposed_implementation)
+      * [Design consideration:](#design_consideration)
+         * [Aspect: How undo & redo executes](#aspect_undo_redo)
+   * [[Proposed] Data archiving](#data_archiving)
+* [**Documentation, logging, testing, configuration, dev-ops**](#documentation_etc)
+* [**Appendix: Requirements**](#appendix_requirements)
+   * [Product scope](#product_scope)
+   * [User stories](#user_stories)
+   * [Use cases](#use_cases) (coming soon)
+   * [Non-Functional Requirements](#nfr) (coming soon)
+   * [Glossary](#glossary) (coming soon)
+* [**Appendix: Instructions for manual testing**](#appendix_manual_testing)
+   * [Launch and shutdown](#launch_shutdown)
+   * [Deleting a person](#deleting_a_person)
+   * [Saving data](#saving_data)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## <a name="su_gs"></a>**Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+## <a name="design"></a>**Design**
 
-### Architecture
+### <a name="architecture"></a>Architecture
 
 <img src="images/ArchitectureDiagram.png" width="450" />
 
@@ -57,7 +80,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 The sections below give more details of each component.
 
-### UI component
+### <a name="ui_component"></a>UI component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -73,7 +96,7 @@ The `UI` component,
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
-### Logic component
+### <a name="logic_component"></a>Logic component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
@@ -93,7 +116,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-### Model component
+### <a name="model_component"></a>Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
@@ -113,7 +136,7 @@ The `Model`,
 </div>
 
 
-### Storage component
+### <a name="storage_component"></a>Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
@@ -123,19 +146,19 @@ The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
 * can save the address book data in json format and read it back.
 
-### Common classes
+### <a name="common_classes"></a>Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## <a name="implementation"></a>**Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### <a name="undo_redo"></a>\[Proposed\] Undo/redo feature
 
-#### Proposed Implementation
+#### <a name="proposed_implementation"></a>Proposed Implementation
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
@@ -198,9 +221,9 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ![CommitActivityDiagram](images/CommitActivityDiagram.png)
 
-#### Design consideration:
+#### <a name="design_consideration"></a>Design consideration:
 
-##### Aspect: How undo & redo executes
+##### <a name="aspect_undo_redo"></a>Aspect: How undo & redo executes
 
 * **Alternative 1 (current choice):** Saves the entire address book.
   * Pros: Easy to implement.
@@ -213,14 +236,14 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
+### <a name="data_archiving"></a>\[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## <a name="documentation_etc"></a>**Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -230,39 +253,72 @@ _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## <a name="appendix_requirements"></a>**Appendix: Requirements**
 
-### Product scope
+### <a name="product_scope"></a>Product scope
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Bob is a passionate CS1010 TA and he likes to track his students’ progress.
+* Bob currently uses Excel to keep track of his student’s particulars. 
+* Bob finds the features on Excel clunky at times and he finds them difficult to learn.
+* Bob is looking for an application with a sleeker and cleaner UI so he doesn’t have to remember where the different features in Excel are.
+* Bob has limited memory in his computer and wants to install smaller softwares.
+* Bob is a fast typist.
+* Bob hates to move his mouse at all (to save file, to categorise data fields and student data)
+* Bob uses a laptop and doesn’t have a mouse with him all the time(or he doesn’t have a place to use his mouse when on bus or mrt).
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+
+**Value proposition**: 
+
+* Manage students faster than a typical mouse/GUI driven app
+* Sleeker and cleaner UI, less clunky
+* Less memory
+* Intuitive command-line interface - easy to learn and pick up, especially for technologically savvy individuals
+* CS student-friendly
+* Potential Features:
+   * Mass sending of emails/files 
+   * Import/export data files from Excel, csv files
+   * Track student’s progress (assignments, tests, class participation)
+   * Record student’s attendance
+   * Profile pictures for recognisability
+   * Schedule consultations/Zoom meeting
+   * Automate formation of Telegram groups
 
 
-### User stories
+
+### <a name="user_stories"></a>User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| -------- | ------------------------------------------ | ------------------------------ | ----------------------------------------------------------------------- |
+| `* * *`  | user                                       | see usage instructions         | refer to instructions when I forget how to use the App                  |
+| `* * *`  | user                                       | add a new student              |                                                                         |
+| `* * *`  | user                                       | delete a student               | remove students no longer taking the module                             |
+| `* * *`  | user                                       | track all students in my class | so that I will know who is missing from my class                        |
+| `* * *`  | user                                       | find a student by name         | locate details of students without having to go through the entire list |
+| `* * *`  | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                 |
+| `* * *`  | user with many students in my class        | sort students by name          | locate a student easily                                                 |
+| `* *  `  | user                                       | track my students' attendance  | take note of the tutorial participation for each student                | 
+| `* *  `  | user who has trouble putting face to name  | easily identify each student with a profile photo | recognise students through their faces more easily   |
+| `* *  `  | user who yearns for efficiency due to limited class time | have a random number generator | get a random student to answer my question instead of having to rely on online generators |
+| `* *  `  | user                                       | add non-registered Christian names or nicknames to my students | remember them more easily               |
+| `* *  `  | user                                       | send important emails to my students | not have to rely on Microsoft Outlook/LumiNUS                     |
+| `* *  `  | user                                       | have diagrams tracking students' progress | tell from one look that a student is not catching up with lecture material |
+| `* *  `  | tutor who can be quite forgetful           | create a list of announcements | remember to convey them to my students                                  |
+| `* *  `  | tutor who wants to protect the particulars of my students | encrypt files with passwords | keep the module and students' data safe                    |
+| `* *  `  | tutor who often overshoots the time allocated for my lesson | be reminded at certain intervals | be on track throughout the lesson                    |
+| `* *  `  | tutor who wants the class to participate actively in class discussions | quickly record who has/has not spoken yet | call on those who haven't spoken for subsequent questions |
+| `*    `  | user who likes customization               | customize my own keyboard shortcuts |                                                                    |
+| `*    `  | user who likes colors                      | customize the UI to whatever color scheme I want | enjoy using the App more                              |
 
 *{More to be added}*
 
-### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+### <a name="use_cases"></a>Use cases (coming soon)
+
+(For all use cases below, the **System** is the `ATAS` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Delete a person**
 
@@ -289,7 +345,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-### Non-Functional Requirements
+### <a name="nfr"></a>Non-Functional Requirements (coming soon)
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
@@ -297,14 +353,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-### Glossary
+### <a name="glossary"></a>Glossary (coming soon)
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## <a name="appendix_manual_testing"></a>**Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
@@ -313,7 +369,7 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launch and shutdown
+### <a name="launch_shutdown"></a>Launch and shutdown
 
 1. Initial launch
 
@@ -330,7 +386,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### <a name="deleting_a_person"></a>Deleting a person
 
 1. Deleting a person while all persons are being shown
 
@@ -347,7 +403,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Saving data
+### <a name="saving_data"></a>Saving data
 
 1. Dealing with missing/corrupted data files
 
