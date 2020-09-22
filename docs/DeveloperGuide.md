@@ -12,21 +12,21 @@ title: Developer Guide
    * [Common classes](#common_classes)
 * [**Implementation**](#implementation)
    * [[Proposed] Undo/redo feature](#undo_redo)
-      * [Proposed Implementation](#proposed_implementation)
-      * [Design consideration:](#design_consideration)
-         * [Aspect: How undo & redo executes](#aspect_undo_redo)
-   * [[Proposed] Data archiving](#data_archiving)
+     * [Proposed Implementation](#proposed_implementation)
+     * [Design consideration:](#design_consideration)
+       * [Aspect: How undo & redo executes](#aspect_undo_redo)
+  * [[Proposed] Data archiving](#data_archiving)
 * [**Documentation, logging, testing, configuration, dev-ops**](#documentation_etc)
 * [**Appendix: Requirements**](#appendix_requirements)
-   * [Product scope](#product_scope)
-   * [User stories](#user_stories)
-   * [Use cases](#use_cases) (coming soon)
-   * [Non-Functional Requirements](#nfr) (coming soon)
-   * [Glossary](#glossary) (coming soon)
+  * [Product scope](#product_scope)
+  * [User stories](#user_stories)
+  * [Use cases](#use_cases) (coming soon)
+  * [Non-Functional Requirements](#nfr) (coming soon)
+  * [Glossary](#glossary) (coming soon)
 * [**Appendix: Instructions for manual testing**](#appendix_manual_testing)
-   * [Launch and shutdown](#launch_shutdown)
-   * [Deleting a person](#deleting_a_person)
-   * [Saving data](#saving_data)
+  * [Launch and shutdown](#launch_shutdown)
+  * [Deleting a person](#deleting_a_person)
+  * [Saving data](#saving_data)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -226,13 +226,13 @@ The following activity diagram summarizes what happens when a user executes a ne
 ##### <a name="aspect_undo_redo"></a>Aspect: How undo & redo executes
 
 * **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+ * Pros: Easy to implement.
+ * Cons: May have performance issues in terms of memory usage.
 
 * **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+ itself.
+ * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+ * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
 
@@ -260,16 +260,16 @@ _{Explain here how the data archiving feature will be implemented}_
 **Target user profile**:
 
 * Bob is a passionate CS1010 TA and he likes to track his students’ progress.
-* Bob currently uses Excel to keep track of his student’s particulars. 
+* Bob currently uses Excel to keep track of his student’s particulars.
 * Bob finds the features on Excel clunky at times and he finds them difficult to learn.
 * Bob is looking for an application with a sleeker and cleaner UI so he doesn’t have to remember where the different features in Excel are.
 * Bob has limited memory in his computer and wants to install smaller softwares.
 * Bob is a fast typist.
 * Bob hates to move his mouse at all (to save file, to categorise data fields and student data)
-* Bob uses a laptop and doesn’t have a mouse with him all the time(or he doesn’t have a place to use his mouse when on bus or mrt).
+* Bob uses a laptop and doesn’t have a mouse with him all the time(or he doesn’t have a place to use his mouse when on the bus or mrt).
 
 
-**Value proposition**: 
+**Value proposition**:
 
 * Manage students faster than a typical mouse/GUI driven app
 * Sleeker and cleaner UI, less clunky
@@ -277,13 +277,13 @@ _{Explain here how the data archiving feature will be implemented}_
 * Intuitive command-line interface - easy to learn and pick up, especially for technologically savvy individuals
 * CS student-friendly
 * Potential Features:
-   * Mass sending of emails/files 
-   * Import/export data files from Excel, csv files
-   * Track student’s progress (assignments, tests, class participation)
-   * Record student’s attendance
-   * Profile pictures for recognisability
-   * Schedule consultations/Zoom meeting
-   * Automate formation of Telegram groups
+ * Mass sending of emails/files
+ * Import/export data files from Excel, csv files
+ * Track student’s progress (assignments, tests, class participation)
+ * Record student’s attendance
+ * Profile pictures for recognisability
+ * Schedule consultations/Zoom meeting
+ * Automate formation of Telegram groups
 
 
 
@@ -300,7 +300,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | find a student by name         | locate details of students without having to go through the entire list |
 | `* * *`  | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                 |
 | `* * *`  | user with many students in my class        | sort students by name          | locate a student easily                                                 |
-| `* *  `  | user                                       | track my students' attendance  | take note of the tutorial participation for each student                | 
+| `* *  `  | user                                       | track my students' attendance  | take note of the tutorial participation for each student                |
 | `* *  `  | user who has trouble putting face to name  | easily identify each student with a profile photo | recognise students through their faces more easily   |
 | `* *  `  | user who yearns for efficiency due to limited class time | have a random number generator | get a random student to answer my question instead of having to rely on online generators |
 | `* *  `  | user                                       | add non-registered Christian names or nicknames to my students | remember them more easily               |
@@ -316,46 +316,110 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 *{More to be added}*
 
 
-### <a name="use_cases"></a>Use cases (coming soon)
+### <a name="use_cases"></a>Use cases
 
 (For all use cases below, the **System** is the `ATAS` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01 - Add a student**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to add a student with specified Matriculation number and NUS email, as well as any additional tags (if any)
+1. ATAS adds the student
 
-    Use case ends.
+Use case ends.
+
+**Use case: UC02 - Delete a student**
+
+**MSS**
+
+1.  User requests to list students
+1.  ATAS shows a list of students
+1.  User requests to delete a specific student in the list
+1.  ATAS deletes the student
+
+Use case ends.
 
 **Extensions**
 
 * 2a. The list is empty.
 
-  Use case ends.
+   Use case ends.
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+  * 3a1. ATAS shows an error message.
 
       Use case resumes at step 2.
 
+**Use case: UC03 - Clear the class list**
+
+**MSS**
+
+1.  User requests to clear the class list
+1.  ATAS clears the class list
+
+Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+   Use case ends.
+
+**Use case: UC04 - List the registered students**
+
+**MSS**
+
+1. User requests to see the list of students that have been added to ATAS
+1. ATAS shows the list of students
+
+Use case ends.
+
+**Use case: UC05 - Find a student**
+
+**MSS**
+
+1.  User requests to find a student with one or more keywords
+1.  ATAS searches for students’ names that contain any of the keywords
+1.  ATAS shows the filtered list of students to User
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+   Use case ends.
+
+**Use case: UC06 - Exit ATAS**
+
+**MSS**
+
+1. User requests to exit ATAS
+1. ATAS closes
+
+Use case ends.
+
 *{More to be added}*
 
-### <a name="nfr"></a>Non-Functional Requirements (coming soon)
+### <a name="nfr"></a>Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+1. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+1. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should be for a single user and not a multi-user product.
+1. Should not depend on remote servers.
+1. Should be able to function without having to rely on being connected to a network.
+1. Should be able to work without requiring an installer.
+1. Should not contain very large file sizes (JAR files - 100Mb, PDF files - 15Mb/file).
 
 *{More to be added}*
 
-### <a name="glossary"></a>Glossary (coming soon)
+### <a name="glossary"></a>Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Matriculation number**: A unique alphanumeric number attributed to each NUS student. Follows the format A0123456X, where each digit can be from 0-9 and the last letter can be any alphabet A-Z
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
@@ -373,16 +437,16 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+  1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+  1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+  1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+  1. Re-launch the app by double-clicking the jar file.<br>
+      Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
 
@@ -390,16 +454,16 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+  1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+  1. Test case: `delete 1`<br>
+     Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+  1. Test case: `delete 0`<br>
+     Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+  1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+     Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
 
@@ -407,6 +471,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+  1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
