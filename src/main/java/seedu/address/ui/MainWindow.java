@@ -24,6 +24,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class MainWindow extends UiPart<Stage> {
 
+    private static final int SLEEP_TIME = 2000;
     private static final String FXML = "MainWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
@@ -159,7 +160,7 @@ public class MainWindow extends UiPart<Stage> {
     private void handleExit() throws InterruptedException {
         Platform.runLater(() -> {
             try {
-                Thread.sleep(2000);
+                Thread.sleep(SLEEP_TIME);
                 GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                         (int) primaryStage.getX(), (int) primaryStage.getY());
                 logic.setGuiSettings(guiSettings);
