@@ -17,7 +17,7 @@ You can reach us at the email `e0406158@u.nus.edu`
 [[portfolio](team/johndoe.md)]
 
 * Role: Integrator
-* Responsibilities: Integration
+* Responsibilities: Ensures that all the classes that are done by all members are integrated and work as intended.
 
 ### Marcus Tan
 
