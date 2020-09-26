@@ -60,4 +60,4 @@ You can reach us at the email `e0406158@u.nus.edu`
 [[portfolio](team/johndoe.md)]
 
 * Role: Tech lead
-* Responsibilities: Write Code
+* Responsibilities: Coding
