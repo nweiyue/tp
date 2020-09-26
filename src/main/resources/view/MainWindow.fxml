@@ -36,29 +36,22 @@
           </Menu>
         </MenuBar>
 
-        <TabPane fx:id="tabPane" prefHeight="200.0" prefWidth="200.0" stylesheets="@DarkTheme.css" tabClosingPolicy="UNAVAILABLE">
+        <TabPane fx:id="tabPane" prefHeight="800.0" prefWidth="400.0" stylesheets="@DarkTheme.css" tabClosingPolicy="UNAVAILABLE">
           <tabs>
             <Tab fx:id="classesTab" text="Classes">
               <content>
-<!--                <SplitPane fx:id="calenderSplitPane" dividerPositions="0.29797979797979796" prefHeight="160.0" prefWidth="200.0">-->
-<!--                  <items>-->
-<!--                    <AnchorPane fx:id="deadlinePanelPlaceholder" minHeight="0.0" minWidth="0.0" prefHeight="167.0" prefWidth="79.0" />-->
-<!--                    <AnchorPane fx:id="calenderPanelPlaceholder" minHeight="0.0" minWidth="0.0" prefHeight="167.0" prefWidth="288.0" />-->
-<!--                  </items>-->
-<!--                </SplitPane>-->
+                  <VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
+                      <padding>
+                          <Insets top="10" right="10" bottom="10" left="10" />
+                      </padding>
+                      <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+                  </VBox>
               </content></Tab>
             <Tab id="attendanceTab" fx:id="attendanceTab" text="Attendance">
               <content>
               </content></Tab>
           </tabs>
         </TabPane>
-
-        <VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-            <padding>
-                <Insets top="10" right="10" bottom="10" left="10" />
-            </padding>
-            <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-        </VBox>
 
         <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
                    minHeight="100" prefHeight="100" maxHeight="100">
