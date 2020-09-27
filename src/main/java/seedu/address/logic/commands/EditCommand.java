@@ -51,8 +51,10 @@ public class EditCommand extends DangerousCommand {
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * Creates an EditCommand to edit the person at specified Index.
+     *
+     * @param index The Index of the person in the filtered person list to edit.
+     * @param editPersonDescriptor The details to edit the person with.
      */
     public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
         requireNonNull(index);

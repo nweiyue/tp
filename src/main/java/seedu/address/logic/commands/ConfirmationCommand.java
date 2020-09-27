@@ -5,9 +5,15 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
+/**
+ * Confirms whether or not to execute a command.
+ */
 public class ConfirmationCommand extends Command {
     private final DangerousCommand dangerousCommand;
 
+    /**
+     * Constructs a {@code ConfirmationCommand} with the specified DangerousCommand.
+     */
     public ConfirmationCommand(DangerousCommand dangerousCommand) {
         this.dangerousCommand = dangerousCommand;
     }

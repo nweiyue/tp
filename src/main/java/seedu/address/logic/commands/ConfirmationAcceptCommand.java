@@ -1,10 +1,17 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
+/**
+ * Confirms an execution of a DangerousCommand.
+ */
 public class ConfirmationAcceptCommand extends ConfirmationCommand {
+    /**
+     * Constructs a {@code ConfirmationAcceptCommand} with the specified DangerousCommand.
+     */
     public ConfirmationAcceptCommand(DangerousCommand dangerousCommand) {
         super(dangerousCommand);
     }
