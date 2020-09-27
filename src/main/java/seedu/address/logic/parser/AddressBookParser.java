@@ -9,6 +9,8 @@ import java.util.regex.Pattern;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.ConfirmationCommand;
+import seedu.address.logic.commands.DangerousCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
@@ -21,11 +23,16 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * Parses user input.
  */
 public class AddressBookParser {
+    private ConfirmationCommand previousCommand;
 
     /**
      * Used for initial separation of command word and args.
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
+
+    public void removePreviousCommand() {
+        this.previousCommand = null;
+    }
 
     /**
      * Parses user input into command for execution.
@@ -42,34 +49,44 @@ public class AddressBookParser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
-        switch (commandWord) {
 
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+        if (previousCommand != null) {
+            Command result = new ConfirmationParser(previousCommand).parse(userInput);
+            removePreviousCommand();
+            return result;
+        } else {
+            switch (commandWord) {
 
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
+            case AddCommand.COMMAND_WORD:
+                return new AddCommandParser().parse(arguments);
 
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
+            case EditCommand.COMMAND_WORD:
+                this.previousCommand = new ConfirmationCommand(new EditCommandParser().parse(arguments));
+                return previousCommand;
 
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
+            case DeleteCommand.COMMAND_WORD:
+                this.previousCommand = new ConfirmationCommand(new DeleteCommandParser().parse(arguments));
+                return previousCommand;
 
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
+            case ClearCommand.COMMAND_WORD:
+                this.previousCommand = new ConfirmationCommand(new ClearCommand());
+                return previousCommand;
 
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+            case FindCommand.COMMAND_WORD:
+                return new FindCommandParser().parse(arguments);
 
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
+            case ListCommand.COMMAND_WORD:
+                return new ListCommand();
 
-        case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
+            case ExitCommand.COMMAND_WORD:
+                return new ExitCommand();
 
-        default:
-            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+            case HelpCommand.COMMAND_WORD:
+                return new HelpCommand();
+
+            default:
+                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+            }
         }
     }
 

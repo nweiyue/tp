@@ -3,8 +3,8 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import seedu.address.model.Model;
 
-public class RejectionCommand extends ConfirmationCommand {
-    public RejectionCommand(DangerousCommand dangerousCommand) {
+public class ConfirmationRejectCommand extends ConfirmationCommand {
+    public ConfirmationRejectCommand(DangerousCommand dangerousCommand) {
         super(dangerousCommand);
     }
 

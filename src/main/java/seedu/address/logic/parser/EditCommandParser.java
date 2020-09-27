@@ -22,14 +22,14 @@ import seedu.address.model.tag.Tag;
 /**
  * Parses input arguments and creates a new EditCommand object
  */
-public class EditCommandParser implements Parser<ConfirmationCommand> {
+public class EditCommandParser implements Parser<EditCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
      * and returns an EditCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public ConfirmationCommand parse(String args) throws ParseException {
+    public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_MATRICULATION, PREFIX_EMAIL, PREFIX_TAG);
@@ -59,7 +59,7 @@ public class EditCommandParser implements Parser<ConfirmationCommand> {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new ConfirmationCommand(new EditCommand(index, editPersonDescriptor));
+        return new EditCommand(index, editPersonDescriptor);
     }
 
     /**
