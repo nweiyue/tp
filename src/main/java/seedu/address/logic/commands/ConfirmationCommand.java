@@ -9,6 +9,15 @@ import seedu.address.model.Model;
  * Confirms whether or not to execute a command.
  */
 public class ConfirmationCommand extends Command {
+    public static final String MESSAGE_CONFIRMATION = "(yes/no)";
+    public static final String MESSAGE_CONFIRMATION_DELETE = "Delete %1$d? " + MESSAGE_CONFIRMATION;
+    public static final String MESSAGE_CONFIRMATION_EDIT = "Edit %1$d? " + MESSAGE_CONFIRMATION;
+    public static final String MESSAGE_CONFIRMATION_CLEAR = "Clear list? " + MESSAGE_CONFIRMATION;
+    public static final String ACCEPT_COMMAND_1 = "yes";
+    public static final String ACCEPT_COMMAND_2 = "y";
+    public static final String REJECT_COMMAND_1 = "no";
+    public static final String REJECT_COMMAND_2 = "n";
+
     private final DangerousCommand dangerousCommand;
 
     /**
@@ -27,7 +36,7 @@ public class ConfirmationCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        return new CommandResult(String.format("%s? (yes/no)", dangerousCommand));
+        return new CommandResult(String.format("%s? %s", dangerousCommand, MESSAGE_CONFIRMATION));
     }
 
     public DangerousCommand getDangerousCommand() {

@@ -53,6 +53,7 @@ public class DeleteCommand extends DangerousCommand {
 
     @Override
     public String toString() {
-        return "Delete command";
+        String oneBasedIndex = String.valueOf(targetIndex.getOneBased());
+        return "Delete " + oneBasedIndex;
     }
 }

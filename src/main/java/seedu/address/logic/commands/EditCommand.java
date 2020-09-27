@@ -87,7 +87,8 @@ public class EditCommand extends DangerousCommand {
 
     @Override
     public String toString() {
-        return "Edit command";
+        String oneBasedIndex = String.valueOf(index.getOneBased());
+        return "Edit " + oneBasedIndex;
     }
 
     /**
