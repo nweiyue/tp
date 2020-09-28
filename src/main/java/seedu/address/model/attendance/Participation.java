@@ -6,6 +6,8 @@ package seedu.address.model.attendance;
  */
 public class Participation {
 
+    private static final boolean PARTICIPATED = true;
+    private static final boolean NOT_PARTICIPATED = false;
     private final boolean hasParticipated;
 
     public Participation(boolean isPresent) {
@@ -16,11 +18,11 @@ public class Participation {
      * Sets to the default value of false.
      */
     public Participation() {
-        this(false);
+        this(NOT_PARTICIPATED);
     }
 
     public Participation participate() {
-        return new Participation(true);
+        return new Participation(PARTICIPATED);
     }
 
     @Override

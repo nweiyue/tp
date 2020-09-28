@@ -6,6 +6,8 @@ package seedu.address.model.attendance;
  */
 public class Presence {
 
+    private static final boolean PRESENT = true;
+    private static final boolean ABSENT = false;
     private final boolean isPresent;
 
     public Presence(boolean isPresent) {
@@ -16,11 +18,11 @@ public class Presence {
      * Sets to the default value of false.
      */
     public Presence() {
-        this(false);
+        this(ABSENT);
     }
 
     public Presence becomePresent() {
-        return new Presence(true);
+        return new Presence(PRESENT);
     }
 
     @Override
