@@ -27,6 +27,9 @@ public class MainWindow extends UiPart<Stage> {
 
     private static final int SLEEP_TIME = 2000;
     private static final String FXML = "MainWindow.fxml";
+    private static final int CLASSES_TAB = 0;
+    private static final int ATTENDANCE_TAB = 1;
+    private static final String MESSAGE_ALREADY_ON_TAB = "Already at %1$s tab!";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -158,6 +161,25 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Switches to the specified tab.
+     *
+     * @param tab tab to switch to.
+     */
+    @FXML
+    private void handleSwitchTab(Tab tab) throws CommandException {
+
+        int currentTab = tabPane.getSelectionModel().getSelectedIndex();
+
+        if (tab.equals(Tab.CLASSES) && currentTab != CLASSES_TAB) {
+            tabPane.getSelectionModel().select(CLASSES_TAB);
+        } else if (tab.equals(Tab.ATTENDANCE) && currentTab != ATTENDANCE_TAB) {
+            tabPane.getSelectionModel().select(ATTENDANCE_TAB);
+        } else {
+            throw new CommandException(String.format(MESSAGE_ALREADY_ON_TAB, tab.toString().toLowerCase()));
+        }
+    }
+
+    /**
      * Closes the application.
      */
     @FXML
@@ -194,6 +216,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            }
+
+            if (commandResult.isSwitchTab()) {
+                handleSwitchTab(commandResult.getTab());
             }
 
             if (commandResult.isExit()) {

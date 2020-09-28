@@ -7,6 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.ui.Tab;
+
 public class CommandResultTest {
     @Test
     public void equals() {
@@ -14,7 +16,7 @@ public class CommandResultTest {
 
         // same values -> returns true
         assertTrue(commandResult.equals(new CommandResult("feedback")));
-        assertTrue(commandResult.equals(new CommandResult("feedback", false, false, false)));
+        assertTrue(commandResult.equals(new CommandResult("feedback", false, null, false)));
 
         // same object -> returns true
         assertTrue(commandResult.equals(commandResult));
@@ -29,10 +31,13 @@ public class CommandResultTest {
         assertFalse(commandResult.equals(new CommandResult("different")));
 
         // different showHelp value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", true, false, false)));
+        assertFalse(commandResult.equals(new CommandResult("feedback", true, null, false)));
+
+        // different switchTab value -> returns false
+        assertFalse(commandResult.equals(new CommandResult("feedback", false, Tab.CLASSES, true)));
 
         // different exit value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", false, false, true)));
+        assertFalse(commandResult.equals(new CommandResult("feedback", false, null, true)));
     }
 
     @Test
@@ -46,9 +51,12 @@ public class CommandResultTest {
         assertNotEquals(commandResult.hashCode(), new CommandResult("different").hashCode());
 
         // different showHelp value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", true, false, false).hashCode());
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", true, null, false).hashCode());
+
+        // different switchTab value -> returns false
+        assertFalse(commandResult.equals(new CommandResult("feedback", false, Tab.CLASSES, true)));
 
         // different exit value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, false, true).hashCode());
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, null, true).hashCode());
     }
 }

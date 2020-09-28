@@ -130,15 +130,15 @@
 }
 
 .list-cell:filled:even {
-    -fx-background-color: #39434c; /* color of list boxes */
+    -fx-background-color: #39434c; /* color of list boxes: even */
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: #505a61;  /* color of list boxes */
+    -fx-background-color: #505a61;  /* color of list boxes: odd */
 }
 
 .list-cell:filled:selected {
-    -fx-background-color: #3e4c59;  /* color of list boxes */
+    -fx-background-color: #efc8a2;  /* color of list boxes: when selected */
 }
 
 .list-cell:filled:selected #cardPane {
@@ -148,6 +148,10 @@
 
 .list-cell .label {
     -fx-text-fill: white;
+}
+
+.list-cell:selected .label {
+    -fx-text-fill: black;
 }
 
 .cell_big_label {
