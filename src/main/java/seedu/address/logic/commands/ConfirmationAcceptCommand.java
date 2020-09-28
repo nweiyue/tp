@@ -8,7 +8,7 @@ import seedu.address.model.Model;
 /**
  * Confirms an execution of a DangerousCommand.
  */
-public class ConfirmationAcceptCommand extends ConfirmationCommand {
+public class ConfirmationAcceptCommand extends ConfirmCommand {
     /**
      * Constructs a {@code ConfirmationAcceptCommand} with the specified DangerousCommand.
      */
@@ -27,5 +27,22 @@ public class ConfirmationAcceptCommand extends ConfirmationCommand {
         DangerousCommand dangerousCommand = this.getDangerousCommand();
         requireNonNull(dangerousCommand);
         return dangerousCommand.execute(model);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (this == other) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof ConfirmationAcceptCommand)) {
+            return false;
+        }
+
+        // calls for checks between the dangerousCommands
+        DangerousCommand otherDangerousCommand = ((ConfirmationAcceptCommand) other).getDangerousCommand();
+        return this.getDangerousCommand().equals(otherDangerousCommand);
     }
 }

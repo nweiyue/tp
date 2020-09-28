@@ -6,10 +6,11 @@ import static seedu.address.logic.commands.ConfirmationCommand.ACCEPT_COMMAND_2;
 import static seedu.address.logic.commands.ConfirmationCommand.REJECT_COMMAND_1;
 import static seedu.address.logic.commands.ConfirmationCommand.REJECT_COMMAND_2;
 
+import seedu.address.logic.commands.ConfirmCommand;
 import seedu.address.logic.commands.ConfirmationCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-public class ConfirmationParser implements Parser<ConfirmationCommand> {
+public class ConfirmationParser implements Parser<ConfirmCommand> {
     private final ConfirmationCommand confirmationCommand;
 
     public ConfirmationParser(ConfirmationCommand confirmationCommand) {
@@ -23,7 +24,7 @@ public class ConfirmationParser implements Parser<ConfirmationCommand> {
      * @throws ParseException if {@code userInput} does not conform the expected format
      */
     @Override
-    public ConfirmationCommand parse(String userInput) throws ParseException {
+    public ConfirmCommand parse(String userInput) throws ParseException {
         String lowerCaseInput = userInput.toLowerCase();
         if (lowerCaseInput.equals(ACCEPT_COMMAND_1) || lowerCaseInput.equals(ACCEPT_COMMAND_2)) {
             return confirmationCommand.accept();

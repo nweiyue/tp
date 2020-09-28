@@ -2,13 +2,12 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
  * Confirms whether or not to execute a command.
  */
-public class ConfirmationCommand extends Command {
+public class ConfirmationCommand extends ConfirmCommand {
     public static final String MESSAGE_CONFIRMATION = "(yes/no)";
     public static final String MESSAGE_CONFIRMATION_DELETE = "Delete %1$d? " + MESSAGE_CONFIRMATION;
     public static final String MESSAGE_CONFIRMATION_EDIT = "Edit %1$d? " + MESSAGE_CONFIRMATION;
@@ -18,13 +17,11 @@ public class ConfirmationCommand extends Command {
     public static final String REJECT_COMMAND_1 = "no";
     public static final String REJECT_COMMAND_2 = "n";
 
-    private final DangerousCommand dangerousCommand;
-
     /**
      * Constructs a {@code ConfirmationCommand} with the specified DangerousCommand.
      */
     public ConfirmationCommand(DangerousCommand dangerousCommand) {
-        this.dangerousCommand = dangerousCommand;
+        super(dangerousCommand);
     }
 
     /**
@@ -34,21 +31,17 @@ public class ConfirmationCommand extends Command {
      * @return feedback message of the operation result for display
      */
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model) {
         requireNonNull(model);
-        return new CommandResult(String.format("%s? %s", dangerousCommand, MESSAGE_CONFIRMATION));
-    }
-
-    public DangerousCommand getDangerousCommand() {
-        return this.dangerousCommand;
+        return new CommandResult(String.format("%s? %s", getDangerousCommand(), MESSAGE_CONFIRMATION));
     }
 
     public ConfirmationAcceptCommand accept() {
-        return new ConfirmationAcceptCommand(dangerousCommand);
+        return new ConfirmationAcceptCommand(getDangerousCommand());
     }
 
     public ConfirmationRejectCommand reject() {
-        return new ConfirmationRejectCommand(dangerousCommand);
+        return new ConfirmationRejectCommand(getDangerousCommand());
     }
 
     @Override

@@ -7,7 +7,9 @@ import seedu.address.model.Model;
 /**
  * Rejects the execution of a Dangerous Command.
  */
-public class ConfirmationRejectCommand extends ConfirmationCommand {
+public class ConfirmationRejectCommand extends ConfirmCommand {
+    public static final String MESSAGE_REJECT_COMMAND = "%1$s is not executed";
+
     /**
      * Constructs a {@code ConfirmationRejectCommand} with the specified DangerousCommand.
      */
@@ -25,6 +27,23 @@ public class ConfirmationRejectCommand extends ConfirmationCommand {
     public CommandResult execute(Model model) {
         DangerousCommand dangerousCommand = this.getDangerousCommand();
         requireNonNull(dangerousCommand);
-        return new CommandResult(String.format("%s is not executed.", dangerousCommand.toString()));
+        return new CommandResult(String.format(MESSAGE_REJECT_COMMAND, dangerousCommand.toString()));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (this == other) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof ConfirmationRejectCommand)) {
+            return false;
+        }
+
+        // calls for checks between the dangerousCommands
+        DangerousCommand otherDangerousCommand = ((ConfirmationRejectCommand) other).getDangerousCommand();
+        return this.getDangerousCommand().equals(otherDangerousCommand);
     }
 }
