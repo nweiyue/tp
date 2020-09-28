@@ -50,4 +50,21 @@ public class ConfirmationCommand extends Command {
     public ConfirmationRejectCommand reject() {
         return new ConfirmationRejectCommand(dangerousCommand);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (this == other) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof ConfirmationCommand)) {
+            return false;
+        }
+
+        // calls for checks between the dangerousCommands
+        DangerousCommand otherDangerousCommand = ((ConfirmationCommand) other).getDangerousCommand();
+        return this.getDangerousCommand().equals(otherDangerousCommand);
+    }
 }
