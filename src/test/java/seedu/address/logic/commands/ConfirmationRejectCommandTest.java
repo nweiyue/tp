@@ -69,14 +69,20 @@ public class ConfirmationRejectCommandTest {
         ConfirmationRejectCommand confirmationRejectEditCommand = new ConfirmationRejectCommand(editCommand);
         ConfirmationRejectCommand confirmationRejectClearCommand = new ConfirmationRejectCommand(clearCommand);
 
+        // Check if confirmationRejectDangerousCommand equals confirmationRejectSameDangerousCommand
         assertTrue(confirmationRejectDeleteCommand.equals(confirmationRejectDeleteCommand));
         assertTrue(confirmationRejectEditCommand.equals(confirmationRejectEditCommand));
         assertTrue(confirmationRejectClearCommand.equals(confirmationRejectClearCommand));
 
+        // Check if confirmationRejectDangerousCommand equals confirmationRejectAnotherDangerousCommand
         assertFalse(confirmationRejectDeleteCommand.equals(confirmationRejectClearCommand));
         assertFalse(confirmationRejectDeleteCommand.equals(confirmationRejectEditCommand));
         assertFalse(confirmationRejectEditCommand.equals(confirmationRejectClearCommand));
 
+        // Check if confirmationRejectDeleteCommand equals confirmationRejectAnotherDeleteCommand
         assertFalse(confirmationRejectDeleteCommand.equals(new ConfirmationRejectCommand(secondDeleteCommand)));
+
+        // Check if ConfirmationRejectCommand equals another subclass of ConfirmCommand
+        assertFalse(confirmationRejectDeleteCommand.equals(new ConfirmationAcceptCommand(firstDeleteCommand)));
     }
 }

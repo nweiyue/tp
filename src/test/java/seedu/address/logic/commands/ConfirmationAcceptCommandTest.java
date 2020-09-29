@@ -113,5 +113,8 @@ public class ConfirmationAcceptCommandTest {
 
         // Check if confirmationAcceptDeleteCommand equals confirmationAcceptAnotherDeleteCommand
         assertFalse(confirmationAcceptDeleteCommand.equals(new ConfirmationAcceptCommand(secondDeleteCommand)));
+
+        // Check if confirmationAcceptCommand equals another subclass of ConfirmCommand
+        assertFalse(confirmationAcceptDeleteCommand.equals(new ConfirmationRejectCommand(firstDeleteCommand)));
     }
 }
