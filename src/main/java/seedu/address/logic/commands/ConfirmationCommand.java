@@ -12,10 +12,10 @@ public class ConfirmationCommand extends ConfirmCommand {
     public static final String MESSAGE_CONFIRMATION_DELETE = "Delete %1$d? " + MESSAGE_CONFIRMATION;
     public static final String MESSAGE_CONFIRMATION_EDIT = "Edit %1$d? " + MESSAGE_CONFIRMATION;
     public static final String MESSAGE_CONFIRMATION_CLEAR = "Clear list? " + MESSAGE_CONFIRMATION;
-    public static final String ACCEPT_COMMAND_1 = "yes";
-    public static final String ACCEPT_COMMAND_2 = "y";
-    public static final String REJECT_COMMAND_1 = "no";
-    public static final String REJECT_COMMAND_2 = "n";
+    public static final String ACCEPT_COMMAND_FULL = "yes";
+    public static final String ACCEPT_COMMAND_SHORT = "y";
+    public static final String REJECT_COMMAND_FULL = "no";
+    public static final String REJECT_COMMAND_SHORT = "n";
 
     /**
      * Constructs a {@code ConfirmationCommand} with the specified DangerousCommand.

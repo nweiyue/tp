@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.model.Model;
 
 /**
- * Rejects the execution of a Dangerous Command.
+ * Rejects the execution of a DangerousCommand.
  */
 public class ConfirmationRejectCommand extends ConfirmCommand {
     public static final String MESSAGE_REJECT_COMMAND = "%1$s is not executed";

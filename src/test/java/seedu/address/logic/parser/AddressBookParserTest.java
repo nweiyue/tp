@@ -45,7 +45,7 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_clear() throws Exception {
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ConfirmationCommand);
-        assertTrue(parser.parseCommand(ConfirmationCommand.REJECT_COMMAND_1) instanceof ConfirmationRejectCommand);
+        assertTrue(parser.parseCommand(ConfirmationCommand.REJECT_COMMAND_FULL) instanceof ConfirmationRejectCommand);
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ConfirmationCommand);
     }
 

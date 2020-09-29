@@ -1,10 +1,10 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_CONFIRMATION_INPUT;
-import static seedu.address.logic.commands.ConfirmationCommand.ACCEPT_COMMAND_1;
-import static seedu.address.logic.commands.ConfirmationCommand.ACCEPT_COMMAND_2;
-import static seedu.address.logic.commands.ConfirmationCommand.REJECT_COMMAND_1;
-import static seedu.address.logic.commands.ConfirmationCommand.REJECT_COMMAND_2;
+import static seedu.address.logic.commands.ConfirmationCommand.ACCEPT_COMMAND_FULL;
+import static seedu.address.logic.commands.ConfirmationCommand.ACCEPT_COMMAND_SHORT;
+import static seedu.address.logic.commands.ConfirmationCommand.REJECT_COMMAND_FULL;
+import static seedu.address.logic.commands.ConfirmationCommand.REJECT_COMMAND_SHORT;
 
 import seedu.address.logic.commands.ConfirmCommand;
 import seedu.address.logic.commands.ConfirmationCommand;
@@ -26,9 +26,9 @@ public class ConfirmationParser implements Parser<ConfirmCommand> {
     @Override
     public ConfirmCommand parse(String userInput) throws ParseException {
         String lowerCaseInput = userInput.toLowerCase();
-        if (lowerCaseInput.equals(ACCEPT_COMMAND_1) || lowerCaseInput.equals(ACCEPT_COMMAND_2)) {
+        if (lowerCaseInput.equals(ACCEPT_COMMAND_FULL) || lowerCaseInput.equals(ACCEPT_COMMAND_SHORT)) {
             return confirmationCommand.accept();
-        } else if (lowerCaseInput.equals(REJECT_COMMAND_1) || lowerCaseInput.equals(REJECT_COMMAND_2)) {
+        } else if (lowerCaseInput.equals(REJECT_COMMAND_FULL) || lowerCaseInput.equals(REJECT_COMMAND_SHORT)) {
             return confirmationCommand.reject();
         } else {
             throw new ParseException(MESSAGE_INVALID_CONFIRMATION_INPUT);

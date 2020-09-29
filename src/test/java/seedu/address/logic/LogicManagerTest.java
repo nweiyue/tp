@@ -6,7 +6,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.MATRICULATION_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.address.logic.commands.ConfirmationCommand.ACCEPT_COMMAND_1;
+import static seedu.address.logic.commands.ConfirmationCommand.ACCEPT_COMMAND_FULL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.AMY;
@@ -70,14 +70,14 @@ public class LogicManagerTest {
         String deleteCommand = DeleteCommand.COMMAND_WORD + " " + outOfBoundIndexOneBased;
         assertCommandSuccess(deleteCommand, String.format(ConfirmationCommand.MESSAGE_CONFIRMATION_DELETE,
                 outOfBoundIndexOneBased), model);
-        assertCommandException(ACCEPT_COMMAND_1, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandException(ACCEPT_COMMAND_FULL, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
 
 
         String editCommand = EditCommand.COMMAND_WORD + " " + outOfBoundIndexOneBased + " "
                 + PREFIX_TAG + "newTag";
         assertCommandSuccess(editCommand, String.format(ConfirmationCommand.MESSAGE_CONFIRMATION_EDIT,
                 outOfBoundIndexOneBased), model);
-        assertCommandException(ACCEPT_COMMAND_1, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandException(ACCEPT_COMMAND_FULL, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
