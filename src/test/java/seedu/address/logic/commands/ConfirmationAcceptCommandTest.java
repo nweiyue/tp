@@ -101,14 +101,17 @@ public class ConfirmationAcceptCommandTest {
         ConfirmationAcceptCommand confirmationAcceptEditCommand = new ConfirmationAcceptCommand(editCommand);
         ConfirmationAcceptCommand confirmationAcceptClearCommand = new ConfirmationAcceptCommand(clearCommand);
 
+        // Check if confirmationAcceptDangerousCommand equals confirmationAcceptSameDangerousCommand
         assertTrue(confirmationAcceptDeleteCommand.equals(confirmationAcceptDeleteCommand));
         assertTrue(confirmationAcceptEditCommand.equals(confirmationAcceptEditCommand));
         assertTrue(confirmationAcceptClearCommand.equals(confirmationAcceptClearCommand));
 
+        // Check if confirmationAcceptDangerousCommand equals confirmationAcceptAnotherDangerousCommand
         assertFalse(confirmationAcceptDeleteCommand.equals(confirmationAcceptClearCommand));
         assertFalse(confirmationAcceptDeleteCommand.equals(confirmationAcceptEditCommand));
         assertFalse(confirmationAcceptEditCommand.equals(confirmationAcceptClearCommand));
 
-        assertFalse(confirmationAcceptDeleteCommand.equals(new ConfirmationRejectCommand(secondDeleteCommand)));
+        // Check if confirmationAcceptDeleteCommand equals confirmationAcceptAnotherDeleteCommand
+        assertFalse(confirmationAcceptDeleteCommand.equals(new ConfirmationAcceptCommand(secondDeleteCommand)));
     }
 }
