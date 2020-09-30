@@ -3,10 +3,13 @@ package seedu.address.logic.commands;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
-/**
- * Represents a command with hidden internal logic and the ability to be executed.
- */
-public abstract class Command {
+public abstract class ConfirmCommand extends Command {
+    private final DangerousCommand dangerousCommand;
+
+    public ConfirmCommand(DangerousCommand dangerousCommand) {
+        this.dangerousCommand = dangerousCommand;
+    }
+
     /**
      * Executes the command and returns the result message.
      *
@@ -14,6 +17,10 @@ public abstract class Command {
      * @return feedback message of the operation result for display
      * @throws CommandException If an error occurs during command execution.
      */
+    @Override
     public abstract CommandResult execute(Model model) throws CommandException;
 
+    public DangerousCommand getDangerousCommand() {
+        return this.dangerousCommand;
+    }
 }
