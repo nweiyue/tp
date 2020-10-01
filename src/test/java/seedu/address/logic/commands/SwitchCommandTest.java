@@ -22,7 +22,7 @@ public class SwitchCommandTest {
     private Model expectedModel = new ModelManager();
 
     @Test
-    public void execute_validTab_success() {
+    public void execute_switchClassesTab_success() {
         String expectedMessage = String.format(MESSAGE_SWITCH_TAB_SUCCESS,
                 Tab.CLASSES.toString().toLowerCase());
         CommandResult expectedCommandResult = new CommandResult(expectedMessage, false, Tab.CLASSES, false);
@@ -32,7 +32,17 @@ public class SwitchCommandTest {
     }
 
     @Test
-    public void execute_invalidTab_throwsCommandException() {
+    public void execute_switchAttendanceTab_success() {
+        String expectedMessage = String.format(MESSAGE_SWITCH_TAB_SUCCESS,
+                Tab.ATTENDANCE.toString().toLowerCase());
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, false, Tab.ATTENDANCE, false);
+        SwitchCommand switchCommand = new SwitchCommand(ATTENDANCE_TAB_NAME);
+
+        assertCommandSuccess(switchCommand, model, expectedCommandResult, expectedModel);
+    }
+
+    @Test
+    public void execute_invalidTabName_throwsCommandException() {
         SwitchCommand switchCommand = new SwitchCommand(INVALID_TAB_NAME);
 
         assertCommandFailure(switchCommand, model, MESSAGE_INVALID_TAB);
@@ -40,23 +50,33 @@ public class SwitchCommandTest {
 
     @Test
     public void equals() {
-        SwitchCommand switchFirstCommand = new SwitchCommand(CLASSES_TAB_NAME);
-        SwitchCommand switchSecondCommand = new SwitchCommand(ATTENDANCE_TAB_NAME);
+        SwitchCommand switchToClassesCommand = new SwitchCommand(CLASSES_TAB_NAME);
+        SwitchCommand switchToAttendanceCommand = new SwitchCommand(ATTENDANCE_TAB_NAME);
+        SwitchCommand switchToInvalidTabCommand = new SwitchCommand(INVALID_TAB_NAME);
 
         // same object -> returns true
-        assertTrue(switchFirstCommand.equals(switchFirstCommand));
+        assertTrue(switchToClassesCommand.equals(switchToClassesCommand));
+        assertTrue(switchToAttendanceCommand.equals(switchToAttendanceCommand));
 
         // same values -> returns true
-        SwitchCommand switchCommandCopy = new SwitchCommand(CLASSES_TAB_NAME);
-        assertTrue(switchFirstCommand.equals(switchCommandCopy));
+        SwitchCommand switchToClassesCommandCopy = new SwitchCommand(CLASSES_TAB_NAME);
+        assertTrue(switchToClassesCommand.equals(switchToClassesCommandCopy));
+        SwitchCommand switchToAttendanceCommandCopy = new SwitchCommand(ATTENDANCE_TAB_NAME);
+        assertTrue(switchToAttendanceCommand.equals(switchToAttendanceCommandCopy));
 
         // different types -> returns false
-        assertFalse(switchFirstCommand.equals(1));
+        assertFalse(switchToClassesCommand.equals(1));
+        assertFalse(switchToAttendanceCommand.equals(1));
 
         // null -> returns false
-        assertFalse(switchFirstCommand.equals(null));
+        assertFalse(switchToClassesCommand.equals(null));
+        assertFalse(switchToAttendanceCommand.equals(null));
+
+        // invalid tabs -> returns false
+        assertFalse(switchToClassesCommand.equals(switchToInvalidTabCommand));
+        assertFalse(switchToAttendanceCommand.equals(switchToInvalidTabCommand));
 
         // different tabs -> returns false
-        assertFalse(switchFirstCommand.equals(switchSecondCommand));
+        assertFalse(switchToClassesCommand.equals(switchToAttendanceCommand));
     }
 }
