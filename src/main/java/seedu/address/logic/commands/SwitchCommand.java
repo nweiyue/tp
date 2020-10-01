@@ -22,6 +22,8 @@ public class SwitchCommand extends Command {
 
     public static final String MESSAGE_INVALID_TAB = "Tab does not exist!";
 
+    public static final String MESSAGE_ALREADY_ON_TAB = "Already at %1$s tab!";
+
     private final String tabName;
 
     public SwitchCommand(String tabName) {

@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import static seedu.address.logic.commands.SwitchCommand.MESSAGE_ALREADY_ON_TAB;
+
 import java.util.logging.Logger;
 
 import javafx.application.Platform;
@@ -27,9 +29,6 @@ public class MainWindow extends UiPart<Stage> {
 
     private static final int SLEEP_TIME = 2000;
     private static final String FXML = "MainWindow.fxml";
-    private static final int CLASSES_TAB = 0;
-    private static final int ATTENDANCE_TAB = 1;
-    private static final String MESSAGE_ALREADY_ON_TAB = "Already at %1$s tab!";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -170,10 +169,10 @@ public class MainWindow extends UiPart<Stage> {
 
         int currentTab = tabPane.getSelectionModel().getSelectedIndex();
 
-        if (tab.equals(Tab.CLASSES) && currentTab != CLASSES_TAB) {
-            tabPane.getSelectionModel().select(CLASSES_TAB);
-        } else if (tab.equals(Tab.ATTENDANCE) && currentTab != ATTENDANCE_TAB) {
-            tabPane.getSelectionModel().select(ATTENDANCE_TAB);
+        if (tab.equals(Tab.CLASSES) && currentTab != tab.getIndex()) {
+            tabPane.getSelectionModel().select(tab.getIndex());
+        } else if (tab.equals(Tab.ATTENDANCE) && currentTab != tab.getIndex()) {
+            tabPane.getSelectionModel().select(tab.getIndex());
         } else {
             throw new CommandException(String.format(MESSAGE_ALREADY_ON_TAB, tab.toString().toLowerCase()));
         }
