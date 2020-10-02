@@ -11,6 +11,11 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
+import seedu.address.model.attendance.IndexRange;
+import seedu.address.model.attendance.Session;
+import seedu.address.model.attendance.SessionList;
+import seedu.address.model.attendance.SessionName;
 import seedu.address.model.person.Person;
 
 /**
@@ -20,25 +25,27 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
+    private final SessionList sessionList;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given session list, addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlySessionList sessionList, ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(addressBook, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
+        this.sessionList = new SessionList(sessionList);
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new SessionList(), new AddressBook(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -81,6 +88,7 @@ public class ModelManager implements Model {
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
         this.addressBook.resetData(addressBook);
+        resetSessionList();
     }
 
     @Override
@@ -95,14 +103,23 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deletePerson(Person target) {
+    public void deletePerson(Person target, Index id) {
         addressBook.removePerson(target);
+        sessionList.updatePersonList(addressBook.getPersonList());
+        sessionList.updateAllSessionsAfterDelete(id);
     }
 
     @Override
     public void addPerson(Person person) {
+        for (Session s: sessionList.getSessions()) {
+            System.out.println(s.getSessionName());
+            System.out.println(s.getStudentList());
+        }
+
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        sessionList.updatePersonList(addressBook.getPersonList());
+        sessionList.updateAllSessionsAfterAdd();
     }
 
     @Override
@@ -110,6 +127,63 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+    }
+
+    //=========== SessionList ================================================================================
+
+
+    @Override
+    public void resetSessionList() {
+        this.sessionList.clearSessions();
+    }
+
+    @Override
+    public SessionList getSessionList() {
+        return this.sessionList;
+    }
+
+    @Override
+    public Path getSessionListFilePath() {
+        return userPrefs.getSessionListFilePath();
+    }
+
+    @Override
+    public void setSessionListFilePath(Path sessionListFilePath) {
+        requireNonNull(sessionListFilePath);
+        userPrefs.setSessionListFilePath(sessionListFilePath);
+    }
+
+    @Override
+    public boolean hasSession(Session session) {
+        requireNonNull(session);
+        return sessionList.contains(session);
+    }
+
+    @Override
+    public void deleteSession(Session target) {
+        sessionList.updatePersonList(addressBook.getPersonList());
+        sessionList.deleteSession(target);
+    }
+
+    @Override
+    public void addSession(Session session) {
+        sessionList.updatePersonList(addressBook.getPersonList());
+        sessionList.addSession(session);
+    }
+
+    @Override
+    public void setSession(Session target, Session editedSession) {
+        sessionList.setSession(target, editedSession);
+    }
+
+    @Override
+    public void updateParticipationBySessionName(SessionName sessionName, IndexRange indexRange) {
+        sessionList.updateStudentParticipation(sessionName, indexRange);
+    }
+
+    @Override
+    public void updatePresenceBySessionName(SessionName sessionName, IndexRange indexRange) {
+        sessionList.updateStudentPresence(sessionName, indexRange);
     }
 
     //=========== Filtered Person List Accessors =============================================================

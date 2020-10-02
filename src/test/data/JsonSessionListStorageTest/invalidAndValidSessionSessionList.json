@@ -1,0 +1,30 @@
+{
+  "sessions" : [ {
+    "sessionName" : "lab1",
+    "sessionDate" : "02/02/2019",
+    "attributesList" : [ {
+      "attributeIndex" : "0",
+      "presence" : "true",
+      "participation" : "true"
+    }, {
+      "attributeIndex" : "1",
+      "presence" : "true",
+      "participation" : "true"
+    } ]
+  }, {
+    "sessionName": "!lab2",
+    "sessionDate": "02/02/k2019",
+    "attributesList": [
+      {
+        "attributeIndex": "0",
+        "presence": "true",
+        "participation": "true"
+      },
+      {
+        "attributeIndex": "1",
+        "presence": "true",
+        "participation": "true"
+      }
+    ]
+  } ]
+}

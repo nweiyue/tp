@@ -6,12 +6,15 @@ package seedu.address.model.attendance;
  */
 public class Participation {
 
+    public static final String MESSAGE_CONSTRAINTS = "Participation should be either true or false";
+
     private static final boolean PARTICIPATED = true;
     private static final boolean NOT_PARTICIPATED = false;
+
     private final boolean hasParticipated;
 
-    public Participation(boolean isPresent) {
-        this.hasParticipated = isPresent;
+    public Participation(boolean hasParticipated) {
+        this.hasParticipated = hasParticipated;
     }
 
     /**
@@ -21,8 +24,22 @@ public class Participation {
         this(NOT_PARTICIPATED);
     }
 
-    public Participation participate() {
-        return new Participation(PARTICIPATED);
+    /**
+     * Toggles the status of participation.
+     */
+    public Participation toggleParticipation() {
+        if (hasParticipated == PARTICIPATED) {
+            return new Participation(NOT_PARTICIPATED);
+        } else {
+            return new Participation(PARTICIPATED);
+        }
+    }
+
+    /**
+     * Returns the participation status of the student.
+     */
+    public boolean hasParticipated() {
+        return hasParticipated;
     }
 
     @Override
@@ -30,6 +47,11 @@ public class Participation {
         return this == other
                 || (other instanceof Participation
                 && (hasParticipated == ((Participation) other).hasParticipated));
+    }
+
+    @Override
+    public String toString() {
+        return Boolean.toString(hasParticipated);
     }
 
 }

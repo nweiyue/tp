@@ -1,4 +1,7 @@
 package seedu.address.model.attendance.exceptions;
 
-public class SessionNotFoundException {
-}
+/**
+ * Signals that the operation will result in duplicate Classes (Classes are considered duplicates if they have the same
+ * date).
+ */
+public class SessionNotFoundException extends RuntimeException{}

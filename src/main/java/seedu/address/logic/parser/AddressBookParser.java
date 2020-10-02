@@ -7,14 +7,20 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddSessionCommand;
 import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.ClearSessionCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteSessionCommand;
 import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditSessionCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ParticipateCommand;
+import seedu.address.logic.commands.PresenceCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -67,6 +73,24 @@ public class AddressBookParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case AddSessionCommand.COMMAND_WORD:
+            return new AddSessionCommandParser().parse(arguments);
+
+        case DeleteSessionCommand.COMMAND_WORD:
+            return new DeleteSessionCommandParser().parse(arguments);
+
+        case EditSessionCommand.COMMAND_WORD:
+            return new EditSessionCommandParser().parse(arguments);
+
+        case ClearSessionCommand.COMMAND_WORD:
+            return new ClearSessionCommand();
+
+        case ParticipateCommand.COMMAND_WORD:
+            return new ParticipateCommandParser().parse(arguments);
+
+        case PresenceCommand.COMMAND_WORD:
+            return new PresenceCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

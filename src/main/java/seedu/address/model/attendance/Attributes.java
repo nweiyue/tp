@@ -27,15 +27,23 @@ public class Attributes {
     /**
      * Causes the presence field to be true.
      */
-    public Attributes becomePresent() {
-        return new Attributes(presence.becomePresent(), participation);
+    public Attributes togglePresence() {
+        return new Attributes(presence.togglePresence(), participation);
     }
 
     /**
      * Causes the participation field to be true.
      */
-    public Attributes participate() {
-        return new Attributes(presence, participation.participate());
+    public Attributes toggleParticipation() {
+        return new Attributes(presence, participation.toggleParticipation());
+    }
+
+    public boolean getPresenceStatus() {
+        return presence.isPresent();
+    }
+
+    public boolean getParticipationStatus() {
+        return participation.hasParticipated();
     }
 
     @Override
@@ -50,4 +58,8 @@ public class Attributes {
         }
     }
 
+    @Override
+    public String toString() {
+        return "Presence: " + presence.isPresent() + " Participation: " + participation.hasParticipated();
+    }
 }
