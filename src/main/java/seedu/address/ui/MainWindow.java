@@ -1,11 +1,15 @@
 package seedu.address.ui;
 
+import static seedu.address.logic.commands.SwitchCommand.MESSAGE_ALREADY_ON_TAB;
+import static seedu.address.logic.commands.SwitchCommand.MESSAGE_INVALID_TAB;
+
 import java.util.logging.Logger;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -51,6 +55,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private TabPane tabPane;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -154,6 +161,28 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Switches to the specified tab.
+     *
+     * @param tab tab to switch to.
+     */
+    @FXML
+    private void handleSwitchTab(Tab tab) throws CommandException {
+
+        int currentTabIndex = tabPane.getSelectionModel().getSelectedIndex();
+        int toSwitchTabIndex = tab.getIndex().getZeroBased();
+
+        if (currentTabIndex == toSwitchTabIndex) {
+            throw new CommandException(String.format(MESSAGE_ALREADY_ON_TAB, tab.toString().toLowerCase()));
+        }
+
+        if (tab.equals(Tab.CLASSES) || tab.equals(Tab.ATTENDANCE)) {
+            tabPane.getSelectionModel().select(toSwitchTabIndex);
+        } else {
+            throw new CommandException(MESSAGE_INVALID_TAB);
+        }
+    }
+
+    /**
      * Closes the application.
      */
     @FXML
@@ -190,6 +219,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            }
+
+            if (commandResult.isSwitchTab()) {
+                handleSwitchTab(commandResult.getTab());
             }
 
             if (commandResult.isExit()) {

@@ -13,7 +13,7 @@ import seedu.address.model.person.Person;
 /**
  * Deletes a person identified using it's displayed index from the address book.
  */
-public class DeleteCommand extends Command {
+public class DeleteCommand extends DangerousCommand {
 
     public static final String COMMAND_WORD = "delete";
 
@@ -49,5 +49,11 @@ public class DeleteCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof DeleteCommand // instanceof handles nulls
                 && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
+    }
+
+    @Override
+    public String toString() {
+        String oneBasedIndex = String.valueOf(targetIndex.getOneBased());
+        return "Delete " + oneBasedIndex;
     }
 }

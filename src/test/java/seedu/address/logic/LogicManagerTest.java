@@ -6,6 +6,8 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.MATRICULATION_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.address.logic.commands.ConfirmationCommand.ACCEPT_COMMAND_FULL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.AMY;
 import static seedu.address.testutil.TypicalSessions.getTypicalSessionList;
@@ -17,8 +19,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.ConfirmationCommand;
+import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -61,9 +67,22 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void execute_commandExecutionError_throwsCommandException() {
-        String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    public void execute_commandExecutionError_throwsCommandException() throws CommandException, ParseException {
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+        System.out.println(outOfBoundIndex.toString());
+        int outOfBoundIndexOneBased = outOfBoundIndex.getOneBased();
+
+        String deleteCommand = DeleteCommand.COMMAND_WORD + " " + outOfBoundIndexOneBased;
+        assertCommandSuccess(deleteCommand, String.format(ConfirmationCommand.MESSAGE_CONFIRMATION_DELETE,
+                outOfBoundIndexOneBased), model);
+        assertCommandException(ACCEPT_COMMAND_FULL, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+
+
+        String editCommand = EditCommand.COMMAND_WORD + " " + outOfBoundIndexOneBased + " "
+                + PREFIX_TAG + "newTag";
+        assertCommandSuccess(editCommand, String.format(ConfirmationCommand.MESSAGE_CONFIRMATION_EDIT,
+                outOfBoundIndexOneBased), model);
+        assertCommandException(ACCEPT_COMMAND_FULL, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test

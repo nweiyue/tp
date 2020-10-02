@@ -8,8 +8,7 @@ import seedu.address.model.Model;
 /**
  * Clears the address book.
  */
-public class ClearCommand extends Command {
-
+public class ClearCommand extends DangerousCommand {
     public static final String COMMAND_WORD = "clear";
     public static final String MESSAGE_SUCCESS = "ATAS has cleared all students from your list!";
 
@@ -19,5 +18,10 @@ public class ClearCommand extends Command {
         requireNonNull(model);
         model.setAddressBook(new AddressBook());
         return new CommandResult(MESSAGE_SUCCESS);
+    }
+
+    @Override
+    public String toString() {
+        return "Clear list";
     }
 }
