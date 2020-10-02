@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import static seedu.address.logic.commands.SwitchCommand.MESSAGE_ALREADY_ON_TAB;
+import static seedu.address.logic.commands.SwitchCommand.MESSAGE_INVALID_TAB;
 
 import java.util.logging.Logger;
 
@@ -167,14 +168,17 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleSwitchTab(Tab tab) throws CommandException {
 
-        int currentTab = tabPane.getSelectionModel().getSelectedIndex();
+        int currentTabIndex = tabPane.getSelectionModel().getSelectedIndex();
+        int toSwitchTabIndex = tab.getIndex().getZeroBased();
 
-        if (tab.equals(Tab.CLASSES) && currentTab != tab.getIndex()) {
-            tabPane.getSelectionModel().select(tab.getIndex());
-        } else if (tab.equals(Tab.ATTENDANCE) && currentTab != tab.getIndex()) {
-            tabPane.getSelectionModel().select(tab.getIndex());
-        } else {
+        if (currentTabIndex == toSwitchTabIndex) {
             throw new CommandException(String.format(MESSAGE_ALREADY_ON_TAB, tab.toString().toLowerCase()));
+        }
+
+        if (tab.equals(Tab.CLASSES) || tab.equals(Tab.ATTENDANCE)) {
+            tabPane.getSelectionModel().select(toSwitchTabIndex);
+        } else {
+            throw new CommandException(MESSAGE_INVALID_TAB);
         }
     }
 

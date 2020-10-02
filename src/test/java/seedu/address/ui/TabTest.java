@@ -7,17 +7,27 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
+
 public class TabTest {
 
     @Test
     public void testGetIndex() {
         // actual index -> true
-        assertEquals(Tab.CLASSES.getIndex(), 0);
-        assertEquals(Tab.ATTENDANCE.getIndex(), 1);
+        assertEquals(Tab.CLASSES.getIndex().getZeroBased(), Index.fromZeroBased(0).getZeroBased());
+        assertEquals(Tab.ATTENDANCE.getIndex().getZeroBased(), Index.fromZeroBased(1).getZeroBased());
 
-        // wrong index -> false
-        assertNotEquals(Tab.CLASSES.getIndex(), 3);
-        assertNotEquals(Tab.ATTENDANCE.getIndex(), 4);
+        // zeroBased index but different values -> false
+        assertNotEquals(Tab.CLASSES.getIndex(), Index.fromZeroBased(3).getZeroBased());
+        assertNotEquals(Tab.ATTENDANCE.getIndex(), Index.fromZeroBased(4).getZeroBased());
+
+        // oneBased index but same values -> false
+        assertNotEquals(Tab.CLASSES.getIndex(), Index.fromZeroBased(0).getOneBased());
+        assertNotEquals(Tab.ATTENDANCE.getIndex(), Index.fromZeroBased(1).getOneBased());
+
+        // oneBased index and different values -> false
+        assertNotEquals(Tab.CLASSES.getIndex(), Index.fromZeroBased(3).getOneBased());
+        assertNotEquals(Tab.ATTENDANCE.getIndex(), Index.fromZeroBased(4).getOneBased());
     }
 
     @Test

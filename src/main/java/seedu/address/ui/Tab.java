@@ -1,30 +1,33 @@
 package seedu.address.ui;
 
+import seedu.address.commons.core.index.Index;
+
 /**
- * Existing tabs.
+ * Existing tabs with an Index associated to them.
+ * Index numbering starts from 0, beginning with tabs on the left of the GUI.
  */
 public enum Tab {
-    CLASSES(0),
-    ATTENDANCE(1);
+    CLASSES(Index.fromZeroBased(0)),
+    ATTENDANCE(Index.fromZeroBased(1));
 
-    /** Integer to represent the order of the tabs */
-    private final int index;
+    /** Index to represent the order of the tabs */
+    private final Index index;
 
     /**
      * Class constructor.
      *
-     * @param index index of the tab.
+     * @param index Index of the tab.
      */
-    Tab(int index) {
+    Tab(Index index) {
         this.index = index;
     }
 
     /**
-     * Retrieves the index of the enum class.
+     * Retrieves the Index of the enum class.
      *
-     * @return index of the tab.
+     * @return Index of the tab.
      */
-    public int getIndex() {
+    public Index getIndex() {
         return this.index;
     }
 }
