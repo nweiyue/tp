@@ -23,7 +23,9 @@ public class Messages {
     public static String getStudentListedMessage(int numberOfStudents) {
         if (numberOfStudents == 1) {
             return MESSAGE_SINGLE_STUDENT_LISTED_OVERVIEW;
+        } else {
+            // all other cases including 0 students
+            return MESSAGE_MULTIPLE_STUDENTS_LISTED_OVERVIEW;
         }
-        return MESSAGE_MULTIPLE_STUDENTS_LISTED_OVERVIEW;
     }
 }
