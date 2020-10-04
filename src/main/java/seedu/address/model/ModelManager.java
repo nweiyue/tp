@@ -111,11 +111,6 @@ public class ModelManager implements Model {
 
     @Override
     public void addPerson(Person person) {
-        for (Session s: sessionList.getSessions()) {
-            System.out.println(s.getSessionName());
-            System.out.println(s.getStudentList());
-        }
-
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         sessionList.updatePersonList(addressBook.getPersonList());
@@ -127,6 +122,7 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+        sessionList.updatePersonList(addressBook.getPersonList());
     }
 
     //=========== SessionList ================================================================================

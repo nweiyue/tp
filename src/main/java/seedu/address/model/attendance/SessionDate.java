@@ -13,7 +13,7 @@ import java.time.format.DateTimeFormatter;
  */
 public class SessionDate implements Comparable<SessionDate> {
 
-    public static final String MESSAGE_CONSTRAINTS = "The date of a session should be in the form of dd/MM/yy "
+    public static final String MESSAGE_CONSTRAINTS = "The date of a session should be in the form of dd/MM/yyyy "
             + "corresponding to a valid date.\n"
             + "Example : 10/2/2019";
     public static final String VALIDATION_REGEX = "[0-9]{1,2}/[0-9]{1,2}/[0-9]{4,4}";
@@ -22,7 +22,7 @@ public class SessionDate implements Comparable<SessionDate> {
     public final LocalDate value;
 
     /**
-     * Constructs an {@code SessionDate}.
+     * Constructs a {@code SessionDate}.
      *
      * @param date A valid date.
      */

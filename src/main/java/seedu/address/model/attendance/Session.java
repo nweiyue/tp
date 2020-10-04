@@ -126,7 +126,7 @@ public class Session implements Comparable<Session> {
     }
 
     /**
-     * Returns true if both sessions have the same session name and date.
+     * Returns true if both sessions have the same session name.
      * This defines a weaker notion of equality between two sessions.
      */
     public boolean isSameSession(Session otherSession) {
