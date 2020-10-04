@@ -15,9 +15,10 @@ ATAS is a **desktop app for managing students’ particulars, optimized for use 
   * [Locating students by name](#find)
   * [Deleting a student](#delete)
   * [Clearing all entries](#clear)
+  * [Switching between tabs](#switch)
   * [Exiting the program](#exit)
-  * [Saving data](#sd)
   * [User confirmation prompt](#ucp) (coming soon)
+  * [Saving data](#sd)
 * [FAQ](#faq)
 * [Command summary](#cs)
 
@@ -61,10 +62,10 @@ ATAS is a **desktop app for managing students’ particulars, optimized for use 
   e.g. in `add n/STUDENT_NAME` should be changed to `add n/John Cena`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Cena t/1F` or simply as `n/John Cena`.
+  e.g `n/NAME [t/TAG]` can be used as `n/John Cena t/foreigner` or simply as `n/John Cena`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/1F`, `t/1F t/2G` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/foreigner`, `t/foreigner t/enthusiastic` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME m/MATRICULATION_NUMBER`, `m/MATRICULATION_NUMBER n/NAME` is also acceptable.
@@ -81,7 +82,6 @@ Shows a message explaining how to access the help page.
 help
 ```
 
-
 ### <a name="add"></a>Adding a student : `add`
 
 Adds a student to class list.
@@ -96,7 +96,7 @@ A student can have any number of tags (including 0)
 
 Examples:
 * `add n/John Cena m/A0123456J e/thechamp@u.nus.edu`
-* `add n/Alvina Handsome m/A0123456X e/handsome.alvina@u.nus.edu t/2G`
+* `add n/Alvina Handsome m/A0123456X e/handsome.alvina@u.nus.edu t/new`
 
 ### <a name="list"></a>Listing all students : `list`
 
@@ -154,6 +154,20 @@ If yes: removes all students from the class list.
 clear
 ```
 
+### <a name="switch"></a>Switching between tabs : `switch`
+
+Switches between tabs.
+
+```
+switch TAB_NAME
+```
+
+* The tab name is case-insensitive.
+* The tab must be an existing tab (classes or attendance).
+
+Example:
+* `switch attendance` switches from the current tab to the attendance tab.
+
 ###  <a name="exit"></a>Exiting the program : `bye`
 
 The user will be prompted to confirm their decision here.
@@ -163,11 +177,6 @@ If yes: exits the application.
 ```
 bye
 ```
-
-###  <a name="sd"></a>Saving the data
-
-Students’ data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
 
 ### <a name="ucp"></a>User confirmation prompt (feature coming soon!)
 
@@ -180,6 +189,9 @@ Examples:
 * `clear` is followed with `Are you sure you want to continue?`.
 * `bye` is followed with `Are you sure you want to continue?`.
 
+###  <a name="sd"></a>Saving the data
+
+Students’ data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ## <a name="faq"></a>FAQ
 
@@ -192,11 +204,11 @@ Examples:
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME m/MATRICULATION_NUMBER e/NUS_EMAIL_ADDRESS [t/TAG]…​` <br> e.g., `add n/Rainer Lam m/A0123456C e/rainerlam@u.nus.edu`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Justin Bieber`
-**List** | `list`
 **Help** | `help`
+**Add** | `add n/NAME m/MATRICULATION_NUMBER e/NUS_EMAIL_ADDRESS [t/TAG]…​` <br> e.g., `add n/Rainer Lam m/A0123456C e/rainerlam@u.nus.edu t/smart`
+**List** | `list`
+**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Justin Bieber`
+**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Clear** | `clear`
+**Switch** | `switch TAB_NAME`<br> e.g., `switch attendance`
 **Exit** | `bye`
-
