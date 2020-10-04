@@ -1,0 +1,83 @@
+{
+  "sessions" : [ {
+    "sessionName" : "tut1",
+    "sessionDate" : "01/01/2020",
+    "attributesList" : [ {
+      "attributeIndex" : "0",
+      "presence" : "false",
+      "participation" : "false"
+    }, {
+      "attributeIndex" : "1",
+      "presence" : "false",
+      "participation" : "false"
+    }, {
+      "attributeIndex" : "2",
+      "presence" : "false",
+      "participation" : "false"
+    } ]
+  }, {
+    "sessionName" : "tut2",
+    "sessionDate" : "01/02/2020",
+    "attributesList" : [ {
+      "attributeIndex" : "0",
+      "presence" : "false",
+      "participation" : "false"
+    }, {
+      "attributeIndex" : "1",
+      "presence" : "false",
+      "participation" : "false"
+    }, {
+      "attributeIndex" : "2",
+      "presence" : "false",
+      "participation" : "false"
+    } ]
+  }, {
+    "sessionName" : "tut3",
+    "sessionDate" : "01/03/2020",
+    "attributesList" : [ {
+      "attributeIndex" : "0",
+      "presence" : "false",
+      "participation" : "false"
+    }, {
+      "attributeIndex" : "1",
+      "presence" : "false",
+      "participation" : "false"
+    }, {
+      "attributeIndex" : "2",
+      "presence" : "false",
+      "participation" : "false"
+    } ]
+  }, {
+    "sessionName" : "lab1",
+    "sessionDate" : "01/04/2020",
+    "attributesList" : [ {
+      "attributeIndex" : "0",
+      "presence" : "false",
+      "participation" : "false"
+    }, {
+      "attributeIndex" : "1",
+      "presence" : "false",
+      "participation" : "false"
+    }, {
+      "attributeIndex" : "2",
+      "presence" : "false",
+      "participation" : "false"
+    } ]
+  }, {
+    "sessionName" : "lab2",
+    "sessionDate" : "01/05/2020",
+    "attributesList" : [ {
+      "attributeIndex" : "0",
+      "presence" : "false",
+      "participation" : "false"
+    }, {
+      "attributeIndex" : "1",
+      "presence" : "false",
+      "participation" : "false"
+    }, {
+      "attributeIndex" : "2",
+      "presence" : "false",
+      "participation" : "false"
+    } ]
+  } ]
+}

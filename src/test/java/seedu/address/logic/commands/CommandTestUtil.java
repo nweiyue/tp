@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MATRICULATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SESSIONDATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SESSIONNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -16,9 +18,13 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.attendance.Session;
+import seedu.address.model.attendance.SessionDate;
+import seedu.address.model.attendance.SessionName;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditSessionDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -55,6 +61,39 @@ public class CommandTestUtil {
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
 
+
+    // ---------------------- Session Testing -------------------------------
+    public static final String VALID_SESSIONNAME_REC = "recitation1";
+    public static final String VALID_SESSIONNAME_CON = "midterm consultation";
+    public static final String VALID_SESSIONDATE_REC = "12/7/2017";
+    public static final String VALID_SESSIONDATE_CON = "27/11/2015";
+
+    public static final String VALID_SESSIONNAME_REC_DESC = " " + PREFIX_SESSIONNAME + VALID_SESSIONNAME_REC;
+    public static final String VALID_SESSIONNAME_CON_DESC = " " + PREFIX_SESSIONNAME + VALID_SESSIONNAME_CON;
+    public static final String VALID_SESSIONDATE_REC_DESC = " " + PREFIX_SESSIONDATE + VALID_SESSIONDATE_REC;
+    public static final String VALID_SESSIONDATE_CON_DESC = " " + PREFIX_SESSIONDATE + VALID_SESSIONDATE_CON;
+
+    public static final SessionName VALID_NAME_REC = new SessionName(VALID_SESSIONNAME_REC);
+    public static final SessionName VALID_NAME_CON = new SessionName(VALID_SESSIONNAME_CON);
+    public static final SessionDate VALID_DATE_REC = new SessionDate(VALID_SESSIONDATE_REC);
+    public static final SessionDate VALID_DATE_CON = new SessionDate(VALID_SESSIONDATE_CON);
+
+    public static final Session REC = new Session(VALID_NAME_REC, VALID_DATE_REC);
+    public static final Session CON = new Session(VALID_NAME_CON, VALID_DATE_CON);
+
+
+
+    public static final String INVALID_SESSIONNAME = "@tut3";
+    public static final String INVALID_SESSIONDATE = "13/13/2020";
+
+    public static final String INVALID_SESSIONNAME_DESC = " " + PREFIX_SESSIONNAME + INVALID_SESSIONNAME;
+    public static final String INVALID_SESSIONDATE_DESC = " " + PREFIX_SESSIONDATE + INVALID_SESSIONDATE;
+
+
+
+    public static final EditSessionCommand.EditSessionDescriptor DESC_REC;
+    public static final EditSessionCommand.EditSessionDescriptor DESC_CON;
+
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withMatriculation(VALID_MATRICULATION_AMY).withEmail(VALID_EMAIL_AMY)
@@ -62,6 +101,11 @@ public class CommandTestUtil {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withMatriculation(VALID_MATRICULATION_BOB).withEmail(VALID_EMAIL_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+
+        DESC_REC = new EditSessionDescriptorBuilder().withSessionName(VALID_SESSIONNAME_REC)
+                .withSessionDate(VALID_SESSIONDATE_REC).build();
+        DESC_CON = new EditSessionDescriptorBuilder().withSessionName(VALID_SESSIONNAME_CON)
+                .withSessionDate(VALID_SESSIONDATE_CON).build();
     }
 
     /**
@@ -70,7 +114,8 @@ public class CommandTestUtil {
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-            Model expectedModel) {
+                                            Model expectedModel) {
+
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);

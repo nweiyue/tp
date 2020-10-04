@@ -6,7 +6,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalSessions.getTypicalSessionList;
 
 import org.junit.jupiter.api.Test;
 
@@ -15,17 +15,19 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.ModelManagerBuilder;
 import seedu.address.testutil.PersonBuilder;
 
 public class ConfirmationRejectCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = ModelManagerBuilder.buildTypicalModelManager();
 
     @Test
     public void execute_rejectDeleteCommand_success() {
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
         String expectedMessage = String.format(ConfirmationRejectCommand.MESSAGE_REJECT_COMMAND, deleteCommand);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(getTypicalSessionList(model.getAddressBook().getPersonList()),
+                model.getAddressBook(), new UserPrefs());
 
         ConfirmationRejectCommand confirmationRejectCommand = new ConfirmationRejectCommand(deleteCommand);
         assertCommandSuccess(confirmationRejectCommand, model, expectedMessage, expectedModel);
@@ -38,7 +40,8 @@ public class ConfirmationRejectCommandTest {
 
         String expectedMessage = String.format(ConfirmationRejectCommand.MESSAGE_REJECT_COMMAND, editCommand);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(getTypicalSessionList(model.getAddressBook().getPersonList()),
+                model.getAddressBook(), new UserPrefs());
 
         ConfirmationRejectCommand confirmationRejectCommand = new ConfirmationRejectCommand(editCommand);
         assertCommandSuccess(confirmationRejectCommand, model, expectedMessage, expectedModel);
@@ -47,7 +50,8 @@ public class ConfirmationRejectCommandTest {
     @Test
     public void execute_rejectClearCommand_success() {
         ClearCommand clearCommand = new ClearCommand();
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalSessionList(model.getAddressBook().getPersonList()),
+                model.getAddressBook(), new UserPrefs());
         String expectedMessage = String.format(ConfirmationRejectCommand.MESSAGE_REJECT_COMMAND, clearCommand);
 
         ConfirmationRejectCommand confirmationRejectCommand = new ConfirmationRejectCommand(clearCommand);

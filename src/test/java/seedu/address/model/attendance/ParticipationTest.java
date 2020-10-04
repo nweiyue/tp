@@ -24,6 +24,6 @@ class ParticipationTest {
 
     @Test
     public void participate() {
-        assertEquals(POSITIVE_PARTICIPATION, DEFAULT_PARTICIPATION.participate());
+        assertEquals(POSITIVE_PARTICIPATION, DEFAULT_PARTICIPATION.toggleParticipation());
     }
 }
