@@ -7,121 +7,102 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAttributes.ABSENT_BUT_HAS_PARTICIPATED;
 import static seedu.address.testutil.TypicalAttributes.PRESENT_AND_HAS_PARTICIPATED;
 import static seedu.address.testutil.TypicalAttributes.PRESENT_BUT_HAS_NOT_PARTICIPATED;
-import static seedu.address.testutil.TypicalDates.WEEK_ONE;
-import static seedu.address.testutil.TypicalDates.WEEK_THREE;
-import static seedu.address.testutil.TypicalDates.WEEK_TWO;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalPersons.getTypicalPersonsMinusAlice;
+import static seedu.address.testutil.TypicalPersons.getTypicalPersons;
+import static seedu.address.testutil.TypicalSessions.SESSIONDATE_WEEK_ONE;
+import static seedu.address.testutil.TypicalSessions.SESSIONDATE_WEEK_THREE;
+import static seedu.address.testutil.TypicalSessions.SESSIONDATE_WEEK_TWO;
+import static seedu.address.testutil.TypicalSessions.SESSIONNAME_WEEK_ONE;
+import static seedu.address.testutil.TypicalSessions.SESSIONNAME_WEEK_THREE;
+import static seedu.address.testutil.TypicalSessions.SESSIONNAME_WEEK_TWO;
 
-import java.util.List;
-
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.model.AddressBook;
-import seedu.address.model.person.Person;
+
 
 class SessionTest {
 
-    private final List<Person> emptyMasterList = new AddressBook().getModifiablePersonList();
-    private final Session emptySessionWeekOne = new Session(WEEK_ONE, emptyMasterList);
-    private final Session emptySessionWeekTwo = new Session(WEEK_TWO, emptyMasterList);
-    private final Session emptySessionWeekThree = new Session(WEEK_THREE, emptyMasterList);
+    private final SessionList sessionList = new SessionList(getTypicalPersons());
 
-    private final List<Person> typicalMasterList = getTypicalAddressBook().getModifiablePersonList();
-    private final Session typicalSessionWeekOne = new Session(WEEK_ONE, typicalMasterList);
-    private final Session typicalSessionWeekTwo = new Session(WEEK_TWO, typicalMasterList);
-    private final Session typicalSessionWeekThree = new Session(WEEK_THREE, typicalMasterList);
+    private final Session sessionWeekOne = new Session(SESSIONNAME_WEEK_ONE, SESSIONDATE_WEEK_ONE);
+    private final Session sessionWeekTwo = new Session(SESSIONNAME_WEEK_TWO, SESSIONDATE_WEEK_TWO);
+    private final Session sessionWeekThree = new Session(SESSIONNAME_WEEK_THREE, SESSIONDATE_WEEK_THREE);
+
+    @BeforeEach
+    public void setup() {
+        sessionList.addSession(sessionWeekOne);
+        sessionList.addSession(sessionWeekTwo);
+        sessionList.addSession(sessionWeekThree);
+    }
 
     @Test
-    public void isSameClass() {
+    public void isSameSession() {
         // same object -> returns true
-        assertTrue(emptySessionWeekOne.isSameSession(emptySessionWeekOne));
-        assertTrue(typicalSessionWeekOne.isSameSession(typicalSessionWeekOne));
-
-        // same date but different master list -> returns true
-        assertTrue(emptySessionWeekOne.isSameSession(typicalSessionWeekOne));
+        assertTrue(sessionWeekOne.isSameSession(sessionWeekOne));
 
         // null -> returns false
-        assertFalse(emptySessionWeekOne.isSameSession(null));
-        assertFalse(typicalSessionWeekOne.isSameSession(null));
+        assertFalse(sessionWeekOne.isSameSession(null));
 
-        // different date -> returns false
-        assertFalse(emptySessionWeekOne.isSameSession(emptySessionWeekTwo));
-        assertFalse(emptySessionWeekTwo.isSameSession(emptySessionWeekThree));
-        assertFalse(typicalSessionWeekOne.isSameSession(typicalSessionWeekTwo));
-        assertFalse(typicalSessionWeekTwo.isSameSession(typicalSessionWeekThree));
+        // different session name -> returns false
+        assertFalse(sessionWeekOne.isSameSession(sessionWeekTwo));
+        assertFalse(sessionWeekTwo.isSameSession(sessionWeekThree));
     }
 
     @Test
     public void equals() {
         // same object -> returns true
-        assertTrue(emptySessionWeekOne.equals(emptySessionWeekOne));
-        assertTrue(typicalSessionWeekOne.equals(typicalSessionWeekOne));
+        assertTrue(sessionWeekOne.equals(sessionWeekOne));
 
         // null -> returns false
-        assertFalse(emptySessionWeekOne.equals(null));
-
-        // same date but different master list -> returns false
-        assertFalse(emptySessionWeekOne.equals(typicalSessionWeekOne));
+        assertFalse(sessionWeekOne.equals(null));
 
         // same master list but different date -> returns false
-        assertFalse(emptySessionWeekOne.equals(emptySessionWeekTwo));
-        assertFalse(emptySessionWeekTwo.equals(emptySessionWeekThree));
-
-        // different date and master list -> returns false
-        assertFalse(emptySessionWeekOne.equals(typicalSessionWeekTwo));
-        assertFalse(typicalSessionWeekTwo.equals(emptySessionWeekThree));
+        assertFalse(sessionWeekOne.equals(sessionWeekTwo));
+        assertFalse(sessionWeekTwo.equals(sessionWeekThree));
     }
 
     @Test
     public void studentBecomesPresent_validId_success() {
         Index index = Index.fromOneBased(1);
-        typicalSessionWeekOne.studentBecomesPresent(index);
-        assertEquals(PRESENT_BUT_HAS_NOT_PARTICIPATED,
-                typicalSessionWeekOne.getStudentList().get(index.getZeroBased()));
+        sessionWeekOne.setStudentAsPresent(index);
+        assertEquals(PRESENT_BUT_HAS_NOT_PARTICIPATED, sessionWeekOne.getStudentList().get(index.getZeroBased()));
     }
 
     @Test
     public void studentBecomesPresent_nullId_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> emptySessionWeekOne.studentBecomesPresent(null));
-        assertThrows(NullPointerException.class, () -> typicalSessionWeekOne.studentBecomesPresent(null));
+        assertThrows(NullPointerException.class, () -> sessionWeekOne.setStudentAsPresent(null));
     }
 
     @Test
     public void studentParticipates_validId_success() {
         Index index = Index.fromOneBased(1);
-        typicalSessionWeekOne.studentParticipates(index);
-        assertEquals(ABSENT_BUT_HAS_PARTICIPATED,
-                typicalSessionWeekOne.getStudentList().get(index.getZeroBased()));
+        sessionWeekTwo.setStudentAsParticipated(index);
+        assertEquals(ABSENT_BUT_HAS_PARTICIPATED, sessionWeekTwo.getStudentList().get(index.getZeroBased()));
     }
 
     @Test
     public void studentParticipates_nullId_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> emptySessionWeekOne.studentParticipates(null));
-        assertThrows(NullPointerException.class, () -> typicalSessionWeekOne.studentParticipates(null));
+        assertThrows(NullPointerException.class, () -> sessionWeekOne.setStudentAsParticipated(null));
     }
 
     @Test
     public void studentBecomesPresentAndParticipates_validId_success() {
         Index index = Index.fromOneBased(1);
-        typicalSessionWeekOne.studentBecomesPresent(index);
-        typicalSessionWeekOne.studentParticipates(index);
-        assertEquals(PRESENT_AND_HAS_PARTICIPATED,
-                typicalSessionWeekOne.getStudentList().get(index.getZeroBased()));
+        sessionWeekThree.setStudentAsParticipated(index);
+        sessionWeekThree.setStudentAsPresent(index);
+        assertEquals(PRESENT_AND_HAS_PARTICIPATED, sessionWeekThree.getStudentList().get(index.getZeroBased()));
     }
 
-    @Test
-    public void updateSessionAfterDeletion_validId_success() {
-        // Set up expected result. Alice already removed
-        List<Person> expectedMasterList = getTypicalPersonsMinusAlice();
-        Session expectedSession = new Session(WEEK_ONE, expectedMasterList);
 
-        // Set up actual result. Remove Alice
-        typicalMasterList.remove(ALICE);
-        typicalSessionWeekOne.updateSessionAfterDeletion(Index.fromOneBased(1), typicalMasterList);
 
-        assertEquals(expectedSession, typicalSessionWeekOne);
-    }
+
+
+
+
+
+
+
+
+
 }
