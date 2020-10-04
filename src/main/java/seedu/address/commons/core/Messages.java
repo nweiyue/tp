@@ -22,7 +22,6 @@ public class Messages {
      * @param numberOfStudents Number of students in the list.
      * @return message to be displayed to user.
      */
-
     public static String getStudentListedMessage(int numberOfStudents) {
         if (numberOfStudents == 1) {
             return MESSAGE_SINGLE_STUDENT_LISTED_OVERVIEW;

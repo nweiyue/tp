@@ -40,16 +40,14 @@
     -fx-background-color: #263037 ; /* background color for the entire bar of tabs */
 }
 
-.tab-pane .tab-header-area {
-    -fx-padding: 5 0 0 0;
-}
-
-.tab{
-    -fx-padding: 5 10 5 10;
-    -fx-background-insets: 0 3 0 3,0,0, 0; /* spacing between tabs */
+.tab {
+    -fx-background-insets: 0 4 0 4,0,0, 0; /* spacing between tabs */
+    -fx-background-radius: 10 10 0 0 ;
     -fx-background-color: #39434c; /* background color of tabs */
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
+    -fx-pref-width: 150;
+    -fx-pref-height: 35;
 }
 
 .tab-pane .tab:selected
@@ -58,15 +56,14 @@
 }
 
 .tab .tab-label {
-    -fx-alignment: center;
+    -fx-pref-width: 140;
     -fx-text-fill: #8c8c8c;
-    -fx-font-size: 14pt;
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-size: 12.5pt;
+    -fx-font-family: "Segoe UI Semibold";
 }
 
 .tab:selected .tab-label {
     -fx-text-fill: #1fc7b8;
-    -fx-font-weight: bold;
 }
 
 .table-view {
@@ -138,7 +135,7 @@
 }
 
 .list-cell:filled:selected {
-    -fx-background-color: #efc8a2;  /* color of list boxes: when selected */
+    -fx-background-color: #1fc7b8;  /* color of list boxes: when selected */
 }
 
 .list-cell:filled:selected #cardPane {
@@ -166,6 +163,11 @@
     -fx-text-fill: #010504;
 }
 
+.tab_label {
+    -fx-font-weight: bolder;
+    -fx-font-size: 5px;
+}
+
 .stack-pane {
      -fx-background-color: #1C2126;
 }
@@ -188,7 +190,7 @@
 }
 
 .result-display .label {
-    -fx-text-fill: black !important;
+    -fx-text-fill: white !important;
 }
 
 .status-bar .label {
