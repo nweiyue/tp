@@ -1,0 +1,15 @@
+{
+  "sessions" : [ {
+    "sessionName" : "@lab1",
+    "sessionDate" : "021/02/2019",
+    "attributesList" : [ {
+      "attributeIndex" : "0",
+      "presence" : "true",
+      "participation" : "false"
+    }, {
+      "attributeIndex" : "1",
+      "presence" : "true",
+      "participation" : "true"
+    } ]
+  } ]
+}

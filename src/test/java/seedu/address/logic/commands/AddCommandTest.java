@@ -15,11 +15,16 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.attendance.IndexRange;
+import seedu.address.model.attendance.Session;
+import seedu.address.model.attendance.SessionList;
+import seedu.address.model.attendance.SessionName;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -129,12 +134,62 @@ public class AddCommandTest {
         }
 
         @Override
-        public void deletePerson(Person target) {
+        public void deletePerson(Person target, Index id) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void setPerson(Person target, Person editedPerson) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Path getSessionListFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setSessionListFilePath(Path sessionListFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void resetSessionList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public SessionList getSessionList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasSession(Session session) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteSession(Session target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addSession(Session session) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setSession(Session target, Session editedSession) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateParticipationBySessionName(SessionName sessionName, IndexRange indexRange) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updatePresenceBySessionName(SessionName sessionName, IndexRange indexRange) {
             throw new AssertionError("This method should not be called.");
         }
 

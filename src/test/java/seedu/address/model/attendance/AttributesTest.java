@@ -24,17 +24,34 @@ class AttributesTest {
 
     @Test
     public void studentIsPresentButHasNotParticipated() {
-        assertEquals(PRESENT_BUT_HAS_NOT_PARTICIPATED, DEFAULT_PARTICIPATION.becomePresent());
+        assertEquals(PRESENT_BUT_HAS_NOT_PARTICIPATED, DEFAULT_PARTICIPATION.togglePresence());
     }
 
     @Test
     public void studentIsAbsentButHasParticipated() {
-        assertEquals(ABSENT_BUT_HAS_PARTICIPATED, DEFAULT_PARTICIPATION.participate());
+        assertEquals(ABSENT_BUT_HAS_PARTICIPATED, DEFAULT_PARTICIPATION.toggleParticipation());
     }
 
     @Test
     public void studentIsPresentAndHasParticipated() {
-        assertEquals(PRESENT_AND_HAS_PARTICIPATED, DEFAULT_PARTICIPATION.becomePresent().participate());
+        assertEquals(PRESENT_AND_HAS_PARTICIPATED, DEFAULT_PARTICIPATION.togglePresence().toggleParticipation());
     }
 
+    @Test
+    public void toggleParticipation() {
+        Attributes actualAttributes = new Attributes();
+        actualAttributes = actualAttributes.toggleParticipation();
+
+        Attributes expectedAttributes = new Attributes(new Presence(false), new Participation(true));
+        assertEquals(expectedAttributes, actualAttributes);
+    }
+
+    @Test
+    public void togglePresence() {
+        Attributes actualAttributes = new Attributes();
+        actualAttributes = actualAttributes.togglePresence();
+
+        Attributes expectedAttributes = new Attributes(new Presence(true), new Participation(false));
+        assertEquals(expectedAttributes, actualAttributes);
+    }
 }

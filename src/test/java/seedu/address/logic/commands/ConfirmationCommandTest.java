@@ -6,7 +6,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalSessions.getTypicalSessionList;
 
 import org.junit.jupiter.api.Test;
 
@@ -16,10 +16,11 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.ModelManagerBuilder;
 import seedu.address.testutil.PersonBuilder;
 
 public class ConfirmationCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = ModelManagerBuilder.buildTypicalModelManager();
 
     @Test
     public void execute_deleteCommandConfirmation_success() {
@@ -28,7 +29,8 @@ public class ConfirmationCommandTest {
         String expectedMessage = String.format(ConfirmationCommand.MESSAGE_CONFIRMATION_DELETE,
                 INDEX_FIRST_PERSON.getOneBased());
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(getTypicalSessionList(model.getAddressBook().getPersonList()),
+                model.getAddressBook(), new UserPrefs());
 
         ConfirmationCommand confirmationCommand = new ConfirmationCommand(deleteCommand);
         assertCommandSuccess(confirmationCommand, model, expectedMessage, expectedModel);
@@ -42,7 +44,8 @@ public class ConfirmationCommandTest {
         String expectedMessage = String.format(ConfirmationCommand.MESSAGE_CONFIRMATION_EDIT,
                 INDEX_FIRST_PERSON.getOneBased());
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalSessionList(model.getAddressBook().getPersonList()),
+                new AddressBook(model.getAddressBook()), new UserPrefs());
 
         ConfirmationCommand confirmationCommand = new ConfirmationCommand(editCommand);
         assertCommandSuccess(confirmationCommand, model, expectedMessage, expectedModel);
@@ -51,7 +54,8 @@ public class ConfirmationCommandTest {
     @Test
     public void execute_clearCommandConfirmation_success() {
         ClearCommand clearCommand = new ClearCommand();
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalSessionList(model.getAddressBook().getPersonList()),
+                model.getAddressBook(), new UserPrefs());
 
         String expectedMessage = ConfirmationCommand.MESSAGE_CONFIRMATION_CLEAR;
 

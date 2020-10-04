@@ -9,6 +9,9 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.attendance.IndexRange;
+import seedu.address.model.attendance.SessionDate;
+import seedu.address.model.attendance.SessionName;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Matriculation;
 import seedu.address.model.person.Name;
@@ -32,6 +35,15 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses {@code range} into an {@code IndexRange} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     */
+    public static IndexRange parseIndexRange(String range) throws ParseException {
+        String trimmedIndexRange = range.trim();
+        return new IndexRange(trimmedIndexRange);
     }
 
     /**
@@ -105,4 +117,35 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    /**
+     * Parses a {@code String sessionName} into an {@code SessionName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code sessionName} is invalid.
+     */
+    public static SessionName parseSessionName(String sessionName) throws ParseException {
+        requireNonNull(sessionName);
+        String trimmedSessionName = sessionName.trim();
+        if (!SessionName.isValidSessionName(trimmedSessionName)) {
+            throw new ParseException(SessionName.MESSAGE_CONSTRAINTS);
+        }
+        return new SessionName(trimmedSessionName);
+    }
+
+    /**
+     * Parses a {@code String sessionDate} into an {@code SessionDate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code sessionDate} is invalid.
+     */
+    public static SessionDate parseSessionDate(String sessionDate) throws ParseException {
+        requireNonNull(sessionDate);
+        String trimmedSessionDate = sessionDate.trim();
+        if (!SessionDate.isValidSessionDate(trimmedSessionDate)) {
+            throw new ParseException(SessionDate.MESSAGE_CONSTRAINTS);
+        }
+        return new SessionDate(trimmedSessionDate);
+    }
+
 }

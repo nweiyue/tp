@@ -24,7 +24,7 @@ class PresenceTest {
 
     @Test
     public void becomePresent() {
-        assertEquals(POSITIVE_PRESENCE, DEFAULT_PRESENCE.becomePresent());
+        assertEquals(POSITIVE_PRESENCE, DEFAULT_PRESENCE.togglePresence());
     }
 
 }
