@@ -10,9 +10,9 @@
 * With ATAS, users can mark attendance, track students' progress, send emails to students and many more.
 
 ## Site Map
-* [User Guide](/docs/UserGuide.md)
-* [Developer Guide](/docs/DeveloperGuide.md)
-* [About Us](/docs/AboutUs.md)
+* [User Guide](https://ay2021s1-cs2103t-w16-4.github.io/tp/UserGuide.html)
+* [Developer Guide](https://ay2021s1-cs2103t-w16-4.github.io/tp/DeveloperGuide.html)
+* [About Us](/https://ay2021s1-cs2103t-w16-4.github.io/tp/AboutUs.html)
 
 ## Acknowledgments
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).

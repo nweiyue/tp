@@ -16,9 +16,10 @@ ATAS is a **desktop app for managing students’ particulars, optimized for use 
   * [Deleting a student](#delete)
   * [Edit a student](#edit)
   * [Clearing all entries](#clear)
+  * [Switching between tabs](#switch)
   * [Exiting the program](#exit)
-  * [Saving data](#sd)
   * [User confirmation prompt](#ucp) (coming soon)
+  * [Saving data](#sd)
 * [FAQ](#faq)
 * [Command summary](#cs)
 
@@ -33,7 +34,7 @@ ATAS is a **desktop app for managing students’ particulars, optimized for use 
 3. Copy the file to the folder you want to use as the _home folder_ for your ATAS.
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   [insert image of GUI here]
+   ![StartPage](images/StartPage.png)
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -64,10 +65,10 @@ ATAS is a **desktop app for managing students’ particulars, optimized for use 
   e.g. in `add n/STUDENT_NAME` should be changed to `add n/John Cena`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Cena t/1F` or simply as `n/John Cena`.
+  e.g `n/NAME [t/TAG]` can be used as `n/John Cena t/foreigner` or simply as `n/John Cena`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/1F`, `t/1F t/2G` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/foreigner`, `t/foreigner t/enthusiastic` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME m/MATRICULATION_NUMBER`, `m/MATRICULATION_NUMBER n/NAME` is also acceptable.
@@ -84,7 +85,6 @@ Shows a message explaining how to access the help page.
 help
 ```
 
-
 ### <a name="add"></a>Adding a student : `add`
 
 Adds a student to class list.
@@ -99,7 +99,7 @@ A student can have any number of tags (including 0)
 
 Examples:
 * `add n/John Cena m/A0123456J e/thechamp@u.nus.edu`
-* `add n/Alvina Handsome m/A0123456X e/handsome.alvina@u.nus.edu t/2G`
+* `add n/Alvina Handsome m/A0123456X e/handsome.alvina@u.nus.edu t/new`
 
 ### <a name="list"></a>Listing all students : `list`
 
@@ -177,6 +177,20 @@ If yes: removes all students from the class list.
 clear
 ```
 
+### <a name="switch"></a>Switching between tabs : `switch`
+
+Switches between tabs.
+
+```
+switch TAB_NAME
+```
+
+* The tab name is case-insensitive.
+* The tab must be an existing tab (classes or attendance).
+
+Example:
+* `switch attendance` switches from the current tab to the attendance tab.
+
 ###  <a name="exit"></a>Exiting the program : `bye`
 
 Exits the application.
@@ -184,11 +198,6 @@ Exits the application.
 ```
 bye
 ```
-
-###  <a name="sd"></a>Saving the data
-
-Students’ data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
 
 ### <a name="ucp"></a>User confirmation prompt (feature coming soon!)
 
@@ -201,6 +210,9 @@ Examples:
 * `clear` is followed with `Clear list? (yes/no)`.
 * `edit 3 t/newTag` is followed with `Edit 3? (yes/no)`.
 
+###  <a name="sd"></a>Saving the data
+
+Students’ data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ## <a name="faq"></a>FAQ
 
@@ -213,12 +225,12 @@ Examples:
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME m/MATRICULATION_NUMBER e/NUS_EMAIL_ADDRESS [t/TAG]…​` <br> e.g., `add n/Rainer Lam m/A0123456C e/rainerlam@u.nus.edu`
-**Clear** | `clear`
+**Help** | `help`
+**Add** | `add n/NAME m/MATRICULATION_NUMBER e/NUS_EMAIL_ADDRESS [t/TAG]…​` <br> e.g., `add n/Rainer Lam m/A0123456C e/rainerlam@u.nus.edu t/smart`
+**List** | `list`
+**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Justin Bieber`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX n/UPDATED_NAME`<br> e.g., `edit 2 n/John Cena`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Justin Bieber`
-**List** | `list`
-**Help** | `help`
+**Clear** | `clear`
+**Switch** | `switch TAB_NAME`<br> e.g., `switch attendance`
 **Exit** | `bye`
-
