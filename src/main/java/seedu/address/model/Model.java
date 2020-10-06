@@ -1,8 +1,5 @@
 package seedu.address.model;
 
-import java.nio.file.Path;
-import java.util.function.Predicate;
-
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
@@ -12,12 +9,17 @@ import seedu.address.model.attendance.SessionList;
 import seedu.address.model.attendance.SessionName;
 import seedu.address.model.person.Person;
 
+import java.nio.file.Path;
+import java.util.function.Predicate;
+
 /**
  * The API of the Model component.
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+
+    Predicate<Person> PREDICATE_SHOW_ALL_SESSIONS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -140,9 +142,18 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
+    /** Returns an unmodifiable view of the filtered session list */
+    ObservableList<Session> getFilteredSessionList();
+
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Updates the filter of the filtered session list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredSessionList(Predicate<Session> predicate);
 }

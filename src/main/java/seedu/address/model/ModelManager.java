@@ -1,12 +1,5 @@
 package seedu.address.model;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
-import java.nio.file.Path;
-import java.util.function.Predicate;
-import java.util.logging.Logger;
-
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
@@ -18,6 +11,13 @@ import seedu.address.model.attendance.SessionList;
 import seedu.address.model.attendance.SessionName;
 import seedu.address.model.person.Person;
 
+import java.nio.file.Path;
+import java.util.function.Predicate;
+import java.util.logging.Logger;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 /**
  * Represents the in-memory model of the address book data.
  */
@@ -28,6 +28,7 @@ public class ModelManager implements Model {
     private final SessionList sessionList;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Session> filteredSessions;
 
     /**
      * Initializes a ModelManager with the given session list, addressBook and userPrefs.
@@ -42,6 +43,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredSessions = new FilteredList<>(sessionList.getSessions());
     }
 
     public ModelManager() {
@@ -218,4 +220,17 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(other.filteredPersons);
     }
 
+
+    //=========== Filtered Person List Accessors =============================================================
+
+    @Override
+    public ObservableList<Session> getFilteredSessionList() {
+        return filteredSessions;
+    }
+
+    @Override
+    public void updateFilteredSessionList(Predicate<Session> predicate) {
+        requireNonNull(predicate);
+        filteredSessions.setPredicate(predicate);
+    }
 }

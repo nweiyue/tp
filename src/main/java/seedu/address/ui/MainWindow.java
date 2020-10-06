@@ -1,10 +1,5 @@
 package seedu.address.ui;
 
-import static seedu.address.logic.commands.SwitchCommand.MESSAGE_ALREADY_ON_TAB;
-import static seedu.address.logic.commands.SwitchCommand.MESSAGE_INVALID_TAB;
-
-import java.util.logging.Logger;
-
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,6 +17,11 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+import java.util.logging.Logger;
+
+import static seedu.address.logic.commands.SwitchCommand.MESSAGE_ALREADY_ON_TAB;
+import static seedu.address.logic.commands.SwitchCommand.MESSAGE_INVALID_TAB;
+
 /**
  * The Main Window. Provides the basic application layout containing
  * a menu bar and space where other JavaFX elements can be placed.
@@ -38,6 +38,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    private SessionListPanel sessionListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -49,6 +50,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private StackPane sessionListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -121,6 +125,9 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+        sessionListPanel = new SessionListPanel(logic.getFilteredSessionList());
+        sessionListPanelPlaceholder.getChildren().add(sessionListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
