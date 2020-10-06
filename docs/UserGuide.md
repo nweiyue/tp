@@ -190,16 +190,17 @@ bye
 Students’ data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 
-### <a name="ucp"></a>User confirmation prompt (feature coming soon!)
+### <a name="ucp"></a>User confirmation prompt
 
-Prompts the user to confirm next operation
+Prompts the user to confirm the execution of commands that may permanently remove information.
+These commands are: `delete`, `edit` and `clear`.
 
 * Confirms the execution at the specified `INDEX`.
 
 Examples:
 * `delete 3` is followed with `Delete 3? (yes/no)`.
+* `edit 3 t/TAG_NAME` is followed with `Edit 3? (yes/no)`.
 * `clear` is followed with `Clear list? (yes/no)`.
-* `edit 3 t/newTag` is followed with `Edit 3? (yes/no)`.
 
 
 ## <a name="faq"></a>FAQ
