@@ -14,6 +14,7 @@ ATAS is a **desktop app for managing students’ particulars, optimized for use 
   * [Listing all students](#list)
   * [Locating students by name](#find)
   * [Deleting a student](#delete)
+  * [Editing a student's particulars](#edit)
   * [Clearing all entries](#clear)
   * [Switching between tabs](#switch)
   * [Exiting the program](#exit)
@@ -40,9 +41,11 @@ ATAS is a **desktop app for managing students’ particulars, optimized for use 
 
    * **`list`** : Lists out all the students.
 
-   * **`add n/John Cena e/thechamp@example.com`** : Adds a student named `John Cena` to the class list.
+   * **`add n/John Cena e/thechamp@u.nus.edu`** : Adds a student named `John Cena` to the class list.
 
    * **`delete 3`** : Deletes the 3rd student shown in the current list.
+   
+   * **`edit 3 n/John Cena`** : Edits the 3rd student's name to `John Cena`.
 
    * **`clear`** : Deletes all the students.
 
@@ -139,10 +142,30 @@ delete INDEX
 * Deletes the student at the specified `INDEX`.
 * The index refers to the index number shown in the displayed class list.
 * The index **must be a positive integer** 1, 2, 3, …
+* User will then be prompted for a confirmation input **`(yes/no)`**.
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the class list.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2` followed by `yes` deletes the 2nd person in the class list.
+* `find Betsy` followed by `delete 1` followed by `y` deletes the 1st person in the results of the `find` command.
+
+### <a name="edit"></a>Edit a student's particulars: `edit`
+
+The user will be prompted to confirm their decision here.
+
+If yes: edits and updates the particulars of the specified student from the class list.
+
+```
+edit INDEX n/UPDATED_NAME
+```
+
+* Edits the student at the specified `INDEX` with the specified updated particular to be updated.
+* The index refers to the index number shown in the displayed class list.
+* The index **must be a positive integer** 1, 2, 3, …
+* User will then be prompted for a confirmation input **`(yes/no)`**.
+
+Examples:
+* `edit 2 n/John Cena` followed by `yes` edits the 2nd person in the class list with an updated name `John Cena`.
+* `edit 3 t/Joker` followed by `y` edits the 3rd person in the class list with an updated tag `Joker`.
 
 ###  <a name="clear"></a>Clearing all entries : `clear`
 
@@ -170,24 +193,23 @@ Example:
 
 ###  <a name="exit"></a>Exiting the program : `bye`
 
-The user will be prompted to confirm their decision here.
-
-If yes: exits the application.
+Exits the application.
 
 ```
 bye
 ```
 
-### <a name="ucp"></a>User confirmation prompt (feature coming soon!)
+### <a name="ucp"></a>User confirmation prompt
 
-Prompts the user to confirm next operation
+Prompts the user to confirm the execution of commands that may permanently remove information.
+These commands are: `delete`, `edit` and `clear`.
 
 * Confirms the execution at the specified `INDEX`.
 
 Examples:
-* `delete 3` is followed with `Are you sure you want to continue?`.
-* `clear` is followed with `Are you sure you want to continue?`.
-* `bye` is followed with `Are you sure you want to continue?`.
+* `delete 3` is followed with `Delete 3? (yes/no)`.
+* `edit 3 t/TAG_NAME` is followed with `Edit 3? (yes/no)`.
+* `clear` is followed with `Clear list? (yes/no)`.
 
 ###  <a name="sd"></a>Saving the data
 
@@ -209,6 +231,7 @@ Action | Format, Examples
 **List** | `list`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Justin Bieber`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Edit** | `edit INDEX n/UPDATED_NAME`<br> e.g., `edit 2 n/John Cena`
 **Clear** | `clear`
 **Switch** | `switch TAB_NAME`<br> e.g., `switch attendance`
 **Exit** | `bye`
