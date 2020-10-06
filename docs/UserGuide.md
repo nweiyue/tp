@@ -14,7 +14,7 @@ ATAS is a **desktop app for managing students’ particulars, optimized for use 
   * [Listing all students](#list)
   * [Locating students by name](#find)
   * [Deleting a student](#delete)
-  * [Edit a student](#edit)
+  * [Editing a student's particulars](#edit)
   * [Clearing all entries](#clear)
   * [Switching between tabs](#switch)
   * [Exiting the program](#exit)
