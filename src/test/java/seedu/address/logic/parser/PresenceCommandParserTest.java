@@ -3,7 +3,9 @@ package seedu.address.logic.parser;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SESSIONNAME_REC_DESC;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.commands.sessioncommands.PresenceCommand;
 import seedu.address.model.Model;
 import seedu.address.model.attendance.IndexRange;
