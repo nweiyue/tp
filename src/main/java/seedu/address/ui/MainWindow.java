@@ -1,16 +1,12 @@
 package seedu.address.ui;
 
-import static seedu.address.logic.commands.SwitchCommand.MESSAGE_ALREADY_ON_TAB;
-import static seedu.address.logic.commands.SwitchCommand.MESSAGE_INVALID_TAB;
-
-import java.util.logging.Logger;
-
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
@@ -21,6 +17,11 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+
+import java.util.logging.Logger;
+
+import static seedu.address.logic.commands.atascommands.SwitchCommand.MESSAGE_ALREADY_ON_TAB;
+import static seedu.address.logic.commands.atascommands.SwitchCommand.MESSAGE_INVALID_TAB;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -38,6 +39,8 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    private SessionListPanel sessionListPanel;
+    private SessionStudentListPanel sessionStudentListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -51,6 +54,12 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane personListPanelPlaceholder;
 
     @FXML
+    private StackPane sessionListPanelPlaceholder;
+
+    @FXML
+    private StackPane sessionStudentListPanelPlaceholder;
+
+    @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
@@ -58,6 +67,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private TabPane tabPane;
+
+    @FXML
+    private javafx.scene.control.Tab inClassTab;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -113,24 +125,49 @@ public class MainWindow extends UiPart<Stage> {
                 event.consume();
             }
         });
+
+        /* Supposed-to-work listern */
+        getRoot().addEventFilter(KeyEvent.KEY_RELEASED, event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                updateLists();
+                event.consume();
+            }
+        });
     }
 
-    /**
-     * Fills up all the placeholders of this window.
-     */
-    void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
-        resultDisplay = new ResultDisplay();
-        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+        void updateLists() {
+            personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+            personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+            sessionListPanel = new SessionListPanel(logic.getFilteredSessionList());
+            sessionListPanelPlaceholder.getChildren().add(sessionListPanel.getRoot());
 
-        CommandBox commandBox = new CommandBox(this::executeCommand);
-        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
-    }
+            StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+            statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+        }
+        /**
+         * Fills up all the placeholders of this window.
+         */
+        void fillInnerParts() {
+            personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+            personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+            sessionListPanel = new SessionListPanel(logic.getFilteredSessionList());
+            sessionListPanelPlaceholder.getChildren().add(sessionListPanel.getRoot());
+
+            resultDisplay = new ResultDisplay();
+            resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+
+            StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+            statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+
+            CommandBox commandBox = new CommandBox(this::executeCommand);
+            commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+        }
+
+
+
 
     /**
      * Sets the default size based on {@code guiSettings}.
@@ -175,12 +212,30 @@ public class MainWindow extends UiPart<Stage> {
             throw new CommandException(String.format(MESSAGE_ALREADY_ON_TAB, tab.toString().toLowerCase()));
         }
 
-        if (tab.equals(Tab.CLASSES) || tab.equals(Tab.ATTENDANCE)) {
+        if (tab.equals(Tab.STUDENTS) || tab.equals(Tab.SESSIONS)) {
             tabPane.getSelectionModel().select(toSwitchTabIndex);
-        } else {
+            inClassTab.setDisable(true);
+        } else if (tab.equals(Tab.CURRENT)) {
+            tabPane.getSelectionModel().select(toSwitchTabIndex);
+            inClassTab.setDisable(false);
+        }
+        else {
             throw new CommandException(MESSAGE_INVALID_TAB);
         }
     }
+
+    @FXML
+    private void handleEnterSessionTab(Tab tab) throws CommandException {
+
+        int toSwitchTabIndex = tab.getIndex().getZeroBased();
+        logic.enableCurrentSession();
+        sessionStudentListPanel = new SessionStudentListPanel(logic.getFilteredAttributesList());
+        sessionStudentListPanelPlaceholder.getChildren().add(sessionStudentListPanel.getRoot());
+        tabPane.getSelectionModel().select(toSwitchTabIndex);
+        inClassTab.setDisable(false);
+
+    }
+
 
     /**
      * Closes the application.
@@ -225,8 +280,16 @@ public class MainWindow extends UiPart<Stage> {
                 handleSwitchTab(commandResult.getTab());
             }
 
+            if (commandResult.isEnterSession()) {
+                handleEnterSessionTab(commandResult.getTab());
+            }
+
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isExit()) {
+
             }
 
             return commandResult;

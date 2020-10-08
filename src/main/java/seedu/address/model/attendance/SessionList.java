@@ -1,12 +1,5 @@
 package seedu.address.model.attendance;
 
-import static java.util.Objects.requireNonNull;
-
-import java.util.Iterator;
-import java.util.List;
-import java.util.SortedSet;
-import java.util.TreeSet;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
@@ -15,16 +8,23 @@ import seedu.address.model.attendance.exceptions.DuplicateSessionException;
 import seedu.address.model.attendance.exceptions.SessionNotFoundException;
 import seedu.address.model.person.Person;
 
+import java.util.Iterator;
+import java.util.List;
+
+import static java.util.Objects.requireNonNull;
+
 /**
  * Represents a collection of all the sessions in the semester.
  */
 public class SessionList implements Iterable<Session>, ReadOnlySessionList {
 
-    private final SortedSet<Session> sessions = new TreeSet<>();
+    //private final SortedSet<Session> sessions = new TreeSet<>();
+    private final ObservableList<Session> sessions;
     private final ObservableList<Person> internalPersonList;
 
 
     public SessionList() {
+        sessions = FXCollections.observableArrayList();
         internalPersonList = FXCollections.observableArrayList();
     }
 
@@ -32,6 +32,7 @@ public class SessionList implements Iterable<Session>, ReadOnlySessionList {
      * Creates an SessionList using the sessions in the {@code list}
      */
     public SessionList(List<Person> list) {
+        sessions = FXCollections.observableArrayList();
         internalPersonList = FXCollections.observableArrayList(list);
     }
 
@@ -39,6 +40,7 @@ public class SessionList implements Iterable<Session>, ReadOnlySessionList {
      * Copies the session in {@code toBeCopied} in to a new list
      */
     public SessionList(ReadOnlySessionList toBeCopied) {
+        sessions = FXCollections.observableArrayList();
         sessions.addAll(toBeCopied.getSessions());
         internalPersonList = toBeCopied.getInternalPersonList();
     }
@@ -46,6 +48,7 @@ public class SessionList implements Iterable<Session>, ReadOnlySessionList {
     /**
      * Updates the person list of the session.
      */
+    @Override
     public void updatePersonList(List<Person> list) {
         internalPersonList.clear();
         internalPersonList.addAll(list);
@@ -60,6 +63,8 @@ public class SessionList implements Iterable<Session>, ReadOnlySessionList {
         if (contains(session)) {
             throw new DuplicateSessionException();
         }
+/*        session = new Session(session.getSessionName(),
+                session.getSessionDate(), session.getStudentList());*/
         session.initializeSession(internalPersonList);
         sessions.add(session);
     }
@@ -74,6 +79,7 @@ public class SessionList implements Iterable<Session>, ReadOnlySessionList {
             throw new SessionNotFoundException();
         }
         sessions.removeIf(target::isSameSession);
+        updateAllSessionsAfterDeleteSession(target.getSessionIndex());
     }
 
     /**
@@ -90,6 +96,10 @@ public class SessionList implements Iterable<Session>, ReadOnlySessionList {
 
         sessions.removeIf(oldSession::isSameSession);
         sessions.add(newSession);
+    }
+
+    public Session getSessionBasedOnId(Index index) {
+        return sessions.get(index.getZeroBased());
     }
 
     /**
@@ -116,6 +126,16 @@ public class SessionList implements Iterable<Session>, ReadOnlySessionList {
     public void updateAllSessionsAfterAdd() {
         for (Session s : sessions) {
             s.updateSessionAfterAdd(internalPersonList);
+        }
+    }
+
+    /**
+     * Updates all sessions after the deletion of a session (with a given session ID)
+     */
+    public void updateAllSessionsAfterDeleteSession(Index sessionId) {
+        requireNonNull(sessionId);
+        for (int i = sessionId.getZeroBased(); i < sessions.size(); i++) {
+            sessions.get(i).getSessionIndex().decreaseZeroBasedIndexByOne();
         }
     }
 
@@ -156,8 +176,12 @@ public class SessionList implements Iterable<Session>, ReadOnlySessionList {
         sessions.clear();
     }
 
+    public int returnSize() {
+        return sessions.size();
+    }
+
     @Override
-    public SortedSet<Session> getSessions() {
+    public ObservableList<Session> getSessions() {
         return sessions;
     }
 

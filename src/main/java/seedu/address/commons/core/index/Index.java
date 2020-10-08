@@ -23,6 +23,16 @@ public class Index {
         this.zeroBasedIndex = zeroBasedIndex;
     }
 
+    public void increaseZeroBasedIndexByOne() {
+        zeroBasedIndex += 1;
+    }
+
+    public void decreaseZeroBasedIndexByOne() {
+        if (!(zeroBasedIndex > 0)) {
+            zeroBasedIndex -= 1;
+        }
+    }
+
     public int getZeroBased() {
         return zeroBasedIndex;
     }

@@ -1,10 +1,12 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.atascommands;
 
-import static java.util.Objects.requireNonNull;
-
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.ui.Tab;
+
+import static java.util.Objects.requireNonNull;
 
 /**
  * Switches tab using the name of the destination tab.
@@ -35,10 +37,12 @@ public class SwitchCommand extends Command {
         Tab tab;
         requireNonNull(tabName);
         String trimmedTab = tabName.toLowerCase();
-        if (trimmedTab.equals("classes")) {
-            tab = Tab.CLASSES;
-        } else if (trimmedTab.equals("attendance")) {
-            tab = Tab.ATTENDANCE;
+        if (trimmedTab.equals("students")) {
+            tab = Tab.STUDENTS;
+        } else if (trimmedTab.equals("sessions")) {
+            tab = Tab.SESSIONS;
+        } else if (trimmedTab.equals("current")) {
+            tab = Tab.CURRENT;
         } else {
             throw new CommandException(MESSAGE_INVALID_TAB);
         }

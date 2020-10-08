@@ -1,16 +1,13 @@
 package seedu.address.model;
 
-import java.nio.file.Path;
-import java.util.function.Predicate;
-
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
-import seedu.address.model.attendance.IndexRange;
-import seedu.address.model.attendance.Session;
-import seedu.address.model.attendance.SessionList;
-import seedu.address.model.attendance.SessionName;
+import seedu.address.model.attendance.*;
 import seedu.address.model.person.Person;
+
+import java.nio.file.Path;
+import java.util.function.Predicate;
 
 /**
  * The API of the Model component.
@@ -18,6 +15,8 @@ import seedu.address.model.person.Person;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+
+    Predicate<Session> PREDICATE_SHOW_ALL_SESSIONS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -119,6 +118,19 @@ public interface Model {
     void addSession(Session session);
 
     /**
+     * Adds the given session Index.
+     * {@code session index} must not already exist in the session list.
+     */
+    void enterSession(Index sessionIndex);
+
+    /**
+     * Returns attributes of the students given session.
+     * The session must exist in the session list.
+     * @return Attributes of the students in the session.
+     */
+    ObservableList<Attributes> getFilteredAttributesList();
+
+    /**
      * Replaces the given session {@code target} with {@code editedSession}.
      * {@code target} must exist in the session list.
      * The session identity of {@code editedSession} must not be the same as another
@@ -140,9 +152,34 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
+    /** Returns an unmodifiable view of the filtered session list */
+    ObservableList<Session> getFilteredSessionList();
+
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Updates the filter of the filtered session list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredSessionList(Predicate<Session> predicate);
+
+    /**
+     * Sets currentSession to be false.
+     */
+    void setCurrentSessionFalse();
+
+    /**
+     * Sets currentSession to be true.
+     */
+    void setCurrentSessionTrue();
+
+    /**
+     * Returns currentSession status
+     */
+    boolean returnCurrentSessionEnabledStatus();
+
 }

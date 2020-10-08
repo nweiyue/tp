@@ -3,7 +3,7 @@ package seedu.address.testutil;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SESSIONDATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SESSIONNAME;
 
-import seedu.address.logic.commands.AddSessionCommand;
+import seedu.address.logic.commands.sessionlistcommands.AddSessionCommand;
 import seedu.address.model.attendance.Session;
 
 

@@ -7,6 +7,13 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.confirmationcommands.ConfirmCommand;
+import seedu.address.logic.commands.confirmationcommands.ConfirmationAcceptCommand;
+import seedu.address.logic.commands.confirmationcommands.ConfirmationCommand;
+import seedu.address.logic.commands.confirmationcommands.ConfirmationRejectCommand;
+import seedu.address.logic.commands.studentlistcommands.ClearCommand;
+import seedu.address.logic.commands.studentlistcommands.DeleteCommand;
+import seedu.address.logic.commands.studentlistcommands.EditCommand;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;

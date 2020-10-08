@@ -1,12 +1,8 @@
 package seedu.address.logic.parser;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SESSIONNAME;
-
-import seedu.address.logic.commands.ParticipateCommand;
+import seedu.address.logic.commands.sessioncommands.ParticipateCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.attendance.IndexRange;
-import seedu.address.model.attendance.SessionName;
 
 /**
  * Parses input arguments and creates a new ParticipateCommand object
@@ -19,9 +15,8 @@ public class ParticipateCommandParser implements Parser<ParticipateCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public ParticipateCommand parse(String args) throws ParseException {
-        requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_SESSIONNAME);
-
+       // ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_SESSIONNAME);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args);
         IndexRange indexRange;
 
         try {
@@ -31,9 +26,25 @@ public class ParticipateCommandParser implements Parser<ParticipateCommand> {
         }
 
         // TODO: supposed to get sessionName internally
-        SessionName sessionName = new SessionName(argMultimap.getValue(PREFIX_SESSIONNAME).get());
+        //SessionName sessionName = new SessionName(argMultimap.getValue(PREFIX_SESSIONNAME).get());
 
-        return new ParticipateCommand(sessionName, indexRange);
+        return new ParticipateCommand(indexRange);
+
+/*
+        try {
+            //getting the index of session here
+            char[] findInteger = args.toCharArray();
+            int indexOfInteger = 0;
+            while (indexOfInteger < findInteger.length && !Character.isDigit(findInteger[indexOfInteger])) {
+                indexOfInteger++;
+            }
+            args = args.substring(indexOfInteger);
+            IndexRange indexRange = ParserUtil.parseIndexRange(args);
+            return new ParticipateCommand(indexRange);
+        } catch (ParseException pe) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, EnterSessionCommand.MESSAGE_USAGE), pe);
+        }*/
     }
 
 }

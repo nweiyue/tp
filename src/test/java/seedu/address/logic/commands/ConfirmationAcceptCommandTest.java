@@ -14,6 +14,11 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.confirmationcommands.ConfirmationAcceptCommand;
+import seedu.address.logic.commands.confirmationcommands.ConfirmationRejectCommand;
+import seedu.address.logic.commands.studentlistcommands.ClearCommand;
+import seedu.address.logic.commands.studentlistcommands.DeleteCommand;
+import seedu.address.logic.commands.studentlistcommands.EditCommand;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;

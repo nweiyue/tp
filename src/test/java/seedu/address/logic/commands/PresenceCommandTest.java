@@ -11,6 +11,8 @@ import static seedu.address.testutil.TypicalSessions.SESSION_WEEK_ONE;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.sessioncommands.PresenceCommand;
+import seedu.address.logic.commands.studentlistcommands.ClearCommand;
 import seedu.address.model.Model;
 import seedu.address.model.attendance.IndexRange;
 import seedu.address.model.attendance.Session;

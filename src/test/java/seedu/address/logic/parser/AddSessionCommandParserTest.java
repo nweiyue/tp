@@ -16,7 +16,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddSessionCommand;
+import seedu.address.logic.commands.sessionlistcommands.AddSessionCommand;
 import seedu.address.model.attendance.Session;
 import seedu.address.model.attendance.SessionDate;
 import seedu.address.model.attendance.SessionName;

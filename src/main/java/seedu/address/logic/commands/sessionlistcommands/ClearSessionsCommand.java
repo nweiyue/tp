@@ -1,15 +1,17 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.sessionlistcommands;
+
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.model.Model;
 
 import static java.util.Objects.requireNonNull;
-
-import seedu.address.model.Model;
 
 /**
  * Clears the session list.
  */
-public class ClearSessionCommand extends Command {
+public class ClearSessionsCommand extends Command {
 
-    public static final String COMMAND_WORD = "clearsession";
+    public static final String COMMAND_WORD = "clearsessions";
     public static final String MESSAGE_SUCCESS = "The session in the current session list has been cleared";
 
 

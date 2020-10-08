@@ -16,7 +16,7 @@ import static seedu.address.testutil.TypicalSessions.SESSIONNAME_WEEK_ONE_STRING
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.EditSessionCommand;
+import seedu.address.logic.commands.sessionlistcommands.EditSessionCommand;
 import seedu.address.model.attendance.SessionDate;
 import seedu.address.model.attendance.SessionName;
 import seedu.address.testutil.EditSessionDescriptorBuilder;

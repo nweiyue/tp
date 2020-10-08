@@ -1,15 +1,17 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.sessionlistcommands;
 
-import static java.util.Objects.requireNonNull;
-
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.confirmationcommands.DangerousCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.attendance.Session;
 import seedu.address.model.attendance.SessionDate;
 import seedu.address.model.attendance.SessionName;
 
+import static java.util.Objects.requireNonNull;
 
-public class DeleteSessionCommand extends Command {
+
+public class DeleteSessionCommand extends DangerousCommand {
 
     public static final String COMMAND_WORD = "deletesession";
 
@@ -51,5 +53,10 @@ public class DeleteSessionCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof DeleteSessionCommand // instanceof handles nulls
                 && toDelete.equals(((DeleteSessionCommand) other).toDelete));
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Delete session %s", toDelete);
     }
 }
