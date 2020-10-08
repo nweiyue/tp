@@ -48,6 +48,7 @@ public class SessionList implements Iterable<Session>, ReadOnlySessionList {
     /**
      * Updates the person list of the session.
      */
+    @Override
     public void updatePersonList(List<Person> list) {
         internalPersonList.clear();
         internalPersonList.addAll(list);
@@ -62,6 +63,8 @@ public class SessionList implements Iterable<Session>, ReadOnlySessionList {
         if (contains(session)) {
             throw new DuplicateSessionException();
         }
+/*        session = new Session(session.getSessionName(),
+                session.getSessionDate(), session.getStudentList());*/
         session.initializeSession(internalPersonList);
         sessions.add(session);
     }
@@ -76,6 +79,7 @@ public class SessionList implements Iterable<Session>, ReadOnlySessionList {
             throw new SessionNotFoundException();
         }
         sessions.removeIf(target::isSameSession);
+        updateAllSessionsAfterDeleteSession(target.getSessionIndex());
     }
 
     /**
@@ -92,6 +96,10 @@ public class SessionList implements Iterable<Session>, ReadOnlySessionList {
 
         sessions.removeIf(oldSession::isSameSession);
         sessions.add(newSession);
+    }
+
+    public Session getSessionBasedOnId(Index index) {
+        return sessions.get(index.getZeroBased());
     }
 
     /**
@@ -118,6 +126,16 @@ public class SessionList implements Iterable<Session>, ReadOnlySessionList {
     public void updateAllSessionsAfterAdd() {
         for (Session s : sessions) {
             s.updateSessionAfterAdd(internalPersonList);
+        }
+    }
+
+    /**
+     * Updates all sessions after the deletion of a session (with a given session ID)
+     */
+    public void updateAllSessionsAfterDeleteSession(Index sessionId) {
+        requireNonNull(sessionId);
+        for (int i = sessionId.getZeroBased(); i < sessions.size(); i++) {
+            sessions.get(i).getSessionIndex().decreaseZeroBasedIndexByOne();
         }
     }
 
@@ -156,6 +174,10 @@ public class SessionList implements Iterable<Session>, ReadOnlySessionList {
      */
     public void clearSessions() {
         sessions.clear();
+    }
+
+    public int returnSize() {
+        return sessions.size();
     }
 
     @Override

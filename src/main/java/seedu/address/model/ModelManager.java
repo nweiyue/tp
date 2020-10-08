@@ -5,10 +5,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
-import seedu.address.model.attendance.IndexRange;
-import seedu.address.model.attendance.Session;
-import seedu.address.model.attendance.SessionList;
-import seedu.address.model.attendance.SessionName;
+import seedu.address.model.attendance.*;
 import seedu.address.model.person.Person;
 
 import java.nio.file.Path;
@@ -29,6 +26,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Session> filteredSessions;
+    private Index sessionId;
 
     /**
      * Initializes a ModelManager with the given session list, addressBook and userPrefs.
@@ -44,6 +42,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredSessions = new FilteredList<>(sessionList.getSessions());
+        sessionId = Index.fromZeroBased(0);
     }
 
     public ModelManager() {
@@ -167,6 +166,7 @@ public class ModelManager implements Model {
     public void addSession(Session session) {
         sessionList.updatePersonList(addressBook.getPersonList());
         sessionList.addSession(session);
+        updateFilteredSessionList(PREDICATE_SHOW_ALL_SESSIONS);
     }
 
     @Override
@@ -221,7 +221,7 @@ public class ModelManager implements Model {
     }
 
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Session List Accessors =============================================================
 
     @Override
     public ObservableList<Session> getFilteredSessionList() {
@@ -233,4 +233,16 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredSessions.setPredicate(predicate);
     }
+
+    //=========== Filtered Session Accessors =============================================================
+    @Override
+    public ObservableList<Attributes> getFilteredAttributesList() {
+        return sessionList.getSessionBasedOnId(sessionId).getAttributesAsList();
+    }
+
+    @Override
+    public void enterSession(Index sessionId) {
+        this.sessionId = sessionId;
+    }
+
 }

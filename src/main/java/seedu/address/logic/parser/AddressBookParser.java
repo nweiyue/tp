@@ -1,29 +1,13 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import seedu.address.logic.commands.*;
+import seedu.address.logic.parser.exceptions.ParseException;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.AddSessionCommand;
-import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.ClearSessionCommand;
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.ConfirmationCommand;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.DeleteSessionCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditSessionCommand;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.ParticipateCommand;
-import seedu.address.logic.commands.PresenceCommand;
-import seedu.address.logic.commands.SwitchCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 /**
  * Parses user input.
@@ -106,7 +90,8 @@ public class AddressBookParser {
                 return new AddSessionCommandParser().parse(arguments);
 
             case DeleteSessionCommand.COMMAND_WORD:
-                return new DeleteSessionCommandParser().parse(arguments);
+                this.previousCommand = new ConfirmationCommand(new DeleteSessionCommandParser().parse(arguments));
+                return previousCommand;
 
             case EditSessionCommand.COMMAND_WORD:
                 return new EditSessionCommandParser().parse(arguments);
@@ -119,6 +104,9 @@ public class AddressBookParser {
 
             case PresenceCommand.COMMAND_WORD:
                 return new PresenceCommandParser().parse(arguments);
+
+            case EnterSessionCommand.COMMAND_WORD:
+                return new EnterSessionCommandParser().parse(arguments);
 
             default:
                 throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

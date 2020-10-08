@@ -1,14 +1,17 @@
 package seedu.address.model.attendance;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
+import seedu.address.model.person.Person;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.model.person.Person;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * Represents a particular session at a particular date.
@@ -19,7 +22,11 @@ public class Session implements Comparable<Session> {
     private final SessionName sessionName;
     private final SessionDate sessionDate;
     private final Map<Integer, Attributes> studentList;
+    //private final ObservableList<Person> masterList;
+    private Index sessionIndex;
+    private List<Person> masterList = new ArrayList<>();
 
+    /* Bugs with masterList ---> commented out codes on hold */
     /**
      * Parametrized constructor.
      */
@@ -27,6 +34,7 @@ public class Session implements Comparable<Session> {
         this.sessionName = sessionName;
         this.sessionDate = sessionDate;
         this.studentList = new HashMap<>();
+        //this.masterList = FXCollections.emptyObservableList();
     }
 
     /**
@@ -36,7 +44,15 @@ public class Session implements Comparable<Session> {
         this.sessionName = sessionName;
         this.sessionDate = sessionDate;
         this.studentList = studentList;
+        //this.masterList = FXCollections.emptyObservableList();
     }
+
+//    public Session(SessionName sessionName, SessionDate sessionDate, Map<Integer, Attributes> studentList, ObservableList<Person> masterList) {
+//        this.sessionName = sessionName;
+//        this.sessionDate = sessionDate;
+//        this.studentList = studentList;
+//        //this.masterList = masterList;
+//    }
 
     public Map<Integer, Attributes> getStudentList() {
         return studentList;
@@ -79,7 +95,8 @@ public class Session implements Comparable<Session> {
      */
     public void updateSessionAfterAdd(List<Person> masterList) {
         requireAllNonNull(masterList);
-        studentList.put(masterList.size() - 1, new Attributes());
+        int index = masterList.size() - 1;
+        studentList.put(index, new Attributes(masterList.get(index).getName()));
     }
 
     /**
@@ -116,13 +133,36 @@ public class Session implements Comparable<Session> {
         }
     }
 
+    public ObservableList<Attributes> getAttributesAsList() {
+        ArrayList<Attributes> arrayList = new ArrayList<>();
+      /*  for (int i = 0; i < studentList.size(); i++) {
+            Attributes attribute = studentList.get(i);
+            if (attribute != null) {
+                arrayList.add(attribute);
+            }
+        }*/
+        ObservableList<Attributes> newAttributesList = FXCollections.observableArrayList(arrayList);
+/*        System.out.println("STARTING TO getAttributesAsList");
+        for(int i = 0; i < newAttributesList.size(); i++) {
+            System.out.println(newAttributesList.get(i));
+        }*/
+        return newAttributesList;
+    }
+
     /**
      * Initialize the studentList using the given masterList.
      */
     public void initializeSession(List<Person> masterList) {
+        System.out.println("- - - - - Initialise with master list size = " + masterList.size());
+
         for (int i = 0; i < masterList.size(); i++) {
-            studentList.put(i, new Attributes());
+            this.masterList.add(masterList.get(i));
+            studentList.put(i, new Attributes(masterList.get(i).getName()));
         }
+    }
+
+    public String returnStudentNameStringByIndex(int index) throws Exception {
+        return studentList.get(index).getName();
     }
 
     /**
@@ -144,6 +184,10 @@ public class Session implements Comparable<Session> {
 
     public SessionDate getSessionDate() {
         return sessionDate;
+    }
+
+    public Index getSessionIndex() {
+        return sessionIndex;
     }
 
     @Override

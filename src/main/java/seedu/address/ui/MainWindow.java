@@ -39,6 +39,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
     private SessionListPanel sessionListPanel;
+    private SessionStudentListPanel sessionStudentListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -53,6 +54,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane sessionListPanelPlaceholder;
+
+    @FXML
+    private StackPane sessionStudentListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -182,9 +186,15 @@ public class MainWindow extends UiPart<Stage> {
             throw new CommandException(String.format(MESSAGE_ALREADY_ON_TAB, tab.toString().toLowerCase()));
         }
 
-        if (tab.equals(Tab.CLASSES) || tab.equals(Tab.ATTENDANCE)) {
+        if (tab.equals(Tab.STUDENTS) || tab.equals(Tab.SESSIONS)) {
             tabPane.getSelectionModel().select(toSwitchTabIndex);
-        } else {
+        } else if (tab.equals(Tab.CURRENT)) {
+/*            System.out.println("hi");
+            sessionStudentListPanel = new SessionStudentListPanel(logic.getFilteredAttributesList());
+            sessionStudentListPanelPlaceholder.getChildren().add(sessionStudentListPanel.getRoot());*/
+            tabPane.getSelectionModel().select(toSwitchTabIndex);
+        }
+        else {
             throw new CommandException(MESSAGE_INVALID_TAB);
         }
     }

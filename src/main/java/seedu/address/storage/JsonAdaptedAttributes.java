@@ -1,14 +1,14 @@
 package seedu.address.storage;
 
-import java.util.Map;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.attendance.Attributes;
 import seedu.address.model.attendance.Participation;
 import seedu.address.model.attendance.Presence;
+import seedu.address.model.person.Name;
+
+import java.util.Map;
 
 /**
  * Jackson-friendly version of {@link Attributes}.
@@ -18,6 +18,7 @@ public class JsonAdaptedAttributes {
     private final String attributeIndex;
     private final String presence;
     private final String participation;
+    private final String name;
 
     /**
      * Constructs a {@code JsonAdaptedAttributes} with the given {@code attributeIndex},
@@ -26,20 +27,23 @@ public class JsonAdaptedAttributes {
     @JsonCreator
     public JsonAdaptedAttributes(@JsonProperty("attributeIndex") String attributeIndex,
                                  @JsonProperty("presence") String presence,
-                                 @JsonProperty("participation") String participation) {
+                                 @JsonProperty("participation") String participation,
+                                 @JsonProperty("name") String name) {
         this.attributeIndex = attributeIndex;
         this.presence = presence;
         this.participation = participation;
+        this.name = name;
     }
 
     /**
      * Converts a given {@code Tag} into this class for Jackson use.
      */
-    public JsonAdaptedAttributes(int index, Map<Integer, Attributes> source) {
+    public JsonAdaptedAttributes(int index, Map<Integer, Attributes> source, String name) {
         this.attributeIndex = Integer.toString(index);
         Attributes attributes = source.get(index);
         this.presence = Boolean.toString(attributes.getPresenceStatus());
         this.participation = Boolean.toString(attributes.getParticipationStatus());
+        this.name = name;
     }
 
 
@@ -53,6 +57,10 @@ public class JsonAdaptedAttributes {
 
     public String getParticipation() {
         return this.participation;
+    }
+
+    public String getName() {
+        return this.name;
     }
 
     /**
@@ -70,7 +78,7 @@ public class JsonAdaptedAttributes {
 
         Presence presence = new Presence(Boolean.parseBoolean(this.presence));
         Participation participation = new Participation(Boolean.parseBoolean(this.participation));
-
-        return new Attributes(presence, participation);
+        //todo BUG1
+        return new Attributes(presence, participation, new Name("DEFAULT_NAME"));
     }
 }

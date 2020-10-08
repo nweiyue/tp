@@ -3,10 +3,7 @@ package seedu.address.model;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
-import seedu.address.model.attendance.IndexRange;
-import seedu.address.model.attendance.Session;
-import seedu.address.model.attendance.SessionList;
-import seedu.address.model.attendance.SessionName;
+import seedu.address.model.attendance.*;
 import seedu.address.model.person.Person;
 
 import java.nio.file.Path;
@@ -19,7 +16,7 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
-    Predicate<Person> PREDICATE_SHOW_ALL_SESSIONS = unused -> true;
+    Predicate<Session> PREDICATE_SHOW_ALL_SESSIONS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -119,6 +116,19 @@ public interface Model {
      * {@code session} must not already exist in the session list.
      */
     void addSession(Session session);
+
+    /**
+     * Adds the given session Index.
+     * {@code session index} must not already exist in the session list.
+     */
+    void enterSession(Index sessionIndex);
+
+    /**
+     * Returns attributes of the students given session.
+     * The session must exist in the session list.
+     * @return Attributes of the students in the session.
+     */
+    ObservableList<Attributes> getFilteredAttributesList();
 
     /**
      * Replaces the given session {@code target} with {@code editedSession}.

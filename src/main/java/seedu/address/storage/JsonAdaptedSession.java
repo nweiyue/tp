@@ -1,19 +1,19 @@
 package seedu.address.storage;
 
-import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.attendance.Attributes;
 import seedu.address.model.attendance.Session;
 import seedu.address.model.attendance.SessionDate;
 import seedu.address.model.attendance.SessionName;
+import seedu.address.model.person.Name;
+
+import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Jackson-friendly version of {@link Session}.
@@ -45,10 +45,16 @@ public class JsonAdaptedSession {
     public JsonAdaptedSession(Session source) {
         sessionName = source.getSessionName().value;
         sessionDate = source.getSessionDate().toString();
-
+        System.out.println("----- source.getStudentList() size = " + source.getStudentList().size());
         for (Integer index: source.getStudentList().keySet()) {
-            JsonAdaptedAttributes jsonAdaptedAttributes = new JsonAdaptedAttributes(index, source.getStudentList());
-            attributesList.add(jsonAdaptedAttributes);
+            try {
+                JsonAdaptedAttributes jsonAdaptedAttributes = new JsonAdaptedAttributes(
+                        index, source.getStudentList(), source.returnStudentNameStringByIndex(index)
+                );
+                attributesList.add(jsonAdaptedAttributes);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -60,8 +66,9 @@ public class JsonAdaptedSession {
     public Session toModelType() throws IllegalValueException {
         final Map<Integer, Attributes> studentList = new HashMap<>();
 
+        System.out.println("@@@@@@@@@@ THE ATTRIBUTE LIST SIZE = " + attributesList.size());
         for (JsonAdaptedAttributes attr : attributesList) {
-            Attributes attributes = new Attributes();
+            Attributes attributes = new Attributes(new Name(attr.getName()));
 
             if (Boolean.parseBoolean(attr.getPresence())) {
                 attributes = attributes.togglePresence();

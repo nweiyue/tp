@@ -1,41 +1,53 @@
 package seedu.address.model.attendance;
 
+import seedu.address.model.person.Name;
+
 /**
  * Represents the things to keep track for each student for each class.
  * Guarantees: immutability
  */
 public class Attributes {
 
+    private static final String DEFAULT_NAME = "DEFAULT";
     private final Presence presence;
     private final Participation participation;
+    private final Name studentName;
 
     /**
      * Parameterized constructor.
      */
-    public Attributes(Presence presence, Participation participation) {
+    public Attributes(Presence presence, Participation participation, Name studentName) {
         this.presence = presence;
         this.participation = participation;
+        this.studentName = studentName;
     }
 
     /**
      * Sets to the default values for each field.
      */
     public Attributes() {
-        this(new Presence(), new Participation());
+        this(new Presence(), new Participation(), new Name(DEFAULT_NAME));
+    }
+
+    /**
+     * Sets to the default values for each field.
+     */
+    public Attributes(Name name) {
+        this(new Presence(), new Participation(), name);
     }
 
     /**
      * Causes the presence field to be true.
      */
     public Attributes togglePresence() {
-        return new Attributes(presence.togglePresence(), participation);
+        return new Attributes(presence.togglePresence(), participation, studentName);
     }
 
     /**
      * Causes the participation field to be true.
      */
     public Attributes toggleParticipation() {
-        return new Attributes(presence, participation.toggleParticipation());
+        return new Attributes(presence, participation.toggleParticipation(), studentName);
     }
 
     public boolean getPresenceStatus() {
@@ -44,6 +56,10 @@ public class Attributes {
 
     public boolean getParticipationStatus() {
         return participation.hasParticipated();
+    }
+
+    public String getName() {
+        return studentName.toString();
     }
 
     @Override
