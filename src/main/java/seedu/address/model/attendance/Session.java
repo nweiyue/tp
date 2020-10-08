@@ -108,7 +108,8 @@ public class Session implements Comparable<Session> {
         // find students that have index in range
         for (int i = indexRange.getZeroBasedLower(); i <= indexRange.getZeroBasedUpper(); i++) {
             Attributes temp = studentList.get(i);
-
+            System.out.println("Index: " + indexRange.getZeroBasedLower());
+            System.out.println(indexRange.getZeroBasedUpper());
             // exclude invalid index
             if (temp != null) {
                 setStudentAsParticipated(Index.fromZeroBased(i));

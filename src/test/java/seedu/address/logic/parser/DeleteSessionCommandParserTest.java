@@ -6,7 +6,7 @@ import static seedu.address.testutil.TypicalSessions.SESSIONNAME_WEEK_ONE_STRING
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.DeleteSessionCommand;
+import seedu.address.logic.commands.sessionlistcommands.DeleteSessionCommand;
 
 
 

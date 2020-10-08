@@ -1,13 +1,13 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_CONFIRMATION_INPUT;
-import static seedu.address.logic.commands.ConfirmationCommand.ACCEPT_COMMAND_FULL;
-import static seedu.address.logic.commands.ConfirmationCommand.ACCEPT_COMMAND_SHORT;
-import static seedu.address.logic.commands.ConfirmationCommand.REJECT_COMMAND_FULL;
-import static seedu.address.logic.commands.ConfirmationCommand.REJECT_COMMAND_SHORT;
+import static seedu.address.logic.commands.confirmationcommands.ConfirmationCommand.ACCEPT_COMMAND_FULL;
+import static seedu.address.logic.commands.confirmationcommands.ConfirmationCommand.ACCEPT_COMMAND_SHORT;
+import static seedu.address.logic.commands.confirmationcommands.ConfirmationCommand.REJECT_COMMAND_FULL;
+import static seedu.address.logic.commands.confirmationcommands.ConfirmationCommand.REJECT_COMMAND_SHORT;
 
-import seedu.address.logic.commands.ConfirmCommand;
-import seedu.address.logic.commands.ConfirmationCommand;
+import seedu.address.logic.commands.confirmationcommands.ConfirmCommand;
+import seedu.address.logic.commands.confirmationcommands.ConfirmationCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 public class ConfirmationParser implements Parser<ConfirmCommand> {

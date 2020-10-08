@@ -4,14 +4,15 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.SwitchCommand.MESSAGE_INVALID_TAB;
-import static seedu.address.logic.commands.SwitchCommand.MESSAGE_SWITCH_TAB_SUCCESS;
+import static seedu.address.logic.commands.atascommands.SwitchCommand.MESSAGE_INVALID_TAB;
+import static seedu.address.logic.commands.atascommands.SwitchCommand.MESSAGE_SWITCH_TAB_SUCCESS;
 import static seedu.address.testutil.TypicalTabNames.ATTENDANCE_TAB_NAME;
 import static seedu.address.testutil.TypicalTabNames.CLASSES_TAB_NAME;
 import static seedu.address.testutil.TypicalTabNames.INVALID_TAB_NAME;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.atascommands.SwitchCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.ui.Tab;

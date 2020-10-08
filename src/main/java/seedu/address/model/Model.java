@@ -166,4 +166,20 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredSessionList(Predicate<Session> predicate);
+
+    /**
+     * Sets currentSession to be false.
+     */
+    void setCurrentSessionFalse();
+
+    /**
+     * Sets currentSession to be true.
+     */
+    void setCurrentSessionTrue();
+
+    /**
+     * Returns currentSession status
+     */
+    boolean returnCurrentSessionEnabledStatus();
+
 }

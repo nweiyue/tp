@@ -1,5 +1,7 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.sessionlistcommands;
 
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.confirmationcommands.DangerousCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.attendance.Session;

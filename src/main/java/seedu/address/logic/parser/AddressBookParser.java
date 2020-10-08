@@ -1,6 +1,17 @@
 package seedu.address.logic.parser;
 
+import javafx.fxml.FXML;
+import javafx.scene.control.Tab;
 import seedu.address.logic.commands.*;
+import seedu.address.logic.commands.atascommands.*;
+import seedu.address.logic.commands.confirmationcommands.ConfirmationCommand;
+import seedu.address.logic.commands.sessioncommands.ParticipateCommand;
+import seedu.address.logic.commands.sessioncommands.PresenceCommand;
+import seedu.address.logic.commands.sessionlistcommands.*;
+import seedu.address.logic.commands.studentlistcommands.AddCommand;
+import seedu.address.logic.commands.studentlistcommands.ClearCommand;
+import seedu.address.logic.commands.studentlistcommands.DeleteCommand;
+import seedu.address.logic.commands.studentlistcommands.EditCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 import java.util.regex.Matcher;
@@ -28,6 +39,9 @@ public class AddressBookParser {
         this.previousCommand = null;
     }
 
+    @FXML
+    private Tab inClassTab;
+    //or do you guys prefer doing a LogicControlGroup??
     /**
      * Parses user input into command for execution.
      *
@@ -96,8 +110,8 @@ public class AddressBookParser {
             case EditSessionCommand.COMMAND_WORD:
                 return new EditSessionCommandParser().parse(arguments);
 
-            case ClearSessionCommand.COMMAND_WORD:
-                return new ClearSessionCommand();
+            case ClearSessionsCommand.COMMAND_WORD:
+                return new ClearSessionsCommand();
 
             case ParticipateCommand.COMMAND_WORD:
                 return new ParticipateCommandParser().parse(arguments);

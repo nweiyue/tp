@@ -14,6 +14,7 @@ public class Messages {
     public static final String MESSAGE_MULTIPLE_STUDENTS_LISTED_OVERVIEW = "%1$d students listed!";
     public static final String MESSAGE_SINGLE_STUDENT_LISTED_OVERVIEW = "%1$d student listed!";
     public static final String MESSAGE_INVALID_CONFIRMATION_INPUT = "Confirmation input is invalid!";
+    public static final String MESSAGE_NOT_ON_CURRENT_SESSION_TAB = "You can only use this on the Current Session tab!";
 
     /**
      * Retrieves the correct message to be displayed to the user

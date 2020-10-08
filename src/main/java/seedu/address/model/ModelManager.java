@@ -27,6 +27,7 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Session> filteredSessions;
     private Index sessionId;
+    private boolean isCurrentSessionEnabled;
 
     /**
      * Initializes a ModelManager with the given session list, addressBook and userPrefs.
@@ -88,7 +89,7 @@ public class ModelManager implements Model {
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+        //this.addressBook.resetData(addressBook);
         resetSessionList();
     }
 
@@ -176,11 +177,13 @@ public class ModelManager implements Model {
 
     @Override
     public void updateParticipationBySessionName(SessionName sessionName, IndexRange indexRange) {
+        sessionName = sessionList.getSessionBasedOnId(sessionId).getSessionName();
         sessionList.updateStudentParticipation(sessionName, indexRange);
     }
 
     @Override
     public void updatePresenceBySessionName(SessionName sessionName, IndexRange indexRange) {
+        sessionName = sessionList.getSessionBasedOnId(sessionId).getSessionName();
         sessionList.updateStudentPresence(sessionName, indexRange);
     }
 
@@ -244,6 +247,21 @@ public class ModelManager implements Model {
     @Override
     public void enterSession(Index sessionId) {
         this.sessionId = sessionId;
+    }
+
+    @Override
+    public void setCurrentSessionFalse() {
+        this.isCurrentSessionEnabled = false;
+    }
+
+    @Override
+    public void setCurrentSessionTrue() {
+        this.isCurrentSessionEnabled = true;
+    }
+
+    @Override
+    public boolean returnCurrentSessionEnabledStatus() {
+        return isCurrentSessionEnabled;
     }
 
 }

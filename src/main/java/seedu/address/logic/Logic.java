@@ -41,6 +41,13 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of student attributes */
     ObservableList<Attributes> getFilteredAttributesList();
 
+    /** Sets currentSession to be false */
+    void disableCurrentSession();
+
+    /** Sets currentSession to be false */
+    void enableCurrentSession();
+
+
     /**
      * Returns the user prefs' address book file path.
      */

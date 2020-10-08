@@ -89,4 +89,10 @@ public class LogicManager implements Logic {
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
     }
+
+    @Override
+    public void disableCurrentSession() { model.setCurrentSessionFalse();}
+
+    @Override
+    public void enableCurrentSession() {model.setCurrentSessionTrue();}
 }

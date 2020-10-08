@@ -7,7 +7,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.PresenceCommand;
+import seedu.address.logic.commands.sessioncommands.PresenceCommand;
 import seedu.address.model.attendance.IndexRange;
 import seedu.address.model.attendance.SessionName;
 

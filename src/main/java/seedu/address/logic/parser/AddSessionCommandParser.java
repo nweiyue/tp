@@ -1,6 +1,6 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.AddSessionCommand;
+import seedu.address.logic.commands.sessionlistcommands.AddSessionCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.attendance.Session;
 import seedu.address.model.attendance.SessionDate;

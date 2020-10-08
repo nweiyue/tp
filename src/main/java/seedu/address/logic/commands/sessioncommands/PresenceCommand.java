@@ -1,11 +1,13 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.sessioncommands;
 
-import static java.util.Objects.requireNonNull;
-
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.attendance.IndexRange;
 import seedu.address.model.attendance.SessionName;
+
+import static java.util.Objects.requireNonNull;
 
 
 
@@ -37,10 +39,18 @@ public class PresenceCommand extends Command {
         this.sessionName = sessionName;
     }
 
+    public PresenceCommand(IndexRange range) {
+        requireNonNull(range);
+        this.range = range;
+        this.sessionName = new SessionName("DEFAULT");
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
+        if (!model.returnCurrentSessionEnabledStatus()) {
+            throw new CommandException("You have to be in the session tab to use this!");
+        }
         model.updatePresenceBySessionName(sessionName, range);
         return new CommandResult(MESSAGE_SUCCESS);
     }

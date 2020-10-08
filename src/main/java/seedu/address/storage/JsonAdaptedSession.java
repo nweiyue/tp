@@ -45,7 +45,6 @@ public class JsonAdaptedSession {
     public JsonAdaptedSession(Session source) {
         sessionName = source.getSessionName().value;
         sessionDate = source.getSessionDate().toString();
-        System.out.println("----- source.getStudentList() size = " + source.getStudentList().size());
         for (Integer index: source.getStudentList().keySet()) {
             try {
                 JsonAdaptedAttributes jsonAdaptedAttributes = new JsonAdaptedAttributes(
@@ -66,7 +65,6 @@ public class JsonAdaptedSession {
     public Session toModelType() throws IllegalValueException {
         final Map<Integer, Attributes> studentList = new HashMap<>();
 
-        System.out.println("@@@@@@@@@@ THE ATTRIBUTE LIST SIZE = " + attributesList.size());
         for (JsonAdaptedAttributes attr : attributesList) {
             Attributes attributes = new Attributes(new Name(attr.getName()));
 

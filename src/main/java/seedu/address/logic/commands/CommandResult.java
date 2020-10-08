@@ -1,10 +1,10 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
+import seedu.address.ui.Tab;
 
 import java.util.Objects;
 
-import seedu.address.ui.Tab;
+import static java.util.Objects.requireNonNull;
 
 /**
  * Represents the result of a command execution.
@@ -22,6 +22,9 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    /** The user is entering a session. */
+    private final boolean isEnteringSession;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
@@ -30,6 +33,7 @@ public class CommandResult {
         this.showHelp = showHelp;
         this.switchTab = switchTab;
         this.exit = exit;
+        this.isEnteringSession = false;
     }
 
     /**
@@ -37,7 +41,15 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, null, false);
+        this(feedbackToUser, false, null, false, false);
+    }
+
+    public CommandResult(String feedbackToUser, boolean showHelp, Tab switchTab, boolean exit, boolean isEnteringSession) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = showHelp;
+        this.switchTab = switchTab;
+        this.exit = exit;
+        this.isEnteringSession = isEnteringSession;
     }
 
     public String getFeedbackToUser() {
@@ -60,8 +72,8 @@ public class CommandResult {
         return exit;
     }
 
-    public boolean isConfirmationPage() {
-        return false;
+    public boolean isEnterSession() {
+        return isEnteringSession;
     }
 
     @Override
