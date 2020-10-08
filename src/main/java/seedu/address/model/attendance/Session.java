@@ -34,6 +34,7 @@ public class Session implements Comparable<Session> {
         this.sessionName = sessionName;
         this.sessionDate = sessionDate;
         this.studentList = new HashMap<>();
+        this.sessionIndex = Index.fromZeroBased(0);
         //this.masterList = FXCollections.emptyObservableList();
     }
 
@@ -44,6 +45,7 @@ public class Session implements Comparable<Session> {
         this.sessionName = sessionName;
         this.sessionDate = sessionDate;
         this.studentList = studentList;
+        this.sessionIndex = Index.fromZeroBased(0);
         //this.masterList = FXCollections.emptyObservableList();
     }
 

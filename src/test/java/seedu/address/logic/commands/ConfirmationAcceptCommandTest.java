@@ -88,7 +88,8 @@ public class ConfirmationAcceptCommandTest {
     @Test
     public void execute_acceptClearCommand_success() {
         ClearCommand clearCommand = new ClearCommand();
-        Model expectedModel = new ModelManager();
+        ModelManager expectedModel = new ModelManager(getTypicalSessionList(model.getAddressBook().getPersonList()),
+            model.getAddressBook(), new UserPrefs());
 
         ConfirmationAcceptCommand confirmationAcceptCommand = new ConfirmationAcceptCommand(clearCommand);
         assertCommandSuccess(confirmationAcceptCommand, model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
