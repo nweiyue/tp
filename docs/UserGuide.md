@@ -14,10 +14,12 @@ ATAS is a **desktop app for managing students’ particulars, optimized for use 
   * [Listing all students](#list)
   * [Locating students by name](#find)
   * [Deleting a student](#delete)
+  * [Editing a student's particulars](#edit)
   * [Clearing all entries](#clear)
+  * [Switching between tabs](#switch)
   * [Exiting the program](#exit)
-  * [Saving data](#sd)
   * [User confirmation prompt](#ucp) (coming soon)
+  * [Saving data](#sd)
 * [FAQ](#faq)
 * [Command summary](#cs)
 
@@ -32,16 +34,18 @@ ATAS is a **desktop app for managing students’ particulars, optimized for use 
 3. Copy the file to the folder you want to use as the _home folder_ for your ATAS.
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   [insert image of GUI here]
+   ![StartPage](images/StartPage.png)
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * **`list`** : Lists out all the students.
 
-   * **`add n/John Cena e/thechamp@example.com`** : Adds a student named `John Cena` to the class list.
+   * **`add n/John Cena e/thechamp@u.nus.edu`** : Adds a student named `John Cena` to the class list.
 
    * **`delete 3`** : Deletes the 3rd student shown in the current list.
+   
+   * **`edit 3 n/John Cena`** : Edits the 3rd student's name to `John Cena`.
 
    * **`clear`** : Deletes all the students.
 
@@ -61,10 +65,10 @@ ATAS is a **desktop app for managing students’ particulars, optimized for use 
   e.g. in `add n/STUDENT_NAME` should be changed to `add n/John Cena`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Cena t/1F` or simply as `n/John Cena`.
+  e.g `n/NAME [t/TAG]` can be used as `n/John Cena t/foreigner` or simply as `n/John Cena`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/1F`, `t/1F t/2G` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/foreigner`, `t/foreigner t/enthusiastic` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME m/MATRICULATION_NUMBER`, `m/MATRICULATION_NUMBER n/NAME` is also acceptable.
@@ -81,7 +85,6 @@ Shows a message explaining how to access the help page.
 help
 ```
 
-
 ### <a name="add"></a>Adding a student : `add`
 
 Adds a student to class list.
@@ -96,7 +99,7 @@ A student can have any number of tags (including 0)
 
 Examples:
 * `add n/John Cena m/A0123456J e/thechamp@u.nus.edu`
-* `add n/Alvina Handsome m/A0123456X e/handsome.alvina@u.nus.edu t/2G`
+* `add n/Alvina Handsome m/A0123456X e/handsome.alvina@u.nus.edu t/new`
 
 ### <a name="list"></a>Listing all students : `list`
 
@@ -139,10 +142,30 @@ delete INDEX
 * Deletes the student at the specified `INDEX`.
 * The index refers to the index number shown in the displayed class list.
 * The index **must be a positive integer** 1, 2, 3, …
+* User will then be prompted for a confirmation input **`(yes/no)`**.
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the class list.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2` followed by `yes` deletes the 2nd person in the class list.
+* `find Betsy` followed by `delete 1` followed by `y` deletes the 1st person in the results of the `find` command.
+
+### <a name="edit"></a>Edit a student's particulars: `edit`
+
+The user will be prompted to confirm their decision here.
+
+If yes: edits and updates the particulars of the specified student from the class list.
+
+```
+edit INDEX n/UPDATED_NAME
+```
+
+* Edits the student at the specified `INDEX` with the specified updated particular to be updated.
+* The index refers to the index number shown in the displayed class list.
+* The index **must be a positive integer** 1, 2, 3, …
+* User will then be prompted for a confirmation input **`(yes/no)`**.
+
+Examples:
+* `edit 2 n/John Cena` followed by `yes` edits the 2nd person in the class list with an updated name `John Cena`.
+* `edit 3 t/Joker` followed by `y` edits the 3rd person in the class list with an updated tag `Joker`.
 
 ###  <a name="clear"></a>Clearing all entries : `clear`
 
@@ -154,32 +177,43 @@ If yes: removes all students from the class list.
 clear
 ```
 
+### <a name="switch"></a>Switching between tabs : `switch`
+
+Switches between tabs.
+
+```
+switch TAB_NAME
+```
+
+* The tab name is case-insensitive.
+* The tab must be an existing tab (classes or attendance).
+
+Example:
+* `switch attendance` switches from the current tab to the attendance tab.
+
 ###  <a name="exit"></a>Exiting the program : `bye`
 
-The user will be prompted to confirm their decision here.
-
-If yes: exits the application.
+Exits the application.
 
 ```
 bye
 ```
 
-###  <a name="sd"></a>Saving the data
+### <a name="ucp"></a>User confirmation prompt
 
-Students’ data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-
-### <a name="ucp"></a>User confirmation prompt (feature coming soon!)
-
-Prompts the user to confirm next operation
+Prompts the user to confirm the execution of commands that may permanently remove information.
+These commands are: `delete`, `edit` and `clear`.
 
 * Confirms the execution at the specified `INDEX`.
 
 Examples:
-* `delete 3` is followed with `Are you sure you want to continue?`.
-* `clear` is followed with `Are you sure you want to continue?`.
-* `bye` is followed with `Are you sure you want to continue?`.
+* `delete 3` is followed with `Delete 3? (yes/no)`.
+* `edit 3 t/TAG_NAME` is followed with `Edit 3? (yes/no)`.
+* `clear` is followed with `Clear list? (yes/no)`.
 
+###  <a name="sd"></a>Saving the data
+
+Students’ data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ## <a name="faq"></a>FAQ
 
@@ -192,11 +226,12 @@ Examples:
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME m/MATRICULATION_NUMBER e/NUS_EMAIL_ADDRESS [t/TAG]…​` <br> e.g., `add n/Rainer Lam m/A0123456C e/rainerlam@u.nus.edu`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Justin Bieber`
-**List** | `list`
 **Help** | `help`
+**Add** | `add n/NAME m/MATRICULATION_NUMBER e/NUS_EMAIL_ADDRESS [t/TAG]…​` <br> e.g., `add n/Rainer Lam m/A0123456C e/rainerlam@u.nus.edu t/smart`
+**List** | `list`
+**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Justin Bieber`
+**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Edit** | `edit INDEX n/UPDATED_NAME`<br> e.g., `edit 2 n/John Cena`
+**Clear** | `clear`
+**Switch** | `switch TAB_NAME`<br> e.g., `switch attendance`
 **Exit** | `bye`
-
