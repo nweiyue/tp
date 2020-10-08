@@ -44,6 +44,10 @@ public class SessionStudentCard extends UiPart<Region> {
     public SessionStudentCard(Attributes attributes, int displayedIndex) {
         super(FXML);
         this.attributes = attributes;
+        System.out.println("--------------------");
+        System.out.println(attributes.getName());
+        System.out.println(attributes.getPresenceStatus());
+        System.out.println(attributes.getParticipationStatus());
         id.setText(displayedIndex + ". ");
         name.setText(attributes.getName());
         String presenceStatus = attributes.getPresenceStatus() ? PRESENT : ABSENT;

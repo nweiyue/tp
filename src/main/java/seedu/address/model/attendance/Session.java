@@ -134,18 +134,12 @@ public class Session implements Comparable<Session> {
     }
 
     public ObservableList<Attributes> getAttributesAsList() {
-        ArrayList<Attributes> arrayList = new ArrayList<>();
-      /*  for (int i = 0; i < studentList.size(); i++) {
-            Attributes attribute = studentList.get(i);
-            if (attribute != null) {
-                arrayList.add(attribute);
-            }
-        }*/
-        ObservableList<Attributes> newAttributesList = FXCollections.observableArrayList(arrayList);
-/*        System.out.println("STARTING TO getAttributesAsList");
-        for(int i = 0; i < newAttributesList.size(); i++) {
-            System.out.println(newAttributesList.get(i));
-        }*/
+        ObservableList<Attributes> newAttributesList = FXCollections.observableArrayList();
+        for (Attributes attributes : studentList.values()) {
+            System.out.println("Attributes: " + attributes);
+            newAttributesList.add(attributes);
+        }
+        System.out.println("STARTING TO getAttributesAsList");
         return newAttributesList;
     }
 

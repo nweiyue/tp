@@ -237,6 +237,7 @@ public class ModelManager implements Model {
     //=========== Filtered Session Accessors =============================================================
     @Override
     public ObservableList<Attributes> getFilteredAttributesList() {
+        System.out.println("Is session null: " + sessionList.getSessionBasedOnId(sessionId));
         return sessionList.getSessionBasedOnId(sessionId).getAttributesAsList();
     }
 

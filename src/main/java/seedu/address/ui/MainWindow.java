@@ -67,6 +67,9 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private TabPane tabPane;
 
+    @FXML
+    private javafx.scene.control.Tab inClassTab;
+
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -188,11 +191,13 @@ public class MainWindow extends UiPart<Stage> {
 
         if (tab.equals(Tab.STUDENTS) || tab.equals(Tab.SESSIONS)) {
             tabPane.getSelectionModel().select(toSwitchTabIndex);
+            inClassTab.setDisable(true);
         } else if (tab.equals(Tab.CURRENT)) {
-/*            System.out.println("hi");
+            System.out.println("hi");
             sessionStudentListPanel = new SessionStudentListPanel(logic.getFilteredAttributesList());
-            sessionStudentListPanelPlaceholder.getChildren().add(sessionStudentListPanel.getRoot());*/
+            sessionStudentListPanelPlaceholder.getChildren().add(sessionStudentListPanel.getRoot());
             tabPane.getSelectionModel().select(toSwitchTabIndex);
+            inClassTab.setDisable(false);
         }
         else {
             throw new CommandException(MESSAGE_INVALID_TAB);
