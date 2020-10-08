@@ -20,13 +20,13 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.studentlistcommands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.atascommands.ListCommand;
 import seedu.address.logic.commands.confirmationcommands.ConfirmationCommand;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.studentlistcommands.AddCommand;
 import seedu.address.logic.commands.studentlistcommands.DeleteCommand;
 import seedu.address.logic.commands.studentlistcommands.EditCommand;
-import seedu.address.logic.commands.atascommands.ListCommand;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;

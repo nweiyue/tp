@@ -1,5 +1,12 @@
 package seedu.address.logic.commands.sessionlistcommands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SESSIONDATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SESSIONNAME;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
+import java.util.Optional;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.Command;
@@ -9,13 +16,6 @@ import seedu.address.model.Model;
 import seedu.address.model.attendance.Session;
 import seedu.address.model.attendance.SessionDate;
 import seedu.address.model.attendance.SessionName;
-
-import java.util.Optional;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SESSIONDATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SESSIONNAME;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 public class EditSessionCommand extends Command {
 

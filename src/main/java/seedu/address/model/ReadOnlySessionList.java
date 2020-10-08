@@ -1,10 +1,10 @@
 package seedu.address.model;
 
+import java.util.List;
+
 import javafx.collections.ObservableList;
 import seedu.address.model.attendance.Session;
 import seedu.address.model.person.Person;
-
-import java.util.List;
 
 /**
  * Unmodifiable view of a session list

@@ -25,8 +25,8 @@ public class SwitchCommandTest {
     @Test
     public void execute_switchClassesTab_success() {
         String expectedMessage = String.format(MESSAGE_SWITCH_TAB_SUCCESS,
-                Tab.CLASSES.toString().toLowerCase());
-        CommandResult expectedCommandResult = new CommandResult(expectedMessage, false, Tab.CLASSES, false);
+                Tab.STUDENTS.toString().toLowerCase());
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, false, Tab.STUDENTS, false);
         SwitchCommand switchCommand = new SwitchCommand(CLASSES_TAB_NAME);
 
         assertCommandSuccess(switchCommand, model, expectedCommandResult, expectedModel);
@@ -35,8 +35,8 @@ public class SwitchCommandTest {
     @Test
     public void execute_switchAttendanceTab_success() {
         String expectedMessage = String.format(MESSAGE_SWITCH_TAB_SUCCESS,
-                Tab.ATTENDANCE.toString().toLowerCase());
-        CommandResult expectedCommandResult = new CommandResult(expectedMessage, false, Tab.ATTENDANCE, false);
+                Tab.SESSIONS.toString().toLowerCase());
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, false, Tab.SESSIONS, false);
         SwitchCommand switchCommand = new SwitchCommand(ATTENDANCE_TAB_NAME);
 
         assertCommandSuccess(switchCommand, model, expectedCommandResult, expectedModel);

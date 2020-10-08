@@ -1,13 +1,17 @@
 package seedu.address.model;
 
+import java.nio.file.Path;
+import java.util.function.Predicate;
+
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
-import seedu.address.model.attendance.*;
+import seedu.address.model.attendance.Attributes;
+import seedu.address.model.attendance.IndexRange;
+import seedu.address.model.attendance.Session;
+import seedu.address.model.attendance.SessionList;
+import seedu.address.model.attendance.SessionName;
 import seedu.address.model.person.Person;
-
-import java.nio.file.Path;
-import java.util.function.Predicate;
 
 /**
  * The API of the Model component.

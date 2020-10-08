@@ -1,10 +1,10 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.logic.commands.sessioncommands.PresenceCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.attendance.IndexRange;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Parses input arguments and creates a new PresenceCommand object

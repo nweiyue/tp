@@ -14,35 +14,35 @@ public class TabTest {
     @Test
     public void testGetIndex() {
         // actual index -> true
-        assertEquals(Tab.CLASSES.getIndex().getZeroBased(), Index.fromZeroBased(0).getZeroBased());
-        assertEquals(Tab.ATTENDANCE.getIndex().getZeroBased(), Index.fromZeroBased(1).getZeroBased());
+        assertEquals(Tab.STUDENTS.getIndex().getZeroBased(), Index.fromZeroBased(0).getZeroBased());
+        assertEquals(Tab.SESSIONS.getIndex().getZeroBased(), Index.fromZeroBased(1).getZeroBased());
 
         // zeroBased index but different values -> false
-        assertNotEquals(Tab.CLASSES.getIndex(), Index.fromZeroBased(3).getZeroBased());
-        assertNotEquals(Tab.ATTENDANCE.getIndex(), Index.fromZeroBased(4).getZeroBased());
+        assertNotEquals(Tab.STUDENTS.getIndex(), Index.fromZeroBased(3).getZeroBased());
+        assertNotEquals(Tab.SESSIONS.getIndex(), Index.fromZeroBased(4).getZeroBased());
 
         // oneBased index but same values -> false
-        assertNotEquals(Tab.CLASSES.getIndex(), Index.fromZeroBased(0).getOneBased());
-        assertNotEquals(Tab.ATTENDANCE.getIndex(), Index.fromZeroBased(1).getOneBased());
+        assertNotEquals(Tab.STUDENTS.getIndex(), Index.fromZeroBased(0).getOneBased());
+        assertNotEquals(Tab.SESSIONS.getIndex(), Index.fromZeroBased(1).getOneBased());
 
         // oneBased index and different values -> false
-        assertNotEquals(Tab.CLASSES.getIndex(), Index.fromZeroBased(3).getOneBased());
-        assertNotEquals(Tab.ATTENDANCE.getIndex(), Index.fromZeroBased(4).getOneBased());
+        assertNotEquals(Tab.STUDENTS.getIndex(), Index.fromZeroBased(3).getOneBased());
+        assertNotEquals(Tab.SESSIONS.getIndex(), Index.fromZeroBased(4).getOneBased());
     }
 
     @Test
     public void equals() {
-        Tab classesTab = Tab.CLASSES;
-        Tab attendanceTab = Tab.ATTENDANCE;
+        Tab classesTab = Tab.STUDENTS;
+        Tab attendanceTab = Tab.SESSIONS;
 
         // same object -> returns true
         assertTrue(classesTab.equals(classesTab));
         assertTrue(attendanceTab.equals(attendanceTab));
 
         // same values -> returns true
-        Tab classesTabCopy = Tab.CLASSES;
+        Tab classesTabCopy = Tab.STUDENTS;
         assertTrue(classesTab.equals(classesTabCopy));
-        Tab attendanceTabCopy = Tab.ATTENDANCE;
+        Tab attendanceTabCopy = Tab.SESSIONS;
         assertTrue(attendanceTab.equals(attendanceTabCopy));
 
         // different types -> returns false

@@ -1,17 +1,17 @@
 package seedu.address.model.attendance;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.address.commons.core.index.Index;
-import seedu.address.model.person.Person;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
+import seedu.address.model.person.Person;
 
 /**
  * Represents a particular session at a particular date.
@@ -47,13 +47,13 @@ public class Session implements Comparable<Session> {
         //this.masterList = FXCollections.emptyObservableList();
     }
 
-//    public Session(SessionName sessionName, SessionDate sessionDate, Map<Integer, Attributes> studentList, ObservableList<Person> masterList) {
-//        this.sessionName = sessionName;
-//        this.sessionDate = sessionDate;
-//        this.studentList = studentList;
-//        //this.masterList = masterList;
-//    }
-
+    //    public Session(SessionName sessionName, SessionDate
+    //    sessionDate, Map<Integer, Attributes> studentList, ObservableList<Person> masterList) {
+    //        this.sessionName = sessionName;
+    //        this.sessionDate = sessionDate;
+    //        this.studentList = studentList;
+    //        //this.masterList = masterList;
+    //    }
     public Map<Integer, Attributes> getStudentList() {
         return studentList;
     }

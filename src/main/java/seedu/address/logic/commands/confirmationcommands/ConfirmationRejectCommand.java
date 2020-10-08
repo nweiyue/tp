@@ -1,9 +1,9 @@
 package seedu.address.logic.commands.confirmationcommands;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Rejects the execution of a DangerousCommand.

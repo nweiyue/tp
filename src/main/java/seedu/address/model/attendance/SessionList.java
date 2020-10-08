@@ -1,5 +1,10 @@
 package seedu.address.model.attendance;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.Iterator;
+import java.util.List;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
@@ -7,11 +12,6 @@ import seedu.address.model.ReadOnlySessionList;
 import seedu.address.model.attendance.exceptions.DuplicateSessionException;
 import seedu.address.model.attendance.exceptions.SessionNotFoundException;
 import seedu.address.model.person.Person;
-
-import java.util.Iterator;
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Represents a collection of all the sessions in the semester.
@@ -22,7 +22,9 @@ public class SessionList implements Iterable<Session>, ReadOnlySessionList {
     private final ObservableList<Session> sessions;
     private final ObservableList<Person> internalPersonList;
 
-
+    /**
+     * Creates an SessionList using the sessions in the {@code list}
+     */
     public SessionList() {
         sessions = FXCollections.observableArrayList();
         internalPersonList = FXCollections.observableArrayList();
@@ -63,8 +65,8 @@ public class SessionList implements Iterable<Session>, ReadOnlySessionList {
         if (contains(session)) {
             throw new DuplicateSessionException();
         }
-/*        session = new Session(session.getSessionName(),
-                session.getSessionDate(), session.getStudentList());*/
+        /*ession = new Session(session.getSessionName(),
+        session.getSessionDate(), session.getStudentList());*/
         session.initializeSession(internalPersonList);
         sessions.add(session);
     }

@@ -1,5 +1,10 @@
 package seedu.address.ui;
 
+import static seedu.address.logic.commands.atascommands.SwitchCommand.MESSAGE_ALREADY_ON_TAB;
+import static seedu.address.logic.commands.atascommands.SwitchCommand.MESSAGE_INVALID_TAB;
+
+import java.util.logging.Logger;
+
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,11 +22,6 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-
-import java.util.logging.Logger;
-
-import static seedu.address.logic.commands.atascommands.SwitchCommand.MESSAGE_ALREADY_ON_TAB;
-import static seedu.address.logic.commands.atascommands.SwitchCommand.MESSAGE_INVALID_TAB;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -126,7 +126,7 @@ public class MainWindow extends UiPart<Stage> {
             }
         });
 
-        /* Supposed-to-work listern */
+        /* Supposed-to-work listener */
         getRoot().addEventFilter(KeyEvent.KEY_RELEASED, event -> {
             if (event.getCode() == KeyCode.ENTER) {
                 updateLists();
@@ -136,35 +136,35 @@ public class MainWindow extends UiPart<Stage> {
     }
 
 
-        void updateLists() {
-            personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-            personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+    void updateLists() {
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
-            sessionListPanel = new SessionListPanel(logic.getFilteredSessionList());
-            sessionListPanelPlaceholder.getChildren().add(sessionListPanel.getRoot());
+        sessionListPanel = new SessionListPanel(logic.getFilteredSessionList());
+        sessionListPanelPlaceholder.getChildren().add(sessionListPanel.getRoot());
 
-            StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
-            statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
-        }
-        /**
-         * Fills up all the placeholders of this window.
-         */
-        void fillInnerParts() {
-            personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-            personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+    }
+    /**
+     * Fills up all the placeholders of this window.
+     */
+    void fillInnerParts() {
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
-            sessionListPanel = new SessionListPanel(logic.getFilteredSessionList());
-            sessionListPanelPlaceholder.getChildren().add(sessionListPanel.getRoot());
+        sessionListPanel = new SessionListPanel(logic.getFilteredSessionList());
+        sessionListPanelPlaceholder.getChildren().add(sessionListPanel.getRoot());
 
-            resultDisplay = new ResultDisplay();
-            resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+        resultDisplay = new ResultDisplay();
+        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-            StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
-            statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-            CommandBox commandBox = new CommandBox(this::executeCommand);
-            commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
-        }
+        CommandBox commandBox = new CommandBox(this::executeCommand);
+        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+    }
 
 
 
@@ -218,8 +218,7 @@ public class MainWindow extends UiPart<Stage> {
         } else if (tab.equals(Tab.CURRENT)) {
             tabPane.getSelectionModel().select(toSwitchTabIndex);
             inClassTab.setDisable(false);
-        }
-        else {
+        } else {
             throw new CommandException(MESSAGE_INVALID_TAB);
         }
     }

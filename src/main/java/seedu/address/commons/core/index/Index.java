@@ -27,16 +27,27 @@ public class Index {
         zeroBasedIndex += 1;
     }
 
+    /**
+     * Decreases zero based index by 1.
+     */
     public void decreaseZeroBasedIndexByOne() {
         if (!(zeroBasedIndex > 0)) {
             zeroBasedIndex -= 1;
         }
     }
 
+    /**
+     * Returns zero based index.
+     * @return Returns zero based index.
+     */
     public int getZeroBased() {
         return zeroBasedIndex;
     }
 
+    /**
+     * Returns one based index.
+     * @return Returns one based index.
+     */
     public int getOneBased() {
         return zeroBasedIndex + 1;
     }

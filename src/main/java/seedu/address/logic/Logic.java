@@ -1,5 +1,7 @@
 package seedu.address.logic;
 
+import java.nio.file.Path;
+
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
@@ -9,8 +11,6 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.attendance.Attributes;
 import seedu.address.model.attendance.Session;
 import seedu.address.model.person.Person;
-
-import java.nio.file.Path;
 
 /**
  * API of the Logic component

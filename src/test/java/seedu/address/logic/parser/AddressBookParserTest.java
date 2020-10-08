@@ -14,18 +14,18 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.studentlistcommands.AddCommand;
-import seedu.address.logic.commands.studentlistcommands.ClearCommand;
-import seedu.address.logic.commands.confirmationcommands.ConfirmationCommand;
-import seedu.address.logic.commands.confirmationcommands.ConfirmationRejectCommand;
-import seedu.address.logic.commands.studentlistcommands.DeleteCommand;
-import seedu.address.logic.commands.studentlistcommands.EditCommand;
-import seedu.address.logic.commands.studentlistcommands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.atascommands.ExitCommand;
 import seedu.address.logic.commands.atascommands.FindCommand;
 import seedu.address.logic.commands.atascommands.HelpCommand;
 import seedu.address.logic.commands.atascommands.ListCommand;
 import seedu.address.logic.commands.atascommands.SwitchCommand;
+import seedu.address.logic.commands.confirmationcommands.ConfirmationCommand;
+import seedu.address.logic.commands.confirmationcommands.ConfirmationRejectCommand;
+import seedu.address.logic.commands.studentlistcommands.AddCommand;
+import seedu.address.logic.commands.studentlistcommands.ClearCommand;
+import seedu.address.logic.commands.studentlistcommands.DeleteCommand;
+import seedu.address.logic.commands.studentlistcommands.EditCommand;
+import seedu.address.logic.commands.studentlistcommands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;

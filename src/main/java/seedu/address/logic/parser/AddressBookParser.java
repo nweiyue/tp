@@ -1,24 +1,32 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Tab;
-import seedu.address.logic.commands.*;
-import seedu.address.logic.commands.atascommands.*;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.atascommands.ExitCommand;
+import seedu.address.logic.commands.atascommands.FindCommand;
+import seedu.address.logic.commands.atascommands.HelpCommand;
+import seedu.address.logic.commands.atascommands.ListCommand;
+import seedu.address.logic.commands.atascommands.SwitchCommand;
 import seedu.address.logic.commands.confirmationcommands.ConfirmationCommand;
 import seedu.address.logic.commands.sessioncommands.ParticipateCommand;
 import seedu.address.logic.commands.sessioncommands.PresenceCommand;
-import seedu.address.logic.commands.sessionlistcommands.*;
+import seedu.address.logic.commands.sessionlistcommands.AddSessionCommand;
+import seedu.address.logic.commands.sessionlistcommands.ClearSessionsCommand;
+import seedu.address.logic.commands.sessionlistcommands.DeleteSessionCommand;
+import seedu.address.logic.commands.sessionlistcommands.EditSessionCommand;
+import seedu.address.logic.commands.sessionlistcommands.EnterSessionCommand;
 import seedu.address.logic.commands.studentlistcommands.AddCommand;
 import seedu.address.logic.commands.studentlistcommands.ClearCommand;
 import seedu.address.logic.commands.studentlistcommands.DeleteCommand;
 import seedu.address.logic.commands.studentlistcommands.EditCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 /**
  * Parses user input.
@@ -32,16 +40,15 @@ public class AddressBookParser {
     /** The command to be executed after confirmation prompt*/
     private ConfirmationCommand previousCommand;
 
+    @FXML
+    private Tab inClassTab;
+    /*or do you guys prefer doing a LogicControlGroup??*/
     /**
      * Removes the previous confirmation command.
      */
     private void removePreviousCommand() {
         this.previousCommand = null;
     }
-
-    @FXML
-    private Tab inClassTab;
-    //or do you guys prefer doing a LogicControlGroup??
     /**
      * Parses user input into command for execution.
      *

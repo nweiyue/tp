@@ -1,13 +1,13 @@
 package seedu.address.ui;
 
+import java.util.logging.Logger;
+
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.attendance.Attributes;
-
-import java.util.logging.Logger;
 
 public class SessionStudentListPanel extends UiPart<Region> {
     private static final String FXML = "SessionStudentListPanel.fxml";

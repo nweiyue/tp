@@ -1,11 +1,10 @@
 package seedu.address.logic.commands;
 
-import seedu.address.ui.Tab;
+import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 
-import static java.util.Objects.requireNonNull;
-
+import seedu.address.ui.Tab;
 /**
  * Represents the result of a command execution.
  */
@@ -44,7 +43,11 @@ public class CommandResult {
         this(feedbackToUser, false, null, false, false);
     }
 
-    public CommandResult(String feedbackToUser, boolean showHelp, Tab switchTab, boolean exit, boolean isEnteringSession) {
+    /**
+     * Constructs a {@code CommandResult} with the specified fields.
+     */
+    public CommandResult(String feedbackToUser,
+                         boolean showHelp, Tab switchTab, boolean exit, boolean isEnteringSession) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.switchTab = switchTab;

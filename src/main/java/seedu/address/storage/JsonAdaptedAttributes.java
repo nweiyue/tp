@@ -1,14 +1,15 @@
 package seedu.address.storage;
 
+import java.util.Map;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.attendance.Attributes;
 import seedu.address.model.attendance.Participation;
 import seedu.address.model.attendance.Presence;
 import seedu.address.model.person.Name;
-
-import java.util.Map;
 
 /**
  * Jackson-friendly version of {@link Attributes}.

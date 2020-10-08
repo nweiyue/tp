@@ -1,5 +1,7 @@
 package seedu.address.logic.commands.sessionlistcommands;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.confirmationcommands.DangerousCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -7,9 +9,6 @@ import seedu.address.model.Model;
 import seedu.address.model.attendance.Session;
 import seedu.address.model.attendance.SessionDate;
 import seedu.address.model.attendance.SessionName;
-
-import static java.util.Objects.requireNonNull;
-
 
 public class DeleteSessionCommand extends DangerousCommand {
 

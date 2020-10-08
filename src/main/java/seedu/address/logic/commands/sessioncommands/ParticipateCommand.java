@@ -1,15 +1,13 @@
 package seedu.address.logic.commands.sessioncommands;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.attendance.IndexRange;
 import seedu.address.model.attendance.SessionName;
-
-import static java.util.Objects.requireNonNull;
-
-
 
 /**
  * Toggles the participation status of certain students in particular sessions.
@@ -39,6 +37,9 @@ public class ParticipateCommand extends Command {
         this.sessionName = sessionName;
     }
 
+    /**
+     * Creates an ParticipateCommand to add the specified {@code IndexRange}
+     */
     public ParticipateCommand(IndexRange range) {
         this.range = range;
         this.sessionName = new SessionName("DEFAULT");

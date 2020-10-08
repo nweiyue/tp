@@ -1,5 +1,8 @@
 package seedu.address.logic.commands.sessionlistcommands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SESSIONINDEX;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
@@ -7,9 +10,6 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.ui.Tab;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SESSIONINDEX;
 
 public class EnterSessionCommand extends Command {
 
@@ -43,7 +43,8 @@ public class EnterSessionCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_SESSION_DISPLAYED_INDEX);
         }
         model.enterSession(sessionIndex);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, sessionIndex.getOneBased()), false, Tab.CURRENT, false, true);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, sessionIndex.getOneBased()),
+            false, Tab.CURRENT, false, true);
     }
 
     @Override

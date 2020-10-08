@@ -22,6 +22,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.attendance.Attributes;
 import seedu.address.model.attendance.IndexRange;
 import seedu.address.model.attendance.Session;
 import seedu.address.model.attendance.SessionList;
@@ -182,6 +183,16 @@ public class AddSessionCommandTest {
         }
 
         @Override
+        public void enterSession(Index sessionIndex) {
+
+        }
+
+        @Override
+        public ObservableList<Attributes> getFilteredAttributesList() {
+            return null;
+        }
+
+        @Override
         public void setSession(Session target, Session editedSession) {
             throw new AssertionError("This method should not be called.");
         }
@@ -202,8 +213,33 @@ public class AddSessionCommandTest {
         }
 
         @Override
+        public ObservableList<Session> getFilteredSessionList() {
+            return null;
+        }
+
+        @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredSessionList(Predicate<Session> predicate) {
+
+        }
+
+        @Override
+        public void setCurrentSessionFalse() {
+
+        }
+
+        @Override
+        public void setCurrentSessionTrue() {
+
+        }
+
+        @Override
+        public boolean returnCurrentSessionEnabledStatus() {
+            return false;
         }
     }
 

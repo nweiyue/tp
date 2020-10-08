@@ -1,5 +1,9 @@
 package seedu.address.logic;
 
+import java.io.IOException;
+import java.nio.file.Path;
+import java.util.logging.Logger;
+
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -14,10 +18,6 @@ import seedu.address.model.attendance.Attributes;
 import seedu.address.model.attendance.Session;
 import seedu.address.model.person.Person;
 import seedu.address.storage.Storage;
-
-import java.io.IOException;
-import java.nio.file.Path;
-import java.util.logging.Logger;
 
 /**
  * The main LogicManager of the app.
@@ -73,7 +73,9 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Attributes> getFilteredAttributesList() { return model.getFilteredAttributesList();};
+    public ObservableList<Attributes> getFilteredAttributesList() {
+        return model.getFilteredAttributesList();
+    }
 
     @Override
     public Path getAddressBookFilePath() {
@@ -91,8 +93,12 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public void disableCurrentSession() { model.setCurrentSessionFalse();}
+    public void disableCurrentSession() {
+        model.setCurrentSessionFalse();
+    }
 
     @Override
-    public void enableCurrentSession() {model.setCurrentSessionTrue();}
+    public void enableCurrentSession() {
+        model.setCurrentSessionTrue();
+    }
 }
