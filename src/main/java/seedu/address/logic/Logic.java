@@ -47,7 +47,6 @@ public interface Logic {
     /** Sets currentSession to be false */
     void enableCurrentSession();
 
-
     /**
      * Returns the user prefs' address book file path.
      */

@@ -15,7 +15,6 @@ public class ParticipateCommandParser implements Parser<ParticipateCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public ParticipateCommand parse(String args) throws ParseException {
-        // ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_SESSIONNAME);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args);
         IndexRange indexRange;
 
@@ -29,22 +28,6 @@ public class ParticipateCommandParser implements Parser<ParticipateCommand> {
         //SessionName sessionName = new SessionName(argMultimap.getValue(PREFIX_SESSIONNAME).get());
 
         return new ParticipateCommand(indexRange);
-
-        /*
-        try {
-            //getting the index of session here
-            char[] findInteger = args.toCharArray();
-            int indexOfInteger = 0;
-            while (indexOfInteger < findInteger.length && !Character.isDigit(findInteger[indexOfInteger])) {
-                indexOfInteger++;
-            }
-            args = args.substring(indexOfInteger);
-            IndexRange indexRange = ParserUtil.parseIndexRange(args);
-            return new ParticipateCommand(indexRange);
-        } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, EnterSessionCommand.MESSAGE_USAGE), pe);
-        }*/
     }
 
 }

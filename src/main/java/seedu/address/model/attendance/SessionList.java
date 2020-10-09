@@ -18,7 +18,6 @@ import seedu.address.model.person.Person;
  */
 public class SessionList implements Iterable<Session>, ReadOnlySessionList {
 
-    //private final SortedSet<Session> sessions = new TreeSet<>();
     private final ObservableList<Session> sessions;
     private final ObservableList<Person> internalPersonList;
 
@@ -65,8 +64,6 @@ public class SessionList implements Iterable<Session>, ReadOnlySessionList {
         if (contains(session)) {
             throw new DuplicateSessionException();
         }
-        /*ession = new Session(session.getSessionName(),
-        session.getSessionDate(), session.getStudentList());*/
         session.initializeSession(internalPersonList);
         sessions.add(session);
     }

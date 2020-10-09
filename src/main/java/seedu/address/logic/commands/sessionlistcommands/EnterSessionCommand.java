@@ -22,7 +22,6 @@ public class EnterSessionCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_SESSIONINDEX + "1 ";
 
-
     public static final String MESSAGE_SUCCESS = "Session entered: %1$s";
 
     //sessionIndex should be zero-based here due to parser

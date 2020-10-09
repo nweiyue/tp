@@ -42,7 +42,7 @@ public class AddressBookParser {
 
     @FXML
     private Tab inClassTab;
-    /*or do you guys prefer doing a LogicControlGroup??*/
+
     /**
      * Removes the previous confirmation command.
      */

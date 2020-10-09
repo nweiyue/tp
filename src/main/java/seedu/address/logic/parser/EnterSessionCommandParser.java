@@ -24,10 +24,6 @@ public class EnterSessionCommandParser implements Parser <EnterSessionCommand> {
         }
 
         try {
-            //getting the index of session here [original code]
-            /* String[] argsArray = args.split("/");
-                       args = argsArray[1];
-            Index index = ParserUtil.parseIndex(args);*/
             Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_SESSIONINDEX).get());
             return new EnterSessionCommand(index);
         } catch (ParseException pe) {

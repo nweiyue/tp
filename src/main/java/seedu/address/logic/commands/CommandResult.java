@@ -22,7 +22,7 @@ public class CommandResult {
     private final boolean exit;
 
     /** The user is entering a session. */
-    private final boolean isEnteringSession;
+    private final boolean isEnterSession;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
@@ -32,7 +32,7 @@ public class CommandResult {
         this.showHelp = showHelp;
         this.switchTab = switchTab;
         this.exit = exit;
-        this.isEnteringSession = false;
+        this.isEnterSession = false;
     }
 
     /**
@@ -47,12 +47,12 @@ public class CommandResult {
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser,
-                         boolean showHelp, Tab switchTab, boolean exit, boolean isEnteringSession) {
+                         boolean showHelp, Tab switchTab, boolean exit, boolean isEnterSession) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.switchTab = switchTab;
         this.exit = exit;
-        this.isEnteringSession = isEnteringSession;
+        this.isEnterSession = isEnterSession;
     }
 
     public String getFeedbackToUser() {
@@ -76,7 +76,7 @@ public class CommandResult {
     }
 
     public boolean isEnterSession() {
-        return isEnteringSession;
+        return isEnterSession;
     }
 
     @Override
