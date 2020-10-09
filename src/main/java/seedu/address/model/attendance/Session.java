@@ -34,6 +34,7 @@ public class Session implements Comparable<Session> {
         this.sessionName = sessionName;
         this.sessionDate = sessionDate;
         this.studentList = new HashMap<>();
+        this.sessionIndex = Index.fromZeroBased(0);
         //this.masterList = FXCollections.emptyObservableList();
     }
 
@@ -44,6 +45,7 @@ public class Session implements Comparable<Session> {
         this.sessionName = sessionName;
         this.sessionDate = sessionDate;
         this.studentList = studentList;
+        this.sessionIndex = Index.fromZeroBased(0);
         //this.masterList = FXCollections.emptyObservableList();
     }
 
@@ -95,8 +97,7 @@ public class Session implements Comparable<Session> {
      */
     public void updateSessionAfterAdd(List<Person> masterList) {
         requireAllNonNull(masterList);
-        int index = masterList.size() - 1;
-        studentList.put(index, new Attributes(masterList.get(index).getName()));
+        studentList.put(masterList.size() - 1, new Attributes());
     }
 
     /**
@@ -108,8 +109,6 @@ public class Session implements Comparable<Session> {
         // find students that have index in range
         for (int i = indexRange.getZeroBasedLower(); i <= indexRange.getZeroBasedUpper(); i++) {
             Attributes temp = studentList.get(i);
-            System.out.println("Index: " + indexRange.getZeroBasedLower());
-            System.out.println(indexRange.getZeroBasedUpper());
             // exclude invalid index
             if (temp != null) {
                 setStudentAsParticipated(Index.fromZeroBased(i));
@@ -148,8 +147,6 @@ public class Session implements Comparable<Session> {
      * Initialize the studentList using the given masterList.
      */
     public void initializeSession(List<Person> masterList) {
-        System.out.println("- - - - - Initialise with master list size = " + masterList.size());
-
         for (int i = 0; i < masterList.size(); i++) {
             this.masterList.add(masterList.get(i));
             studentList.put(i, new Attributes(masterList.get(i).getName()));

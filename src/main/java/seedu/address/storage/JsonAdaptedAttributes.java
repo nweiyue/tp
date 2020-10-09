@@ -79,6 +79,6 @@ public class JsonAdaptedAttributes {
 
         Presence presence = new Presence(Boolean.parseBoolean(this.presence));
         Participation participation = new Participation(Boolean.parseBoolean(this.participation));
-        return new Attributes(presence, participation, new Name("DEFAULT_NAME"));
+        return new Attributes(presence, participation, new Name("DEFAULT"));
     }
 }
