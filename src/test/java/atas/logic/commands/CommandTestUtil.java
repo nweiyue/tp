@@ -10,8 +10,8 @@ import java.util.List;
 
 import atas.commons.core.index.Index;
 import atas.logic.commands.exceptions.CommandException;
-import atas.logic.commands.sessionlistcommands.EditSessionCommand;
-import atas.logic.commands.studentlistcommands.EditCommand;
+import atas.logic.commands.sessions.EditSessionCommand;
+import atas.logic.commands.students.EditCommand;
 import atas.logic.parser.CliSyntax;
 import atas.model.AddressBook;
 import atas.model.Model;

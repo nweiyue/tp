@@ -6,7 +6,7 @@ import static atas.testutil.TypicalSessions.SESSIONNAME_WEEK_ONE_STRING;
 
 import org.junit.jupiter.api.Test;
 
-import atas.logic.commands.sessionlistcommands.DeleteSessionCommand;
+import atas.logic.commands.sessions.DeleteSessionCommand;
 
 public class DeleteSessionCommandParserTest {
 

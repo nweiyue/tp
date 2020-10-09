@@ -7,11 +7,11 @@ import static atas.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.jupiter.api.Test;
 
-import atas.logic.commands.confirmationcommands.ConfirmationAcceptCommand;
-import atas.logic.commands.confirmationcommands.ConfirmationCommand;
-import atas.logic.commands.confirmationcommands.ConfirmationRejectCommand;
-import atas.logic.commands.confirmationcommands.DangerousCommand;
-import atas.logic.commands.studentlistcommands.DeleteCommand;
+import atas.logic.commands.confirmation.ConfirmationAcceptCommand;
+import atas.logic.commands.confirmation.ConfirmationCommand;
+import atas.logic.commands.confirmation.ConfirmationRejectCommand;
+import atas.logic.commands.confirmation.DangerousCommand;
+import atas.logic.commands.students.DeleteCommand;
 
 public class ConfirmationParserTest {
 

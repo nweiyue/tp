@@ -1,9 +1,9 @@
 package atas.logic.parser;
 
 import static atas.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static atas.logic.commands.atascommands.SwitchCommand.MESSAGE_USAGE;
+import static atas.logic.commands.atas.SwitchCommand.MESSAGE_USAGE;
 
-import atas.logic.commands.atascommands.SwitchCommand;
+import atas.logic.commands.atas.SwitchCommand;
 import atas.logic.parser.exceptions.ParseException;
 
 /**

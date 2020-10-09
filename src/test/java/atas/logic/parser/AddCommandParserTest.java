@@ -20,7 +20,7 @@ import static atas.logic.commands.CommandTestUtil.VALID_MATRICULATION_BOB;
 import static atas.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static atas.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static atas.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static atas.logic.commands.studentlistcommands.AddCommand.MESSAGE_USAGE;
+import static atas.logic.commands.students.AddCommand.MESSAGE_USAGE;
 import static atas.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static atas.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static atas.testutil.TypicalPersons.AMY;
@@ -28,7 +28,7 @@ import static atas.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
-import atas.logic.commands.studentlistcommands.AddCommand;
+import atas.logic.commands.students.AddCommand;
 import atas.model.person.Email;
 import atas.model.person.Matriculation;
 import atas.model.person.Name;

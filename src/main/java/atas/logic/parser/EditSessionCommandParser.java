@@ -1,8 +1,8 @@
 package atas.logic.parser;
 
 import static atas.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static atas.logic.commands.sessionlistcommands.EditSessionCommand.MESSAGE_NOT_EDITED;
-import static atas.logic.commands.sessionlistcommands.EditSessionCommand.MESSAGE_USAGE;
+import static atas.logic.commands.sessions.EditSessionCommand.MESSAGE_NOT_EDITED;
+import static atas.logic.commands.sessions.EditSessionCommand.MESSAGE_USAGE;
 import static atas.logic.parser.CliSyntax.PREFIX_SESSIONDATE;
 import static atas.logic.parser.CliSyntax.PREFIX_SESSIONNAME;
 import static atas.model.attendance.SessionDate.MESSAGE_CONSTRAINTS;
@@ -10,7 +10,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.format.DateTimeParseException;
 
-import atas.logic.commands.sessionlistcommands.EditSessionCommand;
+import atas.logic.commands.sessions.EditSessionCommand;
 import atas.logic.parser.exceptions.ParseException;
 import atas.model.attendance.SessionName;
 

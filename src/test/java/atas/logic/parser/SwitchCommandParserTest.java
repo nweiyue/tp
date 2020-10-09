@@ -6,7 +6,7 @@ import static atas.testutil.TypicalTabNames.CLASSES_TAB_NAME;
 
 import org.junit.jupiter.api.Test;
 
-import atas.logic.commands.atascommands.SwitchCommand;
+import atas.logic.commands.atas.SwitchCommand;
 
 public class SwitchCommandParserTest {
 

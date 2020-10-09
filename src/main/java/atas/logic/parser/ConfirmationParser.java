@@ -1,13 +1,13 @@
 package atas.logic.parser;
 
 import static atas.commons.core.Messages.MESSAGE_INVALID_CONFIRMATION_INPUT;
-import static atas.logic.commands.confirmationcommands.ConfirmationCommand.ACCEPT_COMMAND_FULL;
-import static atas.logic.commands.confirmationcommands.ConfirmationCommand.ACCEPT_COMMAND_SHORT;
-import static atas.logic.commands.confirmationcommands.ConfirmationCommand.REJECT_COMMAND_FULL;
-import static atas.logic.commands.confirmationcommands.ConfirmationCommand.REJECT_COMMAND_SHORT;
+import static atas.logic.commands.confirmation.ConfirmationCommand.ACCEPT_COMMAND_FULL;
+import static atas.logic.commands.confirmation.ConfirmationCommand.ACCEPT_COMMAND_SHORT;
+import static atas.logic.commands.confirmation.ConfirmationCommand.REJECT_COMMAND_FULL;
+import static atas.logic.commands.confirmation.ConfirmationCommand.REJECT_COMMAND_SHORT;
 
-import atas.logic.commands.confirmationcommands.ConfirmCommand;
-import atas.logic.commands.confirmationcommands.ConfirmationCommand;
+import atas.logic.commands.confirmation.ConfirmCommand;
+import atas.logic.commands.confirmation.ConfirmationCommand;
 import atas.logic.parser.exceptions.ParseException;
 
 public class ConfirmationParser implements Parser<ConfirmCommand> {

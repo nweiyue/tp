@@ -1,13 +1,13 @@
 package atas.logic.parser;
 
 import static atas.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static atas.logic.commands.sessionlistcommands.EnterSessionCommand.MESSAGE_USAGE;
+import static atas.logic.commands.sessions.EnterSessionCommand.MESSAGE_USAGE;
 import static atas.logic.parser.CliSyntax.PREFIX_SESSIONINDEX;
 
 import java.util.stream.Stream;
 
 import atas.commons.core.index.Index;
-import atas.logic.commands.sessionlistcommands.EnterSessionCommand;
+import atas.logic.commands.sessions.EnterSessionCommand;
 import atas.logic.parser.exceptions.ParseException;
 
 public class EnterSessionCommandParser implements Parser <EnterSessionCommand> {

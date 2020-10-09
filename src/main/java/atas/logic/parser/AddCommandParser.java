@@ -1,7 +1,7 @@
 package atas.logic.parser;
 
 import static atas.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static atas.logic.commands.studentlistcommands.AddCommand.MESSAGE_USAGE;
+import static atas.logic.commands.students.AddCommand.MESSAGE_USAGE;
 import static atas.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static atas.logic.parser.CliSyntax.PREFIX_MATRICULATION;
 import static atas.logic.parser.CliSyntax.PREFIX_NAME;
@@ -10,7 +10,7 @@ import static atas.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import atas.logic.commands.studentlistcommands.AddCommand;
+import atas.logic.commands.students.AddCommand;
 import atas.logic.parser.exceptions.ParseException;
 import atas.model.person.Email;
 import atas.model.person.Matriculation;

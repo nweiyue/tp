@@ -26,8 +26,8 @@ import static atas.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
 import org.junit.jupiter.api.Test;
 
 import atas.commons.core.index.Index;
-import atas.logic.commands.studentlistcommands.EditCommand;
-import atas.logic.commands.studentlistcommands.EditCommand.EditPersonDescriptor;
+import atas.logic.commands.students.EditCommand;
+import atas.logic.commands.students.EditCommand.EditPersonDescriptor;
 import atas.model.person.Email;
 import atas.model.person.Matriculation;
 import atas.model.person.Name;

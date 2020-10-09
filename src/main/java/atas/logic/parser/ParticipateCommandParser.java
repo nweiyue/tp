@@ -1,6 +1,6 @@
 package atas.logic.parser;
 
-import atas.logic.commands.sessioncommands.ParticipateCommand;
+import atas.logic.commands.sessions.session.ParticipateCommand;
 import atas.logic.parser.exceptions.ParseException;
 import atas.model.attendance.IndexRange;
 

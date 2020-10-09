@@ -1,7 +1,7 @@
 package atas.ui;
 
-import static atas.logic.commands.atascommands.SwitchCommand.MESSAGE_ALREADY_ON_TAB;
-import static atas.logic.commands.atascommands.SwitchCommand.MESSAGE_INVALID_TAB;
+import static atas.logic.commands.atas.SwitchCommand.MESSAGE_ALREADY_ON_TAB;
+import static atas.logic.commands.atas.SwitchCommand.MESSAGE_INVALID_TAB;
 
 import java.util.logging.Logger;
 

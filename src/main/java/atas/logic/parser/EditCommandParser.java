@@ -1,8 +1,8 @@
 package atas.logic.parser;
 
 import static atas.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static atas.logic.commands.studentlistcommands.EditCommand.MESSAGE_NOT_EDITED;
-import static atas.logic.commands.studentlistcommands.EditCommand.MESSAGE_USAGE;
+import static atas.logic.commands.students.EditCommand.MESSAGE_NOT_EDITED;
+import static atas.logic.commands.students.EditCommand.MESSAGE_USAGE;
 import static atas.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static atas.logic.parser.CliSyntax.PREFIX_MATRICULATION;
 import static atas.logic.parser.CliSyntax.PREFIX_NAME;
@@ -15,8 +15,8 @@ import java.util.Optional;
 import java.util.Set;
 
 import atas.commons.core.index.Index;
-import atas.logic.commands.studentlistcommands.EditCommand;
-import atas.logic.commands.studentlistcommands.EditCommand.EditPersonDescriptor;
+import atas.logic.commands.students.EditCommand;
+import atas.logic.commands.students.EditCommand.EditPersonDescriptor;
 import atas.logic.parser.exceptions.ParseException;
 import atas.model.tag.Tag;
 

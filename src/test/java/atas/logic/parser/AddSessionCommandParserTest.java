@@ -16,7 +16,7 @@ import static atas.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import org.junit.jupiter.api.Test;
 
-import atas.logic.commands.sessionlistcommands.AddSessionCommand;
+import atas.logic.commands.sessions.AddSessionCommand;
 import atas.model.attendance.Session;
 import atas.model.attendance.SessionDate;
 import atas.model.attendance.SessionName;

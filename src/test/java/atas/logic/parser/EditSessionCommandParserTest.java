@@ -14,7 +14,7 @@ import static atas.testutil.TypicalSessions.SESSIONNAME_WEEK_ONE_STRING;
 
 import org.junit.jupiter.api.Test;
 
-import atas.logic.commands.sessionlistcommands.EditSessionCommand;
+import atas.logic.commands.sessions.EditSessionCommand;
 import atas.model.attendance.SessionDate;
 import atas.model.attendance.SessionName;
 import atas.testutil.EditSessionDescriptorBuilder;

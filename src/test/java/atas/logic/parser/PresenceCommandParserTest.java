@@ -4,7 +4,7 @@ import static atas.logic.commands.CommandTestUtil.VALID_SESSIONNAME_REC_DESC;
 
 import org.junit.jupiter.api.Test;
 
-import atas.logic.commands.sessioncommands.PresenceCommand;
+import atas.logic.commands.sessions.session.PresenceCommand;
 import atas.model.Model;
 import atas.model.attendance.IndexRange;
 
