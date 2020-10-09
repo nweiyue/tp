@@ -1,6 +1,6 @@
 package seedu.address.model;
 
-import java.util.SortedSet;
+import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.attendance.Session;
@@ -14,13 +14,15 @@ public interface ReadOnlySessionList {
     /**
      * Returns sessions in the sessionList.
      */
-    SortedSet<Session> getSessions();
+    ObservableList<Session> getSessions();
 
     /**
      * Returns an unmodifiable view of the person list.
      * This list will not contain any duplicate persons.
      */
     ObservableList<Person> getInternalPersonList();
+
+    void updatePersonList(List<Person> list);
 
 }
 

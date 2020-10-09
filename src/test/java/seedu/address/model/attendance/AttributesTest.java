@@ -10,6 +10,7 @@ import static seedu.address.testutil.TypicalAttributes.PRESENT_BUT_HAS_NOT_PARTI
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.person.Name;
 
 class AttributesTest {
 
@@ -42,7 +43,8 @@ class AttributesTest {
         Attributes actualAttributes = new Attributes();
         actualAttributes = actualAttributes.toggleParticipation();
 
-        Attributes expectedAttributes = new Attributes(new Presence(false), new Participation(true));
+        Attributes expectedAttributes =
+            new Attributes(new Presence(false), new Participation(true), new Name("DEFAULT"));
         assertEquals(expectedAttributes, actualAttributes);
     }
 
@@ -51,7 +53,8 @@ class AttributesTest {
         Attributes actualAttributes = new Attributes();
         actualAttributes = actualAttributes.togglePresence();
 
-        Attributes expectedAttributes = new Attributes(new Presence(true), new Participation(false));
+        Attributes expectedAttributes =
+            new Attributes(new Presence(true), new Participation(false), new Name("DEFAULT"));
         assertEquals(expectedAttributes, actualAttributes);
     }
 }

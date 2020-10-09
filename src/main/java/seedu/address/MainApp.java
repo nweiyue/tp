@@ -94,7 +94,10 @@ public class MainApp extends Application {
             }
             initialDataAb = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
             ReadOnlyAddressBook finalInitialDataAb = initialDataAb;
-            initialDataSl = sessionListOptional.orElseGet(() -> new SessionList(finalInitialDataAb.getPersonList()));
+            initialDataSl = sessionListOptional.orElseGet(SessionList::new);
+            initialDataSl.updatePersonList(finalInitialDataAb.getPersonList());
+            //sessionListOptional.map(list -> list.updatePersonList(finalInitialDataAb.getPersonList()));
+            // initialDataSl = new SessionList(finalInitialDataAb.getPersonList());
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
             initialDataAb = new AddressBook();

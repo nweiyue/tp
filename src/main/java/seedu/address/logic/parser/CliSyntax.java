@@ -12,5 +12,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_SESSIONNAME = new Prefix("s/");
     public static final Prefix PREFIX_SESSIONDATE = new Prefix("d/");
+    public static final Prefix PREFIX_SESSIONINDEX = new Prefix("es/");
 
 }

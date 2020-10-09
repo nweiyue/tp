@@ -10,6 +10,11 @@ import static seedu.address.testutil.TypicalSessions.getTypicalSessionList;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.confirmationcommands.ConfirmationAcceptCommand;
+import seedu.address.logic.commands.confirmationcommands.ConfirmationRejectCommand;
+import seedu.address.logic.commands.studentlistcommands.ClearCommand;
+import seedu.address.logic.commands.studentlistcommands.DeleteCommand;
+import seedu.address.logic.commands.studentlistcommands.EditCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;

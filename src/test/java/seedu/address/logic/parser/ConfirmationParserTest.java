@@ -7,11 +7,11 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.ConfirmationAcceptCommand;
-import seedu.address.logic.commands.ConfirmationCommand;
-import seedu.address.logic.commands.ConfirmationRejectCommand;
-import seedu.address.logic.commands.DangerousCommand;
-import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.confirmationcommands.ConfirmationAcceptCommand;
+import seedu.address.logic.commands.confirmationcommands.ConfirmationCommand;
+import seedu.address.logic.commands.confirmationcommands.ConfirmationRejectCommand;
+import seedu.address.logic.commands.confirmationcommands.DangerousCommand;
+import seedu.address.logic.commands.studentlistcommands.DeleteCommand;
 
 public class ConfirmationParserTest {
 

@@ -8,7 +8,7 @@ import static seedu.address.testutil.TypicalTabNames.CLASSES_TAB_NAME;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.SwitchCommand;
+import seedu.address.logic.commands.atascommands.SwitchCommand;
 
 public class SwitchCommandParserTest {
 

@@ -7,8 +7,9 @@ import seedu.address.commons.core.index.Index;
  * Index numbering starts from 0, beginning with tabs on the left of the GUI.
  */
 public enum Tab {
-    CLASSES(Index.fromZeroBased(0)),
-    ATTENDANCE(Index.fromZeroBased(1));
+    STUDENTS(Index.fromZeroBased(0)),
+    SESSIONS(Index.fromZeroBased(1)),
+    CURRENT(Index.fromZeroBased(2));
 
     /** Index to represent the order of the tabs */
     private final Index index;

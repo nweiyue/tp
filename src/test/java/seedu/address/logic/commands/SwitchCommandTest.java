@@ -4,14 +4,15 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.SwitchCommand.MESSAGE_INVALID_TAB;
-import static seedu.address.logic.commands.SwitchCommand.MESSAGE_SWITCH_TAB_SUCCESS;
+import static seedu.address.logic.commands.atascommands.SwitchCommand.MESSAGE_INVALID_TAB;
+import static seedu.address.logic.commands.atascommands.SwitchCommand.MESSAGE_SWITCH_TAB_SUCCESS;
 import static seedu.address.testutil.TypicalTabNames.ATTENDANCE_TAB_NAME;
 import static seedu.address.testutil.TypicalTabNames.CLASSES_TAB_NAME;
 import static seedu.address.testutil.TypicalTabNames.INVALID_TAB_NAME;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.atascommands.SwitchCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.ui.Tab;
@@ -24,8 +25,8 @@ public class SwitchCommandTest {
     @Test
     public void execute_switchClassesTab_success() {
         String expectedMessage = String.format(MESSAGE_SWITCH_TAB_SUCCESS,
-                Tab.CLASSES.toString().toLowerCase());
-        CommandResult expectedCommandResult = new CommandResult(expectedMessage, false, Tab.CLASSES, false);
+                Tab.STUDENTS.toString().toLowerCase());
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, false, Tab.STUDENTS, false);
         SwitchCommand switchCommand = new SwitchCommand(CLASSES_TAB_NAME);
 
         assertCommandSuccess(switchCommand, model, expectedCommandResult, expectedModel);
@@ -34,8 +35,8 @@ public class SwitchCommandTest {
     @Test
     public void execute_switchAttendanceTab_success() {
         String expectedMessage = String.format(MESSAGE_SWITCH_TAB_SUCCESS,
-                Tab.ATTENDANCE.toString().toLowerCase());
-        CommandResult expectedCommandResult = new CommandResult(expectedMessage, false, Tab.ATTENDANCE, false);
+                Tab.SESSIONS.toString().toLowerCase());
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, false, Tab.SESSIONS, false);
         SwitchCommand switchCommand = new SwitchCommand(ATTENDANCE_TAB_NAME);
 
         assertCommandSuccess(switchCommand, model, expectedCommandResult, expectedModel);

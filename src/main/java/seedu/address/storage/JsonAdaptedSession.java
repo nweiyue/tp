@@ -45,10 +45,15 @@ public class JsonAdaptedSession {
     public JsonAdaptedSession(Session source) {
         sessionName = source.getSessionName().value;
         sessionDate = source.getSessionDate().toString();
-
         for (Integer index: source.getStudentList().keySet()) {
-            JsonAdaptedAttributes jsonAdaptedAttributes = new JsonAdaptedAttributes(index, source.getStudentList());
-            attributesList.add(jsonAdaptedAttributes);
+            try {
+                JsonAdaptedAttributes jsonAdaptedAttributes = new JsonAdaptedAttributes(
+                        index, source.getStudentList(), source.returnStudentNameStringByIndex(index)
+                );
+                attributesList.add(jsonAdaptedAttributes);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 

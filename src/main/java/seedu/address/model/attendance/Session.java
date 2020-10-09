@@ -3,10 +3,13 @@ package seedu.address.model.attendance;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
 
@@ -19,7 +22,11 @@ public class Session implements Comparable<Session> {
     private final SessionName sessionName;
     private final SessionDate sessionDate;
     private final Map<Integer, Attributes> studentList;
+    //private final ObservableList<Person> masterList;
+    private Index sessionIndex;
+    private List<Person> masterList = new ArrayList<>();
 
+    /* Bugs with masterList ---> commented out codes on hold */
     /**
      * Parametrized constructor.
      */
@@ -27,6 +34,8 @@ public class Session implements Comparable<Session> {
         this.sessionName = sessionName;
         this.sessionDate = sessionDate;
         this.studentList = new HashMap<>();
+        this.sessionIndex = Index.fromZeroBased(0);
+        //this.masterList = FXCollections.emptyObservableList();
     }
 
     /**
@@ -36,8 +45,17 @@ public class Session implements Comparable<Session> {
         this.sessionName = sessionName;
         this.sessionDate = sessionDate;
         this.studentList = studentList;
+        this.sessionIndex = Index.fromZeroBased(0);
+        //this.masterList = FXCollections.emptyObservableList();
     }
 
+    //    public Session(SessionName sessionName, SessionDate
+    //    sessionDate, Map<Integer, Attributes> studentList, ObservableList<Person> masterList) {
+    //        this.sessionName = sessionName;
+    //        this.sessionDate = sessionDate;
+    //        this.studentList = studentList;
+    //        //this.masterList = masterList;
+    //    }
     public Map<Integer, Attributes> getStudentList() {
         return studentList;
     }
@@ -91,7 +109,6 @@ public class Session implements Comparable<Session> {
         // find students that have index in range
         for (int i = indexRange.getZeroBasedLower(); i <= indexRange.getZeroBasedUpper(); i++) {
             Attributes temp = studentList.get(i);
-
             // exclude invalid index
             if (temp != null) {
                 setStudentAsParticipated(Index.fromZeroBased(i));
@@ -116,13 +133,28 @@ public class Session implements Comparable<Session> {
         }
     }
 
+    public ObservableList<Attributes> getAttributesAsList() {
+        ObservableList<Attributes> newAttributesList = FXCollections.observableArrayList();
+        for (Attributes attributes : studentList.values()) {
+            System.out.println("Attributes: " + attributes);
+            newAttributesList.add(attributes);
+        }
+        System.out.println("STARTING TO getAttributesAsList");
+        return newAttributesList;
+    }
+
     /**
      * Initialize the studentList using the given masterList.
      */
     public void initializeSession(List<Person> masterList) {
         for (int i = 0; i < masterList.size(); i++) {
-            studentList.put(i, new Attributes());
+            this.masterList.add(masterList.get(i));
+            studentList.put(i, new Attributes(masterList.get(i).getName()));
         }
+    }
+
+    public String returnStudentNameStringByIndex(int index) throws Exception {
+        return studentList.get(index).getName();
     }
 
     /**
@@ -144,6 +176,10 @@ public class Session implements Comparable<Session> {
 
     public SessionDate getSessionDate() {
         return sessionDate;
+    }
+
+    public Index getSessionIndex() {
+        return sessionIndex;
     }
 
     @Override

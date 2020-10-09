@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
+import seedu.address.model.attendance.Attributes;
 import seedu.address.model.attendance.IndexRange;
 import seedu.address.model.attendance.Session;
 import seedu.address.model.attendance.SessionList;
@@ -28,6 +29,9 @@ public class ModelManager implements Model {
     private final SessionList sessionList;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Session> filteredSessions;
+    private Index sessionId;
+    private boolean isCurrentSessionEnabled;
 
     /**
      * Initializes a ModelManager with the given session list, addressBook and userPrefs.
@@ -42,6 +46,8 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredSessions = new FilteredList<>(sessionList.getSessions());
+        sessionId = Index.fromZeroBased(0);
     }
 
     public ModelManager() {
@@ -87,7 +93,7 @@ public class ModelManager implements Model {
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+        //this.addressBook.resetData(addressBook);
         resetSessionList();
     }
 
@@ -165,6 +171,7 @@ public class ModelManager implements Model {
     public void addSession(Session session) {
         sessionList.updatePersonList(addressBook.getPersonList());
         sessionList.addSession(session);
+        updateFilteredSessionList(PREDICATE_SHOW_ALL_SESSIONS);
     }
 
     @Override
@@ -174,11 +181,13 @@ public class ModelManager implements Model {
 
     @Override
     public void updateParticipationBySessionName(SessionName sessionName, IndexRange indexRange) {
+        sessionName = sessionList.getSessionBasedOnId(sessionId).getSessionName();
         sessionList.updateStudentParticipation(sessionName, indexRange);
     }
 
     @Override
     public void updatePresenceBySessionName(SessionName sessionName, IndexRange indexRange) {
+        sessionName = sessionList.getSessionBasedOnId(sessionId).getSessionName();
         sessionList.updateStudentPresence(sessionName, indexRange);
     }
 
@@ -216,6 +225,47 @@ public class ModelManager implements Model {
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
+    }
+
+
+    //=========== Filtered Session List Accessors =============================================================
+
+    @Override
+    public ObservableList<Session> getFilteredSessionList() {
+        return filteredSessions;
+    }
+
+    @Override
+    public void updateFilteredSessionList(Predicate<Session> predicate) {
+        requireNonNull(predicate);
+        filteredSessions.setPredicate(predicate);
+    }
+
+    //=========== Filtered Session Accessors =============================================================
+    @Override
+    public ObservableList<Attributes> getFilteredAttributesList() {
+        System.out.println("Is session null: " + sessionList.getSessionBasedOnId(sessionId));
+        return sessionList.getSessionBasedOnId(sessionId).getAttributesAsList();
+    }
+
+    @Override
+    public void enterSession(Index sessionId) {
+        this.sessionId = sessionId;
+    }
+
+    @Override
+    public void setCurrentSessionFalse() {
+        this.isCurrentSessionEnabled = false;
+    }
+
+    @Override
+    public void setCurrentSessionTrue() {
+        this.isCurrentSessionEnabled = true;
+    }
+
+    @Override
+    public boolean returnCurrentSessionEnabledStatus() {
+        return isCurrentSessionEnabled;
     }
 
 }

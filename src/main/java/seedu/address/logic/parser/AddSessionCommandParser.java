@@ -7,7 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SESSIONNAME;
 import java.time.format.DateTimeParseException;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddSessionCommand;
+import seedu.address.logic.commands.sessionlistcommands.AddSessionCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.attendance.Session;
 import seedu.address.model.attendance.SessionDate;

@@ -34,7 +34,7 @@ public class CommandResultTest {
         assertFalse(commandResult.equals(new CommandResult("feedback", true, null, false)));
 
         // different switchTab value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", false, Tab.CLASSES, true)));
+        assertFalse(commandResult.equals(new CommandResult("feedback", false, Tab.STUDENTS, true)));
 
         // different exit value -> returns false
         assertFalse(commandResult.equals(new CommandResult("feedback", false, null, true)));
@@ -54,7 +54,7 @@ public class CommandResultTest {
         assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", true, null, false).hashCode());
 
         // different switchTab value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", false, Tab.CLASSES, true)));
+        assertFalse(commandResult.equals(new CommandResult("feedback", false, Tab.STUDENTS, true)));
 
         // different exit value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, null, true).hashCode());

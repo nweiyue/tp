@@ -1,12 +1,10 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SESSIONNAME;
 
-import seedu.address.logic.commands.PresenceCommand;
+import seedu.address.logic.commands.sessioncommands.PresenceCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.attendance.IndexRange;
-import seedu.address.model.attendance.SessionName;
 
 /**
  * Parses input arguments and creates a new PresenceCommand object
@@ -20,8 +18,7 @@ public class PresenceCommandParser implements Parser<PresenceCommand> {
      */
     public PresenceCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_SESSIONNAME);
-
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args);
         IndexRange indexRange;
 
         try {
@@ -30,9 +27,11 @@ public class PresenceCommandParser implements Parser<PresenceCommand> {
             throw new ParseException(IndexRange.MESSAGE_CONSTRAINTS);
         }
 
-        SessionName sessionName = new SessionName(argMultimap.getValue(PREFIX_SESSIONNAME).get());
+        // TODO: supposed to get sessionName internally
+        //SessionName sessionName = new SessionName(argMultimap.getValue(PREFIX_SESSIONNAME).get());
 
-        return new PresenceCommand(sessionName, indexRange);
+        return new PresenceCommand(indexRange);
+
     }
 
 }
