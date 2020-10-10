@@ -13,9 +13,9 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import atas.logic.parser.exceptions.ParseException;
-import atas.model.person.Email;
-import atas.model.person.Matriculation;
-import atas.model.person.Name;
+import atas.model.student.Email;
+import atas.model.student.Matriculation;
+import atas.model.student.Name;
 import atas.model.tag.Tag;
 import atas.testutil.Assert;
 

@@ -10,7 +10,7 @@ import atas.model.attendance.IndexRange;
 import atas.model.attendance.Session;
 import atas.model.attendance.SessionList;
 import atas.model.attendance.SessionName;
-import atas.model.person.Person;
+import atas.model.student.Student;
 import javafx.collections.ObservableList;
 
 /**
@@ -18,7 +18,7 @@ import javafx.collections.ObservableList;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Student> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
     Predicate<Session> PREDICATE_SHOW_ALL_SESSIONS = unused -> true;
 
@@ -43,14 +43,14 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' student list file path.
      */
-    Path getAddressBookFilePath();
+    Path getStudentListFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' student list file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setStudentListFilePath(Path studentListFilePath);
 
     /**
      * Returns the user prefs' session list file path.
@@ -63,36 +63,36 @@ public interface Model {
     void setSessionListFilePath(Path sessionListFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces student list data with the data in {@code studentList}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setStudentList(ReadOnlyStudentList studentList);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the StudentList */
+    ReadOnlyStudentList getStudentList();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a student with the same identity as {@code student} exists in the address book.
      */
-    boolean hasPerson(Person person);
+    boolean hasStudent(Student student);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given student.
+     * The student must exist in the student list.
      */
-    void deletePerson(Person target, Index id);
+    void deleteStudent(Student target, Index id);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Adds the given student.
+     * {@code student} must not already exist in the student list.
      */
-    void addPerson(Person person);
+    void addStudent(Student student);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
+     * Replaces the given student {@code target} with {@code editedStudent}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The identity of {@code editedStudent} must not be the same as another existing student in the address book.
      */
-    void setPerson(Person target, Person editedPerson);
+    void setStudent(Student target, Student editedStudent);
 
 
     /**
@@ -153,17 +153,17 @@ public interface Model {
     void updatePresenceBySessionName(SessionName sessionName, IndexRange indexRange);
 
 
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered student list */
+    ObservableList<Student> getFilteredStudentList();
 
     /** Returns an unmodifiable view of the filtered session list */
     ObservableList<Session> getFilteredSessionList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered student list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredStudentList(Predicate<Student> predicate);
 
     /**
      * Updates the filter of the filtered session list to filter by the given {@code predicate}.

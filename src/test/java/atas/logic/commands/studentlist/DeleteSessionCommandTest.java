@@ -26,7 +26,7 @@ public class DeleteSessionCommandTest {
         String expectedMessage = DeleteSessionCommand.MESSAGE_SUCCESS;
 
         ModelManager expectedModel = new ModelManager(TypicalSessions.getTypicalSessionListMinusTut1(
-                model.getAddressBook().getPersonList()), model.getAddressBook(), new UserPrefs());
+                model.getStudentList().getStudentList()), model.getStudentList(), new UserPrefs());
 
         assertCommandSuccess(deleteSessionCommand, model, expectedMessage, expectedModel);
         assertFalse(model.hasSession(TypicalSessions.TUT1));

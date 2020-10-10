@@ -75,7 +75,7 @@ public class EditSessionCommand extends Command {
         }
 
         model.setSession(sessionToEdit, editedSession);
-        model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredStudentList(Model.PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_SESSION_SUCCESS, sessionToEdit, editedSession));
     }
 

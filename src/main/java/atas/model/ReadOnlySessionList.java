@@ -3,7 +3,7 @@ package atas.model;
 import java.util.List;
 
 import atas.model.attendance.Session;
-import atas.model.person.Person;
+import atas.model.student.Student;
 import javafx.collections.ObservableList;
 
 /**
@@ -17,12 +17,12 @@ public interface ReadOnlySessionList {
     ObservableList<Session> getSessions();
 
     /**
-     * Returns an unmodifiable view of the person list.
-     * This list will not contain any duplicate persons.
+     * Returns an unmodifiable view of the student list.
+     * This list will not contain any duplicate students.
      */
-    ObservableList<Person> getInternalPersonList();
+    ObservableList<Student> getInternalStudentList();
 
-    void updatePersonList(List<Person> list);
+    void updateStudentList(List<Student> list);
 
 }
 

@@ -9,7 +9,7 @@ import atas.commons.exceptions.IllegalValueException;
 import atas.model.attendance.Attributes;
 import atas.model.attendance.Participation;
 import atas.model.attendance.Presence;
-import atas.model.person.Name;
+import atas.model.student.Name;
 
 /**
  * Jackson-friendly version of {@link Attributes}.

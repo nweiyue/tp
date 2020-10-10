@@ -8,8 +8,8 @@ import static atas.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static atas.logic.commands.confirmation.ConfirmationCommand.ACCEPT_COMMAND_FULL;
 import static atas.logic.parser.CliSyntax.PREFIX_TAG;
 import static atas.testutil.Assert.assertThrows;
-import static atas.testutil.TypicalPersons.AMY;
 import static atas.testutil.TypicalSessions.getTypicalSessionList;
+import static atas.testutil.TypicalStudents.AMY;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
@@ -23,22 +23,22 @@ import atas.commons.core.index.Index;
 import atas.logic.commands.CommandResult;
 import atas.logic.commands.confirmation.ConfirmationCommand;
 import atas.logic.commands.exceptions.CommandException;
-import atas.logic.commands.studentlist.AddCommand;
-import atas.logic.commands.studentlist.DeleteCommand;
-import atas.logic.commands.studentlist.EditCommand;
+import atas.logic.commands.studentlist.AddStudentCommand;
+import atas.logic.commands.studentlist.DeleteStudentCommand;
+import atas.logic.commands.studentlist.EditStudentCommand;
 import atas.logic.commands.studentlist.ListCommand;
 import atas.logic.parser.exceptions.ParseException;
 import atas.model.Model;
 import atas.model.ModelManager;
-import atas.model.ReadOnlyAddressBook;
 import atas.model.ReadOnlySessionList;
+import atas.model.ReadOnlyStudentList;
 import atas.model.UserPrefs;
-import atas.model.person.Person;
-import atas.storage.JsonAddressBookStorage;
+import atas.model.student.Student;
+import atas.storage.JsonAtasStorage;
 import atas.storage.JsonSessionListStorage;
 import atas.storage.JsonUserPrefsStorage;
 import atas.storage.StorageManager;
-import atas.testutil.PersonBuilder;
+import atas.testutil.StudentBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -53,8 +53,8 @@ public class LogicManagerTest {
     public void setUp() {
         JsonSessionListStorage jsonSessionListStorage =
                 new JsonSessionListStorage(temporaryFolder.resolve("typicalSessionSessionList.json"));
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonAtasStorage addressBookStorage =
+                new JsonAtasStorage(temporaryFolder.resolve("addressBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(jsonSessionListStorage, addressBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
@@ -68,16 +68,16 @@ public class LogicManagerTest {
 
     @Test
     public void execute_commandExecutionError_throwsCommandException() throws CommandException, ParseException {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
         int outOfBoundIndexOneBased = outOfBoundIndex.getOneBased();
 
-        String deleteCommand = DeleteCommand.COMMAND_WORD + " " + outOfBoundIndexOneBased;
+        String deleteCommand = DeleteStudentCommand.COMMAND_WORD + " " + outOfBoundIndexOneBased;
         assertCommandSuccess(deleteCommand, String.format(ConfirmationCommand.MESSAGE_CONFIRMATION_DELETE,
                 outOfBoundIndexOneBased), model);
         assertCommandException(ACCEPT_COMMAND_FULL, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
 
 
-        String editCommand = EditCommand.COMMAND_WORD + " " + outOfBoundIndexOneBased + " "
+        String editCommand = EditStudentCommand.COMMAND_WORD + " " + outOfBoundIndexOneBased + " "
                 + PREFIX_TAG + "newTag";
         assertCommandSuccess(editCommand, String.format(ConfirmationCommand.MESSAGE_CONFIRMATION_EDIT,
                 outOfBoundIndexOneBased), model);
@@ -95,18 +95,18 @@ public class LogicManagerTest {
         // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
         JsonSessionListStorage jsonSessionListStorage =
                 new JsonSessionListIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionSessionList.json"));
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+        JsonAtasStorage addressBookStorage =
+                new JsonAtasIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         StorageManager storage = new StorageManager(jsonSessionListStorage, addressBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + MATRICULATION_DESC_AMY + EMAIL_DESC_AMY;
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+        String addCommand = AddStudentCommand.COMMAND_WORD + NAME_DESC_AMY + MATRICULATION_DESC_AMY + EMAIL_DESC_AMY;
+        Student expectedStudent = new StudentBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
-        expectedModel.addPerson(expectedPerson);
+        expectedModel.addStudent(expectedStudent);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }
@@ -152,8 +152,8 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(getTypicalSessionList(model.getAddressBook().getPersonList()),
-                model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalSessionList(model.getStudentList().getStudentList()),
+                model.getStudentList(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -173,13 +173,13 @@ public class LogicManagerTest {
     /**
      * A stub class to throw an {@code IOException} when the save method is called.
      */
-    private static class JsonAddressBookIoExceptionThrowingStub extends JsonAddressBookStorage {
-        private JsonAddressBookIoExceptionThrowingStub(Path filePath) {
+    private static class JsonAtasIoExceptionThrowingStub extends JsonAtasStorage {
+        private JsonAtasIoExceptionThrowingStub(Path filePath) {
             super(filePath);
         }
 
         @Override
-        public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+        public void saveAddressBook(ReadOnlyStudentList addressBook, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

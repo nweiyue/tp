@@ -1,6 +1,6 @@
 package atas.storage;
 
-import static atas.testutil.TypicalPersons.getTypicalAddressBook;
+import static atas.testutil.TypicalStudents.getTypicalAddressBook;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -11,8 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import atas.commons.core.GuiSettings;
-import atas.model.AddressBook;
-import atas.model.ReadOnlyAddressBook;
+import atas.model.ReadOnlyStudentList;
+import atas.model.StudentList;
 import atas.model.UserPrefs;
 
 public class StorageManagerTest {
@@ -25,7 +25,7 @@ public class StorageManagerTest {
     @BeforeEach
     public void setUp() {
         JsonSessionListStorage sessionListStorage = new JsonSessionListStorage(getTempFilePath("sl"));
-        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
+        JsonAtasStorage addressBookStorage = new JsonAtasStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
         storageManager = new StorageManager(sessionListStorage, addressBookStorage, userPrefsStorage);
     }
@@ -55,10 +55,10 @@ public class StorageManagerTest {
          * {@link JsonAddressBookStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
          */
-        AddressBook original = getTypicalAddressBook();
+        StudentList original = getTypicalAddressBook();
         storageManager.saveAddressBook(original);
-        ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
-        assertEquals(original, new AddressBook(retrieved));
+        ReadOnlyStudentList retrieved = storageManager.readAddressBook().get();
+        assertEquals(original, new StudentList(retrieved));
     }
 
     @Test

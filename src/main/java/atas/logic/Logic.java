@@ -7,10 +7,10 @@ import atas.logic.commands.CommandResult;
 import atas.logic.commands.exceptions.CommandException;
 import atas.logic.parser.exceptions.ParseException;
 import atas.model.Model;
-import atas.model.ReadOnlyAddressBook;
+import atas.model.ReadOnlyStudentList;
 import atas.model.attendance.Attributes;
 import atas.model.attendance.Session;
-import atas.model.person.Person;
+import atas.model.student.Student;
 import javafx.collections.ObservableList;
 
 /**
@@ -29,12 +29,12 @@ public interface Logic {
     /**
      * Returns the AddressBook.
      *
-     * @see Model#getAddressBook()
+     * @see Model#getStudentList()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyStudentList getAddressBook();
 
     /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    ObservableList<Student> getFilteredPersonList();
 
     /** Returns an unmodifiable view of the filtered list of sessions */
     ObservableList<Session> getFilteredSessionList();

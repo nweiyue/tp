@@ -38,7 +38,7 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private StudentListPanel studentListPanel;
     private SessionListPanel sessionListPanel;
     private SessionStudentListPanel sessionStudentListPanel;
     private ResultDisplay resultDisplay;
@@ -137,8 +137,8 @@ public class MainWindow extends UiPart<Stage> {
 
 
     void updateLists() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        studentListPanel = new StudentListPanel(logic.getFilteredPersonList());
+        personListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
 
         sessionListPanel = new SessionListPanel(logic.getFilteredSessionList());
         sessionListPanelPlaceholder.getChildren().add(sessionListPanel.getRoot());
@@ -150,8 +150,8 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        studentListPanel = new StudentListPanel(logic.getFilteredPersonList());
+        personListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
 
         sessionListPanel = new SessionListPanel(logic.getFilteredSessionList());
         sessionListPanelPlaceholder.getChildren().add(sessionListPanel.getRoot());
@@ -255,8 +255,8 @@ public class MainWindow extends UiPart<Stage> {
         });
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public StudentListPanel getPersonListPanel() {
+        return studentListPanel;
     }
 
     /**

@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import atas.model.person.Name;
+import atas.model.student.Name;
 
 class AttributesTest {
 

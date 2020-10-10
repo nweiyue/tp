@@ -11,7 +11,7 @@ import javafx.scene.layout.Region;
 
 public class SessionStudentListPanel extends UiPart<Region> {
     private static final String FXML = "SessionStudentListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
+    private final Logger logger = LogsCenter.getLogger(StudentListPanel.class);
 
     @javafx.fxml.FXML
     private ListView<Attributes> sessionStudentListView;

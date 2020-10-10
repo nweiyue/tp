@@ -15,17 +15,17 @@ import atas.commons.exceptions.DataConversionException;
 import atas.commons.util.StringUtil;
 import atas.logic.Logic;
 import atas.logic.LogicManager;
-import atas.model.AddressBook;
 import atas.model.Model;
 import atas.model.ModelManager;
-import atas.model.ReadOnlyAddressBook;
 import atas.model.ReadOnlySessionList;
+import atas.model.ReadOnlyStudentList;
 import atas.model.ReadOnlyUserPrefs;
+import atas.model.StudentList;
 import atas.model.UserPrefs;
 import atas.model.attendance.SessionList;
 import atas.model.util.SampleDataUtil;
-import atas.storage.AddressBookStorage;
-import atas.storage.JsonAddressBookStorage;
+import atas.storage.AtasStorage;
+import atas.storage.JsonAtasStorage;
 import atas.storage.JsonSessionListStorage;
 import atas.storage.JsonUserPrefsStorage;
 import atas.storage.SessionListStorage;
@@ -62,9 +62,9 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
+        AtasStorage atasStorage = new JsonAtasStorage(userPrefs.getStudentListFilePath());
         SessionListStorage sessionListStorage = new JsonSessionListStorage(userPrefs.getSessionListFilePath());
-        storage = new StorageManager(sessionListStorage, addressBookStorage, userPrefsStorage);
+        storage = new StorageManager(sessionListStorage, atasStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -82,8 +82,8 @@ public class MainApp extends Application {
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlySessionList> sessionListOptional;
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialDataAb;
+        Optional<ReadOnlyStudentList> addressBookOptional;
+        ReadOnlyStudentList initialDataAb;
         ReadOnlySessionList initialDataSl;
         try {
             sessionListOptional = storage.readSessionList();
@@ -95,16 +95,16 @@ public class MainApp extends Application {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }
             initialDataAb = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
-            ReadOnlyAddressBook finalInitialDataAb = initialDataAb;
+            ReadOnlyStudentList finalInitialDataAb = initialDataAb;
             initialDataSl = sessionListOptional.orElseGet(SessionList::new);
-            initialDataSl.updatePersonList(finalInitialDataAb.getPersonList());
+            initialDataSl.updateStudentList(finalInitialDataAb.getStudentList());
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialDataAb = new AddressBook();
+            initialDataAb = new StudentList();
             initialDataSl = new SessionList();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialDataAb = new AddressBook();
+            initialDataAb = new StudentList();
             initialDataSl = new SessionList();
         }
 
