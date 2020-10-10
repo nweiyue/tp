@@ -19,12 +19,12 @@ import atas.logic.commands.sessionlist.EditSessionCommand;
 import atas.logic.commands.sessionlist.EnterSessionCommand;
 import atas.logic.commands.sessionlist.session.ParticipateCommand;
 import atas.logic.commands.sessionlist.session.PresenceCommand;
-import atas.logic.commands.studentlist.AddCommand;
-import atas.logic.commands.studentlist.ClearCommand;
-import atas.logic.commands.studentlist.DeleteCommand;
-import atas.logic.commands.studentlist.EditCommand;
-import atas.logic.commands.studentlist.FindCommand;
-import atas.logic.commands.studentlist.ListCommand;
+import atas.logic.commands.studentlist.AddStudentCommand;
+import atas.logic.commands.studentlist.ClearStudentsCommand;
+import atas.logic.commands.studentlist.DeleteStudentCommand;
+import atas.logic.commands.studentlist.EditStudentCommand;
+import atas.logic.commands.studentlist.FindStudentsCommand;
+import atas.logic.commands.studentlist.ListStudentsCommand;
 import atas.logic.parser.exceptions.ParseException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Tab;
@@ -75,29 +75,29 @@ public class AddressBookParser {
         } else {
             switch (commandWord) {
 
-            case AddCommand.COMMAND_WORD:
-                return new AddCommandParser().parse(arguments);
+            case AddStudentCommand.COMMAND_WORD:
+                return new AddStudentCommandParser().parse(arguments);
 
-            case EditCommand.COMMAND_WORD:
-                //Sets the previous command to a confirmation edit command.
-                this.previousCommand = new ConfirmationCommand(new EditCommandParser().parse(arguments));
+            case EditStudentCommand.COMMAND_WORD:
+                //Sets the previous command to a confirmation edit student command.
+                this.previousCommand = new ConfirmationCommand(new EditStudentCommandParser().parse(arguments));
                 return previousCommand;
 
-            case DeleteCommand.COMMAND_WORD:
-                //Sets the previous command to a confirmation delete command.
-                this.previousCommand = new ConfirmationCommand(new DeleteCommandParser().parse(arguments));
+            case DeleteStudentCommand.COMMAND_WORD:
+                //Sets the previous command to a confirmation delete student command.
+                this.previousCommand = new ConfirmationCommand(new DeleteStudentCommandParser().parse(arguments));
                 return previousCommand;
 
-            case ClearCommand.COMMAND_WORD:
-                //Sets the previous command to a confirmation clear command.
-                this.previousCommand = new ConfirmationCommand(new ClearCommand());
+            case ClearStudentsCommand.COMMAND_WORD:
+                //Sets the previous command to a confirmation clear students command.
+                this.previousCommand = new ConfirmationCommand(new ClearStudentsCommand());
                 return previousCommand;
 
-            case FindCommand.COMMAND_WORD:
-                return new FindCommandParser().parse(arguments);
+            case FindStudentsCommand.COMMAND_WORD:
+                return new FindStudentsCommandParser().parse(arguments);
 
-            case ListCommand.COMMAND_WORD:
-                return new ListCommand();
+            case ListStudentsCommand.COMMAND_WORD:
+                return new ListStudentsCommand();
 
             case ExitCommand.COMMAND_WORD:
                 return new ExitCommand();

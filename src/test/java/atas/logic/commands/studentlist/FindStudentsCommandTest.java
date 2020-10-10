@@ -19,9 +19,9 @@ import atas.model.person.NameContainsKeywordsPredicate;
 import atas.testutil.ModelManagerBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code FindCommand}.
+ * Contains integration tests (interaction with the Model) for {@code FindStudentsCommand}.
  */
-public class FindCommandTest {
+public class FindStudentsCommandTest {
     private Model model = ModelManagerBuilder.buildTypicalModelManager();
     private Model expectedModel = ModelManagerBuilder.buildTypicalModelManager();
 
@@ -32,33 +32,33 @@ public class FindCommandTest {
         NameContainsKeywordsPredicate secondPredicate =
                 new NameContainsKeywordsPredicate(Collections.singletonList("second"));
 
-        FindCommand findFirstCommand = new FindCommand(firstPredicate);
-        FindCommand findSecondCommand = new FindCommand(secondPredicate);
+        FindStudentsCommand findFirstStudentsCommand = new FindStudentsCommand(firstPredicate);
+        FindStudentsCommand findSecondStudentsCommand = new FindStudentsCommand(secondPredicate);
 
         // same object -> returns true
-        assertTrue(findFirstCommand.equals(findFirstCommand));
+        assertTrue(findFirstStudentsCommand.equals(findFirstStudentsCommand));
 
         // same values -> returns true
-        FindCommand findFirstCommandCopy = new FindCommand(firstPredicate);
-        assertTrue(findFirstCommand.equals(findFirstCommandCopy));
+        FindStudentsCommand findFirstStudentsCommandCopy = new FindStudentsCommand(firstPredicate);
+        assertTrue(findFirstStudentsCommand.equals(findFirstStudentsCommandCopy));
 
         // different types -> returns false
-        assertFalse(findFirstCommand.equals(1));
+        assertFalse(findFirstStudentsCommand.equals(1));
 
         // null -> returns false
-        assertFalse(findFirstCommand.equals(null));
+        assertFalse(findFirstStudentsCommand.equals(null));
 
         // different person -> returns false
-        assertFalse(findFirstCommand.equals(findSecondCommand));
+        assertFalse(findFirstStudentsCommand.equals(findSecondStudentsCommand));
     }
 
     @Test
     public void execute_zeroKeywords_noPersonFound() {
         String expectedMessage = String.format(Messages.getStudentListedMessage(0), 0);
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
-        FindCommand command = new FindCommand(predicate);
+        FindStudentsCommand findStudentsCommand = new FindStudentsCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(findStudentsCommand, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
     }
 
@@ -66,9 +66,9 @@ public class FindCommandTest {
     public void execute_multipleKeywords_multiplePersonsFound() {
         String expectedMessage = String.format(Messages.getStudentListedMessage(3), 3);
         NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
-        FindCommand command = new FindCommand(predicate);
+        FindStudentsCommand findStudentsCommand = new FindStudentsCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(findStudentsCommand, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
     }
 

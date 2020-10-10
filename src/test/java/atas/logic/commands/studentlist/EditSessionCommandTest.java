@@ -172,7 +172,7 @@ public class EditSessionCommandTest {
         assertFalse(standardCommand.equals(null));
 
         // different types -> returns false
-        assertFalse(standardCommand.equals(new ClearCommand()));
+        assertFalse(standardCommand.equals(new ClearStudentsCommand()));
 
         // different session name -> returns false
         SessionName name = new SessionName(VALID_SESSIONNAME_CON);

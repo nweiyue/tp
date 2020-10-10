@@ -20,7 +20,7 @@ import static atas.logic.commands.CommandTestUtil.VALID_MATRICULATION_BOB;
 import static atas.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static atas.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static atas.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static atas.logic.commands.studentlist.AddCommand.MESSAGE_USAGE;
+import static atas.logic.commands.studentlist.AddStudentCommand.MESSAGE_USAGE;
 import static atas.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static atas.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static atas.testutil.TypicalPersons.AMY;
@@ -28,7 +28,7 @@ import static atas.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
-import atas.logic.commands.studentlist.AddCommand;
+import atas.logic.commands.studentlist.AddStudentCommand;
 import atas.model.person.Email;
 import atas.model.person.Matriculation;
 import atas.model.person.Name;
@@ -36,8 +36,8 @@ import atas.model.person.Person;
 import atas.model.tag.Tag;
 import atas.testutil.PersonBuilder;
 
-public class AddCommandParserTest {
-    private AddCommandParser parser = new AddCommandParser();
+public class AddStudentCommandParserTest {
+    private AddStudentCommandParser parser = new AddStudentCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
@@ -45,29 +45,29 @@ public class AddCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + MATRICULATION_DESC_BOB + EMAIL_DESC_BOB
-                 + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                 + TAG_DESC_FRIEND, new AddStudentCommand(expectedPerson));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + MATRICULATION_DESC_BOB + EMAIL_DESC_BOB
-                 + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                 + TAG_DESC_FRIEND, new AddStudentCommand(expectedPerson));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB + MATRICULATION_DESC_AMY + MATRICULATION_DESC_BOB + EMAIL_DESC_BOB
-                 + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                 + TAG_DESC_FRIEND, new AddStudentCommand(expectedPerson));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, NAME_DESC_BOB + MATRICULATION_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
-                 + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                 + TAG_DESC_FRIEND, new AddStudentCommand(expectedPerson));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, NAME_DESC_BOB + MATRICULATION_DESC_BOB + EMAIL_DESC_BOB
-                 + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                 + TAG_DESC_FRIEND, new AddStudentCommand(expectedPerson));
 
         // multiple tags - all accepted
         Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + MATRICULATION_DESC_BOB + EMAIL_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedPersonMultipleTags));
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddStudentCommand(expectedPersonMultipleTags));
     }
 
     @Test
@@ -75,7 +75,7 @@ public class AddCommandParserTest {
         // zero tags
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + MATRICULATION_DESC_AMY + EMAIL_DESC_AMY,
-                new AddCommand(expectedPerson));
+                new AddStudentCommand(expectedPerson));
     }
 
     @Test

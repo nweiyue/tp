@@ -2,8 +2,8 @@ package atas.testutil;
 
 import java.util.Set;
 
-import atas.logic.commands.studentlist.AddCommand;
-import atas.logic.commands.studentlist.EditCommand.EditPersonDescriptor;
+import atas.logic.commands.studentlist.AddStudentCommand;
+import atas.logic.commands.studentlist.EditStudentCommand.EditPersonDescriptor;
 import atas.logic.parser.CliSyntax;
 import atas.model.person.Person;
 import atas.model.tag.Tag;
@@ -14,10 +14,10 @@ import atas.model.tag.Tag;
 public class PersonUtil {
 
     /**
-     * Returns an add command string for adding the {@code person}.
+     * Returns an add student command string for adding the {@code person}.
      */
-    public static String getAddCommand(Person person) {
-        return AddCommand.COMMAND_WORD + " " + getPersonDetails(person);
+    public static String getAddStudentCommand(Person person) {
+        return AddStudentCommand.COMMAND_WORD + " " + getPersonDetails(person);
     }
 
     /**

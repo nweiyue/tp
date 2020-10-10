@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import atas.logic.commands.studentlist.ClearCommand;
+import atas.logic.commands.studentlist.ClearStudentsCommand;
 import atas.model.Model;
 import atas.model.attendance.IndexRange;
 import atas.model.attendance.Session;
@@ -142,7 +142,7 @@ public class PresenceCommandTest {
         assertFalse(presenceCommand.equals(null));
 
         // different types -> returns false
-        assertFalse(presenceCommand.equals(new ClearCommand()));
+        assertFalse(presenceCommand.equals(new ClearStudentsCommand()));
 
         // different session name -> returns false
         assertFalse(presenceCommand.equals(new PresenceCommand(SESSIONNAME_WEEK_TWO, indexRange)));

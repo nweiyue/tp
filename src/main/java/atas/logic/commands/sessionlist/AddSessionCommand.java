@@ -14,9 +14,9 @@ import atas.model.attendance.Session;
  */
 public class AddSessionCommand extends Command {
 
-    public static final String COMMAND_WORD = "addsession";
+    public static final String COMMAND_WORD = "addses";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a session to the current class. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a session to the class. "
             + "Parameters: "
             + CliSyntax.PREFIX_SESSIONNAME + "SESSION_NAME "
             + CliSyntax.PREFIX_SESSIONDATE + "SESSION_DATE "

@@ -17,9 +17,9 @@ import atas.model.attendance.SessionName;
 
 public class EditSessionCommand extends Command {
 
-    public static final String COMMAND_WORD = "editsession";
+    public static final String COMMAND_WORD = "editses";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of a session"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the session identified "
             + "by the session name in the displayed session list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: SESSION_NAME "

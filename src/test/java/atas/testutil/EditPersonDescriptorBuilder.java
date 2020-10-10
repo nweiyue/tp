@@ -4,7 +4,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import atas.logic.commands.studentlist.EditCommand.EditPersonDescriptor;
+import atas.logic.commands.studentlist.EditStudentCommand.EditPersonDescriptor;
 import atas.model.person.Email;
 import atas.model.person.Matriculation;
 import atas.model.person.Name;

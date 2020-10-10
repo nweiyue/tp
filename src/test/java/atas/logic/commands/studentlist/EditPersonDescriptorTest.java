@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import atas.logic.commands.studentlist.EditCommand.EditPersonDescriptor;
+import atas.logic.commands.studentlist.EditStudentCommand.EditPersonDescriptor;
 import atas.testutil.EditPersonDescriptorBuilder;
 
 public class EditPersonDescriptorTest {

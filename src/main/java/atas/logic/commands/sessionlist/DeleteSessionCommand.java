@@ -12,9 +12,9 @@ import atas.model.attendance.SessionName;
 
 public class DeleteSessionCommand extends DangerousCommand {
 
-    public static final String COMMAND_WORD = "deletesession";
+    public static final String COMMAND_WORD = "deleteses";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a session from the current class. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a session from the session list. \n"
             + "Parameters: SESSION_NAME "
             + "\n"
             + "Example: tut1 ";

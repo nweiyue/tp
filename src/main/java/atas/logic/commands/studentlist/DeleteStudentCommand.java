@@ -15,12 +15,12 @@ import atas.model.person.Person;
 /**
  * Deletes a person identified using it's displayed index from the address book.
  */
-public class DeleteCommand extends DangerousCommand {
+public class DeleteStudentCommand extends DangerousCommand {
 
-    public static final String COMMAND_WORD = "delete";
+    public static final String COMMAND_WORD = "deletestu";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the student identified by the index number used in the displayed class list.\n"
+            + ": Deletes the student identified by the index number used in the displayed student list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
@@ -28,7 +28,7 @@ public class DeleteCommand extends DangerousCommand {
 
     private final Index targetIndex;
 
-    public DeleteCommand(Index targetIndex) {
+    public DeleteStudentCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -49,8 +49,8 @@ public class DeleteCommand extends DangerousCommand {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeleteCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
+                || (other instanceof DeleteStudentCommand // instanceof handles nulls
+                && targetIndex.equals(((DeleteStudentCommand) other).targetIndex)); // state check
     }
 
     @Override

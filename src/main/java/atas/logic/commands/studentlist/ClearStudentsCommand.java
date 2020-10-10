@@ -10,8 +10,8 @@ import atas.model.Model;
 /**
  * Clears the address book.
  */
-public class ClearCommand extends DangerousCommand {
-    public static final String COMMAND_WORD = "clear";
+public class ClearStudentsCommand extends DangerousCommand {
+    public static final String COMMAND_WORD = "clearstu";
     public static final String MESSAGE_SUCCESS = "ATAS has cleared all students from your list!";
 
 

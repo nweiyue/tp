@@ -1,8 +1,8 @@
 package atas.logic.parser;
 
 import static atas.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static atas.logic.commands.studentlist.EditCommand.MESSAGE_NOT_EDITED;
-import static atas.logic.commands.studentlist.EditCommand.MESSAGE_USAGE;
+import static atas.logic.commands.studentlist.EditStudentCommand.MESSAGE_NOT_EDITED;
+import static atas.logic.commands.studentlist.EditStudentCommand.MESSAGE_USAGE;
 import static atas.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static atas.logic.parser.CliSyntax.PREFIX_MATRICULATION;
 import static atas.logic.parser.CliSyntax.PREFIX_NAME;
@@ -15,22 +15,22 @@ import java.util.Optional;
 import java.util.Set;
 
 import atas.commons.core.index.Index;
-import atas.logic.commands.studentlist.EditCommand;
-import atas.logic.commands.studentlist.EditCommand.EditPersonDescriptor;
+import atas.logic.commands.studentlist.EditStudentCommand;
+import atas.logic.commands.studentlist.EditStudentCommand.EditPersonDescriptor;
 import atas.logic.parser.exceptions.ParseException;
 import atas.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new EditCommand object
+ * Parses input arguments and creates a new EditStudentCommand object
  */
-public class EditCommandParser implements Parser<EditCommand> {
+public class EditStudentCommandParser implements Parser<EditStudentCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the EditCommand
-     * and returns an EditCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the EditStudentCommand
+     * and returns an EditStudentCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public EditCommand parse(String args) throws ParseException {
+    public EditStudentCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_MATRICULATION, PREFIX_EMAIL, PREFIX_TAG);
@@ -60,7 +60,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(MESSAGE_NOT_EDITED);
         }
 
-        return new EditCommand(index, editPersonDescriptor);
+        return new EditStudentCommand(index, editPersonDescriptor);
     }
 
     /**

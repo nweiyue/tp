@@ -13,9 +13,9 @@ import atas.ui.Tab;
 
 public class EnterSessionCommand extends Command {
 
-    public static final String COMMAND_WORD = "entersession";
+    public static final String COMMAND_WORD = "enterses";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Enters a particular session. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Enters a specified session. "
             + "Parameters: "
             + CliSyntax.PREFIX_SESSIONINDEX + "SESSION_INDEX "
             + "\n"

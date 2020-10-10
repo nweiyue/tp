@@ -10,9 +10,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import atas.logic.commands.studentlist.ClearCommand;
-import atas.logic.commands.studentlist.DeleteCommand;
-import atas.logic.commands.studentlist.EditCommand;
+import atas.logic.commands.studentlist.ClearStudentsCommand;
+import atas.logic.commands.studentlist.DeleteStudentCommand;
+import atas.logic.commands.studentlist.EditStudentCommand;
 import atas.model.Model;
 import atas.model.ModelManager;
 import atas.model.UserPrefs;
@@ -25,71 +25,76 @@ public class ConfirmationRejectCommandTest {
     private Model model = ModelManagerBuilder.buildTypicalModelManager();
 
     @Test
-    public void execute_rejectDeleteCommand_success() {
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
-        String expectedMessage = String.format(ConfirmationRejectCommand.MESSAGE_REJECT_COMMAND, deleteCommand);
+    public void execute_rejectDeleteStudentCommand_success() {
+        DeleteStudentCommand deleteStudentCommand = new DeleteStudentCommand(INDEX_FIRST_PERSON);
+        String expectedMessage = String.format(ConfirmationRejectCommand.MESSAGE_REJECT_COMMAND, deleteStudentCommand);
 
         ModelManager expectedModel = new ModelManager(getTypicalSessionList(model.getAddressBook().getPersonList()),
                 model.getAddressBook(), new UserPrefs());
 
-        ConfirmationRejectCommand confirmationRejectCommand = new ConfirmationRejectCommand(deleteCommand);
+        ConfirmationRejectCommand confirmationRejectCommand = new ConfirmationRejectCommand(deleteStudentCommand);
         assertCommandSuccess(confirmationRejectCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_rejectEditCommand_success() {
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
+    public void execute_rejectEditStudentCommand_success() {
+        EditStudentCommand editStudentCommand = new EditStudentCommand(INDEX_FIRST_PERSON,
             new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        String expectedMessage = String.format(ConfirmationRejectCommand.MESSAGE_REJECT_COMMAND, editCommand);
+        String expectedMessage = String.format(ConfirmationRejectCommand.MESSAGE_REJECT_COMMAND, editStudentCommand);
 
         ModelManager expectedModel = new ModelManager(getTypicalSessionList(model.getAddressBook().getPersonList()),
                 model.getAddressBook(), new UserPrefs());
 
-        ConfirmationRejectCommand confirmationRejectCommand = new ConfirmationRejectCommand(editCommand);
+        ConfirmationRejectCommand confirmationRejectCommand = new ConfirmationRejectCommand(editStudentCommand);
         assertCommandSuccess(confirmationRejectCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_rejectClearCommand_success() {
-        ClearCommand clearCommand = new ClearCommand();
+    public void execute_rejectClearStudentsCommand_success() {
+        ClearStudentsCommand clearStudentsCommand = new ClearStudentsCommand();
         Model expectedModel = new ModelManager(getTypicalSessionList(model.getAddressBook().getPersonList()),
                 model.getAddressBook(), new UserPrefs());
-        String expectedMessage = String.format(ConfirmationRejectCommand.MESSAGE_REJECT_COMMAND, clearCommand);
+        String expectedMessage = String.format(ConfirmationRejectCommand.MESSAGE_REJECT_COMMAND, clearStudentsCommand);
 
-        ConfirmationRejectCommand confirmationRejectCommand = new ConfirmationRejectCommand(clearCommand);
+        ConfirmationRejectCommand confirmationRejectCommand = new ConfirmationRejectCommand(clearStudentsCommand);
         assertCommandSuccess(confirmationRejectCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void equals() {
-        DeleteCommand firstDeleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
-        DeleteCommand secondDeleteCommand = new DeleteCommand(INDEX_SECOND_PERSON);
+        DeleteStudentCommand firstDeleteStudentCommand = new DeleteStudentCommand(INDEX_FIRST_PERSON);
+        DeleteStudentCommand secondDeleteStudentCommand = new DeleteStudentCommand(INDEX_SECOND_PERSON);
 
         Person editedPerson = new PersonBuilder().build();
-        EditCommand.EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
+        EditStudentCommand.EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
+        EditStudentCommand editStudentCommand = new EditStudentCommand(INDEX_FIRST_PERSON, descriptor);
 
-        ClearCommand clearCommand = new ClearCommand();
+        ClearStudentsCommand clearStudentsCommand = new ClearStudentsCommand();
 
-        ConfirmationRejectCommand confirmationRejectDeleteCommand = new ConfirmationRejectCommand(firstDeleteCommand);
-        ConfirmationRejectCommand confirmationRejectEditCommand = new ConfirmationRejectCommand(editCommand);
-        ConfirmationRejectCommand confirmationRejectClearCommand = new ConfirmationRejectCommand(clearCommand);
+        ConfirmationRejectCommand confirmationRejectDeleteStudentCommand = new ConfirmationRejectCommand(
+                firstDeleteStudentCommand);
+        ConfirmationRejectCommand confirmationRejectEditStudentCommand = new ConfirmationRejectCommand(
+                editStudentCommand);
+        ConfirmationRejectCommand confirmationRejectClearStudentsCommand = new ConfirmationRejectCommand(
+                clearStudentsCommand);
 
         // Check if confirmationRejectDangerousCommand equals confirmationRejectSameDangerousCommand
-        assertTrue(confirmationRejectDeleteCommand.equals(confirmationRejectDeleteCommand));
-        assertTrue(confirmationRejectEditCommand.equals(confirmationRejectEditCommand));
-        assertTrue(confirmationRejectClearCommand.equals(confirmationRejectClearCommand));
+        assertTrue(confirmationRejectDeleteStudentCommand.equals(confirmationRejectDeleteStudentCommand));
+        assertTrue(confirmationRejectEditStudentCommand.equals(confirmationRejectEditStudentCommand));
+        assertTrue(confirmationRejectClearStudentsCommand.equals(confirmationRejectClearStudentsCommand));
 
         // Check if confirmationRejectDangerousCommand equals confirmationRejectAnotherDangerousCommand
-        assertFalse(confirmationRejectDeleteCommand.equals(confirmationRejectClearCommand));
-        assertFalse(confirmationRejectDeleteCommand.equals(confirmationRejectEditCommand));
-        assertFalse(confirmationRejectEditCommand.equals(confirmationRejectClearCommand));
+        assertFalse(confirmationRejectDeleteStudentCommand.equals(confirmationRejectClearStudentsCommand));
+        assertFalse(confirmationRejectDeleteStudentCommand.equals(confirmationRejectEditStudentCommand));
+        assertFalse(confirmationRejectEditStudentCommand.equals(confirmationRejectClearStudentsCommand));
 
-        // Check if confirmationRejectDeleteCommand equals confirmationRejectAnotherDeleteCommand
-        assertFalse(confirmationRejectDeleteCommand.equals(new ConfirmationRejectCommand(secondDeleteCommand)));
+        // Check if confirmationRejectDeleteStudentCommand equals confirmationRejectAnotherDeleteStudentCommand
+        assertFalse(confirmationRejectDeleteStudentCommand.equals(new ConfirmationRejectCommand(
+                secondDeleteStudentCommand)));
 
         // Check if ConfirmationRejectCommand equals another subclass of ConfirmCommand
-        assertFalse(confirmationRejectDeleteCommand.equals(new ConfirmationAcceptCommand(firstDeleteCommand)));
+        assertFalse(confirmationRejectDeleteStudentCommand.equals(new ConfirmationAcceptCommand(
+                firstDeleteStudentCommand)));
     }
 }

@@ -7,9 +7,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import atas.logic.commands.studentlist.ClearCommand;
-import atas.logic.commands.studentlist.DeleteCommand;
-import atas.logic.commands.studentlist.EditCommand;
+import atas.logic.commands.studentlist.ClearStudentsCommand;
+import atas.logic.commands.studentlist.DeleteStudentCommand;
+import atas.logic.commands.studentlist.EditStudentCommand;
 import atas.model.person.Person;
 import atas.testutil.EditPersonDescriptorBuilder;
 import atas.testutil.PersonBuilder;
@@ -17,48 +17,51 @@ import atas.testutil.PersonBuilder;
 public class ConfirmCommandTest {
     @Test
     public void equals() {
-        DeleteCommand firstDeleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
-        DeleteCommand secondDeleteCommand = new DeleteCommand(INDEX_SECOND_PERSON);
+        DeleteStudentCommand firstDeleteStudentCommand = new DeleteStudentCommand(INDEX_FIRST_PERSON);
+        DeleteStudentCommand secondDeleteStudentCommand = new DeleteStudentCommand(INDEX_SECOND_PERSON);
 
         Person editedPerson = new PersonBuilder().build();
-        EditCommand.EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
+        EditStudentCommand.EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
+        EditStudentCommand editStudentCommand = new EditStudentCommand(INDEX_FIRST_PERSON, descriptor);
 
-        ClearCommand clearCommand = new ClearCommand();
+        ClearStudentsCommand clearStudentsCommand = new ClearStudentsCommand();
 
-        ConfirmCommand confirmationDeleteCommand = new ConfirmationCommand(firstDeleteCommand);
-        ConfirmCommand confirmationEditCommand = new ConfirmationCommand(editCommand);
-        ConfirmCommand confirmationClearCommand = new ConfirmationCommand(clearCommand);
+        ConfirmCommand confirmationDeleteStudentCommand = new ConfirmationCommand(firstDeleteStudentCommand);
+        ConfirmCommand confirmationEditStudentCommand = new ConfirmationCommand(editStudentCommand);
+        ConfirmCommand confirmationClearStudentsCommand = new ConfirmationCommand(clearStudentsCommand);
 
-        ConfirmCommand confirmationAcceptDeleteCommand = new ConfirmationAcceptCommand(firstDeleteCommand);
-        ConfirmCommand confirmationAcceptEditCommand = new ConfirmationAcceptCommand(editCommand);
-        ConfirmCommand confirmationAcceptClearCommand = new ConfirmationAcceptCommand(clearCommand);
+        ConfirmCommand confirmationAcceptDeleteStudentCommand = new ConfirmationAcceptCommand(
+                firstDeleteStudentCommand);
+        ConfirmCommand confirmationAcceptEditStudentCommand = new ConfirmationAcceptCommand(editStudentCommand);
+        ConfirmCommand confirmationAcceptClearStudentsCommand = new ConfirmationAcceptCommand(clearStudentsCommand);
 
-        ConfirmCommand confirmationRejectDeleteCommand = new ConfirmationRejectCommand(firstDeleteCommand);
-        ConfirmCommand confirmationRejectEditCommand = new ConfirmationRejectCommand(editCommand);
-        ConfirmCommand confirmationRejectClearCommand = new ConfirmationRejectCommand(clearCommand);
+        ConfirmCommand confirmationRejectDeleteStudentCommand = new ConfirmationRejectCommand(
+                firstDeleteStudentCommand);
+        ConfirmCommand confirmationRejectEditStudentCommand = new ConfirmationRejectCommand(
+                editStudentCommand);
+        ConfirmCommand confirmationRejectClearStudentsCommand = new ConfirmationRejectCommand(clearStudentsCommand);
 
-        assertTrue(confirmationDeleteCommand.equals(confirmationDeleteCommand));
-        assertTrue(confirmationEditCommand.equals(confirmationEditCommand));
-        assertTrue(confirmationClearCommand.equals(confirmationClearCommand));
+        assertTrue(confirmationDeleteStudentCommand.equals(confirmationDeleteStudentCommand));
+        assertTrue(confirmationEditStudentCommand.equals(confirmationEditStudentCommand));
+        assertTrue(confirmationClearStudentsCommand.equals(confirmationClearStudentsCommand));
 
-        assertFalse(confirmationDeleteCommand.equals(new ConfirmationCommand(secondDeleteCommand)));
+        assertFalse(confirmationDeleteStudentCommand.equals(new ConfirmationCommand(secondDeleteStudentCommand)));
 
-        assertFalse(confirmationDeleteCommand.equals(confirmationClearCommand));
-        assertFalse(confirmationDeleteCommand.equals(confirmationEditCommand));
-        assertFalse(confirmationEditCommand.equals(confirmationClearCommand));
+        assertFalse(confirmationDeleteStudentCommand.equals(confirmationClearStudentsCommand));
+        assertFalse(confirmationDeleteStudentCommand.equals(confirmationEditStudentCommand));
+        assertFalse(confirmationEditStudentCommand.equals(confirmationClearStudentsCommand));
 
         // Make sure there is a clear distinction between accept and reject confirmation command.
-        assertFalse(confirmationAcceptDeleteCommand.equals(confirmationRejectDeleteCommand));
-        assertFalse(confirmationAcceptClearCommand.equals(confirmationRejectClearCommand));
-        assertFalse(confirmationAcceptEditCommand.equals(confirmationRejectEditCommand));
+        assertFalse(confirmationAcceptDeleteStudentCommand.equals(confirmationRejectDeleteStudentCommand));
+        assertFalse(confirmationAcceptClearStudentsCommand.equals(confirmationRejectClearStudentsCommand));
+        assertFalse(confirmationAcceptEditStudentCommand.equals(confirmationRejectEditStudentCommand));
 
         // Make sure there is clear distinction between confirmation and accept/reject confirmation command.
-        assertFalse(confirmationClearCommand.equals(confirmationAcceptClearCommand));
-        assertFalse(confirmationClearCommand.equals(confirmationRejectClearCommand));
-        assertFalse(confirmationDeleteCommand.equals(confirmationAcceptDeleteCommand));
-        assertFalse(confirmationDeleteCommand.equals(confirmationRejectDeleteCommand));
-        assertFalse(confirmationEditCommand.equals(confirmationAcceptEditCommand));
-        assertFalse(confirmationEditCommand.equals(confirmationRejectEditCommand));
+        assertFalse(confirmationClearStudentsCommand.equals(confirmationAcceptClearStudentsCommand));
+        assertFalse(confirmationClearStudentsCommand.equals(confirmationRejectClearStudentsCommand));
+        assertFalse(confirmationDeleteStudentCommand.equals(confirmationAcceptDeleteStudentCommand));
+        assertFalse(confirmationDeleteStudentCommand.equals(confirmationRejectDeleteStudentCommand));
+        assertFalse(confirmationEditStudentCommand.equals(confirmationAcceptEditStudentCommand));
+        assertFalse(confirmationEditStudentCommand.equals(confirmationRejectEditStudentCommand));
     }
 }
