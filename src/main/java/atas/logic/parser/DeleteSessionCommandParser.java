@@ -1,9 +1,9 @@
 package atas.logic.parser;
 
 import static atas.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static atas.logic.commands.sessions.DeleteSessionCommand.MESSAGE_USAGE;
+import static atas.logic.commands.sessionlist.DeleteSessionCommand.MESSAGE_USAGE;
 
-import atas.logic.commands.sessions.DeleteSessionCommand;
+import atas.logic.commands.sessionlist.DeleteSessionCommand;
 import atas.logic.parser.exceptions.ParseException;
 import atas.model.attendance.SessionName;
 

@@ -8,7 +8,7 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import atas.logic.commands.atas.FindCommand;
+import atas.logic.commands.studentlist.FindCommand;
 import atas.model.person.NameContainsKeywordsPredicate;
 
 public class FindCommandParserTest {

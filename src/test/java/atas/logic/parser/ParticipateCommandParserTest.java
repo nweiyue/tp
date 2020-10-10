@@ -2,7 +2,7 @@ package atas.logic.parser;
 
 import org.junit.jupiter.api.Test;
 
-import atas.logic.commands.sessions.session.ParticipateCommand;
+import atas.logic.commands.sessionlist.session.ParticipateCommand;
 import atas.model.attendance.IndexRange;
 
 public class ParticipateCommandParserTest {

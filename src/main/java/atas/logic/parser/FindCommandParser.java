@@ -1,11 +1,11 @@
 package atas.logic.parser;
 
 import static atas.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static atas.logic.commands.atas.FindCommand.MESSAGE_USAGE;
+import static atas.logic.commands.studentlist.FindCommand.MESSAGE_USAGE;
 
 import java.util.Arrays;
 
-import atas.logic.commands.atas.FindCommand;
+import atas.logic.commands.studentlist.FindCommand;
 import atas.logic.parser.exceptions.ParseException;
 import atas.model.person.NameContainsKeywordsPredicate;
 

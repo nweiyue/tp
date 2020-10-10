@@ -2,7 +2,7 @@ package atas.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import atas.logic.commands.sessions.session.PresenceCommand;
+import atas.logic.commands.sessionlist.session.PresenceCommand;
 import atas.logic.parser.exceptions.ParseException;
 import atas.model.attendance.IndexRange;
 

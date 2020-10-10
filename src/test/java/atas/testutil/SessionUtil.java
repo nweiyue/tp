@@ -1,6 +1,6 @@
 package atas.testutil;
 
-import atas.logic.commands.sessions.AddSessionCommand;
+import atas.logic.commands.sessionlist.AddSessionCommand;
 import atas.logic.parser.CliSyntax;
 import atas.model.attendance.Session;
 

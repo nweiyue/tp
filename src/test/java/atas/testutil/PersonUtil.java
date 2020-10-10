@@ -2,8 +2,8 @@ package atas.testutil;
 
 import java.util.Set;
 
-import atas.logic.commands.students.AddCommand;
-import atas.logic.commands.students.EditCommand.EditPersonDescriptor;
+import atas.logic.commands.studentlist.AddCommand;
+import atas.logic.commands.studentlist.EditCommand.EditPersonDescriptor;
 import atas.logic.parser.CliSyntax;
 import atas.model.person.Person;
 import atas.model.tag.Tag;

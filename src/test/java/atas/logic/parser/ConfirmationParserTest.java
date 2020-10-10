@@ -11,7 +11,7 @@ import atas.logic.commands.confirmation.ConfirmationAcceptCommand;
 import atas.logic.commands.confirmation.ConfirmationCommand;
 import atas.logic.commands.confirmation.ConfirmationRejectCommand;
 import atas.logic.commands.confirmation.DangerousCommand;
-import atas.logic.commands.students.DeleteCommand;
+import atas.logic.commands.studentlist.DeleteCommand;
 
 public class ConfirmationParserTest {
 

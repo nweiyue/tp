@@ -1,6 +1,6 @@
 package atas.testutil;
 
-import atas.logic.commands.sessions.EditSessionCommand;
+import atas.logic.commands.sessionlist.EditSessionCommand;
 import atas.model.attendance.Session;
 import atas.model.attendance.SessionDate;
 import atas.model.attendance.SessionName;

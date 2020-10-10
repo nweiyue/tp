@@ -1,10 +1,10 @@
 package atas.logic.parser;
 
 import static atas.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static atas.logic.commands.students.DeleteCommand.MESSAGE_USAGE;
+import static atas.logic.commands.studentlist.DeleteCommand.MESSAGE_USAGE;
 
 import atas.commons.core.index.Index;
-import atas.logic.commands.students.DeleteCommand;
+import atas.logic.commands.studentlist.DeleteCommand;
 import atas.logic.parser.exceptions.ParseException;
 
 /**

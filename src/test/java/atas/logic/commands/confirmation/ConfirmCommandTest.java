@@ -7,9 +7,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import atas.logic.commands.students.ClearCommand;
-import atas.logic.commands.students.DeleteCommand;
-import atas.logic.commands.students.EditCommand;
+import atas.logic.commands.studentlist.ClearCommand;
+import atas.logic.commands.studentlist.DeleteCommand;
+import atas.logic.commands.studentlist.EditCommand;
 import atas.model.person.Person;
 import atas.testutil.EditPersonDescriptorBuilder;
 import atas.testutil.PersonBuilder;

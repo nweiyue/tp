@@ -21,12 +21,12 @@ import org.junit.jupiter.api.io.TempDir;
 
 import atas.commons.core.index.Index;
 import atas.logic.commands.CommandResult;
-import atas.logic.commands.atas.ListCommand;
 import atas.logic.commands.confirmation.ConfirmationCommand;
 import atas.logic.commands.exceptions.CommandException;
-import atas.logic.commands.students.AddCommand;
-import atas.logic.commands.students.DeleteCommand;
-import atas.logic.commands.students.EditCommand;
+import atas.logic.commands.studentlist.AddCommand;
+import atas.logic.commands.studentlist.DeleteCommand;
+import atas.logic.commands.studentlist.EditCommand;
+import atas.logic.commands.studentlist.ListCommand;
 import atas.logic.parser.exceptions.ParseException;
 import atas.model.Model;
 import atas.model.ModelManager;
