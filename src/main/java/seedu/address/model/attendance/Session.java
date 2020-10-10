@@ -11,6 +11,7 @@ import java.util.Map;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
 /**
@@ -97,7 +98,8 @@ public class Session implements Comparable<Session> {
      */
     public void updateSessionAfterAdd(List<Person> masterList) {
         requireAllNonNull(masterList);
-        studentList.put(masterList.size() - 1, new Attributes());
+        Name studentName = masterList.get(masterList.size() - 1).getName();
+        studentList.put(masterList.size() - 1, new Attributes(studentName));
     }
 
     /**

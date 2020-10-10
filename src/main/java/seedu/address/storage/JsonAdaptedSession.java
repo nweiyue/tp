@@ -14,6 +14,7 @@ import seedu.address.model.attendance.Attributes;
 import seedu.address.model.attendance.Session;
 import seedu.address.model.attendance.SessionDate;
 import seedu.address.model.attendance.SessionName;
+import seedu.address.model.person.Name;
 
 /**
  * Jackson-friendly version of {@link Session}.
@@ -66,7 +67,7 @@ public class JsonAdaptedSession {
         final Map<Integer, Attributes> studentList = new HashMap<>();
 
         for (JsonAdaptedAttributes attr : attributesList) {
-            Attributes attributes = new Attributes();
+            Attributes attributes = new Attributes(new Name(attr.getName()));
 
             if (Boolean.parseBoolean(attr.getPresence())) {
                 attributes = attributes.togglePresence();
@@ -75,11 +76,12 @@ public class JsonAdaptedSession {
                 attributes = attributes.toggleParticipation();
             }
 
+
             studentList.put(Integer.parseInt(attr.getAttributeIndex()), attributes);
         }
 
         if (sessionName == null) {
-            throw new IllegalValueException(SessionName.MESSAGE_CONSTRAINTS);
+                throw new IllegalValueException(SessionName.MESSAGE_CONSTRAINTS);
         }
         if (!SessionName.isValidSessionName(sessionName)) {
             throw new IllegalValueException(SessionName.MESSAGE_CONSTRAINTS);
