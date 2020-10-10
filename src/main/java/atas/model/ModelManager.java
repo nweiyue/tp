@@ -162,9 +162,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteSession(Session target) {
-        sessionList.updatePersonList(addressBook.getPersonList());
+    public void deleteSession(Session target, Index id) {
         sessionList.deleteSession(target);
+        sessionList.updatePersonList(addressBook.getPersonList());
     }
 
     @Override

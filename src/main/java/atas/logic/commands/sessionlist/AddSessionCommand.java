@@ -22,7 +22,7 @@ public class AddSessionCommand extends Command {
             + CliSyntax.PREFIX_SESSIONDATE + "SESSION_DATE "
             + "\n"
             + "Example: " + COMMAND_WORD + " "
-            + CliSyntax.PREFIX_SESSIONNAME + "tut1 "
+            + CliSyntax.PREFIX_SESSIONNAME + "Tutorial 1 "
             + CliSyntax.PREFIX_SESSIONDATE + "12/7/2020 ";
 
 

@@ -113,7 +113,7 @@ public interface Model {
      * Deletes the given session.
      * The session must exist in the session list.
      */
-    void deleteSession(Session target);
+    void deleteSession(Session target, Index id);
 
     /**
      * Adds the given session.

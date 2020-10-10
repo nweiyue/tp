@@ -81,10 +81,6 @@ public class SessionList implements Iterable<Session>, ReadOnlySessionList {
         updateAllSessionsAfterDeleteSession(target.getSessionIndex());
     }
 
-    /**
-     * Deletes a session from the list.
-     * The session must be already in the list.
-     */
     public void setSession(Session oldSession, Session newSession) {
         requireNonNull(oldSession);
         requireNonNull(newSession);

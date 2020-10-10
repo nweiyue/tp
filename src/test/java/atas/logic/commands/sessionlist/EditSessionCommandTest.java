@@ -1,4 +1,4 @@
-package atas.logic.commands.studentlist;
+package atas.logic.commands.sessionlist;
 
 import static atas.commons.core.Messages.MESSAGE_SESSION_DOES_NOT_EXIST;
 import static atas.logic.commands.CommandTestUtil.DESC_CON;
@@ -23,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import atas.logic.commands.CommandTestUtil;
-import atas.logic.commands.sessionlist.EditSessionCommand;
+import atas.logic.commands.studentlist.ClearStudentsCommand;
 import atas.model.AddressBook;
 import atas.model.Model;
 import atas.model.ModelManager;

@@ -162,4 +162,17 @@ public class CommandTestUtil {
         assertEquals(1, model.getFilteredPersonList().size());
     }
 
+    /**
+     * Updates {@code model}'s filtered list to show only the session at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showSessionAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredSessionList().size());
+
+        Session session = model.getFilteredSessionList().get(targetIndex.getZeroBased());
+        model.updateFilteredSessionList(s -> s.equals(session));
+
+        assertEquals(1, model.getFilteredSessionList().size());
+    }
+
 }
