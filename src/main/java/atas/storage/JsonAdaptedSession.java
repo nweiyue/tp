@@ -81,7 +81,7 @@ public class JsonAdaptedSession {
         }
 
         if (sessionName == null) {
-                throw new IllegalValueException(SessionName.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(SessionName.MESSAGE_CONSTRAINTS);
         }
         if (!SessionName.isValidSessionName(sessionName)) {
             throw new IllegalValueException(SessionName.MESSAGE_CONSTRAINTS);
