@@ -49,11 +49,12 @@ public class ParticipateCommandTest {
 
         assertCommandSuccess(participateCommand, model, ParticipateCommand.MESSAGE_SUCCESS, expectedModel);
 
-        /*for (Session s: model.getSessionList().getSessions()) {
+        for (Session s: expectedModel.getSessionList().getSessions()) {
             if (s.isSameSession(SESSION_WEEK_ONE)) {
+                System.out.println(s.getStudentList().get(0).getParticipationStatus());
                 assertTrue(s.getStudentList().get(0).getParticipationStatus());
             }
-        }*/
+        }
     }
 
     @Test
@@ -71,11 +72,11 @@ public class ParticipateCommandTest {
 
         assertCommandSuccess(participateCommand, model, ParticipateCommand.MESSAGE_SUCCESS, expectedModel);
 
-        for (Session s: model.getSessionList().getSessions()) {
+        for (Session s: expectedModel.getSessionList().getSessions()) {
             if (s.isSameSession(SESSION_WEEK_ONE)) {
-               /* assertTrue(s.getStudentList().get(0).getParticipationStatus());
+                assertTrue(s.getStudentList().get(0).getParticipationStatus());
                 assertTrue(s.getStudentList().get(1).getParticipationStatus());
-                assertTrue(s.getStudentList().get(2).getParticipationStatus());*/
+                assertTrue(s.getStudentList().get(2).getParticipationStatus());
             }
         }
     }
@@ -95,9 +96,9 @@ public class ParticipateCommandTest {
 
         assertCommandSuccess(participateCommand, model, ParticipateCommand.MESSAGE_SUCCESS, expectedModel);
 
-        for (Session s: model.getSessionList().getSessions()) {
+        for (Session s: expectedModel.getSessionList().getSessions()) {
             if (s.isSameSession(SESSION_WEEK_ONE)) {
-               // assertTrue(s.getStudentList().get(0).getParticipationStatus());
+                assertTrue(s.getStudentList().get(0).getParticipationStatus());
             }
         }
     }
@@ -117,9 +118,9 @@ public class ParticipateCommandTest {
 
         assertCommandSuccess(participateCommand, model, ParticipateCommand.MESSAGE_SUCCESS, expectedModel);
 
-        for (Session s: model.getSessionList().getSessions()) {
+        for (Session s: expectedModel.getSessionList().getSessions()) {
             if (s.isSameSession(SESSION_WEEK_ONE)) {
-                //assertTrue(s.getStudentList().get(1).getParticipationStatus());
+                assertTrue(s.getStudentList().get(1).getParticipationStatus());
             }
         }
     }
