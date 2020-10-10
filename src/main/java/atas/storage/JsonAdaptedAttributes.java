@@ -80,6 +80,6 @@ public class JsonAdaptedAttributes {
         Presence presence = new Presence(Boolean.parseBoolean(this.presence));
         Participation participation = new Participation(Boolean.parseBoolean(this.participation));
         Name studentName = new Name(name);
-        return new Attributes(presence, participation, new Name(name));
+        return new Attributes(presence, participation, studentName);
     }
 }

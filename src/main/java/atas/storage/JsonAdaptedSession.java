@@ -67,8 +67,10 @@ public class JsonAdaptedSession {
         final Map<Integer, Attributes> studentList = new HashMap<>();
 
         for (JsonAdaptedAttributes attr : attributesList) {
-            Attributes attributes = new Attributes(new Name(attr.getName()));
-
+            Attributes attributes = new Attributes();
+            if (attr.getName() != null) {
+                attributes = new Attributes(new Name(attr.getName()));
+            }
             if (Boolean.parseBoolean(attr.getPresence())) {
                 attributes = attributes.togglePresence();
             }
