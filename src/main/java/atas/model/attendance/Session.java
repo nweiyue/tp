@@ -9,10 +9,10 @@ import java.util.List;
 import java.util.Map;
 
 import atas.commons.core.index.Index;
+import atas.model.student.Name;
 import atas.model.student.Student;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 
 /**
  * Represents a particular session at a particular date.
@@ -98,7 +98,8 @@ public class Session implements Comparable<Session> {
      */
     public void updateSessionAfterAdd(List<Student> masterList) {
         requireAllNonNull(masterList);
-        studentList.put(masterList.size() - 1, new Attributes());
+        Name studentName = masterList.get(masterList.size() - 1).getName();
+        studentList.put(masterList.size() - 1, new Attributes(studentName));
     }
 
     /**

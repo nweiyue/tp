@@ -30,7 +30,7 @@ public class Attributes {
     }
 
     /**
-     * Sets to the default values for each field.
+     * Sets to the default values for each field but instantiate with name
      */
     public Attributes(Name name) {
         this(new Presence(), new Participation(), name);

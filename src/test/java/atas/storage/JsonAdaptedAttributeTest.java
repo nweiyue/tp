@@ -17,10 +17,8 @@ public class JsonAdaptedAttributeTest {
     private static final String VALID_PARTICIPATION = "true";
     private static final String VALID_NAME = "DEFAULT";
 
-    private static final String INVALID_INDEX = "a";
     private static final String INVALID_PRESENCE = "b";
     private static final String INVALID_PARTICIPATION = "c";
-    private static final String INVALID_NAME = "";
 
 
     @Test
