@@ -1,11 +1,13 @@
 package atas.logic.commands.sessionlist;
 
-import static atas.commons.core.Messages.MESSAGE_SESSION_DOES_NOT_EXIST;
+import static atas.commons.core.Messages.MESSAGE_INVALID_SESSION_DISPLAYED_INDEX;
 import static atas.commons.util.CollectionUtil.isAnyNonNull;
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
 import java.util.Optional;
 
+import atas.commons.core.index.Index;
 import atas.logic.commands.Command;
 import atas.logic.commands.CommandResult;
 import atas.logic.commands.exceptions.CommandException;
@@ -20,54 +22,46 @@ public class EditSessionCommand extends Command {
     public static final String COMMAND_WORD = "editses";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the session identified "
-            + "by the session name in the displayed session list. "
+            + "by the index number used in the displayed session list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: SESSION_NAME "
+            + "Parameters: INDEX (must be a positive integer) "
             + "[" + CliSyntax.PREFIX_SESSIONNAME + "SESSION_NAME] "
             + "[" + CliSyntax.PREFIX_SESSIONDATE + "DATE] \n"
-            + "Example: " + COMMAND_WORD + " tut1 "
-            + CliSyntax.PREFIX_SESSIONNAME + "Tutorial1 "
+            + "Example: " + COMMAND_WORD + " 1 "
+            + CliSyntax.PREFIX_SESSIONNAME + "Tutorial 1 "
             + CliSyntax.PREFIX_SESSIONDATE + "10/10/2020";
 
-    public static final String MESSAGE_EDIT_SESSION_SUCCESS = "Edited session: %1$s => %2$s";
+    public static final String MESSAGE_EDIT_SESSION_SUCCESS = "Edited session: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_SESSION = "This session already exists in the session list.";
 
-    private final SessionName sessionNameOfEdit;
+    private final Index index;
     private final EditSessionCommand.EditSessionDescriptor editSessionDescriptor;
 
     /**
      * Parameterized Constructor.
-     * @param sessionNameOfEdit name of the session in the session list to edit
+     * @param index The Index of the session in the filtered session list to edit.
      * @param editSessionDescriptor details to edit the session with
      */
-    public EditSessionCommand(SessionName sessionNameOfEdit,
+    public EditSessionCommand(Index index,
                               EditSessionCommand.EditSessionDescriptor editSessionDescriptor) {
-        requireNonNull(sessionNameOfEdit);
+        requireNonNull(index);
         requireNonNull(editSessionDescriptor);
 
-        this.sessionNameOfEdit = sessionNameOfEdit;
+        this.index = index;
         this.editSessionDescriptor = new EditSessionCommand.EditSessionDescriptor(editSessionDescriptor);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Session sampleSession = new Session(sessionNameOfEdit, SessionDate.getPlaceholderSessionDate());
+        List<Session> lastShownList = model.getFilteredSessionList();
 
-        if (!model.hasSession(sampleSession)) {
-            throw new CommandException(MESSAGE_SESSION_DOES_NOT_EXIST);
+        if (index.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(MESSAGE_INVALID_SESSION_DISPLAYED_INDEX);
         }
 
-        Session sessionToEdit = null;
-
-        for (Session next : model.getSessionList()) {
-            if (next.isSameSession(sampleSession)) {
-                sessionToEdit = next;
-            }
-        }
-
-        assert sessionToEdit != null;
+        Session sessionToEdit = lastShownList.get(index.getZeroBased());
         Session editedSession = createEditedSession(sessionToEdit, editSessionDescriptor);
 
         if (!sessionToEdit.isSameSession(editedSession) && model.hasSession(editedSession)) {
@@ -75,8 +69,14 @@ public class EditSessionCommand extends Command {
         }
 
         model.setSession(sessionToEdit, editedSession);
-        model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_SESSION_SUCCESS, sessionToEdit, editedSession));
+        model.updateFilteredSessionList(Model.PREDICATE_SHOW_ALL_SESSIONS);
+        return new CommandResult(String.format(MESSAGE_EDIT_SESSION_SUCCESS, editedSession));
+    }
+
+    @Override
+    public String toString() {
+        String oneBasedIndex = String.valueOf(index.getOneBased());
+        return "Edit " + oneBasedIndex;
     }
 
     /**
@@ -109,7 +109,7 @@ public class EditSessionCommand extends Command {
 
         // state check
         EditSessionCommand e = (EditSessionCommand) other;
-        return sessionNameOfEdit.equals(e.sessionNameOfEdit)
+        return index.equals(e.index)
                 && editSessionDescriptor.equals(e.editSessionDescriptor);
     }
 

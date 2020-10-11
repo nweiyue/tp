@@ -1,168 +1,140 @@
 package atas.logic.commands.sessionlist;
 
-import static atas.commons.core.Messages.MESSAGE_SESSION_DOES_NOT_EXIST;
+import static atas.commons.core.Messages.MESSAGE_INVALID_SESSION_DISPLAYED_INDEX;
 import static atas.logic.commands.CommandTestUtil.DESC_CON;
 import static atas.logic.commands.CommandTestUtil.DESC_REC;
-import static atas.logic.commands.CommandTestUtil.VALID_SESSIONNAME_CON;
 import static atas.logic.commands.CommandTestUtil.assertCommandFailure;
 import static atas.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static atas.testutil.TypicalSessions.SESSIONDATE_WEEK_ONE;
-import static atas.testutil.TypicalSessions.SESSIONDATE_WEEK_TWO;
+import static atas.logic.commands.CommandTestUtil.showSessionAtIndex;
+import static atas.testutil.TypicalIndexes.INDEX_FIRST_SESSION;
+import static atas.testutil.TypicalIndexes.INDEX_SECOND_SESSION;
 import static atas.testutil.TypicalSessions.SESSIONDATE_WEEK_TWO_STRING;
-import static atas.testutil.TypicalSessions.SESSIONNAME_WEEK_ONE;
-import static atas.testutil.TypicalSessions.SESSIONNAME_WEEK_THREE_STRING;
-import static atas.testutil.TypicalSessions.SESSIONNAME_WEEK_TWO;
 import static atas.testutil.TypicalSessions.SESSIONNAME_WEEK_TWO_STRING;
-import static atas.testutil.TypicalSessions.SESSION_WEEK_ONE;
-import static atas.testutil.TypicalSessions.SESSION_WEEK_THREE;
-import static atas.testutil.TypicalSessions.SESSION_WEEK_TWO;
 import static atas.testutil.TypicalSessions.getTypicalSessionList;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import atas.logic.commands.CommandTestUtil;
+import atas.commons.core.index.Index;
 import atas.logic.commands.studentlist.ClearStudentsCommand;
 import atas.model.AddressBook;
 import atas.model.Model;
 import atas.model.ModelManager;
 import atas.model.UserPrefs;
 import atas.model.attendance.Session;
-import atas.model.attendance.SessionName;
 import atas.testutil.EditSessionDescriptorBuilder;
 import atas.testutil.ModelManagerBuilder;
+import atas.testutil.SessionBuilder;
+
 
 public class EditSessionCommandTest {
 
     private Model model = ModelManagerBuilder.buildTypicalModelManager();
 
     @Test
-    public void execute_allFieldsSpecified_success() {
-        // actual model
-        model.addSession(SESSION_WEEK_ONE);
+    public void execute_allFieldsSpecifiedUnfilteredList_success() {
+        Session editedSession = new SessionBuilder().build();
+        EditSessionCommand.EditSessionDescriptor descriptor = new EditSessionDescriptorBuilder(editedSession).build();
+        EditSessionCommand editSessionCommand = new EditSessionCommand(INDEX_FIRST_SESSION, descriptor);
 
-        EditSessionCommand.EditSessionDescriptor descriptor = new EditSessionDescriptorBuilder()
-                .withSessionName(SESSIONNAME_WEEK_TWO_STRING)
-                .withSessionDate(SESSIONDATE_WEEK_TWO_STRING)
-                .build();
-
-        EditSessionCommand editSessionCommand = new EditSessionCommand(SESSIONNAME_WEEK_ONE, descriptor);
-
-        // expected model
-        String expectedMessage = String.format(EditSessionCommand.MESSAGE_EDIT_SESSION_SUCCESS,
-                SESSION_WEEK_ONE, SESSION_WEEK_TWO);
+        String expectedMessage = String.format(EditSessionCommand.MESSAGE_EDIT_SESSION_SUCCESS, editedSession);
 
         Model expectedModel = new ModelManager(getTypicalSessionList(model.getAddressBook().getPersonList()),
                 new AddressBook(model.getAddressBook()), new UserPrefs());
-
-        expectedModel.addSession(SESSION_WEEK_TWO);
+        expectedModel.setSession(model.getFilteredSessionList().get(0), editedSession);
 
         assertCommandSuccess(editSessionCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_editOnlySessionName_success() {
-        // actual model
-        model.addSession(SESSION_WEEK_ONE);
+
+        Index indexLastSession = Index.fromOneBased(model.getFilteredSessionList().size());
+        Session lastSession = model.getFilteredSessionList().get(indexLastSession.getZeroBased());
+
+        SessionBuilder sessionInList = new SessionBuilder(lastSession);
+        Session editedSession = sessionInList.withSessionName(SESSIONNAME_WEEK_TWO_STRING).build();
 
         EditSessionCommand.EditSessionDescriptor descriptor = new EditSessionDescriptorBuilder()
                 .withSessionName(SESSIONNAME_WEEK_TWO_STRING).build();
+        EditSessionCommand editSessionCommand = new EditSessionCommand(indexLastSession, descriptor);
 
-        EditSessionCommand editSessionCommand = new EditSessionCommand(SESSIONNAME_WEEK_ONE, descriptor);
-
-        // expected model
-        Session expectedSession = new Session(SESSIONNAME_WEEK_TWO, SESSIONDATE_WEEK_ONE);
-        String expectedMessage = String.format(EditSessionCommand.MESSAGE_EDIT_SESSION_SUCCESS,
-                SESSION_WEEK_ONE, expectedSession);
+        String expectedMessage = String.format(EditSessionCommand.MESSAGE_EDIT_SESSION_SUCCESS, editedSession);
 
         Model expectedModel = new ModelManager(getTypicalSessionList(model.getAddressBook().getPersonList()),
                 new AddressBook(model.getAddressBook()), new UserPrefs());
-
-        expectedModel.addSession(expectedSession);
+        expectedModel.setSession(lastSession, editedSession);
 
         assertCommandSuccess(editSessionCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_editOnlySessionDate_success() {
-        // actual model
-        model.addSession(SESSION_WEEK_ONE);
+        Index indexLastSession = Index.fromOneBased(model.getFilteredSessionList().size());
+        Session lastSession = model.getFilteredSessionList().get(indexLastSession.getZeroBased());
+
+        SessionBuilder sessionInList = new SessionBuilder(lastSession);
+        Session editedSession = sessionInList.withSessionDate(SESSIONDATE_WEEK_TWO_STRING).build();
 
         EditSessionCommand.EditSessionDescriptor descriptor = new EditSessionDescriptorBuilder()
                 .withSessionDate(SESSIONDATE_WEEK_TWO_STRING).build();
+        EditSessionCommand editSessionCommand = new EditSessionCommand(indexLastSession, descriptor);
 
-        EditSessionCommand editSessionCommand = new EditSessionCommand(SESSIONNAME_WEEK_ONE, descriptor);
-
-        // expected model
-        Session expectedSession = new Session(SESSIONNAME_WEEK_ONE, SESSIONDATE_WEEK_TWO);
-        String expectedMessage = String.format(EditSessionCommand.MESSAGE_EDIT_SESSION_SUCCESS,
-                SESSION_WEEK_ONE, expectedSession);
+        String expectedMessage = String.format(EditSessionCommand.MESSAGE_EDIT_SESSION_SUCCESS, editedSession);
 
         Model expectedModel = new ModelManager(getTypicalSessionList(model.getAddressBook().getPersonList()),
                 new AddressBook(model.getAddressBook()), new UserPrefs());
-
-        expectedModel.addSession(expectedSession);
+        expectedModel.setSession(lastSession, editedSession);
 
         assertCommandSuccess(editSessionCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        // actual model
-        model.addSession(SESSION_WEEK_ONE);
+        EditSessionCommand editSessionCommand = new EditSessionCommand(INDEX_FIRST_SESSION,
+                new EditSessionCommand.EditSessionDescriptor());
+        Session editedSession = model.getFilteredSessionList().get(INDEX_FIRST_SESSION.getZeroBased());
 
-        EditSessionCommand.EditSessionDescriptor descriptor = new EditSessionDescriptorBuilder().build();
-        EditSessionCommand editSessionCommand = new EditSessionCommand(SESSIONNAME_WEEK_ONE, descriptor);
-
-        // expected model (nothing changes)
-        String expectedMessage = String.format(EditSessionCommand.MESSAGE_EDIT_SESSION_SUCCESS,
-                SESSION_WEEK_ONE, SESSION_WEEK_ONE);
+        String expectedMessage = String.format(EditSessionCommand.MESSAGE_EDIT_SESSION_SUCCESS, editedSession);
 
         Model expectedModel = new ModelManager(getTypicalSessionList(model.getAddressBook().getPersonList()),
-                new AddressBook(model.getAddressBook()), new UserPrefs());
-
-        expectedModel.addSession(SESSION_WEEK_ONE);
+            new AddressBook(model.getAddressBook()), new UserPrefs());
 
         assertCommandSuccess(editSessionCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_duplicateSessionAfterEdit_failure() {
-        // actual model
-        model.addSession(SESSION_WEEK_ONE);
-        model.addSession(SESSION_WEEK_THREE);
-
-        EditSessionCommand.EditSessionDescriptor descriptor = new EditSessionDescriptorBuilder()
-                .withSessionName(SESSIONNAME_WEEK_THREE_STRING).build();
-
-        EditSessionCommand editSessionCommand = new EditSessionCommand(SESSIONNAME_WEEK_ONE, descriptor);
+        Session firstSession = model.getFilteredSessionList().get(INDEX_FIRST_SESSION.getZeroBased());
+        EditSessionCommand.EditSessionDescriptor descriptor = new EditSessionDescriptorBuilder(firstSession).build();
+        EditSessionCommand editSessionCommand = new EditSessionCommand(INDEX_SECOND_SESSION, descriptor);
 
         assertCommandFailure(editSessionCommand, model, EditSessionCommand.MESSAGE_DUPLICATE_SESSION);
     }
 
     @Test
     public void execute_sessionNameDoesNotExist_failure() {
-        // actual model
-        model.addSession(SESSION_WEEK_ONE);
+        showSessionAtIndex(model, INDEX_FIRST_SESSION);
+        Index outOfBoundIndex = INDEX_SECOND_SESSION;
+        // ensures that outOfBoundIndex is still in bounds of ATAS
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getSessionList().returnSize());
 
-        EditSessionCommand.EditSessionDescriptor descriptor = new EditSessionDescriptorBuilder()
-                .withSessionName(SESSIONNAME_WEEK_TWO_STRING).build();
+        EditSessionCommand editSessionCommand = new EditSessionCommand(outOfBoundIndex,
+                new EditSessionDescriptorBuilder().withSessionName(SESSIONNAME_WEEK_TWO_STRING).build());
 
-        EditSessionCommand editSessionCommand = new EditSessionCommand(SESSIONNAME_WEEK_TWO, descriptor);
-
-        assertCommandFailure(editSessionCommand, model, MESSAGE_SESSION_DOES_NOT_EXIST);
+        assertCommandFailure(editSessionCommand, model, MESSAGE_INVALID_SESSION_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        final SessionName sessionName = new SessionName(CommandTestUtil.VALID_SESSIONNAME_REC);
-        final EditSessionCommand standardCommand = new EditSessionCommand(sessionName, DESC_REC);
+        final EditSessionCommand standardCommand = new EditSessionCommand(INDEX_FIRST_SESSION, DESC_REC);
 
         // same values -> returns true
         EditSessionCommand.EditSessionDescriptor copyDescriptor =
                 new EditSessionCommand.EditSessionDescriptor(DESC_REC);
-        EditSessionCommand commandWithSameValues = new EditSessionCommand(sessionName, copyDescriptor);
+        EditSessionCommand commandWithSameValues = new EditSessionCommand(INDEX_FIRST_SESSION, copyDescriptor);
+
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -174,11 +146,10 @@ public class EditSessionCommandTest {
         // different types -> returns false
         assertFalse(standardCommand.equals(new ClearStudentsCommand()));
 
-        // different session name -> returns false
-        SessionName name = new SessionName(VALID_SESSIONNAME_CON);
-        assertFalse(standardCommand.equals(new EditSessionCommand(name, DESC_REC)));
+        // different index -> returns false
+        assertFalse(standardCommand.equals(new EditSessionCommand(INDEX_SECOND_SESSION, DESC_REC)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditSessionCommand(sessionName, DESC_CON)));
+        assertFalse(standardCommand.equals(new EditSessionCommand(INDEX_FIRST_SESSION, DESC_CON)));
     }
 }

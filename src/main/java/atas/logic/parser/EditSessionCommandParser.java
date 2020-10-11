@@ -2,7 +2,6 @@ package atas.logic.parser;
 
 import static atas.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static atas.logic.commands.sessionlist.EditSessionCommand.MESSAGE_NOT_EDITED;
-import static atas.logic.commands.sessionlist.EditSessionCommand.MESSAGE_USAGE;
 import static atas.logic.parser.CliSyntax.PREFIX_SESSIONDATE;
 import static atas.logic.parser.CliSyntax.PREFIX_SESSIONNAME;
 import static atas.model.attendance.SessionDate.MESSAGE_CONSTRAINTS;
@@ -10,9 +9,9 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.format.DateTimeParseException;
 
+import atas.commons.core.index.Index;
 import atas.logic.commands.sessionlist.EditSessionCommand;
 import atas.logic.parser.exceptions.ParseException;
-import atas.model.attendance.SessionName;
 
 /**
  * Parses input arguments and creates a new EditSessionCommand object
@@ -29,13 +28,13 @@ public class EditSessionCommandParser implements Parser<EditSessionCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_SESSIONNAME, PREFIX_SESSIONDATE);
 
-        SessionName sessionName;
+        Index index;
 
         try {
-            sessionName = ParserUtil.parseSessionName(argMultimap.getPreamble());
+            index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(
-                    MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE), pe);
+                    MESSAGE_INVALID_COMMAND_FORMAT, EditSessionCommand.MESSAGE_USAGE), pe);
         }
 
         EditSessionCommand.EditSessionDescriptor descriptor = new EditSessionCommand.EditSessionDescriptor();
@@ -54,7 +53,7 @@ public class EditSessionCommandParser implements Parser<EditSessionCommand> {
             throw new ParseException(MESSAGE_NOT_EDITED);
         }
 
-        return new EditSessionCommand(sessionName, descriptor);
+        return new EditSessionCommand(index, descriptor);
     }
 
 }
