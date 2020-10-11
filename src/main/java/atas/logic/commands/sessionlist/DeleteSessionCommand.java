@@ -1,6 +1,6 @@
 package atas.logic.commands.sessionlist;
 
-import static atas.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static atas.commons.core.Messages.MESSAGE_INVALID_SESSION_DISPLAYED_INDEX;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
@@ -23,11 +23,12 @@ public class DeleteSessionCommand extends DangerousCommand {
 
 
     public static final String MESSAGE_DELETE_SESSION_SUCCESS = "Deleted session: %1$s";
+    public static final String MESSAGE_SESSION_NOT_FOUND = "Session not found.";
 
     private final Index targetIndex;
 
     /**
-     * Creates an AddSessionCommand to add the specified {@code Session}
+     * Creates a DeleteSessionCommand to delete the specified {@code Session}
      */
     public DeleteSessionCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
@@ -40,10 +41,15 @@ public class DeleteSessionCommand extends DangerousCommand {
         List<Session> lastShownList = model.getFilteredSessionList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(MESSAGE_INVALID_SESSION_DISPLAYED_INDEX);
         }
 
         Session sessionToDelete = lastShownList.get(targetIndex.getZeroBased());
+
+        if (!model.hasSession(sessionToDelete)) {
+            throw new CommandException(MESSAGE_SESSION_NOT_FOUND);
+        }
+
         model.deleteSession(sessionToDelete, targetIndex);
         return new CommandResult(String.format(MESSAGE_DELETE_SESSION_SUCCESS, sessionToDelete));
     }

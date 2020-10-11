@@ -74,11 +74,9 @@ public class SessionList implements Iterable<Session>, ReadOnlySessionList {
      */
     public void deleteSession(Session target) {
         requireNonNull(target);
-        if (!contains(target)) {
+        if (!sessions.remove(target)) {
             throw new SessionNotFoundException();
         }
-        sessions.removeIf(target::isSameSession);
-        updateAllSessionsAfterDeleteSession(target.getSessionIndex());
     }
 
     public void setSession(Session oldSession, Session newSession) {

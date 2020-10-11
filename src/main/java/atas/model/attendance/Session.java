@@ -13,7 +13,6 @@ import atas.model.person.Person;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-
 /**
  * Represents a particular session at a particular date.
  * Each {@code Session} contains a list of details for each student in ATAS for the TA to keep track of.

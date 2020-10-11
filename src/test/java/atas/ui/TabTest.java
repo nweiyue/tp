@@ -32,28 +32,28 @@ public class TabTest {
 
     @Test
     public void equals() {
-        Tab classesTab = Tab.STUDENTS;
-        Tab attendanceTab = Tab.SESSIONS;
+        Tab studentsTab = Tab.STUDENTS;
+        Tab sessionsTab = Tab.SESSIONS;
 
         // same object -> returns true
-        assertTrue(classesTab.equals(classesTab));
-        assertTrue(attendanceTab.equals(attendanceTab));
+        assertTrue(studentsTab.equals(studentsTab));
+        assertTrue(sessionsTab.equals(sessionsTab));
 
         // same values -> returns true
-        Tab classesTabCopy = Tab.STUDENTS;
-        assertTrue(classesTab.equals(classesTabCopy));
-        Tab attendanceTabCopy = Tab.SESSIONS;
-        assertTrue(attendanceTab.equals(attendanceTabCopy));
+        Tab studentsTabCopy = Tab.STUDENTS;
+        assertTrue(studentsTab.equals(studentsTabCopy));
+        Tab sessionsTabCopy = Tab.SESSIONS;
+        assertTrue(sessionsTab.equals(sessionsTabCopy));
 
         // different types -> returns false
-        assertFalse(classesTab.equals(1));
-        assertFalse(attendanceTab.equals(1));
+        assertFalse(studentsTab.equals(1));
+        assertFalse(sessionsTab.equals(1));
 
         // null -> returns false
-        assertFalse(classesTab.equals(null));
-        assertFalse(attendanceTab.equals(null));
+        assertFalse(studentsTab.equals(null));
+        assertFalse(sessionsTab.equals(null));
 
         // different tabs -> returns false
-        assertFalse(classesTab.equals(attendanceTab));
+        assertFalse(studentsTab.equals(sessionsTab));
     }
 }
