@@ -18,12 +18,12 @@ public class AddSessionCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a session to the class. "
             + "Parameters: "
-            + CliSyntax.PREFIX_SESSIONNAME + "SESSION_NAME "
-            + CliSyntax.PREFIX_SESSIONDATE + "SESSION_DATE "
+            + CliSyntax.PREFIX_SESSION_NAME + "SESSION_NAME "
+            + CliSyntax.PREFIX_SESSION_DATE + "SESSION_DATE "
             + "\n"
             + "Example: " + COMMAND_WORD + " "
-            + CliSyntax.PREFIX_SESSIONNAME + "Tutorial 1 "
-            + CliSyntax.PREFIX_SESSIONDATE + "12/7/2020 ";
+            + CliSyntax.PREFIX_SESSION_NAME + "Tutorial 1 "
+            + CliSyntax.PREFIX_SESSION_DATE + "12/7/2020 ";
 
 
     public static final String MESSAGE_SUCCESS = "New session added: %1$s";

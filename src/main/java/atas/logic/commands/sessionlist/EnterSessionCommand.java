@@ -7,7 +7,6 @@ import atas.commons.core.index.Index;
 import atas.logic.commands.Command;
 import atas.logic.commands.CommandResult;
 import atas.logic.commands.exceptions.CommandException;
-import atas.logic.parser.CliSyntax;
 import atas.model.Model;
 import atas.ui.Tab;
 
@@ -15,12 +14,9 @@ public class EnterSessionCommand extends Command {
 
     public static final String COMMAND_WORD = "enterses";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Enters a specified session. "
-            + "Parameters: "
-            + CliSyntax.PREFIX_SESSIONINDEX + "SESSION_INDEX "
-            + "\n"
-            + "Example: " + COMMAND_WORD + " "
-            + CliSyntax.PREFIX_SESSIONINDEX + "1 ";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Enters a specified session. \n"
+            + "Parameters: INDEX (must be a positive integer) \n"
+            + "Example: " + COMMAND_WORD + " 1 ";
 
     public static final String MESSAGE_SUCCESS = "Session entered: %1$s";
 

@@ -21,8 +21,8 @@ public class SessionUtil {
      */
     public static String getSessionDetails(Session session) {
         StringBuilder sb = new StringBuilder();
-        sb.append(CliSyntax.PREFIX_SESSIONNAME + session.getSessionName().toString() + " ");
-        sb.append(CliSyntax.PREFIX_SESSIONDATE + session.getSessionDate().toString() + " ");
+        sb.append(CliSyntax.PREFIX_SESSION_NAME + session.getSessionName().toString() + " ");
+        sb.append(CliSyntax.PREFIX_SESSION_DATE + session.getSessionDate().toString() + " ");
         return sb.toString();
     }
 }

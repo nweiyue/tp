@@ -10,8 +10,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_MATRICULATION = new Prefix("m/");
     public static final Prefix PREFIX_EMAIL = new Prefix("e/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
-    public static final Prefix PREFIX_SESSIONNAME = new Prefix("s/");
-    public static final Prefix PREFIX_SESSIONDATE = new Prefix("d/");
-    public static final Prefix PREFIX_SESSIONINDEX = new Prefix("es/");
+    public static final Prefix PREFIX_SESSION_NAME = new Prefix("s/");
+    public static final Prefix PREFIX_SESSION_DATE = new Prefix("d/");
 
 }

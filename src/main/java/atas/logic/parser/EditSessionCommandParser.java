@@ -2,8 +2,8 @@ package atas.logic.parser;
 
 import static atas.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static atas.logic.commands.sessionlist.EditSessionCommand.MESSAGE_NOT_EDITED;
-import static atas.logic.parser.CliSyntax.PREFIX_SESSIONDATE;
-import static atas.logic.parser.CliSyntax.PREFIX_SESSIONNAME;
+import static atas.logic.parser.CliSyntax.PREFIX_SESSION_DATE;
+import static atas.logic.parser.CliSyntax.PREFIX_SESSION_NAME;
 import static atas.model.attendance.SessionDate.MESSAGE_CONSTRAINTS;
 import static java.util.Objects.requireNonNull;
 
@@ -26,7 +26,7 @@ public class EditSessionCommandParser implements Parser<EditSessionCommand> {
     public EditSessionCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_SESSIONNAME, PREFIX_SESSIONDATE);
+                ArgumentTokenizer.tokenize(args, PREFIX_SESSION_NAME, PREFIX_SESSION_DATE);
 
         Index index;
 
@@ -38,12 +38,12 @@ public class EditSessionCommandParser implements Parser<EditSessionCommand> {
         }
 
         EditSessionCommand.EditSessionDescriptor descriptor = new EditSessionCommand.EditSessionDescriptor();
-        if (argMultimap.getValue(PREFIX_SESSIONNAME).isPresent()) {
-            descriptor.setSessionName(ParserUtil.parseSessionName(argMultimap.getValue(PREFIX_SESSIONNAME).get()));
+        if (argMultimap.getValue(PREFIX_SESSION_NAME).isPresent()) {
+            descriptor.setSessionName(ParserUtil.parseSessionName(argMultimap.getValue(PREFIX_SESSION_NAME).get()));
         }
-        if (argMultimap.getValue(PREFIX_SESSIONDATE).isPresent()) {
+        if (argMultimap.getValue(PREFIX_SESSION_DATE).isPresent()) {
             try {
-                descriptor.setSessionDate(ParserUtil.parseSessionDate(argMultimap.getValue(PREFIX_SESSIONDATE).get()));
+                descriptor.setSessionDate(ParserUtil.parseSessionDate(argMultimap.getValue(PREFIX_SESSION_DATE).get()));
             } catch (DateTimeParseException e) {
                 throw new ParseException(MESSAGE_CONSTRAINTS);
             }

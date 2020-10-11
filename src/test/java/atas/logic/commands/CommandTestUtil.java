@@ -65,10 +65,10 @@ public class CommandTestUtil {
     public static final String VALID_SESSIONDATE_REC = "12/7/2017";
     public static final String VALID_SESSIONDATE_CON = "27/11/2015";
 
-    public static final String VALID_SESSIONNAME_REC_DESC = " " + CliSyntax.PREFIX_SESSIONNAME + VALID_SESSIONNAME_REC;
-    public static final String VALID_SESSIONNAME_CON_DESC = " " + CliSyntax.PREFIX_SESSIONNAME + VALID_SESSIONNAME_CON;
-    public static final String VALID_SESSIONDATE_REC_DESC = " " + CliSyntax.PREFIX_SESSIONDATE + VALID_SESSIONDATE_REC;
-    public static final String VALID_SESSIONDATE_CON_DESC = " " + CliSyntax.PREFIX_SESSIONDATE + VALID_SESSIONDATE_CON;
+    public static final String VALID_SESSIONNAME_REC_DESC = " " + CliSyntax.PREFIX_SESSION_NAME + VALID_SESSIONNAME_REC;
+    public static final String VALID_SESSIONNAME_CON_DESC = " " + CliSyntax.PREFIX_SESSION_NAME + VALID_SESSIONNAME_CON;
+    public static final String VALID_SESSIONDATE_REC_DESC = " " + CliSyntax.PREFIX_SESSION_DATE + VALID_SESSIONDATE_REC;
+    public static final String VALID_SESSIONDATE_CON_DESC = " " + CliSyntax.PREFIX_SESSION_DATE + VALID_SESSIONDATE_CON;
 
     public static final SessionName VALID_NAME_REC = new SessionName(VALID_SESSIONNAME_REC);
     public static final SessionName VALID_NAME_CON = new SessionName(VALID_SESSIONNAME_CON);
@@ -83,8 +83,8 @@ public class CommandTestUtil {
     public static final String INVALID_SESSIONNAME = "@tut3";
     public static final String INVALID_SESSIONDATE = "13/13/2020";
 
-    public static final String INVALID_SESSIONNAME_DESC = " " + CliSyntax.PREFIX_SESSIONNAME + INVALID_SESSIONNAME;
-    public static final String INVALID_SESSIONDATE_DESC = " " + CliSyntax.PREFIX_SESSIONDATE + INVALID_SESSIONDATE;
+    public static final String INVALID_SESSIONNAME_DESC = " " + CliSyntax.PREFIX_SESSION_NAME + INVALID_SESSIONNAME;
+    public static final String INVALID_SESSIONDATE_DESC = " " + CliSyntax.PREFIX_SESSION_DATE + INVALID_SESSIONDATE;
 
 
 
