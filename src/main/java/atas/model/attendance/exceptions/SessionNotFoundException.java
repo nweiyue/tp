@@ -1,7 +1,6 @@
 package atas.model.attendance.exceptions;
 
 /**
- * Signals that the operation will result in duplicate Classes (Classes are considered duplicates if they have the same
- * date).
+ * Signals that the session does not exists.
  */
-public class SessionNotFoundException extends RuntimeException{}
+public class SessionNotFoundException extends RuntimeException {}

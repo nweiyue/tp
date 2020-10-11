@@ -2,6 +2,7 @@ package atas.logic.commands.sessionlist.session;
 
 import static java.util.Objects.requireNonNull;
 
+import atas.commons.core.Messages;
 import atas.logic.commands.Command;
 import atas.logic.commands.CommandResult;
 import atas.logic.commands.exceptions.CommandException;
@@ -50,7 +51,7 @@ public class PresenceCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         if (!model.returnCurrentSessionEnabledStatus()) {
-            throw new CommandException("You have to be in the session tab to use this!");
+            throw new CommandException(Messages.MESSAGE_NOT_IN_SESSION_TAB);
         }
         model.updatePresenceBySessionName(sessionName, range);
         return new CommandResult(MESSAGE_SUCCESS);
