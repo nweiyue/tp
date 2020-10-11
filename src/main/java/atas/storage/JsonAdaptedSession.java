@@ -14,6 +14,7 @@ import atas.model.attendance.Attributes;
 import atas.model.attendance.Session;
 import atas.model.attendance.SessionDate;
 import atas.model.attendance.SessionName;
+import atas.model.person.Name;
 
 /**
  * Jackson-friendly version of {@link Session}.
@@ -67,13 +68,16 @@ public class JsonAdaptedSession {
 
         for (JsonAdaptedAttributes attr : attributesList) {
             Attributes attributes = new Attributes();
-
+            if (attr.getName() != null) {
+                attributes = new Attributes(new Name(attr.getName()));
+            }
             if (Boolean.parseBoolean(attr.getPresence())) {
                 attributes = attributes.togglePresence();
             }
             if (Boolean.parseBoolean(attr.getParticipation())) {
                 attributes = attributes.toggleParticipation();
             }
+
 
             studentList.put(Integer.parseInt(attr.getAttributeIndex()), attributes);
         }

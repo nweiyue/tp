@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import atas.commons.core.index.Index;
+import atas.model.person.Name;
 import atas.model.person.Person;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -97,7 +98,8 @@ public class Session implements Comparable<Session> {
      */
     public void updateSessionAfterAdd(List<Person> masterList) {
         requireAllNonNull(masterList);
-        studentList.put(masterList.size() - 1, new Attributes());
+        Name studentName = masterList.get(masterList.size() - 1).getName();
+        studentList.put(masterList.size() - 1, new Attributes(studentName));
     }
 
     /**

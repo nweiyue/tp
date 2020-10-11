@@ -48,9 +48,9 @@ public class PresenceCommandTest {
 
         assertCommandSuccess(presenceCommand, model, PresenceCommand.MESSAGE_SUCCESS, expectedModel);
 
-        for (Session s: model.getSessionList().getSessions()) {
+        for (Session s: expectedModel.getSessionList().getSessions()) {
             if (s.isSameSession(SESSION_WEEK_ONE)) {
-                //assertTrue(s.getStudentList().get(0).getPresenceStatus());
+                assertTrue(s.getStudentList().get(0).getPresenceStatus());
             }
         }
     }
@@ -70,11 +70,11 @@ public class PresenceCommandTest {
 
         assertCommandSuccess(presenceCommand, model, PresenceCommand.MESSAGE_SUCCESS, expectedModel);
 
-        for (Session s: model.getSessionList().getSessions()) {
+        for (Session s: expectedModel.getSessionList().getSessions()) {
             if (s.isSameSession(SESSION_WEEK_ONE)) {
-              /*  assertTrue(s.getStudentList().get(0).getPresenceStatus());
+                assertTrue(s.getStudentList().get(0).getPresenceStatus());
                 assertTrue(s.getStudentList().get(1).getPresenceStatus());
-                assertTrue(s.getStudentList().get(2).getPresenceStatus());*/
+                assertTrue(s.getStudentList().get(2).getPresenceStatus());
             }
         }
     }
@@ -94,9 +94,9 @@ public class PresenceCommandTest {
 
         assertCommandSuccess(presenceCommand, model, PresenceCommand.MESSAGE_SUCCESS, expectedModel);
 
-        for (Session s: model.getSessionList().getSessions()) {
+        for (Session s: expectedModel.getSessionList().getSessions()) {
             if (s.isSameSession(SESSION_WEEK_ONE)) {
-                //assertTrue(s.getStudentList().get(0).getPresenceStatus());
+                assertTrue(s.getStudentList().get(0).getPresenceStatus());
             }
         }
     }
@@ -116,9 +116,9 @@ public class PresenceCommandTest {
 
         assertCommandSuccess(presenceCommand, model, PresenceCommand.MESSAGE_SUCCESS, expectedModel);
 
-        for (Session s: model.getSessionList().getSessions()) {
+        for (Session s: expectedModel.getSessionList().getSessions()) {
             if (s.isSameSession(SESSION_WEEK_ONE)) {
-                //assertTrue(s.getStudentList().get(1).getPresenceStatus());
+                assertTrue(s.getStudentList().get(1).getPresenceStatus());
             }
         }
     }
