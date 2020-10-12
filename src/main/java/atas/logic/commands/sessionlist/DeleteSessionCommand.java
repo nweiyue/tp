@@ -22,6 +22,7 @@ public class DeleteSessionCommand extends DangerousCommand {
 
     public static final String MESSAGE_SUCCESS = "Session deleted.";
     public static final String MESSAGE_SESSION_NOT_FOUND = "Session not found.";
+    public static final String MESSAGE_COMMAND_TO_STRING = "Delete session %s";
 
     private final SessionName toDelete;
 
@@ -56,6 +57,6 @@ public class DeleteSessionCommand extends DangerousCommand {
 
     @Override
     public String toString() {
-        return String.format("Delete session %s", toDelete);
+        return String.format(MESSAGE_COMMAND_TO_STRING, toDelete);
     }
 }
