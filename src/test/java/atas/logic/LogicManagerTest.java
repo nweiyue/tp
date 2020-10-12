@@ -53,10 +53,10 @@ public class LogicManagerTest {
     public void setUp() {
         JsonSessionListStorage jsonSessionListStorage =
                 new JsonSessionListStorage(temporaryFolder.resolve("typicalSessionSessionList.json"));
-        JsonAtasStorage addressBookStorage =
-                new JsonAtasStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonAtasStorage studentListStorage =
+                new JsonAtasStorage(temporaryFolder.resolve("studentList.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(jsonSessionListStorage, addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(jsonSessionListStorage, studentListStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -92,14 +92,14 @@ public class LogicManagerTest {
 
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
-        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
+        // Setup LogicManager with JsonStudentListIoExceptionThrowingStub
         JsonSessionListStorage jsonSessionListStorage =
                 new JsonSessionListIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionSessionList.json"));
-        JsonAtasStorage addressBookStorage =
-                new JsonAtasIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+        JsonAtasStorage studentListStorage =
+                new JsonAtasIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionStudentList.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(jsonSessionListStorage, addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(jsonSessionListStorage, studentListStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -179,7 +179,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void saveStudentList(ReadOnlyStudentList addressBook, Path filePath) throws IOException {
+        public void saveStudentList(ReadOnlyStudentList studentList, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

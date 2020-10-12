@@ -12,7 +12,7 @@ import atas.testutil.ModelManagerBuilder;
 public class ClearStudentListCommandTest {
 
     @Test
-    public void execute_emptyAddressBook_success() {
+    public void execute_emptyStudentList_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
@@ -21,7 +21,7 @@ public class ClearStudentListCommandTest {
     }
 
     @Test
-    public void execute_nonEmptyAddressBook_success() {
+    public void execute_nonEmptyStudentList_success() {
         Model model = ModelManagerBuilder.buildTypicalModelManager();
         Model expectedModel = ModelManagerBuilder.buildTypicalModelManager();
         expectedModel.setStudentList(new StudentList());
