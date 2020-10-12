@@ -71,14 +71,14 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void saveStudentList(ReadOnlyStudentList addressBook) throws IOException {
-        saveStudentList(addressBook, atasStorage.getStudentListFilePath());
+    public void saveStudentList(ReadOnlyStudentList studentList) throws IOException {
+        saveStudentList(studentList, atasStorage.getStudentListFilePath());
     }
 
     @Override
-    public void saveStudentList(ReadOnlyStudentList addressBook, Path filePath) throws IOException {
+    public void saveStudentList(ReadOnlyStudentList studentList, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        atasStorage.saveStudentList(addressBook, filePath);
+        atasStorage.saveStudentList(studentList, filePath);
     }
 
     // ================ SessionList methods ==============================
