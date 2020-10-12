@@ -1,4 +1,4 @@
-package atas.logic.commands.studentlist;
+package atas.logic.commands.sessionlist;
 
 import static atas.commons.core.Messages.MESSAGE_SESSION_DOES_NOT_EXIST;
 import static atas.logic.commands.CommandTestUtil.DESC_CON;
@@ -23,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import atas.logic.commands.CommandTestUtil;
-import atas.logic.commands.sessionlist.EditSessionCommand;
+import atas.logic.commands.studentlist.ClearCommand;
 import atas.model.AddressBook;
 import atas.model.Model;
 import atas.model.ModelManager;
@@ -177,6 +177,12 @@ public class EditSessionCommandTest {
         // different session name -> returns false
         SessionName name = new SessionName(VALID_SESSIONNAME_CON);
         assertFalse(standardCommand.equals(new EditSessionCommand(name, DESC_REC)));
+
+        // same descriptor object -> returns true
+        assertTrue(copyDescriptor.equals(copyDescriptor));
+
+        // different type -> returns false
+        assertFalse(copyDescriptor.equals(standardCommand));
 
         // different descriptor -> returns false
         assertFalse(standardCommand.equals(new EditSessionCommand(sessionName, DESC_CON)));

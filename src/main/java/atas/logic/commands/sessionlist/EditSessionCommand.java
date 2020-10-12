@@ -161,7 +161,7 @@ public class EditSessionCommand extends Command {
                 return true;
             }
 
-            // instanceof handles nulls
+            // instanceof handles different types
             if (!(other instanceof EditSessionCommand.EditSessionDescriptor)) {
                 return false;
             }

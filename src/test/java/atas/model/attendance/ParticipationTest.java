@@ -25,5 +25,13 @@ class ParticipationTest {
     @Test
     public void participate() {
         assertEquals(POSITIVE_PARTICIPATION, DEFAULT_PARTICIPATION.toggleParticipation());
+        assertEquals(DEFAULT_PARTICIPATION, POSITIVE_PARTICIPATION.toggleParticipation());
+    }
+
+    @Test
+    public void to_string() {
+        Participation actual = new Participation(true);
+        Participation expected = new Participation(true);
+        assertEquals(expected.toString(), actual.toString());
     }
 }

@@ -1,6 +1,7 @@
 package atas.logic.commands.sessionlist.session;
 
 import static atas.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static atas.testutil.Assert.assertThrows;
 import static atas.testutil.TypicalSessions.SESSIONDATE_WEEK_ONE;
 import static atas.testutil.TypicalSessions.SESSIONNAME_WEEK_ONE;
 import static atas.testutil.TypicalSessions.SESSIONNAME_WEEK_TWO;
@@ -11,6 +12,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import atas.commons.core.Messages;
+import atas.logic.commands.exceptions.CommandException;
 import atas.logic.commands.studentlist.ClearCommand;
 import atas.model.Model;
 import atas.model.attendance.IndexRange;
@@ -48,9 +51,9 @@ public class PresenceCommandTest {
 
         assertCommandSuccess(presenceCommand, model, PresenceCommand.MESSAGE_SUCCESS, expectedModel);
 
-        for (Session s: model.getSessionList().getSessions()) {
+        for (Session s: expectedModel.getSessionList().getSessions()) {
             if (s.isSameSession(SESSION_WEEK_ONE)) {
-                //assertTrue(s.getStudentList().get(0).getPresenceStatus());
+                assertTrue(s.getStudentList().get(0).getPresenceStatus());
             }
         }
     }
@@ -70,11 +73,11 @@ public class PresenceCommandTest {
 
         assertCommandSuccess(presenceCommand, model, PresenceCommand.MESSAGE_SUCCESS, expectedModel);
 
-        for (Session s: model.getSessionList().getSessions()) {
+        for (Session s: expectedModel.getSessionList().getSessions()) {
             if (s.isSameSession(SESSION_WEEK_ONE)) {
-              /*  assertTrue(s.getStudentList().get(0).getPresenceStatus());
+                assertTrue(s.getStudentList().get(0).getPresenceStatus());
                 assertTrue(s.getStudentList().get(1).getPresenceStatus());
-                assertTrue(s.getStudentList().get(2).getPresenceStatus());*/
+                assertTrue(s.getStudentList().get(2).getPresenceStatus());
             }
         }
     }
@@ -94,9 +97,9 @@ public class PresenceCommandTest {
 
         assertCommandSuccess(presenceCommand, model, PresenceCommand.MESSAGE_SUCCESS, expectedModel);
 
-        for (Session s: model.getSessionList().getSessions()) {
+        for (Session s: expectedModel.getSessionList().getSessions()) {
             if (s.isSameSession(SESSION_WEEK_ONE)) {
-                //assertTrue(s.getStudentList().get(0).getPresenceStatus());
+                assertTrue(s.getStudentList().get(0).getPresenceStatus());
             }
         }
     }
@@ -116,11 +119,27 @@ public class PresenceCommandTest {
 
         assertCommandSuccess(presenceCommand, model, PresenceCommand.MESSAGE_SUCCESS, expectedModel);
 
-        for (Session s: model.getSessionList().getSessions()) {
+        for (Session s: expectedModel.getSessionList().getSessions()) {
             if (s.isSameSession(SESSION_WEEK_ONE)) {
-                //assertTrue(s.getStudentList().get(1).getPresenceStatus());
+                assertTrue(s.getStudentList().get(1).getPresenceStatus());
             }
         }
+    }
+
+    @Test
+    public void execute_notInSessionTab_throwsCommandException() {
+        // actual model
+        IndexRange indexRange = new IndexRange(INDEXRANGE_ONE_NUMBER);
+        PresenceCommand presenceCommand = new PresenceCommand(SESSIONNAME_WEEK_ONE, indexRange);
+
+        // expected model
+        Model expectedModel = ModelManagerBuilder.buildTypicalModelManager();
+        Session session = new Session(SESSIONNAME_WEEK_ONE, SESSIONDATE_WEEK_ONE);
+        expectedModel.addSession(session);
+        session.updatePresence(indexRange);
+
+        assertThrows(CommandException.class,
+                Messages.MESSAGE_NOT_IN_SESSION_TAB, () -> presenceCommand.execute(expectedModel));
     }
 
     @Test
