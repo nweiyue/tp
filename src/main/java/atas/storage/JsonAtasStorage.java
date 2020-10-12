@@ -16,7 +16,7 @@ import atas.commons.util.JsonUtil;
 import atas.model.ReadOnlyStudentList;
 
 /**
- * A class to access AddressBook data stored as a json file on the hard disk.
+ * A class to access Atas data stored as a json file on the hard disk.
  */
 public class JsonAtasStorage implements AtasStorage {
 
@@ -61,8 +61,8 @@ public class JsonAtasStorage implements AtasStorage {
     }
 
     @Override
-    public void saveStudentList(ReadOnlyStudentList addressBook) throws IOException {
-        saveStudentList(addressBook, filePath);
+    public void saveStudentList(ReadOnlyStudentList studentList) throws IOException {
+        saveStudentList(studentList, filePath);
     }
 
     /**
@@ -70,12 +70,12 @@ public class JsonAtasStorage implements AtasStorage {
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveStudentList(ReadOnlyStudentList addressBook, Path filePath) throws IOException {
-        requireNonNull(addressBook);
+    public void saveStudentList(ReadOnlyStudentList studentList, Path filePath) throws IOException {
+        requireNonNull(studentList);
         requireNonNull(filePath);
 
         createIfMissing(filePath);
-        saveJsonFile(new JsonSerializableStudentList(addressBook), filePath);
+        saveJsonFile(new JsonSerializableStudentList(studentList), filePath);
     }
 
 }

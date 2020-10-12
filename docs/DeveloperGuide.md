@@ -25,7 +25,7 @@ title: Developer Guide
   * [Glossary](#glossary)
 * [**Appendix: Instructions for manual testing**](#appendix_manual_testing)
   * [Launch and shutdown](#launch_shutdown)
-  * [Deleting a student](#deleting_a_studentn)
+  * [Deleting a student](#deleting_a_student)
   * [Saving data](#saving_data)
 
 --------------------------------------------------------------------------------------------------------------------

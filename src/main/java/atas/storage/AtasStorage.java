@@ -19,7 +19,7 @@ public interface AtasStorage {
     Path getStudentListFilePath();
 
     /**
-     * Returns AddressBook data as a {@link ReadOnlyStudentList}.
+     * Returns StudentList data as a {@link ReadOnlyStudentList}.
      *   Returns {@code Optional.empty()} if storage file is not found.
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
@@ -33,14 +33,14 @@ public interface AtasStorage {
 
     /**
      * Saves the given {@link ReadOnlyStudentList} to the storage.
-     * @param addressBook cannot be null.
+     * @param studentList cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveStudentList(ReadOnlyStudentList addressBook) throws IOException;
+    void saveStudentList(ReadOnlyStudentList studentList) throws IOException;
 
     /**
      * @see #saveStudentList(ReadOnlyStudentList)
      */
-    void saveStudentList(ReadOnlyStudentList addressBook, Path filePath) throws IOException;
+    void saveStudentList(ReadOnlyStudentList studentList, Path filePath) throws IOException;
 
 }
