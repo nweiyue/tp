@@ -15,7 +15,7 @@ import atas.model.Model;
 import atas.model.ModelManager;
 import atas.testutil.ModelManagerBuilder;
 
-class EnterSessionCommandTest {
+public class EnterSessionCommandTest {
 
     private Model model = ModelManagerBuilder.buildTypicalModelManager();
     private Index indexOne = Index.fromOneBased(1);

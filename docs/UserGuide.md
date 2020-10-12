@@ -230,14 +230,14 @@ editses INDEX s/NEW_NAME d/NEW_DATE
 * User will then be prompted for a confirmation input **`(yes/no)`**.
 
 Examples:
-* `editsession 2 s/Tutorial1 d/10/10/2020` followed by `yes` edits the 2nd session in the session list with a new session name `Tutorial1` and a new session date `10/10/2020`.
+* `editses 2 s/Tutorial1 d/10/10/2020` followed by `yes` edits the 2nd session in the session list with a new session name `Tutorial1` and a new session date `10/10/2020`.
 
 ### <a name="enterses"></a>Entering a session : `enterses`
 
 Enters a session in the session list.
 
 ```
-enter INDEX
+enterses INDEX
 ```
 
 * Enters the session at the specified `INDEX`.
@@ -252,7 +252,7 @@ Examples:
 Toggles the participation status of a student in the student list of the session.
 
 ```
-PARTICIPATE INDEX_RANGE
+participate INDEX_RANGE
 ```
 
 * Toggles the participation status of the student at the specified `INDEX_RANGE`.
@@ -267,7 +267,7 @@ Examples:
 Toggles the presence status of a student in the student list of the session.
 
 ```
-PARTICIPATE INDEX_RANGE
+presence INDEX_RANGE
 ```
 
 * Toggles the presence status of the student at the specified `INDEX_RANGE`.
