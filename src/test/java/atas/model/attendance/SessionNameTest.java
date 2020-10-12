@@ -5,6 +5,7 @@ import static atas.testutil.TypicalSessions.SESSIONNAME_WEEK_ONE;
 import static atas.testutil.TypicalSessions.SESSIONNAME_WEEK_ONE_STRING;
 import static atas.testutil.TypicalSessions.SESSIONNAME_WEEK_THREE_STRING;
 import static atas.testutil.TypicalSessions.SESSIONNAME_WEEK_TWO;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -58,6 +59,13 @@ public class SessionNameTest {
         // different date -> returns false
         SessionName sessionDateDiff = new SessionName(SESSIONNAME_WEEK_THREE_STRING);
         assertFalse(SESSIONNAME_WEEK_ONE.equals(sessionDateDiff));
+    }
+
+    @Test
+    public void hashcode() {
+        SessionName actual = new SessionName("a");
+        SessionName expected = new SessionName("a");
+        assertEquals(expected.hashCode(), actual.hashCode());
     }
 
 }

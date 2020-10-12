@@ -19,6 +19,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import atas.commons.core.index.Index;
+import atas.testutil.TypicalSessions;
 
 class SessionTest {
 
@@ -93,15 +94,18 @@ class SessionTest {
         assertEquals(PRESENT_AND_HAS_PARTICIPATED, sessionWeekThree.getStudentList().get(index.getZeroBased()));
     }
 
+    @Test
+    public void getEmptyAttributeList() {
+        Session actual = TypicalSessions.TUT1;
+        Session expected = TypicalSessions.TUT2;
+        assertEquals(expected.getAttributesAsList(), actual.getAttributesAsList());
+    }
 
-
-
-
-
-
-
-
-
-
+    @Test
+    public void compareTo() {
+        Session actual = TypicalSessions.TUT1;
+        Session expected = TypicalSessions.TUT2;
+        assertTrue(expected.compareTo(actual) > 0);
+    }
 
 }

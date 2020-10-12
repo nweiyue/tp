@@ -57,6 +57,13 @@ class PresenceTest {
     @Test
     public void becomePresent() {
         assertEquals(POSITIVE_PRESENCE, DEFAULT_PRESENCE.togglePresence());
+        assertEquals(DEFAULT_PRESENCE, POSITIVE_PRESENCE.togglePresence());
     }
 
+    @Test
+    public void to_string() {
+        Presence actual = new Presence(true);
+        Presence expected = new Presence(true);
+        assertEquals(expected.toString(), actual.toString());
+    }
 }
