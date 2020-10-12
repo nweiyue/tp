@@ -46,14 +46,14 @@ public class JsonAtasStorage implements AtasStorage {
     public Optional<ReadOnlyStudentList> readStudentList(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableStudentList> jsonAddressBook = JsonUtil.readJsonFile(
+        Optional<JsonSerializableStudentList> jsonStudentList = JsonUtil.readJsonFile(
                 filePath, JsonSerializableStudentList.class);
-        if (!jsonAddressBook.isPresent()) {
+        if (!jsonStudentList.isPresent()) {
             return Optional.empty();
         }
 
         try {
-            return Optional.of(jsonAddressBook.get().toModelType());
+            return Optional.of(jsonStudentList.get().toModelType());
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);

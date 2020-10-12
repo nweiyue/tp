@@ -8,7 +8,7 @@ import atas.logic.commands.CommandResult;
 import atas.model.Model;
 
 /**
- * Lists all students in the address book to the user.
+ * Lists all students in the student list to the user.
  */
 public class ListCommand extends Command {
 

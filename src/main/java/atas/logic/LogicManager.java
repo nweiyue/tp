@@ -58,7 +58,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyStudentList getAddressBook() {
+    public ReadOnlyStudentList getStudentList() {
         return model.getStudentList();
     }
 
@@ -78,7 +78,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
+    public Path getStudentListFilePath() {
         return model.getStudentListFilePath();
     }
 

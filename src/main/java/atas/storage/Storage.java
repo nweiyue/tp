@@ -28,7 +28,7 @@ public interface Storage extends SessionListStorage, AtasStorage, UserPrefsStora
     Optional<ReadOnlyStudentList> readStudentList() throws DataConversionException, IOException;
 
     @Override
-    void saveStudentList(ReadOnlyStudentList addressBook) throws IOException;
+    void saveStudentList(ReadOnlyStudentList studentList) throws IOException;
 
     @Override
     Path getSessionListFilePath();

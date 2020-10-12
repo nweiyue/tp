@@ -13,7 +13,7 @@ import atas.model.ReadOnlyUserPrefs;
 import atas.model.UserPrefs;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of Atas data in local storage.
  */
 public class StorageManager implements Storage {
 
@@ -23,7 +23,7 @@ public class StorageManager implements Storage {
     private UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code SessionListStorage}, {@code AddressBookStorage}
+     * Creates a {@code StorageManager} with the given {@code SessionListStorage}, {@code StudentListStorage}
      * and {@code UserPrefStorage}.
      */
     public StorageManager(SessionListStorage sessionListStorage, AtasStorage atasStorage,

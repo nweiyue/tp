@@ -27,11 +27,11 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the StudentList.
      *
      * @see Model#getStudentList()
      */
-    ReadOnlyStudentList getAddressBook();
+    ReadOnlyStudentList getStudentList();
 
     /** Returns an unmodifiable view of the filtered list of students */
     ObservableList<Student> getFilteredStudentList();
@@ -49,9 +49,9 @@ public interface Logic {
     void enableCurrentSession();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' student list file path.
      */
-    Path getAddressBookFilePath();
+    Path getStudentListFilePath();
 
     /**
      * Returns the user prefs' GUI settings.
