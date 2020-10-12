@@ -24,7 +24,7 @@ public class EditSessionCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: SESSION_NAME "
             + "[" + CliSyntax.PREFIX_SESSIONNAME + "SESSION_NAME] "
-            + "[" + CliSyntax.PREFIX_SESSIONDATE + "DATE] \n"
+            + "[" + CliSyntax.PREFIX_SESSIONDATE + "SESSION_DATE] \n"
             + "Example: " + COMMAND_WORD + " tut1 "
             + CliSyntax.PREFIX_SESSIONNAME + "Tutorial1 "
             + CliSyntax.PREFIX_SESSIONDATE + "10/10/2020";

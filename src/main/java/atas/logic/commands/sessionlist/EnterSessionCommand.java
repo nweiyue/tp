@@ -17,7 +17,7 @@ public class EnterSessionCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Enters a particular session. "
             + "Parameters: "
-            + CliSyntax.PREFIX_SESSIONINDEX + "SESSION_INDEX "
+            + CliSyntax.PREFIX_SESSIONINDEX + "INDEX "
             + "\n"
             + "Example: " + COMMAND_WORD + " "
             + CliSyntax.PREFIX_SESSIONINDEX + "1 ";
