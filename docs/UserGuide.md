@@ -16,6 +16,10 @@ ATAS is a **desktop app for managing students’ particulars, optimized for use 
   * [Deleting a student](#delete)
   * [Editing a student's particulars](#edit)
   * [Clearing all entries](#clear)
+  * [Adding a session](#addses)
+  * [Deleting a session](#deleteses)
+  * [Editing a session details](#editses)
+  * [Entering a session](#enterses)
   * [Switching between tabs](#switch)
   * [Exiting the program](#exit)
   * [User confirmation prompt](#ucp) (coming soon)
@@ -158,7 +162,7 @@ If yes: edits and updates the particulars of the specified student from the clas
 edit INDEX n/UPDATED_NAME
 ```
 
-* Edits the student at the specified `INDEX` with the specified updated particular to be updated.
+* Edits the student at the specified `INDEX` with the specified particular to be updated.
 * The index refers to the index number shown in the displayed class list.
 * The index **must be a positive integer** 1, 2, 3, …
 * User will then be prompted for a confirmation input **`(yes/no)`**.
@@ -176,6 +180,102 @@ If yes: removes all students from the class list.
 ```
 clear
 ```
+
+### <a name="addses"></a>Adding a session : `addses`
+
+Adds a session to session list.
+
+```
+addses s/SESSION_NAME d/SESSION_DATE
+```
+
+:bulb: **Tip:**<div markdown="span" class="alert alert-primary">
+Two sessions cannot have the same name
+</div>
+
+Examples:
+* `addses s/tut1 d/12/7/2020`
+
+### <a name="deleteses"></a>Deleting a session : `deleteses`
+
+The user will be prompted to confirm their decision here.
+
+If yes: deletes the specified session from the session list.
+
+```
+deleteses INDEX
+```
+
+* Deletes the session at the specified `INDEX`.
+* The index refers to the index number shown in the displayed session list.
+* The index **must be a positive integer** 1, 2, 3, …
+* User will then be prompted for a confirmation input **`(yes/no)`**.
+
+Examples:
+* `deleteses s/tut1 d/12/7/2020` followed by `yes` deletes the 2nd session in the session list.
+
+### <a name="editses"></a>Editing a session : `editses`
+
+The user will be prompted to confirm their decision here.
+
+If yes: edits and updates the details of the specified session from the session list.
+
+```
+editses INDEX s/NEW_NAME d/NEW_DATE
+```
+
+* Edits the session at the specified `INDEX` with the specified details to be updated.
+* The index refers to the index number shown in the displayed session list.
+* The index **must be a positive integer** 1, 2, 3, …
+* User will then be prompted for a confirmation input **`(yes/no)`**.
+
+Examples:
+* `editsession 2 s/Tutorial1 d/10/10/2020` followed by `yes` edits the 2nd session in the session list with a new session name `Tutorial1` and a new session date `10/10/2020`.
+
+### <a name="enterses"></a>Entering a session : `enterses`
+
+Enters a session in the session list.
+
+```
+enter INDEX
+```
+
+* Enters the session at the specified `INDEX`.
+* The index refers to the index number shown in the displayed session list.
+* The index **must be a positive integer** 1, 2, 3, …
+
+Examples:
+* `enterses 1` enters the first session and allows you to use PARTICIPATE and PRESENCE commands.
+
+### <a name="participate"></a>Toggling participation status of student : `participate`
+
+Toggles the participation status of a student in the student list of the session.
+
+```
+PARTICIPATE INDEX_RANGE
+```
+
+* Toggles the participation status of the student at the specified `INDEX_RANGE`.
+* The index range refers to the range of index numbers shown in the displayed class list of the session.
+* The index range **must be a positive integer** 1, 2, 3, … OR **a positive index range** 1-4, 2-5, 2-9 … 
+
+Examples:
+* `participate 1-4` toggles the participation status of students 1 to 4.
+
+### <a name="presence"></a>Toggling presence status of student : `presence`
+
+Toggles the presence status of a student in the student list of the session.
+
+```
+PARTICIPATE INDEX_RANGE
+```
+
+* Toggles the presence status of the student at the specified `INDEX_RANGE`.
+* The index range refers to the range of index numbers shown in the displayed class list of the session.
+* The index range **must be a positive integer** 1, 2, 3, … OR **a positive index range** 1-4, 2-5, 2-9 … 
+
+Examples:
+* `presence 1-4` toggles the presence status of students 1 to 4.
 
 ### <a name="switch"></a>Switching between tabs : `switch`
 
@@ -232,6 +332,11 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Justin Bieber`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX n/UPDATED_NAME`<br> e.g., `edit 2 n/John Cena`
+**Addses** | `addses s/SESSION_NAME d/SESSION_DATE`<br> e.g., `addses s/TUT1 d/10/10/2020`
+**Deleteses** | `deleteses INDEX `<br> e.g., `deleteses 2`
+**Editses** | `editses INDEX s/UPDATED_NAME d/UPDATED_DATE`<br> e.g., `editses 2 s/TUT2 d/10/10/2020`
+**Participate** | `participate INDEX `<br> e.g., `participate 2`
+**Presence** | `presence INDEX `<br> e.g., `presence 2`
 **Clear** | `clear`
 **Switch** | `switch TAB_NAME`<br> e.g., `switch attendance`
 **Exit** | `bye`
