@@ -45,18 +45,18 @@ public class EnterSessionCommandParserTest {
     @Test
     public void parse_validArgs_returnsEnterCommand() {
         assertParseSuccess(parser, " " + CliSyntax.PREFIX_SESSIONINDEX + "1",
-                new EnterSessionCommand(Index.fromOneBased(1)));
+            new EnterSessionCommand(Index.fromOneBased(1)));
     }
 
     @Test
     public void parse_invalidSessionIndex_throwsParseException() {
         CommandParserTestUtil.assertParseFailure(parser, " " + CliSyntax.PREFIX_SESSIONINDEX + "~",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, EnterSessionCommand.MESSAGE_USAGE));
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, EnterSessionCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_invalidSessionIndexZero_throwsParseException() {
         CommandParserTestUtil.assertParseFailure(parser, " " + CliSyntax.PREFIX_SESSIONINDEX + "-1",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, EnterSessionCommand.MESSAGE_USAGE));
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, EnterSessionCommand.MESSAGE_USAGE));
     }
 }
