@@ -47,7 +47,7 @@ public class SessionList implements Iterable<Session>, ReadOnlySessionList {
     }
 
     /**
-     * Updates the person list of the session.
+     * Updates the student list of the session.
      */
     @Override
     public void updateStudentList(List<Student> list) {
@@ -230,6 +230,6 @@ public class SessionList implements Iterable<Session>, ReadOnlySessionList {
 
     @Override
     public String toString() {
-        return "SessionList{" + "sessions=" + sessions + ", internalPersonList=" + internalStudentList + '}';
+        return "SessionList{" + "sessions=" + sessions + ", internalStudentList=" + internalStudentList + '}';
     }
 }

@@ -3,7 +3,7 @@ package atas.model;
 import static atas.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static atas.testutil.Assert.assertThrows;
 import static atas.testutil.TypicalStudents.ALICE;
-import static atas.testutil.TypicalStudents.getTypicalAddressBook;
+import static atas.testutil.TypicalStudents.getTypicalStudentList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -36,15 +36,15 @@ public class StudentListTest {
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        StudentList newData = getTypicalAddressBook();
+    public void resetData_withValidReadOnlyStudentList_replacesData() {
+        StudentList newData = getTypicalStudentList();
         studentList.resetData(newData);
         assertEquals(newData, studentList);
     }
 
     @Test
-    public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
-        // Two persons with the same identity fields
+    public void resetData_withDuplicateStudents_throwsDuplicateStudentsException() {
+        // Two students with the same identity fields
         Student editedAlice = new StudentBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Student> newStudents = Arrays.asList(ALICE, editedAlice);
@@ -54,23 +54,23 @@ public class StudentListTest {
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
+    public void hasStudent_nullStudent_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> studentList.hasStudent(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    public void hasStudent_studentNotInStudentList_returnsFalse() {
         assertFalse(studentList.hasStudent(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
+    public void hasStudent_studentInStudentList_returnsTrue() {
         studentList.addStudent(ALICE);
         assertTrue(studentList.hasStudent(ALICE));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
+    public void hasStudent_studentWithSameIdentityFieldsInStudentList_returnsTrue() {
         studentList.addStudent(ALICE);
         Student editedAlice = new StudentBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
@@ -78,12 +78,12 @@ public class StudentListTest {
     }
 
     @Test
-    public void getPersonList_modifyList_throwsUnsupportedOperationException() {
+    public void getStudentList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> studentList.getStudentList().remove(0));
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
+     * A stub ReadOnlyStudentList whose students list can violate interface constraints.
      */
     private static class StudentListStub implements ReadOnlyStudentList {
         private final ObservableList<Student> students = FXCollections.observableArrayList();

@@ -137,7 +137,7 @@ public class MainWindow extends UiPart<Stage> {
 
 
     void updateLists() {
-        studentListPanel = new StudentListPanel(logic.getFilteredPersonList());
+        studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
         personListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
 
         sessionListPanel = new SessionListPanel(logic.getFilteredSessionList());
@@ -150,7 +150,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        studentListPanel = new StudentListPanel(logic.getFilteredPersonList());
+        studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
         personListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
 
         sessionListPanel = new SessionListPanel(logic.getFilteredSessionList());
@@ -255,7 +255,7 @@ public class MainWindow extends UiPart<Stage> {
         });
     }
 
-    public StudentListPanel getPersonListPanel() {
+    public StudentListPanel getStudentListPanel() {
         return studentListPanel;
     }
 

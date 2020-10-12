@@ -28,22 +28,22 @@ public class JsonAtasStorage implements AtasStorage {
         this.filePath = filePath;
     }
 
-    public Path getAddressBookFilePath() {
+    public Path getStudentListFilePath() {
         return filePath;
     }
 
     @Override
-    public Optional<ReadOnlyStudentList> readAddressBook() throws DataConversionException {
-        return readAddressBook(filePath);
+    public Optional<ReadOnlyStudentList> readStudentList() throws DataConversionException {
+        return readStudentList(filePath);
     }
 
     /**
-     * Similar to {@link #readAddressBook()}.
+     * Similar to {@link #readStudentList()}.
      *
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlyStudentList> readAddressBook(Path filePath) throws DataConversionException {
+    public Optional<ReadOnlyStudentList> readStudentList(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
         Optional<JsonSerializableStudentList> jsonAddressBook = JsonUtil.readJsonFile(
@@ -61,16 +61,16 @@ public class JsonAtasStorage implements AtasStorage {
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyStudentList addressBook) throws IOException {
-        saveAddressBook(addressBook, filePath);
+    public void saveStudentList(ReadOnlyStudentList addressBook) throws IOException {
+        saveStudentList(addressBook, filePath);
     }
 
     /**
-     * Similar to {@link #saveAddressBook(ReadOnlyStudentList)}.
+     * Similar to {@link #saveStudentList(ReadOnlyStudentList)}.
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveAddressBook(ReadOnlyStudentList addressBook, Path filePath) throws IOException {
+    public void saveStudentList(ReadOnlyStudentList addressBook, Path filePath) throws IOException {
         requireNonNull(addressBook);
         requireNonNull(filePath);
 

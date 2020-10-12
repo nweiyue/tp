@@ -20,7 +20,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the student list data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -86,10 +86,10 @@ public class ModelManager implements Model {
     @Override
     public void setStudentListFilePath(Path studentListFilePath) {
         requireNonNull(studentListFilePath);
-        userPrefs.setAddressBookFilePath(studentListFilePath);
+        userPrefs.setStudentListFilePath(studentListFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== StudentList ================================================================================
 
     @Override
     public void setStudentList(ReadOnlyStudentList studentList) {
@@ -118,7 +118,7 @@ public class ModelManager implements Model {
     @Override
     public void addStudent(Student student) {
         studentList.addStudent(student);
-        updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         sessionList.updateStudentList(studentList.getStudentList());
         sessionList.updateAllSessionsAfterAdd();
     }
@@ -191,11 +191,11 @@ public class ModelManager implements Model {
         sessionList.updateStudentPresence(sessionName, indexRange);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Student List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * Returns an unmodifiable view of the list of {@code Student} backed by the internal list of
+     * {@code versionedStudentList}
      */
     @Override
     public ObservableList<Student> getFilteredStudentList() {

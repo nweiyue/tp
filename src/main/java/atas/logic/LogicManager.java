@@ -49,7 +49,7 @@ public class LogicManager implements Logic {
 
         try {
             storage.saveSessionList(model.getSessionList());
-            storage.saveAddressBook(model.getStudentList());
+            storage.saveStudentList(model.getStudentList());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -63,7 +63,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Student> getFilteredPersonList() {
+    public ObservableList<Student> getFilteredStudentList() {
         return model.getFilteredStudentList();
     }
 

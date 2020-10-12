@@ -33,8 +33,8 @@ public interface Logic {
      */
     ReadOnlyStudentList getAddressBook();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Student> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered list of students */
+    ObservableList<Student> getFilteredStudentList();
 
     /** Returns an unmodifiable view of the filtered list of sessions */
     ObservableList<Session> getFilteredSessionList();

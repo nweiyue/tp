@@ -27,7 +27,7 @@ public class AddStudentCommandIntegrationTest {
     }
 
     @Test
-    public void execute_newPerson_success() {
+    public void execute_newStudent_success() {
         Student validStudent = new StudentBuilder().build();
 
         Model expectedModel = new ModelManager(getTypicalSessionList(model.getStudentList().getStudentList()),
@@ -39,9 +39,9 @@ public class AddStudentCommandIntegrationTest {
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
+    public void execute_duplicateStudent_throwsCommandException() {
         Student studentInList = model.getStudentList().getStudentList().get(0);
-        assertCommandFailure(new AddStudentCommand(studentInList), model, AddStudentCommand.MESSAGE_DUPLICATE_PERSON);
+        assertCommandFailure(new AddStudentCommand(studentInList), model, AddStudentCommand.MESSAGE_DUPLICATE_STUDENT);
     }
 
 }

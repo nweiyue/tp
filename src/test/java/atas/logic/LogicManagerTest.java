@@ -1,6 +1,6 @@
 package atas.logic;
 
-import static atas.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static atas.commons.core.Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
 import static atas.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static atas.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static atas.logic.commands.CommandTestUtil.MATRICULATION_DESC_AMY;
@@ -74,14 +74,14 @@ public class LogicManagerTest {
         String deleteCommand = DeleteStudentCommand.COMMAND_WORD + " " + outOfBoundIndexOneBased;
         assertCommandSuccess(deleteCommand, String.format(ConfirmationCommand.MESSAGE_CONFIRMATION_DELETE,
                 outOfBoundIndexOneBased), model);
-        assertCommandException(ACCEPT_COMMAND_FULL, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandException(ACCEPT_COMMAND_FULL, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
 
 
         String editCommand = EditStudentCommand.COMMAND_WORD + " " + outOfBoundIndexOneBased + " "
                 + PREFIX_TAG + "newTag";
         assertCommandSuccess(editCommand, String.format(ConfirmationCommand.MESSAGE_CONFIRMATION_EDIT,
                 outOfBoundIndexOneBased), model);
-        assertCommandException(ACCEPT_COMMAND_FULL, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandException(ACCEPT_COMMAND_FULL, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     @Test
@@ -112,8 +112,8 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+    public void getFilteredStudentList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredStudentList().remove(0));
     }
 
     /**
@@ -179,7 +179,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void saveAddressBook(ReadOnlyStudentList addressBook, Path filePath) throws IOException {
+        public void saveStudentList(ReadOnlyStudentList addressBook, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

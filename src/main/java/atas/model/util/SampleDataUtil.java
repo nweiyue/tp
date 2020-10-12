@@ -13,10 +13,10 @@ import atas.model.student.Student;
 import atas.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code StudentList} with sample data.
  */
 public class SampleDataUtil {
-    public static Student[] getSamplePersons() {
+    public static Student[] getSampleStudents() {
         return new Student[] {
             new Student(new Name("Alex Yeoh"), new Matriculation("A1234567X"), new Email("alexyeoh@u.nus.edu"),
                 getTagSet("friends")),
@@ -27,9 +27,9 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyStudentList getSampleAddressBook() {
+    public static ReadOnlyStudentList getSampleStudentList() {
         StudentList sampleAb = new StudentList();
-        for (Student sampleStudent : getSamplePersons()) {
+        for (Student sampleStudent : getSampleStudents()) {
             sampleAb.addStudent(sampleStudent);
         }
         return sampleAb;

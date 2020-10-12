@@ -25,7 +25,7 @@ title: Developer Guide
   * [Glossary](#glossary)
 * [**Appendix: Instructions for manual testing**](#appendix_manual_testing)
   * [Launch and shutdown](#launch_shutdown)
-  * [Deleting a student](#deleting_a_person)
+  * [Deleting a student](#deleting_a_studentn)
   * [Saving data](#saving_data)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -450,7 +450,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### <a name="deleting_a_person"></a>Deleting a student
+### <a name="deleting_a_student"></a>Deleting a student
 
 1. Deleting a student while all students are being shown
 

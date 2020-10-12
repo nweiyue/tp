@@ -1,6 +1,6 @@
 {
-  "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
-  "persons" : [ {
+  "_comment": "StudentList save file which contains the same Student values as in TypicalStudents#getTypicalStudentList()",
+  "students" : [ {
     "name" : "Alice Pauline",
     "matriculation" : "A2395823W",
     "email" : "alice@u.nus.edu",

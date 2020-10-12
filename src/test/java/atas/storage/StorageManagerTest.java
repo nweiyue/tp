@@ -1,6 +1,6 @@
 package atas.storage;
 
-import static atas.testutil.TypicalStudents.getTypicalAddressBook;
+import static atas.testutil.TypicalStudents.getTypicalStudentList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -25,9 +25,9 @@ public class StorageManagerTest {
     @BeforeEach
     public void setUp() {
         JsonSessionListStorage sessionListStorage = new JsonSessionListStorage(getTempFilePath("sl"));
-        JsonAtasStorage addressBookStorage = new JsonAtasStorage(getTempFilePath("ab"));
+        JsonAtasStorage studentListStorage = new JsonAtasStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(sessionListStorage, addressBookStorage, userPrefsStorage);
+        storageManager = new StorageManager(sessionListStorage, studentListStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -49,21 +49,21 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void addressBookReadSave() throws Exception {
+    public void studentListReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
-         * {@link JsonAddressBookStorage} class.
-         * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
+         * {@link JsonStudentListStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonStudentListStorageTest} class.
          */
-        StudentList original = getTypicalAddressBook();
-        storageManager.saveAddressBook(original);
-        ReadOnlyStudentList retrieved = storageManager.readAddressBook().get();
+        StudentList original = getTypicalStudentList();
+        storageManager.saveStudentList(original);
+        ReadOnlyStudentList retrieved = storageManager.readStudentList().get();
         assertEquals(original, new StudentList(retrieved));
     }
 
     @Test
-    public void getAddressBookFilePath() {
-        assertNotNull(storageManager.getAddressBookFilePath());
+    public void getStudentListFilePath() {
+        assertNotNull(storageManager.getStudentListFilePath());
     }
 
 }

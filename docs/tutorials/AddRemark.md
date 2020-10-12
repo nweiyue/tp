@@ -5,7 +5,7 @@ title: "Tutorial: Adding a command"
 
 Let's walk you through the implementation of a new command — `remark`.
 
-This command allows users of the AddressBook application to add optional remarks to people in their address book and edit it if required. The command should have the following format:
+This command allows users of the StudentList application to add optional remarks to people in their student list and edit it if required. The command should have the following format:
 
 `remark INDEX r/REMARK` (e.g., `remark 2 r/Likes baseball`)
 
@@ -28,7 +28,7 @@ package seedu.address.logic.commands;
 import atas.model.Model;
 
 /**
- * Changes the remark of an existing student in the address book.
+ * Changes the remark of an existing student in the student list.
  */
 public class RemarkCommand extends Command {
 
@@ -43,7 +43,7 @@ public class RemarkCommand extends Command {
 
 ### Hook `RemarkCommand` into the application
 
-Now that we have our `RemarkCommand` ready to be executed, we need to update `AddressBookParser#parseCommand()` to recognize the `remark` keyword. Add the new command to the `switch` block by creating a new `case` that returns a new instance of `RemarkCommand`.
+Now that we have our `RemarkCommand` ready to be executed, we need to update `StudentListParser#parseCommand()` to recognize the `remark` keyword. Add the new command to the `switch` block by creating a new `case` that returns a new instance of `RemarkCommand`.
 
 You can refer to the changes in this [diff](https://github.com/se-edu/addressbook-level3/commit/35eb7286f18a029d39cb7a29df8f172a001e4fd8#diff-34ace715a8a8d2e5a66e71289f017b47).
 
@@ -213,7 +213,7 @@ public RemarkCommand parse(String args) throws ParseException {
 
 <div markdown="span" class="alert alert-primary">
 
-:information_source: Don’t forget to update `AddressBookParser` to use our new `RemarkCommandParser`!
+:information_source: Don’t forget to update `StudentListParser` to use our new `RemarkCommandParser`!
 
 </div>
 
@@ -222,7 +222,7 @@ If you are stuck, check out the sample
 
 ## Add `Remark` to the model
 
-Now that we have all the information that we need, let’s lay the groundwork for propagating the remarks added into the in-memory storage of student data. We achieve that by working with the `Person` model. Each field in a Person is implemented as a separate class (e.g. a `Name` object represents the student’s name). That means we should add a `Remark` class so that we can use a `Remark` object to represent a remark given to a student.
+Now that we have all the information that we need, let’s lay the groundwork for propagating the remarks added into the in-memory storage of student data. We achieve that by working with the `Student` model. Each field in a Student is implemented as a separate class (e.g. a `Name` object represents the student’s name). That means we should add a `Remark` class so that we can use a `Remark` object to represent a remark given to a student.
 
 ### Add a new `Remark` class
 
@@ -241,7 +241,7 @@ Without getting too deep into `fxml`, let’s go on a 5 minute adventure to get 
 
 Simply add the following to [`atas.ui.StudentCard`](https://github.com/se-edu/addressbook-level3/commit/850b78879582f38accb05dd20c245963c65ea599#diff-0c6b6abcfac8c205e075294f25e851fe).
 
-**`PersonCard.java`:**
+**`StudentCard.java`:**
 
 ``` java
 @FXML
@@ -251,9 +251,9 @@ private Label remark;
 
 `@FXML` is an annotation that marks a private or protected field and makes it accessible to FXML. It might sound like Greek to you right now, don’t worry — we will get back to it later.
 
-Then insert the following into [`main/resources/view/PersonListCard.fxml`](https://github.com/se-edu/addressbook-level3/commit/850b78879582f38accb05dd20c245963c65ea599#diff-12580431f55d7880578aa4c16f249e71).
+Then insert the following into [`main/resources/view/StudentListCard.fxml`](https://github.com/se-edu/addressbook-level3/commit/850b78879582f38accb05dd20c245963c65ea599#diff-12580431f55d7880578aa4c16f249e71).
 
-**`PersonListCard.fxml`:**
+**`StudentListCard.fxml`:**
 
 ``` xml
 <Label fx:id="remark" styleClass="cell_small_label" text="\$remark" />
@@ -263,21 +263,21 @@ That’s it! Fire up the application again and you should see something like thi
 
 ![$remark shows up in each entry](../images/add-remark/$Remark.png)
 
-## Modify `Person` to support a `Remark` field
+## Modify `Student` to support a `Remark` field
 
-Since `PersonCard` displays data from a `Person`, we need to update `Person` to get our `Remark` displayed!
+Since `StudentCard` displays data from a `Student`, we need to update `Student` to get our `Remark` displayed!
 
-### Modify `Person`
+### Modify `Student`
 
-We change the constructor of `Person` to take a `Remark`. We will also need to define new fields and accessors accordingly to store our new addition.
+We change the constructor of `Student` to take a `Remark`. We will also need to define new fields and accessors accordingly to store our new addition.
 
-### Update other usages of `Person`
+### Update other usages of `Student`
 
-Unfortunately, a change to `Person` will cause other commands to break, you will have to modify these commands to use the updated `Person`!
+Unfortunately, a change to `Student` will cause other commands to break, you will have to modify these commands to use the updated `Student`!
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: Use the `Find Usages` feature in IntelliJ IDEA on the `Person` class to find these commands.
+:bulb: Use the `Find Usages` feature in IntelliJ IDEA on the `Student` class to find these commands.
 
 </div>
 
@@ -286,13 +286,13 @@ Refer to [this commit](https://github.com/se-edu/addressbook-level3/commit/ce998
 
 ## Updating Storage
 
-AddressBook stores data by serializing `JsonAdaptedPerson` into `json` with the help of an external library — Jackson. Let’s update `JsonAdaptedPerson` to work with our new `Person`!
+StudentList stores data by serializing `JsonAdaptedStudent` into `json` with the help of an external library — Jackson. Let’s update `JsonAdaptedStudent` to work with our new `Student`!
 
 While the changes to code may be minimal, the test data will have to be updated as well.
 
 <div markdown="span" class="alert alert-warning">
 
-:exclamation: You must delete AddressBook’s storage file located at `/data/addressbook.json` before running it! Not doing so will cause AddressBook to default to an empty address book!
+:exclamation: You must delete StudentList’s storage file located at `/data/addressbook.json` before running it! Not doing so will cause StudentList to default to an empty student list!
 
 </div>
 
@@ -301,14 +301,14 @@ to see what the changes entail.
 
 ## Finalizing the UI
 
-Now that we have finalized the `Person` class and its dependencies, we can now bind the `Remark` field to the UI.
+Now that we have finalized the `Student` class and its dependencies, we can now bind the `Remark` field to the UI.
 
 Just add [this one line of code!](https://github.com/se-edu/addressbook-level3/commit/5b98fee11b6b3f5749b6b943c4f3bd3aa049b692)
 
-**`PersonCard.java`:**
+**`StudentCard.java`:**
 
 ``` java
-public PersonCard(Person student, int displayedIndex) {
+public StudentCard(Student student, int displayedIndex) {
     //...
     remark.setText(student.getRemark().value);
 }
@@ -322,30 +322,30 @@ After the previous step, we notice a peculiar regression — we went from di
 
 ### Update `RemarkCommand` and `RemarkCommandParser`
 
-In this last step, we modify `RemarkCommand#execute()` to change the `Remark` of a `Person`. Since all fields in a `Person` are immutable, we create a new instance of a `Person` with the values that we want and
-save it with `Model#setPerson()`.
+In this last step, we modify `RemarkCommand#execute()` to change the `Remark` of a `Student`. Since all fields in a `Student` are immutable, we create a new instance of a `Student` with the values that we want and
+save it with `Model#setStudent()`.
 
 **`RemarkCommand.java`:**
 
 ``` java
 //...
-    public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to Person: %1$s";
-    public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed remark from Person: %1$s";
+    public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to Student: %1$s";
+    public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed remark from Student: %1$s";
 //...
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Student> lastShownList = model.getFilteredStudentList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person studentToEdit = lastShownList.get(index.getZeroBased());
-        Person editedStudent = new Person(studentToEdit.getName(), studentToEdit.getPhone(), studentToEdit.getEmail(),
+        Student studentToEdit = lastShownList.get(index.getZeroBased());
+        Student editedStudent = new Student(studentToEdit.getName(), studentToEdit.getPhone(), studentToEdit.getEmail(),
                 studentToEdit.getAddress(), remark, studentToEdit.getTags());
 
-        model.setPerson(studentToEdit, editedStudent);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.setStudent(studentToEdit, editedStudent);
+        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
 
         return new CommandResult(generateSuccessMessage(editedStudent));
     }
@@ -354,7 +354,7 @@ save it with `Model#setPerson()`.
      * Generates a command execution success message based on whether the remark is added to or removed from
      * {@code studentToEdit}.
      */
-    private String generateSuccessMessage(Person studentToEdit) {
+    private String generateSuccessMessage(Student studentToEdit) {
         String message = !remark.value.isEmpty() ? MESSAGE_ADD_REMARK_SUCCESS : MESSAGE_DELETE_REMARK_SUCCESS;
         return String.format(message, studentToEdit);
     }
@@ -391,4 +391,4 @@ You should end up with a test that looks something like [this](https://github.co
 
 ## Conclusion
 
-This concludes the tutorial for adding a new `Command` to AddressBook.
+This concludes the tutorial for adding a new `Command` to StudentList.

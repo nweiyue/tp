@@ -41,7 +41,7 @@ public class StudentList implements ReadOnlyStudentList {
 
     /**
      * Replaces the contents of the student list with {@code students}.
-     * {@code persons} must not contain duplicate persons.
+     * {@code students} must not contain duplicate students.
      */
     public void setStudents(List<Student> students) {
         this.students.setStudents(students);
@@ -56,7 +56,7 @@ public class StudentList implements ReadOnlyStudentList {
         setStudents(newData.getStudentList());
     }
 
-    //// person-level operations
+    //// student-level operations
 
     /**
      * Returns true if a student with the same identity as {@code student} exists in the student list
@@ -68,7 +68,7 @@ public class StudentList implements ReadOnlyStudentList {
 
     /**
      * Adds a student to the student list.
-     * The student must not already exist in the address book.
+     * The student must not already exist in the student list.
      */
     public void addStudent(Student p) {
         students.add(p);
@@ -97,7 +97,7 @@ public class StudentList implements ReadOnlyStudentList {
 
     @Override
     public String toString() {
-        return students.asUnmodifiableObservableList().size() + " persons";
+        return students.asUnmodifiableObservableList().size() + " students";
         // TODO: refine later
     }
 
@@ -106,7 +106,7 @@ public class StudentList implements ReadOnlyStudentList {
         return students.asUnmodifiableObservableList();
     }
 
-    public ObservableList<Student> getModifiablePersonList() {
+    public ObservableList<Student> getModifiableStudentList() {
         return students.asModifiableObservableList();
     }
 

@@ -23,7 +23,7 @@ public class StudentTest {
     }
 
     @Test
-    public void isSamePerson() {
+    public void isSameStudent() {
         // same object -> returns true
         assertTrue(ALICE.isSameStudent(ALICE));
 
@@ -68,7 +68,7 @@ public class StudentTest {
         // different type -> returns false
         assertFalse(ALICE.equals(5));
 
-        // different person -> returns false
+        // different student -> returns false
         assertFalse(ALICE.equals(BOB));
 
         // different name -> returns false

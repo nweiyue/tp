@@ -18,19 +18,19 @@ public class StudentListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(StudentListPanel.class);
 
     @FXML
-    private ListView<Student> personListView;
+    private ListView<Student> studentListView;
 
     /**
      * Creates a {@code StudentListPanel} with the given {@code ObservableList}.
      */
     public StudentListPanel(ObservableList<Student> studentList) {
         super(FXML);
-        personListView.setItems(studentList);
-        personListView.setCellFactory(listView -> new StudentListViewCell());
+        studentListView.setItems(studentList);
+        studentListView.setCellFactory(listView -> new StudentListViewCell());
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Student} using a {@code StudentCard}.
      */
     class StudentListViewCell extends ListCell<Student> {
         @Override

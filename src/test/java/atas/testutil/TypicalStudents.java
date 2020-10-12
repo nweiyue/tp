@@ -17,7 +17,7 @@ import atas.model.StudentList;
 import atas.model.student.Student;
 
 /**
- * A utility class containing a list of {@code Person} objects to be used in tests.
+ * A utility class containing a list of {@code Student} objects to be used in tests.
  */
 public class TypicalStudents {
 
@@ -42,7 +42,7 @@ public class TypicalStudents {
     public static final Student IDA = new StudentBuilder().withName("Ida Mueller").withMatriculation("A6398734N")
             .withEmail("hans@u.nus.edu").build();
 
-    // Manually added - Person's details found in {@code CommandTestUtil}
+    // Manually added - Student's details found in {@code CommandTestUtil}
     public static final Student AMY = new StudentBuilder().withName(VALID_NAME_AMY)
             .withMatriculation(VALID_MATRICULATION_AMY).withEmail(VALID_EMAIL_AMY)
             .withTags(VALID_TAG_FRIEND).build();
@@ -55,23 +55,23 @@ public class TypicalStudents {
     private TypicalStudents() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code StudentList} with all the typical students.
      */
-    public static StudentList getTypicalAddressBook() {
+    public static StudentList getTypicalStudentList() {
         StudentList ab = new StudentList();
-        for (Student student : getTypicalPersons()) {
+        for (Student student : getTypicalStudents()) {
             ab.addStudent(student);
         }
         return ab;
     }
 
-    public static List<Student> getTypicalPersons() {
+    public static List<Student> getTypicalStudents() {
         List<Student> result = new ArrayList<>();
         result.addAll(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
         return result;
     }
 
-    public static List<Student> getTypicalPersonsMinusAlice() {
+    public static List<Student> getTypicalStudentsMinusAlice() {
         return new ArrayList<>(Arrays.asList(BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 }

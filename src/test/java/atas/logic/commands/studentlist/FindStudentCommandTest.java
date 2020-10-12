@@ -48,12 +48,12 @@ public class FindStudentCommandTest {
         // null -> returns false
         assertFalse(findFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different student -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
     @Test
-    public void execute_zeroKeywords_noPersonFound() {
+    public void execute_zeroKeywords_noStudentFound() {
         String expectedMessage = String.format(Messages.getStudentListedMessage(0), 0);
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindStudentCommand command = new FindStudentCommand(predicate);
@@ -63,7 +63,7 @@ public class FindStudentCommandTest {
     }
 
     @Test
-    public void execute_multipleKeywords_multiplePersonsFound() {
+    public void execute_multipleKeywords_multipleStudentsFound() {
         String expectedMessage = String.format(Messages.getStudentListedMessage(3), 3);
         NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
         FindStudentCommand command = new FindStudentCommand(predicate);

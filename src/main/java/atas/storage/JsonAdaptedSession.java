@@ -29,7 +29,7 @@ public class JsonAdaptedSession {
     private final List<JsonAdaptedAttributes> attributesList = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given person details.
+     * Constructs a {@code JsonAdaptedStudent} with the given student details.
      */
     @JsonCreator
     public JsonAdaptedSession(@JsonProperty("sessionName") String sessionName,
@@ -59,7 +59,7 @@ public class JsonAdaptedSession {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Session} object.
+     * Converts this Jackson-friendly adapted student object into the model's {@code Session} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted session.
      */

@@ -1,6 +1,6 @@
 package atas.logic.commands.studentlist;
 
-import static atas.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static atas.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 import static java.util.Objects.requireNonNull;
 
 import atas.logic.commands.Command;
@@ -20,7 +20,7 @@ public class ListCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

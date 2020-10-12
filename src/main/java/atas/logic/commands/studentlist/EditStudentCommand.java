@@ -1,6 +1,6 @@
 package atas.logic.commands.studentlist;
 
-import static atas.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static atas.commons.core.Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
 import static atas.commons.util.CollectionUtil.isAnyNonNull;
 import static java.util.Objects.requireNonNull;
 
@@ -41,25 +41,25 @@ public class EditStudentCommand extends DangerousCommand {
             + CliSyntax.PREFIX_MATRICULATION + "A7654321X "
             + CliSyntax.PREFIX_EMAIL + "johndoe@u.nus.edu";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited student: %1$s";
+    public static final String MESSAGE_EDIT_STUDENT_SUCCESS = "Edited student: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in the class.";
+    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the class.";
 
     private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final EditStudentDescriptor editStudentDescriptor;
 
     /**
-     * Creates an EditCommand to edit the person at specified Index.
+     * Creates an EditCommand to edit the student at specified Index.
      *
-     * @param index The Index of the person in the filtered person list to edit.
-     * @param editPersonDescriptor The details to edit the person with.
+     * @param index The Index of the student in the filtered student list to edit.
+     * @param editStudentDescriptor The details to edit the student with.
      */
-    public EditStudentCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditStudentCommand(Index index, EditStudentDescriptor editStudentDescriptor) {
         requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
+        requireNonNull(editStudentDescriptor);
 
         this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editStudentDescriptor = new EditStudentDescriptor(editStudentDescriptor);
     }
 
     @Override
@@ -68,19 +68,19 @@ public class EditStudentCommand extends DangerousCommand {
         List<Student> lastShownList = model.getFilteredStudentList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
         Student studentToEdit = lastShownList.get(index.getZeroBased());
-        Student editedStudent = createEditedPerson(studentToEdit, editPersonDescriptor);
+        Student editedStudent = createEditedStudent(studentToEdit, editStudentDescriptor);
 
         if (!studentToEdit.isSameStudent(editedStudent) && model.hasStudent(editedStudent)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
         }
 
         model.setStudent(studentToEdit, editedStudent);
-        model.updateFilteredStudentList(Model.PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedStudent));
+        model.updateFilteredStudentList(Model.PREDICATE_SHOW_ALL_STUDENTS);
+        return new CommandResult(String.format(MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent));
     }
 
     @Override
@@ -90,17 +90,17 @@ public class EditStudentCommand extends DangerousCommand {
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code Student} with the details of {@code studentToEdit}
+     * edited with {@code editStudentDescriptor}.
      */
-    private static Student createEditedPerson(Student studentToEdit, EditPersonDescriptor editPersonDescriptor) {
+    private static Student createEditedStudent(Student studentToEdit, EditStudentDescriptor editStudentDescriptor) {
         assert studentToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(studentToEdit.getName());
-        Matriculation updatedMatriculation = editPersonDescriptor.getMatriculation()
+        Name updatedName = editStudentDescriptor.getName().orElse(studentToEdit.getName());
+        Matriculation updatedMatriculation = editStudentDescriptor.getMatriculation()
                 .orElse(studentToEdit.getMatriculation());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(studentToEdit.getEmail());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(studentToEdit.getTags());
+        Email updatedEmail = editStudentDescriptor.getEmail().orElse(studentToEdit.getEmail());
+        Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
 
         return new Student(updatedName, updatedMatriculation, updatedEmail, updatedTags);
     }
@@ -120,26 +120,26 @@ public class EditStudentCommand extends DangerousCommand {
         // state check
         EditStudentCommand e = (EditStudentCommand) other;
         return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+                && editStudentDescriptor.equals(e.editStudentDescriptor);
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the student with. Each non-empty field value will replace the
+     * corresponding field value of the student.
      */
-    public static class EditPersonDescriptor {
+    public static class EditStudentDescriptor {
         private Name name;
         private Matriculation matriculation;
         private Email email;
         private Set<Tag> tags;
 
-        public EditPersonDescriptor() {}
+        public EditStudentDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+        public EditStudentDescriptor(EditStudentDescriptor toCopy) {
             setName(toCopy.name);
             setMatriculation(toCopy.matriculation);
             setEmail(toCopy.email);
@@ -202,12 +202,12 @@ public class EditStudentCommand extends DangerousCommand {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditStudentDescriptor)) {
                 return false;
             }
 
             // state check
-            EditPersonDescriptor e = (EditPersonDescriptor) other;
+            EditStudentDescriptor e = (EditStudentDescriptor) other;
 
             return getName().equals(e.getName())
                     && getMatriculation().equals(e.getMatriculation())

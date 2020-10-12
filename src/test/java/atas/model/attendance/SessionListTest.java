@@ -46,14 +46,14 @@ public class SessionListTest {
     @Test
     public void updateAfterDeletingStudent_validId_success() {
         // Set up expected result. Alice already removed
-        List<Student> expectedMasterList = TypicalStudents.getTypicalPersonsMinusAlice();
+        List<Student> expectedMasterList = TypicalStudents.getTypicalStudentsMinusAlice();
         SessionList expectedSessionList = new SessionList(expectedMasterList);
         expectedSessionList.addSession(TUT1);
         expectedSessionList.addSession(TUT2);
         expectedSessionList.addSession(TUT3);
 
         // Set up actual result. Remove Alice
-        List<Student> typicalMasterList = TypicalStudents.getTypicalPersons();
+        List<Student> typicalMasterList = TypicalStudents.getTypicalStudents();
         SessionList actualSessionList = new SessionList(typicalMasterList);
         actualSessionList.addSession(TUT1);
         actualSessionList.addSession(TUT2);

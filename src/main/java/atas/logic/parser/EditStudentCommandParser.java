@@ -16,7 +16,7 @@ import java.util.Set;
 
 import atas.commons.core.index.Index;
 import atas.logic.commands.studentlist.EditStudentCommand;
-import atas.logic.commands.studentlist.EditStudentCommand.EditPersonDescriptor;
+import atas.logic.commands.studentlist.EditStudentCommand.EditStudentDescriptor;
 import atas.logic.parser.exceptions.ParseException;
 import atas.model.tag.Tag;
 
@@ -43,24 +43,24 @@ public class EditStudentCommandParser implements Parser<EditStudentCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE), pe);
         }
 
-        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
+        EditStudentCommand.EditStudentDescriptor editStudentDescriptor = new EditStudentDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+            editStudentDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_MATRICULATION).isPresent()) {
-            editPersonDescriptor.setMatriculation(ParserUtil.parseMatriculation(
+            editStudentDescriptor.setMatriculation(ParserUtil.parseMatriculation(
                     argMultimap.getValue(PREFIX_MATRICULATION).get()));
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
+            editStudentDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
+        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editStudentDescriptor::setTags);
 
-        if (!editPersonDescriptor.isAnyFieldEdited()) {
+        if (!editStudentDescriptor.isAnyFieldEdited()) {
             throw new ParseException(MESSAGE_NOT_EDITED);
         }
 
-        return new EditStudentCommand(index, editPersonDescriptor);
+        return new EditStudentCommand(index, editStudentDescriptor);
     }
 
     /**

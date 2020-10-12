@@ -22,13 +22,13 @@ public interface Storage extends SessionListStorage, AtasStorage, UserPrefsStora
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
 
     @Override
-    Path getAddressBookFilePath();
+    Path getStudentListFilePath();
 
     @Override
-    Optional<ReadOnlyStudentList> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyStudentList> readStudentList() throws DataConversionException, IOException;
 
     @Override
-    void saveAddressBook(ReadOnlyStudentList addressBook) throws IOException;
+    void saveStudentList(ReadOnlyStudentList addressBook) throws IOException;
 
     @Override
     Path getSessionListFilePath();

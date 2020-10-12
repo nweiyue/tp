@@ -30,12 +30,12 @@ public class AddStudentCommand extends Command {
             + CliSyntax.PREFIX_TAG + "foreigner";
 
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in the class";
+    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the class";
 
     private final Student toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Student}
      */
     public AddStudentCommand(Student student) {
         requireNonNull(student);
@@ -47,7 +47,7 @@ public class AddStudentCommand extends Command {
         requireNonNull(model);
 
         if (model.hasStudent(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
         }
 
         model.addStudent(toAdd);

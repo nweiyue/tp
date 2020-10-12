@@ -23,7 +23,7 @@ public class Session implements Comparable<Session> {
     private final SessionName sessionName;
     private final SessionDate sessionDate;
     private final Map<Integer, Attributes> studentList;
-    //private final ObservableList<Person> masterList;
+    //private final ObservableList<Student> masterList;
     private Index sessionIndex;
     private List<Student> masterList = new ArrayList<>();
 
@@ -51,7 +51,7 @@ public class Session implements Comparable<Session> {
     }
 
     //    public Session(SessionName sessionName, SessionDate
-    //    sessionDate, Map<Integer, Attributes> studentList, ObservableList<Person> masterList) {
+    //    sessionDate, Map<Integer, Attributes> studentList, ObservableList<Student> masterList) {
     //        this.sessionName = sessionName;
     //        this.sessionDate = sessionDate;
     //        this.studentList = studentList;

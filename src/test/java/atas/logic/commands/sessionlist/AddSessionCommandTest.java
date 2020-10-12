@@ -79,7 +79,7 @@ public class AddSessionCommandTest {
         // null -> returns false
         assertFalse(addTutCommand.equals(null));
 
-        // different person -> returns false
+        // different student -> returns false
         assertFalse(addTutCommand.equals(addLabCommand));
     }
 

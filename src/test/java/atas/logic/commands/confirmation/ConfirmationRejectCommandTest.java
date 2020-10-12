@@ -2,8 +2,8 @@ package atas.logic.commands.confirmation;
 
 import static atas.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static atas.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static atas.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static atas.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static atas.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
+import static atas.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
 import static atas.testutil.TypicalSessions.getTypicalSessionList;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -26,7 +26,7 @@ public class ConfirmationRejectCommandTest {
 
     @Test
     public void execute_rejectDeleteCommand_success() {
-        DeleteStudentCommand deleteStudentCommand = new DeleteStudentCommand(INDEX_FIRST_PERSON);
+        DeleteStudentCommand deleteStudentCommand = new DeleteStudentCommand(INDEX_FIRST_STUDENT);
         String expectedMessage = String.format(ConfirmationRejectCommand.MESSAGE_REJECT_COMMAND, deleteStudentCommand);
 
         ModelManager expectedModel = new ModelManager(getTypicalSessionList(model.getStudentList().getStudentList()),
@@ -38,7 +38,7 @@ public class ConfirmationRejectCommandTest {
 
     @Test
     public void execute_rejectEditCommand_success() {
-        EditStudentCommand editStudentCommand = new EditStudentCommand(INDEX_FIRST_PERSON,
+        EditStudentCommand editStudentCommand = new EditStudentCommand(INDEX_FIRST_STUDENT,
             new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
         String expectedMessage = String.format(ConfirmationRejectCommand.MESSAGE_REJECT_COMMAND, editStudentCommand);
@@ -65,12 +65,12 @@ public class ConfirmationRejectCommandTest {
 
     @Test
     public void equals() {
-        DeleteStudentCommand firstDeleteStudentCommand = new DeleteStudentCommand(INDEX_FIRST_PERSON);
-        DeleteStudentCommand secondDeleteStudentCommand = new DeleteStudentCommand(INDEX_SECOND_PERSON);
+        DeleteStudentCommand firstDeleteStudentCommand = new DeleteStudentCommand(INDEX_FIRST_STUDENT);
+        DeleteStudentCommand secondDeleteStudentCommand = new DeleteStudentCommand(INDEX_SECOND_STUDENT);
 
         Student editedStudent = new StudentBuilder().build();
-        EditStudentCommand.EditPersonDescriptor descriptor = new EditStudentDescriptorBuilder(editedStudent).build();
-        EditStudentCommand editStudentCommand = new EditStudentCommand(INDEX_FIRST_PERSON, descriptor);
+        EditStudentCommand.EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(editedStudent).build();
+        EditStudentCommand editStudentCommand = new EditStudentCommand(INDEX_FIRST_STUDENT, descriptor);
 
         ClearStudentListCommand clearStudentListCommand = new ClearStudentListCommand();
 

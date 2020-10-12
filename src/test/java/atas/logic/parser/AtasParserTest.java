@@ -4,7 +4,7 @@ import static atas.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static atas.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static atas.logic.commands.atas.HelpCommand.MESSAGE_USAGE;
 import static atas.testutil.Assert.assertThrows;
-import static atas.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static atas.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static atas.testutil.TypicalTabNames.CLASSES_TAB_NAME;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -24,7 +24,6 @@ import atas.logic.commands.studentlist.AddStudentCommand;
 import atas.logic.commands.studentlist.ClearStudentListCommand;
 import atas.logic.commands.studentlist.DeleteStudentCommand;
 import atas.logic.commands.studentlist.EditStudentCommand;
-import atas.logic.commands.studentlist.EditStudentCommand.EditPersonDescriptor;
 import atas.logic.commands.studentlist.FindStudentCommand;
 import atas.logic.commands.studentlist.ListCommand;
 import atas.logic.parser.exceptions.ParseException;
@@ -55,17 +54,17 @@ public class AtasParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         ConfirmationCommand command = (ConfirmationCommand) parser.parseCommand(
-                DeleteStudentCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new ConfirmationCommand(new DeleteStudentCommand(INDEX_FIRST_PERSON)), command);
+                DeleteStudentCommand.COMMAND_WORD + " " + INDEX_FIRST_STUDENT.getOneBased());
+        assertEquals(new ConfirmationCommand(new DeleteStudentCommand(INDEX_FIRST_STUDENT)), command);
     }
 
     @Test
     public void parseCommand_edit() throws Exception {
         Student student = new StudentBuilder().build();
-        EditPersonDescriptor descriptor = new EditStudentDescriptorBuilder(student).build();
+        EditStudentCommand.EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(student).build();
         ConfirmationCommand command = (ConfirmationCommand) parser.parseCommand(EditStudentCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + StudentUtil.getEditStudentDescriptorDetails(descriptor));
-        assertEquals(new ConfirmationCommand(new EditStudentCommand(INDEX_FIRST_PERSON, descriptor)), command);
+                + INDEX_FIRST_STUDENT.getOneBased() + " " + StudentUtil.getEditStudentDescriptorDetails(descriptor));
+        assertEquals(new ConfirmationCommand(new EditStudentCommand(INDEX_FIRST_STUDENT, descriptor)), command);
     }
 
     @Test

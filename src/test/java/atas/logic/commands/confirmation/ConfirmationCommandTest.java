@@ -1,8 +1,8 @@
 package atas.logic.commands.confirmation;
 
 import static atas.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static atas.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static atas.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static atas.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
+import static atas.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
 import static atas.testutil.TypicalSessions.getTypicalSessionList;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -27,10 +27,10 @@ public class ConfirmationCommandTest {
 
     @Test
     public void execute_deleteCommandConfirmation_success() {
-        DeleteStudentCommand deleteStudentCommand = new DeleteStudentCommand(INDEX_FIRST_PERSON);
+        DeleteStudentCommand deleteStudentCommand = new DeleteStudentCommand(INDEX_FIRST_STUDENT);
 
         String expectedMessage = String.format(ConfirmationCommand.MESSAGE_CONFIRMATION_DELETE,
-                INDEX_FIRST_PERSON.getOneBased());
+                INDEX_FIRST_STUDENT.getOneBased());
 
         ModelManager expectedModel = new ModelManager(getTypicalSessionList(model.getStudentList().getStudentList()),
                 model.getStudentList(), new UserPrefs());
@@ -41,11 +41,11 @@ public class ConfirmationCommandTest {
 
     @Test
     public void execute_editCommandConfirmation_success() {
-        EditStudentCommand editStudentCommand = new EditStudentCommand(INDEX_FIRST_PERSON,
+        EditStudentCommand editStudentCommand = new EditStudentCommand(INDEX_FIRST_STUDENT,
             new EditStudentDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOB).build());
 
         String expectedMessage = String.format(ConfirmationCommand.MESSAGE_CONFIRMATION_EDIT,
-                INDEX_FIRST_PERSON.getOneBased());
+                INDEX_FIRST_STUDENT.getOneBased());
 
         Model expectedModel = new ModelManager(getTypicalSessionList(model.getStudentList().getStudentList()),
                 new StudentList(model.getStudentList()), new UserPrefs());
@@ -68,12 +68,12 @@ public class ConfirmationCommandTest {
 
     @Test
     public void equals() {
-        DeleteStudentCommand firstDeleteStudentCommand = new DeleteStudentCommand(INDEX_FIRST_PERSON);
-        DeleteStudentCommand secondDeleteStudentCommand = new DeleteStudentCommand(INDEX_SECOND_PERSON);
+        DeleteStudentCommand firstDeleteStudentCommand = new DeleteStudentCommand(INDEX_FIRST_STUDENT);
+        DeleteStudentCommand secondDeleteStudentCommand = new DeleteStudentCommand(INDEX_SECOND_STUDENT);
 
         Student editedStudent = new StudentBuilder().build();
-        EditStudentCommand.EditPersonDescriptor descriptor = new EditStudentDescriptorBuilder(editedStudent).build();
-        EditStudentCommand editStudentCommand = new EditStudentCommand(INDEX_FIRST_PERSON, descriptor);
+        EditStudentCommand.EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(editedStudent).build();
+        EditStudentCommand editStudentCommand = new EditStudentCommand(INDEX_FIRST_STUDENT, descriptor);
 
         ClearStudentListCommand clearStudentListCommand = new ClearStudentListCommand();
 

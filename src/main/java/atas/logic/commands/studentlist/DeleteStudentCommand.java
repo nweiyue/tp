@@ -1,6 +1,6 @@
 package atas.logic.commands.studentlist;
 
-import static atas.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static atas.commons.core.Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
@@ -24,7 +24,7 @@ public class DeleteStudentCommand extends DangerousCommand {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted student: %1$s";
+    public static final String MESSAGE_DELETE_STUDENT_SUCCESS = "Deleted student: %1$s";
 
     private final Index targetIndex;
 
@@ -38,12 +38,12 @@ public class DeleteStudentCommand extends DangerousCommand {
         List<Student> lastShownList = model.getFilteredStudentList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
         Student studentToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteStudent(studentToDelete, targetIndex);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, studentToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete));
     }
 
     @Override

@@ -54,7 +54,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing Atas ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -87,14 +87,14 @@ public class MainApp extends Application {
         ReadOnlySessionList initialDataSl;
         try {
             sessionListOptional = storage.readSessionList();
-            addressBookOptional = storage.readAddressBook();
+            addressBookOptional = storage.readStudentList();
             if (sessionListOptional.isEmpty()) {
                 logger.info("Data file not found. Will be starting with a sample SessionList");
             }
             if (addressBookOptional.isEmpty()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }
-            initialDataAb = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialDataAb = addressBookOptional.orElseGet(SampleDataUtil::getSampleStudentList);
             ReadOnlyStudentList finalInitialDataAb = initialDataAb;
             initialDataSl = sessionListOptional.orElseGet(SessionList::new);
             initialDataSl.updateStudentList(finalInitialDataAb.getStudentList());

@@ -19,15 +19,15 @@ import static atas.logic.commands.CommandTestUtil.VALID_MATRICULATION_BOB;
 import static atas.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static atas.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static atas.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static atas.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static atas.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static atas.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
+import static atas.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
+import static atas.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
+import static atas.testutil.TypicalIndexes.INDEX_THIRD_STUDENT;
 
 import org.junit.jupiter.api.Test;
 
 import atas.commons.core.index.Index;
 import atas.logic.commands.studentlist.EditStudentCommand;
-import atas.logic.commands.studentlist.EditStudentCommand.EditPersonDescriptor;
+import atas.logic.commands.studentlist.EditStudentCommand.EditStudentDescriptor;
 import atas.model.student.Email;
 import atas.model.student.Matriculation;
 import atas.model.student.Name;
@@ -91,7 +91,7 @@ public class EditStudentCommandParserTest {
         CommandParserTestUtil.assertParseFailure(parser, "1" + MATRICULATION_DESC_BOB
                         + INVALID_MATRICULATION_DESC, Matriculation.MESSAGE_CONSTRAINTS);
 
-        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Person} being edited,
+        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Student} being edited,
         // parsing it together with a valid tag results in error
         CommandParserTestUtil.assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + TAG_EMPTY,
                 Tag.MESSAGE_CONSTRAINTS);
@@ -107,11 +107,11 @@ public class EditStudentCommandParserTest {
 
     @Test
     public void parse_allFieldsSpecified_success() {
-        Index targetIndex = INDEX_SECOND_PERSON;
+        Index targetIndex = INDEX_SECOND_STUDENT;
         String userInput = targetIndex.getOneBased() + MATRICULATION_DESC_BOB + TAG_DESC_HUSBAND
                 + EMAIL_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
 
-        EditPersonDescriptor descriptor = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY)
+        EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withMatriculation(VALID_MATRICULATION_BOB).withEmail(VALID_EMAIL_AMY)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         EditStudentCommand expectedCommand = new EditStudentCommand(targetIndex, descriptor);
@@ -121,10 +121,10 @@ public class EditStudentCommandParserTest {
 
     @Test
     public void parse_someFieldsSpecified_success() {
-        Index targetIndex = INDEX_FIRST_PERSON;
+        Index targetIndex = INDEX_FIRST_STUDENT;
         String userInput = targetIndex.getOneBased() + MATRICULATION_DESC_BOB + EMAIL_DESC_AMY;
 
-        EditPersonDescriptor descriptor = new EditStudentDescriptorBuilder().withMatriculation(VALID_MATRICULATION_BOB)
+        EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withMatriculation(VALID_MATRICULATION_BOB)
                 .withEmail(VALID_EMAIL_AMY).build();
         EditStudentCommand expectedCommand = new EditStudentCommand(targetIndex, descriptor);
 
@@ -134,9 +134,10 @@ public class EditStudentCommandParserTest {
     @Test
     public void parse_oneFieldSpecified_success() {
         // name
-        Index targetIndex = INDEX_THIRD_PERSON;
+        Index targetIndex = INDEX_THIRD_STUDENT;
         String userInput = targetIndex.getOneBased() + NAME_DESC_AMY;
-        EditPersonDescriptor descriptor = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY).build();
+        EditStudentCommand.EditStudentDescriptor
+            descriptor = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY).build();
         EditStudentCommand expectedCommand = new EditStudentCommand(targetIndex, descriptor);
         CommandParserTestUtil.assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -161,12 +162,12 @@ public class EditStudentCommandParserTest {
 
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
-        Index targetIndex = INDEX_FIRST_PERSON;
+        Index targetIndex = INDEX_FIRST_STUDENT;
         String userInput = targetIndex.getOneBased() + MATRICULATION_DESC_AMY + EMAIL_DESC_AMY
                 + TAG_DESC_FRIEND + MATRICULATION_DESC_AMY + EMAIL_DESC_AMY + TAG_DESC_FRIEND
                 + MATRICULATION_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_HUSBAND;
 
-        EditPersonDescriptor descriptor = new EditStudentDescriptorBuilder().withMatriculation(VALID_MATRICULATION_BOB)
+        EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withMatriculation(VALID_MATRICULATION_BOB)
                 .withEmail(VALID_EMAIL_BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND).build();
         EditStudentCommand expectedCommand = new EditStudentCommand(targetIndex, descriptor);
 
@@ -176,9 +177,9 @@ public class EditStudentCommandParserTest {
     @Test
     public void parse_invalidValueFollowedByValidValue_success() {
         // no other valid values specified
-        Index targetIndex = INDEX_FIRST_PERSON;
+        Index targetIndex = INDEX_FIRST_STUDENT;
         String userInput = targetIndex.getOneBased() + INVALID_MATRICULATION_DESC + MATRICULATION_DESC_BOB;
-        EditPersonDescriptor descriptor = new EditStudentDescriptorBuilder()
+        EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder()
                 .withMatriculation(VALID_MATRICULATION_BOB).build();
         EditStudentCommand expectedCommand = new EditStudentCommand(targetIndex, descriptor);
         CommandParserTestUtil.assertParseSuccess(parser, userInput, expectedCommand);
@@ -193,10 +194,10 @@ public class EditStudentCommandParserTest {
 
     @Test
     public void parse_resetTags_success() {
-        Index targetIndex = INDEX_THIRD_PERSON;
+        Index targetIndex = INDEX_THIRD_STUDENT;
         String userInput = targetIndex.getOneBased() + TAG_EMPTY;
 
-        EditPersonDescriptor descriptor = new EditStudentDescriptorBuilder().withTags().build();
+        EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withTags().build();
         EditStudentCommand expectedCommand = new EditStudentCommand(targetIndex, descriptor);
 
         CommandParserTestUtil.assertParseSuccess(parser, userInput, expectedCommand);

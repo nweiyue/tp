@@ -1,7 +1,7 @@
 package atas.logic.commands.confirmation;
 
-import static atas.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static atas.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static atas.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
+import static atas.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -17,12 +17,12 @@ import atas.testutil.StudentBuilder;
 public class ConfirmCommandTest {
     @Test
     public void equals() {
-        DeleteStudentCommand firstDeleteStudentCommand = new DeleteStudentCommand(INDEX_FIRST_PERSON);
-        DeleteStudentCommand secondDeleteStudentCommand = new DeleteStudentCommand(INDEX_SECOND_PERSON);
+        DeleteStudentCommand firstDeleteStudentCommand = new DeleteStudentCommand(INDEX_FIRST_STUDENT);
+        DeleteStudentCommand secondDeleteStudentCommand = new DeleteStudentCommand(INDEX_SECOND_STUDENT);
 
         Student editedStudent = new StudentBuilder().build();
-        EditStudentCommand.EditPersonDescriptor descriptor = new EditStudentDescriptorBuilder(editedStudent).build();
-        EditStudentCommand editStudentCommand = new EditStudentCommand(INDEX_FIRST_PERSON, descriptor);
+        EditStudentCommand.EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(editedStudent).build();
+        EditStudentCommand editStudentCommand = new EditStudentCommand(INDEX_FIRST_STUDENT, descriptor);
 
         ClearStudentListCommand clearStudentListCommand = new ClearStudentListCommand();
 
