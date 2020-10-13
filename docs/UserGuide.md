@@ -84,7 +84,7 @@ ATAS is a **desktop app for managing students’ particulars, optimized for use 
 
 ### <a name="help"></a>Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+Shows the list of available commands and a link to access the user guide.
 
 ![helpWindow](images/helpWindow.png)
 
@@ -224,7 +224,7 @@ The user will be prompted to confirm their decision here.
 If yes: edits and updates the details of the specified session from the session list.
 
 ```
-editses INDEX s/NEW_NAME d/NEW_DATE
+editses INDEX s/UPDATED_NAME d/UPDATED_DATE
 ```
 
 * Edits the session at the specified `INDEX` with the specified details to be updated.
@@ -238,9 +238,7 @@ Examples:
 
 ###  <a name="clearses"></a>Clearing the session list : `clearses`
 
-The user will be prompted to confirm their decision here.
-
-If yes: removes all sessions from the session list.
+Deletes all the sessions in the session list.
 
 ```
 clearses
@@ -261,31 +259,31 @@ enterses INDEX
 Examples:
 * `enterses 1` enters the first session and allows you to use PARTICIPATE and PRESENCE commands.
 
-### <a name="participate"></a>Toggling participation status of student : `participate`
+### <a name="participate"></a>Toggling participation status of students : `participate`
 
-Toggles the participation status of a student in the student list of the session.
+Toggles the participation status of the students in the student list of the session.
 
 ```
 participate INDEX_RANGE
 ```
 
-* Toggles the participation status of the student at the specified `INDEX_RANGE`.
-* The index range refers to the range of index numbers shown in the displayed class list of the session.
+* Toggles the participation status of the students at the specified `INDEX_RANGE`.
+* The index range refers to the range of index numbers shown in the displayed student list of the session.
 * The index range **must be a positive integer** 1, 2, 3, … OR **a positive index range** 1-4, 2-5, 2-9 … 
 
 Examples:
 * `participate 1-4` toggles the participation status of students 1 to 4.
 
-### <a name="presence"></a>Toggling presence status of student : `presence`
+### <a name="presence"></a>Toggling presence status of students : `presence`
 
-Toggles the presence status of a student in the student list of the session.
+Toggles the presence status of students in the student list of the session.
 
 ```
 presence INDEX_RANGE
 ```
 
-* Toggles the presence status of the student at the specified `INDEX_RANGE`.
-* The index range refers to the range of index numbers shown in the displayed class list of the session.
+* Toggles the presence status of the students at the specified `INDEX_RANGE`.
+* The index range refers to the range of index numbers shown in the displayed student list of the session.
 * The index range **must be a positive integer** 1, 2, 3, … OR **a positive index range** 1-4, 2-5, 2-9 … 
 
 Examples:
@@ -300,10 +298,11 @@ switch TAB_NAME
 ```
 
 * The tab name is case-insensitive.
-* The tab must be an existing tab (classes or attendance).
+* The tab must be an existing tab (students or sessions).
+* `Current Session` can only be access using `enterses INDEX`.
 
 Example:
-* `switch attendance` switches from the current tab to the attendance tab.
+* `switch sessions` switches from the current tab to the sessions tab.
 
 ###  <a name="exit"></a>Exiting the program : `bye`
 
@@ -316,13 +315,13 @@ bye
 ### <a name="ucp"></a>User confirmation prompt
 
 Prompts the user to confirm the execution of commands that may permanently remove information.
-These commands are: `deletestu`, `editstu` and `clearstu`.
+These commands are: `deletestu`, `editstu`,`clearstu`, `deleteses`, `editses`.
 
 * Confirms the execution at the specified `INDEX`.
 
 Examples:
 * `deletestu 3` is followed with `Delete 3? (yes/no)`.
-* `editstu 3 t/TAG_NAME` is followed with `Edit 3? (yes/no)`.
+* `editses 3 s/SESSION_NAME` is followed with `Edit 3? (yes/no)`.
 * `clearstu` is followed with `Clear list? (yes/no)`.
 
 ###  <a name="sd"></a>Saving the data
@@ -352,7 +351,7 @@ Action | Format, Examples
 **Edit Session** | `editses INDEX s/UPDATED_NAME d/UPDATED_DATE`<br> e.g., `editses 2 s/TUT2 d/10/10/2020`
 **Clear Sessions** | `clearses`
 **Enter Session** | `enterses INDEX`<br> e.g., `enterses 1`
-**Participate** | `participate INDEX `<br> e.g., `participate 2`
-**Presence** | `presence INDEX `<br> e.g., `presence 2`
-**Switch** | `switch TAB_NAME`<br> e.g., `switch attendance`
+**Participate** | `participate INDEX_RANGE `<br> e.g., `participate 2`
+**Presence** | `presence INDEX_RANGE `<br> e.g., `presence 2`
+**Switch** | `switch TAB_NAME`<br> e.g., `switch sessions`
 **Exit** | `bye`
