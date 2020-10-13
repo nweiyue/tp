@@ -89,9 +89,9 @@ public class ConfirmationAcceptCommandTest {
     @Test
     public void execute_acceptClearStudentsCommand_success() {
         ClearStudentListCommand clearStudentListCommand = new ClearStudentListCommand();
-        ModelManager expectedModel = new ModelManager(getTypicalSessionList(model.getStudentList().getStudentList()),
-            model.getStudentList(), new UserPrefs());
-
+        ModelManager expectedModel = new ModelManager(getTypicalSessionList(new ModelManager()
+                .getStudentList().getStudentList()),
+                new ModelManager().getStudentList(), new UserPrefs());
         ConfirmationAcceptCommand confirmationAcceptCommand = new ConfirmationAcceptCommand(clearStudentListCommand);
         assertCommandSuccess(confirmationAcceptCommand, model, ClearStudentListCommand.MESSAGE_SUCCESS, expectedModel);
     }

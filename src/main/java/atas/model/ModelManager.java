@@ -93,8 +93,8 @@ public class ModelManager implements Model {
 
     @Override
     public void setStudentList(ReadOnlyStudentList studentList) {
-        //this.addressBook.resetData(addressBook);
-        resetSessionList();
+        this.studentList.resetData(studentList);
+        //resetSessionList();
     }
 
     @Override
