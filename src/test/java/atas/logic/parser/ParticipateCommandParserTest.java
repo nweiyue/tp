@@ -1,5 +1,7 @@
 package atas.logic.parser;
 
+import static atas.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import org.junit.jupiter.api.Test;
 
 import atas.logic.commands.sessionlist.session.ParticipateCommand;
@@ -39,9 +41,13 @@ public class ParticipateCommandParserTest {
 
     @Test
     public void parse_invalidArgs_failure() {
-        CommandParserTestUtil.assertParseFailure(parser, "a", IndexRange.MESSAGE_CONSTRAINTS);
-        CommandParserTestUtil.assertParseFailure(parser, "@1", IndexRange.MESSAGE_CONSTRAINTS);
-        CommandParserTestUtil.assertParseFailure(parser, "_", IndexRange.MESSAGE_CONSTRAINTS);
-        CommandParserTestUtil.assertParseFailure(parser, "-1", IndexRange.MESSAGE_CONSTRAINTS);
+        CommandParserTestUtil.assertParseFailure(parser, "a",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, IndexRange.MESSAGE_CONSTRAINTS));
+        CommandParserTestUtil.assertParseFailure(parser, "@1",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, IndexRange.MESSAGE_CONSTRAINTS));
+        CommandParserTestUtil.assertParseFailure(parser, "_",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, IndexRange.MESSAGE_CONSTRAINTS));
+        CommandParserTestUtil.assertParseFailure(parser, "-1",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, IndexRange.MESSAGE_CONSTRAINTS));
     }
 }
