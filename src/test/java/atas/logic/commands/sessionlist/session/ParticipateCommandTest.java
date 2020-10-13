@@ -1,6 +1,7 @@
 package atas.logic.commands.sessionlist.session;
 
 import static atas.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static atas.testutil.Assert.assertThrows;
 import static atas.testutil.TypicalSessions.SESSIONDATE_WEEK_ONE;
 import static atas.testutil.TypicalSessions.SESSIONNAME_WEEK_ONE;
 import static atas.testutil.TypicalSessions.SESSIONNAME_WEEK_TWO;
@@ -11,6 +12,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import atas.commons.core.Messages;
+import atas.logic.commands.exceptions.CommandException;
 import atas.logic.commands.studentlist.ClearStudentListCommand;
 import atas.model.Model;
 import atas.model.attendance.IndexRange;
@@ -51,7 +54,6 @@ public class ParticipateCommandTest {
 
         for (Session s: expectedModel.getSessionList().getSessions()) {
             if (s.isSameSession(SESSION_WEEK_ONE)) {
-                System.out.println(s.getStudentList().get(0).getParticipationStatus());
                 assertTrue(s.getStudentList().get(0).getParticipationStatus());
             }
         }
@@ -123,6 +125,22 @@ public class ParticipateCommandTest {
                 assertTrue(s.getStudentList().get(1).getParticipationStatus());
             }
         }
+    }
+
+    @Test
+    public void execute_notInSessionTab_throwsCommandException() {
+        // actual model
+        IndexRange indexRange = new IndexRange(INDEXRANGE_ONE_NUMBER);
+        ParticipateCommand participateCommand = new ParticipateCommand(SESSIONNAME_WEEK_ONE, indexRange);
+
+        // expected model
+        Model expectedModel = ModelManagerBuilder.buildTypicalModelManager();
+        Session session = new Session(SESSIONNAME_WEEK_ONE, SESSIONDATE_WEEK_ONE);
+        expectedModel.addSession(session);
+        session.updateParticipation(indexRange);
+
+        assertThrows(CommandException.class,
+                Messages.MESSAGE_NOT_IN_SESSION_TAB, () -> participateCommand.execute(expectedModel));
     }
 
     @Test

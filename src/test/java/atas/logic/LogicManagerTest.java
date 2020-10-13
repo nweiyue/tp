@@ -116,6 +116,26 @@ public class LogicManagerTest {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredStudentList().remove(0));
     }
 
+    @Test
+    public void getters() {
+        JsonSessionListStorage jsonSessionListStorage =
+                new JsonSessionListStorage(temporaryFolder.resolve("typicalSessionSessionList.json"));
+        JsonAtasStorage addressBookStorage =
+                new JsonAtasStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
+        StorageManager storage = new StorageManager(jsonSessionListStorage, addressBookStorage, userPrefsStorage);
+        LogicManager logicManager = new LogicManager(model, storage);
+
+        logic.enableCurrentSession();
+        logic.disableCurrentSession();
+
+        assertEquals(logicManager.getStudentList(), logic.getStudentList());
+        assertEquals(logicManager.getFilteredStudentList(), logic.getFilteredStudentList());
+        assertEquals(logicManager.getFilteredSessionList(), logic.getFilteredSessionList());
+        assertEquals(logicManager.getStudentListFilePath(), logic.getStudentListFilePath());
+        assertEquals(logicManager.getGuiSettings(), logic.getGuiSettings());
+    }
+
     /**
      * Executes the command and confirms that
      * - no exceptions are thrown <br>

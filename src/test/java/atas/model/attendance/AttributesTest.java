@@ -57,4 +57,11 @@ class AttributesTest {
             new Attributes(new Presence(true), new Participation(false), new Name("DEFAULT"));
         assertEquals(expectedAttributes, actualAttributes);
     }
+
+    @Test
+    public void to_string() {
+        Attributes actualAttributes = new Attributes();
+        Attributes expectedAttributes = new Attributes();
+        assertEquals(expectedAttributes.toString(), actualAttributes.toString());
+    }
 }

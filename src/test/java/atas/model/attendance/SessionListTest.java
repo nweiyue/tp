@@ -85,5 +85,29 @@ public class SessionListTest {
         assertTrue(typicalSessionList.contains(LAB2));
     }
 
+    @Test
+    public void returnListSize() {
+        SessionList emptyList = new SessionList();
+        assertEquals(0, emptyList.returnSize());
+    }
+
+    @Test
+    public void equals() {
+        SessionList typicalList = new SessionList(TypicalStudents.getTypicalStudents());
+        typicalList.addSession(TypicalSessions.TUT1);
+        SessionList emptyList = new SessionList();
+
+        //different list size
+        assertFalse(typicalList.equals(emptyList));
+
+        //same size but different sessions
+        emptyList.addSession(TUT2);
+        assertFalse(typicalList.equals(emptyList));
+
+        //different type
+        assertFalse(typicalList.equals(LAB2));
+
+    }
+
 }
 

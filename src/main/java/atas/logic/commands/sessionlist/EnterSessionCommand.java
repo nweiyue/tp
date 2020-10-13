@@ -17,7 +17,7 @@ public class EnterSessionCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Enters a particular session. "
             + "Parameters: "
-            + CliSyntax.PREFIX_SESSIONINDEX + "SESSION_INDEX "
+            + CliSyntax.PREFIX_SESSIONINDEX + "INDEX "
             + "\n"
             + "Example: " + COMMAND_WORD + " "
             + CliSyntax.PREFIX_SESSIONINDEX + "1 ";
@@ -51,6 +51,12 @@ public class EnterSessionCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof EnterSessionCommand // instanceof handles nulls
                 && sessionIndex.equals(((EnterSessionCommand) other).sessionIndex));
+    }
+
+    @Override
+    public String toString() {
+        String oneBasedIndex = String.valueOf(sessionIndex.getOneBased());
+        return "Enter " + oneBasedIndex;
     }
 
 }

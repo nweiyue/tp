@@ -5,6 +5,7 @@ import static atas.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static atas.testutil.TypicalTabNames.ATTENDANCE_TAB_NAME;
 import static atas.testutil.TypicalTabNames.CLASSES_TAB_NAME;
 import static atas.testutil.TypicalTabNames.INVALID_TAB_NAME;
+import static atas.testutil.TypicalTabNames.SESSIONS_TAB_NAME;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -36,6 +37,16 @@ public class SwitchCommandTest {
                 Tab.SESSIONS.toString().toLowerCase());
         CommandResult expectedCommandResult = new CommandResult(expectedMessage, false, Tab.SESSIONS, false);
         SwitchCommand switchCommand = new SwitchCommand(ATTENDANCE_TAB_NAME);
+
+        assertCommandSuccess(switchCommand, model, expectedCommandResult, expectedModel);
+    }
+
+    @Test
+    public void execute_switchCurrentTab_success() {
+        String expectedMessage = String.format(SwitchCommand.MESSAGE_SWITCH_TAB_SUCCESS,
+                Tab.CURRENT.toString().toLowerCase());
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, false, Tab.CURRENT, false);
+        SwitchCommand switchCommand = new SwitchCommand(SESSIONS_TAB_NAME);
 
         assertCommandSuccess(switchCommand, model, expectedCommandResult, expectedModel);
     }

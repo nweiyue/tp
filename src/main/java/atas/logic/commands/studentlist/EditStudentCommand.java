@@ -34,7 +34,7 @@ public class EditStudentCommand extends DangerousCommand {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + CliSyntax.PREFIX_NAME + "NAME] "
-            + "[" + CliSyntax.PREFIX_MATRICULATION + "PHONE] "
+            + "[" + CliSyntax.PREFIX_MATRICULATION + "MATRICULATION] "
             + "[" + CliSyntax.PREFIX_EMAIL + "EMAIL] "
             + "[" + CliSyntax.PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
