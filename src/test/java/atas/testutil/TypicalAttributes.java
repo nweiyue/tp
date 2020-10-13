@@ -3,7 +3,7 @@ package atas.testutil;
 import atas.model.attendance.Attributes;
 import atas.model.attendance.Participation;
 import atas.model.attendance.Presence;
-import atas.model.person.Name;
+import atas.model.student.Name;
 
 public class TypicalAttributes {
     public static final Presence IS_PRESENT = new Presence(true);

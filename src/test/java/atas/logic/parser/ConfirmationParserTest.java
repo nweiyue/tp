@@ -3,7 +3,7 @@ package atas.logic.parser;
 import static atas.commons.core.Messages.MESSAGE_INVALID_CONFIRMATION_INPUT;
 import static atas.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static atas.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static atas.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static atas.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 
 import org.junit.jupiter.api.Test;
 
@@ -11,18 +11,18 @@ import atas.logic.commands.confirmation.ConfirmationAcceptCommand;
 import atas.logic.commands.confirmation.ConfirmationCommand;
 import atas.logic.commands.confirmation.ConfirmationRejectCommand;
 import atas.logic.commands.confirmation.DangerousCommand;
-import atas.logic.commands.studentlist.DeleteCommand;
+import atas.logic.commands.studentlist.DeleteStudentCommand;
 
 public class ConfirmationParserTest {
 
-    private final DangerousCommand dangerousCommand = new DeleteCommand(INDEX_FIRST_PERSON);
+    private final DangerousCommand dangerousCommand = new DeleteStudentCommand(INDEX_FIRST_STUDENT);
 
     @Test
     public void parse_validAcceptCommandWordFull_returnsConfirmationAcceptCommand() {
         ConfirmationCommand confirmationCommand = new ConfirmationCommand(dangerousCommand);
         ConfirmationParser parser = new ConfirmationParser(confirmationCommand);
         ConfirmationAcceptCommand expectedCommand =
-                new ConfirmationAcceptCommand(new DeleteCommand(INDEX_FIRST_PERSON));
+                new ConfirmationAcceptCommand(new DeleteStudentCommand(INDEX_FIRST_STUDENT));
         assertParseSuccess(parser, ConfirmationCommand.ACCEPT_COMMAND_FULL, expectedCommand);
     }
 
@@ -31,7 +31,7 @@ public class ConfirmationParserTest {
         ConfirmationCommand confirmationCommand = new ConfirmationCommand(dangerousCommand);
         ConfirmationParser parser = new ConfirmationParser(confirmationCommand);
         ConfirmationAcceptCommand expectedCommand =
-                new ConfirmationAcceptCommand(new DeleteCommand(INDEX_FIRST_PERSON));
+                new ConfirmationAcceptCommand(new DeleteStudentCommand(INDEX_FIRST_STUDENT));
         assertParseSuccess(parser, ConfirmationCommand.ACCEPT_COMMAND_SHORT, expectedCommand);
     }
 
@@ -40,7 +40,7 @@ public class ConfirmationParserTest {
         ConfirmationCommand confirmationCommand = new ConfirmationCommand(dangerousCommand);
         ConfirmationParser parser = new ConfirmationParser(confirmationCommand);
         ConfirmationRejectCommand expectedCommand =
-                new ConfirmationRejectCommand(new DeleteCommand(INDEX_FIRST_PERSON));
+                new ConfirmationRejectCommand(new DeleteStudentCommand(INDEX_FIRST_STUDENT));
         assertParseSuccess(parser, ConfirmationCommand.REJECT_COMMAND_FULL, expectedCommand);
     }
 
@@ -49,7 +49,7 @@ public class ConfirmationParserTest {
         ConfirmationCommand confirmationCommand = new ConfirmationCommand(dangerousCommand);
         ConfirmationParser parser = new ConfirmationParser(confirmationCommand);
         ConfirmationRejectCommand expectedCommand =
-                new ConfirmationRejectCommand(new DeleteCommand(INDEX_FIRST_PERSON));
+                new ConfirmationRejectCommand(new DeleteStudentCommand(INDEX_FIRST_STUDENT));
         assertParseSuccess(parser, ConfirmationCommand.REJECT_COMMAND_SHORT, expectedCommand);
     }
 

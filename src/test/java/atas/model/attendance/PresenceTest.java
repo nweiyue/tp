@@ -12,9 +12,9 @@ import org.junit.jupiter.api.Test;
 
 import atas.commons.core.index.Index;
 import atas.logic.commands.sessionlist.session.PresenceCommand;
-import atas.model.AddressBook;
 import atas.model.Model;
 import atas.model.ModelManager;
+import atas.model.StudentList;
 import atas.model.UserPrefs;
 import atas.testutil.ModelManagerBuilder;
 
@@ -32,8 +32,8 @@ class PresenceTest {
         model.addSession(SESSION_WEEK_ONE);
         model.updatePresenceBySessionName(SESSION_WEEK_ONE.getSessionName(), indexRange);
 
-        Model expectedModel = new ModelManager(getTypicalSessionList(model.getAddressBook().getPersonList()),
-            new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalSessionList(model.getStudentList().getStudentList()),
+            new StudentList(model.getStudentList()), new UserPrefs());
         expectedModel.addSession(SESSION_WEEK_ONE);
         expectedModel.enterSession(Index.fromZeroBased(1));
         expectedModel.updatePresenceBySessionName(SESSION_WEEK_ONE.getSessionName(), indexRange);

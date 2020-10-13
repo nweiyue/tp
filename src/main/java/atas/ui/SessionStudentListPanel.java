@@ -11,13 +11,13 @@ import javafx.scene.layout.Region;
 
 public class SessionStudentListPanel extends UiPart<Region> {
     private static final String FXML = "SessionStudentListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
+    private final Logger logger = LogsCenter.getLogger(StudentListPanel.class);
 
     @javafx.fxml.FXML
     private ListView<Attributes> sessionStudentListView;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code StudentListPanel} with the given {@code ObservableList}.
      */
     public SessionStudentListPanel(ObservableList<Attributes> attributesList) {
         super(FXML);
@@ -26,7 +26,7 @@ public class SessionStudentListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Student} using a {@code StudentCard}.
      */
     class SessionStudentListViewCell extends ListCell<Attributes> {
         @Override

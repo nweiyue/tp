@@ -1,13 +1,13 @@
 package atas.testutil;
 
-import static atas.testutil.TypicalPersons.getTypicalAddressBook;
 import static atas.testutil.TypicalSessions.getTypicalSessionList;
+import static atas.testutil.TypicalStudents.getTypicalStudentList;
 
 import atas.model.ModelManager;
 import atas.model.UserPrefs;
 
 /**
- * A util class for building typical sessionlist with typical addressbook.
+ * A util class for building typical sessionlist with typical studentList.
  */
 public class ModelManagerBuilder {
 
@@ -17,7 +17,7 @@ public class ModelManagerBuilder {
      * Build a typical ATAS.
      */
     public static ModelManager buildTypicalModelManager() {
-        return new ModelManager(getTypicalSessionList(getTypicalAddressBook().getPersonList()),
-                getTypicalAddressBook(), new UserPrefs());
+        return new ModelManager(getTypicalSessionList(getTypicalStudentList().getStudentList()),
+                getTypicalStudentList(), new UserPrefs());
     }
 }

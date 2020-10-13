@@ -23,10 +23,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import atas.logic.commands.CommandTestUtil;
-import atas.logic.commands.studentlist.ClearCommand;
-import atas.model.AddressBook;
+import atas.logic.commands.studentlist.ClearStudentListCommand;
 import atas.model.Model;
 import atas.model.ModelManager;
+import atas.model.StudentList;
 import atas.model.UserPrefs;
 import atas.model.attendance.Session;
 import atas.model.attendance.SessionName;
@@ -53,8 +53,8 @@ public class EditSessionCommandTest {
         String expectedMessage = String.format(EditSessionCommand.MESSAGE_EDIT_SESSION_SUCCESS,
                 SESSION_WEEK_ONE, SESSION_WEEK_TWO);
 
-        Model expectedModel = new ModelManager(getTypicalSessionList(model.getAddressBook().getPersonList()),
-                new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalSessionList(model.getStudentList().getStudentList()),
+                new StudentList(model.getStudentList()), new UserPrefs());
 
         expectedModel.addSession(SESSION_WEEK_TWO);
 
@@ -76,8 +76,8 @@ public class EditSessionCommandTest {
         String expectedMessage = String.format(EditSessionCommand.MESSAGE_EDIT_SESSION_SUCCESS,
                 SESSION_WEEK_ONE, expectedSession);
 
-        Model expectedModel = new ModelManager(getTypicalSessionList(model.getAddressBook().getPersonList()),
-                new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalSessionList(model.getStudentList().getStudentList()),
+                new StudentList(model.getStudentList()), new UserPrefs());
 
         expectedModel.addSession(expectedSession);
 
@@ -99,8 +99,8 @@ public class EditSessionCommandTest {
         String expectedMessage = String.format(EditSessionCommand.MESSAGE_EDIT_SESSION_SUCCESS,
                 SESSION_WEEK_ONE, expectedSession);
 
-        Model expectedModel = new ModelManager(getTypicalSessionList(model.getAddressBook().getPersonList()),
-                new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalSessionList(model.getStudentList().getStudentList()),
+                new StudentList(model.getStudentList()), new UserPrefs());
 
         expectedModel.addSession(expectedSession);
 
@@ -119,8 +119,8 @@ public class EditSessionCommandTest {
         String expectedMessage = String.format(EditSessionCommand.MESSAGE_EDIT_SESSION_SUCCESS,
                 SESSION_WEEK_ONE, SESSION_WEEK_ONE);
 
-        Model expectedModel = new ModelManager(getTypicalSessionList(model.getAddressBook().getPersonList()),
-                new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalSessionList(model.getStudentList().getStudentList()),
+                new StudentList(model.getStudentList()), new UserPrefs());
 
         expectedModel.addSession(SESSION_WEEK_ONE);
 
@@ -172,7 +172,7 @@ public class EditSessionCommandTest {
         assertFalse(standardCommand.equals(null));
 
         // different types -> returns false
-        assertFalse(standardCommand.equals(new ClearCommand()));
+        assertFalse(standardCommand.equals(new ClearStudentListCommand()));
 
         // different session name -> returns false
         SessionName name = new SessionName(VALID_SESSIONNAME_CON);

@@ -1,7 +1,7 @@
 package atas.logic.parser;
 
 import static atas.testutil.Assert.assertThrows;
-import static atas.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static atas.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -16,9 +16,9 @@ import atas.logic.parser.exceptions.ParseException;
 import atas.model.attendance.IndexRange;
 import atas.model.attendance.SessionDate;
 import atas.model.attendance.SessionName;
-import atas.model.person.Email;
-import atas.model.person.Matriculation;
-import atas.model.person.Name;
+import atas.model.student.Email;
+import atas.model.student.Matriculation;
+import atas.model.student.Name;
 import atas.model.tag.Tag;
 import atas.testutil.Assert;
 
@@ -60,10 +60,10 @@ public class ParserUtilTest {
     @Test
     public void parseIndex_validInput_success() throws Exception {
         // No whitespaces
-        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("1"));
+        assertEquals(INDEX_FIRST_STUDENT, ParserUtil.parseIndex("1"));
 
         // Leading and trailing whitespaces
-        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("  1  "));
+        assertEquals(INDEX_FIRST_STUDENT, ParserUtil.parseIndex("  1  "));
     }
 
     @Test

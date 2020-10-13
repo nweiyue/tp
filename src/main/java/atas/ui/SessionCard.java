@@ -35,7 +35,7 @@ public class SessionCard extends UiPart<Region> {
 
     private SessionList sessionList;
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code StudentCode} with the given {@code Student} and index to display.
      */
     public SessionCard(Session session, int displayedIndex) {
         super(FXML);

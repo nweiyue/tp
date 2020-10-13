@@ -149,8 +149,8 @@ delete INDEX
 * User will then be prompted for a confirmation input **`(yes/no)`**.
 
 Examples:
-* `list` followed by `delete 2` followed by `yes` deletes the 2nd person in the class list.
-* `find Betsy` followed by `delete 1` followed by `y` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2` followed by `yes` deletes the 2nd student in the class list.
+* `find Betsy` followed by `delete 1` followed by `y` deletes the 1st student in the results of the `find` command.
 
 ### <a name="edit"></a>Edit a student's particulars: `edit`
 
@@ -168,8 +168,8 @@ edit INDEX n/UPDATED_NAME
 * User will then be prompted for a confirmation input **`(yes/no)`**.
 
 Examples:
-* `edit 2 n/John Cena` followed by `yes` edits the 2nd person in the class list with an updated name `John Cena`.
-* `edit 3 t/Joker` followed by `y` edits the 3rd person in the class list with an updated tag `Joker`.
+* `edit 2 n/John Cena` followed by `yes` edits the 2nd student in the class list with an updated name `John Cena`.
+* `edit 3 t/Joker` followed by `y` edits the 3rd student in the class list with an updated tag `Joker`.
 
 ###  <a name="clear"></a>Clearing all entries : `clear`
 

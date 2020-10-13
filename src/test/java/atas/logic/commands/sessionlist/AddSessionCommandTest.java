@@ -17,16 +17,16 @@ import atas.commons.core.GuiSettings;
 import atas.commons.core.index.Index;
 import atas.logic.commands.CommandResult;
 import atas.logic.commands.exceptions.CommandException;
-import atas.model.AddressBook;
 import atas.model.Model;
-import atas.model.ReadOnlyAddressBook;
+import atas.model.ReadOnlyStudentList;
 import atas.model.ReadOnlyUserPrefs;
+import atas.model.StudentList;
 import atas.model.attendance.Attributes;
 import atas.model.attendance.IndexRange;
 import atas.model.attendance.Session;
 import atas.model.attendance.SessionList;
 import atas.model.attendance.SessionName;
-import atas.model.person.Person;
+import atas.model.student.Student;
 import atas.testutil.SessionBuilder;
 import javafx.collections.ObservableList;
 
@@ -79,7 +79,7 @@ public class AddSessionCommandTest {
         // null -> returns false
         assertFalse(addTutCommand.equals(null));
 
-        // different person -> returns false
+        // different student -> returns false
         assertFalse(addTutCommand.equals(addLabCommand));
     }
 
@@ -108,42 +108,42 @@ public class AddSessionCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getStudentListFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setStudentListFilePath(Path studentListFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void addPerson(Person person) {
+        public void addStudent(Student student) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setStudentList(ReadOnlyStudentList studentList) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyStudentList getStudentList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public boolean hasPerson(Person person) {
+        public boolean hasStudent(Student student) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Person target, Index id) {
+        public void deleteStudent(Student target, Index id) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Person target, Person editedPerson) {
+        public void setStudent(Student target, Student editedStudent) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -208,7 +208,7 @@ public class AddSessionCommandTest {
         }
 
         @Override
-        public ObservableList<Person> getFilteredPersonList() {
+        public ObservableList<Student> getFilteredStudentList() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -218,7 +218,7 @@ public class AddSessionCommandTest {
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
+        public void updateFilteredStudentList(Predicate<Student> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -280,8 +280,8 @@ public class AddSessionCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyStudentList getStudentList() {
+            return new StudentList();
         }
     }
 }

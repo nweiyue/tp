@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 
 import atas.commons.core.Messages;
 import atas.logic.commands.exceptions.CommandException;
-import atas.logic.commands.studentlist.ClearCommand;
+import atas.logic.commands.studentlist.ClearStudentListCommand;
 import atas.model.Model;
 import atas.model.attendance.IndexRange;
 import atas.model.attendance.Session;
@@ -161,7 +161,7 @@ public class PresenceCommandTest {
         assertFalse(presenceCommand.equals(null));
 
         // different types -> returns false
-        assertFalse(presenceCommand.equals(new ClearCommand()));
+        assertFalse(presenceCommand.equals(new ClearStudentListCommand()));
 
         // different session name -> returns false
         assertFalse(presenceCommand.equals(new PresenceCommand(SESSIONNAME_WEEK_TWO, indexRange)));

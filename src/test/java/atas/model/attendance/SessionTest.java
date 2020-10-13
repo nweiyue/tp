@@ -4,13 +4,13 @@ import static atas.testutil.Assert.assertThrows;
 import static atas.testutil.TypicalAttributes.ABSENT_BUT_HAS_PARTICIPATED;
 import static atas.testutil.TypicalAttributes.PRESENT_AND_HAS_PARTICIPATED;
 import static atas.testutil.TypicalAttributes.PRESENT_BUT_HAS_NOT_PARTICIPATED;
-import static atas.testutil.TypicalPersons.getTypicalPersons;
 import static atas.testutil.TypicalSessions.SESSIONDATE_WEEK_ONE;
 import static atas.testutil.TypicalSessions.SESSIONDATE_WEEK_THREE;
 import static atas.testutil.TypicalSessions.SESSIONDATE_WEEK_TWO;
 import static atas.testutil.TypicalSessions.SESSIONNAME_WEEK_ONE;
 import static atas.testutil.TypicalSessions.SESSIONNAME_WEEK_THREE;
 import static atas.testutil.TypicalSessions.SESSIONNAME_WEEK_TWO;
+import static atas.testutil.TypicalStudents.getTypicalStudents;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -23,7 +23,7 @@ import atas.testutil.TypicalSessions;
 
 class SessionTest {
 
-    private final SessionList sessionList = new SessionList(getTypicalPersons());
+    private final SessionList sessionList = new SessionList(getTypicalStudents());
 
     private final Session sessionWeekOne = new Session(SESSIONNAME_WEEK_ONE, SESSIONDATE_WEEK_ONE);
     private final Session sessionWeekTwo = new Session(SESSIONNAME_WEEK_TWO, SESSIONDATE_WEEK_TWO);

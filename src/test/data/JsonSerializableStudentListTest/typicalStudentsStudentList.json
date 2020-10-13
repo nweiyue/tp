@@ -1,0 +1,39 @@
+{
+  "_comment": "StudentList save file which contains the same Student values as in TypicalStudents#getTypicalStudentList()",
+  "students" : [ {
+    "name" : "Alice Pauline",
+    "matriculation" : "A2395823W",
+    "email" : "alice@u.nus.edu",
+    "tagged" : [ "friends" ]
+  }, {
+    "name" : "Benson Meier",
+    "matriculation" : "A8473948R",
+    "email" : "johnd@u.nus.edu",
+    "tagged" : [ "owesMoney", "friends" ]
+  }, {
+    "name" : "Carl Kurz",
+    "matriculation" : "A2345893J",
+    "email" : "heinz@u.nus.edu",
+    "tagged" : [ ]
+  }, {
+    "name" : "Daniel Meier",
+    "matriculation" : "A2837453G",
+    "email" : "cornelia@u.nus.edu",
+    "tagged" : [ "friends" ]
+  }, {
+    "name" : "Elle Meyer",
+    "matriculation" : "A2384576V",
+    "email" : "werner@u.nus.edu",
+    "tagged" : [ ]
+  }, {
+    "name" : "Fiona Kunz",
+    "matriculation" : "A7984295F",
+    "email" : "lydia@u.nus.edu",
+    "tagged" : [ ]
+  }, {
+    "name" : "George Best",
+    "matriculation" : "A4958234S",
+    "email" : "anna@u.nus.edu",
+    "tagged" : [ ]
+  } ]
+}

@@ -7,30 +7,30 @@ import java.util.logging.Logger;
 
 import atas.commons.core.LogsCenter;
 import atas.commons.exceptions.DataConversionException;
-import atas.model.ReadOnlyAddressBook;
 import atas.model.ReadOnlySessionList;
+import atas.model.ReadOnlyStudentList;
 import atas.model.ReadOnlyUserPrefs;
 import atas.model.UserPrefs;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of Atas data in local storage.
  */
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private SessionListStorage sessionListStorage;
-    private AddressBookStorage addressBookStorage;
+    private AtasStorage atasStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code SessionListStorage}, {@code AddressBookStorage}
+     * Creates a {@code StorageManager} with the given {@code SessionListStorage}, {@code StudentListStorage}
      * and {@code UserPrefStorage}.
      */
-    public StorageManager(SessionListStorage sessionListStorage, AddressBookStorage addressBookStorage,
+    public StorageManager(SessionListStorage sessionListStorage, AtasStorage atasStorage,
                           UserPrefsStorage userPrefsStorage) {
         super();
         this.sessionListStorage = sessionListStorage;
-        this.addressBookStorage = addressBookStorage;
+        this.atasStorage = atasStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -52,33 +52,33 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ AddressBook methods ==============================
+    // ================ StudentList methods ==============================
 
     @Override
-    public Path getAddressBookFilePath() {
-        return addressBookStorage.getAddressBookFilePath();
+    public Path getStudentListFilePath() {
+        return atasStorage.getStudentListFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(addressBookStorage.getAddressBookFilePath());
+    public Optional<ReadOnlyStudentList> readStudentList() throws DataConversionException, IOException {
+        return readStudentList(atasStorage.getStudentListFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyStudentList> readStudentList(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readAddressBook(filePath);
+        return atasStorage.readStudentList(filePath);
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
-        saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
+    public void saveStudentList(ReadOnlyStudentList studentList) throws IOException {
+        saveStudentList(studentList, atasStorage.getStudentListFilePath());
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+    public void saveStudentList(ReadOnlyStudentList studentList, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveAddressBook(addressBook, filePath);
+        atasStorage.saveStudentList(studentList, filePath);
     }
 
     // ================ SessionList methods ==============================

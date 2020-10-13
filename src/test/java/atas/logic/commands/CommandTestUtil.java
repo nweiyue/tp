@@ -11,17 +11,17 @@ import java.util.List;
 import atas.commons.core.index.Index;
 import atas.logic.commands.exceptions.CommandException;
 import atas.logic.commands.sessionlist.EditSessionCommand;
-import atas.logic.commands.studentlist.EditCommand;
+import atas.logic.commands.studentlist.EditStudentCommand;
 import atas.logic.parser.CliSyntax;
-import atas.model.AddressBook;
 import atas.model.Model;
+import atas.model.StudentList;
 import atas.model.attendance.Session;
 import atas.model.attendance.SessionDate;
 import atas.model.attendance.SessionName;
-import atas.model.person.NameContainsKeywordsPredicate;
-import atas.model.person.Person;
-import atas.testutil.EditPersonDescriptorBuilder;
+import atas.model.student.NameContainsKeywordsPredicate;
+import atas.model.student.Student;
 import atas.testutil.EditSessionDescriptorBuilder;
+import atas.testutil.EditStudentDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -55,8 +55,8 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditPersonDescriptor DESC_AMY;
-    public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditStudentCommand.EditStudentDescriptor DESC_AMY;
+    public static final EditStudentCommand.EditStudentDescriptor DESC_BOB;
 
 
     // ---------------------- Session Testing -------------------------------
@@ -92,10 +92,10 @@ public class CommandTestUtil {
     public static final EditSessionCommand.EditSessionDescriptor DESC_CON;
 
     static {
-        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
+        DESC_AMY = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withMatriculation(VALID_MATRICULATION_AMY).withEmail(VALID_EMAIL_AMY)
                 .withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
+        DESC_BOB = new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withMatriculation(VALID_MATRICULATION_BOB).withEmail(VALID_EMAIL_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
 
@@ -138,30 +138,30 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered person list and selected person in {@code actualModel} remain unchanged
+     * - the student list, filtered student list and selected student in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
-        List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
+        StudentList expectedStudentList = new StudentList(actualModel.getStudentList());
+        List<Student> expectedFilteredList = new ArrayList<>(actualModel.getFilteredStudentList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getAddressBook());
-        assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
+        assertEquals(expectedStudentList, actualModel.getStudentList());
+        assertEquals(expectedFilteredList, actualModel.getFilteredStudentList());
     }
     /**
-     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
-     * {@code model}'s address book.
+     * Updates {@code model}'s filtered list to show only the student at the given {@code targetIndex} in the
+     * {@code model}'s student list.
      */
-    public static void showPersonAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
+    public static void showStudentAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredStudentList().size());
 
-        Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
-        final String[] splitName = person.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        Student student = model.getFilteredStudentList().get(targetIndex.getZeroBased());
+        final String[] splitName = student.getName().fullName.split("\\s+");
+        model.updateFilteredStudentList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
-        assertEquals(1, model.getFilteredPersonList().size());
+        assertEquals(1, model.getFilteredStudentList().size());
     }
 
 }

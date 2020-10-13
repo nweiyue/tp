@@ -75,7 +75,7 @@ public class EditSessionCommand extends Command {
         }
 
         model.setSession(sessionToEdit, editedSession);
-        model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredStudentList(Model.PREDICATE_SHOW_ALL_STUDENTS);
         return new CommandResult(String.format(MESSAGE_EDIT_SESSION_SUCCESS, sessionToEdit, editedSession));
     }
 
@@ -115,7 +115,7 @@ public class EditSessionCommand extends Command {
 
     /**
      * Stores the details to edit the session with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * corresponding field value of the student.
      */
     public static class EditSessionDescriptor {
         private SessionName sessionName;

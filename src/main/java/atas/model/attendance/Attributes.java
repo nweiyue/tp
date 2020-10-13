@@ -1,6 +1,6 @@
 package atas.model.attendance;
 
-import atas.model.person.Name;
+import atas.model.student.Name;
 
 /**
  * Represents the things to keep track for each student for each class.
