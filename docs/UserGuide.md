@@ -108,7 +108,7 @@ Examples:
 * `addstu n/John Cena m/A0123456J e/thechamp@u.nus.edu`
 * `addstu n/Alvina Handsome m/A0123456X e/handsome.alvina@u.nus.edu t/new`
 
-### <a name="list"></a>Listing all students : `liststu`
+### <a name="liststu"></a>Listing all students : `liststu`
 
 Shows a list of all students in the current student list.
 
