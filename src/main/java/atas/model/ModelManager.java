@@ -46,7 +46,7 @@ public class ModelManager implements Model {
         this.studentList = new StudentList(studentList);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredStudents = new FilteredList<>(this.studentList.getStudentList());
-        filteredSessions = new FilteredList<>(sessionList.getSessions());
+        filteredSessions = new FilteredList<>(this.sessionList.getSessions());
         sessionId = Index.fromZeroBased(0);
     }
 
