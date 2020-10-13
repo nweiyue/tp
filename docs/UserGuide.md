@@ -15,11 +15,11 @@ ATAS is a **desktop app for managing students’ particulars, optimized for use 
   * [Locating students by name](#findstu)
   * [Deleting a student](#deletestu)
   * [Editing a student's particulars](#editstu)
-  * [Clearing all students](#clearstu)
+  * [Clearing the student list](#clearstu)
   * [Adding a session](#addses)
   * [Deleting a session](#deleteses)
   * [Editing a session](#editses)
-  * [Clearing all sessions](#clearses)
+  * [Clearing the session list](#clearses)
   * [Entering a session](#enterses)
   * [Toggling participation of students](#participate)
   * [Toggling presence of students](#presence)
@@ -174,7 +174,7 @@ Examples:
 * `editstu 2 n/John Cena` followed by `yes` edits the 2nd student in the student list with an updated name `John Cena`.
 * `editstu 3 t/Joker` followed by `y` edits the 3rd student in the student list with an updated tag `Joker`.
 
-###  <a name="clearstu"></a>Clearing all students : `clearstu`
+###  <a name="clearstu"></a>Clearing the student list : `clearstu`
 
 The user will be prompted to confirm their decision here.
 
@@ -236,7 +236,7 @@ Examples:
 * `editses 2 s/Tutorial1 d/10/10/2020` followed by `yes` edits the 2nd session in the session list with a new session name `Tutorial1` and a new session date `10/10/2020`.
 
 
-###  <a name="clearses"></a>Clearing all sessions : `clearses`
+###  <a name="clearses"></a>Clearing the session list : `clearses`
 
 The user will be prompted to confirm their decision here.
 
@@ -344,7 +344,7 @@ Action | Format, Examples
 **Add Student** | `addstu n/NAME m/MATRICULATION_NUMBER e/NUS_EMAIL_ADDRESS [t/TAG]…​` <br> e.g., `addstu n/Rainer Lam m/A0123456C e/rainerlam@u.nus.edu t/smart`
 **List Students** | `liststu`
 **Find Students** | `findstu KEYWORD [MORE_KEYWORDS]`<br> e.g., `findstu Justin Bieber`
-**Delete Students** | `deletestu INDEX`<br> e.g., `deletestu 3`
+**Delete Student** | `deletestu INDEX`<br> e.g., `deletestu 3`
 **Edit Student** | `editstu INDEX n/UPDATED_NAME`<br> e.g., `editstu 2 n/John Cena`
 **Clear Students** | `clearstu`
 **Add Session** | `addses s/SESSION_NAME d/SESSION_DATE`<br> e.g., `addses s/TUT1 d/10/10/2020`
