@@ -18,7 +18,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
@@ -128,24 +127,28 @@ public class MainWindow extends UiPart<Stage> {
         });
 
         /* Supposed-to-work listener */
-//        getRoot().addEventFilter(KeyEvent.KEY_RELEASED, event -> {
-//            if (event.getCode() == KeyCode.ENTER) {
-//                updateLists();
-//                event.consume();
-//            }
-//        });
+        /*
+        getRoot().addEventFilter(KeyEvent.KEY_RELEASED, event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                updateLists();
+                event.consume();
+            }
+        });
+         */
     }
 
-//    void updateLists() {
-//        studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
-//        personListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
-//
-//        sessionListPanel = new SessionListPanel(logic.getFilteredSessionList());
-//        sessionListPanelPlaceholder.getChildren().add(sessionListPanel.getRoot());
-//
-//        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getStudentListFilePath());
-//        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
-//    }
+    /*
+    void updateLists() {
+        studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
+        personListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+
+        sessionListPanel = new SessionListPanel(logic.getFilteredSessionList());
+        sessionListPanelPlaceholder.getChildren().add(sessionListPanel.getRoot());
+
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getStudentListFilePath());
+        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+    }
+     */
 
     /**
      * Fills up all the placeholders of this window.
