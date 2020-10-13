@@ -15,7 +15,7 @@ import atas.testutil.ModelManagerBuilder;
 import atas.testutil.StudentBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code AddCommand}.
+ * Contains integration tests (interaction with the Model) for {@code AddStudentCommand}.
  */
 public class AddStudentCommandIntegrationTest {
 
@@ -39,7 +39,7 @@ public class AddStudentCommandIntegrationTest {
     }
 
     @Test
-    public void execute_duplicateStudent_throwsCommandException() {
+    public void execute_duplicatePerson_throwsCommandException() {
         Student studentInList = model.getStudentList().getStudentList().get(0);
         assertCommandFailure(new AddStudentCommand(studentInList), model, AddStudentCommand.MESSAGE_DUPLICATE_STUDENT);
     }

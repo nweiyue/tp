@@ -11,8 +11,8 @@ import atas.model.Model;
  */
 public class ClearSessionsCommand extends Command {
 
-    public static final String COMMAND_WORD = "clearsessions";
-    public static final String MESSAGE_SUCCESS = "The session in the current session list has been cleared";
+    public static final String COMMAND_WORD = "clearses";
+    public static final String MESSAGE_SUCCESS = "ATAS has cleared all sessions from your list!";
 
 
     @Override

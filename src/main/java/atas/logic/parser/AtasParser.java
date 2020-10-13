@@ -23,8 +23,8 @@ import atas.logic.commands.studentlist.AddStudentCommand;
 import atas.logic.commands.studentlist.ClearStudentListCommand;
 import atas.logic.commands.studentlist.DeleteStudentCommand;
 import atas.logic.commands.studentlist.EditStudentCommand;
-import atas.logic.commands.studentlist.FindStudentCommand;
-import atas.logic.commands.studentlist.ListCommand;
+import atas.logic.commands.studentlist.FindStudentsCommand;
+import atas.logic.commands.studentlist.ListStudentsCommand;
 import atas.logic.parser.exceptions.ParseException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Tab;
@@ -79,25 +79,25 @@ public class AtasParser {
                 return new AddStudentCommandParser().parse(arguments);
 
             case EditStudentCommand.COMMAND_WORD:
-                //Sets the previous command to a confirmation edit command.
+                //Sets the previous command to a confirmation edit student command.
                 this.previousCommand = new ConfirmationCommand(new EditStudentCommandParser().parse(arguments));
                 return previousCommand;
 
             case DeleteStudentCommand.COMMAND_WORD:
-                //Sets the previous command to a confirmation delete command.
+                //Sets the previous command to a confirmation delete student command.
                 this.previousCommand = new ConfirmationCommand(new DeleteStudentCommandParser().parse(arguments));
                 return previousCommand;
 
             case ClearStudentListCommand.COMMAND_WORD:
-                //Sets the previous command to a confirmation clear command.
+                //Sets the previous command to a confirmation clear students command.
                 this.previousCommand = new ConfirmationCommand(new ClearStudentListCommand());
                 return previousCommand;
 
-            case FindStudentCommand.COMMAND_WORD:
-                return new FindCommandParser().parse(arguments);
+            case FindStudentsCommand.COMMAND_WORD:
+                return new FindStudentsCommandParser().parse(arguments);
 
-            case ListCommand.COMMAND_WORD:
-                return new ListCommand();
+            case ListStudentsCommand.COMMAND_WORD:
+                return new ListStudentsCommand();
 
             case ExitCommand.COMMAND_WORD:
                 return new ExitCommand();

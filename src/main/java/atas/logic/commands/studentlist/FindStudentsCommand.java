@@ -12,8 +12,8 @@ import atas.model.student.NameContainsKeywordsPredicate;
  * Finds and lists all students in student list whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
-public class FindStudentCommand extends Command {
-    public static final String COMMAND_WORD = "find";
+public class FindStudentsCommand extends Command {
+    public static final String COMMAND_WORD = "findstu";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all students whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
@@ -22,7 +22,7 @@ public class FindStudentCommand extends Command {
 
     private final NameContainsKeywordsPredicate predicate;
 
-    public FindStudentCommand(NameContainsKeywordsPredicate predicate) {
+    public FindStudentsCommand(NameContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
@@ -38,7 +38,7 @@ public class FindStudentCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FindStudentCommand // instanceof handles nulls
-                && predicate.equals(((FindStudentCommand) other).predicate)); // state check
+                || (other instanceof FindStudentsCommand // instanceof handles nulls
+                && predicate.equals(((FindStudentsCommand) other).predicate)); // state check
     }
 }

@@ -4,7 +4,9 @@ import static atas.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static atas.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static atas.logic.commands.atas.HelpCommand.MESSAGE_USAGE;
 import static atas.testutil.Assert.assertThrows;
+import static atas.testutil.TypicalIndexes.INDEX_FIRST_SESSION;
 import static atas.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
+import static atas.testutil.TypicalIndexes.INDEX_SECOND_SESSION;
 import static atas.testutil.TypicalTabNames.CLASSES_TAB_NAME;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -32,8 +34,8 @@ import atas.logic.commands.studentlist.AddStudentCommand;
 import atas.logic.commands.studentlist.ClearStudentListCommand;
 import atas.logic.commands.studentlist.DeleteStudentCommand;
 import atas.logic.commands.studentlist.EditStudentCommand;
-import atas.logic.commands.studentlist.FindStudentCommand;
-import atas.logic.commands.studentlist.ListCommand;
+import atas.logic.commands.studentlist.FindStudentsCommand;
+import atas.logic.commands.studentlist.ListStudentsCommand;
 import atas.logic.parser.exceptions.ParseException;
 import atas.model.attendance.IndexRange;
 import atas.model.attendance.Session;
@@ -53,7 +55,7 @@ public class AtasParserTest {
     @Test
     public void parseCommand_add() throws Exception {
         Student student = new StudentBuilder().build();
-        AddStudentCommand command = (AddStudentCommand) parser.parseCommand(StudentUtil.getAddCommand(student));
+        AddStudentCommand command = (AddStudentCommand) parser.parseCommand(StudentUtil.getAddStudentCommand(student));
         assertEquals(new AddStudentCommand(student), command);
     }
 
@@ -89,9 +91,9 @@ public class AtasParserTest {
     @Test
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindStudentCommand command = (FindStudentCommand) parser.parseCommand(
-                FindStudentCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindStudentCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        FindStudentsCommand command = (FindStudentsCommand) parser.parseCommand(
+                FindStudentsCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindStudentsCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test
@@ -102,8 +104,8 @@ public class AtasParserTest {
 
     @Test
     public void parseCommand_list() throws Exception {
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+        assertTrue(parser.parseCommand(ListStudentsCommand.COMMAND_WORD) instanceof ListStudentsCommand);
+        assertTrue(parser.parseCommand(ListStudentsCommand.COMMAND_WORD + " 3") instanceof ListStudentsCommand);
     }
 
     @Test
@@ -124,8 +126,8 @@ public class AtasParserTest {
     @Test
     public void parseCommand_deleteSession() throws Exception {
         ConfirmationCommand command = (ConfirmationCommand) parser.parseCommand(
-                DeleteSessionCommand.COMMAND_WORD + " " + TypicalSessions.SESSIONNAME_WEEK_ONE_STRING);
-        assertEquals(new ConfirmationCommand(new DeleteSessionCommand(TypicalSessions.SESSIONNAME_WEEK_ONE)), command);
+                DeleteSessionCommand.COMMAND_WORD + " " + "1");
+        assertEquals(new ConfirmationCommand(new DeleteSessionCommand(INDEX_FIRST_SESSION)), command);
     }
 
     @Test
@@ -133,8 +135,8 @@ public class AtasParserTest {
         Session session = TypicalSessions.SESSION_WEEK_ONE;
         EditSessionCommand.EditSessionDescriptor descriptor = new EditSessionDescriptorBuilder(session).build();
         EditSessionCommand command = (EditSessionCommand) parser.parseCommand(EditSessionCommand.COMMAND_WORD + " "
-                + TypicalSessions.SESSIONNAME_WEEK_TWO + " " + SessionUtil.getSessionDetails(session));
-        assertEquals(new EditSessionCommand(TypicalSessions.SESSIONNAME_WEEK_TWO, descriptor), command);
+                + "2" + " " + SessionUtil.getSessionDetails(session));
+        assertEquals(new EditSessionCommand(INDEX_SECOND_SESSION, descriptor), command);
     }
 
     @Test
@@ -146,7 +148,7 @@ public class AtasParserTest {
     @Test
     public void parseCommand_enterSession() throws Exception {
         EnterSessionCommand command = (EnterSessionCommand) parser.parseCommand(
-                EnterSessionCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_SESSIONINDEX + "1");
+                EnterSessionCommand.COMMAND_WORD + " " + "1");
         assertEquals(new EnterSessionCommand(Index.fromOneBased(1)), command);
     }
 

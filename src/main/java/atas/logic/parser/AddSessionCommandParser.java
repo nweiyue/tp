@@ -2,8 +2,8 @@ package atas.logic.parser;
 
 import static atas.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static atas.logic.commands.sessionlist.AddSessionCommand.MESSAGE_USAGE;
-import static atas.logic.parser.CliSyntax.PREFIX_SESSIONDATE;
-import static atas.logic.parser.CliSyntax.PREFIX_SESSIONNAME;
+import static atas.logic.parser.CliSyntax.PREFIX_SESSION_DATE;
+import static atas.logic.parser.CliSyntax.PREFIX_SESSION_NAME;
 import static atas.model.attendance.SessionDate.MESSAGE_CONSTRAINTS;
 
 import java.time.format.DateTimeParseException;
@@ -27,17 +27,17 @@ public class AddSessionCommandParser implements Parser<AddSessionCommand> {
      */
     public AddSessionCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_SESSIONDATE, PREFIX_SESSIONNAME);
+                ArgumentTokenizer.tokenize(args, PREFIX_SESSION_DATE, PREFIX_SESSION_NAME);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_SESSIONDATE, PREFIX_SESSIONNAME)
+        if (!arePrefixesPresent(argMultimap, PREFIX_SESSION_DATE, PREFIX_SESSION_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
         }
 
-        SessionName sessionName = ParserUtil.parseSessionName(argMultimap.getValue(PREFIX_SESSIONNAME).get());
+        SessionName sessionName = ParserUtil.parseSessionName(argMultimap.getValue(PREFIX_SESSION_NAME).get());
         SessionDate sessionDate;
         try {
-            sessionDate = ParserUtil.parseSessionDate(argMultimap.getValue(PREFIX_SESSIONDATE).get());
+            sessionDate = ParserUtil.parseSessionDate(argMultimap.getValue(PREFIX_SESSION_DATE).get());
         } catch (DateTimeParseException e) {
             throw new ParseException(MESSAGE_CONSTRAINTS);
         }

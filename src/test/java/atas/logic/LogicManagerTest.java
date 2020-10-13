@@ -26,7 +26,7 @@ import atas.logic.commands.exceptions.CommandException;
 import atas.logic.commands.studentlist.AddStudentCommand;
 import atas.logic.commands.studentlist.DeleteStudentCommand;
 import atas.logic.commands.studentlist.EditStudentCommand;
-import atas.logic.commands.studentlist.ListCommand;
+import atas.logic.commands.studentlist.ListStudentsCommand;
 import atas.logic.parser.exceptions.ParseException;
 import atas.model.Model;
 import atas.model.ModelManager;
@@ -71,23 +71,22 @@ public class LogicManagerTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
         int outOfBoundIndexOneBased = outOfBoundIndex.getOneBased();
 
-        String deleteCommand = DeleteStudentCommand.COMMAND_WORD + " " + outOfBoundIndexOneBased;
-        assertCommandSuccess(deleteCommand, String.format(ConfirmationCommand.MESSAGE_CONFIRMATION_DELETE,
+        String deleteStudentCommand = DeleteStudentCommand.COMMAND_WORD + " " + outOfBoundIndexOneBased;
+        assertCommandSuccess(deleteStudentCommand, String.format(ConfirmationCommand.MESSAGE_CONFIRMATION_DELETE,
                 outOfBoundIndexOneBased), model);
         assertCommandException(ACCEPT_COMMAND_FULL, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
 
-
-        String editCommand = EditStudentCommand.COMMAND_WORD + " " + outOfBoundIndexOneBased + " "
+        String editStudentCommand = EditStudentCommand.COMMAND_WORD + " " + outOfBoundIndexOneBased + " "
                 + PREFIX_TAG + "newTag";
-        assertCommandSuccess(editCommand, String.format(ConfirmationCommand.MESSAGE_CONFIRMATION_EDIT,
+        assertCommandSuccess(editStudentCommand, String.format(ConfirmationCommand.MESSAGE_CONFIRMATION_EDIT,
                 outOfBoundIndexOneBased), model);
         assertCommandException(ACCEPT_COMMAND_FULL, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_validCommand_success() throws Exception {
-        String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
+        String listStudentsCommand = ListStudentsCommand.COMMAND_WORD;
+        assertCommandSuccess(listStudentsCommand, ListStudentsCommand.MESSAGE_SUCCESS, model);
     }
 
     @Test
@@ -103,12 +102,14 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddStudentCommand.COMMAND_WORD + NAME_DESC_AMY + MATRICULATION_DESC_AMY + EMAIL_DESC_AMY;
+        String addStudentCommand = AddStudentCommand.COMMAND_WORD + NAME_DESC_AMY
+                + MATRICULATION_DESC_AMY + EMAIL_DESC_AMY;
         Student expectedStudent = new StudentBuilder(AMY).withTags().build();
+
         ModelManager expectedModel = new ModelManager();
         expectedModel.addStudent(expectedStudent);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
-        assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
+        assertCommandFailure(addStudentCommand, CommandException.class, expectedMessage, expectedModel);
     }
 
     @Test

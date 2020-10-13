@@ -93,8 +93,8 @@ public class ModelManager implements Model {
 
     @Override
     public void setStudentList(ReadOnlyStudentList studentList) {
-        //this.addressBook.resetData(addressBook);
-        resetSessionList();
+        this.studentList.resetData(studentList);
+        //resetSessionList();
     }
 
     @Override
@@ -162,7 +162,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteSession(Session target) {
+    public void deleteSession(Session target, Index id) {
         sessionList.updateStudentList(studentList.getStudentList());
         sessionList.deleteSession(target);
     }

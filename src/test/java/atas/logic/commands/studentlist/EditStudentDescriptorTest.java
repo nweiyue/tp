@@ -36,7 +36,7 @@ public class EditStudentDescriptorTest {
 
         // different name -> returns false
         EditStudentCommand.EditStudentDescriptor
-            editedAmy = new EditStudentDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
+                editedAmy = new EditStudentDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different phone -> returns false

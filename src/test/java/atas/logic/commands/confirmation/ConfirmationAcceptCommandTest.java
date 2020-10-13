@@ -30,6 +30,7 @@ public class ConfirmationAcceptCommandTest {
     private Model model = ModelManagerBuilder.buildTypicalModelManager();
 
     @Test
+
     public void execute_acceptValidDeleteCommand_success() {
         Student studentToDelete = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
         DeleteStudentCommand deleteStudentCommand = new DeleteStudentCommand(INDEX_FIRST_STUDENT);
@@ -45,7 +46,7 @@ public class ConfirmationAcceptCommandTest {
     }
 
     @Test
-    public void execute_invalidDeleteCommand_throwsCommandException() {
+    public void execute_invalidDeleteStudentCommand_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
         DeleteStudentCommand deleteStudentCommand = new DeleteStudentCommand(outOfBoundIndex);
 
@@ -54,7 +55,7 @@ public class ConfirmationAcceptCommandTest {
     }
 
     @Test
-    public void execute_acceptValidEditCommand_success() {
+    public void execute_acceptValidEditStudentCommand_success() {
         showStudentAtIndex(model, INDEX_FIRST_STUDENT);
 
         Student studentInFilteredList = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
@@ -73,28 +74,31 @@ public class ConfirmationAcceptCommandTest {
     }
 
     @Test
-    public void execute_invalidEditCommand_failure() {
+    public void execute_invalidEditStudentCommand_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
         EditStudentCommand.EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder()
+
                 .withName(VALID_NAME_BOB).build();
         EditStudentCommand editStudentCommand = new EditStudentCommand(outOfBoundIndex, descriptor);
 
         ConfirmationAcceptCommand confirmationAcceptCommand = new ConfirmationAcceptCommand(editStudentCommand);
+
         assertCommandFailure(confirmationAcceptCommand, model, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     @Test
-    public void execute_acceptClearCommand_success() {
+    public void execute_acceptClearStudentsCommand_success() {
         ClearStudentListCommand clearStudentListCommand = new ClearStudentListCommand();
-        ModelManager expectedModel = new ModelManager(getTypicalSessionList(model.getStudentList().getStudentList()),
-            model.getStudentList(), new UserPrefs());
-
+        ModelManager expectedModel = new ModelManager(getTypicalSessionList(new ModelManager()
+                .getStudentList().getStudentList()),
+                new ModelManager().getStudentList(), new UserPrefs());
         ConfirmationAcceptCommand confirmationAcceptCommand = new ConfirmationAcceptCommand(clearStudentListCommand);
         assertCommandSuccess(confirmationAcceptCommand, model, ClearStudentListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
     public void equals() {
+
         DeleteStudentCommand firstDeleteStudentCommand = new DeleteStudentCommand(INDEX_FIRST_STUDENT);
         DeleteStudentCommand secondDeleteStudentCommand = new DeleteStudentCommand(INDEX_SECOND_STUDENT);
 
@@ -102,31 +106,31 @@ public class ConfirmationAcceptCommandTest {
         EditStudentCommand.EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(editedStudent).build();
         EditStudentCommand editStudentCommand = new EditStudentCommand(INDEX_FIRST_STUDENT, descriptor);
 
-        ClearStudentListCommand clearStudentListCommand = new ClearStudentListCommand();
+        ClearStudentListCommand clearStudentsCommand = new ClearStudentListCommand();
 
-        ConfirmationAcceptCommand confirmationAcceptDeleteCommand =
-                new ConfirmationAcceptCommand(firstDeleteStudentCommand);
-        ConfirmationAcceptCommand confirmationAcceptEditCommand =
-                new ConfirmationAcceptCommand(editStudentCommand);
-        ConfirmationAcceptCommand confirmationAcceptClearCommand =
-                new ConfirmationAcceptCommand(clearStudentListCommand);
+        ConfirmationAcceptCommand confirmationAcceptDeleteStudentCommand = new ConfirmationAcceptCommand(
+                firstDeleteStudentCommand);
+        ConfirmationAcceptCommand confirmationAcceptEditStudentCommand = new ConfirmationAcceptCommand(
+                editStudentCommand);
+        ConfirmationAcceptCommand confirmationAcceptClearStudentsCommand = new ConfirmationAcceptCommand(
+                clearStudentsCommand);
 
         // Check if confirmationAcceptDangerousCommand equals confirmationAcceptSameDangerousCommand
-        assertTrue(confirmationAcceptDeleteCommand.equals(confirmationAcceptDeleteCommand));
-        assertTrue(confirmationAcceptEditCommand.equals(confirmationAcceptEditCommand));
-        assertTrue(confirmationAcceptClearCommand.equals(confirmationAcceptClearCommand));
+        assertTrue(confirmationAcceptDeleteStudentCommand.equals(confirmationAcceptDeleteStudentCommand));
+        assertTrue(confirmationAcceptEditStudentCommand.equals(confirmationAcceptEditStudentCommand));
+        assertTrue(confirmationAcceptClearStudentsCommand.equals(confirmationAcceptClearStudentsCommand));
 
         // Check if confirmationAcceptDangerousCommand equals confirmationAcceptAnotherDangerousCommand
-        assertFalse(confirmationAcceptDeleteCommand.equals(confirmationAcceptClearCommand));
-        assertFalse(confirmationAcceptDeleteCommand.equals(confirmationAcceptEditCommand));
-        assertFalse(confirmationAcceptEditCommand.equals(confirmationAcceptClearCommand));
+        assertFalse(confirmationAcceptDeleteStudentCommand.equals(confirmationAcceptClearStudentsCommand));
+        assertFalse(confirmationAcceptDeleteStudentCommand.equals(confirmationAcceptEditStudentCommand));
+        assertFalse(confirmationAcceptEditStudentCommand.equals(confirmationAcceptClearStudentsCommand));
 
-        // Check if confirmationAcceptDeleteCommand equals confirmationAcceptAnotherDeleteCommand
-        assertFalse(confirmationAcceptDeleteCommand.equals(
-                new ConfirmationAcceptCommand(secondDeleteStudentCommand)));
+        // Check if confirmationAcceptDeleteStudentCommand equals confirmationAcceptAnotherDeleteCommand
+        assertFalse(confirmationAcceptDeleteStudentCommand.equals(new ConfirmationAcceptCommand(
+                secondDeleteStudentCommand)));
 
         // Check if confirmationAcceptCommand equals another subclass of ConfirmCommand
-        assertFalse(confirmationAcceptDeleteCommand.equals(
-                new ConfirmationRejectCommand(firstDeleteStudentCommand)));
+        assertFalse(confirmationAcceptDeleteStudentCommand.equals(new ConfirmationRejectCommand(
+                firstDeleteStudentCommand)));
     }
 }

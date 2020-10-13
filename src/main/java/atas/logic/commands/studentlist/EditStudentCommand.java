@@ -27,10 +27,10 @@ import atas.model.tag.Tag;
  */
 public class EditStudentCommand extends DangerousCommand {
 
-    public static final String COMMAND_WORD = "edit";
+    public static final String COMMAND_WORD = "editstu";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the student identified "
-            + "by the index number used in the displayed class list. "
+            + "by the index number used in the displayed student list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + CliSyntax.PREFIX_NAME + "NAME] "
@@ -43,18 +43,19 @@ public class EditStudentCommand extends DangerousCommand {
 
     public static final String MESSAGE_EDIT_STUDENT_SUCCESS = "Edited student: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the class.";
+    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the student list.";
 
     private final Index index;
     private final EditStudentDescriptor editStudentDescriptor;
 
     /**
-     * Creates an EditCommand to edit the student at specified Index.
+     * Creates an EditStudentCommand to edit the person at specified Index.
      *
      * @param index The Index of the student in the filtered student list to edit.
      * @param editStudentDescriptor The details to edit the student with.
      */
     public EditStudentCommand(Index index, EditStudentDescriptor editStudentDescriptor) {
+
         requireNonNull(index);
         requireNonNull(editStudentDescriptor);
 

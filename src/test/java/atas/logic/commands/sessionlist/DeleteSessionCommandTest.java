@@ -1,56 +1,54 @@
 package atas.logic.commands.sessionlist;
 
 import static atas.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static atas.logic.commands.CommandTestUtil.showSessionAtIndex;
 import static atas.testutil.Assert.assertThrows;
+import static atas.testutil.TypicalIndexes.INDEX_FIRST_SESSION;
+import static atas.testutil.TypicalIndexes.INDEX_SECOND_SESSION;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import atas.logic.commands.exceptions.CommandException;
 import atas.model.Model;
 import atas.model.ModelManager;
 import atas.model.UserPrefs;
 import atas.model.attendance.Session;
 import atas.model.attendance.SessionList;
-import atas.model.attendance.SessionName;
 import atas.model.attendance.exceptions.SessionNotFoundException;
 import atas.testutil.ModelManagerBuilder;
 import atas.testutil.SessionBuilder;
 import atas.testutil.TypicalSessions;
+
 
 public class DeleteSessionCommandTest {
 
     private Model model = ModelManagerBuilder.buildTypicalModelManager();
 
     @Test
-    public void execute_validSessionName_success() {
+    public void execute_validIndex_success() {
+        showSessionAtIndex(model, INDEX_FIRST_SESSION);
+        Session sessionToDelete = model.getFilteredSessionList().get(INDEX_FIRST_SESSION.getZeroBased());
+        DeleteSessionCommand deleteSessionCommand = new DeleteSessionCommand(INDEX_FIRST_SESSION);
 
-        SessionName sessionName = TypicalSessions.TUT1.getSessionName();
-        DeleteSessionCommand deleteSessionCommand = new DeleteSessionCommand(sessionName);
+        String expectedMessage = String.format(DeleteSessionCommand.MESSAGE_DELETE_SESSION_SUCCESS, sessionToDelete);
 
-        String expectedMessage = DeleteSessionCommand.MESSAGE_SUCCESS;
-
-        ModelManager expectedModel = new ModelManager(TypicalSessions.getTypicalSessionListMinusTut1(
+        ModelManager expectedModel = new ModelManager(TypicalSessions.getTypicalSessionList(
                 model.getStudentList().getStudentList()), model.getStudentList(), new UserPrefs());
 
+        expectedModel.deleteSession(sessionToDelete, INDEX_FIRST_SESSION);
+        showNoSession(expectedModel);
         assertCommandSuccess(deleteSessionCommand, model, expectedMessage, expectedModel);
-        assertFalse(model.hasSession(TypicalSessions.TUT1));
     }
 
-    @Test
-    public void execute_sessionNotFound_throwsCommandException() {
+    /**
+     * Updates {@code model}'s filtered list to show no one.
+     */
+    private void showNoSession (Model model) {
+        model.updateFilteredSessionList(s -> false);
 
-        SessionName sessionName = TypicalSessions.TUT1.getSessionName();
-        DeleteSessionCommand deleteSessionCommand = new DeleteSessionCommand(sessionName);
-
-        String expectedMessage = DeleteSessionCommand.MESSAGE_SESSION_NOT_FOUND;
-
-        ModelManager expectedModel = new ModelManager(TypicalSessions.getTypicalSessionListMinusTut1(
-                model.getStudentList().getStudentList()), model.getStudentList(), new UserPrefs());
-
-        assertThrows(CommandException.class, expectedMessage, () -> deleteSessionCommand.execute(expectedModel));
+        assertTrue(model.getFilteredSessionList().isEmpty());
     }
 
     @Test
@@ -62,46 +60,30 @@ public class DeleteSessionCommandTest {
 
     @Test
     public void equals() {
-        Session tut = new SessionBuilder().withSessionName("tut").build();
-        Session lab = new SessionBuilder().withSessionName("lab").build();
-
-        DeleteSessionCommand deleteTutCommand = new DeleteSessionCommand(tut.getSessionName());
-        DeleteSessionCommand deleteLabCommand = new DeleteSessionCommand(lab.getSessionName());
+        DeleteSessionCommand deleteFirstSessionCommand = new DeleteSessionCommand(INDEX_FIRST_SESSION);
+        DeleteSessionCommand deleteSecondSessionCommand = new DeleteSessionCommand(INDEX_SECOND_SESSION);
 
         // same object -> returns true
-        assertTrue(deleteTutCommand.equals(deleteTutCommand));
+        assertTrue(deleteFirstSessionCommand.equals(deleteFirstSessionCommand));
 
-        // same sessioName -> returns true
-        DeleteSessionCommand deleteTutCommandCopy = new DeleteSessionCommand(tut.getSessionName());
-        assertTrue(deleteTutCommand.equals(deleteTutCommandCopy));
+        // same sessionName -> returns true
+        DeleteSessionCommand deleteTutCommandCopy = new DeleteSessionCommand(deleteFirstSessionCommand.getIndex());
+        assertTrue(deleteFirstSessionCommand.equals(deleteTutCommandCopy));
 
         // different types -> returns false
-        assertFalse(deleteTutCommand.equals(1));
+        assertFalse(deleteFirstSessionCommand.equals(1));
 
         // null -> returns false
-        assertFalse(deleteTutCommand.equals(null));
+        assertFalse(deleteFirstSessionCommand.equals(null));
 
         // different sessionName -> returns false
-        assertFalse(deleteTutCommand.equals(deleteLabCommand));
+        assertFalse(deleteFirstSessionCommand.equals(deleteSecondSessionCommand));
     }
 
     @Test
-    public void toString_one() {
-        SessionName sessionName = TypicalSessions.TUT1.getSessionName();
-        DeleteSessionCommand deleteSessionCommand = new DeleteSessionCommand(sessionName);
-        String expectedString = String.format(DeleteSessionCommand.MESSAGE_COMMAND_TO_STRING,
-                TypicalSessions.TUT1.getSessionName().value);
+    public void testToString() {
+        DeleteSessionCommand deleteSessionCommand = new DeleteSessionCommand(INDEX_FIRST_SESSION);
+        String expectedString = "Delete 1";
         assertEquals(expectedString, deleteSessionCommand.toString());
     }
-
-    @Test
-    public void toString_two() {
-        SessionName sessionName = TypicalSessions.TUT2.getSessionName();
-        DeleteSessionCommand deleteSessionCommand = new DeleteSessionCommand(sessionName);
-        String expectedString = String.format(DeleteSessionCommand.MESSAGE_COMMAND_TO_STRING,
-                TypicalSessions.TUT2.getSessionName().value);
-
-        assertEquals(expectedString, deleteSessionCommand.toString());
-    }
-
 }

@@ -10,8 +10,9 @@ import atas.model.StudentList;
 /**
  * Clears the student list.
  */
+
 public class ClearStudentListCommand extends DangerousCommand {
-    public static final String COMMAND_WORD = "clear";
+    public static final String COMMAND_WORD = "clearstu";
     public static final String MESSAGE_SUCCESS = "ATAS has cleared all students from your list!";
 
 

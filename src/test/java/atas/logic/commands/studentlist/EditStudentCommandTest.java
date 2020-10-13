@@ -130,7 +130,7 @@ public class EditStudentCommandTest {
     public void execute_invalidStudentIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
         EditStudentCommand.EditStudentDescriptor
-            descriptor = new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB).build();
+                descriptor = new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB).build();
         EditStudentCommand editStudentCommand = new EditStudentCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editStudentCommand, model, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);

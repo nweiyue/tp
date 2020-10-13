@@ -1,62 +1,73 @@
 package atas.logic.commands.sessionlist;
 
+import static atas.commons.core.Messages.MESSAGE_INVALID_SESSION_DISPLAYED_INDEX;
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
+
+import atas.commons.core.index.Index;
 import atas.logic.commands.CommandResult;
 import atas.logic.commands.confirmation.DangerousCommand;
 import atas.logic.commands.exceptions.CommandException;
 import atas.model.Model;
 import atas.model.attendance.Session;
-import atas.model.attendance.SessionDate;
-import atas.model.attendance.SessionName;
 
 public class DeleteSessionCommand extends DangerousCommand {
 
-    public static final String COMMAND_WORD = "deletesession";
+    public static final String COMMAND_WORD = "deleteses";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a session from the current class. "
-            + "Parameters: SESSION_NAME "
-            + "\n"
-            + "Example: tut1 ";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Deletes the session identified by the index number used in the displayed session list.\n"
+            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Example: " + COMMAND_WORD + " 1";
 
 
-    public static final String MESSAGE_SUCCESS = "Session deleted.";
+    public static final String MESSAGE_DELETE_SESSION_SUCCESS = "Deleted session: %1$s";
     public static final String MESSAGE_SESSION_NOT_FOUND = "Session not found.";
-    public static final String MESSAGE_COMMAND_TO_STRING = "Delete session %s";
 
-    private final SessionName toDelete;
+    private final Index targetIndex;
 
     /**
-     * Creates an AddSessionCommand to add the specified {@code Session}
+     * Creates a DeleteSessionCommand to delete the specified {@code Session}
      */
-    public DeleteSessionCommand(SessionName sessionName) {
-        requireNonNull(sessionName);
-        toDelete = sessionName;
+    public DeleteSessionCommand(Index targetIndex) {
+        this.targetIndex = targetIndex;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        Session sessionToDelete = new Session(toDelete, SessionDate.getPlaceholderSessionDate());
+        List<Session> lastShownList = model.getFilteredSessionList();
+
+        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(MESSAGE_INVALID_SESSION_DISPLAYED_INDEX);
+        }
+
+        Session sessionToDelete = lastShownList.get(targetIndex.getZeroBased());
 
         if (!model.hasSession(sessionToDelete)) {
             throw new CommandException(MESSAGE_SESSION_NOT_FOUND);
         }
 
-        model.deleteSession(sessionToDelete);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toDelete));
+        model.deleteSession(sessionToDelete, targetIndex);
+        return new CommandResult(String.format(MESSAGE_DELETE_SESSION_SUCCESS, sessionToDelete));
+    }
+
+    public Index getIndex() {
+        return targetIndex;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeleteSessionCommand // instanceof handles nulls
-                && toDelete.equals(((DeleteSessionCommand) other).toDelete));
+                && targetIndex.equals(((DeleteSessionCommand) other).targetIndex));
     }
 
     @Override
     public String toString() {
-        return String.format(MESSAGE_COMMAND_TO_STRING, toDelete);
+        String oneBasedIndex = String.valueOf(targetIndex.getOneBased());
+        return "Delete " + oneBasedIndex;
     }
 }

@@ -1,11 +1,10 @@
 package atas.logic.parser;
 
 import static atas.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static atas.logic.commands.sessionlist.DeleteSessionCommand.MESSAGE_USAGE;
 
+import atas.commons.core.index.Index;
 import atas.logic.commands.sessionlist.DeleteSessionCommand;
 import atas.logic.parser.exceptions.ParseException;
-import atas.model.attendance.SessionName;
 
 /**
  * Parses input arguments and creates a new DeleteSessionCommand object
@@ -19,11 +18,11 @@ public class DeleteSessionCommandParser implements Parser<DeleteSessionCommand> 
      */
     public DeleteSessionCommand parse(String args) throws ParseException {
         try {
-            SessionName sessionName = ParserUtil.parseSessionName(args);
-            return new DeleteSessionCommand(sessionName);
+            Index index = ParserUtil.parseIndex(args);
+            return new DeleteSessionCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteSessionCommand.MESSAGE_USAGE), pe);
         }
 
     }

@@ -14,7 +14,7 @@ import atas.model.student.Student;
  */
 public class AddStudentCommand extends Command {
 
-    public static final String COMMAND_WORD = "add";
+    public static final String COMMAND_WORD = "addstu";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to the class. "
             + "Parameters: "
