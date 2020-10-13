@@ -315,7 +315,7 @@ bye
 ### <a name="ucp"></a>User confirmation prompt
 
 Prompts the user to confirm the execution of commands that may permanently remove information.
-These commands are: `deletestu`, `editses` and `clearstu`.
+These commands are: `deletestu`, `editstu`,`clearstu`, `deleteses`, `editses`,
 
 * Confirms the execution at the specified `INDEX`.
 
