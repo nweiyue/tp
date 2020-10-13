@@ -185,7 +185,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting StudentList " + MainApp.VERSION);
+        logger.info("Starting Atas " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 

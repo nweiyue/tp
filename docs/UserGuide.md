@@ -9,20 +9,23 @@ ATAS is a **desktop app for managing students’ particulars, optimized for use 
 
 * [Quick start](#qs)
 * [Features](#features)
-  * [Viewing help](#help) (coming soon)
-  * [Adding a students](#add)
-  * [Listing all students](#list)
-  * [Locating students by name](#find)
-  * [Deleting a student](#delete)
-  * [Editing a student's particulars](#edit)
-  * [Clearing all entries](#clear)
+  * [Viewing help](#help)
+  * [Adding a student](#addstu)
+  * [Listing all students](#liststu)
+  * [Locating students by name](#findstu)
+  * [Deleting a student](#deletestu)
+  * [Editing a student's particulars](#editstu)
+  * [Clearing all students](#clearstu)
   * [Adding a session](#addses)
   * [Deleting a session](#deleteses)
-  * [Editing a session details](#editses)
+  * [Editing a session](#editses)
+  * [Clearing all sessions](#clearses)
   * [Entering a session](#enterses)
+  * [Toggling participation of students](#participate)
+  * [Toggling presence of students](#presence)
   * [Switching between tabs](#switch)
   * [Exiting the program](#exit)
-  * [User confirmation prompt](#ucp) (coming soon)
+  * [User confirmation prompt](#ucp)
   * [Saving data](#sd)
 * [FAQ](#faq)
 * [Command summary](#cs)
@@ -37,21 +40,21 @@ ATAS is a **desktop app for managing students’ particulars, optimized for use 
 
 3. Copy the file to the folder you want to use as the _home folder_ for your ATAS.
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. The GUI similar to the below image should appear in a few seconds. Note how the app contains some sample data.<br>
    ![StartPage](images/StartPage.png)
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists out all the students.
+   * **`liststu`** : Lists out all the students.
 
-   * **`add n/John Cena e/thechamp@u.nus.edu`** : Adds a student named `John Cena` to the class list.
+   * **`addstu n/John Cena e/thechamp@u.nus.edu`** : Adds a student named `John Cena` to the student list.
 
-   * **`delete 3`** : Deletes the 3rd student shown in the current list.
+   * **`deleteses 3`** : Deletes the 3rd session shown in the current session list.
    
-   * **`edit 3 n/John Cena`** : Edits the 3rd student's name to `John Cena`.
+   * **`editses 3 s/Tutorial 2`** : Edits the 2nd session name to `Tutorial 2`.
 
-   * **`clear`** : Deletes all the students.
+   * **`clearstu`** : Deletes all the students.
 
    * **`bye`** : Exits out of the application.
 
@@ -66,7 +69,7 @@ ATAS is a **desktop app for managing students’ particulars, optimized for use 
 **:information_source: Notes about the command format:**<br>
 
 * The words in `UPPER_CASE` are placeholders to be replaced by the user.<br>
-  e.g. in `add n/STUDENT_NAME` should be changed to `add n/John Cena`.
+  e.g. in `addstu n/STUDENT_NAME` should be changed to `addstu n/John Cena`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Cena t/foreigner` or simply as `n/John Cena`.
@@ -79,22 +82,22 @@ ATAS is a **desktop app for managing students’ particulars, optimized for use 
 
 </div>
 
-### <a name="help"></a>Viewing help : `help` (feature coming soon!)
+### <a name="help"></a>Viewing help : `help`
 
 Shows a message explaining how to access the help page.
 
-[insert help message image]
+![helpWindow](images/helpWindow.png)
 
 ```
 help
 ```
 
-### <a name="add"></a>Adding a student : `add`
+### <a name="addstu"></a>Adding a student : `addstu`
 
-Adds a student to class list.
+Adds a student to the student list.
 
 ```
-add n/NAME m/MATRICULATION_NUMBER e/NUS_EMAIL_ADDRESS [t/TAG]…
+addstu n/NAME m/MATRICULATION_NUMBER e/NUS_EMAIL_ADDRESS [t/TAG]…
 ```
 
 :bulb: **Tip:**<div markdown="span" class="alert alert-primary">
@@ -102,23 +105,23 @@ A student can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Cena m/A0123456J e/thechamp@u.nus.edu`
-* `add n/Alvina Handsome m/A0123456X e/handsome.alvina@u.nus.edu t/new`
+* `addstu n/John Cena m/A0123456J e/thechamp@u.nus.edu`
+* `addstu n/Alvina Handsome m/A0123456X e/handsome.alvina@u.nus.edu t/new`
 
-### <a name="list"></a>Listing all students : `list`
+### <a name="list"></a>Listing all students : `liststu`
 
-Shows a list of all students in the current class list.
+Shows a list of all students in the current student list.
 
 ```
-list
+liststu
 ```
 
-### <a name="find"></a>Locating students by name: `find`
+### <a name="findstu"></a>Locating students by name: `findstu`
 
 Finds students whose names contain any of the given keywords.
 
 ```
-find KEYWORD [MORE_KEYWORDS]
+findstu KEYWORD [MORE_KEYWORDS]
 ````
 
 * The search is case-insensitive. e.g `john` will match `John`
@@ -129,56 +132,56 @@ find KEYWORD [MORE_KEYWORDS]
   e.g. `John Cena` will return `John Tan`, `Mark Cena`
 
 Examples:
-* `find John` returns `john` and `John Cena`
-* `find kent ridge` returns `Kent Tan` and `Mark Ridge`<br>
-[Insert image of an example of result of `find Cena`]
+* `findstu John` returns `john` and `John Cena`
+* `findstu kent ridge` returns `Kent Tan` and `Mark Ridge`<br>
+[Insert image of an example of result of `findstu Cena`]
 
-### <a name="delete"></a>Deleting a student : `delete`
+### <a name="deletestu"></a>Deleting a student : `deletestu`
 
 The user will be prompted to confirm their decision here.
 
-If yes: deletes the specified student from the class list.
+If yes: deletes the specified student from the student list.
 
 ```
-delete INDEX
+deletestu INDEX
 ```
 
 * Deletes the student at the specified `INDEX`.
-* The index refers to the index number shown in the displayed class list.
+* The index refers to the index number shown in the displayed student list.
 * The index **must be a positive integer** 1, 2, 3, …
 * User will then be prompted for a confirmation input **`(yes/no)`**.
 
 Examples:
-* `list` followed by `delete 2` followed by `yes` deletes the 2nd student in the class list.
-* `find Betsy` followed by `delete 1` followed by `y` deletes the 1st student in the results of the `find` command.
+* `liststu` followed by `deletestu 2` followed by `yes` deletes the 2nd student in the student list.
+* `findstu Betsy` followed by `deletestu 1` followed by `y` deletes the 1st student in the results of the `findstu` command.
 
-### <a name="edit"></a>Edit a student's particulars: `edit`
+### <a name="editstu"></a>Edit a student's particulars: `editstu`
 
 The user will be prompted to confirm their decision here.
 
-If yes: edits and updates the particulars of the specified student from the class list.
+If yes: edits and updates the particulars of the specified student from the student list.
 
 ```
-edit INDEX n/UPDATED_NAME
+editstu INDEX n/UPDATED_NAME
 ```
 
-* Edits the student at the specified `INDEX` with the specified particular to be updated.
-* The index refers to the index number shown in the displayed class list.
+* Edits the student at the specified `INDEX` with the specified updated particular to be updated.
+* The index refers to the index number shown in the displayed student list.
 * The index **must be a positive integer** 1, 2, 3, …
 * User will then be prompted for a confirmation input **`(yes/no)`**.
 
 Examples:
-* `edit 2 n/John Cena` followed by `yes` edits the 2nd student in the class list with an updated name `John Cena`.
-* `edit 3 t/Joker` followed by `y` edits the 3rd student in the class list with an updated tag `Joker`.
+* `editstu 2 n/John Cena` followed by `yes` edits the 2nd student in the student list with an updated name `John Cena`.
+* `editstu 3 t/Joker` followed by `y` edits the 3rd student in the student list with an updated tag `Joker`.
 
-###  <a name="clear"></a>Clearing all entries : `clear`
+###  <a name="clearstu"></a>Clearing all students : `clearstu`
 
 The user will be prompted to confirm their decision here.
 
-If yes: removes all students from the class list.
+If yes: removes all students from the student list.
 
 ```
-clear
+clearstu
 ```
 
 ### <a name="addses"></a>Adding a session : `addses`
@@ -231,6 +234,17 @@ editses INDEX s/NEW_NAME d/NEW_DATE
 
 Examples:
 * `editses 2 s/Tutorial1 d/10/10/2020` followed by `yes` edits the 2nd session in the session list with a new session name `Tutorial1` and a new session date `10/10/2020`.
+
+
+###  <a name="clearses"></a>Clearing all sessions : `clearses`
+
+The user will be prompted to confirm their decision here.
+
+If yes: removes all sessions from the session list.
+
+```
+clearses
+```
 
 ### <a name="enterses"></a>Entering a session : `enterses`
 
@@ -302,14 +316,14 @@ bye
 ### <a name="ucp"></a>User confirmation prompt
 
 Prompts the user to confirm the execution of commands that may permanently remove information.
-These commands are: `delete`, `edit` and `clear`.
+These commands are: `deletestu`, `editstu` and `clearstu`.
 
 * Confirms the execution at the specified `INDEX`.
 
 Examples:
-* `delete 3` is followed with `Delete 3? (yes/no)`.
-* `edit 3 t/TAG_NAME` is followed with `Edit 3? (yes/no)`.
-* `clear` is followed with `Clear list? (yes/no)`.
+* `deletestu 3` is followed with `Delete 3? (yes/no)`.
+* `editstu 3 t/TAG_NAME` is followed with `Edit 3? (yes/no)`.
+* `clearstu` is followed with `Clear list? (yes/no)`.
 
 ###  <a name="sd"></a>Saving the data
 
@@ -327,16 +341,18 @@ Students’ data are saved in the hard disk automatically after any command that
 Action | Format, Examples
 --------|------------------
 **Help** | `help`
-**Add** | `add n/NAME m/MATRICULATION_NUMBER e/NUS_EMAIL_ADDRESS [t/TAG]…​` <br> e.g., `add n/Rainer Lam m/A0123456C e/rainerlam@u.nus.edu t/smart`
-**List** | `list`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Justin Bieber`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX n/UPDATED_NAME`<br> e.g., `edit 2 n/John Cena`
-**Addses** | `addses s/SESSION_NAME d/SESSION_DATE`<br> e.g., `addses s/TUT1 d/10/10/2020`
-**Deleteses** | `deleteses INDEX `<br> e.g., `deleteses 2`
-**Editses** | `editses INDEX s/UPDATED_NAME d/UPDATED_DATE`<br> e.g., `editses 2 s/TUT2 d/10/10/2020`
+**Add Student** | `addstu n/NAME m/MATRICULATION_NUMBER e/NUS_EMAIL_ADDRESS [t/TAG]…​` <br> e.g., `addstu n/Rainer Lam m/A0123456C e/rainerlam@u.nus.edu t/smart`
+**List Students** | `liststu`
+**Find Students** | `findstu KEYWORD [MORE_KEYWORDS]`<br> e.g., `findstu Justin Bieber`
+**Delete Students** | `deletestu INDEX`<br> e.g., `deletestu 3`
+**Edit Student** | `editstu INDEX n/UPDATED_NAME`<br> e.g., `editstu 2 n/John Cena`
+**Clear Students** | `clearstu`
+**Add Session** | `addses s/SESSION_NAME d/SESSION_DATE`<br> e.g., `addses s/TUT1 d/10/10/2020`
+**Delete Session** | `deleteses INDEX `<br> e.g., `deleteses 2`
+**Edit Session** | `editses INDEX s/UPDATED_NAME d/UPDATED_DATE`<br> e.g., `editses 2 s/TUT2 d/10/10/2020`
+**Clear Sessions** | `clearses`
+**Enter Session** | `enterses INDEX`<br> e.g., `enterses 1`
 **Participate** | `participate INDEX `<br> e.g., `participate 2`
 **Presence** | `presence INDEX `<br> e.g., `presence 2`
-**Clear** | `clear`
 **Switch** | `switch TAB_NAME`<br> e.g., `switch attendance`
 **Exit** | `bye`
