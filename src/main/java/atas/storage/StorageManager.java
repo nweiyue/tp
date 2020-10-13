@@ -52,7 +52,7 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ AddressBook methods ==============================
+    // ================ StudentList methods ==============================
 
     @Override
     public Path getStudentListFilePath() {
