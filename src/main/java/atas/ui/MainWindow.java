@@ -12,6 +12,7 @@ import atas.logic.commands.CommandResult;
 import atas.logic.commands.exceptions.CommandException;
 import atas.logic.parser.exceptions.ParseException;
 import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -29,7 +30,7 @@ import javafx.stage.Stage;
  */
 public class MainWindow extends UiPart<Stage> {
 
-    private static final int SLEEP_TIME = 2000;
+    private static final int SLEEP_TIME = 50;
     private static final String FXML = "MainWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
@@ -235,28 +236,24 @@ public class MainWindow extends UiPart<Stage> {
 
     }
 
-
-    /**
-     * Closes the application.
-     */
     @FXML
     private void handleExit() throws InterruptedException {
         Platform.runLater(() -> {
-            try {
-                Thread.sleep(SLEEP_TIME);
-                GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-                        (int) primaryStage.getX(), (int) primaryStage.getY());
-                logic.setGuiSettings(guiSettings);
-                helpWindow.hide();
-                primaryStage.hide();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
+                (int) primaryStage.getX(), (int) primaryStage.getY());
+            logic.setGuiSettings(guiSettings);
+            helpWindow.hide();
+            primaryStage.hide();
         });
     }
 
-    public StudentListPanel getStudentListPanel() {
-        return studentListPanel;
+    /**
+     * Displays the command result feedback.
+     * @param commandResult Command result of the user command.
+     */
+    public void displayResult(CommandResult commandResult) {
+        logger.info("Result: " + commandResult.getFeedbackToUser());
+        resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
     }
 
     /**
@@ -268,9 +265,14 @@ public class MainWindow extends UiPart<Stage> {
             CommandException, ParseException, InterruptedException {
         try {
             CommandResult commandResult = logic.execute(commandText);
-            logger.info("Result: " + commandResult.getFeedbackToUser());
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-
+            Task displayResultTask = new Task() {
+                @Override
+                protected Object call() throws Exception {
+                    displayResult(commandResult);
+                    return null;
+                }
+            };
+            displayResultTask.run();
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
@@ -284,6 +286,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isExit()) {
+                Thread.sleep(SLEEP_TIME);
                 handleExit();
             }
 
