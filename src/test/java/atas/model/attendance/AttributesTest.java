@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import atas.model.person.Name;
+import atas.model.student.Name;
 
 class AttributesTest {
 
@@ -56,5 +56,12 @@ class AttributesTest {
         Attributes expectedAttributes =
             new Attributes(new Presence(true), new Participation(false), new Name("DEFAULT"));
         assertEquals(expectedAttributes, actualAttributes);
+    }
+
+    @Test
+    public void to_string() {
+        Attributes actualAttributes = new Attributes();
+        Attributes expectedAttributes = new Attributes();
+        assertEquals(expectedAttributes.toString(), actualAttributes.toString());
     }
 }

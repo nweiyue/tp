@@ -12,10 +12,10 @@ import java.util.stream.Stream;
 
 import atas.logic.commands.studentlist.AddStudentCommand;
 import atas.logic.parser.exceptions.ParseException;
-import atas.model.person.Email;
-import atas.model.person.Matriculation;
-import atas.model.person.Name;
-import atas.model.person.Person;
+import atas.model.student.Email;
+import atas.model.student.Matriculation;
+import atas.model.student.Name;
+import atas.model.student.Student;
 import atas.model.tag.Tag;
 
 /**
@@ -42,9 +42,9 @@ public class AddStudentCommandParser implements Parser<AddStudentCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(name, matriculation, email, tagList);
+        Student student = new Student(name, matriculation, email, tagList);
 
-        return new AddStudentCommand(person);
+        return new AddStudentCommand(student);
     }
 
     /**

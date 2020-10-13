@@ -1,5 +1,6 @@
 package atas.logic.parser;
 
+import static atas.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static atas.logic.commands.CommandTestUtil.VALID_SESSIONNAME_REC_DESC;
 
 import org.junit.jupiter.api.Test;
@@ -44,12 +45,12 @@ public class PresenceCommandParserTest {
     @Test
     public void parse_invalidArgs_failure() {
         CommandParserTestUtil.assertParseFailure(parser, "a" + VALID_SESSIONNAME_REC_DESC,
-                IndexRange.MESSAGE_CONSTRAINTS);
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, IndexRange.MESSAGE_CONSTRAINTS));
         CommandParserTestUtil.assertParseFailure(parser, "@1" + VALID_SESSIONNAME_REC_DESC,
-                IndexRange.MESSAGE_CONSTRAINTS);
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, IndexRange.MESSAGE_CONSTRAINTS));
         CommandParserTestUtil.assertParseFailure(parser, "_" + VALID_SESSIONNAME_REC_DESC,
-                IndexRange.MESSAGE_CONSTRAINTS);
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, IndexRange.MESSAGE_CONSTRAINTS));
         CommandParserTestUtil.assertParseFailure(parser, "-1" + VALID_SESSIONNAME_REC_DESC,
-                IndexRange.MESSAGE_CONSTRAINTS);
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, IndexRange.MESSAGE_CONSTRAINTS));
     }
 }

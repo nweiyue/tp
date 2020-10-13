@@ -7,7 +7,7 @@ import java.util.Arrays;
 
 import atas.logic.commands.studentlist.FindStudentsCommand;
 import atas.logic.parser.exceptions.ParseException;
-import atas.model.person.NameContainsKeywordsPredicate;
+import atas.model.student.NameContainsKeywordsPredicate;
 
 
 /**

@@ -49,4 +49,10 @@ public class EnterSessionCommand extends Command {
                 && sessionIndex.equals(((EnterSessionCommand) other).sessionIndex));
     }
 
+    @Override
+    public String toString() {
+        String oneBasedIndex = String.valueOf(sessionIndex.getOneBased());
+        return "Enter " + oneBasedIndex;
+    }
+
 }

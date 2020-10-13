@@ -1,6 +1,6 @@
 package atas.model.attendance;
 
-import atas.model.person.Name;
+import atas.model.student.Name;
 
 /**
  * Represents the things to keep track for each student for each class.
@@ -30,7 +30,7 @@ public class Attributes {
     }
 
     /**
-     * Sets to the default values for each field.
+     * Sets to the default values for each field but instantiate with name
      */
     public Attributes(Name name) {
         this(new Presence(), new Participation(), name);

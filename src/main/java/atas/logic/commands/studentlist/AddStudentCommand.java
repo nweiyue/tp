@@ -7,7 +7,7 @@ import atas.logic.commands.CommandResult;
 import atas.logic.commands.exceptions.CommandException;
 import atas.logic.parser.CliSyntax;
 import atas.model.Model;
-import atas.model.person.Person;
+import atas.model.student.Student;
 
 /**
  * Adds a student to the class.
@@ -30,27 +30,27 @@ public class AddStudentCommand extends Command {
             + CliSyntax.PREFIX_TAG + "foreigner";
 
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in the class";
+    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the class";
 
-    private final Person toAdd;
+    private final Student toAdd;
 
     /**
-     * Creates an AddStudentCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Student}
      */
-    public AddStudentCommand(Person person) {
-        requireNonNull(person);
-        toAdd = person;
+    public AddStudentCommand(Student student) {
+        requireNonNull(student);
+        toAdd = student;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (model.hasStudent(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
         }
 
-        model.addPerson(toAdd);
+        model.addStudent(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

@@ -5,6 +5,7 @@ import static atas.testutil.TypicalSessions.SESSIONDATE_WEEK_ONE;
 import static atas.testutil.TypicalSessions.SESSIONDATE_WEEK_ONE_STRING;
 import static atas.testutil.TypicalSessions.SESSIONDATE_WEEK_THREE_STRING;
 import static atas.testutil.TypicalSessions.SESSIONDATE_WEEK_TWO;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -71,5 +72,11 @@ public class SessionDateTest {
         assertFalse(SESSIONDATE_WEEK_ONE.equals(sessionDateDiff));
     }
 
+    @Test
+    public void hashcode() {
+        SessionDate actual = new SessionDate("1/1/2020");
+        SessionDate expected = new SessionDate("1/1/2020");
+        assertEquals(expected.hashCode(), actual.hashCode());
+    }
 
 }

@@ -15,17 +15,17 @@ import atas.commons.exceptions.DataConversionException;
 import atas.commons.util.StringUtil;
 import atas.logic.Logic;
 import atas.logic.LogicManager;
-import atas.model.AddressBook;
 import atas.model.Model;
 import atas.model.ModelManager;
-import atas.model.ReadOnlyAddressBook;
 import atas.model.ReadOnlySessionList;
+import atas.model.ReadOnlyStudentList;
 import atas.model.ReadOnlyUserPrefs;
+import atas.model.StudentList;
 import atas.model.UserPrefs;
 import atas.model.attendance.SessionList;
 import atas.model.util.SampleDataUtil;
-import atas.storage.AddressBookStorage;
-import atas.storage.JsonAddressBookStorage;
+import atas.storage.AtasStorage;
+import atas.storage.JsonAtasStorage;
 import atas.storage.JsonSessionListStorage;
 import atas.storage.JsonUserPrefsStorage;
 import atas.storage.SessionListStorage;
@@ -54,7 +54,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing Atas ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -62,9 +62,9 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
+        AtasStorage atasStorage = new JsonAtasStorage(userPrefs.getStudentListFilePath());
         SessionListStorage sessionListStorage = new JsonSessionListStorage(userPrefs.getSessionListFilePath());
-        storage = new StorageManager(sessionListStorage, addressBookStorage, userPrefsStorage);
+        storage = new StorageManager(sessionListStorage, atasStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -76,35 +76,35 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s student list and {@code userPrefs}. <br>
+     * The data from the sample student list will be used instead if {@code storage}'s student list is not found,
+     * or an empty student list will be used instead if errors occur when reading {@code storage}'s student list.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlySessionList> sessionListOptional;
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialDataAb;
+        Optional<ReadOnlyStudentList> studentListOptional;
+        ReadOnlyStudentList initialDataAb;
         ReadOnlySessionList initialDataSl;
         try {
             sessionListOptional = storage.readSessionList();
-            addressBookOptional = storage.readAddressBook();
+            studentListOptional = storage.readStudentList();
             if (sessionListOptional.isEmpty()) {
                 logger.info("Data file not found. Will be starting with a sample SessionList");
             }
-            if (addressBookOptional.isEmpty()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+            if (studentListOptional.isEmpty()) {
+                logger.info("Data file not found. Will be starting with a sample StudentList");
             }
-            initialDataAb = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
-            ReadOnlyAddressBook finalInitialDataAb = initialDataAb;
+            initialDataAb = studentListOptional.orElseGet(SampleDataUtil::getSampleStudentList);
+            ReadOnlyStudentList finalInitialDataAb = initialDataAb;
             initialDataSl = sessionListOptional.orElseGet(SessionList::new);
-            initialDataSl.updatePersonList(finalInitialDataAb.getPersonList());
+            initialDataSl.updateStudentList(finalInitialDataAb.getStudentList());
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialDataAb = new AddressBook();
+            logger.warning("Data file not in the correct format. Will be starting with an empty StudentList");
+            initialDataAb = new StudentList();
             initialDataSl = new SessionList();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialDataAb = new AddressBook();
+            logger.warning("Problem while reading from the file. Will be starting with an empty StudentList");
+            initialDataAb = new StudentList();
             initialDataSl = new SessionList();
         }
 
@@ -169,7 +169,7 @@ public class MainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty StudentList");
             initializedPrefs = new UserPrefs();
         }
 
@@ -185,13 +185,13 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
+        logger.info("Starting StudentList " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping Atas ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {

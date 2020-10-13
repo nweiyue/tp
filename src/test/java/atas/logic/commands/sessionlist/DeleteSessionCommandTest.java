@@ -2,7 +2,11 @@ package atas.logic.commands.sessionlist;
 
 import static atas.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static atas.logic.commands.CommandTestUtil.showSessionAtIndex;
+import static atas.testutil.Assert.assertThrows;
 import static atas.testutil.TypicalIndexes.INDEX_FIRST_SESSION;
+import static atas.testutil.TypicalIndexes.INDEX_SECOND_SESSION;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -11,8 +15,12 @@ import atas.model.Model;
 import atas.model.ModelManager;
 import atas.model.UserPrefs;
 import atas.model.attendance.Session;
+import atas.model.attendance.SessionList;
+import atas.model.attendance.exceptions.SessionNotFoundException;
 import atas.testutil.ModelManagerBuilder;
+import atas.testutil.SessionBuilder;
 import atas.testutil.TypicalSessions;
+
 
 public class DeleteSessionCommandTest {
 
@@ -27,7 +35,7 @@ public class DeleteSessionCommandTest {
         String expectedMessage = String.format(DeleteSessionCommand.MESSAGE_DELETE_SESSION_SUCCESS, sessionToDelete);
 
         ModelManager expectedModel = new ModelManager(TypicalSessions.getTypicalSessionList(
-                model.getAddressBook().getPersonList()), model.getAddressBook(), new UserPrefs());
+                model.getStudentList().getStudentList()), model.getStudentList(), new UserPrefs());
 
         expectedModel.deleteSession(sessionToDelete, INDEX_FIRST_SESSION);
         showNoSession(expectedModel);
@@ -41,5 +49,41 @@ public class DeleteSessionCommandTest {
         model.updateFilteredSessionList(s -> false);
 
         assertTrue(model.getFilteredSessionList().isEmpty());
+    }
+
+    @Test
+    public void delete_sessionNotFound_throwsSessionNotFoundException() {
+        SessionList emptySessionList = new SessionList();
+        SessionBuilder sessionBuilder = new SessionBuilder();
+        assertThrows(SessionNotFoundException.class, () -> emptySessionList.deleteSession(sessionBuilder.build()));
+    }
+
+    @Test
+    public void equals() {
+        DeleteSessionCommand deleteFirstSessionCommand = new DeleteSessionCommand(INDEX_FIRST_SESSION);
+        DeleteSessionCommand deleteSecondSessionCommand = new DeleteSessionCommand(INDEX_SECOND_SESSION);
+
+        // same object -> returns true
+        assertTrue(deleteFirstSessionCommand.equals(deleteFirstSessionCommand));
+
+        // same sessionName -> returns true
+        DeleteSessionCommand deleteTutCommandCopy = new DeleteSessionCommand(deleteFirstSessionCommand.getIndex());
+        assertTrue(deleteFirstSessionCommand.equals(deleteTutCommandCopy));
+
+        // different types -> returns false
+        assertFalse(deleteFirstSessionCommand.equals(1));
+
+        // null -> returns false
+        assertFalse(deleteFirstSessionCommand.equals(null));
+
+        // different sessionName -> returns false
+        assertFalse(deleteFirstSessionCommand.equals(deleteSecondSessionCommand));
+    }
+
+    @Test
+    public void testToString() {
+        DeleteSessionCommand deleteSessionCommand = new DeleteSessionCommand(INDEX_FIRST_SESSION);
+        String expectedString = "Delete 1";
+        assertEquals(expectedString, deleteSessionCommand.toString());
     }
 }

@@ -32,6 +32,7 @@ public class EditSessionCommand extends Command {
             + CliSyntax.PREFIX_SESSION_DATE + "10/10/2020";
 
     public static final String MESSAGE_EDIT_SESSION_SUCCESS = "Edited session: %1$s";
+
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_SESSION = "This session already exists in the session list.";
 
@@ -69,7 +70,7 @@ public class EditSessionCommand extends Command {
         }
 
         model.setSession(sessionToEdit, editedSession);
-        model.updateFilteredSessionList(Model.PREDICATE_SHOW_ALL_SESSIONS);
+        model.updateFilteredStudentList(Model.PREDICATE_SHOW_ALL_STUDENTS);
         return new CommandResult(String.format(MESSAGE_EDIT_SESSION_SUCCESS, editedSession));
     }
 
@@ -115,7 +116,7 @@ public class EditSessionCommand extends Command {
 
     /**
      * Stores the details to edit the session with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * corresponding field value of the student.
      */
     public static class EditSessionDescriptor {
         private SessionName sessionName;
@@ -161,7 +162,7 @@ public class EditSessionCommand extends Command {
                 return true;
             }
 
-            // instanceof handles nulls
+            // instanceof handles different types
             if (!(other instanceof EditSessionCommand.EditSessionDescriptor)) {
                 return false;
             }

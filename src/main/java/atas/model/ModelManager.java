@@ -15,43 +15,43 @@ import atas.model.attendance.IndexRange;
 import atas.model.attendance.Session;
 import atas.model.attendance.SessionList;
 import atas.model.attendance.SessionName;
-import atas.model.person.Person;
+import atas.model.student.Student;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the student list data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final StudentList studentList;
     private final SessionList sessionList;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Student> filteredStudents;
     private final FilteredList<Session> filteredSessions;
     private Index sessionId;
     private boolean isCurrentSessionEnabled;
 
     /**
-     * Initializes a ModelManager with the given session list, addressBook and userPrefs.
+     * Initializes a ModelManager with the given session list, studentList and userPrefs.
      */
-    public ModelManager(ReadOnlySessionList sessionList, ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlySessionList sessionList, ReadOnlyStudentList studentList, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(studentList, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with student list: " + studentList + " and user prefs " + userPrefs);
 
         this.sessionList = new SessionList(sessionList);
-        this.addressBook = new AddressBook(addressBook);
+        this.studentList = new StudentList(studentList);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredStudents = new FilteredList<>(this.studentList.getStudentList());
         filteredSessions = new FilteredList<>(sessionList.getSessions());
         sessionId = Index.fromZeroBased(0);
     }
 
     public ModelManager() {
-        this(new SessionList(), new AddressBook(), new UserPrefs());
+        this(new SessionList(), new StudentList(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -79,56 +79,56 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getStudentListFilePath() {
+        return userPrefs.getStudentListFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setStudentListFilePath(Path studentListFilePath) {
+        requireNonNull(studentListFilePath);
+        userPrefs.setStudentListFilePath(studentListFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== StudentList ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
+    public void setStudentList(ReadOnlyStudentList studentList) {
         //this.addressBook.resetData(addressBook);
         resetSessionList();
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlyStudentList getStudentList() {
+        return studentList;
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public boolean hasStudent(Student student) {
+        requireNonNull(student);
+        return studentList.hasStudent(student);
     }
 
     @Override
-    public void deletePerson(Person target, Index id) {
-        addressBook.removePerson(target);
-        sessionList.updatePersonList(addressBook.getPersonList());
+    public void deleteStudent(Student target, Index id) {
+        studentList.removeStudent(target);
+        sessionList.updateStudentList(studentList.getStudentList());
         sessionList.updateAllSessionsAfterDelete(id);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        sessionList.updatePersonList(addressBook.getPersonList());
+    public void addStudent(Student student) {
+        studentList.addStudent(student);
+        updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+        sessionList.updateStudentList(studentList.getStudentList());
         sessionList.updateAllSessionsAfterAdd();
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void setStudent(Student target, Student editedStudent) {
+        requireAllNonNull(target, editedStudent);
 
-        addressBook.setPerson(target, editedPerson);
-        sessionList.updatePersonList(addressBook.getPersonList());
+        studentList.setStudent(target, editedStudent);
+        sessionList.updateStudentList(studentList.getStudentList());
     }
 
     //=========== SessionList ================================================================================
@@ -163,13 +163,13 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteSession(Session target, Index id) {
-        sessionList.updatePersonList(addressBook.getPersonList());
+        sessionList.updateStudentList(studentList.getStudentList());
         sessionList.deleteSession(target);
     }
 
     @Override
     public void addSession(Session session) {
-        sessionList.updatePersonList(addressBook.getPersonList());
+        sessionList.updateStudentList(studentList.getStudentList());
         sessionList.addSession(session);
         updateFilteredSessionList(PREDICATE_SHOW_ALL_SESSIONS);
     }
@@ -191,21 +191,21 @@ public class ModelManager implements Model {
         sessionList.updateStudentPresence(sessionName, indexRange);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Student List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * Returns an unmodifiable view of the list of {@code Student} backed by the internal list of
+     * {@code versionedStudentList}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Student> getFilteredStudentList() {
+        return filteredStudents;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredStudentList(Predicate<Student> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredStudents.setPredicate(predicate);
     }
 
     @Override
@@ -222,9 +222,9 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return studentList.equals(other.studentList)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredStudents.equals(other.filteredStudents);
     }
 
 

@@ -54,6 +54,10 @@ public class DeleteSessionCommand extends DangerousCommand {
         return new CommandResult(String.format(MESSAGE_DELETE_SESSION_SUCCESS, sessionToDelete));
     }
 
+    public Index getIndex() {
+        return targetIndex;
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

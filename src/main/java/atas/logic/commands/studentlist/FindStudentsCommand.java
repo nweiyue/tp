@@ -6,10 +6,10 @@ import atas.commons.core.Messages;
 import atas.logic.commands.Command;
 import atas.logic.commands.CommandResult;
 import atas.model.Model;
-import atas.model.person.NameContainsKeywordsPredicate;
+import atas.model.student.NameContainsKeywordsPredicate;
 
 /**
- * Finds and lists all students in ATAS whose name contains any of the argument keywords.
+ * Finds and lists all students in student list whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
 public class FindStudentsCommand extends Command {
@@ -29,8 +29,8 @@ public class FindStudentsCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(predicate);
-        int numberOfStudents = model.getFilteredPersonList().size();
+        model.updateFilteredStudentList(predicate);
+        int numberOfStudents = model.getFilteredStudentList().size();
         return new CommandResult(
                 String.format(Messages.getStudentListedMessage(numberOfStudents), numberOfStudents));
     }

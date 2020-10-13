@@ -9,7 +9,8 @@ import java.util.List;
 import java.util.Map;
 
 import atas.commons.core.index.Index;
-import atas.model.person.Person;
+import atas.model.student.Name;
+import atas.model.student.Student;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -22,9 +23,9 @@ public class Session implements Comparable<Session> {
     private final SessionName sessionName;
     private final SessionDate sessionDate;
     private final Map<Integer, Attributes> studentList;
-    //private final ObservableList<Person> masterList;
+    //private final ObservableList<Student> masterList;
     private Index sessionIndex;
-    private List<Person> masterList = new ArrayList<>();
+    private List<Student> masterList = new ArrayList<>();
 
     /* Bugs with masterList ---> commented out codes on hold */
     /**
@@ -50,7 +51,7 @@ public class Session implements Comparable<Session> {
     }
 
     //    public Session(SessionName sessionName, SessionDate
-    //    sessionDate, Map<Integer, Attributes> studentList, ObservableList<Person> masterList) {
+    //    sessionDate, Map<Integer, Attributes> studentList, ObservableList<Student> masterList) {
     //        this.sessionName = sessionName;
     //        this.sessionDate = sessionDate;
     //        this.studentList = studentList;
@@ -81,7 +82,7 @@ public class Session implements Comparable<Session> {
     /**
      * Updates the session after the deletion of a student (with a given student ID)
      */
-    public void updateSessionAfterDelete(Index studentId, List<Person> masterList) {
+    public void updateSessionAfterDelete(Index studentId, List<Student> masterList) {
         requireAllNonNull(studentId, masterList);
         // shift the values down by 1, starting from deleted student ID
         for (int i = studentId.getZeroBased(); i < masterList.size(); i++) {
@@ -95,9 +96,10 @@ public class Session implements Comparable<Session> {
     /**
      * Updates the session after adding a student
      */
-    public void updateSessionAfterAdd(List<Person> masterList) {
+    public void updateSessionAfterAdd(List<Student> masterList) {
         requireAllNonNull(masterList);
-        studentList.put(masterList.size() - 1, new Attributes());
+        Name studentName = masterList.get(masterList.size() - 1).getName();
+        studentList.put(masterList.size() - 1, new Attributes(studentName));
     }
 
     /**
@@ -142,7 +144,7 @@ public class Session implements Comparable<Session> {
     /**
      * Initialize the studentList using the given masterList.
      */
-    public void initializeSession(List<Person> masterList) {
+    public void initializeSession(List<Student> masterList) {
         for (int i = 0; i < masterList.size(); i++) {
             this.masterList.add(masterList.get(i));
             studentList.put(i, new Attributes(masterList.get(i).getName()));

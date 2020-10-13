@@ -5,15 +5,15 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import atas.commons.exceptions.DataConversionException;
-import atas.model.ReadOnlyAddressBook;
 import atas.model.ReadOnlySessionList;
+import atas.model.ReadOnlyStudentList;
 import atas.model.ReadOnlyUserPrefs;
 import atas.model.UserPrefs;
 
 /**
  * API of the Storage component
  */
-public interface Storage extends SessionListStorage, AddressBookStorage, UserPrefsStorage {
+public interface Storage extends SessionListStorage, AtasStorage, UserPrefsStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
@@ -22,13 +22,13 @@ public interface Storage extends SessionListStorage, AddressBookStorage, UserPre
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
 
     @Override
-    Path getAddressBookFilePath();
+    Path getStudentListFilePath();
 
     @Override
-    Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyStudentList> readStudentList() throws DataConversionException, IOException;
 
     @Override
-    void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
+    void saveStudentList(ReadOnlyStudentList studentList) throws IOException;
 
     @Override
     Path getSessionListFilePath();

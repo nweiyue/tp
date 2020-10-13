@@ -1,8 +1,8 @@
 package atas.logic.commands.studentlist;
 
 import static atas.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static atas.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static atas.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static atas.logic.commands.CommandTestUtil.showStudentAtIndex;
+import static atas.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -31,7 +31,7 @@ public class ListStudentsCommandTest {
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showStudentAtIndex(model, INDEX_FIRST_STUDENT);
         assertCommandSuccess(new ListStudentsCommand(), model, ListStudentsCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }

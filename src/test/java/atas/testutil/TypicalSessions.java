@@ -8,7 +8,7 @@ import atas.model.attendance.Session;
 import atas.model.attendance.SessionDate;
 import atas.model.attendance.SessionList;
 import atas.model.attendance.SessionName;
-import atas.model.person.Person;
+import atas.model.student.Student;
 
 /**
  * A utility class containing a list of {@code Session} objects to be used in tests.
@@ -60,7 +60,7 @@ public class TypicalSessions {
     /**
      * Returns an {@code SessionList} with all the typical sessions.
      */
-    public static SessionList getTypicalSessionList(List<Person> list) {
+    public static SessionList getTypicalSessionList(List<Student> list) {
         SessionList sessionList = new SessionList(list);
         for (Session session : getTypicalSessions()) {
             sessionList.addSession(session);
@@ -85,7 +85,7 @@ public class TypicalSessions {
         return result;
     }
 
-    public static SessionList getTypicalSessionListMinusTut1(List<Person> list) {
+    public static SessionList getTypicalSessionListMinusTut1(List<Student> list) {
         SessionList sessionList = new SessionList(list);
         for (Session session : getTypicalSessionsMinusTut1()) {
             sessionList.addSession(session);

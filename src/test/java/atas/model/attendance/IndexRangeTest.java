@@ -1,6 +1,7 @@
 package atas.model.attendance;
 
 import static atas.testutil.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -37,5 +38,27 @@ public class IndexRangeTest {
         assertTrue(IndexRange.isValidIndexRange("1"));
         assertTrue(IndexRange.isValidIndexRange("12-12"));
         assertTrue(IndexRange.isValidIndexRange("13-2"));
+    }
+
+    @Test
+    public void hashcode() {
+        IndexRange actual = new IndexRange("1-3");
+        IndexRange expected = new IndexRange("1-3");
+        assertEquals(expected.hashCode(), actual.hashCode());
+    }
+
+    @Test
+    public void to_string() {
+        IndexRange actual = new IndexRange("1-3");
+        IndexRange expected = new IndexRange("1-3");
+        assertEquals(expected.toString(), actual.toString());
+    }
+
+    @Test
+    public void oneBased() {
+        IndexRange actual = new IndexRange("1-3");
+        IndexRange expected = new IndexRange("1-3");
+        assertEquals(expected.getOneBasedLower(), actual.getOneBasedLower());
+        assertEquals(expected.getOneBasedUpper(), actual.getOneBasedUpper());
     }
 }

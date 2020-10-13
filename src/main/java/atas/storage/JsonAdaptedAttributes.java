@@ -9,7 +9,7 @@ import atas.commons.exceptions.IllegalValueException;
 import atas.model.attendance.Attributes;
 import atas.model.attendance.Participation;
 import atas.model.attendance.Presence;
-import atas.model.person.Name;
+import atas.model.student.Name;
 
 /**
  * Jackson-friendly version of {@link Attributes}.
@@ -79,6 +79,7 @@ public class JsonAdaptedAttributes {
 
         Presence presence = new Presence(Boolean.parseBoolean(this.presence));
         Participation participation = new Participation(Boolean.parseBoolean(this.participation));
-        return new Attributes(presence, participation, new Name("DEFAULT"));
+        Name studentName = new Name(name);
+        return new Attributes(presence, participation, studentName);
     }
 }

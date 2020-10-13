@@ -9,7 +9,7 @@ import atas.commons.core.index.Index;
 import atas.model.ReadOnlySessionList;
 import atas.model.attendance.exceptions.DuplicateSessionException;
 import atas.model.attendance.exceptions.SessionNotFoundException;
-import atas.model.person.Person;
+import atas.model.student.Student;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -19,22 +19,22 @@ import javafx.collections.ObservableList;
 public class SessionList implements Iterable<Session>, ReadOnlySessionList {
 
     private final ObservableList<Session> sessions;
-    private final ObservableList<Person> internalPersonList;
+    private final ObservableList<Student> internalStudentList;
 
     /**
      * Creates an SessionList using the sessions in the {@code list}
      */
     public SessionList() {
         sessions = FXCollections.observableArrayList();
-        internalPersonList = FXCollections.observableArrayList();
+        internalStudentList = FXCollections.observableArrayList();
     }
 
     /**
      * Creates an SessionList using the sessions in the {@code list}
      */
-    public SessionList(List<Person> list) {
+    public SessionList(List<Student> list) {
         sessions = FXCollections.observableArrayList();
-        internalPersonList = FXCollections.observableArrayList(list);
+        internalStudentList = FXCollections.observableArrayList(list);
     }
 
     /**
@@ -43,16 +43,16 @@ public class SessionList implements Iterable<Session>, ReadOnlySessionList {
     public SessionList(ReadOnlySessionList toBeCopied) {
         sessions = FXCollections.observableArrayList();
         sessions.addAll(toBeCopied.getSessions());
-        internalPersonList = toBeCopied.getInternalPersonList();
+        internalStudentList = toBeCopied.getInternalStudentList();
     }
 
     /**
-     * Updates the person list of the session.
+     * Updates the student list of the session.
      */
     @Override
-    public void updatePersonList(List<Person> list) {
-        internalPersonList.clear();
-        internalPersonList.addAll(list);
+    public void updateStudentList(List<Student> list) {
+        internalStudentList.clear();
+        internalStudentList.addAll(list);
     }
 
     /**
@@ -64,7 +64,7 @@ public class SessionList implements Iterable<Session>, ReadOnlySessionList {
         if (contains(session)) {
             throw new DuplicateSessionException();
         }
-        session.initializeSession(internalPersonList);
+        session.initializeSession(internalStudentList);
         sessions.add(session);
     }
 
@@ -109,7 +109,7 @@ public class SessionList implements Iterable<Session>, ReadOnlySessionList {
     public void updateAllSessionsAfterDelete(Index studentId) {
         requireNonNull(studentId);
         for (Session s : sessions) {
-            s.updateSessionAfterDelete(studentId, internalPersonList);
+            s.updateSessionAfterDelete(studentId, internalStudentList);
         }
     }
 
@@ -118,7 +118,7 @@ public class SessionList implements Iterable<Session>, ReadOnlySessionList {
      */
     public void updateAllSessionsAfterAdd() {
         for (Session s : sessions) {
-            s.updateSessionAfterAdd(internalPersonList);
+            s.updateSessionAfterAdd(internalStudentList);
         }
     }
 
@@ -179,8 +179,8 @@ public class SessionList implements Iterable<Session>, ReadOnlySessionList {
     }
 
     @Override
-    public ObservableList<Person> getInternalPersonList() {
-        return internalPersonList;
+    public ObservableList<Student> getInternalStudentList() {
+        return internalStudentList;
     }
 
     @Override
@@ -224,6 +224,6 @@ public class SessionList implements Iterable<Session>, ReadOnlySessionList {
 
     @Override
     public String toString() {
-        return "SessionList{" + "sessions=" + sessions + ", internalPersonList=" + internalPersonList + '}';
+        return "SessionList{" + "sessions=" + sessions + ", internalStudentList=" + internalStudentList + '}';
     }
 }

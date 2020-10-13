@@ -1,12 +1,12 @@
 package atas.model.attendance;
 
 import static atas.testutil.Assert.assertThrows;
-import static atas.testutil.TypicalPersons.ALICE;
 import static atas.testutil.TypicalSessions.CONSULTATION;
 import static atas.testutil.TypicalSessions.LAB2;
 import static atas.testutil.TypicalSessions.TUT1;
 import static atas.testutil.TypicalSessions.TUT2;
 import static atas.testutil.TypicalSessions.TUT3;
+import static atas.testutil.TypicalStudents.ALICE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -17,12 +17,11 @@ import org.junit.jupiter.api.Test;
 
 import atas.commons.core.index.Index;
 import atas.model.attendance.exceptions.DuplicateSessionException;
-import atas.model.person.Person;
+import atas.model.student.Student;
 import atas.testutil.Assert;
 import atas.testutil.SessionBuilder;
-import atas.testutil.TypicalPersons;
 import atas.testutil.TypicalSessions;
-
+import atas.testutil.TypicalStudents;
 
 public class SessionListTest {
     private final SessionBuilder sessionBuilder = new SessionBuilder();
@@ -47,14 +46,14 @@ public class SessionListTest {
     @Test
     public void updateAfterDeletingStudent_validId_success() {
         // Set up expected result. Alice already removed
-        List<Person> expectedMasterList = TypicalPersons.getTypicalPersonsMinusAlice();
+        List<Student> expectedMasterList = TypicalStudents.getTypicalStudentsMinusAlice();
         SessionList expectedSessionList = new SessionList(expectedMasterList);
         expectedSessionList.addSession(TUT1);
         expectedSessionList.addSession(TUT2);
         expectedSessionList.addSession(TUT3);
 
         // Set up actual result. Remove Alice
-        List<Person> typicalMasterList = TypicalPersons.getTypicalPersons();
+        List<Student> typicalMasterList = TypicalStudents.getTypicalStudents();
         SessionList actualSessionList = new SessionList(typicalMasterList);
         actualSessionList.addSession(TUT1);
         actualSessionList.addSession(TUT2);
@@ -84,6 +83,30 @@ public class SessionListTest {
         emptySessionList.addSession(CONSULTATION);
         assertTrue(emptySessionList.contains(CONSULTATION));
         assertTrue(typicalSessionList.contains(LAB2));
+    }
+
+    @Test
+    public void returnListSize() {
+        SessionList emptyList = new SessionList();
+        assertEquals(0, emptyList.returnSize());
+    }
+
+    @Test
+    public void equals() {
+        SessionList typicalList = new SessionList(TypicalStudents.getTypicalStudents());
+        typicalList.addSession(TypicalSessions.TUT1);
+        SessionList emptyList = new SessionList();
+
+        //different list size
+        assertFalse(typicalList.equals(emptyList));
+
+        //same size but different sessions
+        emptyList.addSession(TUT2);
+        assertFalse(typicalList.equals(emptyList));
+
+        //different type
+        assertFalse(typicalList.equals(LAB2));
+
     }
 
 }

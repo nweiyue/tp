@@ -28,4 +28,10 @@ public class DeleteSessionCommandParserTest {
         CommandParserTestUtil.assertParseFailure(parser, "a",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteSessionCommand.MESSAGE_USAGE));
     }
+
+    @Test
+    public void parse_invalidSessionName_throwsParseException() {
+        CommandParserTestUtil.assertParseFailure(parser, "~",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteSessionCommand.MESSAGE_USAGE));
+    }
 }

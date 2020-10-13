@@ -1,7 +1,7 @@
 package atas.logic.parser;
 
 import static atas.testutil.Assert.assertThrows;
-import static atas.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static atas.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -13,9 +13,12 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import atas.logic.parser.exceptions.ParseException;
-import atas.model.person.Email;
-import atas.model.person.Matriculation;
-import atas.model.person.Name;
+import atas.model.attendance.IndexRange;
+import atas.model.attendance.SessionDate;
+import atas.model.attendance.SessionName;
+import atas.model.student.Email;
+import atas.model.student.Matriculation;
+import atas.model.student.Name;
 import atas.model.tag.Tag;
 import atas.testutil.Assert;
 
@@ -33,6 +36,16 @@ public class ParserUtilTest {
 
     private static final String WHITESPACE = " \t\r\n";
 
+    private static final String INVALID_SESSIONNAME = "tut~1";
+    private static final String INVALID_SESSIONDATE = "1/1/20";
+
+    private static final String VALID_SESSIONNAME = "lab1";
+    private static final String VALID_SESSIONDATE = "1/1/2020";
+
+    private static final String VALID_INDEXRANGE = "1-3";
+    private static final String INVALID_INDEXRANGE = "1x";
+
+
     @Test
     public void parseIndex_invalidInput_throwsParseException() {
         Assert.assertThrows(ParseException.class, () -> ParserUtil.parseIndex("10 a"));
@@ -47,10 +60,10 @@ public class ParserUtilTest {
     @Test
     public void parseIndex_validInput_success() throws Exception {
         // No whitespaces
-        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("1"));
+        assertEquals(INDEX_FIRST_STUDENT, ParserUtil.parseIndex("1"));
 
         // Leading and trailing whitespaces
-        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("  1  "));
+        assertEquals(INDEX_FIRST_STUDENT, ParserUtil.parseIndex("  1  "));
     }
 
     @Test
@@ -166,5 +179,74 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseSessionName_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseSessionName(null));
+    }
+
+    @Test
+    public void parseSessionName_invalidName_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseSessionName(INVALID_SESSIONNAME));
+    }
+
+    @Test
+    public void parseSessionName_validSessionNameWithoutWhitespace_returnsSessionName() throws Exception {
+        SessionName expectedSessionName = new SessionName(VALID_SESSIONNAME);
+        assertEquals(expectedSessionName, ParserUtil.parseSessionName(VALID_SESSIONNAME));
+    }
+
+    @Test
+    public void parseSessionName_validValueWithWhitespace_returnsTrimmedSessionName() throws Exception {
+        String matriculationWithWhitespace = WHITESPACE + VALID_SESSIONNAME + WHITESPACE;
+        SessionName expectedSessionName = new SessionName(VALID_SESSIONNAME);
+        assertEquals(expectedSessionName, ParserUtil.parseSessionName(matriculationWithWhitespace));
+    }
+
+    @Test
+    public void parseSessionDate_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseSessionDate(null));
+    }
+
+    @Test
+    public void parseSessionDate_invalidDate_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseSessionDate(INVALID_SESSIONDATE));
+    }
+
+    @Test
+    public void parseSessionDate_validSessionDateWithoutWhitespace_returnsSessionDate() throws Exception {
+        SessionDate expectedSessionDate = new SessionDate(VALID_SESSIONDATE);
+        assertEquals(expectedSessionDate, ParserUtil.parseSessionDate(VALID_SESSIONDATE));
+    }
+
+    @Test
+    public void parseSessionDate_validValueWithWhitespace_returnsTrimmedSessionDate() throws Exception {
+        String matriculationWithWhitespace = WHITESPACE + VALID_SESSIONDATE + WHITESPACE;
+        SessionDate expectedSessionDate = new SessionDate(VALID_SESSIONDATE);
+        assertEquals(expectedSessionDate, ParserUtil.parseSessionDate(matriculationWithWhitespace));
+    }
+
+    @Test
+    public void parseIndexRange_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseIndexRange(null));
+    }
+
+    @Test
+    public void parseIndexRange_invalidRange_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () -> ParserUtil.parseIndexRange(INVALID_INDEXRANGE));
+    }
+
+    @Test
+    public void parseIndexRange_validIndexRangeWithoutWhitespace_returnsIndexRange() throws Exception {
+        IndexRange expectedIndexRange = new IndexRange(VALID_INDEXRANGE);
+        assertEquals(expectedIndexRange, ParserUtil.parseIndexRange(VALID_INDEXRANGE));
+    }
+
+    @Test
+    public void parseIndexRange_validValueWithWhitespace_returnsTrimmedIndexRange() throws Exception {
+        String matriculationWithWhitespace = WHITESPACE + VALID_INDEXRANGE + WHITESPACE;
+        IndexRange expectedIndexRange = new IndexRange(VALID_INDEXRANGE);
+        assertEquals(expectedIndexRange, ParserUtil.parseIndexRange(matriculationWithWhitespace));
     }
 }

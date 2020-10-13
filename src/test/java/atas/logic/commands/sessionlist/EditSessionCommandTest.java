@@ -17,10 +17,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import atas.commons.core.index.Index;
-import atas.logic.commands.studentlist.ClearStudentsCommand;
-import atas.model.AddressBook;
+import atas.logic.commands.studentlist.ClearStudentListCommand;
 import atas.model.Model;
 import atas.model.ModelManager;
+import atas.model.StudentList;
 import atas.model.UserPrefs;
 import atas.model.attendance.Session;
 import atas.testutil.EditSessionDescriptorBuilder;
@@ -40,8 +40,9 @@ public class EditSessionCommandTest {
 
         String expectedMessage = String.format(EditSessionCommand.MESSAGE_EDIT_SESSION_SUCCESS, editedSession);
 
-        Model expectedModel = new ModelManager(getTypicalSessionList(model.getAddressBook().getPersonList()),
-                new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalSessionList(
+                model.getStudentList().getStudentList()),
+                new StudentList(model.getStudentList()), new UserPrefs());
         expectedModel.setSession(model.getFilteredSessionList().get(0), editedSession);
 
         assertCommandSuccess(editSessionCommand, model, expectedMessage, expectedModel);
@@ -62,8 +63,9 @@ public class EditSessionCommandTest {
 
         String expectedMessage = String.format(EditSessionCommand.MESSAGE_EDIT_SESSION_SUCCESS, editedSession);
 
-        Model expectedModel = new ModelManager(getTypicalSessionList(model.getAddressBook().getPersonList()),
-                new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalSessionList(
+                model.getStudentList().getStudentList()),
+                new StudentList(model.getStudentList()), new UserPrefs());
         expectedModel.setSession(lastSession, editedSession);
 
         assertCommandSuccess(editSessionCommand, model, expectedMessage, expectedModel);
@@ -83,8 +85,8 @@ public class EditSessionCommandTest {
 
         String expectedMessage = String.format(EditSessionCommand.MESSAGE_EDIT_SESSION_SUCCESS, editedSession);
 
-        Model expectedModel = new ModelManager(getTypicalSessionList(model.getAddressBook().getPersonList()),
-                new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalSessionList(model.getStudentList().getStudentList()),
+                new StudentList(model.getStudentList()), new UserPrefs());
         expectedModel.setSession(lastSession, editedSession);
 
         assertCommandSuccess(editSessionCommand, model, expectedMessage, expectedModel);
@@ -98,8 +100,9 @@ public class EditSessionCommandTest {
 
         String expectedMessage = String.format(EditSessionCommand.MESSAGE_EDIT_SESSION_SUCCESS, editedSession);
 
-        Model expectedModel = new ModelManager(getTypicalSessionList(model.getAddressBook().getPersonList()),
-            new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalSessionList(
+                model.getStudentList().getStudentList()),
+            new StudentList(model.getStudentList()), new UserPrefs());
 
         assertCommandSuccess(editSessionCommand, model, expectedMessage, expectedModel);
     }
@@ -144,10 +147,17 @@ public class EditSessionCommandTest {
         assertFalse(standardCommand.equals(null));
 
         // different types -> returns false
-        assertFalse(standardCommand.equals(new ClearStudentsCommand()));
+        assertFalse(standardCommand.equals(new ClearStudentListCommand()));
+
 
         // different index -> returns false
         assertFalse(standardCommand.equals(new EditSessionCommand(INDEX_SECOND_SESSION, DESC_REC)));
+
+        // same descriptor object -> returns true
+        assertTrue(copyDescriptor.equals(copyDescriptor));
+
+        // different type -> returns false
+        assertFalse(copyDescriptor.equals(standardCommand));
 
         // different descriptor -> returns false
         assertFalse(standardCommand.equals(new EditSessionCommand(INDEX_FIRST_SESSION, DESC_CON)));
