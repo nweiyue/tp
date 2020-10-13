@@ -1,10 +1,23 @@
 package atas.model.attendance;
 
+import static atas.logic.commands.CommandTestUtil.assertCommandFailure;
+import static atas.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static atas.testutil.TypicalSessions.SESSION_WEEK_ONE;
+import static atas.testutil.TypicalSessions.getTypicalSessionList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
+
+import atas.commons.core.index.Index;
+import atas.logic.commands.sessionlist.session.ParticipateCommand;
+import atas.logic.commands.sessionlist.session.PresenceCommand;
+import atas.model.AddressBook;
+import atas.model.Model;
+import atas.model.ModelManager;
+import atas.model.UserPrefs;
+import atas.testutil.ModelManagerBuilder;
 
 class ParticipationTest {
 
@@ -12,6 +25,27 @@ class ParticipationTest {
 
     private static final Participation DEFAULT_PARTICIPATION = new Participation();
     private static final Participation POSITIVE_PARTICIPATION = new Participation(HAS_PARTICIPATED);
+    private Model model = ModelManagerBuilder.buildTypicalModelManager();
+
+    @Test
+    public void toggleParticipationWithoutEnterSessionTest() {
+        IndexRange indexRange = new IndexRange("1-4");
+        model.addSession(SESSION_WEEK_ONE);
+        model.updateParticipationBySessionName(SESSION_WEEK_ONE.getSessionName(), indexRange);
+
+        Model expectedModel = new ModelManager(getTypicalSessionList(model.getAddressBook().getPersonList()),
+            new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.addSession(SESSION_WEEK_ONE);
+        expectedModel.enterSession(Index.fromZeroBased(1));
+        expectedModel.updateParticipationBySessionName(SESSION_WEEK_ONE.getSessionName(), indexRange);
+
+        assertCommandFailure(new ParticipateCommand(indexRange), model,
+            "You have to be in the session tab to use this!");
+
+        model.setCurrentSessionTrue();
+
+        assertCommandSuccess(new ParticipateCommand(indexRange), model, PresenceCommand.MESSAGE_SUCCESS, expectedModel);
+    }
 
     @Test
     public void equals() {

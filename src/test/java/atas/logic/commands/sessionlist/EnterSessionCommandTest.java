@@ -18,17 +18,35 @@ import atas.testutil.ModelManagerBuilder;
 public class EnterSessionCommandTest {
 
     private Model model = ModelManagerBuilder.buildTypicalModelManager();
+    private Index indexOne = Index.fromOneBased(1);
+    private EnterSessionCommand enterSessionCommand = new EnterSessionCommand(indexOne);
+
+    @Test
+    void testEquals() {
+        EnterSessionCommand enterSessionCommand = new EnterSessionCommand(Index.fromZeroBased(1));
+        EnterSessionCommand enterSessionCommandCopy = new EnterSessionCommand(Index.fromZeroBased(1));
+        EnterSessionCommand enterSessionCommandNextCopy = new EnterSessionCommand(Index.fromZeroBased(2));
+
+        // same object -> returns true
+        assertTrue(enterSessionCommand.equals(enterSessionCommandCopy));
+
+        // different types -> returns false
+        assertFalse(enterSessionCommand.equals(1));
+
+        // null -> returns false
+        assertFalse(enterSessionCommand.equals(null));
+
+        // different session index -> returns false
+        assertFalse(enterSessionCommand.equals(enterSessionCommandNextCopy));
+    }
 
     @Test
     public void execute_validSessionIndex_success() {
 
-        Index index = Index.fromOneBased(1);
-        EnterSessionCommand enterSessionCommand = new EnterSessionCommand(index);
-
-        String expectedMessage = String.format(EnterSessionCommand.MESSAGE_SUCCESS, index.getOneBased());
+        String expectedMessage = String.format(EnterSessionCommand.MESSAGE_SUCCESS, indexOne.getOneBased());
 
         ModelManager expectedModel = ModelManagerBuilder.buildTypicalModelManager();
-        expectedModel.enterSession(index);
+        expectedModel.enterSession(indexOne);
 
         try {
             CommandResult commandResult = enterSessionCommand.execute(model);
@@ -44,11 +62,11 @@ public class EnterSessionCommandTest {
     public void execute_invalidSessionIndex_throwsCommandException() {
 
         Index index = Index.fromOneBased(6);
-        EnterSessionCommand enterSessionCommand = new EnterSessionCommand(index);
+        EnterSessionCommand enterSessionSixCommand = new EnterSessionCommand(index);
 
         String expectedMessage = MESSAGE_INVALID_SESSION_DISPLAYED_INDEX;
 
-        assertThrows(CommandException.class, expectedMessage, () -> enterSessionCommand.execute(model));
+        assertThrows(CommandException.class, expectedMessage, () -> enterSessionSixCommand.execute(model));
     }
 
     @Test
@@ -63,8 +81,8 @@ public class EnterSessionCommandTest {
         assertTrue(enterSessionCommand1.equals(enterSessionCommand1));
 
         // same sessioName -> returns true
-        EnterSessionCommand enterSessionCommandCopy = new EnterSessionCommand(index1);
-        assertTrue(enterSessionCommand1.equals(enterSessionCommandCopy));
+        EnterSessionCommand enterSessionCommandNext = new EnterSessionCommand(index1);
+        assertTrue(enterSessionCommand1.equals(enterSessionCommandNext));
 
         // different types -> returns false
         assertFalse(enterSessionCommand1.equals(1));
