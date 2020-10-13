@@ -25,7 +25,7 @@ public class SessionStudentCard extends UiPart<Region> {
 
     public final Attributes attributes;
 
-    @javafx.fxml.FXML
+    @FXML
     private HBox cardPane;
     @FXML
     private Label name;
