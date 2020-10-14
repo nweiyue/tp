@@ -34,6 +34,7 @@ public class SessionCard extends UiPart<Region> {
     private FlowPane tags;
 
     private SessionList sessionList;
+
     /**
      * Creates a {@code StudentCode} with the given {@code Student} and index to display.
      */

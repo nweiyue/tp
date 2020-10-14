@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import atas.commons.core.LogsCenter;
 import atas.model.attendance.Attributes;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
@@ -13,7 +14,7 @@ public class SessionStudentListPanel extends UiPart<Region> {
     private static final String FXML = "SessionStudentListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(StudentListPanel.class);
 
-    @javafx.fxml.FXML
+    @FXML
     private ListView<Attributes> sessionStudentListView;
 
     /**
@@ -22,7 +23,7 @@ public class SessionStudentListPanel extends UiPart<Region> {
     public SessionStudentListPanel(ObservableList<Attributes> attributesList) {
         super(FXML);
         sessionStudentListView.setItems(attributesList);
-        sessionStudentListView.setCellFactory(listView -> new SessionStudentListPanel.SessionStudentListViewCell());
+        sessionStudentListView.setCellFactory(listView -> new SessionStudentListViewCell());
     }
 
     /**

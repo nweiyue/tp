@@ -18,7 +18,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
@@ -128,15 +127,17 @@ public class MainWindow extends UiPart<Stage> {
         });
 
         /* Supposed-to-work listener */
+        /*
         getRoot().addEventFilter(KeyEvent.KEY_RELEASED, event -> {
             if (event.getCode() == KeyCode.ENTER) {
                 updateLists();
                 event.consume();
             }
         });
+         */
     }
 
-
+    /*
     void updateLists() {
         studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
         personListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
@@ -147,6 +148,8 @@ public class MainWindow extends UiPart<Stage> {
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getStudentListFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
     }
+     */
+
     /**
      * Fills up all the placeholders of this window.
      */
@@ -166,9 +169,6 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
-
-
-
 
     /**
      * Sets the default size based on {@code guiSettings}.
@@ -205,7 +205,6 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleSwitchTab(Tab tab) throws CommandException {
-
         int currentTabIndex = tabPane.getSelectionModel().getSelectedIndex();
         int toSwitchTabIndex = tab.getIndex().getZeroBased();
 
