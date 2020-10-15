@@ -7,7 +7,7 @@ import static atas.testutil.Assert.assertThrows;
 import static atas.testutil.TypicalIndexes.INDEX_FIRST_SESSION;
 import static atas.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static atas.testutil.TypicalIndexes.INDEX_SECOND_SESSION;
-import static atas.testutil.TypicalTabNames.CLASSES_TAB_NAME;
+import static atas.testutil.TypicalTabNames.STUDENTS_TAB_NAME;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -111,8 +111,8 @@ public class AtasParserTest {
     @Test
     public void parseCommand_switch() throws Exception {
         SwitchCommand command = (SwitchCommand) parser.parseCommand(
-                SwitchCommand.COMMAND_WORD + " " + CLASSES_TAB_NAME);
-        assertEquals(new SwitchCommand(CLASSES_TAB_NAME), command);
+                SwitchCommand.COMMAND_WORD + " " + STUDENTS_TAB_NAME);
+        assertEquals(new SwitchCommand(STUDENTS_TAB_NAME), command);
     }
 
     @Test

@@ -1,8 +1,8 @@
 package atas.logic.parser;
 
 import static atas.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static atas.testutil.TypicalTabNames.ATTENDANCE_TAB_NAME;
-import static atas.testutil.TypicalTabNames.CLASSES_TAB_NAME;
+import static atas.testutil.TypicalTabNames.SESSIONS_TAB_NAME;
+import static atas.testutil.TypicalTabNames.STUDENTS_TAB_NAME;
 
 import org.junit.jupiter.api.Test;
 
@@ -27,15 +27,15 @@ public class SwitchCommandParserTest {
     @Test
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
-        SwitchCommand expectedSwitchToClassesCommand = new SwitchCommand(CLASSES_TAB_NAME);
-        CommandParserTestUtil.assertParseSuccess(parser, CLASSES_TAB_NAME, expectedSwitchToClassesCommand);
-        SwitchCommand expectedSwitchToAttendanceCommand = new SwitchCommand(ATTENDANCE_TAB_NAME);
-        CommandParserTestUtil.assertParseSuccess(parser, ATTENDANCE_TAB_NAME, expectedSwitchToAttendanceCommand);
+        SwitchCommand expectedSwitchToStudentsCommand = new SwitchCommand(STUDENTS_TAB_NAME);
+        CommandParserTestUtil.assertParseSuccess(parser, STUDENTS_TAB_NAME, expectedSwitchToStudentsCommand);
+        SwitchCommand expectedSwitchToSessionsCommand = new SwitchCommand(SESSIONS_TAB_NAME);
+        CommandParserTestUtil.assertParseSuccess(parser, SESSIONS_TAB_NAME, expectedSwitchToSessionsCommand);
 
         // leading and trailing whitespaces
-        CommandParserTestUtil.assertParseSuccess(parser, " \n \t " + CLASSES_TAB_NAME + " \n \t ",
-                expectedSwitchToClassesCommand);
-        CommandParserTestUtil.assertParseSuccess(parser, " \n \t " + ATTENDANCE_TAB_NAME + " \n \t ",
-                expectedSwitchToAttendanceCommand);
+        CommandParserTestUtil.assertParseSuccess(parser, " \n \t " + STUDENTS_TAB_NAME + " \n \t ",
+                expectedSwitchToStudentsCommand);
+        CommandParserTestUtil.assertParseSuccess(parser, " \n \t " + SESSIONS_TAB_NAME + " \n \t ",
+                expectedSwitchToSessionsCommand);
     }
 }
