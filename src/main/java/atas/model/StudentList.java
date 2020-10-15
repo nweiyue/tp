@@ -110,10 +110,6 @@ public class StudentList implements ReadOnlyStudentList {
         return students.asModifiableObservableList();
     }
 
-    public int getSize() {
-        return students.size();
-    }
-
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

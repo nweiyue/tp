@@ -274,7 +274,7 @@ public class ModelManager implements Model {
 
     @Override
     public Index generateRandomStudentIndex() {
-        return rng.getNextIndex(studentList.getSize());
+        return rng.getNextIndex(filteredStudents.size());
     }
 
 }
