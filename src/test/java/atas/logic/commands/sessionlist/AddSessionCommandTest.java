@@ -241,6 +241,11 @@ public class AddSessionCommandTest {
         public boolean returnCurrentSessionEnabledStatus() {
             return false;
         }
+
+        @Override
+        public Index generateRandomStudentIndex() {
+            return null;
+        }
     }
 
     /**
