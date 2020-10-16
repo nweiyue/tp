@@ -18,7 +18,7 @@ public class SwitchCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Switches to the specified tab (case-insensitive).\n"
             + "Parameters: TAB_NAME (must be an existing tab)\n"
-            + "Example: " + COMMAND_WORD + " attendance";
+            + "Example: " + COMMAND_WORD + " sessions";
 
     public static final String MESSAGE_SWITCH_TAB_SUCCESS = "Switched to %1$s tab.";
 
