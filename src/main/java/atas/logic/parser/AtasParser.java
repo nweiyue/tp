@@ -116,10 +116,12 @@ public class AtasParser {
                 return previousCommand;
 
             case EditSessionCommand.COMMAND_WORD:
-                return new EditSessionCommandParser().parse(arguments);
+                this.previousCommand = new ConfirmationCommand(new EditSessionCommandParser().parse(arguments));
+                return previousCommand;
 
             case ClearSessionsCommand.COMMAND_WORD:
-                return new ClearSessionsCommand();
+                this.previousCommand = new ConfirmationCommand(new ClearSessionsCommand());
+                return this.previousCommand;
 
             case ParticipateCommand.COMMAND_WORD:
                 return new ParticipateCommandParser().parse(arguments);
