@@ -1,10 +1,7 @@
 package atas.ui;
 
-import static atas.logic.commands.atas.SwitchCommand.MESSAGE_ALREADY_ON_TAB;
 import static atas.logic.commands.atas.SwitchCommand.MESSAGE_INVALID_TAB;
-
 import java.util.logging.Logger;
-
 import atas.commons.core.GuiSettings;
 import atas.commons.core.LogsCenter;
 import atas.logic.Logic;
@@ -18,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
@@ -67,9 +65,6 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private TabPane tabPane;
-
-    @FXML
-    private javafx.scene.control.Tab currentSessionTab;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -126,29 +121,13 @@ public class MainWindow extends UiPart<Stage> {
             }
         });
 
-        /* Supposed-to-work listener */
-        /*
-        getRoot().addEventFilter(KeyEvent.KEY_RELEASED, event -> {
-            if (event.getCode() == KeyCode.ENTER) {
-                updateLists();
+        getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode() == KeyCode.TAB) {
+                switchTab();
                 event.consume();
             }
         });
-         */
     }
-
-    /*
-    void updateLists() {
-        studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
-        personListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
-
-        sessionListPanel = new SessionListPanel(logic.getFilteredSessionList());
-        sessionListPanelPlaceholder.getChildren().add(sessionListPanel.getRoot());
-
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getStudentListFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
-    }
-     */
 
     /**
      * Fills up all the placeholders of this window.
@@ -198,6 +177,12 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.show();
     }
 
+    private void switchTab() {
+        int currentTabIndex = tabPane.getSelectionModel().getSelectedIndex();
+        int toSwitchTabIndex = (currentTabIndex + 1) % Tab.values().length;
+        tabPane.getSelectionModel().select(toSwitchTabIndex);
+    }
+
     /**
      * Switches to the specified tab.
      *
@@ -205,19 +190,17 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleSwitchTab(Tab tab) throws CommandException {
-        int currentTabIndex = tabPane.getSelectionModel().getSelectedIndex();
+        //int currentTabIndex = tabPane.getSelectionModel().getSelectedIndex();
         int toSwitchTabIndex = tab.getIndex().getZeroBased();
 
-        if (currentTabIndex == toSwitchTabIndex) {
+       /* if (currentTabIndex == toSwitchTabIndex) {
             throw new CommandException(String.format(MESSAGE_ALREADY_ON_TAB, tab.toString().toLowerCase()));
         }
-
+*/
         if (tab.equals(Tab.STUDENTS) || tab.equals(Tab.SESSIONS)) {
             tabPane.getSelectionModel().select(toSwitchTabIndex);
-            currentSessionTab.setDisable(true);
         } else if (tab.equals(Tab.CURRENT)) {
             tabPane.getSelectionModel().select(toSwitchTabIndex);
-            currentSessionTab.setDisable(false);
         } else {
             throw new CommandException(MESSAGE_INVALID_TAB);
         }
@@ -231,7 +214,6 @@ public class MainWindow extends UiPart<Stage> {
         sessionStudentListPanel = new SessionStudentListPanel(logic.getFilteredAttributesList());
         sessionStudentListPanelPlaceholder.getChildren().add(sessionStudentListPanel.getRoot());
         tabPane.getSelectionModel().select(toSwitchTabIndex);
-        currentSessionTab.setDisable(false);
 
     }
 
