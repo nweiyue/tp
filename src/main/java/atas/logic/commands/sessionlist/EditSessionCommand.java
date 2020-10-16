@@ -92,7 +92,7 @@ public class EditSessionCommand extends DangerousCommand {
         SessionDate updatedSessionDate = editSessionDescriptor.getSessionDate().orElse(sessionToEdit.getSessionDate());
 
         Session editedSession = new Session(updatedSessionName, updatedSessionDate);
-        editedSession.getStudentList().putAll(sessionToEdit.getStudentList());
+        editedSession.getAttributeList().setAll(sessionToEdit.getAttributeList());
         return editedSession;
     }
 

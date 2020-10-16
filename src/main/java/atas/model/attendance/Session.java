@@ -4,7 +4,6 @@ import static atas.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -22,8 +21,7 @@ public class Session implements Comparable<Session> {
 
     private final SessionName sessionName;
     private final SessionDate sessionDate;
-    private final Map<Integer, Attributes> studentList;
-    //private final ObservableList<Student> masterList;
+    private final ObservableList<Attributes> attributeList;
     private Index sessionIndex;
     private List<Student> masterList = new ArrayList<>();
 
@@ -34,7 +32,7 @@ public class Session implements Comparable<Session> {
     public Session(SessionName sessionName, SessionDate sessionDate) {
         this.sessionName = sessionName;
         this.sessionDate = sessionDate;
-        this.studentList = new HashMap<>();
+        this.attributeList = FXCollections.observableArrayList();
         this.sessionIndex = Index.fromZeroBased(0);
         //this.masterList = FXCollections.emptyObservableList();
     }
@@ -42,10 +40,14 @@ public class Session implements Comparable<Session> {
     /**
      * Parametrized constructor.
      */
-    public Session(SessionName sessionName, SessionDate sessionDate, Map<Integer, Attributes> studentList) {
+    public Session(SessionName sessionName, SessionDate sessionDate, Map<Integer, Attributes> attributeList) {
         this.sessionName = sessionName;
         this.sessionDate = sessionDate;
-        this.studentList = studentList;
+        //this.studentList = studentList;
+        this.attributeList = FXCollections.observableArrayList();
+        for (int i = 0; i < attributeList.size(); i++) {
+            this.attributeList.add(attributeList.get(i));
+        }
         this.sessionIndex = Index.fromZeroBased(0);
         //this.masterList = FXCollections.emptyObservableList();
     }
@@ -57,8 +59,10 @@ public class Session implements Comparable<Session> {
     //        this.studentList = studentList;
     //        //this.masterList = masterList;
     //    }
-    public Map<Integer, Attributes> getStudentList() {
-        return studentList;
+
+    /* Currently we have 2 of these methods */
+    public ObservableList<Attributes> getAttributeList() {
+        return this.attributeList;
     }
 
     /**
@@ -66,8 +70,8 @@ public class Session implements Comparable<Session> {
      */
     public void setStudentAsPresent(Index studentId) {
         requireNonNull(studentId);
-        Attributes attributes = studentList.get(studentId.getZeroBased());
-        studentList.put(studentId.getZeroBased(), attributes.togglePresence());
+        Attributes attributes = attributeList.get(studentId.getZeroBased());
+        attributeList.set(studentId.getZeroBased(), attributes.togglePresence());
     }
 
     /**
@@ -75,8 +79,8 @@ public class Session implements Comparable<Session> {
      */
     public void setStudentAsParticipated(Index studentId) {
         requireNonNull(studentId);
-        Attributes attributes = studentList.get(studentId.getZeroBased());
-        studentList.put(studentId.getZeroBased(), attributes.toggleParticipation());
+        Attributes attributes = attributeList.get(studentId.getZeroBased());
+        attributeList.set(studentId.getZeroBased(), attributes.toggleParticipation());
     }
 
     /**
@@ -86,11 +90,11 @@ public class Session implements Comparable<Session> {
         requireAllNonNull(studentId, masterList);
         // shift the values down by 1, starting from deleted student ID
         for (int i = studentId.getZeroBased(); i < masterList.size(); i++) {
-            Attributes temp = studentList.get(i + 1);
+            Attributes temp = attributeList.get(i + 1);
             //studentList.remove(i + 1);
-            studentList.put(i, temp);
+            attributeList.set(i, temp);
         }
-        studentList.remove(masterList.size()); // remove last key-value pair from hashmap
+        attributeList.remove(masterList.size()); // remove last key-value pair from hashmap
     }
 
     /**
@@ -99,7 +103,7 @@ public class Session implements Comparable<Session> {
     public void updateSessionAfterAdd(List<Student> masterList) {
         requireAllNonNull(masterList);
         Name studentName = masterList.get(masterList.size() - 1).getName();
-        studentList.put(masterList.size() - 1, new Attributes(studentName));
+        attributeList.set(masterList.size() - 1, new Attributes(studentName));
     }
 
     /**
@@ -110,7 +114,7 @@ public class Session implements Comparable<Session> {
 
         // find students that have index in range
         for (int i = indexRange.getZeroBasedLower(); i <= indexRange.getZeroBasedUpper(); i++) {
-            Attributes temp = studentList.get(i);
+            Attributes temp = attributeList.get(i);
             // exclude invalid index
             if (temp != null) {
                 setStudentAsParticipated(Index.fromZeroBased(i));
@@ -126,7 +130,7 @@ public class Session implements Comparable<Session> {
 
         // find students that have index in range
         for (int i = indexRange.getZeroBasedLower(); i <= indexRange.getZeroBasedUpper(); i++) {
-            Attributes temp = studentList.get(i);
+            Attributes temp = attributeList.get(i);
 
             // exclude invalid index
             if (temp != null) {
@@ -136,9 +140,7 @@ public class Session implements Comparable<Session> {
     }
 
     public ObservableList<Attributes> getAttributesAsList() {
-        ObservableList<Attributes> newAttributesList = FXCollections.observableArrayList();
-        newAttributesList.addAll(studentList.values());
-        return newAttributesList;
+        return this.attributeList;
     }
 
     /**
@@ -147,12 +149,12 @@ public class Session implements Comparable<Session> {
     public void initializeSession(List<Student> masterList) {
         for (int i = 0; i < masterList.size(); i++) {
             this.masterList.add(masterList.get(i));
-            studentList.put(i, new Attributes(masterList.get(i).getName()));
+            attributeList.set(i, new Attributes(masterList.get(i).getName()));
         }
     }
 
     public String returnStudentNameStringByIndex(int index) throws Exception {
-        return studentList.get(index).getName();
+        return attributeList.get(index).getName();
     }
 
     /**
