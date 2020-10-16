@@ -1,7 +1,9 @@
 package atas.ui;
 
 import static atas.logic.commands.atas.SwitchCommand.MESSAGE_INVALID_TAB;
+
 import java.util.logging.Logger;
+
 import atas.commons.core.GuiSettings;
 import atas.commons.core.LogsCenter;
 import atas.logic.Logic;
@@ -193,10 +195,10 @@ public class MainWindow extends UiPart<Stage> {
         //int currentTabIndex = tabPane.getSelectionModel().getSelectedIndex();
         int toSwitchTabIndex = tab.getIndex().getZeroBased();
 
-       /* if (currentTabIndex == toSwitchTabIndex) {
+        /* if (currentTabIndex == toSwitchTabIndex) {
             throw new CommandException(String.format(MESSAGE_ALREADY_ON_TAB, tab.toString().toLowerCase()));
         }
-*/
+        */
         if (tab.equals(Tab.STUDENTS) || tab.equals(Tab.SESSIONS)) {
             tabPane.getSelectionModel().select(toSwitchTabIndex);
         } else if (tab.equals(Tab.CURRENT)) {
