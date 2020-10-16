@@ -35,7 +35,7 @@
         </MenuBar>
         <TabPane fx:id="tabPane" prefHeight="800.0" prefWidth="400.0" stylesheets="@DarkTheme.css" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
           <tabs>
-            <Tab id="attendanceTab" fx:id="attendanceTab" text="Students">
+            <Tab id="studentsTab" fx:id="studentsTab" text="Students">
               <content>
                 <VBox fx:id="studentList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
                   <padding>
@@ -44,7 +44,7 @@
                   <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
                 </VBox>
               </content></Tab>
-            <Tab fx:id="classesTab" text="Sessions">
+            <Tab fx:id="sessionsTab" text="Sessions">
               <content>
                 <VBox fx:id="sessionList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
                   <padding>
@@ -53,7 +53,7 @@
                   <StackPane fx:id="sessionListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
                 </VBox>
               </content></Tab>
-            <Tab fx:id="inClassTab" text="Current Session" disable="true">
+            <Tab fx:id="currentSessionTab" text="Current Session" disable="true">
               <content>
                 <VBox fx:id="sessionStudentList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
                   <padding>
