@@ -62,4 +62,16 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Returns the Memo content.
+     */
+    String getMemoContent();
+
+    /**
+     * Saves content into the Memo.
+     * @param memoContent The String content that should be saved into the Memo.
+     * @throws CommandException If an error occurs during command execution.
+     */
+    void saveMemoContent(String memoContent) throws CommandException;
 }

@@ -20,7 +20,7 @@ public class SwitchCommand extends Command {
             + "Parameters: TAB_NAME (must be an existing tab)\n"
             + "Example: " + COMMAND_WORD + " sessions";
 
-    public static final String MESSAGE_SWITCH_TAB_SUCCESS = "Switched to %1$s tab.";
+    public static final String MESSAGE_SWITCH_TAB_SUCCESS = "Switched to %1$s tab";
 
     public static final String MESSAGE_INVALID_TAB = "Tab does not exist!";
 
@@ -37,13 +37,20 @@ public class SwitchCommand extends Command {
         Tab tab;
         requireNonNull(tabName);
         String trimmedTab = tabName.toLowerCase();
-        if (trimmedTab.equals("students")) {
+        switch(trimmedTab) {
+        case "students":
             tab = Tab.STUDENTS;
-        } else if (trimmedTab.equals("sessions")) {
+            break;
+        case "sessions":
             tab = Tab.SESSIONS;
-        } else if (trimmedTab.equals("current")) {
+            break;
+        case "current":
             tab = Tab.CURRENT;
-        } else {
+            break;
+        case "memo":
+            tab = Tab.MEMO;
+            break;
+        default:
             throw new CommandException(MESSAGE_INVALID_TAB);
         }
         return new CommandResult(String.format(MESSAGE_SWITCH_TAB_SUCCESS, tab.toString().toLowerCase()),

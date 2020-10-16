@@ -8,6 +8,7 @@ import static atas.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static atas.logic.commands.CommandTestUtil.showSessionAtIndex;
 import static atas.testutil.TypicalIndexes.INDEX_FIRST_SESSION;
 import static atas.testutil.TypicalIndexes.INDEX_SECOND_SESSION;
+import static atas.testutil.TypicalMemoContent.EMPTY_MEMO_CONTENT;
 import static atas.testutil.TypicalSessions.SESSIONDATE_WEEK_TWO_STRING;
 import static atas.testutil.TypicalSessions.SESSIONNAME_WEEK_TWO_STRING;
 import static atas.testutil.TypicalSessions.getTypicalSessionList;
@@ -42,7 +43,7 @@ public class EditSessionCommandTest {
 
         Model expectedModel = new ModelManager(getTypicalSessionList(
                 model.getStudentList().getStudentList()),
-                new StudentList(model.getStudentList()), new UserPrefs());
+                new StudentList(model.getStudentList()), new UserPrefs(), EMPTY_MEMO_CONTENT);
         expectedModel.setSession(model.getFilteredSessionList().get(0), editedSession);
 
         assertCommandSuccess(editSessionCommand, model, expectedMessage, expectedModel);
@@ -65,7 +66,7 @@ public class EditSessionCommandTest {
 
         Model expectedModel = new ModelManager(getTypicalSessionList(
                 model.getStudentList().getStudentList()),
-                new StudentList(model.getStudentList()), new UserPrefs());
+                new StudentList(model.getStudentList()), new UserPrefs(), EMPTY_MEMO_CONTENT);
         expectedModel.setSession(lastSession, editedSession);
 
         assertCommandSuccess(editSessionCommand, model, expectedMessage, expectedModel);
@@ -86,7 +87,7 @@ public class EditSessionCommandTest {
         String expectedMessage = String.format(EditSessionCommand.MESSAGE_EDIT_SESSION_SUCCESS, editedSession);
 
         Model expectedModel = new ModelManager(getTypicalSessionList(model.getStudentList().getStudentList()),
-                new StudentList(model.getStudentList()), new UserPrefs());
+                new StudentList(model.getStudentList()), new UserPrefs(), EMPTY_MEMO_CONTENT);
         expectedModel.setSession(lastSession, editedSession);
 
         assertCommandSuccess(editSessionCommand, model, expectedMessage, expectedModel);
@@ -102,7 +103,7 @@ public class EditSessionCommandTest {
 
         Model expectedModel = new ModelManager(getTypicalSessionList(
                 model.getStudentList().getStudentList()),
-            new StudentList(model.getStudentList()), new UserPrefs());
+            new StudentList(model.getStudentList()), new UserPrefs(), EMPTY_MEMO_CONTENT);
 
         assertCommandSuccess(editSessionCommand, model, expectedMessage, expectedModel);
     }

@@ -2,6 +2,7 @@ package atas.logic.commands.studentlist;
 
 import static atas.logic.commands.CommandTestUtil.assertCommandFailure;
 import static atas.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static atas.testutil.TypicalMemoContent.EMPTY_MEMO_CONTENT;
 import static atas.testutil.TypicalSessions.getTypicalSessionList;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -31,7 +32,7 @@ public class AddStudentCommandIntegrationTest {
         Student validStudent = new StudentBuilder().build();
 
         Model expectedModel = new ModelManager(getTypicalSessionList(model.getStudentList().getStudentList()),
-                model.getStudentList(), new UserPrefs());
+                model.getStudentList(), new UserPrefs(), EMPTY_MEMO_CONTENT);
         expectedModel.addStudent(validStudent);
 
         assertCommandSuccess(new AddStudentCommand(validStudent), model,

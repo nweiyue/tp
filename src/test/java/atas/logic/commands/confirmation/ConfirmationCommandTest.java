@@ -3,6 +3,7 @@ package atas.logic.commands.confirmation;
 import static atas.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static atas.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static atas.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
+import static atas.testutil.TypicalMemoContent.EMPTY_MEMO_CONTENT;
 import static atas.testutil.TypicalSessions.getTypicalSessionList;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -33,7 +34,7 @@ public class ConfirmationCommandTest {
                 INDEX_FIRST_STUDENT.getOneBased());
 
         ModelManager expectedModel = new ModelManager(getTypicalSessionList(model.getStudentList().getStudentList()),
-                model.getStudentList(), new UserPrefs());
+                model.getStudentList(), new UserPrefs(), EMPTY_MEMO_CONTENT);
 
         ConfirmationCommand confirmationCommand = new ConfirmationCommand(deleteStudentCommand);
         assertCommandSuccess(confirmationCommand, model, expectedMessage, expectedModel);
@@ -48,7 +49,7 @@ public class ConfirmationCommandTest {
                 INDEX_FIRST_STUDENT.getOneBased());
 
         Model expectedModel = new ModelManager(getTypicalSessionList(model.getStudentList().getStudentList()),
-                new StudentList(model.getStudentList()), new UserPrefs());
+                new StudentList(model.getStudentList()), new UserPrefs(), EMPTY_MEMO_CONTENT);
 
         ConfirmationCommand confirmationCommand = new ConfirmationCommand(editStudentCommand);
         assertCommandSuccess(confirmationCommand, model, expectedMessage, expectedModel);
@@ -58,7 +59,7 @@ public class ConfirmationCommandTest {
     public void execute_clearStudentListCommandConfirmation_success() {
         ClearStudentListCommand clearStudentListCommand = new ClearStudentListCommand();
         Model expectedModel = new ModelManager(getTypicalSessionList(model.getStudentList().getStudentList()),
-                model.getStudentList(), new UserPrefs());
+                model.getStudentList(), new UserPrefs(), EMPTY_MEMO_CONTENT);
 
         String expectedMessage = ConfirmationCommand.MESSAGE_CONFIRMATION_CLEAR;
 

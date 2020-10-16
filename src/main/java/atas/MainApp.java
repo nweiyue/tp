@@ -28,9 +28,11 @@ import atas.storage.AtasStorage;
 import atas.storage.JsonAtasStorage;
 import atas.storage.JsonSessionListStorage;
 import atas.storage.JsonUserPrefsStorage;
+import atas.storage.MemoStorage;
 import atas.storage.SessionListStorage;
 import atas.storage.Storage;
 import atas.storage.StorageManager;
+import atas.storage.TxtMemoStorage;
 import atas.storage.UserPrefsStorage;
 import atas.ui.Ui;
 import atas.ui.UiManager;
@@ -64,7 +66,8 @@ public class MainApp extends Application {
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AtasStorage atasStorage = new JsonAtasStorage(userPrefs.getStudentListFilePath());
         SessionListStorage sessionListStorage = new JsonSessionListStorage(userPrefs.getSessionListFilePath());
-        storage = new StorageManager(sessionListStorage, atasStorage, userPrefsStorage);
+        MemoStorage memoStorage = new TxtMemoStorage(userPrefs.getMemoFilePath());
+        storage = new StorageManager(sessionListStorage, atasStorage, userPrefsStorage, memoStorage);
 
         initLogging(config);
 
@@ -85,14 +88,19 @@ public class MainApp extends Application {
         Optional<ReadOnlyStudentList> studentListOptional;
         ReadOnlyStudentList initialDataAb;
         ReadOnlySessionList initialDataSl;
+        String memoContent;
         try {
             sessionListOptional = storage.readSessionList();
             studentListOptional = storage.readStudentList();
+            memoContent = storage.readMemo();
             if (sessionListOptional.isEmpty()) {
                 logger.info("Data file not found. Will be starting with a sample SessionList");
             }
             if (studentListOptional.isEmpty()) {
                 logger.info("Data file not found. Will be starting with a sample StudentList");
+            }
+            if (memoContent.isEmpty()) {
+                logger.info("Data file not found. Will be starting with a sample Memo");
             }
             initialDataAb = studentListOptional.orElseGet(SampleDataUtil::getSampleStudentList);
             ReadOnlyStudentList finalInitialDataAb = initialDataAb;
@@ -102,13 +110,15 @@ public class MainApp extends Application {
             logger.warning("Data file not in the correct format. Will be starting with an empty StudentList");
             initialDataAb = new StudentList();
             initialDataSl = new SessionList();
+            memoContent = MemoStorage.DEFAULT_MEMO_CONTENT;
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty StudentList");
             initialDataAb = new StudentList();
             initialDataSl = new SessionList();
+            memoContent = MemoStorage.DEFAULT_MEMO_CONTENT;
         }
 
-        return new ModelManager(initialDataSl, initialDataAb, userPrefs);
+        return new ModelManager(initialDataSl, initialDataAb, userPrefs, memoContent);
     }
 
     private void initLogging(Config config) {

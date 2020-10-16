@@ -7,6 +7,7 @@ import static atas.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static atas.logic.commands.CommandTestUtil.showStudentAtIndex;
 import static atas.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static atas.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
+import static atas.testutil.TypicalMemoContent.EMPTY_MEMO_CONTENT;
 import static atas.testutil.TypicalSessions.getTypicalSessionList;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -36,7 +37,7 @@ public class DeleteStudentCommandTest {
         String expectedMessage = String.format(DeleteStudentCommand.MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete);
 
         ModelManager expectedModel = new ModelManager(getTypicalSessionList(model.getStudentList().getStudentList()),
-                model.getStudentList(), new UserPrefs());
+                model.getStudentList(), new UserPrefs(), EMPTY_MEMO_CONTENT);
         expectedModel.deleteStudent(studentToDelete, INDEX_FIRST_STUDENT);
 
         assertCommandSuccess(deleteStudentCommand, model, expectedMessage, expectedModel);
@@ -60,7 +61,7 @@ public class DeleteStudentCommandTest {
         String expectedMessage = String.format(DeleteStudentCommand.MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete);
 
         Model expectedModel = new ModelManager(getTypicalSessionList(model.getStudentList().getStudentList()),
-                model.getStudentList(), new UserPrefs());
+                model.getStudentList(), new UserPrefs(), EMPTY_MEMO_CONTENT);
         expectedModel.deleteStudent(studentToDelete, INDEX_FIRST_STUDENT);
         showNoPerson(expectedModel);
 

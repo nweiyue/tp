@@ -11,6 +11,7 @@ import atas.model.ReadOnlySessionList;
 import atas.model.ReadOnlyStudentList;
 import atas.model.ReadOnlyUserPrefs;
 import atas.model.UserPrefs;
+import atas.model.memo.Memo;
 
 /**
  * Manages storage of Atas data in local storage.
@@ -21,17 +22,19 @@ public class StorageManager implements Storage {
     private SessionListStorage sessionListStorage;
     private AtasStorage atasStorage;
     private UserPrefsStorage userPrefsStorage;
+    private MemoStorage memoStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code SessionListStorage}, {@code StudentListStorage}
-     * and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code SessionListStorage}, {@code StudentListStorage},
+     * {@code UserPrefStorage} and {@code MemoStorage}.
      */
     public StorageManager(SessionListStorage sessionListStorage, AtasStorage atasStorage,
-                          UserPrefsStorage userPrefsStorage) {
+                          UserPrefsStorage userPrefsStorage, MemoStorage memoStorage) {
         super();
         this.sessionListStorage = sessionListStorage;
         this.atasStorage = atasStorage;
         this.userPrefsStorage = userPrefsStorage;
+        this.memoStorage = memoStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -108,6 +111,35 @@ public class StorageManager implements Storage {
     public void saveSessionList(ReadOnlySessionList sessionList, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         sessionListStorage.saveSessionList(sessionList, filePath);
+    }
+
+    // ================ Memo methods ==============================
+
+    @Override
+    public Path getMemoFilePath() {
+        return memoStorage.getMemoFilePath();
+    }
+
+    @Override
+    public String readMemo() throws IOException, DataConversionException {
+        return readMemo(memoStorage.getMemoFilePath());
+    }
+
+    @Override
+    public String readMemo(Path filePath) throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return memoStorage.readMemo(filePath);
+    }
+
+    @Override
+    public void saveMemo(Memo memo) throws IOException {
+        saveMemo(memo, memoStorage.getMemoFilePath());
+    }
+
+    @Override
+    public void saveMemo(Memo memo, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        memoStorage.saveMemo(memo, filePath);
     }
 
 }

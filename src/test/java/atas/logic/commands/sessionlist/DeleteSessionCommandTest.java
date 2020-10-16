@@ -5,6 +5,7 @@ import static atas.logic.commands.CommandTestUtil.showSessionAtIndex;
 import static atas.testutil.Assert.assertThrows;
 import static atas.testutil.TypicalIndexes.INDEX_FIRST_SESSION;
 import static atas.testutil.TypicalIndexes.INDEX_SECOND_SESSION;
+import static atas.testutil.TypicalMemoContent.EMPTY_MEMO_CONTENT;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -35,7 +36,7 @@ public class DeleteSessionCommandTest {
         String expectedMessage = String.format(DeleteSessionCommand.MESSAGE_DELETE_SESSION_SUCCESS, sessionToDelete);
 
         ModelManager expectedModel = new ModelManager(TypicalSessions.getTypicalSessionList(
-                model.getStudentList().getStudentList()), model.getStudentList(), new UserPrefs());
+                model.getStudentList().getStudentList()), model.getStudentList(), new UserPrefs(), EMPTY_MEMO_CONTENT);
 
         expectedModel.deleteSession(sessionToDelete, INDEX_FIRST_SESSION);
         showNoSession(expectedModel);

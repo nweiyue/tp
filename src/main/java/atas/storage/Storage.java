@@ -9,11 +9,12 @@ import atas.model.ReadOnlySessionList;
 import atas.model.ReadOnlyStudentList;
 import atas.model.ReadOnlyUserPrefs;
 import atas.model.UserPrefs;
+import atas.model.memo.Memo;
 
 /**
  * API of the Storage component
  */
-public interface Storage extends SessionListStorage, AtasStorage, UserPrefsStorage {
+public interface Storage extends SessionListStorage, AtasStorage, UserPrefsStorage, MemoStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
@@ -38,5 +39,14 @@ public interface Storage extends SessionListStorage, AtasStorage, UserPrefsStora
 
     @Override
     void saveSessionList(ReadOnlySessionList sessionList) throws IOException;
+
+    @Override
+    Path getMemoFilePath();
+
+    @Override
+    String readMemo() throws IOException, DataConversionException;
+
+    @Override
+    void saveMemo(Memo memo) throws IOException;
 
 }

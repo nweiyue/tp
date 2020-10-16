@@ -7,6 +7,7 @@ import static atas.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static atas.logic.commands.CommandTestUtil.showStudentAtIndex;
 import static atas.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static atas.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
+import static atas.testutil.TypicalMemoContent.EMPTY_MEMO_CONTENT;
 import static atas.testutil.TypicalSessions.getTypicalSessionList;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -38,7 +39,7 @@ public class ConfirmationAcceptCommandTest {
         String expectedMessage = String.format(DeleteStudentCommand.MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete);
 
         ModelManager expectedModel = new ModelManager(getTypicalSessionList(model.getStudentList().getStudentList()),
-                model.getStudentList(), new UserPrefs());
+                model.getStudentList(), new UserPrefs(), EMPTY_MEMO_CONTENT);
         expectedModel.deleteStudent(studentToDelete, INDEX_FIRST_STUDENT);
 
         ConfirmationAcceptCommand confirmationAcceptCommand = new ConfirmationAcceptCommand(deleteStudentCommand);
@@ -66,7 +67,7 @@ public class ConfirmationAcceptCommandTest {
         String expectedMessage = String.format(EditStudentCommand.MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent);
 
         Model expectedModel = new ModelManager(getTypicalSessionList(model.getStudentList().getStudentList()),
-                new StudentList(model.getStudentList()), new UserPrefs());
+                new StudentList(model.getStudentList()), new UserPrefs(), EMPTY_MEMO_CONTENT);
         expectedModel.setStudent(model.getFilteredStudentList().get(0), editedStudent);
 
         ConfirmationAcceptCommand confirmationAcceptCommand = new ConfirmationAcceptCommand(editStudentCommand);
@@ -91,7 +92,7 @@ public class ConfirmationAcceptCommandTest {
         ClearStudentListCommand clearStudentListCommand = new ClearStudentListCommand();
         ModelManager expectedModel = new ModelManager(getTypicalSessionList(new ModelManager()
                 .getStudentList().getStudentList()),
-                new ModelManager().getStudentList(), new UserPrefs());
+                new ModelManager().getStudentList(), new UserPrefs(), EMPTY_MEMO_CONTENT);
         ConfirmationAcceptCommand confirmationAcceptCommand = new ConfirmationAcceptCommand(clearStudentListCommand);
         assertCommandSuccess(confirmationAcceptCommand, model, ClearStudentListCommand.MESSAGE_SUCCESS, expectedModel);
     }

@@ -27,7 +27,8 @@ public class StorageManagerTest {
         JsonSessionListStorage sessionListStorage = new JsonSessionListStorage(getTempFilePath("sl"));
         JsonAtasStorage studentListStorage = new JsonAtasStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(sessionListStorage, studentListStorage, userPrefsStorage);
+        TxtMemoStorage memoStorage = new TxtMemoStorage(getTempFilePath("memo.txt"));
+        storageManager = new StorageManager(sessionListStorage, studentListStorage, userPrefsStorage, memoStorage);
     }
 
     private Path getTempFilePath(String fileName) {

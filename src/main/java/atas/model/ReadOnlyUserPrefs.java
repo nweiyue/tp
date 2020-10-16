@@ -15,4 +15,5 @@ public interface ReadOnlyUserPrefs {
 
     Path getSessionListFilePath();
 
+    Path getMemoFilePath();
 }

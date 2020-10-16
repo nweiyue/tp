@@ -17,7 +17,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
@@ -43,6 +46,7 @@ public class MainWindow extends UiPart<Stage> {
     private SessionStudentListPanel sessionStudentListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private MemoBox memoBox;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -70,6 +74,12 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private javafx.scene.control.Tab currentSessionTab;
+
+    @FXML
+    private StackPane memoBoxPlaceholder;
+
+    @FXML
+    private TextArea memoTextBox;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -168,6 +178,27 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        memoBox = new MemoBox(logic.getMemoContent());
+        memoBoxPlaceholder.getChildren().add(memoBox.getRoot());
+    }
+
+    /**
+     * Sets up listener for keyboard command to save Memo.
+     */
+    public void setSaveMemoListener() {
+        memoTextBox = memoBox.getMemoTextBox();
+        memoTextBox.setOnKeyPressed(event -> {
+            if (new KeyCodeCombination(KeyCode.S, KeyCombination.SHORTCUT_DOWN).match(event)) {
+                try {
+                    logic.saveMemoContent(memoTextBox.getText());
+                    resultDisplay.setFeedbackToUser("Memo saved!");
+                } catch (CommandException e) {
+                    logger.info("Saving memory failed");
+                    resultDisplay.setFeedbackToUser(e.getMessage());
+                }
+            }
+        });
     }
 
     /**
@@ -212,7 +243,7 @@ public class MainWindow extends UiPart<Stage> {
             throw new CommandException(String.format(MESSAGE_ALREADY_ON_TAB, tab.toString().toLowerCase()));
         }
 
-        if (tab.equals(Tab.STUDENTS) || tab.equals(Tab.SESSIONS)) {
+        if (tab.equals(Tab.STUDENTS) || tab.equals(Tab.SESSIONS) || tab.equals(Tab.MEMO)) {
             tabPane.getSelectionModel().select(toSwitchTabIndex);
             currentSessionTab.setDisable(true);
         } else if (tab.equals(Tab.CURRENT)) {

@@ -8,6 +8,7 @@ import static atas.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static atas.logic.commands.confirmation.ConfirmationCommand.ACCEPT_COMMAND_FULL;
 import static atas.logic.parser.CliSyntax.PREFIX_TAG;
 import static atas.testutil.Assert.assertThrows;
+import static atas.testutil.TypicalMemoContent.EMPTY_MEMO_CONTENT;
 import static atas.testutil.TypicalSessions.getTypicalSessionList;
 import static atas.testutil.TypicalStudents.AMY;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -38,7 +39,9 @@ import atas.storage.JsonAtasStorage;
 import atas.storage.JsonSessionListStorage;
 import atas.storage.JsonUserPrefsStorage;
 import atas.storage.StorageManager;
+import atas.storage.TxtMemoStorage;
 import atas.testutil.StudentBuilder;
+
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -56,7 +59,9 @@ public class LogicManagerTest {
         JsonAtasStorage studentListStorage =
                 new JsonAtasStorage(temporaryFolder.resolve("studentList.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(jsonSessionListStorage, studentListStorage, userPrefsStorage);
+        TxtMemoStorage memoStorage = new TxtMemoStorage(temporaryFolder.resolve("memo.txt"));
+        StorageManager storage = new StorageManager(
+                jsonSessionListStorage, studentListStorage, userPrefsStorage, memoStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -98,7 +103,9 @@ public class LogicManagerTest {
                 new JsonAtasIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionStudentList.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(jsonSessionListStorage, studentListStorage, userPrefsStorage);
+        TxtMemoStorage memoStorage = new TxtMemoStorage(temporaryFolder.resolve("memo.txt"));
+        StorageManager storage = new StorageManager(
+                jsonSessionListStorage, studentListStorage, userPrefsStorage, memoStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -124,7 +131,9 @@ public class LogicManagerTest {
         JsonAtasStorage atasStorage =
                 new JsonAtasStorage(temporaryFolder.resolve("addressBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(jsonSessionListStorage, atasStorage, userPrefsStorage);
+        TxtMemoStorage memoStorage = new TxtMemoStorage(temporaryFolder.resolve("memo.txt"));
+        StorageManager storage = new StorageManager(
+                jsonSessionListStorage, atasStorage, userPrefsStorage, memoStorage);
         LogicManager logicManager = new LogicManager(model, storage);
 
         logic.enableCurrentSession();
@@ -174,7 +183,7 @@ public class LogicManagerTest {
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
         Model expectedModel = new ModelManager(getTypicalSessionList(model.getStudentList().getStudentList()),
-                model.getStudentList(), new UserPrefs());
+                model.getStudentList(), new UserPrefs(), EMPTY_MEMO_CONTENT);
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 

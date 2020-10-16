@@ -62,6 +62,14 @@
                   <StackPane fx:id="sessionStudentListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
                 </VBox>
               </content></Tab>
+            <Tab fx:id="memoTab" text="Memo">
+              <content>
+                <StackPane VBox.vgrow="ALWAYS" fx:id="memoBoxPlaceholder" styleClass="pane-with-border">
+                  <padding>
+                    <Insets top="5" right="10" bottom="5" left="10" />
+                  </padding>
+                </StackPane>
+              </content></Tab>
           </tabs>
         </TabPane>
 

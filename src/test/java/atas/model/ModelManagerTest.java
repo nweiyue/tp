@@ -2,6 +2,7 @@ package atas.model;
 
 import static atas.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 import static atas.testutil.Assert.assertThrows;
+import static atas.testutil.TypicalMemoContent.EMPTY_MEMO_CONTENT;
 import static atas.testutil.TypicalSessions.getTypicalSessionList;
 import static atas.testutil.TypicalStudents.ALICE;
 import static atas.testutil.TypicalStudents.BENSON;
@@ -103,9 +104,10 @@ public class ModelManagerTest {
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(getTypicalSessionList(studentList.getStudentList()), studentList, userPrefs);
+        modelManager = new ModelManager(getTypicalSessionList(
+                studentList.getStudentList()), studentList, userPrefs, EMPTY_MEMO_CONTENT);
         ModelManager modelManagerCopy = new ModelManager(getTypicalSessionList(studentList.getStudentList()),
-                studentList, userPrefs);
+                studentList, userPrefs, EMPTY_MEMO_CONTENT);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -119,13 +121,13 @@ public class ModelManagerTest {
 
         // different studentList -> returns false
         assertFalse(modelManager.equals(new ModelManager(getTypicalSessionList(studentList.getStudentList()),
-                differentStudentList, userPrefs)));
+                differentStudentList, userPrefs, EMPTY_MEMO_CONTENT)));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredStudentList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(getTypicalSessionList(studentList.getStudentList()),
-                studentList, userPrefs)));
+                studentList, userPrefs, EMPTY_MEMO_CONTENT)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
@@ -134,6 +136,6 @@ public class ModelManagerTest {
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setStudentListFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(getTypicalSessionList(studentList.getStudentList()),
-                studentList, differentUserPrefs)));
+                studentList, differentUserPrefs, EMPTY_MEMO_CONTENT)));
     }
 }
