@@ -134,14 +134,18 @@ public class AtasParserTest {
     public void parseCommand_editSession() throws Exception {
         Session session = TypicalSessions.SESSION_WEEK_ONE;
         EditSessionCommand.EditSessionDescriptor descriptor = new EditSessionDescriptorBuilder(session).build();
-        EditSessionCommand command = (EditSessionCommand) parser.parseCommand(EditSessionCommand.COMMAND_WORD + " "
+        ConfirmationCommand confirmationEditSessionCommand =
+                (ConfirmationCommand) parser.parseCommand(EditSessionCommand.COMMAND_WORD + " "
                 + "2" + " " + SessionUtil.getSessionDetails(session));
+        EditSessionCommand command = (EditSessionCommand) confirmationEditSessionCommand.getDangerousCommand();
         assertEquals(new EditSessionCommand(INDEX_SECOND_SESSION, descriptor), command);
     }
 
     @Test
     public void parseCommand_clearSession() throws Exception {
-        ClearSessionsCommand command = (ClearSessionsCommand) parser.parseCommand(ClearSessionsCommand.COMMAND_WORD);
+        ConfirmationCommand confirmationClearCommand =
+                (ConfirmationCommand) parser.parseCommand(ClearSessionsCommand.COMMAND_WORD);
+        ClearSessionsCommand command = (ClearSessionsCommand) confirmationClearCommand.getDangerousCommand();
         assertEquals(new ClearSessionsCommand(), command);
     }
 

@@ -149,7 +149,7 @@ public class Session implements Comparable<Session> {
     public void initializeSession(List<Student> masterList) {
         for (int i = 0; i < masterList.size(); i++) {
             this.masterList.add(masterList.get(i));
-            attributeList.set(i, new Attributes(masterList.get(i).getName()));
+            attributeList.add(new Attributes(masterList.get(i).getName()));
         }
     }
 
