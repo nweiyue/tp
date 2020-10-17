@@ -3,9 +3,7 @@ package atas.model.attendance;
 import static atas.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import atas.commons.core.index.Index;
 import atas.model.student.Name;
@@ -23,7 +21,7 @@ public class Session implements Comparable<Session> {
     private final SessionDate sessionDate;
     private final ObservableList<Attributes> attributeList;
     private Index sessionIndex;
-    private List<Student> masterList = new ArrayList<>();
+    //private List<Student> masterList = new ArrayList<>();
 
     /* Bugs with masterList ---> commented out codes on hold */
     /**
@@ -40,7 +38,7 @@ public class Session implements Comparable<Session> {
     /**
      * Parametrized constructor.
      */
-    public Session(SessionName sessionName, SessionDate sessionDate, Map<Integer, Attributes> attributeList) {
+    public Session(SessionName sessionName, SessionDate sessionDate, List<Attributes> attributeList) {
         this.sessionName = sessionName;
         this.sessionDate = sessionDate;
         //this.studentList = studentList;
@@ -51,14 +49,6 @@ public class Session implements Comparable<Session> {
         this.sessionIndex = Index.fromZeroBased(0);
         //this.masterList = FXCollections.emptyObservableList();
     }
-
-    //    public Session(SessionName sessionName, SessionDate
-    //    sessionDate, Map<Integer, Attributes> studentList, ObservableList<Student> masterList) {
-    //        this.sessionName = sessionName;
-    //        this.sessionDate = sessionDate;
-    //        this.studentList = studentList;
-    //        //this.masterList = masterList;
-    //    }
 
     /* Currently we have 2 of these methods */
     public ObservableList<Attributes> getAttributeList() {
@@ -139,16 +129,12 @@ public class Session implements Comparable<Session> {
         }
     }
 
-    public ObservableList<Attributes> getAttributesAsList() {
-        return this.attributeList;
-    }
-
     /**
      * Initialize the studentList using the given masterList.
      */
     public void initializeSession(List<Student> masterList) {
         for (int i = 0; i < masterList.size(); i++) {
-            this.masterList.add(masterList.get(i));
+            //this.masterList.add(masterList.get(i));
             attributeList.add(new Attributes(masterList.get(i).getName()));
         }
     }

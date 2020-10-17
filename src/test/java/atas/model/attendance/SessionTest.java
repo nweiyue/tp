@@ -63,6 +63,13 @@ class SessionTest {
     }
 
     @Test
+    public void getEmptyAttributeListFromSession_validEmptySessions_success() {
+        Session actual = TypicalSessions.EMPTY_SESSION_1;
+        Session expected = TypicalSessions.EMPTY_SESSION_2;
+        assertEquals(expected.getAttributeList(), actual.getAttributeList());
+    }
+
+    @Test
     public void studentBecomesPresent_validId_success() {
         Index index = Index.fromOneBased(1);
         sessionWeekOne.setStudentAsPresent(index);
@@ -92,13 +99,6 @@ class SessionTest {
         sessionWeekThree.setStudentAsParticipated(index);
         sessionWeekThree.setStudentAsPresent(index);
         assertEquals(PRESENT_AND_HAS_PARTICIPATED, sessionWeekThree.getAttributeList().get(index.getZeroBased()));
-    }
-
-    @Test
-    public void getEmptyAttributeList() {
-        Session actual = TypicalSessions.TUT1;
-        Session expected = TypicalSessions.TUT2;
-        assertEquals(expected.getAttributesAsList(), actual.getAttributesAsList());
     }
 
     @Test

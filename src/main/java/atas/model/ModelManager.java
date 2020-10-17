@@ -244,7 +244,7 @@ public class ModelManager implements Model {
     //=========== Filtered Session Accessors =============================================================
     @Override
     public ObservableList<Attributes> getFilteredAttributesList() {
-        return sessionList.getSessionBasedOnId(sessionId).getAttributesAsList();
+        return sessionList.getSessionBasedOnId(sessionId).getAttributeList();
     }
 
     @Override
