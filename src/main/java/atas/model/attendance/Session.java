@@ -49,7 +49,7 @@ public class Session implements Comparable<Session> {
         this.sessionIndex = Index.fromZeroBased(0);
         //this.masterList = FXCollections.emptyObservableList();
     }
-    
+
     public ObservableList<Attributes> getAttributeList() {
         return this.attributeList;
     }
