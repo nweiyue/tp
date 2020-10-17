@@ -49,8 +49,7 @@ public class Session implements Comparable<Session> {
         this.sessionIndex = Index.fromZeroBased(0);
         //this.masterList = FXCollections.emptyObservableList();
     }
-
-    /* Currently we have 2 of these methods */
+    
     public ObservableList<Attributes> getAttributeList() {
         return this.attributeList;
     }
