@@ -4,8 +4,13 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import atas.model.ReadOnlySessionList;
 import atas.model.ReadOnlyStudentList;
 import atas.model.StudentList;
+import atas.model.attendance.Session;
+import atas.model.attendance.SessionDate;
+import atas.model.attendance.SessionList;
+import atas.model.attendance.SessionName;
 import atas.model.student.Email;
 import atas.model.student.Matriculation;
 import atas.model.student.Name;
@@ -13,7 +18,7 @@ import atas.model.student.Student;
 import atas.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code StudentList} with sample data.
+ * Contains utility methods for populating {@code StudentList} or {@code SessionList} with sample data.
  */
 public class SampleDataUtil {
     public static Student[] getSampleStudents() {
@@ -42,6 +47,23 @@ public class SampleDataUtil {
         return Arrays.stream(strings)
                 .map(Tag::new)
                 .collect(Collectors.toSet());
+    }
+
+    public static Session[] getSampleSessions() {
+        return new Session[] {
+            new Session(new SessionName("Tutorial 1"), new SessionDate("12/8/2020")),
+            new Session(new SessionName("Tutorial 2"), new SessionDate("19/8/2020")),
+            new Session(new SessionName("Tutorial 3"), new SessionDate("26/8/2020"))
+        };
+    }
+
+    public static ReadOnlySessionList getSampleSessionList() {
+        SessionList sampleSl = new SessionList();
+        sampleSl.updateStudentList(getSampleStudentList().getStudentList());
+        for (Session sampleSession : getSampleSessions()) {
+            sampleSl.addSession(sampleSession);
+        }
+        return sampleSl;
     }
 
 }
