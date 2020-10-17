@@ -25,6 +25,10 @@ public class TypicalSessions {
             .withSessionDate("1/4/2020").build();
     public static final Session LAB2 = new SessionBuilder().withSessionName("lab2")
             .withSessionDate("1/5/2020").build();
+    public static final Session EMPTY_SESSION_1 = new SessionBuilder().withSessionName("tut99")
+            .withSessionDate("1/1/2020").build();
+    public static final Session EMPTY_SESSION_2 = new SessionBuilder().withSessionName("tut100")
+            .withSessionDate("1/1/2020").build();
 
     // Manually added
     public static final Session CONSULTATION = new SessionBuilder().withSessionName("consultation")

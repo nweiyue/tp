@@ -53,7 +53,7 @@ public class PresenceCommandTest {
 
         for (Session s: expectedModel.getSessionList().getSessions()) {
             if (s.isSameSession(SESSION_WEEK_ONE)) {
-                assertTrue(s.getStudentList().get(0).getPresenceStatus());
+                assertTrue(s.getAttributeList().get(0).getPresenceStatus());
             }
         }
     }
@@ -75,9 +75,9 @@ public class PresenceCommandTest {
 
         for (Session s: expectedModel.getSessionList().getSessions()) {
             if (s.isSameSession(SESSION_WEEK_ONE)) {
-                assertTrue(s.getStudentList().get(0).getPresenceStatus());
-                assertTrue(s.getStudentList().get(1).getPresenceStatus());
-                assertTrue(s.getStudentList().get(2).getPresenceStatus());
+                assertTrue(s.getAttributeList().get(0).getPresenceStatus());
+                assertTrue(s.getAttributeList().get(1).getPresenceStatus());
+                assertTrue(s.getAttributeList().get(2).getPresenceStatus());
             }
         }
     }
@@ -99,7 +99,7 @@ public class PresenceCommandTest {
 
         for (Session s: expectedModel.getSessionList().getSessions()) {
             if (s.isSameSession(SESSION_WEEK_ONE)) {
-                assertTrue(s.getStudentList().get(0).getPresenceStatus());
+                assertTrue(s.getAttributeList().get(0).getPresenceStatus());
             }
         }
     }
@@ -121,7 +121,7 @@ public class PresenceCommandTest {
 
         for (Session s: expectedModel.getSessionList().getSessions()) {
             if (s.isSameSession(SESSION_WEEK_ONE)) {
-                assertTrue(s.getStudentList().get(1).getPresenceStatus());
+                assertTrue(s.getAttributeList().get(1).getPresenceStatus());
             }
         }
     }

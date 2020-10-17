@@ -2,9 +2,7 @@ package atas.storage;
 
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -46,11 +44,10 @@ public class JsonAdaptedSession {
     public JsonAdaptedSession(Session source) {
         sessionName = source.getSessionName().value;
         sessionDate = source.getSessionDate().toString();
-        for (Integer index: source.getStudentList().keySet()) {
+        for (int i = 0; i < source.getAttributeList().size(); i++) {
             try {
                 JsonAdaptedAttributes jsonAdaptedAttributes = new JsonAdaptedAttributes(
-                        index, source.getStudentList(), source.returnStudentNameStringByIndex(index)
-                );
+                        i, source.getAttributeList(), source.returnStudentNameStringByIndex(i));
                 attributesList.add(jsonAdaptedAttributes);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -64,7 +61,7 @@ public class JsonAdaptedSession {
      * @throws IllegalValueException if there were any data constraints violated in the adapted session.
      */
     public Session toModelType() throws IllegalValueException {
-        final Map<Integer, Attributes> studentList = new HashMap<>();
+        final List<Attributes> studentList = new ArrayList<>();
 
         for (JsonAdaptedAttributes attr : attributesList) {
             Attributes attributes = new Attributes();
@@ -78,8 +75,7 @@ public class JsonAdaptedSession {
                 attributes = attributes.toggleParticipation();
             }
 
-
-            studentList.put(Integer.parseInt(attr.getAttributeIndex()), attributes);
+            studentList.add(Integer.parseInt(attr.getAttributeIndex()), attributes);
         }
 
         if (sessionName == null) {
