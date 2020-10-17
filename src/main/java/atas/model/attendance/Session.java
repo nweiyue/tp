@@ -21,9 +21,7 @@ public class Session implements Comparable<Session> {
     private final SessionDate sessionDate;
     private final ObservableList<Attributes> attributeList;
     private Index sessionIndex;
-    //private List<Student> masterList = new ArrayList<>();
 
-    /* Bugs with masterList ---> commented out codes on hold */
     /**
      * Parametrized constructor.
      */
@@ -32,7 +30,6 @@ public class Session implements Comparable<Session> {
         this.sessionDate = sessionDate;
         this.attributeList = FXCollections.observableArrayList();
         this.sessionIndex = Index.fromZeroBased(0);
-        //this.masterList = FXCollections.emptyObservableList();
     }
 
     /**
@@ -41,13 +38,11 @@ public class Session implements Comparable<Session> {
     public Session(SessionName sessionName, SessionDate sessionDate, List<Attributes> attributeList) {
         this.sessionName = sessionName;
         this.sessionDate = sessionDate;
-        //this.studentList = studentList;
         this.attributeList = FXCollections.observableArrayList();
         for (int i = 0; i < attributeList.size(); i++) {
             this.attributeList.add(attributeList.get(i));
         }
         this.sessionIndex = Index.fromZeroBased(0);
-        //this.masterList = FXCollections.emptyObservableList();
     }
 
     public ObservableList<Attributes> getAttributeList() {
@@ -80,7 +75,6 @@ public class Session implements Comparable<Session> {
         // shift the values down by 1, starting from deleted student ID
         for (int i = studentId.getZeroBased(); i < masterList.size(); i++) {
             Attributes temp = attributeList.get(i + 1);
-            //studentList.remove(i + 1);
             attributeList.set(i, temp);
         }
         attributeList.remove(masterList.size()); // remove last key-value pair from hashmap
@@ -133,7 +127,6 @@ public class Session implements Comparable<Session> {
      */
     public void initializeSession(List<Student> masterList) {
         for (int i = 0; i < masterList.size(); i++) {
-            //this.masterList.add(masterList.get(i));
             attributeList.add(new Attributes(masterList.get(i).getName()));
         }
     }
