@@ -15,7 +15,7 @@
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
          title="ATAS" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
   <icons>
-    <Image url="@/images/address_book_32.png" />
+    <Image url="@/images/atas.png" />
   </icons>
   <scene>
     <Scene>
@@ -53,7 +53,7 @@
                   <StackPane fx:id="sessionListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
                 </VBox>
               </content></Tab>
-            <Tab fx:id="currentSessionTab" text="Current Session" disable="true">
+            <Tab fx:id="currentSessionTab" text="Current Session">
               <content>
                 <VBox fx:id="sessionStudentList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
                   <padding>

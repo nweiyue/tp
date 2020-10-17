@@ -14,7 +14,6 @@ public enum Tab {
 
     /** Index to represent the order of the tabs */
     private final Index index;
-
     /**
      * Class constructor.
      *

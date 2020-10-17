@@ -1,9 +1,10 @@
-package atas.ui;
+package atas.ui.studentlist;
 
 import java.util.logging.Logger;
 
 import atas.commons.core.LogsCenter;
 import atas.model.student.Student;
+import atas.ui.UiPart;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
