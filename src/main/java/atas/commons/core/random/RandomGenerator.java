@@ -26,6 +26,9 @@ public class RandomGenerator {
         return new RandomGenerator(SEED);
     }
 
+    /**
+     * Returns the zero-based index of the next randomly-selected student.
+     */
     public Index getNextIndex(int max) {
         return Index.fromZeroBased(rng.nextInt(max));
     }
