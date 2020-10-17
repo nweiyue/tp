@@ -14,7 +14,7 @@ import atas.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
+    private Path addressBookFilePath = Paths.get("data" , "studentlist.json");
     private Path sessionListFilePath = Paths.get("data", "sessionlist.json");
 
     /**
