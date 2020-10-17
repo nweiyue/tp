@@ -1,20 +1,17 @@
-package atas.ui;
+package atas.ui.sessionlist;
 
-import java.util.Comparator;
-
-import atas.model.student.Student;
+import atas.model.attendance.Session;
+import atas.model.attendance.SessionList;
+import atas.ui.UiPart;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 
-/**
- * An UI component that displays information of a {@code Student}.
- */
-public class StudentCard extends UiPart<Region> {
+public class SessionCard extends UiPart<Region> {
 
-    private static final String FXML = "StudentListCard.fxml";
+    private static final String FXML = "SessionListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -24,7 +21,7 @@ public class StudentCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Student student;
+    public final Session session;
 
     @FXML
     private HBox cardPane;
@@ -33,25 +30,21 @@ public class StudentCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label matriculation;
-    @FXML
-    private Label email;
+    private Label date;
     @FXML
     private FlowPane tags;
+
+    private SessionList sessionList;
 
     /**
      * Creates a {@code StudentCode} with the given {@code Student} and index to display.
      */
-    public StudentCard(Student student, int displayedIndex) {
+    public SessionCard(Session session, int displayedIndex) {
         super(FXML);
-        this.student = student;
+        this.session = session;
         id.setText(displayedIndex + ". ");
-        name.setText(student.getName().fullName);
-        matriculation.setText(student.getMatriculation().value);
-        email.setText(student.getEmail().value);
-        student.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        name.setText(session.getSessionName().toString());;
+        date.setText(session.getSessionDate().toString());
     }
 
     @Override
@@ -62,13 +55,13 @@ public class StudentCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof StudentCard)) {
+        if (!(other instanceof SessionCard)) {
             return false;
         }
 
         // state check
-        StudentCard card = (StudentCard) other;
+        SessionCard card = (SessionCard) other;
         return id.getText().equals(card.id.getText())
-                && student.equals(card.student);
+                && session.equals(card.session);
     }
 }
