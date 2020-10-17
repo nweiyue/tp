@@ -35,9 +35,9 @@ public class StudentTest {
                 .withEmail(VALID_EMAIL_BOB).build();
         assertFalse(ALICE.isSameStudent(editedAlice));
 
-        // different name -> returns false
+        // different name, same matriculation -> returns true
         editedAlice = new StudentBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.isSameStudent(editedAlice));
+        assertTrue(ALICE.isSameStudent(editedAlice));
 
         // same name, same matriculation, different attributes -> returns true
         editedAlice = new StudentBuilder(ALICE).withEmail(VALID_EMAIL_BOB).withTags(VALID_TAG_HUSBAND).build();
