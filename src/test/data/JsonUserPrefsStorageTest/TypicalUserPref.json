@@ -7,5 +7,5 @@
       "y" : 100
     }
   },
-  "addressBookFilePath" : "studentlist.json"
+  "studentListFilePath" : "studentlist.json"
 }
