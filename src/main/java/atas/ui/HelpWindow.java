@@ -17,29 +17,39 @@ public class HelpWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL = "https://ay2021s1-cs2103t-w16-4.github.io/tp/UserGuide.html";
     public static final String LINK_MESSAGE = "Link to the full user guide: " + USERGUIDE_URL;
-    public static final String COMMAND_LIST = "Here is the list of commands you can try with ATAS:\n\n"
-            + "General:\n"
+
+    public static final String COMMAND_LIST_GENERAL = "General:\n"
             + "Get help: help\n"
             + "Exit the application: exit\n"
             + "Switch between tabs: switch TAB_NAME\n"
             + "Generate the name of a randomly selected student: rng\n\n"
-            + "Students: \n"
+            + "Switch between tabs: switch TAB_NAME\n";
+
+    public static final String COMMAND_LIST_STUDENTS = "Students: \n"
             + "Add a student: addstu n/NAME m/MATRICULATION_NUMBER e/NUS_EMAIL_ADDRESS [t/TAG]…\u200B\n"
             + "List all students: liststu\n"
             + "Find students: findstu KEYWORD [MORE_KEYWORDS]\n"
             + "Delete a student: deletestu INDEX\n"
             + "Edit a student's particulars: editstu INDEX [n/NAME] [m/MATRICULATION_NUMBER] "
             + "[e/NUS_EMAIL_ADDRESS] [t/TAG]…\u200B\n"
-            + "Clear the student list: clearstu\n\n"
-            + "Sessions:\n"
+            + "Clear the student list: clearstu\n";
+
+    public static final String COMMAND_LIST_SESSIONS = "Sessions:\n"
             + "Add a session: addses s/SESSION_NAME d/SESSION_DATE\n"
             + "Delete a session: deleteses INDEX\n"
             + "Edit a session: editses INDEX [s/SESSION_NAME] [d/SESSION_DATE]\n"
             + "Clear the session list: clearses\n"
-            + "Enter a session: enterses INDEX\n\n"
-            + "Current Session:\n"
+            + "Enter a session: enterses INDEX\n";
+
+    public static final String COMMAND_LIST_CURRENT_SESSION = "Current Session:\n"
             + "Toggles presence status of students: presence INDEX_RANGE\n"
-            + "Toggles participation status of students: participate INDEX_RANGE\n\n";
+            + "Toggles participation status of students: participate INDEX_RANGE\n";
+
+    public static final String COMMAND_LIST = "Here is the list of commands you can try with ATAS:\n\n"
+            + COMMAND_LIST_GENERAL + "\n"
+            + COMMAND_LIST_STUDENTS + "\n"
+            + COMMAND_LIST_SESSIONS + "\n"
+            + COMMAND_LIST_CURRENT_SESSION + "\n";
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
