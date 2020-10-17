@@ -93,7 +93,7 @@ public class Session implements Comparable<Session> {
     public void updateSessionAfterAdd(List<Student> masterList) {
         requireAllNonNull(masterList);
         Name studentName = masterList.get(masterList.size() - 1).getName();
-        attributeList.set(masterList.size() - 1, new Attributes(studentName));
+        attributeList.add(masterList.size() - 1, new Attributes(studentName));
     }
 
     /**

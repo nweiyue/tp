@@ -239,7 +239,7 @@ Let’s change `RemarkCommand` and `RemarkCommandParser` to use the new `Remark`
 
 Without getting too deep into `fxml`, let’s go on a 5 minute adventure to get some placeholder text to show up for each student.
 
-Simply add the following to [`atas.ui.StudentCard`](https://github.com/se-edu/addressbook-level3/commit/850b78879582f38accb05dd20c245963c65ea599#diff-0c6b6abcfac8c205e075294f25e851fe).
+Simply add the following to [`atas.ui.studentlist.StudentCard`](https://github.com/se-edu/addressbook-level3/commit/850b78879582f38accb05dd20c245963c65ea599#diff-0c6b6abcfac8c205e075294f25e851fe).
 
 **`StudentCard.java`:**
 
@@ -292,7 +292,7 @@ While the changes to code may be minimal, the test data will have to be updated 
 
 <div markdown="span" class="alert alert-warning">
 
-:exclamation: You must delete StudentList’s storage file located at `/data/addressbook.json` before running it! Not doing so will cause StudentList to default to an empty student list!
+:exclamation: You must delete StudentList’s storage file located at `/data/studentlist.json` before running it! Not doing so will cause StudentList to default to an empty student list!
 
 </div>
 

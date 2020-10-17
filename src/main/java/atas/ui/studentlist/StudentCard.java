@@ -1,8 +1,9 @@
-package atas.ui;
+package atas.ui.studentlist;
 
 import java.util.Comparator;
 
 import atas.model.student.Student;
+import atas.ui.UiPart;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;

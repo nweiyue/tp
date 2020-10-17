@@ -1,6 +1,8 @@
-package atas.ui;
+package atas.ui.sessionlist.session;
 
 import atas.model.attendance.Attributes;
+import atas.ui.UiPart;
+import atas.ui.studentlist.StudentCard;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -10,10 +12,10 @@ import javafx.scene.layout.Region;
 public class SessionStudentCard extends UiPart<Region> {
 
     private static final String FXML = "SessionStudentListCard.fxml";
-    private static final String PRESENT = "PRESENT";
-    private static final String ABSENT = "ABSENT";
-    private static final String PARTICIPATE = "PARTICIPATED";
-    private static final String NO_PARTICIPATE = "NOT PARTICIPATED";
+    private static final String PRESENT = "Present";
+    private static final String ABSENT = "Absent";
+    private static final String PARTICIPATED = "Participated";
+    private static final String NOT_PARTICIPATED = "Not participated";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -36,7 +38,7 @@ public class SessionStudentCard extends UiPart<Region> {
     @FXML
     private Label participation;
     @FXML
-    private FlowPane tags;
+    private FlowPane attributesPane;
 
     /**
      * Creates a {@code StudentCode} with the given {@code Student} and index to display.
@@ -46,10 +48,21 @@ public class SessionStudentCard extends UiPart<Region> {
         this.attributes = attributes;
         id.setText(displayedIndex + ". ");
         name.setText(attributes.getName());
-        String presenceStatus = attributes.getPresenceStatus() ? PRESENT : ABSENT;
-        String participationStatus = attributes.getParticipationStatus() ? PARTICIPATE : NO_PARTICIPATE;
-        presence.setText(presenceStatus);
-        participation.setText(participationStatus);
+
+        attributesPane.getChildren().add(getPresenceLabel(attributes));
+        attributesPane.getChildren().add(getParticipationLabel(attributes));
+    }
+
+    private Label getPresenceLabel(Attributes attributes) {
+        boolean presenceStatus = attributes.getPresenceStatus();
+        String text = presenceStatus ? PRESENT : ABSENT;
+        return new PresenceLabel(text, presenceStatus);
+    }
+
+    private Label getParticipationLabel(Attributes attributes) {
+        boolean participationStatus = attributes.getParticipationStatus();
+        String text = participationStatus ? PARTICIPATED : NOT_PARTICIPATED;
+        return new PresenceLabel(text, participationStatus);
     }
 
     @Override
