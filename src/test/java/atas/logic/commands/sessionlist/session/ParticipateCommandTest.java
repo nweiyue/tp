@@ -54,7 +54,7 @@ public class ParticipateCommandTest {
 
         for (Session s: expectedModel.getSessionList().getSessions()) {
             if (s.isSameSession(SESSION_WEEK_ONE)) {
-                assertTrue(s.getStudentList().get(0).getParticipationStatus());
+                assertTrue(s.getAttributeList().get(0).getParticipationStatus());
             }
         }
     }
@@ -76,9 +76,9 @@ public class ParticipateCommandTest {
 
         for (Session s: expectedModel.getSessionList().getSessions()) {
             if (s.isSameSession(SESSION_WEEK_ONE)) {
-                assertTrue(s.getStudentList().get(0).getParticipationStatus());
-                assertTrue(s.getStudentList().get(1).getParticipationStatus());
-                assertTrue(s.getStudentList().get(2).getParticipationStatus());
+                assertTrue(s.getAttributeList().get(0).getParticipationStatus());
+                assertTrue(s.getAttributeList().get(1).getParticipationStatus());
+                assertTrue(s.getAttributeList().get(2).getParticipationStatus());
             }
         }
     }
@@ -100,7 +100,7 @@ public class ParticipateCommandTest {
 
         for (Session s: expectedModel.getSessionList().getSessions()) {
             if (s.isSameSession(SESSION_WEEK_ONE)) {
-                assertTrue(s.getStudentList().get(0).getParticipationStatus());
+                assertTrue(s.getAttributeList().get(0).getParticipationStatus());
             }
         }
     }
@@ -122,7 +122,7 @@ public class ParticipateCommandTest {
 
         for (Session s: expectedModel.getSessionList().getSessions()) {
             if (s.isSameSession(SESSION_WEEK_ONE)) {
-                assertTrue(s.getStudentList().get(1).getParticipationStatus());
+                assertTrue(s.getAttributeList().get(1).getParticipationStatus());
             }
         }
     }

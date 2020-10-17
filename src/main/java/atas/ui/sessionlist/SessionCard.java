@@ -1,7 +1,6 @@
 package atas.ui.sessionlist;
 
 import atas.model.attendance.Session;
-import atas.model.attendance.SessionList;
 import atas.ui.UiPart;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -33,8 +32,6 @@ public class SessionCard extends UiPart<Region> {
     private Label date;
     @FXML
     private FlowPane tags;
-
-    private SessionList sessionList;
 
     /**
      * Creates a {@code StudentCode} with the given {@code Student} and index to display.

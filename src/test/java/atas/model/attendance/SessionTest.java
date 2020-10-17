@@ -63,10 +63,17 @@ class SessionTest {
     }
 
     @Test
+    public void getEmptyAttributeListFromSession_validEmptySessions_success() {
+        Session actual = TypicalSessions.EMPTY_SESSION_1;
+        Session expected = TypicalSessions.EMPTY_SESSION_2;
+        assertEquals(expected.getAttributeList(), actual.getAttributeList());
+    }
+
+    @Test
     public void studentBecomesPresent_validId_success() {
         Index index = Index.fromOneBased(1);
         sessionWeekOne.setStudentAsPresent(index);
-        assertEquals(PRESENT_BUT_HAS_NOT_PARTICIPATED, sessionWeekOne.getStudentList().get(index.getZeroBased()));
+        assertEquals(PRESENT_BUT_HAS_NOT_PARTICIPATED, sessionWeekOne.getAttributeList().get(index.getZeroBased()));
     }
 
     @Test
@@ -78,7 +85,7 @@ class SessionTest {
     public void studentParticipates_validId_success() {
         Index index = Index.fromOneBased(1);
         sessionWeekTwo.setStudentAsParticipated(index);
-        assertEquals(ABSENT_BUT_HAS_PARTICIPATED, sessionWeekTwo.getStudentList().get(index.getZeroBased()));
+        assertEquals(ABSENT_BUT_HAS_PARTICIPATED, sessionWeekTwo.getAttributeList().get(index.getZeroBased()));
     }
 
     @Test
@@ -91,14 +98,7 @@ class SessionTest {
         Index index = Index.fromOneBased(1);
         sessionWeekThree.setStudentAsParticipated(index);
         sessionWeekThree.setStudentAsPresent(index);
-        assertEquals(PRESENT_AND_HAS_PARTICIPATED, sessionWeekThree.getStudentList().get(index.getZeroBased()));
-    }
-
-    @Test
-    public void getEmptyAttributeList() {
-        Session actual = TypicalSessions.TUT1;
-        Session expected = TypicalSessions.TUT2;
-        assertEquals(expected.getAttributesAsList(), actual.getAttributesAsList());
+        assertEquals(PRESENT_AND_HAS_PARTICIPATED, sessionWeekThree.getAttributeList().get(index.getZeroBased()));
     }
 
     @Test
