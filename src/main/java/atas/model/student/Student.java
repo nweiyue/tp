@@ -63,8 +63,7 @@ public class Student {
             return true;
         }
 
-        return otherStudent != null && otherStudent.getName().equals(getName())
-                && otherStudent.getMatriculation().equals(getMatriculation());
+        return otherStudent != null && otherStudent.getMatriculation().equals(getMatriculation());
     }
 
     /**
