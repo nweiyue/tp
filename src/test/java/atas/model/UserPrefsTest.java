@@ -18,4 +18,10 @@ public class UserPrefsTest {
         assertThrows(NullPointerException.class, () -> userPrefs.setStudentListFilePath(null));
     }
 
+    @Test
+    public void setMemoFilePath_nullPath_throwsNullPointerException() {
+        UserPrefs userPrefs = new UserPrefs();
+        assertThrows(NullPointerException.class, () -> userPrefs.setMemoFilePath(null));
+    }
+
 }

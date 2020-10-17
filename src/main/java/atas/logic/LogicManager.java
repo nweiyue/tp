@@ -109,7 +109,7 @@ public class LogicManager implements Logic {
 
     @Override
     public void saveMemoContent(String content) throws CommandException {
-        model.getMemo().setMemoContent(content);
+        model.getMemo().saveMemoContent(content);
         try {
             storage.saveMemo(model.getMemo());
         } catch (IOException ioe) {

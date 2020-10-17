@@ -1,5 +1,6 @@
 package atas.storage;
 
+import static atas.testutil.TypicalMemos.SAMPLE_MEMO_ONE;
 import static atas.testutil.TypicalStudents.getTypicalStudentList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -14,6 +15,7 @@ import atas.commons.core.GuiSettings;
 import atas.model.ReadOnlyStudentList;
 import atas.model.StudentList;
 import atas.model.UserPrefs;
+import atas.model.memo.Memo;
 
 public class StorageManagerTest {
 
@@ -27,7 +29,7 @@ public class StorageManagerTest {
         JsonSessionListStorage sessionListStorage = new JsonSessionListStorage(getTempFilePath("sl"));
         JsonAtasStorage studentListStorage = new JsonAtasStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        TxtMemoStorage memoStorage = new TxtMemoStorage(getTempFilePath("memo.txt"));
+        TxtMemoStorage memoStorage = new TxtMemoStorage(getTempFilePath("memo"));
         storageManager = new StorageManager(sessionListStorage, studentListStorage, userPrefsStorage, memoStorage);
     }
 
@@ -65,6 +67,19 @@ public class StorageManagerTest {
     @Test
     public void getStudentListFilePath() {
         assertNotNull(storageManager.getStudentListFilePath());
+    }
+
+    @Test
+    public void testSaveMemo() throws Exception {
+        Memo original = SAMPLE_MEMO_ONE;
+        storageManager.saveMemo(original);
+        String retrieved = storageManager.readMemo();
+        assertEquals(original, new Memo(retrieved));
+    }
+
+    @Test
+    public void getMemoFilePath() {
+        assertNotNull(storageManager.getMemoFilePath());
     }
 
 }

@@ -2,8 +2,9 @@ package atas.logic.commands.atas;
 
 import static atas.logic.commands.CommandTestUtil.assertCommandFailure;
 import static atas.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static atas.testutil.TypicalTabNames.CURRENT_SESSIONS_TAB_NAME;
+import static atas.testutil.TypicalTabNames.CURRENT_SESSION_TAB_NAME;
 import static atas.testutil.TypicalTabNames.INVALID_TAB_NAME;
+import static atas.testutil.TypicalTabNames.MEMO_TAB_NAME;
 import static atas.testutil.TypicalTabNames.SESSIONS_TAB_NAME;
 import static atas.testutil.TypicalTabNames.STUDENTS_TAB_NAME;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -46,7 +47,17 @@ public class SwitchCommandTest {
         String expectedMessage = String.format(SwitchCommand.MESSAGE_SWITCH_TAB_SUCCESS,
                 Tab.CURRENT.toString().toLowerCase());
         CommandResult expectedCommandResult = new CommandResult(expectedMessage, false, Tab.CURRENT, false);
-        SwitchCommand switchCommand = new SwitchCommand(CURRENT_SESSIONS_TAB_NAME);
+        SwitchCommand switchCommand = new SwitchCommand(CURRENT_SESSION_TAB_NAME);
+
+        assertCommandSuccess(switchCommand, model, expectedCommandResult, expectedModel);
+    }
+
+    @Test
+    public void execute_switchMemoTab_success() {
+        String expectedMessage = String.format(SwitchCommand.MESSAGE_SWITCH_TAB_SUCCESS,
+                Tab.MEMO.toString().toLowerCase());
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, false, Tab.MEMO, false);
+        SwitchCommand switchCommand = new SwitchCommand(MEMO_TAB_NAME);
 
         assertCommandSuccess(switchCommand, model, expectedCommandResult, expectedModel);
     }
@@ -62,17 +73,25 @@ public class SwitchCommandTest {
     public void equals() {
         SwitchCommand switchToStudentsCommand = new SwitchCommand(STUDENTS_TAB_NAME);
         SwitchCommand switchToSessionsCommand = new SwitchCommand(SESSIONS_TAB_NAME);
+        SwitchCommand switchToCurrentSessionCommand = new SwitchCommand(CURRENT_SESSION_TAB_NAME);
+        SwitchCommand switchToMemoCommand = new SwitchCommand(MEMO_TAB_NAME);
         SwitchCommand switchToInvalidTabCommand = new SwitchCommand(INVALID_TAB_NAME);
 
         // same object -> returns true
         assertTrue(switchToStudentsCommand.equals(switchToStudentsCommand));
         assertTrue(switchToSessionsCommand.equals(switchToSessionsCommand));
+        assertTrue(switchToCurrentSessionCommand.equals(switchToCurrentSessionCommand));
+        assertTrue(switchToMemoCommand.equals(switchToMemoCommand));
 
         // same values -> returns true
         SwitchCommand switchToStudentsCommandCopy = new SwitchCommand(STUDENTS_TAB_NAME);
         assertTrue(switchToStudentsCommand.equals(switchToStudentsCommandCopy));
         SwitchCommand switchToSessionsCommandCopy = new SwitchCommand(SESSIONS_TAB_NAME);
         assertTrue(switchToSessionsCommand.equals(switchToSessionsCommandCopy));
+        SwitchCommand switchToCurrentSessionCommandCopy = new SwitchCommand(CURRENT_SESSION_TAB_NAME);
+        assertTrue(switchToCurrentSessionCommand.equals(switchToCurrentSessionCommandCopy));
+        SwitchCommand switchToMemoCommandCopy = new SwitchCommand(MEMO_TAB_NAME);
+        assertTrue(switchToMemoCommand.equals(switchToMemoCommandCopy));
 
         // different types -> returns false
         assertFalse(switchToStudentsCommand.equals(1));

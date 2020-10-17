@@ -8,7 +8,7 @@ import static atas.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static atas.logic.commands.CommandTestUtil.showSessionAtIndex;
 import static atas.testutil.TypicalIndexes.INDEX_FIRST_SESSION;
 import static atas.testutil.TypicalIndexes.INDEX_SECOND_SESSION;
-import static atas.testutil.TypicalMemoContent.EMPTY_MEMO_CONTENT;
+import static atas.testutil.TypicalMemoContents.EMPTY_MEMO_CONTENT;
 import static atas.testutil.TypicalSessions.SESSIONDATE_WEEK_TWO_STRING;
 import static atas.testutil.TypicalSessions.SESSIONNAME_WEEK_TWO_STRING;
 import static atas.testutil.TypicalSessions.getTypicalSessionList;

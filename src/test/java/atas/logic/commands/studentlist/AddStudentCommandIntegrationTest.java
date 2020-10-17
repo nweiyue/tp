@@ -2,7 +2,7 @@ package atas.logic.commands.studentlist;
 
 import static atas.logic.commands.CommandTestUtil.assertCommandFailure;
 import static atas.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static atas.testutil.TypicalMemoContent.EMPTY_MEMO_CONTENT;
+import static atas.testutil.TypicalMemoContents.EMPTY_MEMO_CONTENT;
 import static atas.testutil.TypicalSessions.getTypicalSessionList;
 
 import org.junit.jupiter.api.BeforeEach;

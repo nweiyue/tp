@@ -1,6 +1,6 @@
 package atas.testutil;
 
-import static atas.testutil.TypicalMemoContent.EMPTY_MEMO_CONTENT;
+import static atas.testutil.TypicalMemoContents.EMPTY_MEMO_CONTENT;
 import static atas.testutil.TypicalSessions.getTypicalSessionList;
 import static atas.testutil.TypicalStudents.getTypicalStudentList;
 

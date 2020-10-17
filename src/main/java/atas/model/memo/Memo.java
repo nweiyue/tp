@@ -15,12 +15,18 @@ public class Memo {
         return content;
     }
 
-    public void setMemoContent(String content) {
+    private void setContent(String content) {
         this.content = content;
     }
 
-    public void saveMemo(String content) {
-        setMemoContent(content);
+    public void saveMemoContent(String content) {
+        setContent(content);
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Memo // instanceof handles nulls
+                && content.equals(((Memo) other).content)); // state check
+    }
 }

@@ -5,7 +5,7 @@ import static atas.logic.commands.CommandTestUtil.showSessionAtIndex;
 import static atas.testutil.Assert.assertThrows;
 import static atas.testutil.TypicalIndexes.INDEX_FIRST_SESSION;
 import static atas.testutil.TypicalIndexes.INDEX_SECOND_SESSION;
-import static atas.testutil.TypicalMemoContent.EMPTY_MEMO_CONTENT;
+import static atas.testutil.TypicalMemoContents.EMPTY_MEMO_CONTENT;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;

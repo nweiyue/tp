@@ -2,7 +2,7 @@ package atas.model;
 
 import static atas.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 import static atas.testutil.Assert.assertThrows;
-import static atas.testutil.TypicalMemoContent.EMPTY_MEMO_CONTENT;
+import static atas.testutil.TypicalMemoContents.EMPTY_MEMO_CONTENT;
 import static atas.testutil.TypicalSessions.getTypicalSessionList;
 import static atas.testutil.TypicalStudents.ALICE;
 import static atas.testutil.TypicalStudents.BENSON;
@@ -17,6 +17,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import atas.commons.core.GuiSettings;
+import atas.model.memo.Memo;
 import atas.model.student.NameContainsKeywordsPredicate;
 import atas.testutil.StudentListBuilder;
 
@@ -30,6 +31,7 @@ public class ModelManagerTest {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
         assertEquals(new StudentList(), new StudentList(modelManager.getStudentList()));
+        assertEquals(new Memo(), modelManager.getMemo());
     }
 
     @Test
@@ -40,14 +42,17 @@ public class ModelManagerTest {
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setStudentListFilePath(Paths.get("address/book/file/path"));
+        userPrefs.setStudentListFilePath(Paths.get("atas/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
+        userPrefs.setMemoFilePath(Paths.get("atas/file/path"));
         modelManager.setUserPrefs(userPrefs);
+
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setStudentListFilePath(Paths.get("new/address/book/file/path"));
+        userPrefs.setStudentListFilePath(Paths.get("new/atas/file/path"));
+        userPrefs.setMemoFilePath(Paths.get("new/atas/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -70,7 +75,7 @@ public class ModelManagerTest {
 
     @Test
     public void setStudentListFilePath_validPath_setsStudentListFilePath() {
-        Path path = Paths.get("address/book/file/path");
+        Path path = Paths.get("atas/file/path");
         modelManager.setStudentListFilePath(path);
         assertEquals(path, modelManager.getStudentListFilePath());
     }
@@ -94,6 +99,18 @@ public class ModelManagerTest {
     @Test
     public void getFilteredStudentList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredStudentList().remove(0));
+    }
+
+    @Test
+    public void setMemoFilePath_validPath_setsMemoListFilePath() {
+        Path path = Paths.get("atas/file/path");
+        modelManager.setMemoFilePath(path);
+        assertEquals(path, modelManager.getMemoFilePath());
+    }
+
+    @Test
+    public void testGetMemo() {
+        assertEquals(new Memo(), modelManager.getMemo());
     }
 
     @Test

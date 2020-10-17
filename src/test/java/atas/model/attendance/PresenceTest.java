@@ -2,7 +2,7 @@ package atas.model.attendance;
 
 import static atas.logic.commands.CommandTestUtil.assertCommandFailure;
 import static atas.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static atas.testutil.TypicalMemoContent.EMPTY_MEMO_CONTENT;
+import static atas.testutil.TypicalMemoContents.EMPTY_MEMO_CONTENT;
 import static atas.testutil.TypicalSessions.SESSION_WEEK_ONE;
 import static atas.testutil.TypicalSessions.getTypicalSessionList;
 import static org.junit.jupiter.api.Assertions.assertEquals;

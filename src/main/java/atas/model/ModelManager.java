@@ -281,7 +281,7 @@ public class ModelManager implements Model {
     @Override
     public void setMemoFilePath(Path memoFilePath) {
         requireNonNull(memoFilePath);
-        userPrefs.setStudentListFilePath(memoFilePath);
+        userPrefs.setMemoFilePath(memoFilePath);
     }
 
     @Override

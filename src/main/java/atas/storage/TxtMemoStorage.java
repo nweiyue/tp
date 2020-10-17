@@ -1,5 +1,7 @@
 package atas.storage;
 
+import static java.util.Objects.requireNonNull;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -45,19 +47,20 @@ public class TxtMemoStorage implements MemoStorage {
     }
 
     @Override
-    public void saveMemo(Memo memo) {
+    public void saveMemo(Memo memo) throws IOException {
+        requireNonNull(memo);
+
         saveMemo(memo, filePath);
     }
 
     @Override
-    public void saveMemo(Memo memo, Path filePath) {
-        try {
-            FileWriter fw = new FileWriter(String.valueOf(filePath));
-            String memoContent = memo.getContent();
-            fw.write(memoContent);
-            fw.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void saveMemo(Memo memo, Path filePath) throws IOException {
+        requireNonNull(memo);
+        requireNonNull(filePath);
+
+        FileWriter fw = new FileWriter(String.valueOf(filePath));
+        String memoContent = memo.getContent();
+        fw.write(memoContent);
+        fw.close();
     }
 }

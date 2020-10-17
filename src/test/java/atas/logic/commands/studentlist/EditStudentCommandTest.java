@@ -11,7 +11,7 @@ import static atas.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static atas.logic.commands.CommandTestUtil.showStudentAtIndex;
 import static atas.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static atas.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
-import static atas.testutil.TypicalMemoContent.EMPTY_MEMO_CONTENT;
+import static atas.testutil.TypicalMemoContents.EMPTY_MEMO_CONTENT;
 import static atas.testutil.TypicalSessions.getTypicalSessionList;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
