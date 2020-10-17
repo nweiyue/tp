@@ -14,7 +14,7 @@ import atas.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path addressBookFilePath = Paths.get("data" , "studentlist.json");
+    private Path studentListFilePath = Paths.get("data" , "studentlist.json");
     private Path sessionListFilePath = Paths.get("data", "sessionlist.json");
     private Path memoFilePath = Paths.get("data", "memo.txt");
 
@@ -52,12 +52,12 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     }
 
     public Path getStudentListFilePath() {
-        return addressBookFilePath;
+        return studentListFilePath;
     }
 
-    public void setStudentListFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        this.addressBookFilePath = addressBookFilePath;
+    public void setStudentListFilePath(Path studentListFilePath) {
+        requireNonNull(studentListFilePath);
+        this.studentListFilePath = studentListFilePath;
     }
 
     public Path getSessionListFilePath() {
@@ -90,21 +90,21 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && addressBookFilePath.equals(o.addressBookFilePath)
+                && studentListFilePath.equals(o.studentListFilePath)
                 && sessionListFilePath.equals(o.sessionListFilePath)
                 && memoFilePath.equals(o.memoFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, addressBookFilePath, sessionListFilePath, memoFilePath);
+        return Objects.hash(guiSettings, studentListFilePath, sessionListFilePath, memoFilePath);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
-        sb.append("\nLocal data file location : " + addressBookFilePath);
+        sb.append("\nLocal data file location : " + studentListFilePath);
         sb.append("\nLocal session data file location : " + sessionListFilePath);
         sb.append("\nLocal memo data file location : " + memoFilePath);
         return sb.toString();
