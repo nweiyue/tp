@@ -243,7 +243,7 @@ public class AddStudentCommandTest {
 
         @Override
         public Index generateRandomStudentIndex() {
-            return null;
+            throw new AssertionError("This method should not be called.");
         }
 
     }
