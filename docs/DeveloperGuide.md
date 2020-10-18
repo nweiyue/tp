@@ -173,18 +173,18 @@ Step 3. `SwitchCommandParser#parse()` check if there is an argument being passed
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If no arguments is found, a `ParseException` will be thrown and the execution terminates.
 
-</div>\
+</div><br>
 
 Step 4. `SwitchCommand#execute()` will check if the argument pass is an existing tab name. If the argument is valid, a `CommandResult` containing a variable `switchTab` with the value of the target `Tab` will be returned to `MainWindow`.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the argument is not a valid tab name, a `CommandException` will be thrown and the execution terminates.
 
-</div>\
+</div><br>
 
 Step 5. `MainWindow#handleSwitchTab()` will then be called and will check if the current `Tab` is the same as the target `Tab` to switched to. If it is not the same, `MainWindow` will utilise `tabPane` to execute the switch, thus updating the screen for the user.
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the current `Tab` is the same as the target `Tab`, a `CommandException` will be thrown and the execution terminates.
 
-</div>\
+</div><br>
 
 The following activity diagram summarizes what happens when a user executes a switch command:
 
