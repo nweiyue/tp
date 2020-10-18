@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 import atas.commons.core.GuiSettings;
 import atas.commons.core.LogsCenter;
 import atas.commons.core.index.Index;
+import atas.commons.core.random.RandomGenerator;
 import atas.model.attendance.Attributes;
 import atas.model.attendance.IndexRange;
 import atas.model.attendance.Session;
@@ -34,6 +35,7 @@ public class ModelManager implements Model {
     private Index sessionId;
     private boolean isCurrentSessionEnabled;
     private final Memo memo;
+    private RandomGenerator rng;
 
     /**
      * Initializes a ModelManager with the given sessionList, studentList, userPrefs and memo content.
@@ -52,6 +54,7 @@ public class ModelManager implements Model {
         filteredSessions = new FilteredList<>(this.sessionList.getSessions());
         sessionId = Index.fromZeroBased(0);
         memo = new Memo(memoContent);
+        rng = RandomGenerator.makeRandomGenerator();
     }
 
     public ModelManager() {
@@ -289,4 +292,10 @@ public class ModelManager implements Model {
         return memo;
     }
 
+    //=========== RandomGenerator =========================================================================
+
+    @Override
+    public Index generateRandomStudentIndex() {
+        return rng.getNextIndex(filteredStudents.size());
+    }
 }

@@ -256,6 +256,12 @@ public class AddStudentCommandTest {
         public Memo getMemo() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public Index generateRandomStudentIndex() {
+            throw new AssertionError("This method should not be called.");
+        }
+
     }
 
     /**
