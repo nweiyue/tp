@@ -31,4 +31,29 @@ public enum Tab {
     public Index getIndex() {
         return this.index;
     }
+
+    /**
+     * Checks if the given tab is valid.
+     *
+     * @return boolean value to indicate validity of tab.
+     */
+    public boolean isValid() {
+        return this.equals(Tab.STUDENTS)
+                || this.equals(Tab.SESSIONS)
+                || this.equals(Tab.CURRENT)
+                || this.equals(Tab.MEMO);
+    }
+
+    /**
+     * Returns a String to be displayed to users.
+     *
+     * @return String value of the tab.
+     */
+    public String toDisplayName() {
+        if (this.equals(Tab.CURRENT)) {
+            return "current session";
+        } else {
+            return this.toString().toLowerCase();
+        }
+    }
 }

@@ -1,5 +1,6 @@
 package atas.ui;
 
+import static atas.logic.commands.atas.SwitchCommand.MESSAGE_ALREADY_ON_TAB;
 import static atas.logic.commands.atas.SwitchCommand.MESSAGE_INVALID_TAB;
 
 import java.util.logging.Logger;
@@ -215,16 +216,14 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleSwitchTab(Tab tab) throws CommandException {
-        //int currentTabIndex = tabPane.getSelectionModel().getSelectedIndex();
+        int currentTabIndex = tabPane.getSelectionModel().getSelectedIndex();
         int toSwitchTabIndex = tab.getIndex().getZeroBased();
 
-        /* if (currentTabIndex == toSwitchTabIndex) {
-            throw new CommandException(String.format(MESSAGE_ALREADY_ON_TAB, tab.toString().toLowerCase()));
+        if (currentTabIndex == toSwitchTabIndex) {
+            throw new CommandException(String.format(MESSAGE_ALREADY_ON_TAB, tab.toDisplayName()));
         }
-        */
-        if (tab.equals(Tab.STUDENTS) || tab.equals(Tab.SESSIONS) || tab.equals(Tab.MEMO)) {
-            tabPane.getSelectionModel().select(toSwitchTabIndex);
-        } else if (tab.equals(Tab.CURRENT)) {
+
+        if (tab.isValid()) {
             tabPane.getSelectionModel().select(toSwitchTabIndex);
         } else {
             throw new CommandException(MESSAGE_INVALID_TAB);
@@ -283,7 +282,7 @@ public class MainWindow extends UiPart<Stage> {
                 handleHelp();
             }
 
-            if (commandResult.isSwitchTab()) {
+            if (commandResult.isSwitchTab() && !commandResult.isEnterSession()) {
                 handleSwitchTab(commandResult.getTab());
             }
 
