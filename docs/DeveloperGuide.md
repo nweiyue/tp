@@ -11,6 +11,8 @@ title: Developer Guide
    * [Storage component](#storage_component)
    * [Common classes](#common_classes)
 * [**Implementation**](#implementation)
+   * [Switching between tabs](#switching)
+     * [Design consideration:](#switch_design_consideration)
    * [[Proposed] Undo/redo feature](#undo_redo)
      * [Proposed Implementation](#proposed_implementation)
      * [Design consideration:](#design_consideration)
@@ -156,6 +158,41 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## <a name="implementation"></a>**Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### <a name="switching"></a>\Switching between tabs
+
+The switching of tabs is facilitated by `LogicManger`, `MainWindow` and `Tab`. `Tab` is an enum class that represents the various tabs that exist in ATAS.
+
+Given below is an example usage scenario and how the switch mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The default students tab is displayed.
+
+Step 2. The user executes `switch sessions` command to view the sessions tab. `LogicManager` calls `AtasParser#parseCommand()`, resulting in the creation of a `SwitchCommandParser` to parse the user input.
+
+Step 3. `SwitchCommandParser#parse()` check if there is an argument being passed by the user. If an argument is passed, a `SwitchCommand` will be created and `SwitchCommand#execute()` will be called by the `LogicManager`.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If no arguments is found, a `ParseException` will be thrown and the execution terminates.
+
+</div>
+
+Step 4. `SwitchCommand#execute()` will check if the argument pass is an existing tab name. If the argument is valid, a `CommandResult` containing a variable `switchTab` with the value of the target `Tab` will be returned to `MainWindow`.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the argument is not a valid tab name, a `CommandException` will be thrown and the execution terminates.
+
+</div>
+
+Step 5. `MainWindow#handleSwitchTab()` will then be called and will check if the current `Tab` is the same as the target `Tab` to switched to. If it is not the same, `MainWindow` will utilise `tabPane` to execute the switch, thus updating the screen for the user.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the current `Tab` is the same as the target `Tab`, a `CommandException` will be thrown and the execution terminates.
+
+</div>
+
+The following activity diagram summarizes what happens when a user executes a switch command:
+
+![SwitchTabsActivityDiagram](images/SwitchTabsActivityDiagram.png)
+
+#### <a name="switch_design_consideration"></a>Design consideration:
+
+* `Tab` is being implemented as an enum class because there is a fixed set of tabs that are available to be switched to. This prevents invalid values to be assigned to `Tab`.
 
 ### <a name="undo_redo"></a>\[Proposed\] Undo/redo feature
 
