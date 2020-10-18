@@ -15,8 +15,8 @@ import atas.commons.core.index.Index;
 import atas.logic.commands.sessionlist.session.PresenceCommand;
 import atas.model.Model;
 import atas.model.ModelManager;
-import atas.model.StudentList;
 import atas.model.UserPrefs;
+import atas.model.student.StudentList;
 import atas.testutil.ModelManagerBuilder;
 
 class PresenceTest {

@@ -4,9 +4,7 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import atas.model.ReadOnlySessionList;
-import atas.model.ReadOnlyStudentList;
-import atas.model.StudentList;
+import atas.model.session.ReadOnlySessionList;
 import atas.model.session.Session;
 import atas.model.session.SessionDate;
 import atas.model.session.SessionList;
@@ -14,7 +12,9 @@ import atas.model.session.SessionName;
 import atas.model.student.Email;
 import atas.model.student.Matriculation;
 import atas.model.student.Name;
+import atas.model.student.ReadOnlyStudentList;
 import atas.model.student.Student;
+import atas.model.student.StudentList;
 import atas.model.tag.Tag;
 
 /**

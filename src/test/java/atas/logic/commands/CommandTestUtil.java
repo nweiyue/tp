@@ -14,12 +14,12 @@ import atas.logic.commands.sessionlist.EditSessionCommand;
 import atas.logic.commands.studentlist.EditStudentCommand;
 import atas.logic.parser.CliSyntax;
 import atas.model.Model;
-import atas.model.StudentList;
 import atas.model.session.Session;
 import atas.model.session.SessionDate;
 import atas.model.session.SessionName;
 import atas.model.student.NameContainsKeywordsPredicate;
 import atas.model.student.Student;
+import atas.model.student.StudentList;
 import atas.testutil.EditSessionDescriptorBuilder;
 import atas.testutil.EditStudentDescriptorBuilder;
 

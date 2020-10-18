@@ -14,10 +14,13 @@ import atas.commons.core.random.RandomGenerator;
 import atas.model.memo.Memo;
 import atas.model.session.Attributes;
 import atas.model.session.IndexRange;
+import atas.model.session.ReadOnlySessionList;
 import atas.model.session.Session;
 import atas.model.session.SessionList;
 import atas.model.session.SessionName;
+import atas.model.student.ReadOnlyStudentList;
 import atas.model.student.Student;
+import atas.model.student.StudentList;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 

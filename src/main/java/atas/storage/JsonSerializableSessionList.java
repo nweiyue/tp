@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import atas.commons.exceptions.IllegalValueException;
-import atas.model.ReadOnlySessionList;
+import atas.model.session.ReadOnlySessionList;
 import atas.model.session.Session;
 import atas.model.session.SessionList;
 

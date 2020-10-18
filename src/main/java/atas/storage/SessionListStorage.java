@@ -5,7 +5,7 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import atas.commons.exceptions.DataConversionException;
-import atas.model.ReadOnlySessionList;
+import atas.model.session.ReadOnlySessionList;
 import atas.model.session.SessionList;
 
 /**

@@ -19,6 +19,7 @@ import org.junit.jupiter.api.Test;
 import atas.commons.core.GuiSettings;
 import atas.model.memo.Memo;
 import atas.model.student.NameContainsKeywordsPredicate;
+import atas.model.student.StudentList;
 import atas.testutil.StudentListBuilder;
 
 

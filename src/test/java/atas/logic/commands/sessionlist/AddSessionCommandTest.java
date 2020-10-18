@@ -18,16 +18,16 @@ import atas.commons.core.index.Index;
 import atas.logic.commands.CommandResult;
 import atas.logic.commands.exceptions.CommandException;
 import atas.model.Model;
-import atas.model.ReadOnlyStudentList;
 import atas.model.ReadOnlyUserPrefs;
-import atas.model.StudentList;
 import atas.model.memo.Memo;
 import atas.model.session.Attributes;
 import atas.model.session.IndexRange;
 import atas.model.session.Session;
 import atas.model.session.SessionList;
 import atas.model.session.SessionName;
+import atas.model.student.ReadOnlyStudentList;
 import atas.model.student.Student;
+import atas.model.student.StudentList;
 import atas.testutil.SessionBuilder;
 import javafx.collections.ObservableList;
 

@@ -12,10 +12,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import atas.commons.core.GuiSettings;
-import atas.model.ReadOnlyStudentList;
-import atas.model.StudentList;
 import atas.model.UserPrefs;
 import atas.model.memo.Memo;
+import atas.model.student.ReadOnlyStudentList;
+import atas.model.student.StudentList;
 
 public class StorageManagerTest {
 

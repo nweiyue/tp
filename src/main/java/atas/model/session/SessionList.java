@@ -6,7 +6,6 @@ import java.util.Iterator;
 import java.util.List;
 
 import atas.commons.core.index.Index;
-import atas.model.ReadOnlySessionList;
 import atas.model.session.exceptions.DuplicateSessionException;
 import atas.model.session.exceptions.SessionNotFoundException;
 import atas.model.student.Student;
