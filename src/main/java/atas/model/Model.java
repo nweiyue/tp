@@ -186,4 +186,9 @@ public interface Model {
      */
     boolean returnCurrentSessionEnabledStatus();
 
+    /**
+     * Returns the index of a randomly selected student in the student list.
+     */
+    Index generateRandomStudentIndex();
+
 }

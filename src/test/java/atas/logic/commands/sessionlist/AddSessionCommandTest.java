@@ -241,6 +241,11 @@ public class AddSessionCommandTest {
         public boolean returnCurrentSessionEnabledStatus() {
             return false;
         }
+
+        @Override
+        public Index generateRandomStudentIndex() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

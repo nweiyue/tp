@@ -21,6 +21,8 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String COMMAND_LIST_GENERAL = "General:\n"
             + "Get help: help\n"
             + "Exit the application: exit\n"
+            + "Switch between tabs: switch TAB_NAME\n"
+            + "Generate the name of a randomly selected student: rng\n\n"
             + "Switch between tabs: switch TAB_NAME\n";
 
     public static final String COMMAND_LIST_STUDENTS = "Students: \n"

@@ -62,7 +62,7 @@ public class SessionStudentCard extends UiPart<Region> {
     private Label getParticipationLabel(Attributes attributes) {
         boolean participationStatus = attributes.getParticipationStatus();
         String text = participationStatus ? PARTICIPATED : NOT_PARTICIPATED;
-        return new PresenceLabel(text, participationStatus);
+        return new ParticipationLabel(text, participationStatus);
     }
 
     @Override
