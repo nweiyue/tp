@@ -11,6 +11,7 @@ import static atas.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static atas.logic.commands.CommandTestUtil.showStudentAtIndex;
 import static atas.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static atas.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
+import static atas.testutil.TypicalMemoContents.EMPTY_MEMO_CONTENT;
 import static atas.testutil.TypicalSessions.getTypicalSessionList;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -44,7 +45,7 @@ public class EditStudentCommandTest {
         String expectedMessage = String.format(EditStudentCommand.MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent);
 
         Model expectedModel = new ModelManager(getTypicalSessionList(model.getStudentList().getStudentList()),
-                new StudentList(model.getStudentList()), new UserPrefs());
+                new StudentList(model.getStudentList()), new UserPrefs(), EMPTY_MEMO_CONTENT);
         expectedModel.setStudent(model.getFilteredStudentList().get(0), editedStudent);
 
         assertCommandSuccess(editStudentCommand, model, expectedMessage, expectedModel);
@@ -67,7 +68,7 @@ public class EditStudentCommandTest {
         String expectedMessage = String.format(EditStudentCommand.MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent);
 
         Model expectedModel = new ModelManager(getTypicalSessionList(model.getStudentList().getStudentList()),
-                new StudentList(model.getStudentList()), new UserPrefs());
+                new StudentList(model.getStudentList()), new UserPrefs(), EMPTY_MEMO_CONTENT);
         expectedModel.setStudent(lastStudent, editedStudent);
 
         assertCommandSuccess(editStudentCommand, model, expectedMessage, expectedModel);
@@ -82,7 +83,7 @@ public class EditStudentCommandTest {
         String expectedMessage = String.format(EditStudentCommand.MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent);
 
         Model expectedModel = new ModelManager(getTypicalSessionList(model.getStudentList().getStudentList()),
-                new StudentList(model.getStudentList()), new UserPrefs());
+                new StudentList(model.getStudentList()), new UserPrefs(), EMPTY_MEMO_CONTENT);
 
         assertCommandSuccess(editStudentCommand, model, expectedMessage, expectedModel);
     }
@@ -99,7 +100,7 @@ public class EditStudentCommandTest {
         String expectedMessage = String.format(EditStudentCommand.MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent);
 
         Model expectedModel = new ModelManager(getTypicalSessionList(model.getStudentList().getStudentList()),
-                new StudentList(model.getStudentList()), new UserPrefs());
+                new StudentList(model.getStudentList()), new UserPrefs(), EMPTY_MEMO_CONTENT);
         expectedModel.setStudent(model.getFilteredStudentList().get(0), editedStudent);
 
         assertCommandSuccess(editStudentCommand, model, expectedMessage, expectedModel);

@@ -101,4 +101,19 @@ public class LogicManager implements Logic {
     public void enableCurrentSession() {
         model.setCurrentSessionTrue();
     }
+
+    @Override
+    public String getMemoContent() {
+        return model.getMemo().getContent();
+    }
+
+    @Override
+    public void saveMemoContent(String content) throws CommandException {
+        model.getMemo().saveMemoContent(content);
+        try {
+            storage.saveMemo(model.getMemo());
+        } catch (IOException ioe) {
+            throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
+        }
+    }
 }

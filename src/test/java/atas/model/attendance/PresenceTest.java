@@ -2,6 +2,7 @@ package atas.model.attendance;
 
 import static atas.logic.commands.CommandTestUtil.assertCommandFailure;
 import static atas.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static atas.testutil.TypicalMemoContents.EMPTY_MEMO_CONTENT;
 import static atas.testutil.TypicalSessions.SESSION_WEEK_ONE;
 import static atas.testutil.TypicalSessions.getTypicalSessionList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -33,7 +34,7 @@ class PresenceTest {
         model.updatePresenceBySessionName(SESSION_WEEK_ONE.getSessionName(), indexRange);
 
         Model expectedModel = new ModelManager(getTypicalSessionList(model.getStudentList().getStudentList()),
-            new StudentList(model.getStudentList()), new UserPrefs());
+            new StudentList(model.getStudentList()), new UserPrefs(), EMPTY_MEMO_CONTENT);
         expectedModel.addSession(SESSION_WEEK_ONE);
         expectedModel.enterSession(Index.fromZeroBased(1));
         expectedModel.updatePresenceBySessionName(SESSION_WEEK_ONE.getSessionName(), indexRange);

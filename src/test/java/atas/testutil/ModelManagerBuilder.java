@@ -1,5 +1,6 @@
 package atas.testutil;
 
+import static atas.testutil.TypicalMemoContents.EMPTY_MEMO_CONTENT;
 import static atas.testutil.TypicalSessions.getTypicalSessionList;
 import static atas.testutil.TypicalStudents.getTypicalStudentList;
 
@@ -18,6 +19,6 @@ public class ModelManagerBuilder {
      */
     public static ModelManager buildTypicalModelManager() {
         return new ModelManager(getTypicalSessionList(getTypicalStudentList().getStudentList()),
-                getTypicalStudentList(), new UserPrefs());
+                getTypicalStudentList(), new UserPrefs(), EMPTY_MEMO_CONTENT);
     }
 }

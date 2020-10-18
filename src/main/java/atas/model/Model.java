@@ -10,6 +10,7 @@ import atas.model.attendance.IndexRange;
 import atas.model.attendance.Session;
 import atas.model.attendance.SessionList;
 import atas.model.attendance.SessionName;
+import atas.model.memo.Memo;
 import atas.model.student.Student;
 import javafx.collections.ObservableList;
 
@@ -61,6 +62,16 @@ public interface Model {
      * Sets the user prefs' session list file path.
      */
     void setSessionListFilePath(Path sessionListFilePath);
+
+    /**
+     * Returns the user prefs' memo file path.
+     */
+    Path getMemoFilePath();
+
+    /**
+     * Sets the user prefs' memo file path.
+     */
+    void setMemoFilePath(Path memoPadFilePath);
 
     /**
      * Replaces student list data with the data in {@code studentList}.
@@ -182,13 +193,17 @@ public interface Model {
     void setCurrentSessionTrue();
 
     /**
-     * Returns currentSession status
+     * Returns currentSession status.
      */
     boolean returnCurrentSessionEnabledStatus();
+
+    /**
+     * Returns the Memo.
+     */
+    Memo getMemo();
 
     /**
      * Returns the index of a randomly selected student in the student list.
      */
     Index generateRandomStudentIndex();
-
 }

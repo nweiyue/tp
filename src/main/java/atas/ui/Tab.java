@@ -9,7 +9,8 @@ import atas.commons.core.index.Index;
 public enum Tab {
     STUDENTS(Index.fromZeroBased(0)),
     SESSIONS(Index.fromZeroBased(1)),
-    CURRENT(Index.fromZeroBased(2));
+    CURRENT(Index.fromZeroBased(2)),
+    MEMO(Index.fromZeroBased(3));
 
     /** Index to represent the order of the tabs */
     private final Index index;

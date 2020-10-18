@@ -4,6 +4,7 @@ import static atas.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static atas.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static atas.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static atas.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
+import static atas.testutil.TypicalMemoContents.EMPTY_MEMO_CONTENT;
 import static atas.testutil.TypicalSessions.getTypicalSessionList;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -30,7 +31,7 @@ public class ConfirmationRejectCommandTest {
         String expectedMessage = String.format(ConfirmationRejectCommand.MESSAGE_REJECT_COMMAND, deleteStudentCommand);
 
         ModelManager expectedModel = new ModelManager(getTypicalSessionList(model.getStudentList().getStudentList()),
-                model.getStudentList(), new UserPrefs());
+                model.getStudentList(), new UserPrefs(), EMPTY_MEMO_CONTENT);
 
         ConfirmationRejectCommand confirmationRejectCommand = new ConfirmationRejectCommand(deleteStudentCommand);
         assertCommandSuccess(confirmationRejectCommand, model, expectedMessage, expectedModel);
@@ -44,7 +45,7 @@ public class ConfirmationRejectCommandTest {
         String expectedMessage = String.format(ConfirmationRejectCommand.MESSAGE_REJECT_COMMAND, editStudentCommand);
 
         ModelManager expectedModel = new ModelManager(getTypicalSessionList(model.getStudentList().getStudentList()),
-                model.getStudentList(), new UserPrefs());
+                model.getStudentList(), new UserPrefs(), EMPTY_MEMO_CONTENT);
 
         ConfirmationRejectCommand confirmationRejectCommand = new ConfirmationRejectCommand(editStudentCommand);
         assertCommandSuccess(confirmationRejectCommand, model, expectedMessage, expectedModel);
@@ -54,7 +55,7 @@ public class ConfirmationRejectCommandTest {
     public void execute_rejectClearStudentListCommand_success() {
         ClearStudentListCommand clearStudentListCommand = new ClearStudentListCommand();
         Model expectedModel = new ModelManager(getTypicalSessionList(model.getStudentList().getStudentList()),
-                model.getStudentList(), new UserPrefs());
+                model.getStudentList(), new UserPrefs(), EMPTY_MEMO_CONTENT);
         String expectedMessage = String.format(ConfirmationRejectCommand.MESSAGE_REJECT_COMMAND,
                 clearStudentListCommand);
 

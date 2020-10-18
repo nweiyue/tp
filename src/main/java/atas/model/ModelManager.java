@@ -16,12 +16,13 @@ import atas.model.attendance.IndexRange;
 import atas.model.attendance.Session;
 import atas.model.attendance.SessionList;
 import atas.model.attendance.SessionName;
+import atas.model.memo.Memo;
 import atas.model.student.Student;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 
 /**
- * Represents the in-memory model of the student list data.
+ * Represents the in-memory model of the student list, session list, userPrefs and memo data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -33,12 +34,14 @@ public class ModelManager implements Model {
     private final FilteredList<Session> filteredSessions;
     private Index sessionId;
     private boolean isCurrentSessionEnabled;
+    private final Memo memo;
     private RandomGenerator rng;
 
     /**
-     * Initializes a ModelManager with the given session list, studentList and userPrefs.
+     * Initializes a ModelManager with the given sessionList, studentList, userPrefs and memo content.
      */
-    public ModelManager(ReadOnlySessionList sessionList, ReadOnlyStudentList studentList, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlySessionList sessionList, ReadOnlyStudentList studentList,
+                        ReadOnlyUserPrefs userPrefs, String memoContent) {
         super();
         requireAllNonNull(studentList, userPrefs);
 
@@ -50,11 +53,12 @@ public class ModelManager implements Model {
         filteredStudents = new FilteredList<>(this.studentList.getStudentList());
         filteredSessions = new FilteredList<>(this.sessionList.getSessions());
         sessionId = Index.fromZeroBased(0);
+        memo = new Memo(memoContent);
         rng = RandomGenerator.makeRandomGenerator();
     }
 
     public ModelManager() {
-        this(new SessionList(), new StudentList(), new UserPrefs());
+        this(new SessionList(), new StudentList(), new UserPrefs(), "");
     }
 
     //=========== UserPrefs ==================================================================================
@@ -270,11 +274,28 @@ public class ModelManager implements Model {
         return isCurrentSessionEnabled;
     }
 
+    //=========== Memo ================================================================================
+
+    @Override
+    public Path getMemoFilePath() {
+        return userPrefs.getMemoFilePath();
+    }
+
+    @Override
+    public void setMemoFilePath(Path memoFilePath) {
+        requireNonNull(memoFilePath);
+        userPrefs.setMemoFilePath(memoFilePath);
+    }
+
+    @Override
+    public Memo getMemo() {
+        return memo;
+    }
+
     //=========== RandomGenerator =========================================================================
 
     @Override
     public Index generateRandomStudentIndex() {
         return rng.getNextIndex(filteredStudents.size());
     }
-
 }

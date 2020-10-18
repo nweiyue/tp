@@ -26,6 +26,7 @@ import atas.model.attendance.IndexRange;
 import atas.model.attendance.Session;
 import atas.model.attendance.SessionList;
 import atas.model.attendance.SessionName;
+import atas.model.memo.Memo;
 import atas.model.student.Student;
 import atas.testutil.StudentBuilder;
 import javafx.collections.ObservableList;
@@ -239,6 +240,21 @@ public class AddStudentCommandTest {
         @Override
         public boolean returnCurrentSessionEnabledStatus() {
             return false;
+        }
+
+        @Override
+        public Path getMemoFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setMemoFilePath(Path memoFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Memo getMemo() {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override

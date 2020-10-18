@@ -8,6 +8,8 @@ import static atas.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static atas.logic.commands.confirmation.ConfirmationCommand.ACCEPT_COMMAND_FULL;
 import static atas.logic.parser.CliSyntax.PREFIX_TAG;
 import static atas.testutil.Assert.assertThrows;
+import static atas.testutil.TypicalMemoContents.EMPTY_MEMO_CONTENT;
+import static atas.testutil.TypicalMemoContents.SAMPLE_MEMO_CONTENT_ONE;
 import static atas.testutil.TypicalSessions.getTypicalSessionList;
 import static atas.testutil.TypicalStudents.AMY;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -33,12 +35,15 @@ import atas.model.ModelManager;
 import atas.model.ReadOnlySessionList;
 import atas.model.ReadOnlyStudentList;
 import atas.model.UserPrefs;
+import atas.model.memo.Memo;
 import atas.model.student.Student;
 import atas.storage.JsonAtasStorage;
 import atas.storage.JsonSessionListStorage;
 import atas.storage.JsonUserPrefsStorage;
 import atas.storage.StorageManager;
+import atas.storage.TxtMemoStorage;
 import atas.testutil.StudentBuilder;
+
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -56,7 +61,9 @@ public class LogicManagerTest {
         JsonAtasStorage studentListStorage =
                 new JsonAtasStorage(temporaryFolder.resolve("studentList.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(jsonSessionListStorage, studentListStorage, userPrefsStorage);
+        TxtMemoStorage memoStorage = new TxtMemoStorage(temporaryFolder.resolve("memo.txt"));
+        StorageManager storage = new StorageManager(
+                jsonSessionListStorage, studentListStorage, userPrefsStorage, memoStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -98,7 +105,9 @@ public class LogicManagerTest {
                 new JsonAtasIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionStudentList.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(jsonSessionListStorage, studentListStorage, userPrefsStorage);
+        TxtMemoStorage memoStorage = new TxtMemoStorage(temporaryFolder.resolve("ioExceptionMemo.txt"));
+        StorageManager storage = new StorageManager(
+                jsonSessionListStorage, studentListStorage, userPrefsStorage, memoStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -124,7 +133,9 @@ public class LogicManagerTest {
         JsonAtasStorage atasStorage =
                 new JsonAtasStorage(temporaryFolder.resolve("atas.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(jsonSessionListStorage, atasStorage, userPrefsStorage);
+        TxtMemoStorage memoStorage = new TxtMemoStorage(temporaryFolder.resolve("memo.txt"));
+        StorageManager storage = new StorageManager(
+                jsonSessionListStorage, atasStorage, userPrefsStorage, memoStorage);
         LogicManager logicManager = new LogicManager(model, storage);
 
         logic.enableCurrentSession();
@@ -135,6 +146,14 @@ public class LogicManagerTest {
         assertEquals(logicManager.getFilteredSessionList(), logic.getFilteredSessionList());
         assertEquals(logicManager.getStudentListFilePath(), logic.getStudentListFilePath());
         assertEquals(logicManager.getGuiSettings(), logic.getGuiSettings());
+        assertEquals(logicManager.getMemoContent(), logic.getMemoContent());
+    }
+
+    @Test
+    public void testSaveMemoContent() throws CommandException {
+        Memo memo = model.getMemo();
+        logic.saveMemoContent(SAMPLE_MEMO_CONTENT_ONE);
+        assertEquals(SAMPLE_MEMO_CONTENT_ONE, memo.getContent());
     }
 
     /**
@@ -174,7 +193,7 @@ public class LogicManagerTest {
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
         Model expectedModel = new ModelManager(getTypicalSessionList(model.getStudentList().getStudentList()),
-                model.getStudentList(), new UserPrefs());
+                model.getStudentList(), new UserPrefs(), EMPTY_MEMO_CONTENT);
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -215,6 +234,20 @@ public class LogicManagerTest {
 
         @Override
         public void saveSessionList(ReadOnlySessionList sessionList, Path filePath) throws IOException {
+            throw DUMMY_IO_EXCEPTION;
+        }
+    }
+
+    /**
+     * A stub class to throw an {@code IOException} when the save method is called.
+     */
+    private static class TxtMemoIoExceptionThrowingStub extends TxtMemoStorage {
+        private TxtMemoIoExceptionThrowingStub(Path filePath) {
+            super(filePath);
+        }
+
+        @Override
+        public void saveMemo(Memo memo, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }
