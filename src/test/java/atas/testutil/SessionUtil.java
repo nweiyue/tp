@@ -2,7 +2,7 @@ package atas.testutil;
 
 import atas.logic.commands.sessionlist.AddSessionCommand;
 import atas.logic.parser.CliSyntax;
-import atas.model.attendance.Session;
+import atas.model.session.Session;
 
 /**
  * A utility class for Session.

@@ -1,4 +1,4 @@
-package atas.model.attendance;
+package atas.model.session;
 
 import static java.util.Objects.requireNonNull;
 
@@ -7,8 +7,8 @@ import java.util.List;
 
 import atas.commons.core.index.Index;
 import atas.model.ReadOnlySessionList;
-import atas.model.attendance.exceptions.DuplicateSessionException;
-import atas.model.attendance.exceptions.SessionNotFoundException;
+import atas.model.session.exceptions.DuplicateSessionException;
+import atas.model.session.exceptions.SessionNotFoundException;
 import atas.model.student.Student;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

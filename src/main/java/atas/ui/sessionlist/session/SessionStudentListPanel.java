@@ -3,7 +3,7 @@ package atas.ui.sessionlist.session;
 import java.util.logging.Logger;
 
 import atas.commons.core.LogsCenter;
-import atas.model.attendance.Attributes;
+import atas.model.session.Attributes;
 import atas.ui.UiPart;
 import atas.ui.studentlist.StudentListPanel;
 import javafx.collections.ObservableList;

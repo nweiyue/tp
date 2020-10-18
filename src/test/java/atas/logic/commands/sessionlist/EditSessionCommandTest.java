@@ -23,7 +23,7 @@ import atas.model.Model;
 import atas.model.ModelManager;
 import atas.model.StudentList;
 import atas.model.UserPrefs;
-import atas.model.attendance.Session;
+import atas.model.session.Session;
 import atas.testutil.EditSessionDescriptorBuilder;
 import atas.testutil.ModelManagerBuilder;
 import atas.testutil.SessionBuilder;

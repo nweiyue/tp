@@ -16,8 +16,8 @@ import org.junit.jupiter.api.Test;
 
 import atas.commons.core.index.Index;
 import atas.logic.commands.sessionlist.EditSessionCommand;
-import atas.model.attendance.SessionDate;
-import atas.model.attendance.SessionName;
+import atas.model.session.SessionDate;
+import atas.model.session.SessionName;
 import atas.testutil.EditSessionDescriptorBuilder;
 
 public class EditSessionCommandParserTest {

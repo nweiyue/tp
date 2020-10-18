@@ -13,9 +13,9 @@ import atas.logic.commands.confirmation.DangerousCommand;
 import atas.logic.commands.exceptions.CommandException;
 import atas.logic.parser.CliSyntax;
 import atas.model.Model;
-import atas.model.attendance.Session;
-import atas.model.attendance.SessionDate;
-import atas.model.attendance.SessionName;
+import atas.model.session.Session;
+import atas.model.session.SessionDate;
+import atas.model.session.SessionName;
 
 public class EditSessionCommand extends DangerousCommand {
 

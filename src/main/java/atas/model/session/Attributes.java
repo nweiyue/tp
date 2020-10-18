@@ -1,4 +1,4 @@
-package atas.model.attendance;
+package atas.model.session;
 
 import atas.model.student.Name;
 

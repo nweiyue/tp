@@ -17,7 +17,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 import atas.commons.exceptions.DataConversionException;
 import atas.model.ReadOnlySessionList;
-import atas.model.attendance.SessionList;
+import atas.model.session.SessionList;
 
 public class JsonSessionListStorageTest {
 

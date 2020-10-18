@@ -5,7 +5,7 @@ import static atas.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import org.junit.jupiter.api.Test;
 
 import atas.logic.commands.sessionlist.session.ParticipateCommand;
-import atas.model.attendance.IndexRange;
+import atas.model.session.IndexRange;
 
 public class ParticipateCommandParserTest {
 

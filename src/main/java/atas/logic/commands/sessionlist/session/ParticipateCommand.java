@@ -7,8 +7,8 @@ import atas.logic.commands.Command;
 import atas.logic.commands.CommandResult;
 import atas.logic.commands.exceptions.CommandException;
 import atas.model.Model;
-import atas.model.attendance.IndexRange;
-import atas.model.attendance.SessionName;
+import atas.model.session.IndexRange;
+import atas.model.session.SessionName;
 
 /**
  * Toggles the participation status of certain students in particular sessions.

@@ -1,4 +1,4 @@
-package atas.model.attendance;
+package atas.model.session;
 
 import static atas.logic.commands.CommandTestUtil.assertCommandFailure;
 import static atas.logic.commands.CommandTestUtil.assertCommandSuccess;

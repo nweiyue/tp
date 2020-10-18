@@ -10,8 +10,8 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 
 import atas.commons.exceptions.IllegalValueException;
 import atas.model.ReadOnlySessionList;
-import atas.model.attendance.Session;
-import atas.model.attendance.SessionList;
+import atas.model.session.Session;
+import atas.model.session.SessionList;
 
 /**
  * An Immutable SessionList that is serializable to JSON format.

@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 
 import atas.logic.commands.sessionlist.session.PresenceCommand;
 import atas.logic.parser.exceptions.ParseException;
-import atas.model.attendance.IndexRange;
+import atas.model.session.IndexRange;
 
 /**
  * Parses input arguments and creates a new PresenceCommand object

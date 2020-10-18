@@ -2,7 +2,7 @@ package atas.model;
 
 import java.util.List;
 
-import atas.model.attendance.Session;
+import atas.model.session.Session;
 import atas.model.student.Student;
 import javafx.collections.ObservableList;
 

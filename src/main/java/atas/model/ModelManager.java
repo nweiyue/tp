@@ -11,12 +11,12 @@ import atas.commons.core.GuiSettings;
 import atas.commons.core.LogsCenter;
 import atas.commons.core.index.Index;
 import atas.commons.core.random.RandomGenerator;
-import atas.model.attendance.Attributes;
-import atas.model.attendance.IndexRange;
-import atas.model.attendance.Session;
-import atas.model.attendance.SessionList;
-import atas.model.attendance.SessionName;
 import atas.model.memo.Memo;
+import atas.model.session.Attributes;
+import atas.model.session.IndexRange;
+import atas.model.session.Session;
+import atas.model.session.SessionList;
+import atas.model.session.SessionName;
 import atas.model.student.Student;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -50,11 +50,11 @@ public class ModelManager implements Model {
         this.sessionList = new SessionList(sessionList);
         this.studentList = new StudentList(studentList);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredStudents = new FilteredList<>(this.studentList.getStudentList());
-        filteredSessions = new FilteredList<>(this.sessionList.getSessions());
-        sessionId = Index.fromZeroBased(0);
-        memo = new Memo(memoContent);
-        rng = RandomGenerator.makeRandomGenerator();
+        this.filteredStudents = new FilteredList<>(this.studentList.getStudentList());
+        this.filteredSessions = new FilteredList<>(this.sessionList.getSessions());
+        this.sessionId = Index.fromZeroBased(0);
+        this.memo = new Memo(memoContent);
+        this.rng = RandomGenerator.makeRandomGenerator();
     }
 
     public ModelManager() {

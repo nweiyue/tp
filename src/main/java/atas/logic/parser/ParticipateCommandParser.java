@@ -4,7 +4,7 @@ import static atas.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import atas.logic.commands.sessionlist.session.ParticipateCommand;
 import atas.logic.parser.exceptions.ParseException;
-import atas.model.attendance.IndexRange;
+import atas.model.session.IndexRange;
 
 /**
  * Parses input arguments and creates a new ParticipateCommand object

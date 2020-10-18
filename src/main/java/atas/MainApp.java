@@ -22,7 +22,7 @@ import atas.model.ReadOnlyStudentList;
 import atas.model.ReadOnlyUserPrefs;
 import atas.model.StudentList;
 import atas.model.UserPrefs;
-import atas.model.attendance.SessionList;
+import atas.model.session.SessionList;
 import atas.model.util.SampleDataUtil;
 import atas.storage.AtasStorage;
 import atas.storage.JsonAtasStorage;

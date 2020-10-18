@@ -5,12 +5,12 @@ import java.util.function.Predicate;
 
 import atas.commons.core.GuiSettings;
 import atas.commons.core.index.Index;
-import atas.model.attendance.Attributes;
-import atas.model.attendance.IndexRange;
-import atas.model.attendance.Session;
-import atas.model.attendance.SessionList;
-import atas.model.attendance.SessionName;
 import atas.model.memo.Memo;
+import atas.model.session.Attributes;
+import atas.model.session.IndexRange;
+import atas.model.session.Session;
+import atas.model.session.SessionList;
+import atas.model.session.SessionName;
 import atas.model.student.Student;
 import javafx.collections.ObservableList;
 
