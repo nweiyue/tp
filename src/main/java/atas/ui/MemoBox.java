@@ -18,6 +18,7 @@ public class MemoBox extends UiPart<Region> {
 
     /**
      * Creates a memo box to display.
+     * @param content String content of the Memo of the application.
      */
     public MemoBox(String content) {
         super(FXML);
@@ -26,6 +27,7 @@ public class MemoBox extends UiPart<Region> {
 
     /**
      * Writes text into the memo box.
+     * @param content String content to be displayed in the TextArea.
      */
     public void setTextContent(String content) {
         requireNonNull(content);
@@ -34,6 +36,7 @@ public class MemoBox extends UiPart<Region> {
 
     /**
      * Reads text from the memo box.
+     * @return content in the memo box.
      */
     public String getTextContent() {
         String content = memoTextBox.getText();
@@ -43,6 +46,7 @@ public class MemoBox extends UiPart<Region> {
 
     /**
      * Returns the text box component of the memo box.
+     * @return JavaFx's TextArea component.
      */
     public TextArea getMemoTextBox() {
         return memoTextBox;

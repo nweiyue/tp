@@ -137,13 +137,6 @@ public class MainWindow extends UiPart<Stage> {
                 event.consume();
             }
         });
-
-        getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
-            if (event.getCode() == KeyCode.TAB) {
-                switchTab();
-                event.consume();
-            }
-        });
     }
 
     /**
@@ -213,12 +206,6 @@ public class MainWindow extends UiPart<Stage> {
 
     void show() {
         primaryStage.show();
-    }
-
-    private void switchTab() {
-        int currentTabIndex = tabPane.getSelectionModel().getSelectedIndex();
-        int toSwitchTabIndex = (currentTabIndex + 1) % Tab.values().length;
-        tabPane.getSelectionModel().select(toSwitchTabIndex);
     }
 
     /**

@@ -12,7 +12,7 @@ import atas.commons.core.LogsCenter;
 import atas.model.memo.Memo;
 
 /**
- * A class to access memo data stored as a txt file on the hard disk.
+ * A class to access Memo's data stored as a txt file on the hard disk.
  */
 public class TxtMemoStorage implements MemoStorage {
 

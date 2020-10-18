@@ -193,11 +193,13 @@ public interface Model {
     void setCurrentSessionTrue();
 
     /**
-     * Returns currentSession status
+     * Returns currentSession status.
      */
     boolean returnCurrentSessionEnabledStatus();
 
-    /** Returns the Memo */
+    /**
+     * Returns the Memo.
+     */
     Memo getMemo();
 
 }

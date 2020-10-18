@@ -11,6 +11,7 @@ import atas.model.memo.Memo;
  */
 public interface MemoStorage {
 
+    /** Message to be shown if data file does not exist when application starts */
     String DEFAULT_MEMO_CONTENT = "Here is a free working space. Press \"Ctrl + s\" or \"Cmd + s\" for MacOS to save.";
 
     /**
