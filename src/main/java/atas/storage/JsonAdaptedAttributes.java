@@ -1,6 +1,6 @@
 package atas.storage;
 
-import java.util.Map;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -39,7 +39,7 @@ public class JsonAdaptedAttributes {
     /**
      * Converts a given {@code Tag} into this class for Jackson use.
      */
-    public JsonAdaptedAttributes(int index, Map<Integer, Attributes> source, String name) {
+    public JsonAdaptedAttributes(int index, List<Attributes> source, String name) {
         this.attributeIndex = Integer.toString(index);
         Attributes attributes = source.get(index);
         this.presence = Boolean.toString(attributes.getPresenceStatus());

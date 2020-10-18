@@ -104,7 +104,7 @@ public class MainApp extends Application {
             }
             initialDataAb = studentListOptional.orElseGet(SampleDataUtil::getSampleStudentList);
             ReadOnlyStudentList finalInitialDataAb = initialDataAb;
-            initialDataSl = sessionListOptional.orElseGet(SessionList::new);
+            initialDataSl = sessionListOptional.orElseGet(SampleDataUtil::getSampleSessionList);
             initialDataSl.updateStudentList(finalInitialDataAb.getStudentList());
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty StudentList");

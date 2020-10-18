@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.Optional;
 
 import atas.commons.core.index.Index;
-import atas.logic.commands.Command;
 import atas.logic.commands.CommandResult;
+import atas.logic.commands.confirmation.DangerousCommand;
 import atas.logic.commands.exceptions.CommandException;
 import atas.logic.parser.CliSyntax;
 import atas.model.Model;
@@ -17,7 +17,7 @@ import atas.model.attendance.Session;
 import atas.model.attendance.SessionDate;
 import atas.model.attendance.SessionName;
 
-public class EditSessionCommand extends Command {
+public class EditSessionCommand extends DangerousCommand {
 
     public static final String COMMAND_WORD = "editses";
 
@@ -92,7 +92,7 @@ public class EditSessionCommand extends Command {
         SessionDate updatedSessionDate = editSessionDescriptor.getSessionDate().orElse(sessionToEdit.getSessionDate());
 
         Session editedSession = new Session(updatedSessionName, updatedSessionDate);
-        editedSession.getStudentList().putAll(sessionToEdit.getStudentList());
+        editedSession.getAttributeList().setAll(sessionToEdit.getAttributeList());
         return editedSession;
     }
 
