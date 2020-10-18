@@ -95,7 +95,7 @@ The `UI` component,
 
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
-* Displays result to users if any.
+* Displays results to user if any.
 
 ### <a name="logic_component"></a>Logic component
 
