@@ -11,6 +11,7 @@ title: Developer Guide
    * [Storage component](#storage_component)
    * [Common classes](#common_classes)
 * [**Implementation**](#implementation)
+   * [Generating the name of a randomly-selected student](#rng)
    * [[Proposed] Undo/redo feature](#undo_redo)
      * [Proposed Implementation](#proposed_implementation)
      * [Design consideration:](#design_consideration)
@@ -148,6 +149,40 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## <a name="implementation"></a>**Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### <a name="rng"></a>Generating the name of a randomly-selected student
+
+This feature (henceforth referred to as 'RNG') is facilitated by `RngCommand` and `RandomGenerator`. 
+
+`RngCommand` implements the method:
+
+* `RngCommand#execute(Model)` — Returns a `CommandResult` containing the name of a randomly-selected student.
+
+`RandomGenerator` implements the method:
+
+* `RandomGenerator#getNextInt(int)` — Returns the index of the next randomly-generated student.
+
+The `RandomGenerator` is contained in `Model`. It implements the method:
+
+* `ModelManager#generateRandomStudentIndex()` — Returns the index of a randomly-generated student in the student list.
+
+The operation above is exposed in the `Model` interface as `Model#generateRandomStudentIndex()`.
+
+Given below is an example usage scenario and how the RNG mechanism behaves at each step.
+
+Step 1. The user launches the application with all his/her students already added to the student list. The `ModelManager` should already contain the list of students assigned to the user.
+
+Step 2. The user executes `rng` to pick a random student in his/her student list. The `rng` command calls `Model#generateRandomStudentIndex()`, which in turn calls `RandomGenerator#getNextInt(int)`.
+
+Step 3. The `Index` returned during the execution of `RngCommand#execute(Model)` is used to fetch the name of the corresponding student (in the student list) to be selected. The student's name is then displayed to the user.
+
+The following sequence diagram shows how the RNG operation works:
+
+![RngSequenceDiagram](images/RngSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes an RNG command:
+
+![RngActivityDiagram](images/RngActivityDiagram.png)
 
 ### <a name="undo_redo"></a>\[Proposed\] Undo/redo feature
 
