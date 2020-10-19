@@ -171,6 +171,7 @@ public class MainWindow extends UiPart<Stage> {
         memoTextBox.setOnKeyPressed(event -> {
             if (new KeyCodeCombination(KeyCode.S, KeyCombination.SHORTCUT_DOWN).match(event)) {
                 try {
+                    logger.info("----------------[USER COMMAND][SHORTCUT_DOWN + KeyCode.S)]");
                     logic.saveMemoContent(memoTextBox.getText());
                     resultDisplay.setFeedbackToUser("Memo saved!");
                 } catch (CommandException e) {
@@ -217,7 +218,10 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleSwitchTab(Tab tab) throws CommandException {
         int currentTabIndex = tabPane.getSelectionModel().getSelectedIndex();
+        assert currentTabIndex >= 0 : "currentTabIndex should not be negative.";
+
         int toSwitchTabIndex = tab.getIndex().getZeroBased();
+        assert toSwitchTabIndex >= 0 : "toSwitchTabIndex should not be negative.";
 
         if (currentTabIndex == toSwitchTabIndex) {
             throw new CommandException(String.format(MESSAGE_ALREADY_ON_TAB, tab.toDisplayName()));
