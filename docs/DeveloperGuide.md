@@ -161,15 +161,15 @@ This section describes some noteworthy details on how certain features are imple
 
 ### <a name="switching"></a>Switching between tabs
 
-The switching of tabs is facilitated by `LogicManger`, `MainWindow` and `Tab`. `Tab` is an enum class that represents the various tabs that exist in ATAS.
+The switching of tabs is facilitated by `SwitchCommand`, `LogicManager`, `MainWindow` and `Tab`. `Tab` is an enum class that represents the various tabs that exist in ATAS.
 
 Given below is an example usage scenario and how the switch mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. The default students tab is displayed.
 
-Step 2. The user executes `switch sessions` command to view the sessions tab. `LogicManager` calls `AtasParser#parseCommand()`, resulting in the creation of a `SwitchCommandParser` to parse the user input.
+Step 2. The user executes `switch sessions` command to view the sessions tab. `MainWindow#executeCommand()` is called and `LogicManager` calls `AtasParser#parseCommand()`. This results in the creation of a `SwitchCommandParser` to parse the user input.
 
-Step 3. `SwitchCommandParser#parse()` check if there is an argument being passed by the user. If an argument is passed, a `SwitchCommand` will be created and `SwitchCommand#execute()` will be called by the `LogicManager`.
+Step 3. `SwitchCommandParser#parse()` checks if there is an argument being passed by the user. If an argument is passed, a `SwitchCommand` will be created and `SwitchCommand#execute()` will be called by the `LogicManager`.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If no arguments is found, a `ParseException` will be thrown and the execution terminates.
 
@@ -185,6 +185,10 @@ Step 5. `MainWindow#handleSwitchTab()` will then be called and will check if the
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the current `Tab` is the same as the target `Tab`, a `CommandException` will be thrown and the execution terminates.
 
 </div><br>
+
+The following sequence diagram shows how the switch operation works:
+
+![SwitchTabsSequenceDiagram](images/SwitchTabsSequenceDiagram.png)
 
 The following activity diagram summarizes what happens when a user executes a switch command:
 
