@@ -109,9 +109,9 @@ The `UI` component,
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("switch current")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("enterses 1")` API call.
 
-![Interactions Inside the Logic Component for the `switch current` Command](images/SwitchSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `enterses 1` Command](images/EnterSessionSequenceDiagram.png)
 
 ### <a name="model_component"></a>Model component
 
