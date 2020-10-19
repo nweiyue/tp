@@ -158,7 +158,7 @@ This section describes some noteworthy details on how certain features are imple
 
 ### <a name="ucp"></a>Getting user confirmation for commands that changes the local data.
 
-This feature (henceforth referred to as 'user confirmation prompt') is facilitated by 'ConfirmCommand', 'DangerousCommand', 'Logic', and 'Model'.
+This feature (henceforth referred to as 'user confirmation') is facilitated by 'ConfirmCommand', 'DangerousCommand', 'Logic', and 'Model'.
 
 There are 6 DangerousCommand(s) that will change the existing local data upon execution, namely:
 1. deletestu (deleting a student)
@@ -198,9 +198,9 @@ Step 4. If the confirmation input is valid, a `ConfirmationCommandParser` is cre
 
 Step 5. The `ConfirmationAcceptCommand` or `ConfirmationRejectCommand` is then executed in `LogicManager#execute(String)` and a `CommandResult` is returned, which is displayed on `ResultDisplay`.
 
-The following sequence diagram shows how the user confirmation prompt feature works:
+The following sequence diagram shows how the user confirmation feature works:
 
-![UserConfirmationPromptSequenceDiagram](images/UserConfirmationPromptSequenceDiagram.png)
+![UserConfirmationSequenceDiagram](images/UserConfirmationSequenceDiagram.png)
 
 The following activity diagram summarizes what happens when a user executes a dangerous command (for eg. `DeleteStudentCommand`).
 
