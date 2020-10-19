@@ -153,6 +153,44 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+## <a name="enterSession"></a>Enter a session
+
+This feature (henceforth referred to as 'enter session') is facilitated by `EnterSessionCommand`, `Logic Manager` and `Model`.
+
+`Logic Manager` implements the method:
+
+* `Logic Manager#execute(Model)` — Returns a `CommandResult` containing the session index of the session.
+
+`EnterSessionCommand` implements the method from Logic Manager:
+
+* `EnterSessionCommand#execute(Model)` — Returns a `CommandResult` containing the session index of the session.
+
+`Model` implements the method:
+
+* `Model#enterSession(Index)` — Enters a session based on session index.
+
+Given below is an example usage scenario and how the enter session mechanism behaves at each step.
+
+Step 1. The user launches the application with all his/her students already added to the student list. The `ModelManager` should already contain the list of students assigned to the user.
+
+Step 2. The user executes `enterses 1` to enter session 1. The `enterses 1` command calls `LogicManager#execute()`.
+
+Step 3. `EnterSessionCommandParser#parse()` checks if there argument passed is valid. If the argument is valid, a `EnterSessionCommand` will be created and `EnterSessionCommand#execute()` will be called by the `LogicManager`.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If an invalid argument is found, a `ParseException` will be thrown and the execution terminates.
+
+</div><br>
+
+Step 4. `Model#enterSession()` will be called by `EnterSession#execute()` and the displayed tab will be switched to Current Session. Details of session 2 will be displayed to the user.
+
+The following sequence diagram shows how the enter session operation works:
+
+![EnterSessionSequenceDiagram](images/EnterSessionSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes an enter session command:
+
+![RngActivityDiagram](images/EnterSessionActivityDiagram.png)
+
 ### <a name="undo_redo"></a>\[Proposed\] Undo/redo feature
 
 #### <a name="proposed_implementation"></a>Proposed Implementation
