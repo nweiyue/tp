@@ -189,7 +189,7 @@ The following sequence diagram shows how the enter session operation works:
 
 The following activity diagram summarizes what happens when a user executes an enter session command:
 
-![RngActivityDiagram](images/EnterSessionActivityDiagram.png)
+![EnterSessionActivityDiagram](images/EnterSessionActivityDiagram.png)
 
 ### <a name="undo_redo"></a>\[Proposed\] Undo/redo feature
 
