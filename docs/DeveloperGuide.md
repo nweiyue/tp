@@ -126,7 +126,10 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the data of the following: student list, session list and memo.
+* stores the data of the following: 
+   * student list in a `StudentList` object 
+   * session list in a `SessionList` object 
+   * memo in a `Memo` object.
 * exposes an unmodifiable `ObservableList<Student>` and `ObservableList<Session>` that can be 'observed'. e.g. For each list, the UI can be bound to the list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
