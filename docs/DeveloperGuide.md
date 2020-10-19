@@ -50,7 +50,7 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 </div>
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S1-CS2103T-W16-4/tp/blob/master/src/main/java/atas/Main.java) and [`MainApp`](https://github.com/AY2021S1-CS2103T-W16-4/tp/blob/master/src/main/java/atas/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -74,7 +74,7 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `addses s/Tutorial 1 d/10/10/2020`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -156,6 +156,55 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### <a name="ucp"></a>Getting user confirmation for commands that changes the local data.
+
+This feature (henceforth referred to as 'user confirmation prompt') is facilitated by 'ConfirmCommand', 'DangerousCommand', 'Logic', and 'Model'.
+
+There are 6 DangerousCommand(s) that will change the existing local data upon execution, namely:
+1. deletestu (deleting a student)
+2. editstu (editing the particulars of a student)
+3. clearstu (clearing the student list)
+4. deleteses (deleting a sesion)
+5. editses (editing the information of a session)
+6. clearses (clearing the session list)
+
+`DangerousCommand` implements the method:
+
+* `DangerousCommand#execute(Model)` - Returns a `CommandResult` of the `DangerousCommand`.
+
+`ConfirmationCommand` implements the method:
+
+* `ConfirmationCommand#execute(Model)` - Returns a `CommandResult` containing a user confirmation prompt to confirm the execution of the `DangerousCommand`.
+
+'ConfirmationAcceptCommand' implements the method:
+
+* `ConfirmationAcceptCommand#execute(Model)` - Executes the `DangerousCommand` and returns a `CommandResult` from `DangerousCommand#execute(Model)`. 
+
+`ConfirmationRejectCommand` implements the method:
+
+* `ConfirmationRejectCommand#execute(Model)` - Returns a `CommandResult` indicating the `DangerousCommand` is not executed.
+
+Given below is an example usage scenario and how the user confirmation prompt feature behaves at each step.
+
+
+Step 1. The user launches the application with all his/her students already added to the student list. The `ModelManager` should already contain the list of students assigned to the user.
+
+Step 2. The user executes a dangerous command, for example `deletestu 1`, to delete the first student in the student list. A `DeleteStudentCommandParser` is created by `LogicManager`.
+If the input delete command is valid, a `DeleteStudentCommand` will be created by `DeleteStudentCommandParser#parse()` and passed into a `ConfirmationCommand` as a `DangerousCommand`.
+
+Step 3. The `ConfirmationCommand` is executed, and the `ResultDisplay` window shows a confirmation prompt `Delete 1? (yes/no)`, where the user needs to input a `yes` or `no` to confirm or reject the execution of the `DangerousCommand` respectively.
+
+Step 4. If the confirmation input is valid, a `ConfirmationCommandParser` is created by the `LogicManager` and either a `ConfirmationAcceptCommand` or `ConfirmationRejectCommand` is returned by `ConfirmationCommandParser#parser()`.
+
+Step 5. The `ConfirmationAcceptCommand` or `ConfirmationRejectCommand` is then executed in `LogicManager#execute(String)` and a `CommandResult` is returned, which is displayed on `ResultDisplay`.
+
+The following sequence diagram shows how the user confirmation prompt feature works:
+
+![UserConfirmationPromptSequenceDiagram](images/UserConfirmationPromptSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a dangerous command (for eg. `DeleteStudentCommand`).
+
+![DeleteStudentActivityDiagram](images/DeleteStudentSequenceDiagram.png)
 ### <a name="undo_redo"></a>\[Proposed\] Undo/redo feature
 
 #### <a name="proposed_implementation"></a>Proposed Implementation
