@@ -31,6 +31,23 @@ public class TabTest {
     }
 
     @Test
+    public void testIsValid() {
+        // valid tabs -> true
+        assertTrue(Tab.STUDENTS.isValid());
+        assertTrue(Tab.SESSIONS.isValid());
+        assertTrue(Tab.CURRENT.isValid());
+        assertTrue(Tab.MEMO.isValid());
+    }
+
+    @Test
+    public void testToDisplayName() {
+        assertEquals(Tab.STUDENTS.toDisplayName(), "students");
+        assertEquals(Tab.SESSIONS.toDisplayName(), "sessions");
+        assertEquals(Tab.CURRENT.toDisplayName(), "current session");
+        assertEquals(Tab.MEMO.toDisplayName(), "memo");
+    }
+
+    @Test
     public void equals() {
         Tab studentsTab = Tab.STUDENTS;
         Tab sessionsTab = Tab.SESSIONS;
