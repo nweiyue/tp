@@ -74,7 +74,7 @@ public class MainApp extends Application {
         model = initModelManager(storage, userPrefs);
 
         logic = new LogicManager(model, storage);
-        logic.saveMemoContent(model.getMemo().getContent()); // saves the memo everytime the application starts up
+        logic.saveMemoContent(model.getMemo().getContent()); // saves the memo everytime the ATAS starts up
 
         ui = new UiManager(logic);
     }
