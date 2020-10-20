@@ -2,6 +2,7 @@ package atas.storage;
 
 import static java.util.Objects.requireNonNull;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -37,11 +38,15 @@ public class TxtMemoStorage implements MemoStorage {
     @Override
     public String readMemo(Path filePath) {
         try {
+            File file = new File(String.valueOf(filePath));
+            if (file.createNewFile()) {
+                logger.info("Data file not found. Will be starting with a sample Memo");
+                return DEFAULT_MEMO_CONTENT;
+            }
             byte[] memoContentInByte = Files.readAllBytes(filePath);
             String memoContent = new String(memoContentInByte);
             return memoContent;
         } catch (IOException e) {
-            e.printStackTrace();
             return DEFAULT_MEMO_CONTENT;
         }
     }
