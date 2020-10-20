@@ -155,13 +155,13 @@ This section describes some noteworthy details on how certain features are imple
 
 ## <a name="enterSession"></a>Enter a session
 
-This feature (henceforth referred to as 'enter session') is facilitated by `EnterSessionCommand`, `Logic Manager` and `Model`.
+This feature (henceforth referred to as 'enter session') is facilitated by `EnterSessionCommand`, `LogicManager` and `Model`.
 
-`Logic Manager` implements the method:
+`LogicManager` implements the method:
 
-* `Logic Manager#execute(Model)` — Returns a `CommandResult` containing the session index of the session.
+* `LogicManager#execute(Model)` — Returns a `CommandResult` containing the session index of the session.
 
-`EnterSessionCommand` implements the method from Logic Manager:
+`EnterSessionCommand` implements the method from `LogicManager`:
 
 * `EnterSessionCommand#execute(Model)` — Returns a `CommandResult` containing the session index of the session.
 
