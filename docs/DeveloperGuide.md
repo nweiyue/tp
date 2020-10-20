@@ -14,6 +14,7 @@ title: Developer Guide
    * [Switching between tabs](#switching)
      * [Design consideration:](#switch_design_consideration)
    * [User Confirmation Prompt](#ucp)
+   * [Adding a session](#adding_a_session)
    * [Entering a session](#enter_session)
    * [Generating the name of a randomly-selected student](#rng)
    * [[Proposed] Undo/redo feature](#undo_redo)
@@ -139,15 +140,17 @@ The `Model`,
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-W16-4/tp/blob/master/src/main/java/atas/storage/Storage.java)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* can save the student list data in json format and read it back.
+* can save the session list data in json format and read it back.
+* can save the memo data in txt file and read it back.
 
 ### <a name="common_classes"></a>Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.atas.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -402,6 +405,42 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+
+### <a name="adding_a_session"></a>Adding a session
+
+Adding a session to a class requires user input from the CLI. Adding a session to a class requires user input from 
+the CLI. The parser will then parse the user input to obtain the name and the date of the session. The newly added 
+session will also be filled with students' default presence and participation.
+
+The below example given assumes that the user inputs `addses s/Tutorial 1 d/1/1/2020`, which 'Tutorial 1' and
+'1/1/2020' are the name and the date of the session to be added, and `addses` command has already been parsed.
+
+Step 1: Parse input and create session
+
+An `AddSessionCommandParser` is created by `LogicManager` and calls `AddSessionCommandParser#parse()` with the given
+user input. Input is parsed according to the prefix `s/` and `d/` to identify the parts of the 
+user input and split it into `String` slices. If both the name and date are present in the input, 
+those `String` will be used to create a `SessionName` and a `SessionDate` object, which will be used to 
+create and initialize a `Session` object. The `Session` object created will be the one being added to 
+the current session list later.
+
+`AddSessionCommandParser#parse()` returns a `AddSessionCommand` object that contains the session object
+ back to the `LogicManager`.
+
+![AddSessionSequenceDiagram1](images/AddSessionSequenceDiagram1.png)
+
+Step 2: Add session to the model/session list
+
+`LogicManager` calls `AddSessionCommand#execute()` to proceed on to adding the session to the model.
+The `AddSessionCommand` will first check if the same session is already in the session list, if the 
+session exists in the current session list, then the session will not be added to the session list.
+
+Assuming that the session to add is not a session already in the list, `ModelManager` will update
+the internal student list of the session list, then it uses addSession method to add the session to the 
+list.
+
+![AddSessionSequenceDiagram2](images/AddSessionSequenceDiagram2.png)
+ 
 
 --------------------------------------------------------------------------------------------------------------------
 
