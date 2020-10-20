@@ -101,20 +101,17 @@ The `UI` component,
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S1-CS2103T-W16-4/tp/blob/master/src/main/java/atas/logic/Logic.java)
 
-1. `Logic` uses the `AddressBookParser` class to parse the user command.
+1. `Logic` uses the `AtasParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
 1. The command execution can affect the `Model` (e.g. adding a student).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("enterses 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
+![Interactions Inside the Logic Component for the `enterses 1` Command](images/EnterSessionSequenceDiagram.png)
 
 ### <a name="model_component"></a>Model component
 
@@ -155,6 +152,44 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## <a name="implementation"></a>**Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+## <a name="enterSession"></a>Enter a session
+
+This feature (henceforth referred to as 'enter session') is facilitated by `EnterSessionCommand`, `LogicManager` and `Model`.
+
+`LogicManager` implements the method:
+
+* `LogicManager#execute(Model)` — Returns a `CommandResult` containing the session index of the session.
+
+`EnterSessionCommand` implements the method from `LogicManager`:
+
+* `EnterSessionCommand#execute(Model)` — Returns a `CommandResult` containing the session index of the session.
+
+`Model` implements the method:
+
+* `Model#enterSession(Index)` — Enters a session based on session index.
+
+Given below is an example usage scenario and how the enter session mechanism behaves at each step.
+
+Step 1. The user launches the application with all his/her students already added to the student list. The `ModelManager` should already contain the list of students assigned to the user.
+
+Step 2. The user executes `enterses 1` to enter session 1. The `enterses 1` command calls `LogicManager#execute()`.
+
+Step 3. `EnterSessionCommandParser#parse()` checks if there argument passed is valid. If the argument is valid, a `EnterSessionCommand` will be created and `EnterSessionCommand#execute()` will be called by the `LogicManager`.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If an invalid argument is found, a `ParseException` will be thrown and the execution terminates.
+
+</div><br>
+
+Step 4. `Model#enterSession()` will be called by `EnterSession#execute()` and the displayed tab will be switched to Current Session. Details of session 2 will be displayed to the user.
+
+The following sequence diagram shows how the enter session operation works:
+
+![EnterSessionSequenceDiagram](images/EnterSessionSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes an enter session command:
+
+![EnterSessionActivityDiagram](images/EnterSessionActivityDiagram.png)
 
 ### <a name="undo_redo"></a>\[Proposed\] Undo/redo feature
 
