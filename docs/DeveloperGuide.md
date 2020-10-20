@@ -11,6 +11,9 @@ title: Developer Guide
    * [Storage component](#storage_component)
    * [Common classes](#common_classes)
 * [**Implementation**](#implementation)
+   * [User Confirmation Prompt](#ucp)
+   * [Entering a session](#enter_session)
+   * [Generating the name of a randomly-selected student](#rng)
    * [[Proposed] Undo/redo feature](#undo_redo)
      * [Proposed Implementation](#proposed_implementation)
      * [Design consideration:](#design_consideration)
@@ -51,7 +54,7 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 </div>
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S1-CS2103T-W16-4/tp/blob/master/src/main/java/atas/Main.java) and [`MainApp`](https://github.com/AY2021S1-CS2103T-W16-4/tp/blob/master/src/main/java/atas/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -75,7 +78,7 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `addses s/Tutorial 1 d/10/10/2020`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -102,40 +105,33 @@ The `UI` component,
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S1-CS2103T-W16-4/tp/blob/master/src/main/java/atas/logic/Logic.java)
 
-1. `Logic` uses the `AddressBookParser` class to parse the user command.
+1. `Logic` uses the `AtasParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
 1. The command execution can affect the `Model` (e.g. adding a student).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("enterses 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
+![Interactions Inside the Logic Component for the `enterses 1` Command](images/EnterSessionSequenceDiagram.png)
 
 ### <a name="model_component"></a>Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-W16-4/tp/blob/master/src/main/java/atas/model/Model.java)
 
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the data of the following: 
+   * student list in a `StudentList` object 
+   * session list in a `SessionList` object 
+   * memo in a `Memo` object.
+* exposes an unmodifiable `ObservableList<Student>` and `ObservableList<Session>` that can be 'observed'. e.g. For each list, the UI can be bound to the list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
-
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
-
-</div>
-
 
 ### <a name="storage_component"></a>Storage component
 
@@ -158,6 +154,129 @@ Classes used by multiple components are in the `seedu.atas.commons` package.
 ## <a name="implementation"></a>**Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### <a name="ucp"></a>Getting user confirmation for commands that changes the local data.
+
+This feature (henceforth referred to as 'user confirmation') is facilitated by 'ConfirmCommand', 'DangerousCommand', 'Logic', and 'Model'.
+
+There are 6 DangerousCommand(s) that will change the existing local data upon execution, namely:
+1. deletestu (deleting a student)
+2. editstu (editing the particulars of a student)
+3. clearstu (clearing the student list)
+4. deleteses (deleting a sesion)
+5. editses (editing the information of a session)
+6. clearses (clearing the session list)
+
+`DangerousCommand` implements the method:
+
+* `DangerousCommand#execute(Model)` - Returns a `CommandResult` of the `DangerousCommand`.
+
+`ConfirmationCommand` implements the method:
+
+* `ConfirmationCommand#execute(Model)` - Returns a `CommandResult` containing a user confirmation prompt to confirm the execution of the `DangerousCommand`.
+
+'ConfirmationAcceptCommand' implements the method:
+
+* `ConfirmationAcceptCommand#execute(Model)` - Executes the `DangerousCommand` and returns a `CommandResult` from `DangerousCommand#execute(Model)`. 
+
+`ConfirmationRejectCommand` implements the method:
+
+* `ConfirmationRejectCommand#execute(Model)` - Returns a `CommandResult` indicating the `DangerousCommand` is not executed.
+
+Given below is an example usage scenario and how the user confirmation prompt feature behaves at each step.
+
+
+Step 1. The user launches the application with all his/her students already added to the student list. The `ModelManager` should already contain the list of students assigned to the user.
+
+Step 2. The user executes a dangerous command, for example `deletestu 1`, to delete the first student in the student list. A `DeleteStudentCommandParser` is created by `LogicManager`.
+If the input delete command is valid, a `DeleteStudentCommand` will be created by `DeleteStudentCommandParser#parse()` and passed into a `ConfirmationCommand` as a `DangerousCommand`.
+
+Step 3. The `ConfirmationCommand` is executed, and the `ResultDisplay` window shows a confirmation prompt `Delete 1? (yes/no)`, where the user needs to input a `yes` or `no` to confirm or reject the execution of the `DangerousCommand` respectively.
+
+Step 4. If the confirmation input is valid, a `ConfirmationCommandParser` is created by the `LogicManager` and either a `ConfirmationAcceptCommand` or `ConfirmationRejectCommand` is returned by `ConfirmationCommandParser#parser()`.
+
+Step 5. The `ConfirmationAcceptCommand` or `ConfirmationRejectCommand` is then executed in `LogicManager#execute(String)` and a `CommandResult` is returned, which is displayed on `ResultDisplay`.
+
+The following sequence diagram shows how the user confirmation feature works:
+
+![UserConfirmationSequenceDiagram](images/UserConfirmationSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a dangerous command (for eg. `DeleteStudentCommand`).
+
+![DeleteStudentActivityDiagram](images/DeleteStudentActivityDiagram.png)
+
+
+### <a name="enter_session"></a>Entering a session
+
+This feature (henceforth referred to as 'enter session') is facilitated by `EnterSessionCommand`, `LogicManager` and `Model`.
+
+`LogicManager` implements the method:
+
+* `LogicManager#execute(Model)` — Returns a `CommandResult` containing the session index of the session.
+
+`EnterSessionCommand` implements the method from `LogicManager`:
+
+* `EnterSessionCommand#execute(Model)` — Returns a `CommandResult` containing the session index of the session.
+
+`Model` implements the method:
+
+* `Model#enterSession(Index)` — Enters a session based on session index.
+
+Given below is an example usage scenario and how the enter session mechanism behaves at each step.
+
+Step 1. The user launches the application with all his/her students already added to the student list. The `ModelManager` should already contain the list of students assigned to the user.
+
+Step 2. The user executes `enterses 1` to enter session 1. The `enterses 1` command calls `LogicManager#execute()`.
+
+Step 3. `EnterSessionCommandParser#parse()` checks if there argument passed is valid. If the argument is valid, a `EnterSessionCommand` will be created and `EnterSessionCommand#execute()` will be called by the `LogicManager`.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If an invalid argument is found, a `ParseException` will be thrown and the execution terminates.
+
+</div><br>
+
+Step 4. `Model#enterSession()` will be called by `EnterSession#execute()` and the displayed tab will be switched to Current Session. Details of session 2 will be displayed to the user.
+
+The following sequence diagram shows how the enter session operation works:
+
+![EnterSessionSequenceDiagram](images/EnterSessionSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes an enter session command:
+
+![EnterSessionActivityDiagram](images/EnterSessionActivityDiagram.png)
+
+### <a name="rng"></a>Generating the name of a randomly-selected student
+
+This feature (henceforth referred to as 'RNG') is facilitated by `RngCommand` and `RandomGenerator`. 
+
+`RngCommand` implements the method:
+
+* `RngCommand#execute(Model)` — Returns a `CommandResult` containing the name of a randomly-selected student.
+
+`RandomGenerator` implements the method:
+
+* `RandomGenerator#getNextInt(int)` — Returns the index of the next randomly-generated student.
+
+The `RandomGenerator` is contained in `Model`. It implements the method:
+
+* `ModelManager#generateRandomStudentIndex()` — Returns the index of a randomly-generated student in the student list.
+
+The operation above is exposed in the `Model` interface as `Model#generateRandomStudentIndex()`.
+
+Given below is an example usage scenario and how the RNG mechanism behaves at each step.
+
+Step 1. The user launches the application with all his/her students already added to the student list. The `ModelManager` should already contain the list of students assigned to the user.
+
+Step 2. The user executes `rng` to pick a random student in his/her student list. The `rng` command calls `Model#generateRandomStudentIndex()`, which in turn calls `RandomGenerator#getNextInt(int)`.
+
+Step 3. The `Index` returned during the execution of `RngCommand#execute(Model)` is used to fetch the name of the corresponding student (in the student list) to be selected. The student's name is then displayed to the user.
+
+The following sequence diagram shows how the RNG operation works:
+
+![RngSequenceDiagram](images/RngSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes an RNG command:
+
+![RngActivityDiagram](images/RngActivityDiagram.png)
 
 ### <a name="undo_redo"></a>\[Proposed\] Undo/redo feature
 
