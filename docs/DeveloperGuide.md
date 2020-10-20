@@ -165,17 +165,17 @@ The switching of tabs is facilitated by `SwitchCommand`, `LogicManager`, `MainWi
 
 Given below is an example usage scenario and how the switch mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The default students tab is displayed.
+Step 1. The user launches the application for the first time. The default "Students" tab is displayed.
 
 Step 2. The user executes `switch sessions` command to view the sessions tab. `MainWindow#executeCommand()` is called and `LogicManager` calls `AtasParser#parseCommand()`. This results in the creation of a `SwitchCommandParser` to parse the user input.
 
 Step 3. `SwitchCommandParser#parse()` checks if there is an argument being passed by the user. If an argument is passed, a `SwitchCommand` will be created and `SwitchCommand#execute()` will be called by the `LogicManager`.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If no arguments is found, a `ParseException` will be thrown and the execution terminates.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If no argument is found, a `ParseException` will be thrown and the execution terminates.
 
 </div><br>
 
-Step 4. `SwitchCommand#execute()` will check if the argument pass is an existing tab name. If the argument is valid, a `CommandResult` containing a variable `switchTab` with the value of the target `Tab` will be returned to `MainWindow`.
+Step 4. `SwitchCommand#execute()` will check if the argument passed in is an existing tab name. If the argument is valid, a `CommandResult` containing a variable `switchTab` with the value of the target `Tab` will be return to `MainWindow`.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the argument is not a valid tab name, a `CommandException` will be thrown and the execution terminates.
 
