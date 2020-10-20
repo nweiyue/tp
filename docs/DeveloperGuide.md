@@ -11,6 +11,8 @@ title: Developer Guide
    * [Storage component](#storage_component)
    * [Common classes](#common_classes)
 * [**Implementation**](#implementation)
+   * [Switching between tabs](#switching)
+     * [Design consideration:](#switch_design_consideration)
    * [User Confirmation Prompt](#ucp)
    * [Entering a session](#enter_session)
    * [Generating the name of a randomly-selected student](#rng)
@@ -88,16 +90,17 @@ The sections below give more details of each component.
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S1-CS2103T-W16-4/tp/blob/master/src/main/java/atas/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StudentListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class except `Tab`.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103T-W16-4/tp/blob/master/src/main/java/atas/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103T-W16-4/tp/blob/master/src/main/resources/view/MainWindow.fxml).
 
 The `UI` component,
 
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
+* Displays results to user if any.
 
 ### <a name="logic_component"></a>Logic component
 
@@ -151,6 +154,45 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## <a name="implementation"></a>**Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### <a name="switching"></a>Switching between tabs
+
+The switching of tabs is facilitated by `SwitchCommand`, `LogicManager`, `MainWindow` and `Tab`. `Tab` is an enum class that represents the various tabs that exist in ATAS.
+
+Given below is an example usage scenario and how the switch mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The default "Students" tab is displayed.
+
+Step 2. The user executes `switch sessions` command to view the sessions tab. `MainWindow#executeCommand()` is called and `LogicManager` calls `AtasParser#parseCommand()`. This results in the creation of a `SwitchCommandParser` to parse the user input.
+
+Step 3. `SwitchCommandParser#parse()` checks if there is an argument being passed by the user. If an argument is passed, a `SwitchCommand` will be created and `SwitchCommand#execute()` will be called by the `LogicManager`.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If no argument is found, a `ParseException` will be thrown and the execution terminates.
+
+</div><br>
+
+Step 4. `SwitchCommand#execute()` will check if the argument passed in is an existing tab name. If the argument is valid, a `CommandResult` containing a variable `switchTab` with the value of the target `Tab` will be return to `MainWindow`.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the argument is not a valid tab name, a `CommandException` will be thrown and the execution terminates.
+
+</div><br>
+
+Step 5. `MainWindow#handleSwitchTab()` will then be called and will check if the current `Tab` is the same as the target `Tab` to switched to. If it is not the same, `MainWindow` will utilise `tabPane` to execute the switch, thus updating the screen for the user.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the current `Tab` is the same as the target `Tab`, a `CommandException` will be thrown and the execution terminates.
+
+</div><br>
+
+The following sequence diagram shows how the switch operation works:
+
+![SwitchTabsSequenceDiagram](images/SwitchTabsSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a switch command:
+
+![SwitchTabsActivityDiagram](images/SwitchTabsActivityDiagram.png)
+
+#### <a name="switch_design_consideration"></a>Design consideration:
+
+* `Tab` is being implemented as an enum class because there is a fixed set of tabs that are available to be switched to. This prevents invalid values to be assigned to `Tab`.
 
 ### <a name="ucp"></a>Getting user confirmation for commands that changes the local data.
 
@@ -274,6 +316,7 @@ The following sequence diagram shows how the RNG operation works:
 The following activity diagram summarizes what happens when a user executes an RNG command:
 
 ![RngActivityDiagram](images/RngActivityDiagram.png)
+
 
 ### <a name="undo_redo"></a>\[Proposed\] Undo/redo feature
 
