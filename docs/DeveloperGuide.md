@@ -11,6 +11,7 @@ title: Developer Guide
    * [Storage component](#storage_component)
    * [Common classes](#common_classes)
 * [**Implementation**](#implementation)
+   * [User Confirmation Prompt](#ucp)
    * [[Proposed] Undo/redo feature](#undo_redo)
      * [Proposed Implementation](#proposed_implementation)
      * [Design consideration:](#design_consideration)
@@ -204,7 +205,7 @@ The following sequence diagram shows how the user confirmation feature works:
 
 The following activity diagram summarizes what happens when a user executes a dangerous command (for eg. `DeleteStudentCommand`).
 
-![DeleteStudentActivityDiagram](images/DeleteStudentSequenceDiagram.png)
+![DeleteStudentActivityDiagram](images/DeleteStudentActivityDiagram.png)
 ### <a name="undo_redo"></a>\[Proposed\] Undo/redo feature
 
 #### <a name="proposed_implementation"></a>Proposed Implementation
