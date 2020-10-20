@@ -21,7 +21,7 @@ public class SwitchCommand extends Command {
             + "Examples: "
             + COMMAND_WORD + " students, "
             + COMMAND_WORD + " sessions, "
-            + COMMAND_WORD + " current session, "
+            + COMMAND_WORD + " current, "
             + COMMAND_WORD + " memo";
 
     public static final String MESSAGE_SWITCH_TAB_SUCCESS = "Switched to %1$s tab";
@@ -48,7 +48,7 @@ public class SwitchCommand extends Command {
         case "sessions":
             tab = Tab.SESSIONS;
             break;
-        case "current session":
+        case "current":
             tab = Tab.CURRENT;
             break;
         case "memo":
