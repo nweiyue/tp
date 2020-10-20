@@ -21,7 +21,8 @@ public class SwitchCommand extends Command {
             + "Examples: "
             + COMMAND_WORD + " students, "
             + COMMAND_WORD + " sessions, "
-            + COMMAND_WORD + " current";
+            + COMMAND_WORD + " current, "
+            + COMMAND_WORD + " memo";
 
     public static final String MESSAGE_SWITCH_TAB_SUCCESS = "Switched to %1$s tab";
 
@@ -56,7 +57,7 @@ public class SwitchCommand extends Command {
         default:
             throw new CommandException(MESSAGE_INVALID_TAB);
         }
-        return new CommandResult(String.format(MESSAGE_SWITCH_TAB_SUCCESS, tab.toString().toLowerCase()),
+        return new CommandResult(String.format(MESSAGE_SWITCH_TAB_SUCCESS, tab.toDisplayName()),
                 false, tab, false);
     }
 
