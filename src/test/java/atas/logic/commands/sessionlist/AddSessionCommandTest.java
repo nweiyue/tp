@@ -262,6 +262,53 @@ public class AddSessionCommandTest {
         public Index generateRandomStudentIndex() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void commitStudentList() { }
+
+        @Override
+        public boolean canUndoStudentList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void undoStudentList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean canRedoStudentList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void redoStudentList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void commitSessionList() { }
+
+        @Override
+        public boolean canUndoSessionList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void undoSessionList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean canRedoSessionList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void redoSessionList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
     }
 
     /**

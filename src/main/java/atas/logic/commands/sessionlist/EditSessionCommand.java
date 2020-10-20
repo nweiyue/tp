@@ -70,6 +70,8 @@ public class EditSessionCommand extends DangerousCommand {
         }
 
         model.setSession(sessionToEdit, editedSession);
+        model.commitStudentList();
+        model.commitSessionList();
         model.updateFilteredStudentList(Model.PREDICATE_SHOW_ALL_STUDENTS);
         return new CommandResult(String.format(MESSAGE_EDIT_SESSION_SUCCESS, editedSession));
     }

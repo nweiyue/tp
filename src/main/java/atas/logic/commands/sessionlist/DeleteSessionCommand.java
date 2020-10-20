@@ -51,6 +51,8 @@ public class DeleteSessionCommand extends DangerousCommand {
         }
 
         model.deleteSession(sessionToDelete, targetIndex);
+        model.commitStudentList();
+        model.commitSessionList();
         return new CommandResult(String.format(MESSAGE_DELETE_SESSION_SUCCESS, sessionToDelete));
     }
 

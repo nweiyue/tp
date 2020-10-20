@@ -19,6 +19,8 @@ public class ClearSessionsCommand extends DangerousCommand {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.resetSessionList();
+        model.commitStudentList();
+        model.commitSessionList();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 

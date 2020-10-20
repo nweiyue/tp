@@ -136,6 +136,13 @@ public class Session implements Comparable<Session> {
     }
 
     /**
+     * Adds a new {@code Attributes} with the given name.
+     */
+    public void addNewAttributes(Name name) {
+        this.attributeList.add(new Attributes(name));
+    }
+
+    /**
      * Returns true if both sessions have the same session name.
      * This defines a weaker notion of equality between two sessions.
      */

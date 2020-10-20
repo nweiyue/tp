@@ -106,7 +106,6 @@ public interface Model {
      */
     void setStudent(Student target, Student editedStudent);
 
-
     /**
      * CLear the sessions existing in the current session list.
      * The link between the students and the session list will not be disrupted.
@@ -207,4 +206,55 @@ public interface Model {
      * Returns the index of a randomly selected student in the student list.
      */
     Index generateRandomStudentIndex();
+
+    /**
+     * Saves the current student list in its history.
+     */
+    void commitStudentList();
+
+    /**
+     * Returns <code>true</code> if student list can be undone, <code>false</code> otherwise.
+     */
+    boolean canUndoStudentList();
+
+    /**
+     * Restores the previous student list from history if possible.
+     */
+    void undoStudentList();
+
+    /**
+     * Returns <code>true</code> if student list can be redone, <code>false</code> otherwise.
+     */
+    boolean canRedoStudentList();
+
+    /**
+     * Returns a previously undo entity from its history if possible.
+     */
+    void redoStudentList();
+
+    /**
+     * Saves the current session list in its history.
+     */
+    void commitSessionList();
+
+    /**
+     * Returns <code>true</code> if session list can be undone, <code>false</code> otherwise.
+     */
+    boolean canUndoSessionList();
+
+    /**
+     * Restores the previous session list from history if possible.
+     */
+    void undoSessionList();
+
+    /**
+     * Returns <code>true</code> if session list can be redone, <code>false</code> otherwise.
+     */
+    boolean canRedoSessionList();
+
+    /**
+     * Returns a previously undo entity from its history if possible.
+     */
+    void redoSessionList();
+
 }

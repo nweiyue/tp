@@ -18,9 +18,11 @@ import atas.model.session.ReadOnlySessionList;
 import atas.model.session.Session;
 import atas.model.session.SessionList;
 import atas.model.session.SessionName;
+import atas.model.session.VersionedSessionList;
 import atas.model.student.ReadOnlyStudentList;
 import atas.model.student.Student;
 import atas.model.student.StudentList;
+import atas.model.student.VersionedStudentList;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 
@@ -30,8 +32,8 @@ import javafx.collections.transformation.FilteredList;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final StudentList studentList;
-    private final SessionList sessionList;
+    private final VersionedStudentList studentList;
+    private final VersionedSessionList sessionList;
     private final UserPrefs userPrefs;
     private final FilteredList<Student> filteredStudents;
     private final FilteredList<Session> filteredSessions;
@@ -50,8 +52,8 @@ public class ModelManager implements Model {
 
         logger.fine("Initializing with student list: " + studentList + " and user prefs " + userPrefs);
 
-        this.sessionList = new SessionList(sessionList);
-        this.studentList = new StudentList(studentList);
+        this.sessionList = new VersionedSessionList(sessionList);
+        this.studentList = new VersionedStudentList(studentList);
         this.userPrefs = new UserPrefs(userPrefs);
         this.filteredStudents = new FilteredList<>(this.studentList.getStudentList());
         this.filteredSessions = new FilteredList<>(this.sessionList.getSessions());
@@ -301,4 +303,57 @@ public class ModelManager implements Model {
     public Index generateRandomStudentIndex() {
         return rng.getNextIndex(filteredStudents.size());
     }
+
+    //=========== Undo/Redo =========================================================================
+
+    @Override
+    public void commitStudentList() {
+        studentList.commit();
+    }
+
+    @Override
+    public boolean canUndoStudentList() {
+        return studentList.canUndo();
+    }
+
+    @Override
+    public void undoStudentList() {
+        studentList.undo();
+    }
+
+    @Override
+    public boolean canRedoStudentList() {
+        return studentList.canRedo();
+    }
+
+    @Override
+    public void redoStudentList() {
+        studentList.redo();
+    }
+
+    @Override
+    public void commitSessionList() {
+        sessionList.commit();
+    }
+
+    @Override
+    public boolean canUndoSessionList() {
+        return sessionList.canUndo();
+    }
+
+    @Override
+    public void undoSessionList() {
+        sessionList.undo();
+    }
+
+    @Override
+    public boolean canRedoSessionList() {
+        return sessionList.canRedo();
+    }
+
+    @Override
+    public void redoSessionList() {
+        sessionList.redo();
+    }
+
 }

@@ -1,5 +1,6 @@
 package atas.model.session;
 
+import static atas.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Iterator;
@@ -8,6 +9,7 @@ import java.util.List;
 import atas.commons.core.index.Index;
 import atas.model.session.exceptions.DuplicateSessionException;
 import atas.model.session.exceptions.SessionNotFoundException;
+import atas.model.student.Name;
 import atas.model.student.Student;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -42,7 +44,72 @@ public class SessionList implements Iterable<Session>, ReadOnlySessionList {
     public SessionList(ReadOnlySessionList toBeCopied) {
         sessions = FXCollections.observableArrayList();
         sessions.addAll(toBeCopied.getSessions());
-        internalStudentList = toBeCopied.getInternalStudentList();
+        internalStudentList = FXCollections.observableArrayList();
+        internalStudentList.addAll(toBeCopied.getInternalStudentList());
+    }
+
+    /**
+     * Replaces the contents of the session list with {@code sessions}.
+     * {@code sessions} must not contain duplicate students.
+     */
+    public void resetData(ReadOnlySessionList newData) {
+        setSessions(newData.getSessions());
+        setStudents(newData.getInternalStudentList());
+        synchronizeSessionAndStudentList();
+    }
+
+    /**
+     * Replaces the contents of this list with {@code sessions}.
+     * {@code sessions} must not contain duplicate sessions.
+     */
+    private void setSessions(List<Session> sessions) {
+        requireAllNonNull(sessions);
+        if (!sessionsAreUnique(sessions)) {
+            throw new DuplicateSessionException();
+        }
+        this.sessions.setAll(sessions);
+    }
+
+    /**
+     * Returns true if {@code sessions} contains only unique sessions.
+     */
+    private boolean sessionsAreUnique(List<Session> sessions) {
+        for (int i = 0; i < sessions.size() - 1; i++) {
+            for (int j = i + 1; j < sessions.size(); j++) {
+                if (sessions.get(i).isSameSession(sessions.get(j))) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    private void setStudents(List<Student> students) {
+        requireAllNonNull(students);
+        this.internalStudentList.setAll(students);
+    }
+
+    private void synchronizeSessionAndStudentList() {
+        for (Session ses : sessions) {
+            // remove deleted attributes from list
+            ses.getAttributeList().removeIf(a -> !hasStudentName(a.getName()));
+            // add new attributes to list
+            addAttributesIfNew(ses);
+        }
+    }
+
+    private boolean hasStudentName(String name) {
+        return internalStudentList.stream().anyMatch(s -> s.getName().toString().equals(name));
+    }
+
+    private void addAttributesIfNew(Session session) {
+        for (Student student : internalStudentList) {
+            Name studentName = student.getName();
+            // session's attribute list does not have record of student's name
+            if (session.getAttributeList().stream().noneMatch(a -> a.getName().equals(studentName.toString()))) {
+                session.addNewAttributes(studentName);
+            }
+        }
     }
 
     /**

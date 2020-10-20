@@ -20,6 +20,8 @@ public class ClearStudentListCommand extends DangerousCommand {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.setStudentList(new StudentList());
+        model.commitStudentList();
+        model.commitSessionList();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 
