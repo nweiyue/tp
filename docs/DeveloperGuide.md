@@ -13,7 +13,7 @@ title: Developer Guide
 * [**Implementation**](#implementation)
    * [Switching between tabs](#switching)
      * [Design consideration:](#switch_design_consideration)
-   * [User Confirmation Prompt](#ucp)
+   * [User confirmation](#ucp)
    * [Adding a session](#adding_a_session)
    * [Entering a session](#enter_session)
    * [Generating the name of a randomly-selected student](#rng)
