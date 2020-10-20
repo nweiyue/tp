@@ -11,6 +11,8 @@ title: Developer Guide
    * [Storage component](#storage_component)
    * [Common classes](#common_classes)
 * [**Implementation**](#implementation)
+   * [Entering a session](#enter_session)
+   * [Generating the name of a randomly-selected student](#rng)
    * [[Proposed] Undo/redo feature](#undo_redo)
      * [Proposed Implementation](#proposed_implementation)
      * [Design consideration:](#design_consideration)
@@ -117,21 +119,17 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-W16-4/tp/blob/master/src/main/java/atas/model/Model.java)
 
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the data of the following: 
+   * student list in a `StudentList` object 
+   * session list in a `SessionList` object 
+   * memo in a `Memo` object.
+* exposes an unmodifiable `ObservableList<Student>` and `ObservableList<Session>` that can be 'observed'. e.g. For each list, the UI can be bound to the list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
-
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
-
-</div>
-
 
 ### <a name="storage_component"></a>Storage component
 
@@ -153,7 +151,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-## <a name="enterSession"></a>Enter a session
+### <a name="enter_session"></a>Entering a session
 
 This feature (henceforth referred to as 'enter session') is facilitated by `EnterSessionCommand`, `LogicManager` and `Model`.
 
@@ -190,6 +188,40 @@ The following sequence diagram shows how the enter session operation works:
 The following activity diagram summarizes what happens when a user executes an enter session command:
 
 ![EnterSessionActivityDiagram](images/EnterSessionActivityDiagram.png)
+
+### <a name="rng"></a>Generating the name of a randomly-selected student
+
+This feature (henceforth referred to as 'RNG') is facilitated by `RngCommand` and `RandomGenerator`. 
+
+`RngCommand` implements the method:
+
+* `RngCommand#execute(Model)` — Returns a `CommandResult` containing the name of a randomly-selected student.
+
+`RandomGenerator` implements the method:
+
+* `RandomGenerator#getNextInt(int)` — Returns the index of the next randomly-generated student.
+
+The `RandomGenerator` is contained in `Model`. It implements the method:
+
+* `ModelManager#generateRandomStudentIndex()` — Returns the index of a randomly-generated student in the student list.
+
+The operation above is exposed in the `Model` interface as `Model#generateRandomStudentIndex()`.
+
+Given below is an example usage scenario and how the RNG mechanism behaves at each step.
+
+Step 1. The user launches the application with all his/her students already added to the student list. The `ModelManager` should already contain the list of students assigned to the user.
+
+Step 2. The user executes `rng` to pick a random student in his/her student list. The `rng` command calls `Model#generateRandomStudentIndex()`, which in turn calls `RandomGenerator#getNextInt(int)`.
+
+Step 3. The `Index` returned during the execution of `RngCommand#execute(Model)` is used to fetch the name of the corresponding student (in the student list) to be selected. The student's name is then displayed to the user.
+
+The following sequence diagram shows how the RNG operation works:
+
+![RngSequenceDiagram](images/RngSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes an RNG command:
+
+![RngActivityDiagram](images/RngActivityDiagram.png)
 
 ### <a name="undo_redo"></a>\[Proposed\] Undo/redo feature
 
