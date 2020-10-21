@@ -25,7 +25,7 @@
       </stylesheets>
 
       <VBox>
-        <MenuBar fx:id="menuBar" VBox.vgrow="NEVER" minHeight="35">
+        <MenuBar fx:id="menuBar" VBox.vgrow="NEVER" minHeight="25" styleClass="menu-custom-button" >
           <Menu fx:id="fileMenuItem" mnemonicParsing="false" text="File" >
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
           </Menu>
