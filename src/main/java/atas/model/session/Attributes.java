@@ -36,6 +36,10 @@ public class Attributes {
         this(new Presence(), new Participation(), name);
     }
 
+    public Attributes getCopy() {
+        return new Attributes(presence, participation, studentName);
+    }
+
     /**
      * Causes the presence field to be true.
      */

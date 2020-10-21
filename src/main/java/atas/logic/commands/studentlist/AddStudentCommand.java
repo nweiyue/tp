@@ -51,8 +51,7 @@ public class AddStudentCommand extends Command {
         }
 
         model.addStudent(toAdd);
-        model.commitStudentList();
-        model.commitSessionList();
+        model.commit();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

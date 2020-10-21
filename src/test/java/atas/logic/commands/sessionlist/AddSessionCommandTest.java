@@ -264,6 +264,9 @@ public class AddSessionCommandTest {
         }
 
         @Override
+        public void commit() { }
+
+        @Override
         public void commitStudentList() { }
 
         @Override

@@ -17,7 +17,7 @@ public class SessionDateTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new SessionDate(null));
+        assertThrows(NullPointerException.class, () -> new SessionDate((String) null));
     }
 
     @Test

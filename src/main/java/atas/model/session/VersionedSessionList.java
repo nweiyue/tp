@@ -26,7 +26,7 @@ public class VersionedSessionList extends SessionList implements VersionedEntity
     @Override
     public void commit() {
         removeStatesAfterCurrentPointer();
-        this.sessionStateList.add(new SessionList(this));
+        this.sessionStateList.add(new SessionList(this.getCopy()));
         currentStatePointer++;
     }
 

@@ -28,6 +28,10 @@ public class SessionName {
         value = sessionName;
     }
 
+    public SessionName getCopy() {
+        return new SessionName(this.value);
+    }
+
     /**
      * Returns if a given string is a valid session name.
      */

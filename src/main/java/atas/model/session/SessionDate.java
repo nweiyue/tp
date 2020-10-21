@@ -32,6 +32,20 @@ public class SessionDate implements Comparable<SessionDate> {
     }
 
     /**
+     * Constructs a {@code SessionDate}.
+     *
+     * @param date A valid date.
+     */
+    public SessionDate(LocalDate date) {
+        requireNonNull(date);
+        value = date;
+    }
+
+    public SessionDate getCopy() {
+        return new SessionDate(this.value);
+    }
+
+    /**
      * Returns if a given string is a valid date.
      */
     public static boolean isValidSessionDate(String date) {

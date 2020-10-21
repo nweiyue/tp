@@ -21,6 +21,8 @@ public interface ReadOnlySessionList {
      */
     ObservableList<Student> getInternalStudentList();
 
+    ReadOnlySessionList getCopy();
+
     void updateStudentList(List<Student> list);
 
 }

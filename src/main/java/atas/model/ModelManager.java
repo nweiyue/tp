@@ -40,7 +40,7 @@ public class ModelManager implements Model {
     private Index sessionId;
     private boolean isCurrentSessionEnabled;
     private final Memo memo;
-    private RandomGenerator rng;
+    private final RandomGenerator rng;
 
     /**
      * Initializes a ModelManager with the given sessionList, studentList, userPrefs and memo content.
@@ -306,6 +306,11 @@ public class ModelManager implements Model {
 
     //=========== Undo/Redo =========================================================================
 
+    @Override
+    public void commit() {
+        commitStudentList();
+        commitSessionList();
+    }
     @Override
     public void commitStudentList() {
         studentList.commit();

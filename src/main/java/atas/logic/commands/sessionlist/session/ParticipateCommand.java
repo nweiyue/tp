@@ -53,6 +53,7 @@ public class ParticipateCommand extends Command {
             throw new CommandException(Messages.MESSAGE_NOT_IN_SESSION_TAB);
         }
         model.updateParticipationBySessionName(sessionName, range);
+        model.commit();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 

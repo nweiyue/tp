@@ -208,6 +208,11 @@ public interface Model {
     Index generateRandomStudentIndex();
 
     /**
+     * Saves the current entities in their respective history.
+     */
+    void commit();
+
+    /**
      * Saves the current student list in its history.
      */
     void commitStudentList();

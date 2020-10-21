@@ -48,8 +48,7 @@ public class AddSessionCommand extends Command {
         }
 
         model.addSession(toAdd);
-        model.commitStudentList();
-        model.commitSessionList();
+        model.commit();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

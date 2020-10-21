@@ -54,6 +54,7 @@ public class PresenceCommand extends Command {
             throw new CommandException(Messages.MESSAGE_NOT_IN_SESSION_TAB);
         }
         model.updatePresenceBySessionName(sessionName, range);
+        model.commit();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 

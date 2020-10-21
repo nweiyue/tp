@@ -3,13 +3,13 @@ package atas.model.session;
 import static atas.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 import atas.commons.core.index.Index;
 import atas.model.session.exceptions.DuplicateSessionException;
 import atas.model.session.exceptions.SessionNotFoundException;
-import atas.model.student.Name;
 import atas.model.student.Student;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -42,10 +42,8 @@ public class SessionList implements Iterable<Session>, ReadOnlySessionList {
      * Copies the session in {@code toBeCopied} in to a new list
      */
     public SessionList(ReadOnlySessionList toBeCopied) {
-        sessions = FXCollections.observableArrayList();
-        sessions.addAll(toBeCopied.getSessions());
-        internalStudentList = FXCollections.observableArrayList();
-        internalStudentList.addAll(toBeCopied.getInternalStudentList());
+        this();
+        resetData(toBeCopied);
     }
 
     /**
@@ -53,9 +51,10 @@ public class SessionList implements Iterable<Session>, ReadOnlySessionList {
      * {@code sessions} must not contain duplicate students.
      */
     public void resetData(ReadOnlySessionList newData) {
-        setSessions(newData.getSessions());
+        requireNonNull(newData);
+
+        setSessions(newData.getCopy().getSessions());
         setStudents(newData.getInternalStudentList());
-        synchronizeSessionAndStudentList();
     }
 
     /**
@@ -89,27 +88,16 @@ public class SessionList implements Iterable<Session>, ReadOnlySessionList {
         this.internalStudentList.setAll(students);
     }
 
-    private void synchronizeSessionAndStudentList() {
-        for (Session ses : sessions) {
-            // remove deleted attributes from list
-            ses.getAttributeList().removeIf(a -> !hasStudentName(a.getName()));
-            // add new attributes to list
-            addAttributesIfNew(ses);
+    @Override
+    public SessionList getCopy() {
+        SessionList copy = new SessionList();
+        List<Session> sessionListCopy = new ArrayList<>();
+        for (Session s : sessions) {
+            sessionListCopy.add(s.getCopy());
         }
-    }
-
-    private boolean hasStudentName(String name) {
-        return internalStudentList.stream().anyMatch(s -> s.getName().toString().equals(name));
-    }
-
-    private void addAttributesIfNew(Session session) {
-        for (Student student : internalStudentList) {
-            Name studentName = student.getName();
-            // session's attribute list does not have record of student's name
-            if (session.getAttributeList().stream().noneMatch(a -> a.getName().equals(studentName.toString()))) {
-                session.addNewAttributes(studentName);
-            }
-        }
+        copy.sessions.addAll(sessionListCopy);
+        copy.internalStudentList.addAll(internalStudentList);
+        return copy;
     }
 
     /**

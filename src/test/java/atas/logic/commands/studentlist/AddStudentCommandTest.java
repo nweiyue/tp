@@ -263,6 +263,9 @@ public class AddStudentCommandTest {
         }
 
         @Override
+        public void commit() { }
+
+        @Override
         public void commitStudentList() { }
 
         @Override
