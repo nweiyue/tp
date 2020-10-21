@@ -58,7 +58,6 @@ public class MainApp extends Application {
     public void init() throws Exception {
         logger.info("=============================[ Initializing Atas ]===========================");
         super.init();
-
         AppParameters appParameters = AppParameters.parse(getParameters());
         config = initConfig(appParameters.getConfigPath());
 
@@ -74,6 +73,7 @@ public class MainApp extends Application {
         model = initModelManager(storage, userPrefs);
 
         logic = new LogicManager(model, storage);
+        logic.saveMemoContent(model.getMemo().getContent()); // saves the memo everytime ATAS starts up
 
         ui = new UiManager(logic);
     }
@@ -99,20 +99,19 @@ public class MainApp extends Application {
             if (studentListOptional.isEmpty()) {
                 logger.info("Data file not found. Will be starting with a sample StudentList");
             }
-            if (memoContent.isEmpty()) {
-                logger.info("Data file not found. Will be starting with a sample Memo");
-            }
             initialDataAb = studentListOptional.orElseGet(SampleDataUtil::getSampleStudentList);
             ReadOnlyStudentList finalInitialDataAb = initialDataAb;
             initialDataSl = sessionListOptional.orElseGet(SampleDataUtil::getSampleSessionList);
             initialDataSl.updateStudentList(finalInitialDataAb.getStudentList());
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty StudentList");
+            logger.warning("Data file not in the correct format. Will be starting with an empty StudentList,"
+                    + " SessionList and default Memo content");
             initialDataAb = new StudentList();
             initialDataSl = new SessionList();
             memoContent = MemoStorage.DEFAULT_MEMO_CONTENT;
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty StudentList");
+            logger.warning("Problem while reading from the file. Will be starting with an empty StudentList,"
+                            + " SessionList and default Memo content");
             initialDataAb = new StudentList();
             initialDataSl = new SessionList();
             memoContent = MemoStorage.DEFAULT_MEMO_CONTENT;
