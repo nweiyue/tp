@@ -58,7 +58,6 @@ public class MainApp extends Application {
     public void init() throws Exception {
         logger.info("=============================[ Initializing Atas ]===========================");
         super.init();
-
         AppParameters appParameters = AppParameters.parse(getParameters());
         config = initConfig(appParameters.getConfigPath());
 
@@ -74,7 +73,7 @@ public class MainApp extends Application {
         model = initModelManager(storage, userPrefs);
 
         logic = new LogicManager(model, storage);
-        logic.saveMemoContent(model.getMemo().getContent()); // saves the memo everytime the ATAS starts up
+        logic.saveMemoContent(model.getMemo().getContent()); // saves the memo everytime ATAS starts up
 
         ui = new UiManager(logic);
     }
