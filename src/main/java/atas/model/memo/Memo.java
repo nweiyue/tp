@@ -1,5 +1,7 @@
 package atas.model.memo;
 
+import static atas.commons.util.CollectionUtil.requireAllNonNull;
+
 /**
  * Represents a Memo pad.
  * Each {@code Memo} contains a String of content that users can make changes to through a text area.
@@ -18,6 +20,7 @@ public class Memo {
 
     /**
      * Constructs a Memo object with a specified content.
+     *
      * @param content String content to be shown in Memo.
      */
     public Memo(String content) {
@@ -26,6 +29,7 @@ public class Memo {
 
     /**
      * Returns the content of the Memo.
+     *
      * @return content of the Memo.
      */
     public String getContent() {
@@ -34,18 +38,23 @@ public class Memo {
 
     /**
      * Sets the content of the Memo.
+     *
      * @param content String content to be written to the Memo.
      */
-    private void setContent(String content) {
+    public void setContent(String content) {
+        requireAllNonNull(content);
         this.content = content;
     }
 
     /**
-     * Saves the Memo's content.
-     * @param content String content to be saved.
+     * Appends a String of text at the end of the Memo.
+     *
+     * @param note String text to be appended.
      */
-    public void saveMemoContent(String content) {
-        setContent(content);
+    public void addNote(String note) {
+        requireAllNonNull(note);
+        String newContent = getContent().concat("\n").concat(note);
+        setContent(newContent);
     }
 
     @Override

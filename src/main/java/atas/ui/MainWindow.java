@@ -234,9 +234,17 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Updates the content in memoTextBox with new content form {@code Memo}.
+     */
+    @FXML
+    private void handleEditMemo() {
+        String newContent = logic.getMemoContent();
+        memoTextBox.setText(newContent);
+    }
+
     @FXML
     private void handleEnterSessionTab(Tab tab) throws CommandException {
-
         int toSwitchTabIndex = tab.getIndex().getZeroBased();
         logic.enableCurrentSession();
         sessionStudentListPanel = new SessionStudentListPanel(logic.getFilteredAttributesList());
@@ -288,6 +296,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isSwitchTab() && !commandResult.isEnterSession()) {
                 handleSwitchTab(commandResult.getTab());
+            }
+
+            if (commandResult.isEditMemo()) {
+                handleEditMemo();
             }
 
             if (commandResult.isEnterSession()) {
