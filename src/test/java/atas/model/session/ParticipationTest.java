@@ -45,7 +45,8 @@ class ParticipationTest {
 
         model.setCurrentSessionTrue();
 
-        assertCommandSuccess(new ParticipateCommand(indexRange), model, PresenceCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ParticipateCommand(indexRange), model,
+                ParticipateCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
