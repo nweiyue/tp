@@ -13,7 +13,6 @@ import org.junit.jupiter.api.Test;
 
 import atas.commons.core.index.Index;
 import atas.logic.commands.sessionlist.session.ParticipateCommand;
-import atas.logic.commands.sessionlist.session.PresenceCommand;
 import atas.model.Model;
 import atas.model.ModelManager;
 import atas.model.UserPrefs;
