@@ -215,6 +215,11 @@ public class AddNoteCommandTest {
         }
 
         @Override
+        public Index getSessionId() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setCurrentSessionFalse() {
             throw new AssertionError("This method should not be called.");
         }
