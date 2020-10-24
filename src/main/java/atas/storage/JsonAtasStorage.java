@@ -13,7 +13,7 @@ import atas.commons.core.LogsCenter;
 import atas.commons.exceptions.DataConversionException;
 import atas.commons.exceptions.IllegalValueException;
 import atas.commons.util.JsonUtil;
-import atas.model.ReadOnlyStudentList;
+import atas.model.student.ReadOnlyStudentList;
 
 /**
  * A class to access Atas data stored as a json file on the hard disk.

@@ -1,8 +1,9 @@
-package atas.model.attendance;
+package atas.model.session;
 
 import static atas.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import atas.commons.core.index.Index;
@@ -49,6 +50,13 @@ public class Session implements Comparable<Session> {
         return this.attributeList;
     }
 
+    public Session getCopy() {
+        List<Attributes> attributesListCopy = new ArrayList<>();
+        for (Attributes a : attributeList) {
+            attributesListCopy.add(a.getCopy());
+        }
+        return new Session(sessionName.getCopy(), sessionDate.getCopy(), attributesListCopy);
+    }
     /**
      * Sets the student session presence to <code>true</code>.
      */
@@ -135,6 +143,9 @@ public class Session implements Comparable<Session> {
         return attributeList.get(index).getName();
     }
 
+    public void setAttributeList(List<Attributes> attributeList) {
+        this.attributeList.setAll(attributeList);
+    }
     /**
      * Returns true if both sessions have the same session name.
      * This defines a weaker notion of equality between two sessions.

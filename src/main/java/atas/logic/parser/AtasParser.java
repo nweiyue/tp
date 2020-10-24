@@ -10,8 +10,10 @@ import java.util.regex.Pattern;
 import atas.logic.commands.Command;
 import atas.logic.commands.atas.ExitCommand;
 import atas.logic.commands.atas.HelpCommand;
+import atas.logic.commands.atas.RedoCommand;
 import atas.logic.commands.atas.RngCommand;
 import atas.logic.commands.atas.SwitchCommand;
+import atas.logic.commands.atas.UndoCommand;
 import atas.logic.commands.confirmation.ConfirmationCommand;
 import atas.logic.commands.memo.AddNoteCommand;
 import atas.logic.commands.sessionlist.AddSessionCommand;
@@ -111,6 +113,12 @@ public class AtasParser {
 
             case SwitchCommand.COMMAND_WORD:
                 return new SwitchCommandParser().parse(arguments);
+
+            case UndoCommand.COMMAND_WORD:
+                return new UndoCommand();
+
+            case RedoCommand.COMMAND_WORD:
+                return new RedoCommand();
 
             case AddSessionCommand.COMMAND_WORD:
                 return new AddSessionCommandParser().parse(arguments);

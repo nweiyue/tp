@@ -9,9 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import atas.commons.exceptions.IllegalValueException;
-import atas.model.ReadOnlyStudentList;
-import atas.model.StudentList;
+import atas.model.student.ReadOnlyStudentList;
 import atas.model.student.Student;
+import atas.model.student.StudentList;
 
 /**
  * An Immutable StudentList that is serializable to JSON format.

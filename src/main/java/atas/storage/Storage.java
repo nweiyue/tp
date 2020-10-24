@@ -5,11 +5,11 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import atas.commons.exceptions.DataConversionException;
-import atas.model.ReadOnlySessionList;
-import atas.model.ReadOnlyStudentList;
 import atas.model.ReadOnlyUserPrefs;
 import atas.model.UserPrefs;
 import atas.model.memo.Memo;
+import atas.model.session.ReadOnlySessionList;
+import atas.model.student.ReadOnlyStudentList;
 
 /**
  * API of the Storage component

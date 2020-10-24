@@ -1,6 +1,6 @@
 package atas.ui.sessionlist.session;
 
-import atas.model.attendance.Attributes;
+import atas.model.session.Attributes;
 import atas.ui.UiPart;
 import atas.ui.studentlist.StudentCard;
 import javafx.fxml.FXML;

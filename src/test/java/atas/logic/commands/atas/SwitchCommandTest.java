@@ -46,8 +46,7 @@ public class SwitchCommandTest {
 
     @Test
     public void execute_switchCurrentTab_success() {
-        String expectedMessage = String.format(SwitchCommand.MESSAGE_SWITCH_TAB_SUCCESS,
-                Tab.CURRENT.toString().toLowerCase());
+        String expectedMessage = String.format(SwitchCommand.MESSAGE_SWITCH_TAB_SUCCESS, Tab.CURRENT.toDisplayName());
         CommandResult expectedCommandResult = new CommandResult(expectedMessage, false, Tab.CURRENT,
                 false, false, false);
         SwitchCommand switchCommand = new SwitchCommand(CURRENT_SESSION_TAB_NAME);

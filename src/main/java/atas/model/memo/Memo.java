@@ -63,4 +63,9 @@ public class Memo {
                 || (other instanceof Memo // instanceof handles nulls
                 && content.equals(((Memo) other).content)); // state check
     }
+
+    @Override
+    public String toString() {
+        return content;
+    }
 }

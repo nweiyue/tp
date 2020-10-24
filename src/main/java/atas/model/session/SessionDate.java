@@ -1,4 +1,4 @@
-package atas.model.attendance;
+package atas.model.session;
 
 import static atas.commons.util.AppUtil.checkArgument;
 import static java.util.Objects.requireNonNull;
@@ -29,6 +29,20 @@ public class SessionDate implements Comparable<SessionDate> {
         requireNonNull(date);
         checkArgument(isValidSessionDate(date), MESSAGE_CONSTRAINTS);
         value = LocalDate.parse(standardizeDateString(date), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+    }
+
+    /**
+     * Constructs a {@code SessionDate}.
+     *
+     * @param date A valid date.
+     */
+    public SessionDate(LocalDate date) {
+        requireNonNull(date);
+        value = date;
+    }
+
+    public SessionDate getCopy() {
+        return new SessionDate(this.value);
     }
 
     /**

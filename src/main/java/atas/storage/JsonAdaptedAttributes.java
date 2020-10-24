@@ -6,9 +6,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import atas.commons.exceptions.IllegalValueException;
-import atas.model.attendance.Attributes;
-import atas.model.attendance.Participation;
-import atas.model.attendance.Presence;
+import atas.model.session.Attributes;
+import atas.model.session.Participation;
+import atas.model.session.Presence;
 import atas.model.student.Name;
 
 /**

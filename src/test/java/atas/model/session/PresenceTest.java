@@ -1,4 +1,4 @@
-package atas.model.attendance;
+package atas.model.session;
 
 import static atas.logic.commands.CommandTestUtil.assertCommandFailure;
 import static atas.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -12,61 +12,59 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import atas.commons.core.index.Index;
-import atas.logic.commands.sessionlist.session.ParticipateCommand;
 import atas.logic.commands.sessionlist.session.PresenceCommand;
 import atas.model.Model;
 import atas.model.ModelManager;
-import atas.model.StudentList;
 import atas.model.UserPrefs;
+import atas.model.student.StudentList;
 import atas.testutil.ModelManagerBuilder;
 
-class ParticipationTest {
+class PresenceTest {
 
-    private static final boolean HAS_PARTICIPATED = true;
+    private static final boolean IS_PRESENT = true;
 
-    private static final Participation DEFAULT_PARTICIPATION = new Participation();
-    private static final Participation POSITIVE_PARTICIPATION = new Participation(HAS_PARTICIPATED);
+    private static final Presence DEFAULT_PRESENCE = new Presence();
+    private static final Presence POSITIVE_PRESENCE = new Presence(IS_PRESENT);
     private Model model = ModelManagerBuilder.buildTypicalModelManager();
 
     @Test
-    public void toggleParticipationWithoutEnterSessionTest() {
+    public void togglePresenceWithoutEnterSessionTest() {
         IndexRange indexRange = new IndexRange("1-4");
         model.addSession(SESSION_WEEK_ONE);
-        model.updateParticipationBySessionName(SESSION_WEEK_ONE.getSessionName(), indexRange);
+        model.updatePresenceBySessionName(SESSION_WEEK_ONE.getSessionName(), indexRange);
 
         Model expectedModel = new ModelManager(getTypicalSessionList(model.getStudentList().getStudentList()),
             new StudentList(model.getStudentList()), new UserPrefs(), EMPTY_MEMO_CONTENT);
         expectedModel.addSession(SESSION_WEEK_ONE);
         expectedModel.enterSession(Index.fromZeroBased(1));
-        expectedModel.updateParticipationBySessionName(SESSION_WEEK_ONE.getSessionName(), indexRange);
+        expectedModel.updatePresenceBySessionName(SESSION_WEEK_ONE.getSessionName(), indexRange);
 
-        assertCommandFailure(new ParticipateCommand(indexRange), model,
-            "You have to be in the session tab to use this!");
+        assertCommandFailure(new PresenceCommand(indexRange), model, "You have to be in the session tab to use this!");
 
         model.setCurrentSessionTrue();
 
-        assertCommandSuccess(new ParticipateCommand(indexRange), model, PresenceCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new PresenceCommand(indexRange), model, PresenceCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
     public void equals() {
         // same object -> returns true
-        assertTrue(DEFAULT_PARTICIPATION.equals(DEFAULT_PARTICIPATION));
+        assertTrue(DEFAULT_PRESENCE.equals(DEFAULT_PRESENCE));
 
         // null -> returns false
-        assertFalse(DEFAULT_PARTICIPATION.equals(null));
+        assertFalse(DEFAULT_PRESENCE.equals(null));
     }
 
     @Test
-    public void participate() {
-        assertEquals(POSITIVE_PARTICIPATION, DEFAULT_PARTICIPATION.toggleParticipation());
-        assertEquals(DEFAULT_PARTICIPATION, POSITIVE_PARTICIPATION.toggleParticipation());
+    public void becomePresent() {
+        assertEquals(POSITIVE_PRESENCE, DEFAULT_PRESENCE.togglePresence());
+        assertEquals(DEFAULT_PRESENCE, POSITIVE_PRESENCE.togglePresence());
     }
 
     @Test
     public void to_string() {
-        Participation actual = new Participation(true);
-        Participation expected = new Participation(true);
+        Presence actual = new Presence(true);
+        Presence expected = new Presence(true);
         assertEquals(expected.toString(), actual.toString());
     }
 }
