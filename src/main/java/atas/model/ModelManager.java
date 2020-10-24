@@ -52,7 +52,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredStudents = new FilteredList<>(this.studentList.getStudentList());
         filteredSessions = new FilteredList<>(this.sessionList.getSessions());
-        sessionId = Index.fromZeroBased(0);
+        //sessionId = Index.fromZeroBased(0);
         memo = new Memo(memoContent);
         rng = RandomGenerator.makeRandomGenerator();
     }
@@ -272,6 +272,21 @@ public class ModelManager implements Model {
     @Override
     public boolean returnCurrentSessionEnabledStatus() {
         return isCurrentSessionEnabled;
+    }
+
+    @Override
+    public String getSessionDetails() {
+        if (sessionId == null) {
+            String nullSessionDetails = "Currently not in any session";
+            return nullSessionDetails;
+        } else {
+            requireNonNull(sessionList);
+            Session currentEnteredSession = sessionList.getSessionBasedOnId(sessionId);
+            requireNonNull(currentEnteredSession);
+            String sessionName = currentEnteredSession.getSessionName().toString();
+            String sessionDate = currentEnteredSession.getSessionDate().toString();
+            return String.format("Current Session: %s    Date: %s", sessionName, sessionDate);
+        }
     }
 
     //=========== Memo ================================================================================

@@ -153,7 +153,7 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getStudentListFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getSessionDetails());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
@@ -242,6 +242,8 @@ public class MainWindow extends UiPart<Stage> {
         sessionStudentListPanel = new SessionStudentListPanel(logic.getFilteredAttributesList());
         sessionStudentListPanelPlaceholder.getChildren().add(sessionStudentListPanel.getRoot());
         tabPane.getSelectionModel().select(toSwitchTabIndex);
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getSessionDetails());
+        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
     }
 

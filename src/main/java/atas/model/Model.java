@@ -206,4 +206,9 @@ public interface Model {
      * Returns the index of a randomly selected student in the student list.
      */
     Index generateRandomStudentIndex();
+
+    /**
+     * Returns the session details of the current entered session.
+     */
+    String getSessionDetails();
 }
