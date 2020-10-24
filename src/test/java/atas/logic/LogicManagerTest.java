@@ -104,7 +104,7 @@ public class LogicManagerTest {
                 new JsonAtasIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionStudentList.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        TxtMemoStorage memoStorage = new TxtMemoStorage(temporaryFolder.resolve("ioExceptionMemo.txt"));
+        TxtMemoStorage memoStorage = new TxtMemoIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionMemo.txt"));
         StorageManager storage = new StorageManager(
                 jsonSessionListStorage, studentListStorage, userPrefsStorage, memoStorage);
         logic = new LogicManager(model, storage);

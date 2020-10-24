@@ -310,6 +310,23 @@ public class ModelManager implements Model {
         return memo;
     }
 
+    @Override
+    public String getMemoContent() {
+        return memo.getContent();
+    }
+
+    @Override
+    public void saveMemoContent(String content) {
+        requireAllNonNull(content);
+        memo.setContent(content);
+    }
+
+    @Override
+    public void addNoteToMemo(String note) {
+        requireNonNull(note);
+        memo.addNote(note);
+    }
+
     //=========== RandomGenerator =========================================================================
 
     @Override

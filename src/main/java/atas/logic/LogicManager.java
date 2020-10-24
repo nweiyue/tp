@@ -42,7 +42,6 @@ public class LogicManager implements Logic {
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
-
         CommandResult commandResult;
         Command command = atasParser.parseCommand(commandText);
         commandResult = command.execute(model);
@@ -50,6 +49,7 @@ public class LogicManager implements Logic {
         try {
             storage.saveSessionList(model.getSessionList());
             storage.saveStudentList(model.getStudentList());
+            storage.saveMemo(model.getMemo());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -104,12 +104,12 @@ public class LogicManager implements Logic {
 
     @Override
     public String getMemoContent() {
-        return model.getMemo().getContent();
+        return model.getMemoContent();
     }
 
     @Override
     public void saveMemoContent(String content) throws CommandException {
-        model.getMemo().saveMemoContent(content);
+        model.saveMemoContent(content);
         try {
             storage.saveMemo(model.getMemo());
         } catch (IOException ioe) {

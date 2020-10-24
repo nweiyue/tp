@@ -18,6 +18,9 @@ public class CommandResult {
     /** The application should switch tab. */
     private final Tab switchTab;
 
+    /** The user is editing the memo. */
+    private final boolean editMemo;
+
     /** The application should exit. */
     private final boolean exit;
 
@@ -25,32 +28,22 @@ public class CommandResult {
     private final boolean isEnterSession;
 
     /**
-     * Constructs a {@code CommandResult} with the specified fields.
-     */
-    public CommandResult(String feedbackToUser, boolean showHelp, Tab switchTab, boolean exit) {
-        this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.showHelp = showHelp;
-        this.switchTab = switchTab;
-        this.exit = exit;
-        this.isEnterSession = false;
-    }
-
-    /**
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, null, false, false);
+        this(feedbackToUser, false, null, false, false, false);
     }
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser,
-                         boolean showHelp, Tab switchTab, boolean exit, boolean isEnterSession) {
+                         boolean showHelp, Tab switchTab, boolean editMemo, boolean exit, boolean isEnterSession) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.switchTab = switchTab;
+        this.editMemo = editMemo;
         this.exit = exit;
         this.isEnterSession = isEnterSession;
     }
@@ -69,6 +62,10 @@ public class CommandResult {
 
     public boolean isSwitchTab() {
         return switchTab != null;
+    }
+
+    public boolean isEditMemo() {
+        return editMemo;
     }
 
     public boolean isExit() {
@@ -94,12 +91,14 @@ public class CommandResult {
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
                 && switchTab == otherCommandResult.switchTab
-                && exit == otherCommandResult.exit;
+                && editMemo == otherCommandResult.editMemo
+                && exit == otherCommandResult.exit
+                && isEnterSession == otherCommandResult.isEnterSession;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, switchTab, exit);
+        return Objects.hash(feedbackToUser, showHelp, switchTab, editMemo, exit, isEnterSession);
     }
 
     @Override

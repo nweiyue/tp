@@ -2,37 +2,53 @@
 layout: page
 title: User Guide
 ---
+[to update] <br>
+
 ATAS is a **desktop app for managing students’ particulars, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type really quickly, ATAS will help you to manage your contacts and students’ particulars faster than traditional GUI apps.
 <hr>
 
 ## Table of Contents
 
-* [Quick start](#qs)
-* [Features](#features)
-  * [Viewing help](#help)
-  * [Adding a student](#addstu)
-  * [Listing all students](#liststu)
-  * [Locating students by name](#findstu)
-  * [Deleting a student](#deletestu)
-  * [Editing a student's particulars](#editstu)
-  * [Clearing the student list](#clearstu)
-  * [Adding a session](#addses)
-  * [Deleting a session](#deleteses)
-  * [Editing a session](#editses)
-  * [Clearing the session list](#clearses)
-  * [Entering a session](#enterses)
-  * [Toggling participation of students](#participate)
-  * [Toggling presence of students](#presence)
-  * [Switching between tabs](#switch)
-  * [Exiting the program](#exit)
-  * [User confirmation prompt](#ucp)
-  * [Saving data](#sd)
-* [FAQ](#faq)
-* [Command summary](#cs)
+1. [Overview](#overview)
+1. [Quick start](#qs)
+1. [Features](#features)
+   1. [General](#help)
+       1. [Viewing help](#help)
+       1. [Switching between tabs](#switch)
+       1. [Generating the name of a randomly-selected student](#rng)
+       1. [Undo-ing a command](#undo)
+       1. [Redo-ing a command](#redo)
+       1. [Exiting the program](#exit)
+   1. [Students](#addstu)
+      1. [Adding a student](#addstu)
+      1. [Listing all students](#liststu)
+      1. [Locating students by name](#findstu)
+      1. [Editing a student's particulars](#editstu)
+      1. [Deleting a student](#deletestu)
+      1. [Clearing the student list](#clearstu)
+   1. [Sessions](#addses)
+      1. [Adding a session](#addses)
+      1. [Deleting a session](#deleteses)
+      1. [Clearing the session list](#clearses)
+      1. [Editing a session](#editses)
+      1. [Entering a session](#enterses)
+   1. [Current session](#participate)
+      1. [Toggling participation status of students](#participate)
+      1. [Toggling presence status of students](#presence)
+   1. [User confirmation prompt](#ucp)
+   1. [Saving data](#sd)
+1. [FAQ](#faq)
+1. [Command summary](#cs)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## <a name="qs"></a>Quick start
+## <a name="overview"></a>1. Overview
+
+[todo] mention something about the different things we can do for students, sessions, current session, etc.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## <a name="qs"></a>2. Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -48,11 +64,11 @@ ATAS is a **desktop app for managing students’ particulars, optimized for use 
 
    * **`liststu`** : Lists out all the students.
 
-   * **`addstu n/John Cena e/thechamp@u.nus.edu`** : Adds a student named `John Cena` to the student list.
+   * **`addstu n/John Cena m/A0123456X e/thechamp@u.nus.edu`** : Adds a student named `John Cena` to the student list.
 
    * **`deleteses 3`** : Deletes the 3rd session shown in the current session list.
    
-   * **`editses 3 s/Tutorial 2`** : Edits the 2nd session name to `Tutorial 2`.
+   * **`editses 3 s/Tutorial 2`** : Edits the 3rd session name to `Tutorial 2`.
 
    * **`clearstu`** : Deletes all the students.
 
@@ -62,7 +78,7 @@ ATAS is a **desktop app for managing students’ particulars, optimized for use 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## <a name="features"></a>Features
+## <a name="features"></a>3. Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -78,11 +94,9 @@ ATAS is a **desktop app for managing students’ particulars, optimized for use 
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/foreigner`, `t/foreigner t/enthusiastic` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME m/MATRICULATION_NUMBER`, `m/MATRICULATION_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME m/MATRICULATION_NUMBER`, `m/MATRICULATION_NUMBER n/NAME` is also acceptable. </div>
 
-</div>
-
-### <a name="help"></a>Viewing help : `help`
+### <a name="help"></a>3.i.a. Viewing help : `help`
 
 Shows the list of available commands and a link to access the user guide.
 
@@ -92,7 +106,62 @@ Shows the list of available commands and a link to access the user guide.
 help
 ```
 
-### <a name="addstu"></a>Adding a student : `addstu`
+### <a name="switch"></a>3.i.b. Switching between tabs : `switch`
+
+Switches between tabs.
+
+```
+switch TAB_NAME
+```
+
+* The tab name is case-insensitive.
+* The tab must be an existing tab (students or sessions).
+* `Current Session` can only be access using `enterses INDEX`.
+
+Example:
+* `switch sessions` switches from the current tab to the sessions tab.
+
+### <a name="rng"></a>3.i.c. Generating the name of a randomly-selected student : `rng`
+
+Chooses a student at random from the student list.
+
+```
+rng
+```
+
+### <a name="undo"></a>3.i.d. Undo-ing a command : `undo`
+
+Undoes a command and essentially returns ATAS to the state prior to performing that command.
+
+```
+undo
+```
+
+Commands currently supported:
+* Adding a student/session: `addstu` / `addses`
+* Deleting a student/session: `deletestu` / `deleteses`
+* Editing a student/session: `editstu` / `editses`
+* Clearing all students/sessions: `clearstu` / `clearses`
+
+### <a name="redo"></a>3.i.e. Redo-ing a command : `redo`
+
+Redoes a command that was most recently undone and returns ATAS to the state after having performed that command.
+
+Essentially the reverse of undo-ing a command.
+
+```
+redo
+```
+
+###  <a name="exit"></a>3.i.f. Exiting the program : `bye`
+
+Exits the application.
+
+```
+bye
+```
+
+### <a name="addstu"></a>3.ii.a. Adding a student : `addstu`
 
 Adds a student to the student list.
 
@@ -101,14 +170,13 @@ addstu n/NAME m/MATRICULATION_NUMBER e/NUS_EMAIL_ADDRESS [t/TAG]…
 ```
 
 :bulb: **Tip:**<div markdown="span" class="alert alert-primary">
-A student can have any number of tags (including 0)
-</div>
+A student can have any number of tags (including 0) </div>
 
 Examples:
 * `addstu n/John Cena m/A0123456J e/thechamp@u.nus.edu`
 * `addstu n/Alvina Handsome m/A0123456X e/handsome.alvina@u.nus.edu t/new`
 
-### <a name="liststu"></a>Listing all students : `liststu`
+### <a name="liststu"></a>3.ii.b. Listing all students : `liststu`
 
 Shows a list of all students in the current student list.
 
@@ -116,7 +184,7 @@ Shows a list of all students in the current student list.
 liststu
 ```
 
-### <a name="findstu"></a>Locating students by name: `findstu`
+### <a name="findstu"></a>3.ii.c. Locating students by name : `findstu`
 
 Finds students whose names contain any of the given keywords.
 
@@ -136,26 +204,7 @@ Examples:
 * `findstu kent ridge` returns `Kent Tan` and `Mark Ridge`<br>
 [Insert image of an example of result of `findstu Cena`]
 
-### <a name="deletestu"></a>Deleting a student : `deletestu`
-
-The user will be prompted to confirm their decision here.
-
-If yes: deletes the specified student from the student list.
-
-```
-deletestu INDEX
-```
-
-* Deletes the student at the specified `INDEX`.
-* The index refers to the index number shown in the displayed student list.
-* The index **must be a positive integer** 1, 2, 3, …
-* User will then be prompted for a confirmation input **`(yes/no)`**.
-
-Examples:
-* `liststu` followed by `deletestu 2` followed by `yes` deletes the 2nd student in the student list.
-* `findstu Betsy` followed by `deletestu 1` followed by `y` deletes the 1st student in the results of the `findstu` command.
-
-### <a name="editstu"></a>Edit a student's particulars: `editstu`
+### <a name="editstu"></a>3.i.d. Editing a student's particulars : `editstu`
 
 The user will be prompted to confirm their decision here.
 
@@ -174,7 +223,26 @@ Examples:
 * `editstu 2 n/John Cena` followed by `yes` edits the 2nd student in the student list with an updated name `John Cena`.
 * `editstu 3 t/Joker` followed by `y` edits the 3rd student in the student list with an updated tag `Joker`.
 
-###  <a name="clearstu"></a>Clearing the student list : `clearstu`
+### <a name="deletestu"></a>3.ii.e. Deleting a student : `deletestu`
+
+The user will be prompted to confirm their decision here.
+
+If yes: deletes the specified student from the student list.
+
+```
+deletestu INDEX
+```
+
+* Deletes the student at the specified `INDEX`.
+* The index refers to the index number shown in the displayed student list.
+* The index **must be a positive integer** 1, 2, 3, …
+* User will then be prompted for a confirmation input **`(yes/no)`**.
+
+Examples:
+* `liststu` followed by `deletestu 2` followed by `yes` deletes the 2nd student in the student list.
+* `findstu Betsy` followed by `deletestu 1` followed by `y` deletes the 1st student in the results of the `findstu` command.
+
+###  <a name="clearstu"></a>3.ii.f. Clearing the student list : `clearstu`
 
 The user will be prompted to confirm their decision here.
 
@@ -184,7 +252,7 @@ If yes: removes all students from the student list.
 clearstu
 ```
 
-### <a name="addses"></a>Adding a session : `addses`
+### <a name="addses"></a>3.iii.a. Adding a session : `addses`
 
 Adds a session to session list.
 
@@ -199,7 +267,7 @@ Two sessions cannot have the same name
 Examples:
 * `addses s/tut1 d/12/7/2020`
 
-### <a name="deleteses"></a>Deleting a session : `deleteses`
+### <a name="deleteses"></a>3.iii.b. Deleting a session : `deleteses`
 
 The user will be prompted to confirm their decision here.
 
@@ -217,7 +285,15 @@ deleteses INDEX
 Examples:
 * `deleteses s/tut1 d/12/7/2020` followed by `yes` deletes the 2nd session in the session list.
 
-### <a name="editses"></a>Editing a session : `editses`
+###  <a name="clearses"></a>3.iii.c. Clearing the session list : `clearses`
+
+Deletes all the sessions in the session list.
+
+```
+clearses
+```
+
+### <a name="editses"></a>3.iii.d. Editing a session : `editses`
 
 The user will be prompted to confirm their decision here.
 
@@ -236,15 +312,7 @@ Examples:
 * `editses 2 s/Tutorial1 d/10/10/2020` followed by `yes` edits the 2nd session in the session list with a new session name `Tutorial1` and a new session date `10/10/2020`.
 
 
-###  <a name="clearses"></a>Clearing the session list : `clearses`
-
-Deletes all the sessions in the session list.
-
-```
-clearses
-```
-
-### <a name="enterses"></a>Entering a session : `enterses`
+### <a name="enterses"></a>3.iii.e. Entering a session : `enterses`
 
 Enters a session in the session list.
 
@@ -259,7 +327,7 @@ enterses INDEX
 Examples:
 * `enterses 1` enters the first session and allows you to use PARTICIPATE and PRESENCE commands.
 
-### <a name="participate"></a>Toggling participation status of students : `participate`
+### <a name="participate"></a>3.iv.a. Toggling participation status of students : `participate`
 
 Toggles the participation status of the students in the student list of the session.
 
@@ -274,7 +342,7 @@ participate INDEX_RANGE
 Examples:
 * `participate 1-4` toggles the participation status of students 1 to 4.
 
-### <a name="presence"></a>Toggling presence status of students : `presence`
+### <a name="presence"></a>3.iv.b. Toggling presence status of students : `presence`
 
 Toggles the presence status of students in the student list of the session.
 
@@ -289,30 +357,7 @@ presence INDEX_RANGE
 Examples:
 * `presence 1-4` toggles the presence status of students 1 to 4.
 
-### <a name="switch"></a>Switching between tabs : `switch`
-
-Switches between tabs.
-
-```
-switch TAB_NAME
-```
-
-* The tab name is case-insensitive.
-* The tab must be an existing tab (students or sessions).
-* `Current Session` can only be access using `enterses INDEX`.
-
-Example:
-* `switch sessions` switches from the current tab to the sessions tab.
-
-###  <a name="exit"></a>Exiting the program : `bye`
-
-Exits the application.
-
-```
-bye
-```
-
-### <a name="ucp"></a>User confirmation prompt
+### <a name="ucp"></a>3.v. User confirmation prompt
 
 Prompts the user to confirm the execution of commands that may permanently remove information.
 These commands are: `deletestu`, `editstu`,`clearstu`, `deleteses`, `editses`.
@@ -324,22 +369,27 @@ Examples:
 * `editses 3 s/SESSION_NAME` is followed with `Edit 3? (yes/no)`.
 * `clearstu` is followed with `Clear list? (yes/no)`.
 
-###  <a name="sd"></a>Saving the data
+###  <a name="sd"></a>3.vi. Saving the data
 
 Students’ data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-## <a name="faq"></a>FAQ
+## <a name="faq"></a>4. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ATAS home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## <a name="cs"></a>Command summary
+## <a name="cs"></a>5. Command summary
 
 Action | Format, Examples
 --------|------------------
 **Help** | `help`
+**Switch** | `switch TAB_NAME`<br> e.g., `switch sessions`
+**Random Name Generation** | `rng`
+**Undo** | `undo`
+**Redo** | `redo`
+**Exit** | `bye`
 **Add Student** | `addstu n/NAME m/MATRICULATION_NUMBER e/NUS_EMAIL_ADDRESS [t/TAG]…​` <br> e.g., `addstu n/Rainer Lam m/A0123456C e/rainerlam@u.nus.edu t/smart`
 **List Students** | `liststu`
 **Find Students** | `findstu KEYWORD [MORE_KEYWORDS]`<br> e.g., `findstu Justin Bieber`
@@ -353,5 +403,4 @@ Action | Format, Examples
 **Enter Session** | `enterses INDEX`<br> e.g., `enterses 1`
 **Participate** | `participate INDEX_RANGE `<br> e.g., `participate 2`
 **Presence** | `presence INDEX_RANGE `<br> e.g., `presence 2`
-**Switch** | `switch TAB_NAME`<br> e.g., `switch sessions`
-**Exit** | `bye`
+
