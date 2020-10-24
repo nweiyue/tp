@@ -269,6 +269,10 @@ public class AddNoteCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public String getSessionDetails() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

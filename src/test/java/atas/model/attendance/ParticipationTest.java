@@ -32,6 +32,8 @@ class ParticipationTest {
     public void toggleParticipationWithoutEnterSessionTest() {
         IndexRange indexRange = new IndexRange("1-4");
         model.addSession(SESSION_WEEK_ONE);
+        assertCommandFailure(new ParticipateCommand(indexRange), model,
+            "You have to be in the session tab to use this!");
         model.enterSession(Index.fromZeroBased(1));
         model.updateParticipationBySessionName(SESSION_WEEK_ONE.getSessionName(), indexRange);
 
@@ -41,8 +43,7 @@ class ParticipationTest {
         expectedModel.enterSession(Index.fromZeroBased(1));
         expectedModel.updateParticipationBySessionName(SESSION_WEEK_ONE.getSessionName(), indexRange);
 
-        assertCommandFailure(new ParticipateCommand(indexRange), model,
-            "You have to be in the session tab to use this!");
+
 
         model.setCurrentSessionTrue();
 

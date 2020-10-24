@@ -31,6 +31,8 @@ class PresenceTest {
     public void togglePresenceWithoutEnterSessionTest() {
         IndexRange indexRange = new IndexRange("1-4");
         model.addSession(SESSION_WEEK_ONE);
+        assertCommandFailure(new PresenceCommand(indexRange), model, "You have to be in the session tab to use this!");
+
         model.enterSession(Index.fromZeroBased(1));
         model.updatePresenceBySessionName(SESSION_WEEK_ONE.getSessionName(), indexRange);
 
@@ -40,7 +42,6 @@ class PresenceTest {
         expectedModel.enterSession(Index.fromZeroBased(1));
         expectedModel.updatePresenceBySessionName(SESSION_WEEK_ONE.getSessionName(), indexRange);
 
-        assertCommandFailure(new PresenceCommand(indexRange), model, "You have to be in the session tab to use this!");
 
         model.setCurrentSessionTrue();
 
