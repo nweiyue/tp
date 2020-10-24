@@ -4,16 +4,16 @@ import static atas.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static atas.logic.commands.sessionlist.AddSessionCommand.MESSAGE_USAGE;
 import static atas.logic.parser.CliSyntax.PREFIX_SESSION_DATE;
 import static atas.logic.parser.CliSyntax.PREFIX_SESSION_NAME;
-import static atas.model.attendance.SessionDate.MESSAGE_CONSTRAINTS;
+import static atas.model.session.SessionDate.MESSAGE_CONSTRAINTS;
 
 import java.time.format.DateTimeParseException;
 import java.util.stream.Stream;
 
 import atas.logic.commands.sessionlist.AddSessionCommand;
 import atas.logic.parser.exceptions.ParseException;
-import atas.model.attendance.Session;
-import atas.model.attendance.SessionDate;
-import atas.model.attendance.SessionName;
+import atas.model.session.Session;
+import atas.model.session.SessionDate;
+import atas.model.session.SessionName;
 
 /**
  * Parses input arguments and creates a new AddSessionCommand object

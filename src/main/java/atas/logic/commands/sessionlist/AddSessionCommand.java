@@ -7,7 +7,7 @@ import atas.logic.commands.CommandResult;
 import atas.logic.commands.exceptions.CommandException;
 import atas.logic.parser.CliSyntax;
 import atas.model.Model;
-import atas.model.attendance.Session;
+import atas.model.session.Session;
 
 /**
  * Creates a new class session.
@@ -48,6 +48,7 @@ public class AddSessionCommand extends Command {
         }
 
         model.addSession(toAdd);
+        model.commit();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

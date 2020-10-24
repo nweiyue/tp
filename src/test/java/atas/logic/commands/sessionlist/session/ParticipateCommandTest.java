@@ -17,8 +17,8 @@ import atas.commons.core.index.Index;
 import atas.logic.commands.exceptions.CommandException;
 import atas.logic.commands.studentlist.ClearStudentListCommand;
 import atas.model.Model;
-import atas.model.attendance.IndexRange;
-import atas.model.attendance.Session;
+import atas.model.session.IndexRange;
+import atas.model.session.Session;
 import atas.testutil.ModelManagerBuilder;
 
 

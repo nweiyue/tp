@@ -20,30 +20,31 @@ public class HelpWindow extends UiPart<Stage> {
 
     public static final String COMMAND_LIST_GENERAL = "General:\n"
             + "Get help: help\n"
-            + "Exit the application: exit\n"
             + "Switch between tabs: switch TAB_NAME\n"
-            + "Generate the name of a randomly selected student: rng\n\n"
-            + "Switch between tabs: switch TAB_NAME\n";
+            + "Generate the name of a randomly selected student: rng\n"
+            + "Undo a command: undo\n"
+            + "Redo a command: redo\n"
+            + "Exit the application: exit\n";
 
     public static final String COMMAND_LIST_STUDENTS = "Students: \n"
             + "Add a student: addstu n/NAME m/MATRICULATION_NUMBER e/NUS_EMAIL_ADDRESS [t/TAG]…\u200B\n"
             + "List all students: liststu\n"
-            + "Find students: findstu KEYWORD [MORE_KEYWORDS]\n"
-            + "Delete a student: deletestu INDEX\n"
+            + "Find student(s): findstu KEYWORD [MORE_KEYWORDS]\n"
             + "Edit a student's particulars: editstu INDEX [n/NAME] [m/MATRICULATION_NUMBER] "
             + "[e/NUS_EMAIL_ADDRESS] [t/TAG]…\u200B\n"
+            + "Delete a student: deletestu INDEX\n"
             + "Clear the student list: clearstu\n";
 
     public static final String COMMAND_LIST_SESSIONS = "Sessions:\n"
             + "Add a session: addses s/SESSION_NAME d/SESSION_DATE\n"
             + "Delete a session: deleteses INDEX\n"
-            + "Edit a session: editses INDEX [s/SESSION_NAME] [d/SESSION_DATE]\n"
             + "Clear the session list: clearses\n"
+            + "Edit a session: editses INDEX [s/SESSION_NAME] [d/SESSION_DATE]\n"
             + "Enter a session: enterses INDEX\n";
 
     public static final String COMMAND_LIST_CURRENT_SESSION = "Current Session:\n"
-            + "Toggles presence status of students: presence INDEX_RANGE\n"
-            + "Toggles participation status of students: participate INDEX_RANGE\n";
+            + "Toggle the presence status of student(s): presence INDEX_RANGE\n"
+            + "Toggle the participation status of student(s): participate INDEX_RANGE\n";
 
     public static final String COMMAND_LIST = "Here is the list of commands you can try with ATAS:\n\n"
             + COMMAND_LIST_GENERAL + "\n"

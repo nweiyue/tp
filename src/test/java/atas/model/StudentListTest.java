@@ -15,7 +15,9 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import atas.model.student.ReadOnlyStudentList;
 import atas.model.student.Student;
+import atas.model.student.StudentList;
 import atas.model.student.exceptions.DuplicateStudentException;
 import atas.testutil.StudentBuilder;
 import javafx.collections.FXCollections;

@@ -5,8 +5,8 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import atas.commons.exceptions.DataConversionException;
-import atas.model.ReadOnlyStudentList;
-import atas.model.StudentList;
+import atas.model.student.ReadOnlyStudentList;
+import atas.model.student.StudentList;
 
 /**
  * Represents a storage for {@link StudentList}.

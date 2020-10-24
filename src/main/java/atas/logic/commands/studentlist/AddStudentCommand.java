@@ -51,6 +51,7 @@ public class AddStudentCommand extends Command {
         }
 
         model.addStudent(toAdd);
+        model.commit();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

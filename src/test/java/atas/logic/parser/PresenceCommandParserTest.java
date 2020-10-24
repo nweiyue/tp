@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import atas.logic.commands.sessionlist.session.PresenceCommand;
 import atas.model.Model;
-import atas.model.attendance.IndexRange;
+import atas.model.session.IndexRange;
 
 public class PresenceCommandParserTest {
 

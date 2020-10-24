@@ -11,13 +11,18 @@ import atas.commons.core.GuiSettings;
 import atas.commons.core.LogsCenter;
 import atas.commons.core.index.Index;
 import atas.commons.core.random.RandomGenerator;
-import atas.model.attendance.Attributes;
-import atas.model.attendance.IndexRange;
-import atas.model.attendance.Session;
-import atas.model.attendance.SessionList;
-import atas.model.attendance.SessionName;
 import atas.model.memo.Memo;
+import atas.model.session.Attributes;
+import atas.model.session.IndexRange;
+import atas.model.session.ReadOnlySessionList;
+import atas.model.session.Session;
+import atas.model.session.SessionList;
+import atas.model.session.SessionName;
+import atas.model.session.VersionedSessionList;
+import atas.model.student.ReadOnlyStudentList;
 import atas.model.student.Student;
+import atas.model.student.StudentList;
+import atas.model.student.VersionedStudentList;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 
@@ -27,15 +32,15 @@ import javafx.collections.transformation.FilteredList;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final StudentList studentList;
-    private final SessionList sessionList;
+    private final VersionedStudentList studentList;
+    private final VersionedSessionList sessionList;
     private final UserPrefs userPrefs;
     private final FilteredList<Student> filteredStudents;
     private final FilteredList<Session> filteredSessions;
     private Index sessionId;
     private boolean isCurrentSessionEnabled;
     private final Memo memo;
-    private RandomGenerator rng;
+    private final RandomGenerator rng;
 
     /**
      * Initializes a ModelManager with the given sessionList, studentList, userPrefs and memo content.
@@ -47,19 +52,52 @@ public class ModelManager implements Model {
 
         logger.fine("Initializing with student list: " + studentList + " and user prefs " + userPrefs);
 
-        this.sessionList = new SessionList(sessionList);
-        this.studentList = new StudentList(studentList);
+        this.sessionList = new VersionedSessionList(sessionList);
+        this.studentList = new VersionedStudentList(studentList);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredStudents = new FilteredList<>(this.studentList.getStudentList());
-        filteredSessions = new FilteredList<>(this.sessionList.getSessions());
-        //sessionId = Index.fromZeroBased(0);
+        this.filteredStudents = new FilteredList<>(this.studentList.getStudentList());
+        this.filteredSessions = new FilteredList<>(this.sessionList.getSessions());
+        this.sessionId = Index.fromZeroBased(0);
+        this.memo = new Memo(memoContent);
+        this.rng = RandomGenerator.makeRandomGenerator();
         isCurrentSessionEnabled = false;
-        memo = new Memo(memoContent);
-        rng = RandomGenerator.makeRandomGenerator();
     }
 
     public ModelManager() {
         this(new SessionList(), new StudentList(), new UserPrefs(), "");
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        // short circuit if same object
+        if (obj == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(obj instanceof ModelManager)) {
+            return false;
+        }
+
+        // state check
+        ModelManager other = (ModelManager) obj;
+        return studentList.equals(other.studentList)
+                && userPrefs.equals(other.userPrefs)
+                && filteredStudents.equals(other.filteredStudents)
+                && sessionList.equals(other.sessionList)
+                && filteredSessions.equals(other.filteredSessions)
+                && memo.equals(other.memo);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("\n" + "- student list: " + studentList + "\n");
+        sb.append("- filtered session list: " + filteredStudents + "\n");
+        sb.append("- session list: " + sessionList + "\n");
+        sb.append("- filtered sessions: " + filteredSessions + "\n");
+        sb.append("- memo: " + memo + "\n");
+        return sb.toString();
     }
 
     //=========== UserPrefs ==================================================================================
@@ -216,27 +254,6 @@ public class ModelManager implements Model {
         filteredStudents.setPredicate(predicate);
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        // short circuit if same object
-        if (obj == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(obj instanceof ModelManager)) {
-            return false;
-        }
-
-        // state check
-        ModelManager other = (ModelManager) obj;
-        return studentList.equals(other.studentList)
-                && userPrefs.equals(other.userPrefs)
-                && filteredStudents.equals(other.filteredStudents)
-                && memo.equals(other.memo);
-    }
-
-
     //=========== Filtered Session List Accessors =============================================================
 
     @Override
@@ -338,4 +355,62 @@ public class ModelManager implements Model {
     public Index generateRandomStudentIndex() {
         return rng.getNextIndex(filteredStudents.size());
     }
+
+    //=========== Undo/Redo =========================================================================
+
+    @Override
+    public void commit() {
+        commitStudentList();
+        commitSessionList();
+    }
+    @Override
+    public void commitStudentList() {
+        studentList.commit();
+    }
+
+    @Override
+    public boolean canUndoStudentList() {
+        return studentList.canUndo();
+    }
+
+    @Override
+    public void undoStudentList() {
+        studentList.undo();
+    }
+
+    @Override
+    public boolean canRedoStudentList() {
+        return studentList.canRedo();
+    }
+
+    @Override
+    public void redoStudentList() {
+        studentList.redo();
+    }
+
+    @Override
+    public void commitSessionList() {
+        sessionList.commit();
+    }
+
+    @Override
+    public boolean canUndoSessionList() {
+        return sessionList.canUndo();
+    }
+
+    @Override
+    public void undoSessionList() {
+        sessionList.undo();
+    }
+
+    @Override
+    public boolean canRedoSessionList() {
+        return sessionList.canRedo();
+    }
+
+    @Override
+    public void redoSessionList() {
+        sessionList.redo();
+    }
+
 }

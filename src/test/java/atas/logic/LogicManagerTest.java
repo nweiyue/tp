@@ -10,7 +10,6 @@ import static atas.logic.parser.CliSyntax.PREFIX_TAG;
 import static atas.testutil.Assert.assertThrows;
 import static atas.testutil.TypicalMemoContents.EMPTY_MEMO_CONTENT;
 import static atas.testutil.TypicalMemoContents.SAMPLE_MEMO_CONTENT_ONE;
-import static atas.testutil.TypicalSessions.getTypicalSessionList;
 import static atas.testutil.TypicalStudents.AMY;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -32,10 +31,10 @@ import atas.logic.commands.studentlist.ListStudentsCommand;
 import atas.logic.parser.exceptions.ParseException;
 import atas.model.Model;
 import atas.model.ModelManager;
-import atas.model.ReadOnlySessionList;
-import atas.model.ReadOnlyStudentList;
 import atas.model.UserPrefs;
 import atas.model.memo.Memo;
+import atas.model.session.ReadOnlySessionList;
+import atas.model.student.ReadOnlyStudentList;
 import atas.model.student.Student;
 import atas.storage.JsonAtasStorage;
 import atas.storage.JsonSessionListStorage;
@@ -192,7 +191,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(getTypicalSessionList(model.getStudentList().getStudentList()),
+        Model expectedModel = new ModelManager(model.getSessionList(),
                 model.getStudentList(), new UserPrefs(), EMPTY_MEMO_CONTENT);
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }

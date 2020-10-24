@@ -1,8 +1,7 @@
-package atas.model;
+package atas.model.session;
 
 import java.util.List;
 
-import atas.model.attendance.Session;
 import atas.model.student.Student;
 import javafx.collections.ObservableList;
 
@@ -21,6 +20,8 @@ public interface ReadOnlySessionList {
      * This list will not contain any duplicate students.
      */
     ObservableList<Student> getInternalStudentList();
+
+    ReadOnlySessionList getCopy();
 
     void updateStudentList(List<Student> list);
 

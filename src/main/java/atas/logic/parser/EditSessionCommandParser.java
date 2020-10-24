@@ -4,7 +4,7 @@ import static atas.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static atas.logic.commands.sessionlist.EditSessionCommand.MESSAGE_NOT_EDITED;
 import static atas.logic.parser.CliSyntax.PREFIX_SESSION_DATE;
 import static atas.logic.parser.CliSyntax.PREFIX_SESSION_NAME;
-import static atas.model.attendance.SessionDate.MESSAGE_CONSTRAINTS;
+import static atas.model.session.SessionDate.MESSAGE_CONSTRAINTS;
 import static java.util.Objects.requireNonNull;
 
 import java.time.format.DateTimeParseException;

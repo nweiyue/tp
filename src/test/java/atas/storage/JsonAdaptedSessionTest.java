@@ -14,8 +14,8 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import atas.commons.exceptions.IllegalValueException;
-import atas.model.attendance.SessionDate;
-import atas.model.attendance.SessionName;
+import atas.model.session.SessionDate;
+import atas.model.session.SessionName;
 
 public class JsonAdaptedSessionTest {
 

@@ -101,4 +101,15 @@ public class CommandResult {
         return Objects.hash(feedbackToUser, showHelp, switchTab, editMemo, exit, isEnterSession);
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("feedbackToUser: " + feedbackToUser + ", ");
+        sb.append("showHelp: " + showHelp + ", ");
+        sb.append("switchTab: " + switchTab + ", ");
+        sb.append("exit: " + exit + ", ");
+        sb.append("isEnterSession: " + isEnterSession);
+        return sb.toString();
+    }
+
 }

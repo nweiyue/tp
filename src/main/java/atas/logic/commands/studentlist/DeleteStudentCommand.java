@@ -43,6 +43,7 @@ public class DeleteStudentCommand extends DangerousCommand {
 
         Student studentToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteStudent(studentToDelete, targetIndex);
+        model.commit();
         return new CommandResult(String.format(MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete));
     }
 

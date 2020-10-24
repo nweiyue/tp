@@ -14,12 +14,12 @@ import atas.logic.commands.sessionlist.EditSessionCommand;
 import atas.logic.commands.studentlist.EditStudentCommand;
 import atas.logic.parser.CliSyntax;
 import atas.model.Model;
-import atas.model.StudentList;
-import atas.model.attendance.Session;
-import atas.model.attendance.SessionDate;
-import atas.model.attendance.SessionName;
+import atas.model.session.Session;
+import atas.model.session.SessionDate;
+import atas.model.session.SessionName;
 import atas.model.student.NameContainsKeywordsPredicate;
 import atas.model.student.Student;
+import atas.model.student.StudentList;
 import atas.testutil.EditSessionDescriptorBuilder;
 import atas.testutil.EditStudentDescriptorBuilder;
 
@@ -116,9 +116,7 @@ public class CommandTestUtil {
 
         try {
             CommandResult result = command.execute(actualModel);
-            //assertEquals(expectedCommandResult, result);
-            /* TODO ^This has to be commented out due to change in
-                CommandResult constructor doesnt return this(...) for some constructors*/
+            assertEquals(expectedCommandResult, result);
             assertEquals(expectedModel, actualModel);
         } catch (CommandException ce) {
             throw new AssertionError("Execution of command should not fail.", ce);

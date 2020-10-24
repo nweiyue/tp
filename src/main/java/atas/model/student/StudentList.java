@@ -1,11 +1,9 @@
-package atas.model;
+package atas.model.student;
 
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import atas.model.student.Student;
-import atas.model.student.UniqueStudentList;
 import javafx.collections.ObservableList;
 
 /**

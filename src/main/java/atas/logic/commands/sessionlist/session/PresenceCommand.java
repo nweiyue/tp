@@ -10,9 +10,9 @@ import atas.logic.commands.Command;
 import atas.logic.commands.CommandResult;
 import atas.logic.commands.exceptions.CommandException;
 import atas.model.Model;
-import atas.model.attendance.Attributes;
-import atas.model.attendance.IndexRange;
-import atas.model.attendance.SessionName;
+import atas.model.session.Attributes;
+import atas.model.session.IndexRange;
+import atas.model.session.SessionName;
 
 /**
  * Toggles the participation status of certain students in particular sessions.
@@ -65,6 +65,7 @@ public class PresenceCommand extends Command {
         }
 
         model.updatePresenceBySessionName(sessionName, range);
+        model.commit();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 
