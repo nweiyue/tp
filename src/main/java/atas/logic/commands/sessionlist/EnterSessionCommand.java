@@ -40,11 +40,6 @@ public class EnterSessionCommand extends Command {
             throw new CommandException(MESSAGE_INVALID_SESSION_DISPLAYED_INDEX);
         }
 
-        if (model.returnCurrentSessionEnabledStatus()
-                && this.sessionIndex.getZeroBased() == model.getSessionId().getZeroBased()) {
-            throw new CommandException(String.format(MESSAGE_ALREADY_IN_SESSION, sessionIndex.getOneBased()));
-        }
-
         model.enterSession(sessionIndex);
         return new CommandResult(String.format(MESSAGE_SUCCESS, sessionIndex.getOneBased()),
             false, Tab.CURRENT, false, false, true);

@@ -13,6 +13,7 @@ import static atas.testutil.TypicalStudents.HOON;
 
 import org.junit.jupiter.api.Test;
 
+import atas.commons.core.index.Index;
 import atas.logic.commands.Command;
 import atas.logic.commands.exceptions.CommandException;
 import atas.logic.commands.sessionlist.AddSessionCommand;
@@ -98,6 +99,8 @@ public class UndoCommandTest {
     @Test
     public void execute_undoParticipateCommand_success() throws CommandException {
         modelCopy.setCurrentSessionTrue();
+        modelCopy.enterSession(Index.fromZeroBased(1));
+        expectedModel.enterSession(Index.fromZeroBased(1));
         createCommandAndExecute(
                 new ParticipateCommand(modelCopy.getSessionList().getSessions().get(0).getSessionName(),
                 INDEX_RANGE_ONE), modelCopy);
@@ -107,6 +110,8 @@ public class UndoCommandTest {
     @Test
     public void execute_undoPresenceCommand_success() throws CommandException {
         modelCopy.setCurrentSessionTrue();
+        modelCopy.enterSession(Index.fromZeroBased(1));
+        expectedModel.enterSession(Index.fromZeroBased(1));
         createCommandAndExecute(
                 new PresenceCommand(modelCopy.getSessionList().getSessions().get(0).getSessionName(),
                 INDEX_RANGE_ONE), modelCopy);
