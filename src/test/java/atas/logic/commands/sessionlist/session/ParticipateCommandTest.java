@@ -13,6 +13,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import atas.commons.core.Messages;
+import atas.commons.core.index.Index;
 import atas.logic.commands.exceptions.CommandException;
 import atas.logic.commands.studentlist.ClearStudentListCommand;
 import atas.model.Model;
@@ -39,6 +40,7 @@ public class ParticipateCommandTest {
     @Test
     public void execute_participateOneNumber_success() {
         // actual model
+        model.enterSession(Index.fromZeroBased(1));
         IndexRange indexRange = new IndexRange(INDEXRANGE_ONE_NUMBER);
         ParticipateCommand participateCommand = new ParticipateCommand(SESSIONNAME_WEEK_ONE, indexRange);
 
@@ -61,6 +63,7 @@ public class ParticipateCommandTest {
     @Test
     public void execute_participateIndexRange_success() {
         // actual model
+        model.enterSession(Index.fromZeroBased(1));
         IndexRange indexRange = new IndexRange(INDEXRANGE_POSITIVE_RANGE);
         ParticipateCommand participateCommand = new ParticipateCommand(SESSIONNAME_WEEK_ONE, indexRange);
 
@@ -85,6 +88,7 @@ public class ParticipateCommandTest {
     @Test
     public void execute_participateSameNumberIndexRange_success() {
         // actual model
+        model.enterSession(Index.fromZeroBased(1));
         IndexRange indexRange = new IndexRange(INDEXRANGE_SAME_NUMBER);
         ParticipateCommand participateCommand = new ParticipateCommand(indexRange);
 

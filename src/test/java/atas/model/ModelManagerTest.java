@@ -110,6 +110,7 @@ public class ModelManagerTest {
 
     @Test
     public void getSessionId() {
+        modelManager.enterSession(Index.fromZeroBased(0));
         assertEquals(0, modelManager.getSessionId().getZeroBased());
 
         modelManager.enterSession(Index.fromZeroBased(2));

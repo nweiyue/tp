@@ -13,6 +13,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import atas.commons.core.Messages;
+import atas.commons.core.index.Index;
 import atas.logic.commands.exceptions.CommandException;
 import atas.logic.commands.studentlist.ClearStudentListCommand;
 import atas.model.Model;
@@ -38,6 +39,7 @@ public class PresenceCommandTest {
     @Test
     public void execute_presenceOneNumber_success() {
         // actual model
+        model.enterSession(Index.fromZeroBased(1));
         IndexRange indexRange = new IndexRange(INDEXRANGE_ONE_NUMBER);
         PresenceCommand presenceCommand = new PresenceCommand(SESSIONNAME_WEEK_ONE, indexRange);
 
@@ -60,6 +62,7 @@ public class PresenceCommandTest {
     @Test
     public void execute_presenceIndexRange_success() {
         // actual model
+        model.enterSession(Index.fromZeroBased(1));
         IndexRange indexRange = new IndexRange(INDEXRANGE_POSITIVE_RANGE);
         PresenceCommand presenceCommand = new PresenceCommand(SESSIONNAME_WEEK_ONE, indexRange);
 
@@ -84,6 +87,7 @@ public class PresenceCommandTest {
     @Test
     public void execute_presenceSameNumberIndexRange_success() {
         // actual model
+        model.enterSession(Index.fromZeroBased(1));
         IndexRange indexRange = new IndexRange(INDEXRANGE_SAME_NUMBER);
         PresenceCommand presenceCommand = new PresenceCommand(SESSIONNAME_WEEK_ONE, indexRange);
 

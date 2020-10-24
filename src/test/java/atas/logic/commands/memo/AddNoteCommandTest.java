@@ -270,10 +270,19 @@ public class AddNoteCommandTest {
         }
 
         @Override
-        public void commit() { }
+        public String getSessionDetails() {
+            throw new AssertionError("This method should not be called.");
+        }
 
         @Override
-        public void commitStudentList() { }
+        public void commit() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void commitStudentList() {
+            throw new AssertionError("This method should not be called.");
+        }
 
         @Override
         public boolean canUndoStudentList() {
@@ -296,7 +305,9 @@ public class AddNoteCommandTest {
         }
 
         @Override
-        public void commitSessionList() { }
+        public void commitSessionList() {
+            throw new AssertionError("This method should not be called.");
+        }
 
         @Override
         public boolean canUndoSessionList() {

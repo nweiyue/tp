@@ -233,8 +233,13 @@ public interface Model {
     Index generateRandomStudentIndex();
 
     /**
-     * Saves the current entities in their respective history.
+     * Returns the session details of the current entered session.
      */
+    String getSessionDetails();
+
+    /**
+    * Saves the current entities in their respective history.
+    */
     void commit();
 
     /**

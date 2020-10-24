@@ -60,6 +60,7 @@ public class ModelManager implements Model {
         this.sessionId = Index.fromZeroBased(0);
         this.memo = new Memo(memoContent);
         this.rng = RandomGenerator.makeRandomGenerator();
+        isCurrentSessionEnabled = false;
     }
 
     public ModelManager() {
@@ -296,6 +297,21 @@ public class ModelManager implements Model {
     @Override
     public boolean returnCurrentSessionEnabledStatus() {
         return isCurrentSessionEnabled;
+    }
+
+    @Override
+    public String getSessionDetails() {
+        if (sessionId == null) {
+            String nullSessionDetails = "Currently not in any session";
+            return nullSessionDetails;
+        } else {
+            requireNonNull(sessionList);
+            Session currentEnteredSession = sessionList.getSessionBasedOnId(sessionId);
+            requireNonNull(currentEnteredSession);
+            String sessionName = currentEnteredSession.getSessionName().toString();
+            String sessionDate = currentEnteredSession.getSessionDate().toString();
+            return String.format("Current Session: %s    Date: %s", sessionName, sessionDate);
+        }
     }
 
     //=========== Memo ================================================================================

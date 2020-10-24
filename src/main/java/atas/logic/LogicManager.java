@@ -108,6 +108,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public String getSessionDetails() {
+        return model.getSessionDetails();
+    }
+
+    @Override
     public void saveMemoContent(String content) throws CommandException {
         model.saveMemoContent(content);
         try {

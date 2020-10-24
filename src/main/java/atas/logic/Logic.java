@@ -69,6 +69,11 @@ public interface Logic {
     String getMemoContent();
 
     /**
+     * Returns the details of the current entered session.
+     */
+    String getSessionDetails();
+
+    /**
      * Saves content into the Memo.
      *
      * @param memoContent The String content that should be saved into the Memo.
