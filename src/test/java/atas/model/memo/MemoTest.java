@@ -2,6 +2,7 @@ package atas.model.memo;
 
 import static atas.testutil.TypicalMemoContents.SAMPLE_MEMO_CONTENT_ONE;
 import static atas.testutil.TypicalMemoContents.SAMPLE_MEMO_CONTENT_TWO;
+import static atas.testutil.TypicalMemoContents.SAMPLE_MEMO_NOTE_ONE;
 import static atas.testutil.TypicalMemos.SAMPLE_MEMO_ONE;
 import static atas.testutil.TypicalMemos.SAMPLE_MEMO_TWO;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -19,12 +20,18 @@ public class MemoTest {
     }
 
     @Test
-    public void testSaveMemoContent() {
+    public void testSetContent() {
         Memo memo = new Memo(SAMPLE_MEMO_CONTENT_ONE);
-        memo.saveMemoContent(SAMPLE_MEMO_CONTENT_TWO);
+        memo.setContent(SAMPLE_MEMO_CONTENT_TWO);
         assertEquals(SAMPLE_MEMO_CONTENT_TWO, memo.getContent());
     }
 
+    @Test
+    public void testAddNote() {
+        Memo memo = new Memo(SAMPLE_MEMO_CONTENT_ONE);
+        memo.addNote(SAMPLE_MEMO_NOTE_ONE);
+        assertEquals(SAMPLE_MEMO_CONTENT_ONE.concat("\n").concat(SAMPLE_MEMO_NOTE_ONE), memo.getContent());
+    }
 
     @Test
     public void equals() {

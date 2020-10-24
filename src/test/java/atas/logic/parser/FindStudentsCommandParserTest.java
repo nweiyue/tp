@@ -13,7 +13,6 @@ import atas.model.student.NameContainsKeywordsPredicate;
 
 public class FindStudentsCommandParserTest {
 
-
     private FindStudentsCommandParser parser = new FindStudentsCommandParser();
 
     @Test
@@ -23,7 +22,7 @@ public class FindStudentsCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_returnsFindCommand() {
+    public void parse_validArgs_returnsFindStudentsCommand() {
         // no leading and trailing whitespaces
         FindStudentsCommand expectedFindStudentCommand =
                 new FindStudentsCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));

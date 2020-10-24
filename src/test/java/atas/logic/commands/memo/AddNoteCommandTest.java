@@ -1,4 +1,4 @@
-package atas.logic.commands.sessionlist;
+package atas.logic.commands.memo;
 
 import static atas.testutil.Assert.assertThrows;
 import static java.util.Objects.requireNonNull;
@@ -7,8 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -16,11 +14,9 @@ import org.junit.jupiter.api.Test;
 import atas.commons.core.GuiSettings;
 import atas.commons.core.index.Index;
 import atas.logic.commands.CommandResult;
-import atas.logic.commands.exceptions.CommandException;
 import atas.model.Model;
 import atas.model.ReadOnlyStudentList;
 import atas.model.ReadOnlyUserPrefs;
-import atas.model.StudentList;
 import atas.model.attendance.Attributes;
 import atas.model.attendance.IndexRange;
 import atas.model.attendance.Session;
@@ -28,60 +24,50 @@ import atas.model.attendance.SessionList;
 import atas.model.attendance.SessionName;
 import atas.model.memo.Memo;
 import atas.model.student.Student;
-import atas.testutil.SessionBuilder;
 import javafx.collections.ObservableList;
 
-public class AddSessionCommandTest {
+public class AddNoteCommandTest {
 
     @Test
-    public void constructor_nullSession_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddSessionCommand(null));
+    public void constructor_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddNoteCommand(null));
     }
 
     @Test
-    public void execute_sessionAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingSessionAdded modelStub = new ModelStubAcceptingSessionAdded();
-        Session validSession = new SessionBuilder().build();
+    public void execute_noteAcceptedByModel_addSuccessful() throws Exception {
+        String content = "content";
+        String note = "note";
+        AddNoteCommandTest.ModelStubWithNewMemoContent modelStub = new AddNoteCommandTest
+                .ModelStubWithNewMemoContent(content);
 
-        CommandResult commandResult = new AddSessionCommand(validSession).execute(modelStub);
+        CommandResult commandResult = new AddNoteCommand(note).execute(modelStub);
 
-        assertEquals(String.format(AddSessionCommand.MESSAGE_SUCCESS, validSession), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validSession), modelStub.sessionList);
-    }
-
-    @Test
-    public void execute_duplicateSession_throwsCommandException() {
-        Session validSession = new SessionBuilder().build();
-        AddSessionCommand addSessionCommand = new AddSessionCommand(validSession);
-        ModelStub modelStub = new ModelStubWithSession(validSession);
-
-        assertThrows(CommandException.class,
-                AddSessionCommand.MESSAGE_DUPLICATE_SESSION, () -> addSessionCommand.execute(modelStub));
+        assertEquals(AddNoteCommand.MESSAGE_SUCCESS, commandResult.getFeedbackToUser());
+        assertEquals(content.concat("\n").concat(note), modelStub.getMemoContent());
     }
 
     @Test
     public void equals() {
-        Session tut = new SessionBuilder().withSessionName("tut").build();
-        Session lab = new SessionBuilder().withSessionName("lab").build();
-
-        AddSessionCommand addTutCommand = new AddSessionCommand(tut);
-        AddSessionCommand addLabCommand = new AddSessionCommand(lab);
+        String note1 = "note1";
+        String note2 = "note2";
+        AddNoteCommand addNote1Command = new AddNoteCommand(note1);
+        AddNoteCommand addNote2Command = new AddNoteCommand(note2);
 
         // same object -> returns true
-        assertTrue(addTutCommand.equals(addTutCommand));
+        assertTrue(addNote1Command.equals(addNote1Command));
 
-        // same session name -> returns true
-        AddSessionCommand addTutCommandCopy = new AddSessionCommand(tut);
-        assertTrue(addTutCommand.equals(addTutCommandCopy));
+        // same values -> returns true
+        AddNoteCommand addNote1CommandCopy = new AddNoteCommand(note1);
+        assertTrue(addNote1Command.equals(addNote1CommandCopy));
 
         // different types -> returns false
-        assertFalse(addTutCommand.equals(1));
+        assertFalse(addNote1Command.equals(1));
 
         // null -> returns false
-        assertFalse(addTutCommand.equals(null));
+        assertFalse(addNote1Command.equals(null));
 
-        // different student -> returns false
-        assertFalse(addTutCommand.equals(addLabCommand));
+        // different String -> returns false
+        assertFalse(addNote1Command.equals(addNote2Command));
     }
 
     /**
@@ -185,12 +171,12 @@ public class AddSessionCommandTest {
 
         @Override
         public void enterSession(Index sessionIndex) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public ObservableList<Attributes> getFilteredAttributesList() {
-            return null;
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -215,7 +201,7 @@ public class AddSessionCommandTest {
 
         @Override
         public ObservableList<Session> getFilteredSessionList() {
-            return null;
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -225,22 +211,22 @@ public class AddSessionCommandTest {
 
         @Override
         public void updateFilteredSessionList(Predicate<Session> predicate) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void setCurrentSessionFalse() {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void setCurrentSessionTrue() {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public boolean returnCurrentSessionEnabledStatus() {
-            return false;
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -277,47 +263,28 @@ public class AddSessionCommandTest {
         public Index generateRandomStudentIndex() {
             throw new AssertionError("This method should not be called.");
         }
+
     }
 
     /**
-     * A Model stub that contains a single session.
+     * A Model stub that contains a single .
      */
-    private class ModelStubWithSession extends ModelStub {
-        private final Session session;
+    private class ModelStubWithNewMemoContent extends AddNoteCommandTest.ModelStub {
+        private String content = "original content";
 
-        ModelStubWithSession(Session session) {
-            requireNonNull(session);
-            this.session = session;
+        ModelStubWithNewMemoContent(String content) {
+            requireNonNull(content);
+            this.content = content;
         }
 
         @Override
-        public boolean hasSession(Session session) {
-            requireNonNull(session);
-            return this.session.isSameSession(session);
-        }
-    }
-
-    /**
-     * A Model stub that always accept the session being added.
-     */
-    private class ModelStubAcceptingSessionAdded extends ModelStub {
-        final ArrayList<Session> sessionList = new ArrayList<>();
-
-        @Override
-        public boolean hasSession(Session session) {
-            requireNonNull(session);
-            return sessionList.stream().anyMatch(session::isSameSession);
+        public void addNoteToMemo(String note) {
+            this.content = content.concat("\n").concat(note);
         }
 
         @Override
-        public void addSession(Session session) {
-            requireNonNull(session);
-            sessionList.add(session);
-        }
-
-        @Override
-        public ReadOnlyStudentList getStudentList() {
-            return new StudentList();
+        public String getMemoContent() {
+            return this.content;
         }
     }
 }
