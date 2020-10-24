@@ -18,16 +18,16 @@ import atas.commons.core.index.Index;
 import atas.logic.commands.CommandResult;
 import atas.logic.commands.exceptions.CommandException;
 import atas.model.Model;
-import atas.model.ReadOnlyStudentList;
 import atas.model.ReadOnlyUserPrefs;
-import atas.model.StudentList;
-import atas.model.attendance.Attributes;
-import atas.model.attendance.IndexRange;
-import atas.model.attendance.Session;
-import atas.model.attendance.SessionList;
-import atas.model.attendance.SessionName;
 import atas.model.memo.Memo;
+import atas.model.session.Attributes;
+import atas.model.session.IndexRange;
+import atas.model.session.Session;
+import atas.model.session.SessionList;
+import atas.model.session.SessionName;
+import atas.model.student.ReadOnlyStudentList;
 import atas.model.student.Student;
+import atas.model.student.StudentList;
 import atas.testutil.SessionBuilder;
 import javafx.collections.ObservableList;
 
@@ -185,7 +185,7 @@ public class AddSessionCommandTest {
 
         @Override
         public void enterSession(Index sessionIndex) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -225,17 +225,22 @@ public class AddSessionCommandTest {
 
         @Override
         public void updateFilteredSessionList(Predicate<Session> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
 
+        @Override
+        public Index getSessionId() {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void setCurrentSessionFalse() {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void setCurrentSessionTrue() {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -259,9 +264,79 @@ public class AddSessionCommandTest {
         }
 
         @Override
+        public String getMemoContent() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void saveMemoContent(String content) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addNoteToMemo(String note) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public Index generateRandomStudentIndex() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public String getSessionDetails() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void commit() { }
+
+        @Override
+        public void commitStudentList() { }
+
+        @Override
+        public boolean canUndoStudentList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void undoStudentList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean canRedoStudentList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void redoStudentList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void commitSessionList() { }
+
+        @Override
+        public boolean canUndoSessionList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void undoSessionList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean canRedoSessionList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void redoSessionList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
     }
 
     /**

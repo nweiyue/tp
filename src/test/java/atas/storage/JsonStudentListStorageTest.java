@@ -16,8 +16,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import atas.commons.exceptions.DataConversionException;
-import atas.model.ReadOnlyStudentList;
-import atas.model.StudentList;
+import atas.model.student.ReadOnlyStudentList;
+import atas.model.student.StudentList;
 
 public class JsonStudentListStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonAtasStorageTest");

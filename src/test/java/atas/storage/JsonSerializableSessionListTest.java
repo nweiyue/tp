@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import atas.commons.exceptions.IllegalValueException;
 import atas.commons.util.JsonUtil;
-import atas.model.attendance.SessionList;
+import atas.model.session.SessionList;
 import atas.testutil.TypicalSessions;
 
 public class JsonSerializableSessionListTest {

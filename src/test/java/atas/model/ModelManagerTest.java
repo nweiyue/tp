@@ -3,6 +3,9 @@ package atas.model;
 import static atas.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 import static atas.testutil.Assert.assertThrows;
 import static atas.testutil.TypicalMemoContents.EMPTY_MEMO_CONTENT;
+import static atas.testutil.TypicalMemoContents.SAMPLE_MEMO_CONTENT_ONE;
+import static atas.testutil.TypicalMemoContents.SAMPLE_MEMO_CONTENT_TWO;
+import static atas.testutil.TypicalMemoContents.SAMPLE_MEMO_NOTE_ONE;
 import static atas.testutil.TypicalSessions.getTypicalSessionList;
 import static atas.testutil.TypicalStudents.ALICE;
 import static atas.testutil.TypicalStudents.BENSON;
@@ -17,10 +20,14 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import atas.commons.core.GuiSettings;
+import atas.commons.core.index.Index;
 import atas.model.memo.Memo;
+import atas.model.session.VersionedSessionList;
 import atas.model.student.NameContainsKeywordsPredicate;
+import atas.model.student.StudentList;
+import atas.model.student.VersionedStudentList;
+import atas.testutil.ModelManagerBuilder;
 import atas.testutil.StudentListBuilder;
-
 
 public class ModelManagerTest {
 
@@ -102,6 +109,18 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void getSessionId() {
+        modelManager.enterSession(Index.fromZeroBased(0));
+        assertEquals(0, modelManager.getSessionId().getZeroBased());
+
+        modelManager.enterSession(Index.fromZeroBased(2));
+        assertEquals(2, modelManager.getSessionId().getZeroBased());
+
+        modelManager.enterSession(Index.fromZeroBased(3));
+        assertEquals(3, modelManager.getSessionId().getZeroBased());
+    }
+
+    @Test
     public void setMemoFilePath_validPath_setsMemoListFilePath() {
         Path path = Paths.get("atas/file/path");
         modelManager.setMemoFilePath(path);
@@ -111,6 +130,70 @@ public class ModelManagerTest {
     @Test
     public void testGetMemo() {
         assertEquals(new Memo(), modelManager.getMemo());
+    }
+
+    @Test
+    public void initialStateListIsSizeOne() {
+        modelManager = ModelManagerBuilder.buildTypicalModelManager();
+        assertEquals(1, ((VersionedStudentList) modelManager.getStudentList()).getStudentStateList().size());
+        assertEquals(1, ((VersionedSessionList) modelManager.getSessionList()).getSessionStateList().size());
+    }
+    @Test
+    public void testInitialAbilityToUndo() {
+        modelManager = ModelManagerBuilder.buildTypicalModelManager();
+        assertFalse(modelManager.canUndoStudentList());
+        assertFalse(modelManager.canUndoSessionList());
+    }
+    @Test
+    public void testInitialAbilityToRedo() {
+        modelManager = ModelManagerBuilder.buildTypicalModelManager();
+        assertFalse(modelManager.canRedoStudentList());
+        assertFalse(modelManager.canRedoSessionList());
+    }
+
+    @Test
+    public void stateListIncreasesSizeAfterCommit() {
+        modelManager = ModelManagerBuilder.buildTypicalModelManager();
+        modelManager.commit();
+        assertEquals(2, ((VersionedStudentList) modelManager.getStudentList()).getStudentStateList().size());
+        assertEquals(2, ((VersionedSessionList) modelManager.getSessionList()).getSessionStateList().size());
+    }
+
+    public void testGetMemoContent() {
+        StudentList studentList = new StudentListBuilder().withStudent(ALICE).withStudent(BENSON).build();
+        UserPrefs userPrefs = new UserPrefs();
+
+        ModelManager modelManagerWithMemoContent = new ModelManager(getTypicalSessionList(studentList.getStudentList()),
+                studentList, userPrefs, SAMPLE_MEMO_CONTENT_ONE);
+
+        assertEquals(SAMPLE_MEMO_CONTENT_ONE, modelManagerWithMemoContent.getMemoContent());
+    }
+
+    @Test
+    public void testSaveMemoContent() {
+        StudentList studentList = new StudentListBuilder().withStudent(ALICE).withStudent(BENSON).build();
+        UserPrefs userPrefs = new UserPrefs();
+
+        ModelManager modelManagerWithNewMemoContent = new ModelManager(
+                getTypicalSessionList(studentList.getStudentList()), studentList, userPrefs, SAMPLE_MEMO_CONTENT_ONE);
+
+        modelManagerWithNewMemoContent.saveMemoContent(SAMPLE_MEMO_CONTENT_TWO);
+
+        assertEquals(SAMPLE_MEMO_CONTENT_TWO, modelManagerWithNewMemoContent.getMemoContent());
+    }
+
+    @Test
+    public void testAddNoteToMemo() {
+        StudentList studentList = new StudentListBuilder().withStudent(ALICE).withStudent(BENSON).build();
+        UserPrefs userPrefs = new UserPrefs();
+
+        ModelManager modelManagerWithNewAddedNoteToMemo = new ModelManager(
+                getTypicalSessionList(studentList.getStudentList()), studentList, userPrefs, SAMPLE_MEMO_CONTENT_ONE);
+
+        modelManagerWithNewAddedNoteToMemo.addNoteToMemo(SAMPLE_MEMO_NOTE_ONE);
+
+        assertEquals(SAMPLE_MEMO_CONTENT_ONE.concat("\n").concat(SAMPLE_MEMO_NOTE_ONE),
+                modelManagerWithNewAddedNoteToMemo.getMemoContent());
     }
 
     @Test
@@ -154,5 +237,9 @@ public class ModelManagerTest {
         differentUserPrefs.setStudentListFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(getTypicalSessionList(studentList.getStudentList()),
                 studentList, differentUserPrefs, EMPTY_MEMO_CONTENT)));
+
+        // different memo -> returns false
+        assertFalse(modelManager.equals(new ModelManager(getTypicalSessionList(studentList.getStudentList()),
+                studentList, userPrefs, SAMPLE_MEMO_CONTENT_ONE)));
     }
 }

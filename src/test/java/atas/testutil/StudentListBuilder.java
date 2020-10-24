@@ -1,7 +1,7 @@
 package atas.testutil;
 
-import atas.model.StudentList;
 import atas.model.student.Student;
+import atas.model.student.StudentList;
 
 /**
  * A utility class to help with building StudentList objects.

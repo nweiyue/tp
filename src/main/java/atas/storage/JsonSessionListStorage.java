@@ -13,7 +13,7 @@ import atas.commons.core.LogsCenter;
 import atas.commons.exceptions.DataConversionException;
 import atas.commons.exceptions.IllegalValueException;
 import atas.commons.util.JsonUtil;
-import atas.model.ReadOnlySessionList;
+import atas.model.session.ReadOnlySessionList;
 
 public class JsonSessionListStorage implements SessionListStorage {
 

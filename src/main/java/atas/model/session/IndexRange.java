@@ -1,4 +1,4 @@
-package atas.model.attendance;
+package atas.model.session;
 
 import static atas.commons.util.AppUtil.checkArgument;
 import static java.util.Objects.requireNonNull;

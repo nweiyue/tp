@@ -1,4 +1,4 @@
-package atas.model.attendance;
+package atas.model.session;
 
 import static atas.testutil.TypicalAttributes.ABSENT_BUT_HAS_PARTICIPATED;
 import static atas.testutil.TypicalAttributes.DEFAULT_PARTICIPATION;

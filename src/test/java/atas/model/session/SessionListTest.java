@@ -1,4 +1,4 @@
-package atas.model.attendance;
+package atas.model.session;
 
 import static atas.testutil.Assert.assertThrows;
 import static atas.testutil.TypicalSessions.CONSULTATION;
@@ -16,7 +16,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import atas.commons.core.index.Index;
-import atas.model.attendance.exceptions.DuplicateSessionException;
+import atas.model.session.exceptions.DuplicateSessionException;
 import atas.model.student.Student;
 import atas.testutil.Assert;
 import atas.testutil.SessionBuilder;

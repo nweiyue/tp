@@ -3,7 +3,7 @@ package atas.ui.sessionlist;
 import java.util.logging.Logger;
 
 import atas.commons.core.LogsCenter;
-import atas.model.attendance.Session;
+import atas.model.session.Session;
 import atas.ui.UiPart;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

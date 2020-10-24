@@ -7,11 +7,12 @@ import java.util.logging.Logger;
 
 import atas.commons.core.LogsCenter;
 import atas.commons.exceptions.DataConversionException;
-import atas.model.ReadOnlySessionList;
-import atas.model.ReadOnlyStudentList;
 import atas.model.ReadOnlyUserPrefs;
 import atas.model.UserPrefs;
 import atas.model.memo.Memo;
+import atas.model.session.ReadOnlySessionList;
+import atas.model.student.ReadOnlyStudentList;
+
 
 /**
  * Manages storage of Atas data in local storage.

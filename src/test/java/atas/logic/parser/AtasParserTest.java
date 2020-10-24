@@ -23,6 +23,7 @@ import atas.logic.commands.atas.HelpCommand;
 import atas.logic.commands.atas.SwitchCommand;
 import atas.logic.commands.confirmation.ConfirmationCommand;
 import atas.logic.commands.confirmation.ConfirmationRejectCommand;
+import atas.logic.commands.memo.AddNoteCommand;
 import atas.logic.commands.sessionlist.AddSessionCommand;
 import atas.logic.commands.sessionlist.ClearSessionsCommand;
 import atas.logic.commands.sessionlist.DeleteSessionCommand;
@@ -37,8 +38,8 @@ import atas.logic.commands.studentlist.EditStudentCommand;
 import atas.logic.commands.studentlist.FindStudentsCommand;
 import atas.logic.commands.studentlist.ListStudentsCommand;
 import atas.logic.parser.exceptions.ParseException;
-import atas.model.attendance.IndexRange;
-import atas.model.attendance.Session;
+import atas.model.session.IndexRange;
+import atas.model.session.Session;
 import atas.model.student.NameContainsKeywordsPredicate;
 import atas.model.student.Student;
 import atas.testutil.EditSessionDescriptorBuilder;
@@ -47,6 +48,7 @@ import atas.testutil.SessionUtil;
 import atas.testutil.StudentBuilder;
 import atas.testutil.StudentUtil;
 import atas.testutil.TypicalSessions;
+
 
 public class AtasParserTest {
 
@@ -168,6 +170,13 @@ public class AtasParserTest {
         PresenceCommand command = (PresenceCommand) parser.parseCommand(
                 PresenceCommand.COMMAND_WORD + " 1-3");
         assertEquals(new PresenceCommand(new IndexRange("1-3")), command);
+    }
+
+    @Test
+    public void parseCommand_addNote() throws Exception {
+        AddNoteCommand command = (AddNoteCommand) parser.parseCommand(
+                AddNoteCommand.COMMAND_WORD + " note");
+        assertEquals(new AddNoteCommand("note"), command);
     }
 
     @Test

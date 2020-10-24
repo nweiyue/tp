@@ -6,7 +6,7 @@ import static atas.logic.commands.sessionlist.session.ParticipateCommand.MESSAGE
 import org.junit.jupiter.api.Test;
 
 import atas.logic.commands.sessionlist.session.ParticipateCommand;
-import atas.model.attendance.IndexRange;
+import atas.model.session.IndexRange;
 
 public class ParticipateCommandParserTest {
 

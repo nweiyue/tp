@@ -13,8 +13,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import atas.model.StudentList;
 import atas.model.student.Student;
+import atas.model.student.StudentList;
 
 /**
  * A utility class containing a list of {@code Student} objects to be used in tests.

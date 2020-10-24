@@ -17,12 +17,12 @@ import atas.logic.Logic;
 import atas.logic.LogicManager;
 import atas.model.Model;
 import atas.model.ModelManager;
-import atas.model.ReadOnlySessionList;
-import atas.model.ReadOnlyStudentList;
 import atas.model.ReadOnlyUserPrefs;
-import atas.model.StudentList;
 import atas.model.UserPrefs;
-import atas.model.attendance.SessionList;
+import atas.model.session.ReadOnlySessionList;
+import atas.model.session.SessionList;
+import atas.model.student.ReadOnlyStudentList;
+import atas.model.student.StudentList;
 import atas.model.util.SampleDataUtil;
 import atas.storage.AtasStorage;
 import atas.storage.JsonAtasStorage;
@@ -73,7 +73,6 @@ public class MainApp extends Application {
         model = initModelManager(storage, userPrefs);
 
         logic = new LogicManager(model, storage);
-        logic.saveMemoContent(model.getMemo().getContent()); // saves the memo everytime ATAS starts up
 
         ui = new UiManager(logic);
     }
