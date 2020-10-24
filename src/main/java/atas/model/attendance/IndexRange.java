@@ -10,18 +10,20 @@ import static java.util.Objects.requireNonNull;
 public class IndexRange {
 
     public static final String MESSAGE_CONSTRAINTS = "Index range should be either a number or value range. "
-            + "It should adhere to the following constraint:\n"
-            + "1. Number or range should be greater than 0 and smaller or equal to the largest index. Any value "
-            + "out of range will be rounded to the nearest range boundary\n"
-            + "2. Range of values should be in the form of VALUE1-VALUE2.";
+            + "It should adhere to the following constraints:\n"
+            + "1. Number or range should be greater than 0 and smaller or equal to the largest index.\n"
+            + "2. Range of values should be in the form of VALUE1-VALUE2.\n"
+            + "3. Range must be in an increasing order,"
+            + " where the second number is bigger than or equals to the first.";
 
-    public static final String VALIDATION_REGEX_1 = "[0-9]{1,}";
-    public static final String VALIDATION_REGEX_2 = "[0-9]{1,}[-]{1}[0-9]{1,}";
+    public static final String VALIDATION_REGEX_1 = "^0*[1-9][0-9]*$";
+    public static final String VALIDATION_REGEX_2 = "^0*[1-9][0-9]*[-]0*[1-9][0-9]*$";
 
-    public final String value;
+    private final String range;
 
     private int lower;
     private int upper;
+
 
     /**
      * Constructs an {@code IndexRange}.
@@ -30,42 +32,35 @@ public class IndexRange {
      */
     public IndexRange(String range) {
         requireNonNull(range);
-        checkArgument(isValidIndexRange(range), MESSAGE_CONSTRAINTS);
-        value = range;
-        fillParams(range);
+        this.range = range;
+        checkArgument(isValidIndexRange(), MESSAGE_CONSTRAINTS);
     }
 
     /**
      * Returns if a given string is a valid index range.
      */
-    public static boolean isValidIndexRange(String test) {
-        return test.matches(VALIDATION_REGEX_1) || test.matches(VALIDATION_REGEX_2);
+    private boolean isValidIndexRange() {
+        if (range.matches(VALIDATION_REGEX_1)) {
+            lower = Integer.parseInt(range);
+            upper = lower;
+            return true;
+        } else if (range.matches(VALIDATION_REGEX_2)) {
+            return isIncreasingRange(range);
+        } else {
+            return false;
+        }
     }
 
-    private void fillParams(String range) {
-        int[] rangeValues = new int[2];
-
-        if (range.matches(VALIDATION_REGEX_1)) {
-            rangeValues[0] = Integer.parseInt(range);
-            rangeValues[1] = rangeValues[0];
-        } else {
-            String[] splitRangeString = range.split("-");
-            int firstNumber = Integer.parseInt(splitRangeString[0]);
-            int secondNumber = Integer.parseInt(splitRangeString[1]);
-
-            rangeValues[0] = Math.min(firstNumber, secondNumber);
-            rangeValues[1] = Math.max(firstNumber, secondNumber);
-        }
-
-        if (rangeValues[0] < 1) {
-            rangeValues[0] = 1;
-        }
-        if (rangeValues[1] < 1) {
-            rangeValues[1] = 1;
-        }
-
-        this.lower = rangeValues[0];
-        this.upper = rangeValues[1];
+    /**
+     * Checks if a given range of two numbers is in increasing order.
+     *
+     * @param range Range to be checked.
+     */
+    private boolean isIncreasingRange(String range) {
+        String[] splitRangeString = range.split("-");
+        lower = Integer.parseInt(splitRangeString[0]);
+        upper = Integer.parseInt(splitRangeString[1]);
+        return lower <= upper;
     }
 
     public int getOneBasedLower() {
