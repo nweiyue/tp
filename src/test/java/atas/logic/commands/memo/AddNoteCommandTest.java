@@ -176,7 +176,7 @@ public class AddNoteCommandTest {
 
         @Override
         public ObservableList<Attributes> getFilteredAttributesList() {
-            return null;
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -201,7 +201,7 @@ public class AddNoteCommandTest {
 
         @Override
         public ObservableList<Session> getFilteredSessionList() {
-            return null;
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -226,7 +226,7 @@ public class AddNoteCommandTest {
 
         @Override
         public boolean returnCurrentSessionEnabledStatus() {
-            return false;
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
