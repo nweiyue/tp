@@ -20,6 +20,8 @@ public class EnterSessionCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Session entered: %1$s";
 
+    public static final String MESSAGE_ALREADY_IN_SESSION = "Already in session %d!";
+
     //sessionIndex should be zero-based here due to parser
     private final Index sessionIndex;
 
@@ -37,9 +39,15 @@ public class EnterSessionCommand extends Command {
         if (sessionIndex.getZeroBased() >= model.getFilteredSessionList().size()) {
             throw new CommandException(MESSAGE_INVALID_SESSION_DISPLAYED_INDEX);
         }
+
+        if (model.returnCurrentSessionEnabledStatus()
+                && this.sessionIndex.getZeroBased() == model.getSessionId().getZeroBased()) {
+            throw new CommandException(String.format(MESSAGE_ALREADY_IN_SESSION, sessionIndex.getOneBased()));
+        }
+
         model.enterSession(sessionIndex);
         return new CommandResult(String.format(MESSAGE_SUCCESS, sessionIndex.getOneBased()),
-            false, Tab.CURRENT, false, true);
+            false, Tab.CURRENT, false, false, true);
     }
 
     @Override

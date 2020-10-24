@@ -3,6 +3,9 @@ package atas.model;
 import static atas.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 import static atas.testutil.Assert.assertThrows;
 import static atas.testutil.TypicalMemoContents.EMPTY_MEMO_CONTENT;
+import static atas.testutil.TypicalMemoContents.SAMPLE_MEMO_CONTENT_ONE;
+import static atas.testutil.TypicalMemoContents.SAMPLE_MEMO_CONTENT_TWO;
+import static atas.testutil.TypicalMemoContents.SAMPLE_MEMO_NOTE_ONE;
 import static atas.testutil.TypicalSessions.getTypicalSessionList;
 import static atas.testutil.TypicalStudents.ALICE;
 import static atas.testutil.TypicalStudents.BENSON;
@@ -17,10 +20,10 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import atas.commons.core.GuiSettings;
+import atas.commons.core.index.Index;
 import atas.model.memo.Memo;
 import atas.model.student.NameContainsKeywordsPredicate;
 import atas.testutil.StudentListBuilder;
-
 
 public class ModelManagerTest {
 
@@ -102,6 +105,17 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void getSessionId() {
+        assertEquals(0, modelManager.getSessionId().getZeroBased());
+
+        modelManager.enterSession(Index.fromZeroBased(2));
+        assertEquals(2, modelManager.getSessionId().getZeroBased());
+
+        modelManager.enterSession(Index.fromZeroBased(3));
+        assertEquals(3, modelManager.getSessionId().getZeroBased());
+    }
+
+    @Test
     public void setMemoFilePath_validPath_setsMemoListFilePath() {
         Path path = Paths.get("atas/file/path");
         modelManager.setMemoFilePath(path);
@@ -112,6 +126,45 @@ public class ModelManagerTest {
     public void testGetMemo() {
         assertEquals(new Memo(), modelManager.getMemo());
     }
+
+    @Test
+    public void testGetMemoContent() {
+        StudentList studentList = new StudentListBuilder().withStudent(ALICE).withStudent(BENSON).build();
+        UserPrefs userPrefs = new UserPrefs();
+
+        ModelManager modelManagerWithMemoContent = new ModelManager(getTypicalSessionList(studentList.getStudentList()),
+                studentList, userPrefs, SAMPLE_MEMO_CONTENT_ONE);
+
+        assertEquals(SAMPLE_MEMO_CONTENT_ONE, modelManagerWithMemoContent.getMemoContent());
+    }
+
+    @Test
+    public void testSaveMemoContent() {
+        StudentList studentList = new StudentListBuilder().withStudent(ALICE).withStudent(BENSON).build();
+        UserPrefs userPrefs = new UserPrefs();
+
+        ModelManager modelManagerWithNewMemoContent = new ModelManager(
+                getTypicalSessionList(studentList.getStudentList()), studentList, userPrefs, SAMPLE_MEMO_CONTENT_ONE);
+
+        modelManagerWithNewMemoContent.saveMemoContent(SAMPLE_MEMO_CONTENT_TWO);
+
+        assertEquals(SAMPLE_MEMO_CONTENT_TWO, modelManagerWithNewMemoContent.getMemoContent());
+    }
+
+    @Test
+    public void testAddNoteToMemo() {
+        StudentList studentList = new StudentListBuilder().withStudent(ALICE).withStudent(BENSON).build();
+        UserPrefs userPrefs = new UserPrefs();
+
+        ModelManager modelManagerWithNewAddedNoteToMemo = new ModelManager(
+                getTypicalSessionList(studentList.getStudentList()), studentList, userPrefs, SAMPLE_MEMO_CONTENT_ONE);
+
+        modelManagerWithNewAddedNoteToMemo.addNoteToMemo(SAMPLE_MEMO_NOTE_ONE);
+
+        assertEquals(SAMPLE_MEMO_CONTENT_ONE.concat("\n").concat(SAMPLE_MEMO_NOTE_ONE),
+                modelManagerWithNewAddedNoteToMemo.getMemoContent());
+    }
+
 
     @Test
     public void equals() {
@@ -154,5 +207,9 @@ public class ModelManagerTest {
         differentUserPrefs.setStudentListFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(getTypicalSessionList(studentList.getStudentList()),
                 studentList, differentUserPrefs, EMPTY_MEMO_CONTENT)));
+
+        // different memo -> returns false
+        assertFalse(modelManager.equals(new ModelManager(getTypicalSessionList(studentList.getStudentList()),
+                studentList, userPrefs, SAMPLE_MEMO_CONTENT_ONE)));
     }
 }

@@ -13,6 +13,7 @@ import atas.logic.commands.atas.HelpCommand;
 import atas.logic.commands.atas.RngCommand;
 import atas.logic.commands.atas.SwitchCommand;
 import atas.logic.commands.confirmation.ConfirmationCommand;
+import atas.logic.commands.memo.AddNoteCommand;
 import atas.logic.commands.sessionlist.AddSessionCommand;
 import atas.logic.commands.sessionlist.ClearSessionsCommand;
 import atas.logic.commands.sessionlist.DeleteSessionCommand;
@@ -134,6 +135,9 @@ public class AtasParser {
 
             case EnterSessionCommand.COMMAND_WORD:
                 return new EnterSessionCommandParser().parse(arguments);
+
+            case AddNoteCommand.COMMAND_WORD:
+                return new AddNoteCommandParser().parse(arguments.stripLeading());
 
             case RngCommand.COMMAND_WORD:
                 return new RngCommand();

@@ -53,6 +53,7 @@ public class ModelManager implements Model {
         filteredStudents = new FilteredList<>(this.studentList.getStudentList());
         filteredSessions = new FilteredList<>(this.sessionList.getSessions());
         //sessionId = Index.fromZeroBased(0);
+        isCurrentSessionEnabled = false;
         memo = new Memo(memoContent);
         rng = RandomGenerator.makeRandomGenerator();
     }
@@ -231,7 +232,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return studentList.equals(other.studentList)
                 && userPrefs.equals(other.userPrefs)
-                && filteredStudents.equals(other.filteredStudents);
+                && filteredStudents.equals(other.filteredStudents)
+                && memo.equals(other.memo);
     }
 
 
@@ -250,6 +252,11 @@ public class ModelManager implements Model {
 
     //=========== Filtered Session Accessors =============================================================
     @Override
+    public Index getSessionId() {
+        return sessionId;
+    }
+
+    @Override
     public ObservableList<Attributes> getFilteredAttributesList() {
         return sessionList.getSessionBasedOnId(sessionId).getAttributeList();
     }
@@ -257,6 +264,7 @@ public class ModelManager implements Model {
     @Override
     public void enterSession(Index sessionId) {
         this.sessionId = sessionId;
+        setCurrentSessionTrue();
     }
 
     @Override
@@ -305,6 +313,23 @@ public class ModelManager implements Model {
     @Override
     public Memo getMemo() {
         return memo;
+    }
+
+    @Override
+    public String getMemoContent() {
+        return memo.getContent();
+    }
+
+    @Override
+    public void saveMemoContent(String content) {
+        requireAllNonNull(content);
+        memo.setContent(content);
+    }
+
+    @Override
+    public void addNoteToMemo(String note) {
+        requireNonNull(note);
+        memo.addNote(note);
     }
 
     //=========== RandomGenerator =========================================================================

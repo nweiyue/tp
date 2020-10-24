@@ -228,6 +228,11 @@ public class AddStudentCommandTest {
         }
 
         @Override
+        public Index getSessionId() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setCurrentSessionFalse() {
             throw new AssertionError("This method should not be called.");
         }
@@ -254,6 +259,21 @@ public class AddStudentCommandTest {
 
         @Override
         public Memo getMemo() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public String getMemoContent() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void saveMemoContent(String content) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addNoteToMemo(String note) {
             throw new AssertionError("This method should not be called.");
         }
 
