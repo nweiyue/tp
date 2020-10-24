@@ -23,6 +23,10 @@ public class VersionedSessionList extends SessionList implements VersionedEntity
         currentStatePointer = 0;
     }
 
+    public List<ReadOnlySessionList> getSessionStateList() {
+        return sessionStateList;
+    }
+
     @Override
     public void commit() {
         removeStatesAfterCurrentPointer();

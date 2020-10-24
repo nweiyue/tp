@@ -30,6 +30,10 @@ import atas.testutil.EditSessionDescriptorBuilder;
 import atas.testutil.EditStudentDescriptorBuilder;
 import atas.testutil.ModelManagerBuilder;
 
+/**
+ * Unit testing for {@code RedoCommand}.
+ * Dependent on the all {@code Command} objects used.
+ */
 public class UndoCommandTest {
 
     private final Model expectedModel = ModelManagerBuilder.buildTypicalModelManager();

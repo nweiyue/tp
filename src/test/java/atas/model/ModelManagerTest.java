@@ -18,8 +18,11 @@ import org.junit.jupiter.api.Test;
 
 import atas.commons.core.GuiSettings;
 import atas.model.memo.Memo;
+import atas.model.session.VersionedSessionList;
 import atas.model.student.NameContainsKeywordsPredicate;
 import atas.model.student.StudentList;
+import atas.model.student.VersionedStudentList;
+import atas.testutil.ModelManagerBuilder;
 import atas.testutil.StudentListBuilder;
 
 
@@ -112,6 +115,21 @@ public class ModelManagerTest {
     @Test
     public void testGetMemo() {
         assertEquals(new Memo(), modelManager.getMemo());
+    }
+
+    @Test
+    public void initialStateListIsSizeOne() {
+        modelManager = ModelManagerBuilder.buildTypicalModelManager();
+        assertEquals(1, ((VersionedStudentList) modelManager.getStudentList()).getStudentStateList().size());
+        assertEquals(1, ((VersionedSessionList) modelManager.getSessionList()).getSessionStateList().size());
+    }
+
+    @Test
+    public void stateListIncreasesSizeAfterCommit() {
+        modelManager = ModelManagerBuilder.buildTypicalModelManager();
+        modelManager.commit();
+        assertEquals(2, ((VersionedStudentList) modelManager.getStudentList()).getStudentStateList().size());
+        assertEquals(2, ((VersionedSessionList) modelManager.getSessionList()).getSessionStateList().size());
     }
 
     @Test

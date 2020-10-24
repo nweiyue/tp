@@ -23,6 +23,10 @@ public class VersionedStudentList extends StudentList implements VersionedEntity
         currentStatePointer = 0;
     }
 
+    public List<ReadOnlyStudentList> getStudentStateList() {
+        return studentStateList;
+    }
+
     @Override
     public void commit() {
         removeStatesAfterCurrentPointer();
