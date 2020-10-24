@@ -268,6 +268,11 @@ public class ModelManager implements Model {
 
     //=========== Filtered Session Accessors =============================================================
     @Override
+    public Index getSessionId() {
+        return sessionId;
+    }
+
+    @Override
     public ObservableList<Attributes> getFilteredAttributesList() {
         return sessionList.getSessionBasedOnId(sessionId).getAttributeList();
     }
@@ -275,6 +280,7 @@ public class ModelManager implements Model {
     @Override
     public void enterSession(Index sessionId) {
         this.sessionId = sessionId;
+        setCurrentSessionTrue();
     }
 
     @Override
