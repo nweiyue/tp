@@ -58,7 +58,7 @@ public class SwitchCommand extends Command {
             throw new CommandException(MESSAGE_INVALID_TAB);
         }
         return new CommandResult(String.format(MESSAGE_SWITCH_TAB_SUCCESS, tab.toDisplayName()),
-                false, tab, false);
+                false, tab, false, false, false);
     }
 
     @Override
