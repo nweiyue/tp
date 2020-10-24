@@ -137,6 +137,18 @@ public class ModelManagerTest {
         assertEquals(1, ((VersionedStudentList) modelManager.getStudentList()).getStudentStateList().size());
         assertEquals(1, ((VersionedSessionList) modelManager.getSessionList()).getSessionStateList().size());
     }
+    @Test
+    public void testInitialAbilityToUndo() {
+        modelManager = ModelManagerBuilder.buildTypicalModelManager();
+        assertFalse(modelManager.canUndoStudentList());
+        assertFalse(modelManager.canUndoSessionList());
+    }
+    @Test
+    public void testInitialAbilityToRedo() {
+        modelManager = ModelManagerBuilder.buildTypicalModelManager();
+        assertFalse(modelManager.canRedoStudentList());
+        assertFalse(modelManager.canRedoSessionList());
+    }
 
     @Test
     public void stateListIncreasesSizeAfterCommit() {
