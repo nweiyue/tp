@@ -5,6 +5,8 @@ import static atas.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static atas.testutil.TypicalMemoContents.EMPTY_MEMO_CONTENT;
 import static atas.testutil.TypicalSessions.getTypicalSessionList;
 
+import atas.model.student.EmailTest;
+import atas.model.student.MatriculationTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -29,7 +31,7 @@ public class AddStudentCommandIntegrationTest {
 
     @Test
     public void execute_newStudent_success() {
-        Student validStudent = new StudentBuilder().build();
+        Student validStudent = new StudentBuilder(MatriculationTest.VALID_MATRICULATION.value, EmailTest.VALID_EMAIL.value).build();
 
         Model expectedModel = new ModelManager(getTypicalSessionList(model.getStudentList().getStudentList()),
                 model.getStudentList(), new UserPrefs(), EMPTY_MEMO_CONTENT);

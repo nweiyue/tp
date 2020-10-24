@@ -1,12 +1,15 @@
 package atas.model.student;
 
 import static atas.testutil.Assert.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
 public class EmailTest {
+
+    public static final Email VALID_EMAIL = new Email("test@u.nus.edu");
+    public static final Email VALID_EMAIL_COPY = new Email(VALID_EMAIL.value);
+    public static final Email DIFFERENT_VALID_EMAIL = new Email("different@u.nus.edu");
 
     @Test
     public void constructor_null_throwsNullPointerException() {
@@ -56,5 +59,23 @@ public class EmailTest {
         assertTrue(Email.isValidEmail("123@u.nus.edu")); // numeric local part and domain name
         assertTrue(Email.isValidEmail("a1+be!@u.nus.edu")); // mixture of alphanumeric and special characters
         assertTrue(Email.isValidEmail("if.you.dream.it_you.can.do.it@u.nus.edu")); // long local part
+        assertTrue(Email.isValidEmail(VALID_EMAIL.value));
+        assertTrue(Email.isValidEmail(VALID_EMAIL_COPY.value));
+        assertTrue(Email.isValidEmail(DIFFERENT_VALID_EMAIL.value));
+    }
+
+    @Test
+    public void equals() {
+        // this == other
+        assertEquals(VALID_EMAIL, VALID_EMAIL);
+        assertEquals(VALID_EMAIL_COPY, VALID_EMAIL_COPY);
+        assertEquals(DIFFERENT_VALID_EMAIL, DIFFERENT_VALID_EMAIL);
+
+        // same email value
+        assertEquals(VALID_EMAIL_COPY, VALID_EMAIL);
+
+        // different email value
+        assertNotEquals(DIFFERENT_VALID_EMAIL, VALID_EMAIL);
+        assertNotEquals(DIFFERENT_VALID_EMAIL, VALID_EMAIL_COPY);
     }
 }
