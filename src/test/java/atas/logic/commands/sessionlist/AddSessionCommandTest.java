@@ -264,6 +264,21 @@ public class AddSessionCommandTest {
         }
 
         @Override
+        public String getMemoContent() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void saveMemoContent(String content) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addNoteToMemo(String note) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public Index generateRandomStudentIndex() {
             throw new AssertionError("This method should not be called.");
         }

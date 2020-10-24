@@ -208,6 +208,26 @@ public interface Model {
     Memo getMemo();
 
     /**
+     * Retrieves the String content in the memo.
+     *
+     * @return String of text present in the memo.
+     */
+    String getMemoContent();
+
+    /**
+     * Writes a String of text into the memo.
+     *
+     * @param content Sting of text to be written.
+     */
+    void saveMemoContent(String content);
+
+    /**
+     * Appends a String of text at the end of the Memo.
+     * @param note String text to be appended.
+     */
+    void addNoteToMemo(String note);
+
+    /**
      * Returns the index of a randomly selected student in the student list.
      */
     Index generateRandomStudentIndex();

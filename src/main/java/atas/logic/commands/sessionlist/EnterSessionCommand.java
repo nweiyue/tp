@@ -47,7 +47,7 @@ public class EnterSessionCommand extends Command {
 
         model.enterSession(sessionIndex);
         return new CommandResult(String.format(MESSAGE_SUCCESS, sessionIndex.getOneBased()),
-            false, Tab.CURRENT, false, true);
+            false, Tab.CURRENT, false, false, true);
     }
 
     @Override

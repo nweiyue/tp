@@ -1,4 +1,4 @@
-package atas.logic.commands.studentlist;
+package atas.logic.commands.memo;
 
 import static atas.testutil.Assert.assertThrows;
 import static java.util.Objects.requireNonNull;
@@ -7,8 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -16,11 +14,9 @@ import org.junit.jupiter.api.Test;
 import atas.commons.core.GuiSettings;
 import atas.commons.core.index.Index;
 import atas.logic.commands.CommandResult;
-import atas.logic.commands.exceptions.CommandException;
 import atas.model.Model;
 import atas.model.ReadOnlyStudentList;
 import atas.model.ReadOnlyUserPrefs;
-import atas.model.StudentList;
 import atas.model.attendance.Attributes;
 import atas.model.attendance.IndexRange;
 import atas.model.attendance.Session;
@@ -28,59 +24,50 @@ import atas.model.attendance.SessionList;
 import atas.model.attendance.SessionName;
 import atas.model.memo.Memo;
 import atas.model.student.Student;
-import atas.testutil.StudentBuilder;
 import javafx.collections.ObservableList;
 
-public class AddStudentCommandTest {
+public class AddNoteCommandTest {
 
     @Test
-    public void constructor_nullStudent_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddStudentCommand(null));
+    public void constructor_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddNoteCommand(null));
     }
 
     @Test
-    public void execute_studentAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingStudentAdded modelStub = new ModelStubAcceptingStudentAdded();
-        Student validStudent = new StudentBuilder().build();
+    public void execute_noteAcceptedByModel_addSuccessful() throws Exception {
+        String content = "content";
+        String note = "note";
+        AddNoteCommandTest.ModelStubWithNewMemoContent modelStub = new AddNoteCommandTest
+                .ModelStubWithNewMemoContent(content);
 
-        CommandResult commandResult = new AddStudentCommand(validStudent).execute(modelStub);
+        CommandResult commandResult = new AddNoteCommand(note).execute(modelStub);
 
-        assertEquals(String.format(AddStudentCommand.MESSAGE_SUCCESS, validStudent), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validStudent), modelStub.studentsAdded);
-    }
-
-    @Test
-    public void execute_duplicateStudent_throwsCommandException() {
-        Student validStudent = new StudentBuilder().build();
-        AddStudentCommand addStudentCommand = new AddStudentCommand(validStudent);
-        ModelStub modelStub = new ModelStubWithStudent(validStudent);
-
-        assertThrows(CommandException.class,
-                AddStudentCommand.MESSAGE_DUPLICATE_STUDENT, () -> addStudentCommand.execute(modelStub));
+        assertEquals(AddNoteCommand.MESSAGE_SUCCESS, commandResult.getFeedbackToUser());
+        assertEquals(content.concat("\n").concat(note), modelStub.getMemoContent());
     }
 
     @Test
     public void equals() {
-        Student alice = new StudentBuilder().withName("Alice").build();
-        Student bob = new StudentBuilder().withName("Bob").build();
-        AddStudentCommand addAliceCommand = new AddStudentCommand(alice);
-        AddStudentCommand addBobCommand = new AddStudentCommand(bob);
+        String note1 = "note1";
+        String note2 = "note2";
+        AddNoteCommand addNote1Command = new AddNoteCommand(note1);
+        AddNoteCommand addNote2Command = new AddNoteCommand(note2);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addNote1Command.equals(addNote1Command));
 
         // same values -> returns true
-        AddStudentCommand addAliceCommandCopy = new AddStudentCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddNoteCommand addNote1CommandCopy = new AddNoteCommand(note1);
+        assertTrue(addNote1Command.equals(addNote1CommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addNote1Command.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addNote1Command.equals(null));
 
-        // different Student -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        // different String -> returns false
+        assertFalse(addNote1Command.equals(addNote2Command));
     }
 
     /**
@@ -184,12 +171,12 @@ public class AddStudentCommandTest {
 
         @Override
         public void enterSession(Index sessionIndex) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public ObservableList<Attributes> getFilteredAttributesList() {
-            return null;
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -214,7 +201,7 @@ public class AddStudentCommandTest {
 
         @Override
         public ObservableList<Session> getFilteredSessionList() {
-            return null;
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -224,7 +211,7 @@ public class AddStudentCommandTest {
 
         @Override
         public void updateFilteredSessionList(Predicate<Session> predicate) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -234,17 +221,17 @@ public class AddStudentCommandTest {
 
         @Override
         public void setCurrentSessionFalse() {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void setCurrentSessionTrue() {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public boolean returnCurrentSessionEnabledStatus() {
-            return false;
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -285,45 +272,24 @@ public class AddStudentCommandTest {
     }
 
     /**
-     * A Model stub that contains a single Student.
+     * A Model stub that contains a single .
      */
-    private class ModelStubWithStudent extends ModelStub {
-        private final Student student;
+    private class ModelStubWithNewMemoContent extends AddNoteCommandTest.ModelStub {
+        private String content = "original content";
 
-        ModelStubWithStudent(Student student) {
-            requireNonNull(student);
-            this.student = student;
+        ModelStubWithNewMemoContent(String content) {
+            requireNonNull(content);
+            this.content = content;
         }
 
         @Override
-        public boolean hasStudent(Student student) {
-            requireNonNull(student);
-            return this.student.isSameStudent(student);
+        public void addNoteToMemo(String note) {
+            this.content = content.concat("\n").concat(note);
+        }
+
+        @Override
+        public String getMemoContent() {
+            return this.content;
         }
     }
-
-    /**
-     * A Model stub that always accept the Student being added.
-     */
-    private class ModelStubAcceptingStudentAdded extends ModelStub {
-        final ArrayList<Student> studentsAdded = new ArrayList<>();
-
-        @Override
-        public boolean hasStudent(Student student) {
-            requireNonNull(student);
-            return studentsAdded.stream().anyMatch(student::isSameStudent);
-        }
-
-        @Override
-        public void addStudent(Student student) {
-            requireNonNull(student);
-            studentsAdded.add(student);
-        }
-
-        @Override
-        public ReadOnlyStudentList getStudentList() {
-            return new StudentList();
-        }
-    }
-
 }

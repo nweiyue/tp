@@ -16,7 +16,7 @@ public class CommandResultTest {
 
         // same values -> returns true
         assertTrue(commandResult.equals(new CommandResult("feedback")));
-        assertTrue(commandResult.equals(new CommandResult("feedback", false, null, false)));
+        assertTrue(commandResult.equals(new CommandResult("feedback", false, null, false, false, false)));
 
         // same object -> returns true
         assertTrue(commandResult.equals(commandResult));
@@ -31,13 +31,16 @@ public class CommandResultTest {
         assertFalse(commandResult.equals(new CommandResult("different")));
 
         // different showHelp value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", true, null, false)));
+        assertFalse(commandResult.equals(new CommandResult("feedback", true, null, false, false, false)));
 
         // different switchTab value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", false, Tab.STUDENTS, true)));
+        assertFalse(commandResult.equals(new CommandResult("feedback", false, Tab.STUDENTS, false, false, false)));
+
+        // different editMemo value -> returns false
+        assertFalse(commandResult.equals(new CommandResult("feedback", false, null, true, false, false)));
 
         // different exit value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", false, null, true)));
+        assertFalse(commandResult.equals(new CommandResult("feedback", false, null, false, true, false)));
     }
 
     @Test
@@ -51,22 +54,34 @@ public class CommandResultTest {
         assertNotEquals(commandResult.hashCode(), new CommandResult("different").hashCode());
 
         // different showHelp value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", true, null, false).hashCode());
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", true, null, false,
+                false, false).hashCode());
 
-        // different switchTab value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", false, Tab.STUDENTS, true)));
+        // different switchTab value -> returns different hashcode
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, Tab.STUDENTS, false,
+                false, false).hashCode());
+
+        // different editMemo value -> returns different hashcode
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, null, true,
+                false, false).hashCode());
 
         // different exit value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, null, true).hashCode());
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, null, false,
+                true, false).hashCode());
+
+        // different isEnterSession value -> returns different hashcode
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, null, false,
+                false, true).hashCode());
     }
 
     @Test
     public void getters() {
-        CommandResult commandResult = new CommandResult("feedback", true, Tab.CURRENT, true);
+        CommandResult commandResult = new CommandResult("feedback", true, Tab.CURRENT, true, true, true);
 
         assertTrue(commandResult.isShowHelp());
         assertTrue(commandResult.isSwitchTab());
         assertTrue(commandResult.isExit());
-        assertEquals(Tab.CURRENT, commandResult.getTab());
+        assertTrue(commandResult.isEditMemo());
+        assertTrue(commandResult.isEnterSession());
     }
 }
