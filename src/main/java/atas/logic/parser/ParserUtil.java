@@ -41,7 +41,8 @@ public class ParserUtil {
      * Parses {@code range} into an {@code IndexRange} and returns it. Leading and trailing whitespaces will be
      * trimmed.
      */
-    public static IndexRange parseIndexRange(String range) throws ParseException {
+    public static IndexRange parseIndexRange(String range) {
+        requireNonNull(range);
         String trimmedIndexRange = range.trim();
         return new IndexRange(trimmedIndexRange);
     }
