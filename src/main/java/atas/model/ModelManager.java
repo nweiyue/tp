@@ -66,6 +66,39 @@ public class ModelManager implements Model {
         this(new SessionList(), new StudentList(), new UserPrefs(), "");
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        // short circuit if same object
+        if (obj == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(obj instanceof ModelManager)) {
+            return false;
+        }
+
+        // state check
+        ModelManager other = (ModelManager) obj;
+        return studentList.equals(other.studentList)
+                && userPrefs.equals(other.userPrefs)
+                && filteredStudents.equals(other.filteredStudents)
+                && sessionList.equals(other.sessionList)
+                && filteredSessions.equals(other.filteredSessions)
+                && memo.equals(other.memo);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("\n" + "- student list: " + studentList + "\n");
+        sb.append("- filtered session list: " + filteredStudents + "\n");
+        sb.append("- session list: " + sessionList + "\n");
+        sb.append("- filtered sessions: " + filteredSessions + "\n");
+        sb.append("- memo: " + memo + "\n");
+        return sb.toString();
+    }
+
     //=========== UserPrefs ==================================================================================
 
     @Override
@@ -219,26 +252,6 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredStudents.setPredicate(predicate);
     }
-
-    @Override
-    public boolean equals(Object obj) {
-        // short circuit if same object
-        if (obj == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(obj instanceof ModelManager)) {
-            return false;
-        }
-
-        // state check
-        ModelManager other = (ModelManager) obj;
-        return studentList.equals(other.studentList)
-                && userPrefs.equals(other.userPrefs)
-                && filteredStudents.equals(other.filteredStudents);
-    }
-
 
     //=========== Filtered Session List Accessors =============================================================
 

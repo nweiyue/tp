@@ -10,7 +10,6 @@ import static atas.logic.parser.CliSyntax.PREFIX_TAG;
 import static atas.testutil.Assert.assertThrows;
 import static atas.testutil.TypicalMemoContents.EMPTY_MEMO_CONTENT;
 import static atas.testutil.TypicalMemoContents.SAMPLE_MEMO_CONTENT_ONE;
-import static atas.testutil.TypicalSessions.getTypicalSessionList;
 import static atas.testutil.TypicalStudents.AMY;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -192,7 +191,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(getTypicalSessionList(model.getStudentList().getStudentList()),
+        Model expectedModel = new ModelManager(model.getSessionList(),
                 model.getStudentList(), new UserPrefs(), EMPTY_MEMO_CONTENT);
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
