@@ -1,12 +1,16 @@
 package atas.logic.commands.sessionlist.session;
 
+import static atas.commons.core.Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX_RANGE;
 import static java.util.Objects.requireNonNull;
+
+import java.util.List;
 
 import atas.commons.core.Messages;
 import atas.logic.commands.Command;
 import atas.logic.commands.CommandResult;
 import atas.logic.commands.exceptions.CommandException;
 import atas.model.Model;
+import atas.model.session.Attributes;
 import atas.model.session.IndexRange;
 import atas.model.session.SessionName;
 
@@ -20,8 +24,8 @@ public class ParticipateCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Toggles the participation status of students in a "
             + "session.\n"
             + "Parameters: INDEX_RANGE\n"
-            + "Example 1: " + COMMAND_WORD + " 3\n"
-            + "Example 2: " + COMMAND_WORD + " 1-4";
+            + IndexRange.MESSAGE_CONSTRAINTS + "\n"
+            + "Examples: " + COMMAND_WORD + " 3, " + COMMAND_WORD + " 1-4";
 
 
     public static final String MESSAGE_SUCCESS = "Participation status changed";
@@ -52,6 +56,13 @@ public class ParticipateCommand extends Command {
         if (!model.returnCurrentSessionEnabledStatus()) {
             throw new CommandException(Messages.MESSAGE_NOT_IN_SESSION_TAB);
         }
+
+        List<Attributes> lastShownList = model.getFilteredAttributesList();
+
+        if (range.getZeroBasedUpper() >= lastShownList.size()) {
+            throw new CommandException(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX_RANGE);
+        }
+
         model.updateParticipationBySessionName(sessionName, range);
         model.commit();
         return new CommandResult(MESSAGE_SUCCESS);

@@ -1,6 +1,7 @@
 package atas.logic.parser;
 
 import static atas.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static atas.logic.commands.sessionlist.session.PresenceCommand.MESSAGE_USAGE;
 import static java.util.Objects.requireNonNull;
 
 import atas.logic.commands.sessionlist.session.PresenceCommand;
@@ -19,13 +20,12 @@ public class PresenceCommandParser implements Parser<PresenceCommand> {
      */
     public PresenceCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args);
         IndexRange indexRange;
 
         try {
-            indexRange = ParserUtil.parseIndexRange(argMultimap.getPreamble());
+            indexRange = ParserUtil.parseIndexRange(args);
         } catch (IllegalArgumentException e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, IndexRange.MESSAGE_CONSTRAINTS), e);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE), e);
         }
 
         // TODO: supposed to get sessionName internally

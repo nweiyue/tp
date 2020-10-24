@@ -23,7 +23,6 @@ import atas.testutil.ModelManagerBuilder;
 public class PresenceCommandTest {
 
     private static final String INDEXRANGE_ONE_NUMBER = "1";
-    private static final String INDEXRANGE_ZERO_INDEX = "0";
     private static final String INDEXRANGE_POSITIVE_RANGE = "1-3";
     private static final String INDEXRANGE_SAME_NUMBER = "2-2";
 
@@ -78,28 +77,6 @@ public class PresenceCommandTest {
                 assertTrue(s.getAttributeList().get(0).getPresenceStatus());
                 assertTrue(s.getAttributeList().get(1).getPresenceStatus());
                 assertTrue(s.getAttributeList().get(2).getPresenceStatus());
-            }
-        }
-    }
-
-    @Test
-    public void execute_presenceZeroIndex_success() {
-        // actual model
-        IndexRange indexRange = new IndexRange(INDEXRANGE_ZERO_INDEX);
-        PresenceCommand presenceCommand = new PresenceCommand(SESSIONNAME_WEEK_ONE, indexRange);
-
-        // expected model
-        Model expectedModel = ModelManagerBuilder.buildTypicalModelManager();
-        expectedModel.setCurrentSessionTrue();
-        Session session = new Session(SESSIONNAME_WEEK_ONE, SESSIONDATE_WEEK_ONE);
-        expectedModel.addSession(session);
-        session.updatePresence(indexRange);
-
-        assertCommandSuccess(presenceCommand, model, PresenceCommand.MESSAGE_SUCCESS, expectedModel);
-
-        for (Session s: expectedModel.getSessionList().getSessions()) {
-            if (s.isSameSession(SESSION_WEEK_ONE)) {
-                assertTrue(s.getAttributeList().get(0).getPresenceStatus());
             }
         }
     }

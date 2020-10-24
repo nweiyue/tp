@@ -2,8 +2,6 @@ package atas.model.session;
 
 import static atas.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -21,23 +19,29 @@ public class IndexRangeTest {
     }
 
     @Test
-    public void isValidIndexRange() {
+    public void testIsValidIndexRange() {
         // null IndexRange number
-        assertThrows(NullPointerException.class, () -> IndexRange.isValidIndexRange(null));
+        assertThrows(NullPointerException.class, () -> new IndexRange(null));
 
         // invalid IndexRange characters
-        assertFalse(IndexRange.isValidIndexRange(""));
-        assertFalse(IndexRange.isValidIndexRange(" "));
-        assertFalse(IndexRange.isValidIndexRange("1-"));
-        assertFalse(IndexRange.isValidIndexRange("-3-5"));
-        assertFalse(IndexRange.isValidIndexRange("as"));
-        assertFalse(IndexRange.isValidIndexRange("ad-"));
-        assertFalse(IndexRange.isValidIndexRange("1-a"));
+        assertThrows(IllegalArgumentException.class, () ->new IndexRange(""));
+        assertThrows(IllegalArgumentException.class, () ->new IndexRange("1-"));
+        assertThrows(IllegalArgumentException.class, () ->new IndexRange("0-2"));
+        assertThrows(IllegalArgumentException.class, () ->new IndexRange("-3-5"));
+        assertThrows(IllegalArgumentException.class, () ->new IndexRange("13-5"));
+        assertThrows(IllegalArgumentException.class, () ->new IndexRange("as"));
+        assertThrows(IllegalArgumentException.class, () ->new IndexRange("ad-"));
+        assertThrows(IllegalArgumentException.class, () ->new IndexRange("1-a"));
 
         // valid IndexRange numbers
-        assertTrue(IndexRange.isValidIndexRange("1"));
-        assertTrue(IndexRange.isValidIndexRange("12-12"));
-        assertTrue(IndexRange.isValidIndexRange("13-2"));
+        assertEquals(1, new IndexRange("1").getOneBasedLower());
+        assertEquals(1, new IndexRange("1").getOneBasedUpper());
+
+        assertEquals(12, new IndexRange("12-12").getOneBasedLower());
+        assertEquals(12, new IndexRange("12-12").getOneBasedUpper());
+
+        assertEquals(2, new IndexRange("2-12").getOneBasedLower());
+        assertEquals(12, new IndexRange("2-12").getOneBasedUpper());
     }
 
     @Test
