@@ -17,10 +17,10 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import atas.commons.core.GuiSettings;
+import atas.commons.core.index.Index;
 import atas.model.memo.Memo;
 import atas.model.student.NameContainsKeywordsPredicate;
 import atas.testutil.StudentListBuilder;
-
 
 public class ModelManagerTest {
 
@@ -99,6 +99,17 @@ public class ModelManagerTest {
     @Test
     public void getFilteredStudentList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredStudentList().remove(0));
+    }
+
+    @Test
+    public void getSessionId() {
+        assertEquals(0, modelManager.getSessionId().getZeroBased());
+
+        modelManager.enterSession(Index.fromZeroBased(2));
+        assertEquals(2, modelManager.getSessionId().getZeroBased());
+
+        modelManager.enterSession(Index.fromZeroBased(3));
+        assertEquals(3, modelManager.getSessionId().getZeroBased());
     }
 
     @Test

@@ -1,6 +1,7 @@
 package atas.logic.commands.sessionlist;
 
 import static atas.commons.core.Messages.MESSAGE_INVALID_SESSION_DISPLAYED_INDEX;
+import static atas.logic.commands.sessionlist.EnterSessionCommand.MESSAGE_ALREADY_IN_SESSION;
 import static atas.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -46,7 +47,6 @@ public class EnterSessionCommandTest {
         String expectedMessage = String.format(EnterSessionCommand.MESSAGE_SUCCESS, indexOne.getOneBased());
 
         ModelManager expectedModel = ModelManagerBuilder.buildTypicalModelManager();
-        expectedModel.enterSession(indexOne);
 
         try {
             CommandResult commandResult = enterSessionCommand.execute(model);
@@ -70,6 +70,16 @@ public class EnterSessionCommandTest {
     }
 
     @Test
+    public void execute_alreadyInSession_throwsCommandException() {
+        Index index = Index.fromOneBased(2);
+        EnterSessionCommand enterSessionTwoCommand = new EnterSessionCommand(index);
+        model.enterSession(Index.fromOneBased(2));
+        String expectedMessage = String.format(MESSAGE_ALREADY_IN_SESSION, 2);
+
+        assertThrows(CommandException.class, expectedMessage, () -> enterSessionTwoCommand.execute(model));
+    }
+
+    @Test
     public void equals() {
         Index index1 = Index.fromOneBased(1);
         Index index2 = Index.fromOneBased(2);
@@ -80,7 +90,7 @@ public class EnterSessionCommandTest {
         // same object -> returns true
         assertTrue(enterSessionCommand1.equals(enterSessionCommand1));
 
-        // same sessioName -> returns true
+        // same sessionName -> returns true
         EnterSessionCommand enterSessionCommandNext = new EnterSessionCommand(index1);
         assertTrue(enterSessionCommand1.equals(enterSessionCommandNext));
 

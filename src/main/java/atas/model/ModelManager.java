@@ -53,6 +53,7 @@ public class ModelManager implements Model {
         filteredStudents = new FilteredList<>(this.studentList.getStudentList());
         filteredSessions = new FilteredList<>(this.sessionList.getSessions());
         sessionId = Index.fromZeroBased(0);
+        isCurrentSessionEnabled = false;
         memo = new Memo(memoContent);
         rng = RandomGenerator.makeRandomGenerator();
     }
@@ -250,6 +251,11 @@ public class ModelManager implements Model {
 
     //=========== Filtered Session Accessors =============================================================
     @Override
+    public Index getSessionId() {
+        return sessionId;
+    }
+
+    @Override
     public ObservableList<Attributes> getFilteredAttributesList() {
         return sessionList.getSessionBasedOnId(sessionId).getAttributeList();
     }
@@ -257,6 +263,7 @@ public class ModelManager implements Model {
     @Override
     public void enterSession(Index sessionId) {
         this.sessionId = sessionId;
+        setCurrentSessionTrue();
     }
 
     @Override

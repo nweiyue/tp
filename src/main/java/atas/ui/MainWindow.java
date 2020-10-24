@@ -235,8 +235,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     @FXML
-    private void handleEnterSessionTab(Tab tab) throws CommandException {
-
+    private void handleEnterSessionTab(Tab tab) {
         int toSwitchTabIndex = tab.getIndex().getZeroBased();
         logic.enableCurrentSession();
         sessionStudentListPanel = new SessionStudentListPanel(logic.getFilteredAttributesList());

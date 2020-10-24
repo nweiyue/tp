@@ -183,6 +183,11 @@ public interface Model {
     void updateFilteredSessionList(Predicate<Session> predicate);
 
     /**
+     * Returns the session index.
+     */
+    Index getSessionId();
+
+    /**
      * Sets currentSession to be false.
      */
     void setCurrentSessionFalse();
