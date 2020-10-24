@@ -32,6 +32,7 @@ class ParticipationTest {
     public void toggleParticipationWithoutEnterSessionTest() {
         IndexRange indexRange = new IndexRange("1-4");
         model.addSession(SESSION_WEEK_ONE);
+        model.enterSession(Index.fromZeroBased(1));
         model.updateParticipationBySessionName(SESSION_WEEK_ONE.getSessionName(), indexRange);
 
         Model expectedModel = new ModelManager(getTypicalSessionList(model.getStudentList().getStudentList()),

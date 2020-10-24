@@ -31,6 +31,7 @@ class PresenceTest {
     public void togglePresenceWithoutEnterSessionTest() {
         IndexRange indexRange = new IndexRange("1-4");
         model.addSession(SESSION_WEEK_ONE);
+        model.enterSession(Index.fromZeroBased(1));
         model.updatePresenceBySessionName(SESSION_WEEK_ONE.getSessionName(), indexRange);
 
         Model expectedModel = new ModelManager(getTypicalSessionList(model.getStudentList().getStudentList()),
