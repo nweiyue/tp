@@ -35,6 +35,16 @@ public class StudentBuilder {
     }
 
     /**
+     * Creates a {@code StudentBuilder} with customized details.
+     */
+    public StudentBuilder(String matriculation, String email) {
+        name = new Name(DEFAULT_NAME);
+        this.matriculation = new Matriculation(matriculation);
+        this.email = new Email(email);
+        tags = new HashSet<>();
+    }
+
+    /**
      * Initializes the StudentBuilder with the data of {@code studentToCopy}.
      */
     public StudentBuilder(Student studentToCopy) {
