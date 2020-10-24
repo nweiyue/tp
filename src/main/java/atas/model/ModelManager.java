@@ -57,7 +57,6 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         this.filteredStudents = new FilteredList<>(this.studentList.getStudentList());
         this.filteredSessions = new FilteredList<>(this.sessionList.getSessions());
-        this.sessionId = Index.fromZeroBased(0);
         this.memo = new Memo(memoContent);
         this.rng = RandomGenerator.makeRandomGenerator();
         isCurrentSessionEnabled = false;
