@@ -209,27 +209,61 @@ switch TAB_NAME
 Example:
 * `switch sessions` switches from the current tab to the sessions tab.
 
+{ start of `features#general#rng` written by: Masagca Eris Jacey }
+
 #### 5.2.3. Generating the name of a randomly-selected student : `rng`
 
 Chooses a student at random from the student list.
 
+**Format:**
 ```
 rng
 ```
+
+**Expected result:**
+```
+Student selected: NAME_OF_RANDOMLY_SELECTED_STUDENT
+```
+
+{ end of `features#general#rng` written by: Masagca Eris Jacey }
+
+{ start of `features#general#undo` written by: Masagca Eris Jacey }
 
 #### 5.2.4. Undo-ing a command : `undo`
 
 Undoes a command and essentially returns ATAS to the state prior to performing that command.
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about the usage of this command:**<br>
+
+* An `undo` is done *per command* and not per change. If you make multiple changes to a student, for example, using a single `editstu` command, then `undo` will revert *all* the changes.
+* Commands that can be undone are:
+   * Adding a student/session: `addstu` / `addses`
+   * Deleting a student/session: `deletestu` / `deleteses`
+   * Editing a student/session: `editstu` / `editses`
+   * Clearing all students/sessions: `clearstu` / `clearses`
+   * Toggling the participation status of students: `participate`
+   * Toggling the presence status of students: `presence`
+* Commands not stated above make no change to the application state and thus cannot be undone.
+* Successive `undo` commands will bring the application state further back, until there are no more changes to `undo`.
+* You can `undo` if there is no previous state to return to.
+
+</div>
+
+**Format:**
 ```
 undo
 ```
 
-Commands currently supported:
-* Adding a student/session: `addstu` / `addses`
-* Deleting a student/session: `deletestu` / `deleteses`
-* Editing a student/session: `editstu` / `editses`
-* Clearing all students/sessions: `clearstu` / `clearses`
+**Expected result:**
+```
+Previous command successfuly undone!
+```
+
+{ end of `features#general#undo` written by: Masagca Eris Jacey }
+
+{ start of `features#general#redo` written by: Masagca Eris Jacey }
 
 #### 5.2.5. Redo-ing a command : `redo`
 
@@ -237,9 +271,27 @@ Redoes a command that was most recently undone and returns ATAS to the state aft
 
 Essentially the reverse of undo-ing a command.
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about the usage of this command:**<br>
+
+* A `redo` is done *per command* and not per change. If you undo a command that makes multiple changes (like `editstu`), then `redo` will recover *all* changes.
+* If any of [the commands that support `undo`](#524-undo-ing-a-command--undo) is performed after an `undo`, then all states currently available for `redo` will be erased and you will not be able to go to those states anymore.
+* You cannot `redo` if there is no forward state to go to.
+
+</div>
+
+**Format:**
 ```
 redo
 ```
+
+**Expected result:**
+```
+Previous command successfuly redone!
+```
+
+{ end of `features#general#redo` written by: Masagca Eris Jacey }
 
 #### 5.2.6. Exiting the program : `bye`
 
