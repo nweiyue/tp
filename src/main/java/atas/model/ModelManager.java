@@ -158,6 +158,7 @@ public class ModelManager implements Model {
         studentList.removeStudent(target);
         sessionList.updateStudentList(studentList.getStudentList());
         sessionList.updateAllSessionsAfterDelete(id);
+        refreshSessionStatistics();
     }
 
     @Override
@@ -166,6 +167,7 @@ public class ModelManager implements Model {
         updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         sessionList.updateStudentList(studentList.getStudentList());
         sessionList.updateAllSessionsAfterAdd();
+        refreshSessionStatistics();
     }
 
     @Override
@@ -210,6 +212,7 @@ public class ModelManager implements Model {
     public void deleteSession(Session target, Index id) {
         sessionList.updateStudentList(studentList.getStudentList());
         sessionList.deleteSession(target);
+        refreshStudentStatistics();
     }
 
     @Override
@@ -217,6 +220,7 @@ public class ModelManager implements Model {
         sessionList.updateStudentList(studentList.getStudentList());
         sessionList.addSession(session);
         updateFilteredSessionList(PREDICATE_SHOW_ALL_SESSIONS);
+        refreshStudentStatistics();
     }
 
     @Override
@@ -228,12 +232,14 @@ public class ModelManager implements Model {
     public void updateParticipationBySessionName(SessionName sessionName, IndexRange indexRange) {
         sessionName = sessionList.getSessionBasedOnId(sessionId).getSessionName();
         sessionList.updateStudentParticipation(sessionName, indexRange);
+        refreshStatistics();
     }
 
     @Override
     public void updatePresenceBySessionName(SessionName sessionName, IndexRange indexRange) {
         sessionName = sessionList.getSessionBasedOnId(sessionId).getSessionName();
         sessionList.updateStudentPresence(sessionName, indexRange);
+        refreshStatistics();
     }
 
     //=========== Filtered Student List Accessors =============================================================
@@ -355,6 +361,28 @@ public class ModelManager implements Model {
         return rng.getNextIndex(filteredStudents.size());
     }
 
+    //=========== Statistics ================================================================================
+
+    @Override
+    public void refreshStatistics() {
+        refreshStudentStatistics();
+        refreshSessionStatistics();
+    }
+
+    @Override
+    public void refreshStudentStatistics() {
+        studentList.refreshStudentListStatistics(sessionList);
+        updateFilteredStudentList(x -> false);
+        updateFilteredStudentList(x -> true);
+    }
+
+    @Override
+    public void refreshSessionStatistics() {
+        sessionList.refreshSessionListStatistics();
+        updateFilteredSessionList(x -> false);
+        updateFilteredSessionList(x -> true);
+    }
+
     //=========== Undo/Redo =========================================================================
 
     @Override
@@ -411,5 +439,4 @@ public class ModelManager implements Model {
     public void redoSessionList() {
         sessionList.redo();
     }
-
 }

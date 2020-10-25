@@ -2,6 +2,7 @@ package atas.ui.sessionlist;
 
 import atas.model.session.Session;
 import atas.ui.UiPart;
+import atas.ui.statistics.StatisticsLabel;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -32,6 +33,8 @@ public class SessionCard extends UiPart<Region> {
     private Label date;
     @FXML
     private FlowPane tags;
+    @FXML
+    private FlowPane stats;
 
     /**
      * Creates a {@code StudentCode} with the given {@code Student} and index to display.
@@ -40,8 +43,18 @@ public class SessionCard extends UiPart<Region> {
         super(FXML);
         this.session = session;
         id.setText(displayedIndex + ". ");
-        name.setText(session.getSessionName().toString());;
+        name.setText(session.getSessionName().toString());
         date.setText(session.getSessionDate().toString());
+        stats.getChildren().add(getPresenceLabelStatisticLabel(session));
+        stats.getChildren().add(getParticipationStatisticLabel(session));
+    }
+
+    private Label getPresenceLabelStatisticLabel(Session session) {
+        return new StatisticsLabel(session.getSessionStats().getPresenceStatistics());
+    }
+
+    private Label getParticipationStatisticLabel(Session session) {
+        return new StatisticsLabel(session.getSessionStats().getParticipationStatistics());
     }
 
     @Override

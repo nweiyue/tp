@@ -85,12 +85,13 @@ public class TypicalSessions {
 
     public static List<Session> getTypicalSessions() {
         List<Session> result = new ArrayList<>();
-        result.addAll(Arrays.asList(TUT1, TUT2, TUT3, LAB1, LAB2));
+        result.addAll(Arrays.asList(duplicateSession(TUT1), duplicateSession(TUT2),
+                duplicateSession(TUT3), duplicateSession(LAB1), duplicateSession(LAB2)));
         return result;
     }
 
-    public static SessionList getTypicalSessionListMinusTut1(List<Student> list) {
-        SessionList sessionList = new SessionList(list);
+    public static SessionList getTypicalSessionListMinusTut1() {
+        SessionList sessionList = new SessionList();
         for (Session session : getTypicalSessionsMinusTut1()) {
             sessionList.addSession(session);
         }
@@ -98,6 +99,11 @@ public class TypicalSessions {
     }
 
     public static List<Session> getTypicalSessionsMinusTut1() {
-        return new ArrayList<>(Arrays.asList(TUT2, TUT3, LAB1, LAB2));
+        return new ArrayList<>(Arrays.asList(duplicateSession(TUT2), duplicateSession(TUT3),
+                duplicateSession(LAB1), duplicateSession(LAB2)));
+    }
+
+    public static Session duplicateSession(Session session) {
+        return new Session(session.getSessionName(), session.getSessionDate());
     }
 }

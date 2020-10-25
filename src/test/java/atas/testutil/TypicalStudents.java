@@ -74,4 +74,8 @@ public class TypicalStudents {
     public static List<Student> getTypicalStudentsMinusAlice() {
         return new ArrayList<>(Arrays.asList(BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
+
+    public static Student duplicateStudent(Student student) {
+        return new Student(student.getName(), student.getMatriculation(), student.getEmail(), student.getTags());
+    }
 }
