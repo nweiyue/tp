@@ -4,6 +4,7 @@ import java.util.Comparator;
 
 import atas.model.student.Student;
 import atas.ui.UiPart;
+import atas.ui.statistics.StatisticsLabel;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -39,6 +40,8 @@ public class StudentCard extends UiPart<Region> {
     private Label email;
     @FXML
     private FlowPane tags;
+    @FXML
+    private FlowPane stats;
 
     /**
      * Creates a {@code StudentCode} with the given {@code Student} and index to display.
@@ -53,6 +56,16 @@ public class StudentCard extends UiPart<Region> {
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        stats.getChildren().add(getPresenceLabelStatisticLabel(student));
+        stats.getChildren().add(getParticipationStatisticLabel(student));
+    }
+
+    private Label getPresenceLabelStatisticLabel(Student student) {
+        return new StatisticsLabel(student.getStats().getPresenceStatistics());
+    }
+
+    private Label getParticipationStatisticLabel(Student student) {
+        return new StatisticsLabel(student.getStats().getParticipationStatistics());
     }
 
     @Override

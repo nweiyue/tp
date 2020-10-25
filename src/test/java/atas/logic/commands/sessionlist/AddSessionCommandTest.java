@@ -284,7 +284,17 @@ public class AddSessionCommandTest {
         }
 
         @Override
+        public void refreshStatistics() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public String getSessionDetails() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void refreshStudentStatistics() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -292,7 +302,9 @@ public class AddSessionCommandTest {
         public void commit() { }
 
         @Override
-        public void commitStudentList() { }
+        public void commitStudentList() {
+            throw new AssertionError("This method should not be called.");
+        }
 
         @Override
         public boolean canUndoStudentList() {
@@ -305,6 +317,10 @@ public class AddSessionCommandTest {
         }
 
         @Override
+        public void refreshSessionStatistics() {
+            throw new AssertionError("This method should not be called.");
+        }
+
         public boolean canRedoStudentList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -336,7 +352,6 @@ public class AddSessionCommandTest {
         public void redoSessionList() {
             throw new AssertionError("This method should not be called.");
         }
-
     }
 
     /**

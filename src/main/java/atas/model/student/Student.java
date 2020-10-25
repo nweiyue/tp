@@ -7,6 +7,8 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import atas.model.statistics.Statistics;
+import atas.model.statistics.StudentStatistics;
 import atas.model.tag.Tag;
 
 /**
@@ -23,6 +25,9 @@ public class Student {
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
 
+    // Statistic fields
+    private final StudentStatistics stats;
+
     /**
      * Every field must be present and not null.
      */
@@ -32,6 +37,7 @@ public class Student {
         this.matriculation = matriculation;
         this.email = email;
         this.tags.addAll(tags);
+        this.stats = new StudentStatistics();
     }
 
     public Name getName() {
@@ -52,6 +58,14 @@ public class Student {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public StudentStatistics getStats() {
+        return this.stats;
+    }
+
+    public void setStats(Statistics... statistics) {
+        this.stats.replaceStatistics(statistics);
     }
 
     /**

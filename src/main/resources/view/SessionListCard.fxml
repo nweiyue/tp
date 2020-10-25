@@ -29,6 +29,7 @@
                 <Label fx:id="date" text="\$second" styleClass="cell_big_label" />
             </HBox>
             <FlowPane fx:id="tags" />
+            <FlowPane fx:id="stats" />
         </VBox>
     </GridPane>
 </HBox>
