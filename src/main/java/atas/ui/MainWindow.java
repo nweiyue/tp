@@ -153,7 +153,7 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getStudentListFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getSessionDetails());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
@@ -234,23 +234,40 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Updates the content in memoTextBox with new content form {@code Memo}.
+     */
     @FXML
-    private void handleEnterSessionTab(Tab tab) throws CommandException {
+    private void handleEditMemo() {
+        String newContent = logic.getMemoContent();
+        memoTextBox.setText(newContent);
+    }
 
+    @FXML
+    private void handleEnterSessionTab(Tab tab) {
         int toSwitchTabIndex = tab.getIndex().getZeroBased();
         logic.enableCurrentSession();
         sessionStudentListPanel = new SessionStudentListPanel(logic.getFilteredAttributesList());
         sessionStudentListPanelPlaceholder.getChildren().add(sessionStudentListPanel.getRoot());
         tabPane.getSelectionModel().select(toSwitchTabIndex);
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getSessionDetails());
+        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
     }
 
     @FXML
-    private void handleExit() throws InterruptedException {
+    private void handleExit() {
         Platform.runLater(() -> {
             GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
             logic.setGuiSettings(guiSettings);
+
+            try {
+                logic.saveMemoContent(memoTextBox.getText()); // saves the memo everytime ATAS exits
+            } catch (CommandException e) {
+                logger.info("Unable to save memo content");
+                resultDisplay.setFeedbackToUser(e.getMessage());
+            }
             helpWindow.hide();
             primaryStage.hide();
         });
@@ -288,6 +305,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isSwitchTab() && !commandResult.isEnterSession()) {
                 handleSwitchTab(commandResult.getTab());
+            }
+
+            if (commandResult.isEditMemo()) {
+                handleEditMemo();
             }
 
             if (commandResult.isEnterSession()) {

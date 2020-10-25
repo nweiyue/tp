@@ -7,9 +7,9 @@ import atas.logic.commands.CommandResult;
 import atas.logic.commands.exceptions.CommandException;
 import atas.logic.parser.exceptions.ParseException;
 import atas.model.Model;
-import atas.model.ReadOnlyStudentList;
-import atas.model.attendance.Attributes;
-import atas.model.attendance.Session;
+import atas.model.session.Attributes;
+import atas.model.session.Session;
+import atas.model.student.ReadOnlyStudentList;
 import atas.model.student.Student;
 import javafx.collections.ObservableList;
 
@@ -69,7 +69,13 @@ public interface Logic {
     String getMemoContent();
 
     /**
+     * Returns the details of the current entered session.
+     */
+    String getSessionDetails();
+
+    /**
      * Saves content into the Memo.
+     *
      * @param memoContent The String content that should be saved into the Memo.
      * @throws CommandException If an error occurs during command execution.
      */

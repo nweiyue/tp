@@ -1,4 +1,4 @@
-package atas.model.attendance;
+package atas.model.session;
 
 import static atas.testutil.Assert.assertThrows;
 import static atas.testutil.TypicalAttributes.ABSENT_BUT_HAS_PARTICIPATED;
@@ -105,7 +105,7 @@ class SessionTest {
     public void compareTo() {
         Session actual = TypicalSessions.TUT1;
         Session expected = TypicalSessions.TUT2;
-        assertTrue(expected.compareTo(actual) > 0);
+        assertTrue(expected.compareTo(actual) < 0);
     }
 
 }

@@ -1,9 +1,9 @@
 package atas.testutil;
 
 import atas.logic.commands.sessionlist.EditSessionCommand;
-import atas.model.attendance.Session;
-import atas.model.attendance.SessionDate;
-import atas.model.attendance.SessionName;
+import atas.model.session.Session;
+import atas.model.session.SessionDate;
+import atas.model.session.SessionName;
 
 /**
  * A utility class to help with building EditSessionDescriptor objects.

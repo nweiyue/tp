@@ -1,4 +1,4 @@
-package atas.model.attendance;
+package atas.model.session;
 
 /**
  * Represents whether or not a student has participated in the particular class.

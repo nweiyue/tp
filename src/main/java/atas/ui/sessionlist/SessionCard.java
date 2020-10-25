@@ -1,6 +1,6 @@
 package atas.ui.sessionlist;
 
-import atas.model.attendance.Session;
+import atas.model.session.Session;
 import atas.ui.UiPart;
 import atas.ui.statistics.StatisticsLabel;
 import javafx.fxml.FXML;

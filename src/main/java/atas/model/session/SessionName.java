@@ -1,4 +1,4 @@
-package atas.model.attendance;
+package atas.model.session;
 
 import static atas.commons.util.AppUtil.checkArgument;
 import static java.util.Objects.requireNonNull;
@@ -26,6 +26,10 @@ public class SessionName {
         requireNonNull(sessionName);
         checkArgument(isValidSessionName(sessionName), MESSAGE_CONSTRAINTS);
         value = sessionName;
+    }
+
+    public SessionName getCopy() {
+        return new SessionName(this.value);
     }
 
     /**

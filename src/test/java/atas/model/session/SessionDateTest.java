@@ -1,4 +1,4 @@
-package atas.model.attendance;
+package atas.model.session;
 
 import static atas.testutil.Assert.assertThrows;
 import static atas.testutil.TypicalSessions.SESSIONDATE_WEEK_ONE;
@@ -17,7 +17,7 @@ public class SessionDateTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new SessionDate(null));
+        assertThrows(NullPointerException.class, () -> new SessionDate((String) null));
     }
 
     @Test

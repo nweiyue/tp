@@ -13,17 +13,17 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import atas.commons.core.Messages;
+import atas.commons.core.index.Index;
 import atas.logic.commands.exceptions.CommandException;
 import atas.logic.commands.studentlist.ClearStudentListCommand;
 import atas.model.Model;
-import atas.model.attendance.IndexRange;
-import atas.model.attendance.Session;
+import atas.model.session.IndexRange;
+import atas.model.session.Session;
 import atas.testutil.ModelManagerBuilder;
 
 public class PresenceCommandTest {
 
     private static final String INDEXRANGE_ONE_NUMBER = "1";
-    private static final String INDEXRANGE_ZERO_INDEX = "0";
     private static final String INDEXRANGE_POSITIVE_RANGE = "1-3";
     private static final String INDEXRANGE_SAME_NUMBER = "2-2";
 
@@ -39,6 +39,7 @@ public class PresenceCommandTest {
     @Test
     public void execute_presenceOneNumber_success() {
         // actual model
+        model.enterSession(Index.fromZeroBased(1));
         IndexRange indexRange = new IndexRange(INDEXRANGE_ONE_NUMBER);
         PresenceCommand presenceCommand = new PresenceCommand(SESSIONNAME_WEEK_ONE, indexRange);
 
@@ -61,6 +62,7 @@ public class PresenceCommandTest {
     @Test
     public void execute_presenceIndexRange_success() {
         // actual model
+        model.enterSession(Index.fromZeroBased(1));
         IndexRange indexRange = new IndexRange(INDEXRANGE_POSITIVE_RANGE);
         PresenceCommand presenceCommand = new PresenceCommand(SESSIONNAME_WEEK_ONE, indexRange);
 
@@ -83,30 +85,9 @@ public class PresenceCommandTest {
     }
 
     @Test
-    public void execute_presenceZeroIndex_success() {
-        // actual model
-        IndexRange indexRange = new IndexRange(INDEXRANGE_ZERO_INDEX);
-        PresenceCommand presenceCommand = new PresenceCommand(SESSIONNAME_WEEK_ONE, indexRange);
-
-        // expected model
-        Model expectedModel = ModelManagerBuilder.buildTypicalModelManager();
-        expectedModel.setCurrentSessionTrue();
-        Session session = new Session(SESSIONNAME_WEEK_ONE, SESSIONDATE_WEEK_ONE);
-        expectedModel.addSession(session);
-        session.updatePresence(indexRange);
-
-        assertCommandSuccess(presenceCommand, model, PresenceCommand.MESSAGE_SUCCESS, expectedModel);
-
-        for (Session s: expectedModel.getSessionList().getSessions()) {
-            if (s.isSameSession(SESSION_WEEK_ONE)) {
-                assertTrue(s.getAttributeList().get(0).getPresenceStatus());
-            }
-        }
-    }
-
-    @Test
     public void execute_presenceSameNumberIndexRange_success() {
         // actual model
+        model.enterSession(Index.fromZeroBased(1));
         IndexRange indexRange = new IndexRange(INDEXRANGE_SAME_NUMBER);
         PresenceCommand presenceCommand = new PresenceCommand(SESSIONNAME_WEEK_ONE, indexRange);
 

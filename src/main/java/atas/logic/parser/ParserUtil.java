@@ -9,9 +9,9 @@ import java.util.Set;
 
 import atas.commons.core.index.Index;
 import atas.logic.parser.exceptions.ParseException;
-import atas.model.attendance.IndexRange;
-import atas.model.attendance.SessionDate;
-import atas.model.attendance.SessionName;
+import atas.model.session.IndexRange;
+import atas.model.session.SessionDate;
+import atas.model.session.SessionName;
 import atas.model.student.Email;
 import atas.model.student.Matriculation;
 import atas.model.student.Name;
@@ -41,7 +41,8 @@ public class ParserUtil {
      * Parses {@code range} into an {@code IndexRange} and returns it. Leading and trailing whitespaces will be
      * trimmed.
      */
-    public static IndexRange parseIndexRange(String range) throws ParseException {
+    public static IndexRange parseIndexRange(String range) {
+        requireNonNull(range);
         String trimmedIndexRange = range.trim();
         return new IndexRange(trimmedIndexRange);
     }

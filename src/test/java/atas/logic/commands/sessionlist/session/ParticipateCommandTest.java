@@ -13,18 +13,18 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import atas.commons.core.Messages;
+import atas.commons.core.index.Index;
 import atas.logic.commands.exceptions.CommandException;
 import atas.logic.commands.studentlist.ClearStudentListCommand;
 import atas.model.Model;
-import atas.model.attendance.IndexRange;
-import atas.model.attendance.Session;
+import atas.model.session.IndexRange;
+import atas.model.session.Session;
 import atas.testutil.ModelManagerBuilder;
 
 
 public class ParticipateCommandTest {
 
     private static final String INDEXRANGE_ONE_NUMBER = "1";
-    private static final String INDEXRANGE_ZERO_INDEX = "0";
     private static final String INDEXRANGE_POSITIVE_RANGE = "1-3";
     private static final String INDEXRANGE_SAME_NUMBER = "2-2";
 
@@ -40,6 +40,7 @@ public class ParticipateCommandTest {
     @Test
     public void execute_participateOneNumber_success() {
         // actual model
+        model.enterSession(Index.fromZeroBased(1));
         IndexRange indexRange = new IndexRange(INDEXRANGE_ONE_NUMBER);
         ParticipateCommand participateCommand = new ParticipateCommand(SESSIONNAME_WEEK_ONE, indexRange);
 
@@ -62,6 +63,7 @@ public class ParticipateCommandTest {
     @Test
     public void execute_participateIndexRange_success() {
         // actual model
+        model.enterSession(Index.fromZeroBased(1));
         IndexRange indexRange = new IndexRange(INDEXRANGE_POSITIVE_RANGE);
         ParticipateCommand participateCommand = new ParticipateCommand(SESSIONNAME_WEEK_ONE, indexRange);
 
@@ -84,30 +86,9 @@ public class ParticipateCommandTest {
     }
 
     @Test
-    public void execute_participateZeroIndex_success() {
-        // actual model
-        IndexRange indexRange = new IndexRange(INDEXRANGE_ZERO_INDEX);
-        ParticipateCommand participateCommand = new ParticipateCommand(SESSIONNAME_WEEK_ONE, indexRange);
-
-        // expected model
-        Model expectedModel = ModelManagerBuilder.buildTypicalModelManager();
-        expectedModel.setCurrentSessionTrue();
-        Session session = new Session(SESSIONNAME_WEEK_ONE, SESSIONDATE_WEEK_ONE);
-        expectedModel.addSession(session);
-        session.updateParticipation(indexRange);
-
-        assertCommandSuccess(participateCommand, model, ParticipateCommand.MESSAGE_SUCCESS, expectedModel);
-
-        for (Session s: expectedModel.getSessionList().getSessions()) {
-            if (s.isSameSession(SESSION_WEEK_ONE)) {
-                assertTrue(s.getAttributeList().get(0).getParticipationStatus());
-            }
-        }
-    }
-
-    @Test
     public void execute_participateSameNumberIndexRange_success() {
         // actual model
+        model.enterSession(Index.fromZeroBased(1));
         IndexRange indexRange = new IndexRange(INDEXRANGE_SAME_NUMBER);
         ParticipateCommand participateCommand = new ParticipateCommand(indexRange);
 

@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import atas.logic.commands.exceptions.CommandException;
 import atas.model.Model;
-import atas.model.StudentList;
+import atas.model.student.StudentList;
 import atas.testutil.ModelManagerBuilder;
 import atas.testutil.TypicalStudents;
 

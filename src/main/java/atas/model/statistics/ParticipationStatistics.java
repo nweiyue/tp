@@ -4,9 +4,9 @@ import java.util.List;
 
 import atas.commons.core.index.Index;
 import atas.commons.core.statistics.StatisticalValues;
-import atas.model.attendance.Attributes;
-import atas.model.attendance.Session;
-import atas.model.attendance.SessionList;
+import atas.model.session.Attributes;
+import atas.model.session.Session;
+import atas.model.session.SessionList;
 
 
 /**

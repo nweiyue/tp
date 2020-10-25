@@ -1,10 +1,12 @@
 package atas.logic.parser;
 
 import static atas.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static atas.logic.commands.sessionlist.session.ParticipateCommand.MESSAGE_USAGE;
+import static java.util.Objects.requireNonNull;
 
 import atas.logic.commands.sessionlist.session.ParticipateCommand;
 import atas.logic.parser.exceptions.ParseException;
-import atas.model.attendance.IndexRange;
+import atas.model.session.IndexRange;
 
 /**
  * Parses input arguments and creates a new ParticipateCommand object
@@ -17,13 +19,13 @@ public class ParticipateCommandParser implements Parser<ParticipateCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public ParticipateCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args);
+        requireNonNull(args);
         IndexRange indexRange;
 
         try {
-            indexRange = ParserUtil.parseIndexRange(argMultimap.getPreamble());
+            indexRange = ParserUtil.parseIndexRange(args);
         } catch (IllegalArgumentException e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, IndexRange.MESSAGE_CONSTRAINTS), e);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE), e);
         }
 
         // TODO: supposed to get sessionName internally

@@ -1,4 +1,4 @@
-package atas.model.attendance.exceptions;
+package atas.model.session.exceptions;
 
 /**
  * Signals that the operation will result in duplicate sessions (Sessions are considered duplicates

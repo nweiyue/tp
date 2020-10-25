@@ -12,9 +12,9 @@ import atas.logic.commands.exceptions.CommandException;
 import atas.logic.parser.AtasParser;
 import atas.logic.parser.exceptions.ParseException;
 import atas.model.Model;
-import atas.model.ReadOnlyStudentList;
-import atas.model.attendance.Attributes;
-import atas.model.attendance.Session;
+import atas.model.session.Attributes;
+import atas.model.session.Session;
+import atas.model.student.ReadOnlyStudentList;
 import atas.model.student.Student;
 import atas.storage.Storage;
 import javafx.collections.ObservableList;
@@ -42,7 +42,6 @@ public class LogicManager implements Logic {
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
-
         CommandResult commandResult;
         Command command = atasParser.parseCommand(commandText);
         commandResult = command.execute(model);
@@ -50,6 +49,7 @@ public class LogicManager implements Logic {
         try {
             storage.saveSessionList(model.getSessionList());
             storage.saveStudentList(model.getStudentList());
+            storage.saveMemo(model.getMemo());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -104,12 +104,17 @@ public class LogicManager implements Logic {
 
     @Override
     public String getMemoContent() {
-        return model.getMemo().getContent();
+        return model.getMemoContent();
+    }
+
+    @Override
+    public String getSessionDetails() {
+        return model.getSessionDetails();
     }
 
     @Override
     public void saveMemoContent(String content) throws CommandException {
-        model.getMemo().saveMemoContent(content);
+        model.saveMemoContent(content);
         try {
             storage.saveMemo(model.getMemo());
         } catch (IOException ioe) {

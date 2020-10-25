@@ -1,15 +1,13 @@
-package atas.model;
+package atas.model.student;
 
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
 import atas.commons.core.index.Index;
-import atas.model.attendance.SessionList;
+import atas.model.session.SessionList;
 import atas.model.statistics.ParticipationStatistics;
 import atas.model.statistics.PresenceStatistics;
-import atas.model.student.Student;
-import atas.model.student.UniqueStudentList;
 import javafx.collections.ObservableList;
 
 /**

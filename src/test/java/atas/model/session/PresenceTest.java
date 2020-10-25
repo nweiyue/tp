@@ -1,4 +1,4 @@
-package atas.model.attendance;
+package atas.model.session;
 
 import static atas.logic.commands.CommandTestUtil.assertCommandFailure;
 import static atas.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -15,8 +15,8 @@ import atas.commons.core.index.Index;
 import atas.logic.commands.sessionlist.session.PresenceCommand;
 import atas.model.Model;
 import atas.model.ModelManager;
-import atas.model.StudentList;
 import atas.model.UserPrefs;
+import atas.model.student.StudentList;
 import atas.testutil.ModelManagerBuilder;
 
 class PresenceTest {
@@ -31,6 +31,9 @@ class PresenceTest {
     public void togglePresenceWithoutEnterSessionTest() {
         IndexRange indexRange = new IndexRange("1-4");
         model.addSession(SESSION_WEEK_ONE);
+        assertCommandFailure(new PresenceCommand(indexRange), model, "You have to be in the session tab to use this!");
+
+        model.enterSession(Index.fromZeroBased(1));
         model.updatePresenceBySessionName(SESSION_WEEK_ONE.getSessionName(), indexRange);
 
         Model expectedModel = new ModelManager(getTypicalSessionList(model.getStudentList().getStudentList()),
@@ -39,7 +42,6 @@ class PresenceTest {
         expectedModel.enterSession(Index.fromZeroBased(1));
         expectedModel.updatePresenceBySessionName(SESSION_WEEK_ONE.getSessionName(), indexRange);
 
-        assertCommandFailure(new PresenceCommand(indexRange), model, "You have to be in the session tab to use this!");
 
         model.setCurrentSessionTrue();
 

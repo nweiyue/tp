@@ -1,8 +1,7 @@
-package atas.model;
+package atas.model.session;
 
 import java.util.List;
 
-import atas.model.attendance.Session;
 import atas.model.student.Student;
 import javafx.collections.ObservableList;
 
@@ -22,10 +21,11 @@ public interface ReadOnlySessionList {
      */
     ObservableList<Student> getInternalStudentList();
 
+    ReadOnlySessionList getCopy();
+
     /**
      * Update the current student list with the given list.
      */
     void updateStudentList(List<Student> list);
-
 }
 

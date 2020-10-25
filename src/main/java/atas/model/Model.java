@@ -5,12 +5,13 @@ import java.util.function.Predicate;
 
 import atas.commons.core.GuiSettings;
 import atas.commons.core.index.Index;
-import atas.model.attendance.Attributes;
-import atas.model.attendance.IndexRange;
-import atas.model.attendance.Session;
-import atas.model.attendance.SessionList;
-import atas.model.attendance.SessionName;
 import atas.model.memo.Memo;
+import atas.model.session.Attributes;
+import atas.model.session.IndexRange;
+import atas.model.session.Session;
+import atas.model.session.SessionList;
+import atas.model.session.SessionName;
+import atas.model.student.ReadOnlyStudentList;
 import atas.model.student.Student;
 import javafx.collections.ObservableList;
 
@@ -105,7 +106,6 @@ public interface Model {
      */
     void setStudent(Student target, Student editedStudent);
 
-
     /**
      * CLear the sessions existing in the current session list.
      * The link between the students and the session list will not be disrupted.
@@ -183,6 +183,11 @@ public interface Model {
     void updateFilteredSessionList(Predicate<Session> predicate);
 
     /**
+     * Returns the session index.
+     */
+    Index getSessionId();
+
+    /**
      * Sets currentSession to be false.
      */
     void setCurrentSessionFalse();
@@ -203,11 +208,32 @@ public interface Model {
     Memo getMemo();
 
     /**
+     * Retrieves the String content in the memo.
+     *
+     * @return String of text present in the memo.
+     */
+    String getMemoContent();
+
+    /**
+     * Writes a String of text into the memo.
+     *
+     * @param content Sting of text to be written.
+     */
+    void saveMemoContent(String content);
+
+    /**
+     * Appends a String of text at the end of the Memo.
+     * @param note String text to be appended.
+     */
+    void addNoteToMemo(String note);
+
+    /**
      * Returns the index of a randomly selected student in the student list.
      */
     Index generateRandomStudentIndex();
 
     /**
+<<<<<<< HEAD
      * Recalculate the current statistics using the existing model components.
      */
     void refreshStatistics();
@@ -221,4 +247,64 @@ public interface Model {
      * Recalculate the current session statistics.
      */
     void refreshSessionStatistics();
+
+    /**
+     * Returns the session details of the current entered session.
+     */
+    String getSessionDetails();
+
+    /**
+    * Saves the current entities in their respective history.
+    */
+    void commit();
+
+    /**
+     * Saves the current student list in its history.
+     */
+    void commitStudentList();
+
+    /**
+     * Returns <code>true</code> if student list can be undone, <code>false</code> otherwise.
+     */
+    boolean canUndoStudentList();
+
+    /**
+     * Restores the previous student list from history if possible.
+     */
+    void undoStudentList();
+
+    /**
+     * Returns <code>true</code> if student list can be redone, <code>false</code> otherwise.
+     */
+    boolean canRedoStudentList();
+
+    /**
+     * Returns a previously undo entity from its history if possible.
+     */
+    void redoStudentList();
+
+    /**
+     * Saves the current session list in its history.
+     */
+    void commitSessionList();
+
+    /**
+     * Returns <code>true</code> if session list can be undone, <code>false</code> otherwise.
+     */
+    boolean canUndoSessionList();
+
+    /**
+     * Restores the previous session list from history if possible.
+     */
+    void undoSessionList();
+
+    /**
+     * Returns <code>true</code> if session list can be redone, <code>false</code> otherwise.
+     */
+    boolean canRedoSessionList();
+
+    /**
+     * Returns a previously undo entity from its history if possible.
+     */
+    void redoSessionList();
 }

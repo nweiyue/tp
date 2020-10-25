@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import atas.model.attendance.IndexRange;
-import atas.model.attendance.Session;
+import atas.model.session.IndexRange;
+import atas.model.session.Session;
 import atas.testutil.RandomStatistics;
 import atas.testutil.TypicalSessions;
 import atas.testutil.TypicalStudents;

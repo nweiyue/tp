@@ -1,8 +1,8 @@
 package atas.testutil;
 
 import atas.commons.core.index.Index;
-import atas.model.attendance.Session;
-import atas.model.attendance.SessionList;
+import atas.model.session.Session;
+import atas.model.session.SessionList;
 import atas.model.statistics.Statistics;
 
 public class RandomStatistics implements Statistics {

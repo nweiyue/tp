@@ -40,13 +40,13 @@ public class StudentTest {
         assertTrue(ALICE.isSameStudent(editedAlice));
 
         // same name, same matriculation, different attributes -> returns true
-        editedAlice = new StudentBuilder(ALICE).withEmail(VALID_EMAIL_BOB).withTags(VALID_TAG_HUSBAND).build();
+        editedAlice = new StudentBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameStudent(editedAlice));
 
         // same name, same email, different attributes -> returns false
         editedAlice = new StudentBuilder(ALICE).withMatriculation(VALID_MATRICULATION_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
-        assertFalse(ALICE.isSameStudent(editedAlice));
+        assertTrue(ALICE.isSameStudent(editedAlice));
 
         // same name, same matriculation, same email, different attributes -> returns true
         editedAlice = new StudentBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();

@@ -77,7 +77,10 @@ public class Student {
             return true;
         }
 
-        return otherStudent != null && otherStudent.getMatriculation().equals(getMatriculation());
+        // unique students should not have the same matriculation number and email address
+        return otherStudent != null
+                && (otherStudent.getMatriculation().equals(getMatriculation())
+                || otherStudent.getEmail().equals(getEmail()));
     }
 
     /**

@@ -1,8 +1,8 @@
 package atas.model.statistics;
 
 import atas.commons.core.index.Index;
-import atas.model.attendance.Session;
-import atas.model.attendance.SessionList;
+import atas.model.session.Session;
+import atas.model.session.SessionList;
 
 /**
  * An API that supports statistical behaviour and provide statistical

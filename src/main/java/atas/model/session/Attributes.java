@@ -1,4 +1,4 @@
-package atas.model.attendance;
+package atas.model.session;
 
 import atas.model.student.Name;
 
@@ -34,6 +34,10 @@ public class Attributes {
      */
     public Attributes(Name name) {
         this(new Presence(), new Participation(), name);
+    }
+
+    public Attributes getCopy() {
+        return new Attributes(presence, participation, studentName);
     }
 
     /**

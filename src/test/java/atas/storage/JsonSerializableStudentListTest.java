@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import atas.commons.exceptions.IllegalValueException;
 import atas.commons.util.JsonUtil;
-import atas.model.StudentList;
+import atas.model.student.StudentList;
 import atas.testutil.TypicalStudents;
 
 public class JsonSerializableStudentListTest {

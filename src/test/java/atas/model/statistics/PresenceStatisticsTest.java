@@ -15,9 +15,9 @@ import org.junit.jupiter.api.Test;
 
 import atas.commons.core.index.Index;
 import atas.commons.core.statistics.StatisticalValues;
-import atas.model.attendance.IndexRange;
-import atas.model.attendance.Session;
-import atas.model.attendance.SessionList;
+import atas.model.session.IndexRange;
+import atas.model.session.Session;
+import atas.model.session.SessionList;
 import atas.model.student.Student;
 import atas.testutil.TypicalSessions;
 import atas.testutil.TypicalStudents;

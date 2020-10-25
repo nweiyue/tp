@@ -11,6 +11,8 @@ import org.junit.jupiter.api.Test;
 import atas.model.Model;
 import atas.model.ModelManager;
 import atas.model.UserPrefs;
+import atas.model.student.EmailTest;
+import atas.model.student.MatriculationTest;
 import atas.model.student.Student;
 import atas.testutil.ModelManagerBuilder;
 import atas.testutil.StudentBuilder;
@@ -29,7 +31,8 @@ public class AddStudentCommandIntegrationTest {
 
     @Test
     public void execute_newStudent_success() {
-        Student validStudent = new StudentBuilder().build();
+        Student validStudent = new StudentBuilder(MatriculationTest.VALID_MATRICULATION.value,
+                EmailTest.VALID_EMAIL.value).build();
 
         Model expectedModel = new ModelManager(getTypicalSessionList(model.getStudentList().getStudentList()),
                 model.getStudentList(), new UserPrefs(), EMPTY_MEMO_CONTENT);

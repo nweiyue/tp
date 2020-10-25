@@ -1,6 +1,5 @@
-package atas.model;
+package atas.model.student;
 
-import atas.model.student.Student;
 import javafx.collections.ObservableList;
 
 /**

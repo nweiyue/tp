@@ -3,7 +3,7 @@ package atas.model.statistics;
 import java.util.HashSet;
 import java.util.Set;
 
-import atas.model.attendance.Session;
+import atas.model.session.Session;
 
 
 /**
