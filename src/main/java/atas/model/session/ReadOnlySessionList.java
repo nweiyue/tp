@@ -23,7 +23,9 @@ public interface ReadOnlySessionList {
 
     ReadOnlySessionList getCopy();
 
+    /**
+     * Updates the current student list with the given list.
+     */
     void updateStudentList(List<Student> list);
-
 }
 

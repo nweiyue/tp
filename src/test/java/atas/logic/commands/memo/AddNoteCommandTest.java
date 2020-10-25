@@ -329,6 +329,20 @@ public class AddNoteCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public void refreshStatistics() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void refreshStudentStatistics() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void refreshSessionStatistics() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

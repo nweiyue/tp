@@ -102,7 +102,7 @@ public class SessionList implements Iterable<Session>, ReadOnlySessionList {
     }
 
     /**
-     * Updates the student list of the session.
+     * Replaces the current list with the given one.
      */
     @Override
     public void updateStudentList(List<Student> list) {
@@ -219,6 +219,16 @@ public class SessionList implements Iterable<Session>, ReadOnlySessionList {
             if (session.getSessionName().equals(sessionName)) {
                 session.updatePresence(indexRange);
             }
+        }
+    }
+
+    /**
+     * Recalculates the participation and presence statistics of the current sessions in the
+     * session list.
+     */
+    public void refreshSessionListStatistics() {
+        for (Session session: sessions) {
+            session.refreshSessionStatistics();
         }
     }
 

@@ -233,6 +233,21 @@ public interface Model {
     Index generateRandomStudentIndex();
 
     /**
+     * Recalculates the current statistics using the existing model components.
+     */
+    void refreshStatistics();
+
+    /**
+     * Recalculates the current student statistics.
+     */
+    void refreshStudentStatistics();
+
+    /**
+     * Recalculates the current session statistics.
+     */
+    void refreshSessionStatistics();
+
+    /**
      * Returns the session details of the current entered session.
      */
     String getSessionDetails();
@@ -291,5 +306,4 @@ public interface Model {
      * Returns a previously undo entity from its history if possible.
      */
     void redoSessionList();
-
 }
