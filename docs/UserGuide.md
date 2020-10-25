@@ -14,19 +14,35 @@ title: User Guide
 
 [?]
 
-### 1.1. About ATAS
+### 1.1. Overview
 
 ATAS is a **desktop app for managing students’ particulars, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type really quickly, ATAS will help you to manage your contacts and students’ particulars faster than traditional GUI apps.
 
 [todo] mention something about the different things we can do for students, sessions, current session, etc.
 
-### 1.2. About this user guide
+### 1.2. Preview
 
-[to add details about navigation]
+[preview]
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 2. Quick start
+## 2. About this user guide
+
+### 2.1. Navigation
+
+[to add details about navigation]
+
+### 2.2. Glossary
+
+[glossary]
+
+### 2.3. Symbols and formatting
+
+[symbols and formatting]
+
+--------------------------------------------------------------------------------------------------------------------
+
+## 3. Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -56,29 +72,31 @@ ATAS is a **desktop app for managing students’ particulars, optimized for use 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 3. Layout of ATAS
+## 4. Layout of ATAS
 
 [general overview]
 
-### 3.1. Students
+### 4.1. Students
 
 [student overview]
 
-### 3.2. Sessions
+### 4.2. Sessions
 
 [sessions overview]
 
-### 3.3 Current session
+### 4.3 Current session
 
 [current session overview]
 
-### 3.4. Memo
+### 4.4. Memo
 
 [memo overview]
 
-## 4. Features
+--------------------------------------------------------------------------------------------------------------------
 
-### 4.1. Overview
+## 5. Features
+
+### 5.1. Overview
 
 <div markdown="block" class="alert alert-info">
 
@@ -98,11 +116,11 @@ ATAS is a **desktop app for managing students’ particulars, optimized for use 
 
 </div>
 
-### 4.2 General
+### 5.2 General
 
 [short overview]
 
-#### 4.2.1. Viewing help : `help`
+#### 5.2.1. Viewing help : `help`
 
 Shows the list of available commands and a link to access the user guide.
 
@@ -112,7 +130,7 @@ Shows the list of available commands and a link to access the user guide.
 help
 ```
 
-#### 4.2.2. Switching between tabs : `switch`
+#### 5.2.2. Switching between tabs : `switch`
 
 Switches between tabs.
 
@@ -127,7 +145,7 @@ switch TAB_NAME
 Example:
 * `switch sessions` switches from the current tab to the sessions tab.
 
-#### 4.2.3. Generating the name of a randomly-selected student : `rng`
+#### 5.2.3. Generating the name of a randomly-selected student : `rng`
 
 Chooses a student at random from the student list.
 
@@ -135,7 +153,7 @@ Chooses a student at random from the student list.
 rng
 ```
 
-#### 4.2.4. Undo-ing a command : `undo`
+#### 5.2.4. Undo-ing a command : `undo`
 
 Undoes a command and essentially returns ATAS to the state prior to performing that command.
 
@@ -149,7 +167,7 @@ Commands currently supported:
 * Editing a student/session: `editstu` / `editses`
 * Clearing all students/sessions: `clearstu` / `clearses`
 
-#### 4.2.5. Redo-ing a command : `redo`
+#### 5.2.5. Redo-ing a command : `redo`
 
 Redoes a command that was most recently undone and returns ATAS to the state after having performed that command.
 
@@ -159,7 +177,7 @@ Essentially the reverse of undo-ing a command.
 redo
 ```
 
-#### 4.2.6. Exiting the program : `bye`
+#### 5.2.6. Exiting the program : `bye`
 
 Exits the application.
 
@@ -167,11 +185,11 @@ Exits the application.
 bye
 ```
 
-### 4.3. Students
+### 5.3. Students
 
 [short overview]
 
-#### 4.3.1. Adding a student : `addstu`
+#### 5.3.1. Adding a student : `addstu`
 
 Adds a student to the student list.
 
@@ -187,7 +205,7 @@ Examples:
 * `addstu n/John Cena m/A0123456J e/thechamp@u.nus.edu`
 * `addstu n/Alvina Handsome m/A0123456X e/handsome.alvina@u.nus.edu t/new`
 
-#### 4.3.2. Listing all students : `liststu`
+#### 5.3.2. Listing all students : `liststu`
 
 Shows a list of all students in the current student list.
 
@@ -195,7 +213,7 @@ Shows a list of all students in the current student list.
 liststu
 ```
 
-#### 4.2.3. Locating students by name : `findstu`
+#### 5.3.3. Locating students by name : `findstu`
 
 Finds students whose names contain any of the given keywords.
 
@@ -215,7 +233,7 @@ Examples:
 * `findstu kent ridge` returns `Kent Tan` and `Mark Ridge`<br>
 [Insert image of an example of result of `findstu Cena`]
 
-#### 4.3.4. Editing a student's particulars : `editstu`
+#### 5.3.4. Editing a student's particulars : `editstu`
 
 The user will be prompted to confirm their decision here.
 
@@ -234,7 +252,7 @@ Examples:
 * `editstu 2 n/John Cena` followed by `yes` edits the 2nd student in the student list with an updated name `John Cena`.
 * `editstu 3 t/Joker` followed by `y` edits the 3rd student in the student list with an updated tag `Joker`.
 
-#### 4.3.5. Deleting a student : `deletestu`
+#### 5.3.5. Deleting a student : `deletestu`
 
 The user will be prompted to confirm their decision here.
 
@@ -253,7 +271,7 @@ Examples:
 * `liststu` followed by `deletestu 2` followed by `yes` deletes the 2nd student in the student list.
 * `findstu Betsy` followed by `deletestu 1` followed by `y` deletes the 1st student in the results of the `findstu` command.
 
-#### 4.3.6. Clearing the student list : `clearstu`
+#### 5.3.6. Clearing the student list : `clearstu`
 
 The user will be prompted to confirm their decision here.
 
@@ -263,11 +281,11 @@ If yes: removes all students from the student list.
 clearstu
 ```
 
-#### 4.4. Sessions
+#### 5.4. Sessions
 
 [short overview]
 
-#### 4.4.1. Adding a session : `addses`
+#### 5.4.1. Adding a session : `addses`
 
 Adds a session to session list.
 
@@ -282,7 +300,7 @@ Two sessions cannot have the same name
 Examples:
 * `addses s/tut1 d/12/7/2020`
 
-#### 4.4.2. Deleting a session : `deleteses`
+#### 5.4.2. Deleting a session : `deleteses`
 
 The user will be prompted to confirm their decision here.
 
@@ -300,7 +318,7 @@ deleteses INDEX
 Examples:
 * `deleteses s/tut1 d/12/7/2020` followed by `yes` deletes the 2nd session in the session list.
 
-#### 4.4.3. Clearing the session list : `clearses`
+#### 5.4.3. Clearing the session list : `clearses`
 
 Deletes all the sessions in the session list.
 
@@ -308,7 +326,7 @@ Deletes all the sessions in the session list.
 clearses
 ```
 
-#### 4.4.4. Editing a session : `editses`
+#### 5.4.4. Editing a session : `editses`
 
 The user will be prompted to confirm their decision here.
 
@@ -327,7 +345,7 @@ Examples:
 * `editses 2 s/Tutorial1 d/10/10/2020` followed by `yes` edits the 2nd session in the session list with a new session name `Tutorial1` and a new session date `10/10/2020`.
 
 
-#### 4.4.5. Entering a session : `enterses`
+#### 5.4.5. Entering a session : `enterses`
 
 Enters a session in the session list.
 
@@ -342,11 +360,11 @@ enterses INDEX
 Examples:
 * `enterses 1` enters the first session and allows you to use PARTICIPATE and PRESENCE commands.
 
-### 4.5. Current session
+### 5.5. Current session
 
 [short overview]
 
-#### 4.5.1. Toggling participation status of students : `participate`
+#### 5.5.1. Toggling participation status of students : `participate`
 
 Toggles the participation status of the students in the student list of the session.
 
@@ -361,7 +379,7 @@ participate INDEX_RANGE
 Examples:
 * `participate 1-4` toggles the participation status of students 1 to 4.
 
-#### 4.5.2. Toggling presence status of students : `presence`
+#### 5.5.2. Toggling presence status of students : `presence`
 
 Toggles the presence status of students in the student list of the session.
 
@@ -376,15 +394,15 @@ presence INDEX_RANGE
 Examples:
 * `presence 1-4` toggles the presence status of students 1 to 4.
 
-### 4.6. Memo
+### 5.6. Memo
 
 [short overview]
 
-#### 4.6.1. ???
+#### 5.6.1. ???
 
 [todo]
 
-### 4.7. User confirmation
+### 5.7. User confirmation
 
 Prompts the user to confirm the execution of commands that may permanently remove information.
 These commands are: `deletestu`, `editstu`,`clearstu`, `deleteses`, `editses`.
@@ -396,19 +414,13 @@ Examples:
 * `editses 3 s/SESSION_NAME` is followed with `Edit 3? (yes/no)`.
 * `clearstu` is followed with `Clear list? (yes/no)`.
 
-### 4.8. Saving the data
+### 5.8. Saving the data
 
 Students’ data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 6. Glossary
-
-[todo]
-
---------------------------------------------------------------------------------------------------------------------
-
-## 5. FAQ
+## 6. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ATAS home folder.
