@@ -45,7 +45,7 @@ public class StudentStatistics {
     }
 
     /**
-     * Replace statistic in the set with the given one.
+     * Replaces statistic in the set with the given one.
      * If there is already a statistic of the same type, it will be replaced with the new one. Or else
      * if there isn't a static of the same type, it will be added to the set.
      */
@@ -55,7 +55,7 @@ public class StudentStatistics {
     }
 
     /**
-     * Replace statistics in the set with the given collection of statistics.
+     * Replaces statistics in the set with the given collection of statistics.
      * Statistic type that already exists in the set will be removed and replaced with the new one.
      * A new one will be added to the set if does not exist.
      */
@@ -66,6 +66,9 @@ public class StudentStatistics {
         }
     }
 
+    /**
+     * Searches the set of statistics for a {@code ParticipationStatistics}.
+     */
     public Statistics getParticipationStatistics() {
         Statistics participationStatistics = null;
         for (Statistics statistics: stats) {
@@ -77,6 +80,9 @@ public class StudentStatistics {
         return participationStatistics;
     }
 
+    /**
+     * Searches the set of statistics for a {@code PresenceStatistics}.
+     */
     public Statistics getPresenceStatistics() {
         Statistics presenceStatistics = null;
         for (Statistics statistics: stats) {

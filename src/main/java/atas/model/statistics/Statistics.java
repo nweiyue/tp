@@ -11,12 +11,12 @@ import atas.model.session.SessionList;
 public interface Statistics {
 
     /**
-     * Return statistics data of students in the sesssion.
+     * Returns statistics data of students in the sesssion.
      */
     Statistics getSessionStatistics(Session session);
 
     /**
-     * Return statistics data of a student in the student list given the session list.
+     * Returns statistics data of a student in the student list given the session list.
      */
     Statistics getStudentStatistics(SessionList sessionList, Index index);
 
@@ -36,7 +36,7 @@ public interface Statistics {
     boolean isSameStats(Statistics statistics);
 
     /**
-     * Obtain the statistical value of current statistics.
+     * Obtains the statistical value of current statistics.
      */
     int getStatValue();
 }

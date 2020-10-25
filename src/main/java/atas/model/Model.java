@@ -233,18 +233,17 @@ public interface Model {
     Index generateRandomStudentIndex();
 
     /**
-<<<<<<< HEAD
-     * Recalculate the current statistics using the existing model components.
+     * Recalculates the current statistics using the existing model components.
      */
     void refreshStatistics();
 
     /**
-     * Recalculate the current student statistics.
+     * Recalculates the current student statistics.
      */
     void refreshStudentStatistics();
 
     /**
-     * Recalculate the current session statistics.
+     * Recalculates the current session statistics.
      */
     void refreshSessionStatistics();
 

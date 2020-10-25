@@ -223,7 +223,7 @@ public class SessionList implements Iterable<Session>, ReadOnlySessionList {
     }
 
     /**
-     * recalculate the participation and presence statistics of the current sessions in the
+     * Recalculates the participation and presence statistics of the current sessions in the
      * session list.
      */
     public void refreshSessionListStatistics() {

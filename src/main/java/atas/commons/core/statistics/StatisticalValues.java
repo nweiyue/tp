@@ -1,5 +1,8 @@
 package atas.commons.core.statistics;
 
+/**
+ * A set of state values representing statistical states of certain data.
+ */
 public class StatisticalValues {
 
     public static final int STAT_NULL = -1;
