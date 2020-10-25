@@ -251,7 +251,12 @@
   }
 }
 
-
+/**
+ * Table of Contents with no list style (empty bullets)
+ */
+.toc-no-list-style ul, ol {
+  list-style-type: none;
+}
 
 /**
  * Grid helpers
