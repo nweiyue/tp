@@ -3,34 +3,98 @@ layout: page
 title: User Guide
 ---
 
+{ start of `table_of_contents` written by: Masagca Eris Jacey }
+
 <div class="toc-no-list-style">
   * Table of contents
   {:toc}
 </div>
 
+{ end of `table_of_contents` written by: Masagca Eris Jacey }
+
 --------------------------------------------------------------------------------------------------------------------
 
-## 1. Overview
+## 1. Introduction
 
-[?]
+{ start of `introduction#elevate_your_efficiency` written by: Masagca Eris Jacey }
 
-### 1.1. Overview
+### 1.1. Elevate your efficiency
 
-ATAS is a **desktop app for managing students’ particulars, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type really quickly, ATAS will help you to manage your contacts and students’ particulars faster than traditional GUI apps.
+Hello, fellow teaching assistants of CS1010S!
 
-[todo] mention something about the different things we can do for students, sessions, current session, etc.
+Have you ever struggled with keeping track of _all_ your students' attendance and participation status for each of your classes? 
 
-### 1.2. Preview
+Have you ever needed to make a mental note in class, only to forget about it because there was no convenient place to write it in?
+
+Have you ever wished an application would have a more streamlined **Command Line Interface** to suit your typing prowess?
+
+If you found yourself saying yes to any of the above, then **ATAS (Addendum for Teaching Assistants)** is ***the*** *in-class management application* for you! 
+Made by teaching assistants, for teaching assistants, **ATAS** aims to *elevate your efficiency* and make your experience handling administrative tasks while in class as seamless as possible.
+
+{ end of `introduction` written by: Masagca Eris Jacey }
+
+{ start of `introduction#overview` written by: Masagca Eris Jacey }
+
+### 1.2. Overview
+
+**ATAS** is a **desktop app for managing students’ particulars, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). 
+If you can type really quickly, **ATAS** will help you to manage your in-class administrative needs more efficiently than traditional GUI apps.
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: Going forward, to minimize ambiguity, the following terms will be named as such: <br>
+* `classes` will be henceforth referred to as `sessions`.
+* `attendance` (of student(s)) will be henceforth referred to as `presence`. 
+
+See the parts under `session` and `presence` in the [glossary](#22-glossary) for more information.
+
+</div>
+
+Specifically, **ATAS** allows you to keep track of four different aspects (see [Section 4 - Layout of ATAS](#4-layout-of-atas) for a graphical visualization for each aspect):
+
+1. [Students](#41-students)
+   * Keep track of all students assigned to you
+   * Store their matriculation number, NUS e-mail, and relevant [tag(s)](#22-glossary) (if any)
+1. [Sessions](#42-sessions)
+   * Keep track of all sessions you will be holding for the academic year
+   * These will likely mostly consist of tutorial sessions, but can include consultations as well
+1. [Current session](#43-current-session)
+   * Keep track of student progress within each session itself
+   * Specifically, for each session, keep track of each student's [`participation`](#551-toggling-participation-status-of-students--participate) and [`presence`](#552-toggling-presence-status-of-students--presence)
+1. [Memo](#44-memo): 
+   * Keep track of any note you think you will need to remember for later use
+   * For example, take note of any interesting question raised by your student so you can follow it up with him/her after the session
+
+{ end of `introduction#overview` written by: Masagca Eris Jacey }
+
+### 1.3. Preview
 
 [preview]
 
 --------------------------------------------------------------------------------------------------------------------
 
+{ start of `about_this_user_guide` written by: Masagca Eris Jacey }
+
 ## 2. About this user guide
+
+Our aim when writing this user guide is to help you - a new user - to get started with **ATAS** as quickly as possible.
+This includes providing you with all the information you will need as *concisely as possible* to start using **ATAS**.
+This guide features all the available commands, their syntax, as well as specific examples for illustration purposes.
+
+{ end of `about_this_user_guide` written by: Masagca Eris Jacey }
+
+{ start of `about_this_user_guide#navigation` written by: Masagca Eris Jacey }
 
 ### 2.1. Navigation
 
-[to add details about navigation]
+To help ease your navigation within this document, we have included numbers for each header, as well as links to their respective part (in the table of contents, and whenever they are referenced) in the guide.
+
+Additionally, here are the relevant places you can go to if you would like to seek clarification on more specific parts:
+* If you would like to get started on using **ATAS**, head over to [Section 3 - Quick start](#3-quick-start).
+* If you would like to see the features available for **ATAS**, head over to [Section 5 - Features](#5-features).
+* If you would like a quick summary of the available commands for **ATAS**, head over to [Section 7 - Command summary](#7-command-summary).
+
+{ end of `about_this_user_guide#navigation` written by: Masagca Eris Jacey }
 
 ### 2.2. Glossary
 
@@ -84,7 +148,7 @@ ATAS is a **desktop app for managing students’ particulars, optimized for use 
 
 [sessions overview]
 
-### 4.3 Current session
+### 4.3. Current session
 
 [current session overview]
 
@@ -145,27 +209,61 @@ switch TAB_NAME
 Example:
 * `switch sessions` switches from the current tab to the sessions tab.
 
+{ start of `features#general#rng` written by: Masagca Eris Jacey }
+
 #### 5.2.3. Generating the name of a randomly-selected student : `rng`
 
 Chooses a student at random from the student list.
 
+**Format:**
 ```
 rng
 ```
+
+**Expected result:**
+```
+Student selected: NAME_OF_RANDOMLY_SELECTED_STUDENT
+```
+
+{ end of `features#general#rng` written by: Masagca Eris Jacey }
+
+{ start of `features#general#undo` written by: Masagca Eris Jacey }
 
 #### 5.2.4. Undo-ing a command : `undo`
 
 Undoes a command and essentially returns ATAS to the state prior to performing that command.
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about the usage of this command:**<br>
+
+* An `undo` is done *per command* and not per change. If you make multiple changes to a student, for example, using a single `editstu` command, then `undo` will revert *all* the changes.
+* Commands that can be undone are:
+   * Adding a student/session: `addstu` / `addses`
+   * Deleting a student/session: `deletestu` / `deleteses`
+   * Editing a student/session: `editstu` / `editses`
+   * Clearing all students/sessions: `clearstu` / `clearses`
+   * Toggling the participation status of students: `participate`
+   * Toggling the presence status of students: `presence`
+* Commands not stated above make no change to the application state and thus cannot be undone.
+* Successive `undo` commands will bring the application state further back, until there are no more changes to `undo`.
+* You can `undo` if there is no previous state to return to.
+
+</div>
+
+**Format:**
 ```
 undo
 ```
 
-Commands currently supported:
-* Adding a student/session: `addstu` / `addses`
-* Deleting a student/session: `deletestu` / `deleteses`
-* Editing a student/session: `editstu` / `editses`
-* Clearing all students/sessions: `clearstu` / `clearses`
+**Expected result:**
+```
+Previous command successfuly undone!
+```
+
+{ end of `features#general#undo` written by: Masagca Eris Jacey }
+
+{ start of `features#general#redo` written by: Masagca Eris Jacey }
 
 #### 5.2.5. Redo-ing a command : `redo`
 
@@ -173,9 +271,27 @@ Redoes a command that was most recently undone and returns ATAS to the state aft
 
 Essentially the reverse of undo-ing a command.
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about the usage of this command:**<br>
+
+* A `redo` is done *per command* and not per change. If you undo a command that makes multiple changes (like `editstu`), then `redo` will recover *all* changes.
+* If any of [the commands that support `undo`](#524-undo-ing-a-command--undo) is performed after an `undo`, then all states currently available for `redo` will be erased and you will not be able to go to those states anymore.
+* You cannot `redo` if there is no forward state to go to.
+
+</div>
+
+**Format:**
 ```
 redo
 ```
+
+**Expected result:**
+```
+Previous command successfuly redone!
+```
+
+{ end of `features#general#redo` written by: Masagca Eris Jacey }
 
 #### 5.2.6. Exiting the program : `bye`
 
@@ -427,11 +543,28 @@ Students’ data are saved in the hard disk automatically after any command that
 
 --------------------------------------------------------------------------------------------------------------------
 
+{ start of `command_summary` written by: Masagca Eris Jacey }
+
 ## 7. Command summary
+
+The following is a summary of all available commands for your reference.
+
+{ end of `command_summary` written by: Masagca Eris Jacey }
+
+{ start of `command_summary#general` written by: Masagca Eris Jacey }
 
 ### 7.1. General
 
-[general]
+Command | Format, Examples
+--------|------------------
+**Help** | `help`
+**Switch** | `switch TAB_NAME`<br> e.g., `switch sessions`
+**Random Name Generation** | `rng`
+**Undo** | `undo`
+**Redo** | `redo`
+**Exit** | `bye`
+
+{ end of `command_summary#general` written by: Masagca Eris Jacey }
 
 ### 7.2. Students
 
@@ -447,27 +580,4 @@ Students’ data are saved in the hard disk automatically after any command that
 
 ### 7.5. Memo
 
-[revamp below]
-
-Action | Format, Examples
---------|------------------
-**Help** | `help`
-**Switch** | `switch TAB_NAME`<br> e.g., `switch sessions`
-**Random Name Generation** | `rng`
-**Undo** | `undo`
-**Redo** | `redo`
-**Exit** | `bye`
-**Add Student** | `addstu n/NAME m/MATRICULATION_NUMBER e/NUS_EMAIL_ADDRESS [t/TAG]…​` <br> e.g., `addstu n/Rainer Lam m/A0123456C e/rainerlam@u.nus.edu t/smart`
-**List Students** | `liststu`
-**Find Students** | `findstu KEYWORD [MORE_KEYWORDS]`<br> e.g., `findstu Justin Bieber`
-**Delete Student** | `deletestu INDEX`<br> e.g., `deletestu 3`
-**Edit Student** | `editstu INDEX n/UPDATED_NAME`<br> e.g., `editstu 2 n/John Cena`
-**Clear Students** | `clearstu`
-**Add Session** | `addses s/SESSION_NAME d/SESSION_DATE`<br> e.g., `addses s/TUT1 d/10/10/2020`
-**Delete Session** | `deleteses INDEX `<br> e.g., `deleteses 2`
-**Edit Session** | `editses INDEX s/UPDATED_NAME d/UPDATED_DATE`<br> e.g., `editses 2 s/TUT2 d/10/10/2020`
-**Clear Sessions** | `clearses`
-**Enter Session** | `enterses INDEX`<br> e.g., `enterses 1`
-**Participate** | `participate INDEX_RANGE `<br> e.g., `participate 2`
-**Presence** | `presence INDEX_RANGE `<br> e.g., `presence 2`
-
+[memo]
