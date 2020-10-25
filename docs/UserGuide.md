@@ -303,7 +303,23 @@ bye
 
 ### 5.3. Students
 
-[short overview]
+{ start of `Features#Students` written by: Zhang Sheng Yang }
+<br/>
+<br/>
+In ATAS, you can easily manage your students in your class!
+<br/>
+- First, at the start of a semester, you can use `addstu` and `deletestu` to include or remove 
+students in your class. You can also edit student's particulars with `editstu` if you wait to change any of
+the student's details.
+- Next, if you want to find any student or students, you can try `findstu` to search the class for 
+the student you are looking for, you class will not only show the the student or students you searched for.
+When you are done, you can simply use `liststu` to see the entire class again!
+- Finally, you might want to empty class to get ready for the next semester. In this case, you can utilize 
+`clearstu` to empty the class.
+<br/>
+<br/>
+
+{ end of `Features#Students` written by: Zhang Sheng Yang }
 
 #### 5.3.1. Adding a student : `addstu`
 
@@ -478,7 +494,19 @@ Examples:
 
 ### 5.5. Current session
 
-[short overview]
+{ start of `Current session#overview` written by: Zhang Sheng Yang }
+<br/>
+<br/>
+After entering a session, which is mentioned above, you can now edit the presence and participation details
+of a student. `participate` allows you to toggle the participation status (from present to absent or from 
+absent to present), and `presence` allows you to toggle the presence status of a student(from not 
+participated to participated or from participated to not participated).
+<br/>
+<br/>
+
+{ end of `Current session overview` written by: Zhang Sheng Yang }
+
+<br/>
 
 #### 5.5.1. Toggling participation status of students : `participate`
 
@@ -568,7 +596,23 @@ Command | Format, Examples
 
 ### 7.2. Students
 
-[students]
+{ start of `Command summary#Students` written by: Zhang Sheng Yang }
+<br/>
+<br/>
+The following is a summary of commands related to students.
+
+Command | Format, Examples
+--------|------------------
+**Add** | `addstu n/NAME m/MATRICULATION_NUMBER e/NUS_EMAIL_ADDRESS [t/TAG]…` <br/> e.g.,<br/> `addstu n/John Cena m/A0123456J e/thechamp@u.nus.edu`,<br/> `addstu n/Alvina Handsome m/A0123456X e/handsome.alvina@u.nus.edu t/new`
+**List** | `list`
+**Find** | `findstu KEYWORD [MORE_KEYWORDS]` <br/> e.g.,<br/> `findstu John`,<br/> `findstu kent ridge`
+**Edit** | `editstu INDEX n/UPDATED_NAME` <br/> e.g.,<br/> `editstu 2 n/John Cena`,<br/> `editstu 3 t/Joker`
+**Delete** | `deletestu INDEX` <br/> e.g.,<br/> `deletestu 2`
+**Clear** | `clear`
+
+<br/>
+
+{ end of `Command summary#Students` written by: Zhang Sheng Yang }
 
 ### 7.3. Sessions
 
@@ -576,7 +620,19 @@ Command | Format, Examples
 
 ### 7.4. Current session
 
-[current session]
+{ start of `Command summary#Current session` written by: Zhang Sheng Yang }
+<br/>
+<br/>
+The following is a summary relevant commands after entering a session.
+
+Command | Format, Examples
+--------|------------------
+**Participate** | `participate INDEX_RANGE` <br/> e.g., `participate 1-4`, `participate 3`
+**Presence** | `presence INDEX_RANGE` <br/> e.g., `presence 2-3`, `presence 7`
+
+<br/>
+
+{ end of `Command summary#Current session` written by: Zhang Sheng Yang }
 
 ### 7.5. Memo
 
