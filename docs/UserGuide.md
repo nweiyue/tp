@@ -406,7 +406,7 @@ deletestu INDEX
 Delete INDEX? (yes/no)
 ```
 
-After receiving the confirmation prompt, enter `yes` to confirm the removal of student at the specified `INDEX`, or else, reject the command by entering `no`.
+:tip: After receiving the confirmation prompt, enter `yes` to confirm the removal of student at the specified `INDEX`, or else, reject the command by entering `no`.
 
 **Format:**
 ```
@@ -452,7 +452,7 @@ editstu INDEX n/UPDATED_NAME
 Edit INDEX? (yes/no)
 ```
 
-After receiving the confirmation prompt, enter `yes` to confirm the editing of student's particulars at the specified `INDEX`, or else, reject the command by entering `no`.
+:tip: After receiving the confirmation prompt, enter `yes` to confirm the editing of student's particulars at the specified `INDEX`, or else, reject the command by entering `no`.
 
 **Format:**
 ```
@@ -496,7 +496,7 @@ clearstu
 Clear list? (yes/no)
 ```
 
-After receiving the confirmation prompt, enter `yes` to confirm the removal of all students from the student list, or else, reject the command by entering `no`.
+:tip: After receiving the confirmation prompt, enter `yes` to confirm the removal of all students from the student list, or else, reject the command by entering `no`.
 
 **Format:**
 ```
@@ -631,17 +631,46 @@ Examples:
 
 [todo]
 
+{ start of `features#userconfirmation#clearstu` written by: Marcus Tan Wei }
+
 ### 5.7. User confirmation
 
-Prompts the user to confirm the execution of commands that may permanently remove information.
+Some commands have the ability to alter the data stored in the hard disk.
+ATAS aims to make careful decisions and further prompts the user to confirm the execution of those commands.
 These commands are: `deletestu`, `editstu`,`clearstu`, `deleteses`, `editses`.
 
-* Confirms the execution at the specified `INDEX`.
+:bulb: Tip: `yes` and `y` are both accepted when confirming the execution of a command while `no` and `n` are both accepted when rejecting the execution of a command.
 
 Examples:
 * `deletestu 3` is followed with `Delete 3? (yes/no)`.
 * `editses 3 s/SESSION_NAME` is followed with `Edit 3? (yes/no)`.
 * `clearstu` is followed with `Clear list? (yes/no)`.
+
+For example, confirmation of `deletestu` is shown above at [Section 5 - Features](#534-deleting-a-student--deletestu). In this case, we will show an example of rejection a `deletestu` command.
+
+**Format:**
+```
+deletestu INDEX
+```
+
+**Expected result:**
+```
+Delete INDEX? (yes/no)
+```
+   ![DeletestuConfirmationExample](images/ScreenshotDeletestuConfirmationExample.png)
+
+**Format:**
+```
+no
+```
+
+**Expected result:**
+```
+Delete INDEX is not executed
+```
+   ![DeletestuNotExecuted](images/ScreenshotDeletestuNotExecuted.png)
+
+{ end of `features#userconfirmation#clearstu` written by: Marcus Tan Wei }
 
 ### 5.8. Saving the data
 
