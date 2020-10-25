@@ -206,4 +206,19 @@ public interface Model {
      * Returns the index of a randomly selected student in the student list.
      */
     Index generateRandomStudentIndex();
+
+    /**
+     * Recalculate the current statistics using the existing model components.
+     */
+    void refreshStatistics();
+
+    /**
+     * Recalculate the current student statistics.
+     */
+    void refreshStudentStatistics();
+
+    /**
+     * Recalculate the current session statistics.
+     */
+    void refreshSessionStatistics();
 }

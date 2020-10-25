@@ -4,6 +4,10 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
+import atas.commons.core.index.Index;
+import atas.model.attendance.SessionList;
+import atas.model.statistics.ParticipationStatistics;
+import atas.model.statistics.PresenceStatistics;
 import atas.model.student.Student;
 import atas.model.student.UniqueStudentList;
 import javafx.collections.ObservableList;
@@ -94,6 +98,19 @@ public class StudentList implements ReadOnlyStudentList {
     }
 
     //// util methods
+
+    /**
+     * Recalculate student statistics using the given session list.
+     */
+    public void refreshStudentListStatistics(SessionList sessionList) {
+        int counter = 0;
+        for (Student student: students) {
+            Index index = Index.fromZeroBased(counter);
+            student.setStats(new ParticipationStatistics().getStudentStatistics(sessionList, index),
+                    new PresenceStatistics().getStudentStatistics(sessionList, index));
+            counter++;
+        }
+    }
 
     @Override
     public String toString() {

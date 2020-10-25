@@ -94,7 +94,7 @@ public class SessionListTest {
     @Test
     public void equals() {
         SessionList typicalList = new SessionList(TypicalStudents.getTypicalStudents());
-        typicalList.addSession(TypicalSessions.TUT1);
+        typicalList.addSession(TypicalSessions.duplicateSession(TypicalSessions.TUT1));
         SessionList emptyList = new SessionList();
 
         //different list size

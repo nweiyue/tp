@@ -6,6 +6,9 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import atas.commons.core.index.Index;
+import atas.model.statistics.ParticipationStatistics;
+import atas.model.statistics.PresenceStatistics;
+import atas.model.statistics.SessionStatistics;
 import atas.model.student.Name;
 import atas.model.student.Student;
 import javafx.collections.FXCollections;
@@ -21,6 +24,7 @@ public class Session implements Comparable<Session> {
     private final SessionDate sessionDate;
     private final ObservableList<Attributes> attributeList;
     private Index sessionIndex;
+    private SessionStatistics sessionStats;
 
     /**
      * Parametrized constructor.
@@ -30,6 +34,7 @@ public class Session implements Comparable<Session> {
         this.sessionDate = sessionDate;
         this.attributeList = FXCollections.observableArrayList();
         this.sessionIndex = Index.fromZeroBased(0);
+        this.sessionStats = new SessionStatistics();
     }
 
     /**
@@ -39,10 +44,9 @@ public class Session implements Comparable<Session> {
         this.sessionName = sessionName;
         this.sessionDate = sessionDate;
         this.attributeList = FXCollections.observableArrayList();
-        for (int i = 0; i < attributeList.size(); i++) {
-            this.attributeList.add(attributeList.get(i));
-        }
+        this.attributeList.addAll(attributeList);
         this.sessionIndex = Index.fromZeroBased(0);
+        this.sessionStats = new SessionStatistics(attributeList.size());
     }
 
     public ObservableList<Attributes> getAttributeList() {
@@ -50,18 +54,20 @@ public class Session implements Comparable<Session> {
     }
 
     /**
-     * Sets the student session presence to <code>true</code>.
+     * Toggles student's presence status. Finds the correct corresponding attribute
+     * using the given index.
      */
-    public void setStudentAsPresent(Index studentId) {
+    public void toggleStudentPresence(Index studentId) {
         requireNonNull(studentId);
         Attributes attributes = attributeList.get(studentId.getZeroBased());
         attributeList.set(studentId.getZeroBased(), attributes.togglePresence());
     }
 
     /**
-     * Sets the student participation status to <code>true</code>.
+     * Toggles student's participation status. Finds the correct corresponding attribute
+     * using the given index.
      */
-    public void setStudentAsParticipated(Index studentId) {
+    public void toggleStudentParticipation(Index studentId) {
         requireNonNull(studentId);
         Attributes attributes = attributeList.get(studentId.getZeroBased());
         attributeList.set(studentId.getZeroBased(), attributes.toggleParticipation());
@@ -78,6 +84,7 @@ public class Session implements Comparable<Session> {
             attributeList.set(i, temp);
         }
         attributeList.remove(masterList.size()); // remove last key-value pair from hashmap
+        refreshSessionStatistics();
     }
 
     /**
@@ -87,6 +94,7 @@ public class Session implements Comparable<Session> {
         requireAllNonNull(masterList);
         Name studentName = masterList.get(masterList.size() - 1).getName();
         attributeList.add(masterList.size() - 1, new Attributes(studentName));
+        refreshSessionStatistics();
     }
 
     /**
@@ -100,9 +108,10 @@ public class Session implements Comparable<Session> {
             Attributes temp = attributeList.get(i);
             // exclude invalid index
             if (temp != null) {
-                setStudentAsParticipated(Index.fromZeroBased(i));
+                toggleStudentParticipation(Index.fromZeroBased(i));
             }
         }
+        refreshSessionStatistics();
     }
 
     /**
@@ -117,9 +126,19 @@ public class Session implements Comparable<Session> {
 
             // exclude invalid index
             if (temp != null) {
-                setStudentAsPresent(Index.fromZeroBased(i));
+                toggleStudentPresence(Index.fromZeroBased(i));
             }
         }
+        refreshSessionStatistics();
+    }
+
+    /**
+     * Recalculate the participation and presence statistics of this session.
+     */
+    public void refreshSessionStatistics() {
+        sessionStats.replaceStatistics(
+                new ParticipationStatistics().getSessionStatistics(this),
+                new PresenceStatistics().getSessionStatistics(this));
     }
 
     /**
@@ -129,6 +148,7 @@ public class Session implements Comparable<Session> {
         for (int i = 0; i < masterList.size(); i++) {
             attributeList.add(new Attributes(masterList.get(i).getName()));
         }
+
     }
 
     public String returnStudentNameStringByIndex(int index) throws Exception {
@@ -158,6 +178,10 @@ public class Session implements Comparable<Session> {
 
     public Index getSessionIndex() {
         return sessionIndex;
+    }
+
+    public SessionStatistics getSessionStats() {
+        return sessionStats;
     }
 
     @Override

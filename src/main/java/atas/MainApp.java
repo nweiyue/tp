@@ -56,7 +56,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing Atas ]===========================");
+        logger.info("=============================[ Initializing ATAS ]===========================");
         super.init();
         AppParameters appParameters = AppParameters.parse(getParameters());
         config = initConfig(appParameters.getConfigPath());
@@ -117,7 +117,10 @@ public class MainApp extends Application {
             memoContent = MemoStorage.DEFAULT_MEMO_CONTENT;
         }
 
-        return new ModelManager(initialDataSl, initialDataAb, userPrefs, memoContent);
+        ModelManager modelManager = new ModelManager(initialDataSl, initialDataAb, userPrefs, memoContent);
+        modelManager.refreshStatistics();
+
+        return modelManager;
     }
 
     private void initLogging(Config config) {
@@ -194,13 +197,13 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting Atas " + MainApp.VERSION);
+        logger.info("Starting ATAS " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Atas ] =============================");
+        logger.info("============================ [ Stopping ATAS ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {

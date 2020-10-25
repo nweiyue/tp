@@ -184,7 +184,7 @@ public class AddStudentCommandTest {
 
         @Override
         public void enterSession(Index sessionIndex) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -224,17 +224,17 @@ public class AddStudentCommandTest {
 
         @Override
         public void updateFilteredSessionList(Predicate<Session> predicate) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void setCurrentSessionFalse() {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void setCurrentSessionTrue() {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -259,6 +259,21 @@ public class AddStudentCommandTest {
 
         @Override
         public Index generateRandomStudentIndex() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void refreshStatistics() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void refreshStudentStatistics() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void refreshSessionStatistics() {
             throw new AssertionError("This method should not be called.");
         }
 

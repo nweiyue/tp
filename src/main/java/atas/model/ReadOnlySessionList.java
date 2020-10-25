@@ -22,6 +22,9 @@ public interface ReadOnlySessionList {
      */
     ObservableList<Student> getInternalStudentList();
 
+    /**
+     * Update the current student list with the given list.
+     */
     void updateStudentList(List<Student> list);
 
 }

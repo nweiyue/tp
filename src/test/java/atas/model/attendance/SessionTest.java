@@ -72,32 +72,32 @@ class SessionTest {
     @Test
     public void studentBecomesPresent_validId_success() {
         Index index = Index.fromOneBased(1);
-        sessionWeekOne.setStudentAsPresent(index);
+        sessionWeekOne.toggleStudentPresence(index);
         assertEquals(PRESENT_BUT_HAS_NOT_PARTICIPATED, sessionWeekOne.getAttributeList().get(index.getZeroBased()));
     }
 
     @Test
     public void studentBecomesPresent_nullId_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> sessionWeekOne.setStudentAsPresent(null));
+        assertThrows(NullPointerException.class, () -> sessionWeekOne.toggleStudentPresence(null));
     }
 
     @Test
     public void studentParticipates_validId_success() {
         Index index = Index.fromOneBased(1);
-        sessionWeekTwo.setStudentAsParticipated(index);
+        sessionWeekTwo.toggleStudentParticipation(index);
         assertEquals(ABSENT_BUT_HAS_PARTICIPATED, sessionWeekTwo.getAttributeList().get(index.getZeroBased()));
     }
 
     @Test
     public void studentParticipates_nullId_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> sessionWeekOne.setStudentAsParticipated(null));
+        assertThrows(NullPointerException.class, () -> sessionWeekOne.toggleStudentParticipation(null));
     }
 
     @Test
     public void studentBecomesPresentAndParticipates_validId_success() {
         Index index = Index.fromOneBased(1);
-        sessionWeekThree.setStudentAsParticipated(index);
-        sessionWeekThree.setStudentAsPresent(index);
+        sessionWeekThree.toggleStudentParticipation(index);
+        sessionWeekThree.toggleStudentPresence(index);
         assertEquals(PRESENT_AND_HAS_PARTICIPATED, sessionWeekThree.getAttributeList().get(index.getZeroBased()));
     }
 
