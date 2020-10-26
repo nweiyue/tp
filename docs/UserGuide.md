@@ -172,7 +172,7 @@ To find out which features are supported by the `Sessions` tab, you can head ove
 
 { end of `layout_of_atas#sessions` written by: Ngoh Wei Yue }
 
-{ start of `layout_of_atas#current_sessions` written by: Ngoh Wei Yue }
+{ start of `layout_of_atas#current_session` written by: Ngoh Wei Yue }
 
 ### 4.3. Current session
 
@@ -184,7 +184,7 @@ The following is how the `Current Session` tab looks like:
 
 To find out which features are supported by the `Current Session` tab, you can head over to [Section 5.5 - Current session](#55-current-session).
 
-{ end of `layout_of_atas#current_sessions` written by: Ngoh Wei Yue }
+{ end of `layout_of_atas#current_session` written by: Ngoh Wei Yue }
 
 { start of `layout_of_atas#memo` written by: Ngoh Wei Yue }
 
@@ -220,13 +220,13 @@ With the exception of [save memo](#562-save-memo), all commands that are availab
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are placeholders to be replaced by you.<br>
-  e.g. `addstu n/STUDENT_NAME` should be changed to `addstu n/John Cena`.
+  e.g. you should change `addstu n/STUDENT_NAME` to `addstu n/John Cena`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Cena t/foreigner` or simply as `n/John Cena`.
+  e.g you can use `n/NAME [t/TAG]` as `n/John Cena t/foreigner` or simply as `n/John Cena`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/foreigner`(i.e. 1 time), `t/foreigner t/enthusiastic`(i.e. 2 times) etc.
+  e.g. you can use `[t/TAG]…​` as ` ` (i.e. 0 times), `t/foreigner`(i.e. 1 time), `t/foreigner t/enthusiastic`(i.e. 2 times) etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME m/MATRICULATION_NUMBER`, `m/MATRICULATION_NUMBER n/NAME` is also acceptable. 
@@ -675,7 +675,7 @@ Examples:
 ## 6. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous **ATAS** home folder.
+**A**: Install **ATAS** in the other computer and overwrite the empty data files it creates with the files that contains the data of your previous **ATAS** home folder. The previous data files can be found in the *data* folder in the same directory as your `atas.jar` file.
 
 { end of `faq` written by: Ngoh Wei Yue }
 
