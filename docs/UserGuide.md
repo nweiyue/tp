@@ -412,7 +412,7 @@ deletestu INDEX
 Delete INDEX? (yes/no)
 ```
 
-:instruction_source: After receiving the confirmation prompt, enter `yes` to confirm the removal of student at the specified `INDEX`, or else, reject the command by entering `no`.
+:instruction_source: After receiving the confirmation prompt, enter `yes` to confirm the removal of student at the specified `INDEX`, or reject the command by entering `no`.
 
 **Format:**
 ```
@@ -458,7 +458,7 @@ editstu INDEX n/UPDATED_NAME
 Edit INDEX? (yes/no)
 ```
 
-:instruction_source: After receiving the confirmation prompt, enter `yes` to confirm the editing of student's particulars at the specified `INDEX`, or else, reject the command by entering `no`.
+:instruction_source: After receiving the confirmation prompt, enter `yes` to confirm the editing of student's particulars at the specified `INDEX`, or reject the command by entering `no`.
 
 **Format:**
 ```
@@ -502,7 +502,7 @@ clearstu
 Clear list? (yes/no)
 ```
 
-:information_source: After receiving the confirmation prompt, enter `yes` to confirm the removal of all students from the student list, or else, reject the command by entering `no`.
+:information_source: After receiving the confirmation prompt, enter `yes` to confirm the removal of all students from the student list, or reject the command by entering `no`.
 
 **Format:**
 ```
