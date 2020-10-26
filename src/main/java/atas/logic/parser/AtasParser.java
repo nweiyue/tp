@@ -70,7 +70,13 @@ public class AtasParser {
         }
 
         final String commandWord = matcher.group("commandWord");
-        final String arguments = matcher.group("arguments");
+        final String arguments;
+
+        if (commandWord.equals(AddNoteCommand.COMMAND_WORD)) {
+            arguments = userInput.substring(AddNoteCommand.COMMAND_WORD.length());
+        } else {
+            arguments = matcher.group("arguments");
+        }
 
         // If there is an edit, delete or clear, there should be a previous command.
         if (previousCommand != null) {
@@ -145,7 +151,7 @@ public class AtasParser {
                 return new EnterSessionCommandParser().parse(arguments);
 
             case AddNoteCommand.COMMAND_WORD:
-                return new AddNoteCommandParser().parse(arguments.stripLeading());
+                return new AddNoteCommandParser().parse(arguments);
 
             case RngCommand.COMMAND_WORD:
                 return new RngCommand();
