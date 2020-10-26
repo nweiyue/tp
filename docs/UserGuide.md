@@ -719,9 +719,19 @@ Command | Format, Examples
 
 [students]
 
+{ start of `command_summary#sessions` written by: Marcus Tan Wei}
+
 ### 7.3. Sessions
 
-[sessions]
+Command | Format, Examples
+--------|------------------
+**Add Session** | `addses s/SESSION_NAME d/SESSION_DATE` <br> e.g., `addses s/Tutorial 1 d/11/11/2020`
+**Clear Sessions** | `clearses`
+**Delete Session** | `deleteses INDEX`
+**Edit Session** | `editses` <br> e.g., `editses 1 s/Lab 1`
+**Enter Session** | `enterses INDEX`
+
+{ end of `command_summary#sessions` written by: Marcus Tan Wei}
 
 ### 7.4. Current session
 
