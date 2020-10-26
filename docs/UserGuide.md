@@ -116,7 +116,7 @@ Additionally, here are the relevant places you can go to if you would like to se
 
 2. Download the latest `atas.jar` from [here](https://github.com/AY2021S1-CS2103T-W16-4/tp/releases). 
 
-3. Copy the file to the folder you want to use as the _home folder_ for your ATAS. All the data related to ATAS will be stored here.
+3. Copy the file to the folder you want to use as the home folder for your ATAS. All the data related to ATAS will be stored here.
 
 4. Double-click the file to start the app. The GUI similar to the below image should appear in a few seconds. Note how the app contains some sample data.<br>
    ![StartPage](images/StartPage.png)
