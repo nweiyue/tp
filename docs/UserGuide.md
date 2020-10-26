@@ -239,7 +239,7 @@ With the exception of [save memo](#562-save-memo), all commands that are availab
 
 ### 5.2 General
 
-This category consists of conventional features (`help`, `exit`, `undo` and `redo` ) that you can find in most applications. It also consists of features that are  responsible for navigating through **ATAS** (`switch`) and those that have no specific relation to any of the other categories below(`rng`).
+This category consists of conventional features (`help`, `exit`, `undo` and `redo`) that you can find in most applications. It also consists of features that are  responsible for navigating through **ATAS** (`switch`) and those that have no specific relation to any of the other categories below (`rng`).
 
 { end of `features#general` written by: Ngoh Wei Yue }
 
@@ -619,7 +619,7 @@ Example:
 
 { end of `features#memo#addnote` written by: Ngoh Wei Yue }
 
-{ start of `features#memo#saveMemo` written by: Ngoh Wei Yue }
+{ start of `features#memo#save_memo` written by: Ngoh Wei Yue }
 
 #### 5.6.2. Save memo
 
@@ -646,7 +646,7 @@ cmd + s
 Memo saved!
 ```
 
-{ end of `features#memo#saveMemo` written by: Ngoh Wei Yue }
+{ end of `features#memo#save_memo` written by: Ngoh Wei Yue }
 
 ### 5.7. User confirmation
 
@@ -716,7 +716,7 @@ Command | Format, Examples
 
 [current session]
 
-{ start of `command_summary#Memo` written by: Ngoh Wei Yue }
+{ start of `command_summary#memo` written by: Ngoh Wei Yue }
 
 ### 7.5. Memo
 
@@ -725,4 +725,4 @@ Command | Format, Examples
 **Add Note** | `addnote NOTE`<br> e.g., `addnote clarify qn 3 with prof`
 **Save Memo** | Keyboard shortcut: `Ctrl + s` for Windows/Linux or `Cmd + s` for MacOs
 
-{ end of `command_summary#Memo` written by: Ngoh Wei Yue }
+{ end of `command_summary#memo` written by: Ngoh Wei Yue }
