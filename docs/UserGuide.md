@@ -657,11 +657,10 @@ addses s/SESSION_NAME d/SESSION_DATE
 New session added: Tutorial 4 @ 12/07/2020
 ```
 
+**:information_source: Notes about the usage of this command:**<br>
 * Adds a session with the specified name and date to the displayed session list.
 
-:bulb: **Tip:**<div markdown="span" class="alert alert-primary">
-Two sessions cannot have the same name but they can have the same date
-</div>
+:bulb: **Tip:** Two sessions cannot have the same name but they can have the same date
 
 Examples:
 * `addses s/tut1 d/12/7/2020`
@@ -669,8 +668,6 @@ Examples:
 #### 5.4.2. Deleting a session : `deleteses`
 
 Deletes a session from the session list.
-
-You will be prompted to confirm your decision here.
 
 **Format:**
 ```
@@ -682,8 +679,9 @@ deleteses INDEX
 Delete INDEX? (yes/no)
 ```
 
-:tip: After receiving the confirmation prompt, enter `yes` to confirm the removal of session at the specified `INDEX` or reject the command by entering `no`.
+:instruction_source: After receiving the confirmation prompt, enter `yes` to confirm the removal of session at the specified `INDEX` or reject the command by entering `no`.
 
+**:information_source: Notes about the usage of this command:**<br>
 * Deletes the session from the displayed session list at the specified `INDEX`.
 * The index refers to the index number shown in the session list.
 * The index **must be a positive integer** 1, 2, 3, …
@@ -699,8 +697,6 @@ Examples:
 
 Edits a session in the session list.
 
-You will be prompted to confirm your decision here.
-
 **Format:**
 ```
 editses INDEX s/UPDATED_NAME d/UPDATED_DATE
@@ -711,12 +707,11 @@ editses INDEX s/UPDATED_NAME d/UPDATED_DATE
 Edit INDEX? (yes/no)
 ```
 
-:tip: After receiving the confirmation prompt, enter `yes` to confirm the update of session at the specified `INDEX` or reject the command by entering `no`.
+:instruction_source: After receiving the confirmation prompt, enter `yes` to confirm the update of session at the specified `INDEX` or reject the command by entering `no`.
 
-:bulb: **Tip:**<div markdown="span" class="alert alert-primary">
-The updated session cannot have the same name as any of the other sessions in the list but they can have the same date
-</div>
+:bulb: **Tip:** The updated session cannot have the same name as any of the other sessions in the list but they can have the same date
 
+**:information_source: Notes about the usage of this command:**<br>
 * Edits the session in the displayed session list at the specified `INDEX` with the specified details.
 * The index refers to the index number shown in the session list.
 * The index **must be a positive integer** 1, 2, 3, …
@@ -731,8 +726,6 @@ Examples:
 
 Deletes all the sessions in the session list.
 
-You will be prompted to confirm your decision here.
-
 **Format:**
 ```
 clearses
@@ -743,8 +736,9 @@ clearses
 Clear session list? (yes/no)
 ```
 
-:tip: After receiving the confirmation prompt, enter `yes` to confirm the clearance of all sessions or reject the command by entering `no`.
+:instruction_source: After receiving the confirmation prompt, enter `yes` to confirm the clearance of all sessions or reject the command by entering `no`.
 
+**:information_source: Notes about the usage of this command:**<br>
 * Clears all the sessions in the displayed session list.
 * You will be prompted for a confirmation input **`(yes/no)`**.
    * If yes: all sessions will be removed from the session list.
@@ -767,6 +761,7 @@ enterses INDEX
 Session entered: INDEX
 ```
 
+**:information_source: Notes about the usage of this command:**<br>
 * Enters the session in the displayed session list at the specified `INDEX`.
 * The index refers to the index number shown in the session list.
 * The index **must be a positive integer** 1, 2, 3, …
