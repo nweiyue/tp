@@ -140,7 +140,7 @@ Additionally, here are the relevant places you can go to if you would like to se
 
 ## 4. Layout of ATAS
 
-Over here, you can get an idea of how the different aspects of **ATAS** look like. **ATAS** comprises of four different tabs, with each tab supporting [features](#5-features) of the different aspects of the application.
+Over here, you can get an idea of how the different aspects of **ATAS** look like. **ATAS** comprises of four different tabs, with each tab supporting [features](#5-features) of the different aspects of **ATAS**.
 
 { end of `layout_of_atas` written by: Ngoh Wei Yue }
 
@@ -148,13 +148,13 @@ Over here, you can get an idea of how the different aspects of **ATAS** look lik
 
 ### 4.1. Students
 
-The `Students` section contains a list of the students in your class. In this tab, you can view your students' particulars such as their name, matriculation number, email and their overall presence and participation scores. The students are arranged in the order that you add them.
+The `Students` tab contains a list of the students in your class. In this tab, you can view your students' particulars such as their name, matriculation number, email and their overall presence and participation scores. The students are arranged in the order that you add them.
 
 The following is how the `Students` tab looks like:
 
 ![StudentsLayout](images/StudentsLayout.png)
 
-To find out which features are supported in the `Students` tab, you can head over to [Section 5.3 - Students](#53-students).
+To find out which features are supported by the `Students` tab, you can head over to [Section 5.3 - Students](#53-students).
 
 { end of `layout_of_atas#students` written by: Ngoh Wei Yue }
 
@@ -162,13 +162,13 @@ To find out which features are supported in the `Students` tab, you can head ove
 
 ### 4.2. Sessions
 
-Over at `Sessions`, you can find the list of sessions that you have. Each session will display details like their name, date and the overall percentage of students present and participating in that particular session. The sessions are sorted by their dates, starting ftom the latest at the top.
+Over at `Sessions` tab, you can find the list of sessions that you have. Each session will display details like their name, date and the overall percentage of students present and participating in that particular session. The sessions are sorted by their dates, starting ftom the latest at the top.
 
 The following is how the `Sessions` tab looks like:
 
 ![SessionsLayout](images/SessionsLayout.png)
 
-To find out which features are supported in the `Sessions` tab, you can head over to [Section 5.4 - Sessions](#54-sessions).
+To find out which features are supported by the `Sessions` tab, you can head over to [Section 5.4 - Sessions](#54-sessions).
 
 { end of `layout_of_atas#sessions` written by: Ngoh Wei Yue }
 
@@ -176,13 +176,13 @@ To find out which features are supported in the `Sessions` tab, you can head ove
 
 ### 4.3. Current session
 
-Similar to the `Students` tab, you can also view the list of your students in the `Current Session` tab. The difference is that you can only view each student's name and also whether they are present and whether they have participated for that particular session that you have entered. Students are sorted base on the student list in the `Students` tab.
+Similar to the `Students` tab, you can also view the list of your students in the `Current Session` tab. The difference is that you can only view the students name and also whether they are present or have participated for that particular session. Students are sorted base on the student list in the `Students` tab.
 
 The following is how the `Current Session` tab looks like:
 
 ![CurrentSessionLayout](images/CurrentSessionLayout.png)
 
-To find out which features are supported in the `Current Session` tab, you can head over to [Section 5.5 - Current session](#55-current-session).
+To find out which features are supported by the `Current Session` tab, you can head over to [Section 5.5 - Current session](#55-current-session).
 
 { end of `layout_of_atas#current_sessions` written by: Ngoh Wei Yue }
 
@@ -196,7 +196,7 @@ The following is how the `Memo` tab looks like:
 
 ![MemoLayout](images/MemoLayout.png)
 
-To find out which features are supported in the `Current Session` tab, you can head over to [Section 5.6 - Memo](#56-memo).
+To find out which features are supported by the `Memo` tab, you can head over to [Section 5.6 - Memo](#56-memo).
 
 { end of `layout_of_atas#memo` written by: Ngoh Wei Yue }
 
@@ -239,7 +239,7 @@ With the exception of [save memo](#562-save-memo), all commands that are availab
 
 ### 5.2 General
 
-This category consists of conventional features (`help`, `exit`, `undo` and `redo` ) that you can find in most applications. It also consists of features that are  responsible for navigating through **ATAS** (`switch`) and those that have no specific relation to any of the other categories (`rng`).
+This category consists of conventional features (`help`, `exit`, `undo` and `redo` ) that you can find in most applications. It also consists of features that are  responsible for navigating through **ATAS** (`switch`) and those that have no specific relation to any of the other categories below(`rng`).
 
 { end of `features#general` written by: Ngoh Wei Yue }
 
@@ -277,7 +277,7 @@ switch TAB_NAME
 ```
 **:information_source: Notes about the usage of this command:**<br>
 * `TAB_NAME` is case-insensitive.
-* `Current` replaces `Current Session` here as `TAB_NAME` for simplicity.
+* `Current` replaces `Current Session` as `TAB_NAME` here for simplicity.
 * `TAB_NAME` must be an existing tab (`Students`, `Sessions`, `Current` or `Memo`).
 
 
@@ -603,7 +603,7 @@ Under the `Memo` section, you can choose to `addnote` and save them when needed.
 
 #### 5.6.1. Adding a note : `addnote`
 
-Adds a note to a new line at the line of the memo.
+Adds a note to a new line at the end of memo.
 
 **Format:**
 ```
@@ -623,7 +623,7 @@ Example:
 
 #### 5.6.2. Save memo
 
-Saves the content of the memo in a txt file.
+Saves the content of the memo in the hard disk.
 
 **Keyboard shortcut:**
 
@@ -664,7 +664,7 @@ Examples:
 
 ### 5.8. Saving the data
 
-`Student's`, `Session's` and `Memo's` data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually. However, you can also choose to manually save the `Memo` data if you want as described in Se
+`Students`, `Sessions` and `Memo` data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually. However, you can also choose to manually save the `Memo` data if you want as described in [Section 5.6.2 - Save Memo](#562-save-memo).
 
 { end of `features#saving_the_data` written by: Ngoh Wei Yue }
 
@@ -716,9 +716,13 @@ Command | Format, Examples
 
 [current session]
 
+{ start of `command_summary#Memo` written by: Ngoh Wei Yue }
+
 ### 7.5. Memo
 
 Command | Format, Examples
 --------|------------------
 **Add Note** | `addnote NOTE`<br> e.g., `addnote clarify qn 3 with prof`
 **Save Memo** | Keyboard shortcut: `Ctrl + s` for Windows/Linux or `Cmd + s` for MacOs
+
+{ end of `command_summary#Memo` written by: Ngoh Wei Yue }
