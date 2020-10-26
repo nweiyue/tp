@@ -15,6 +15,8 @@ import atas.ui.sessionlist.SessionListPanel;
 import atas.ui.sessionlist.session.SessionStudentListPanel;
 import atas.ui.studentlist.StudentListPanel;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -180,6 +182,19 @@ public class MainWindow extends UiPart<Stage> {
                 }
             }
         });
+
+        // auto saves memo upon changes
+        memoTextBox.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                try {
+                    logic.saveMemoContent(memoTextBox.getText());
+                } catch (CommandException e) {
+                    logger.info("Unable to save memo content");
+                    resultDisplay.setFeedbackToUser(e.getMessage());
+                }
+            }
+        });
     }
 
     /**
@@ -261,13 +276,6 @@ public class MainWindow extends UiPart<Stage> {
             GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
             logic.setGuiSettings(guiSettings);
-
-            try {
-                logic.saveMemoContent(memoTextBox.getText()); // saves the memo everytime ATAS exits
-            } catch (CommandException e) {
-                logger.info("Unable to save memo content");
-                resultDisplay.setFeedbackToUser(e.getMessage());
-            }
             helpWindow.hide();
             primaryStage.hide();
         });

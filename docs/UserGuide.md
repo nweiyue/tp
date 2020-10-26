@@ -629,7 +629,7 @@ Saves the content of the memo in the hard disk.
 
 Click on the text box in memo tab to bring focus to the text box. Text box should have a bright green outline when under focus.
 
-![MemoTextBox](images/memoTextBox.png)
+![MemoTextBox](images/MemoTextBox.png)
 
 Windows/Linux:
 ```

@@ -18,11 +18,12 @@ public class AddNoteCommandParser implements Parser<AddNoteCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddNoteCommand parse(String args) throws ParseException {
-        if (args.isEmpty()) {
+        if (args.length() <= 1) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
         }
-        return new AddNoteCommand(args);
+        // substring() to get rid of additional whitespace after command word
+        return new AddNoteCommand(args.substring(1));
     }
 
 }

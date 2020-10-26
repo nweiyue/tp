@@ -46,11 +46,16 @@ public class HelpWindow extends UiPart<Stage> {
             + "Toggle the presence status of student(s): presence INDEX_RANGE\n"
             + "Toggle the participation status of student(s): participate INDEX_RANGE\n";
 
+    public static final String COMMAND_LIST_MEMO = "Memo:\n"
+            + "Add a note: addnote NOTE\n"
+            + "Save memo: Keyboard shortcut: \"Ctrl + s\" or \"Cmd + s\" for MacOs\n";
+
     public static final String COMMAND_LIST = "Here is the list of commands you can try with ATAS:\n\n"
             + COMMAND_LIST_GENERAL + "\n"
             + COMMAND_LIST_STUDENTS + "\n"
             + COMMAND_LIST_SESSIONS + "\n"
-            + COMMAND_LIST_CURRENT_SESSION + "\n";
+            + COMMAND_LIST_CURRENT_SESSION + "\n"
+            + COMMAND_LIST_MEMO + "\n";
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
