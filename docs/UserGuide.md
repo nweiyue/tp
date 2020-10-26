@@ -679,7 +679,7 @@ deleteses INDEX
 Delete INDEX? (yes/no)
 ```
 
-:instruction_source: After receiving the confirmation prompt, enter `yes` to confirm the removal of session at the specified `INDEX` or reject the command by entering `no`.
+:information_source: After receiving the confirmation prompt, enter `yes` to confirm the removal of session at the specified `INDEX` or reject the command by entering `no`.
 
 **:information_source: Notes about the usage of this command:**<br>
 * Deletes the session from the displayed session list at the specified `INDEX`.
@@ -707,7 +707,7 @@ editses INDEX s/UPDATED_NAME d/UPDATED_DATE
 Edit INDEX? (yes/no)
 ```
 
-:instruction_source: After receiving the confirmation prompt, enter `yes` to confirm the update of session at the specified `INDEX` or reject the command by entering `no`.
+:information_source: After receiving the confirmation prompt, enter `yes` to confirm the update of session at the specified `INDEX` or reject the command by entering `no`.
 
 :bulb: **Tip:** The updated session cannot have the same name as any of the other sessions in the list but they can have the same date
 
@@ -736,7 +736,7 @@ clearses
 Clear session list? (yes/no)
 ```
 
-:instruction_source: After receiving the confirmation prompt, enter `yes` to confirm the clearance of all sessions or reject the command by entering `no`.
+:information_source: After receiving the confirmation prompt, enter `yes` to confirm the clearance of all sessions or reject the command by entering `no`.
 
 **:information_source: Notes about the usage of this command:**<br>
 * Clears all the sessions in the displayed session list.
