@@ -479,7 +479,7 @@ Removes a student from the student list.
 * The index **must be a positive integer** 1, 2, 3, …
 * You will then be prompted for a confirmation input **`(yes/no)`**.
    * If yes: deletes the specified student from the student list.
-   * If no: student will not be removed from the student list.
+   * If no: the specified student remains in the student list.
 
 </div>
 
@@ -525,7 +525,7 @@ Examples:
 * The index **must be a positive integer** 1, 2, 3, …
 * You will then be prompted for a confirmation input **`(yes/no)`**.
    * If yes: edits and updates the particulars of the specified student from the student list.
-   * If no: the specified student's particulars will not be edited.
+   * If no: the specified student's particulars remains the same.
    
 </div>
 
@@ -569,7 +569,7 @@ Clears and removes all students from the student list.
 **:information_source: Notes about the usage of this command:**<br>
 * You will be prompted to confirm their decision here.
    * If yes: removes all students from the student list.
-   * If no: student list will not be cleared.
+   * If no: student list remains unchanged and no removal of students occurs.
    
 </div>
 
