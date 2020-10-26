@@ -129,8 +129,14 @@ You will come across some of these terms in this document, and it will be good t
 
 ### 2.3. Symbols and formatting
 
-[symbols and formatting]
+For the good majority of visual learners, we figured to present information in a unique format with symbols of different shapes and colours to help you along reading this guide.
 
+  |Symbol/Format | Explanation |
+ |--------------|-------------|
+ |:bulb: | Tips |
+ |:instruction_source: | Important information to take note |
+ |``consolas font`` | Representing a keyterm or a command |
+ 
 --------------------------------------------------------------------------------------------------------------------
 
 ## 3. Quick start
@@ -406,7 +412,7 @@ deletestu INDEX
 Delete INDEX? (yes/no)
 ```
 
-:tip: After receiving the confirmation prompt, enter `yes` to confirm the removal of student at the specified `INDEX`, or else, reject the command by entering `no`.
+:instruction_source: After receiving the confirmation prompt, enter `yes` to confirm the removal of student at the specified `INDEX`, or else, reject the command by entering `no`.
 
 **Format:**
 ```
@@ -452,7 +458,7 @@ editstu INDEX n/UPDATED_NAME
 Edit INDEX? (yes/no)
 ```
 
-:tip: After receiving the confirmation prompt, enter `yes` to confirm the editing of student's particulars at the specified `INDEX`, or else, reject the command by entering `no`.
+:instruction_source: After receiving the confirmation prompt, enter `yes` to confirm the editing of student's particulars at the specified `INDEX`, or else, reject the command by entering `no`.
 
 **Format:**
 ```
@@ -496,7 +502,7 @@ clearstu
 Clear list? (yes/no)
 ```
 
-:tip: After receiving the confirmation prompt, enter `yes` to confirm the removal of all students from the student list, or else, reject the command by entering `no`.
+:information_source: After receiving the confirmation prompt, enter `yes` to confirm the removal of all students from the student list, or else, reject the command by entering `no`.
 
 **Format:**
 ```
@@ -639,7 +645,8 @@ Some commands have the ability to alter the data stored in the hard disk.
 ATAS aims to make careful decisions and further prompts the user to confirm the execution of those commands.
 These commands are: `deletestu`, `editstu`,`clearstu`, `deleteses`, `editses`.
 
-:bulb: Tip: `yes` and `y` are both accepted when confirming the execution of a command while `no` and `n` are both accepted when rejecting the execution of a command.
+:bulb: **Tip:**<div markdown="span" class="alert alert-primary">
+Both `yes` and `y` are accepted when confirming the execution of a command while `no` and `n` are both accepted when rejecting the execution of a command.
 
 Examples:
 * `deletestu 3` is followed with `Delete 3? (yes/no)`.
