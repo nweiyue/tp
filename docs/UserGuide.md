@@ -134,18 +134,22 @@ For the good majority of visual learners, we figured to present information in a
   |Symbol/Format | Explanation |
  |--------------|-------------|
  |:bulb: | Tips |
- |:instruction_source: | Important information to take note |
+ |:information_source: | Important information to take note |
  |``consolas font`` | Representing a keyterm or a command |
  
 --------------------------------------------------------------------------------------------------------------------
+
+{ start of `quick_start` written by: Alvin Chee Teck Weng }
 
 ## 3. Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
+2. If you do not have Java version `11` and above installed, download it from [here](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html). Remember to choose the installer that fits your computer.
+
 2. Download the latest `atas.jar` from [here](https://github.com/AY2021S1-CS2103T-W16-4/tp/releases). 
 
-3. Copy the file to the folder you want to use as the _home folder_ for your ATAS.
+3. Copy the file to the folder you want to use as the home folder for your ATAS. All the data related to ATAS will be stored here.
 
 4. Double-click the file to start the app. The GUI similar to the below image should appear in a few seconds. Note how the app contains some sample data.<br>
    ![StartPage](images/StartPage.png)
@@ -166,6 +170,8 @@ For the good majority of visual learners, we figured to present information in a
    * **`bye`** : Exits out of the application.
 
 6. Refer to the [Features](#features) below for details of each command.
+
+{ end of `quick_start` written by: Alvin Chee Teck Weng }
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -408,13 +414,23 @@ Previous command successfuly redone!
 
 { end of `features#general#redo` written by: Masagca Eris Jacey }
 
-#### 5.2.6. Exiting the program : `bye`
+{ start of `features#general#exit` written by: Alvin Chee Teck Weng }
+
+#### 5.2.6. Exiting the program : `exit`
 
 Exits the application.
 
+**Format:**
 ```
-bye
+exit
 ```
+
+**Expected result:**
+```
+Program window will be closed.
+```
+
+{ end of `features#general#exit` written by: Alvin Chee Teck Weng }
 
 ### 5.3. Students
 
@@ -613,20 +629,38 @@ ATAS has cleared all students from your list.
 
 { end of `features#student#clearstu` written by: Marcus Tan Wei }
 
-#### 5.4. Sessions
+{ start of `sessions` written by: Alvin Chee Teck Weng }
 
-[short overview]
+### 5.4. Sessions
+<br/>
+<br/>
+With **ATAS**, you can also manage each tutorial session efficiently!
+<br/>
+- First, at the start of each tutorial, you can use `addses` to add a tutorial session. If you have mistyped the session details, simply use `editses` or `deleteses` on the wrongly-typed session.
+- Next, if you wish to change the presence and participation status of your students of a particular session, simply use `enterses` to enter that session to do so.
+- Finally, you may want to take up the same teaching assistant job again for a different class in the next semester. All the tutorial sessions may now contain inaccurate details. In this case, instead of removing 
+the sessions one by one, you can utilize `clearses` to remove all existing sessions.
+<br/>
+<br/>
 
 #### 5.4.1. Adding a session : `addses`
 
-Adds a session to session list.
+Adds a session to the session list.
 
+**Format:**
 ```
 addses s/SESSION_NAME d/SESSION_DATE
 ```
 
+**Expected result:**
+```
+New session added: Tutorial 4 @ 12/07/2020
+```
+
+* Adds a session with the specified name and date to the displayed session list.
+
 :bulb: **Tip:**<div markdown="span" class="alert alert-primary">
-Two sessions cannot have the same name
+Two sessions cannot have the same name but they can have the same date
 </div>
 
 Examples:
@@ -634,63 +668,113 @@ Examples:
 
 #### 5.4.2. Deleting a session : `deleteses`
 
-The user will be prompted to confirm their decision here.
+Deletes a session from the session list.
 
-If yes: deletes the specified session from the session list.
+You will be prompted to confirm your decision here.
 
+**Format:**
 ```
 deleteses INDEX
 ```
 
-* Deletes the session at the specified `INDEX`.
-* The index refers to the index number shown in the displayed session list.
+**Expected result:**
+```
+Delete INDEX? (yes/no)
+```
+
+:tip: After receiving the confirmation prompt, enter `yes` to confirm the removal of session at the specified `INDEX` or reject the command by entering `no`.
+
+* Deletes the session from the displayed session list at the specified `INDEX`.
+* The index refers to the index number shown in the session list.
 * The index **must be a positive integer** 1, 2, 3, …
-* User will then be prompted for a confirmation input **`(yes/no)`**.
+* You will be prompted for a confirmation input **`(yes/no)`**.
+   * If yes: the specified session will be removed from the session list.
+   * If no: the specified session will not be removed from the session list.
 
 Examples:
-* `deleteses s/tut1 d/12/7/2020` followed by `yes` deletes the 2nd session in the session list.
+* `deleteses 1` followed by `no` results in nothing changed.
+* `deleteses 2` followed by `yes` deletes the 2nd session in the session list.
 
-#### 5.4.3. Clearing the session list : `clearses`
+#### 5.4.3. Editing a session : `editses`
 
-Deletes all the sessions in the session list.
+Edits a session in the session list.
 
-```
-clearses
-```
+You will be prompted to confirm your decision here.
 
-#### 5.4.4. Editing a session : `editses`
-
-The user will be prompted to confirm their decision here.
-
-If yes: edits and updates the details of the specified session from the session list.
-
+**Format:**
 ```
 editses INDEX s/UPDATED_NAME d/UPDATED_DATE
 ```
 
-* Edits the session at the specified `INDEX` with the specified details to be updated.
-* The index refers to the index number shown in the displayed session list.
+**Expected result:**
+```
+Edit INDEX? (yes/no)
+```
+
+:tip: After receiving the confirmation prompt, enter `yes` to confirm the update of session at the specified `INDEX` or reject the command by entering `no`.
+
+:bulb: **Tip:**<div markdown="span" class="alert alert-primary">
+The updated session cannot have the same name as any of the other sessions in the list but they can have the same date
+</div>
+
+* Edits the session in the displayed session list at the specified `INDEX` with the specified details.
+* The index refers to the index number shown in the session list.
 * The index **must be a positive integer** 1, 2, 3, …
-* User will then be prompted for a confirmation input **`(yes/no)`**.
+* You will be prompted for a confirmation input **`(yes/no)`**.
+   * If yes: the specified session will be updated with the specified details.
+   * If no: the specified session will not be updated.
 
 Examples:
 * `editses 2 s/Tutorial1 d/10/10/2020` followed by `yes` edits the 2nd session in the session list with a new session name `Tutorial1` and a new session date `10/10/2020`.
 
+#### 5.4.4. Clearing the session list : `clearses`
+
+Deletes all the sessions in the session list.
+
+You will be prompted to confirm your decision here.
+
+**Format:**
+```
+clearses
+```
+
+**Expected result:**
+```
+Clear session list? (yes/no)
+```
+
+:tip: After receiving the confirmation prompt, enter `yes` to confirm the clearance of all sessions or reject the command by entering `no`.
+
+* Clears all the sessions in the displayed session list.
+* You will be prompted for a confirmation input **`(yes/no)`**.
+   * If yes: all sessions will be removed from the session list.
+   * If no: no sessions will be removed from the session list.
+   
+Examples:
+* `clearses` followed by `yes` deletes all the sessions in the session list. 
 
 #### 5.4.5. Entering a session : `enterses`
 
 Enters a session in the session list.
 
+**Format:**
 ```
 enterses INDEX
 ```
 
-* Enters the session at the specified `INDEX`.
-* The index refers to the index number shown in the displayed session list.
+**Expected result:**
+```
+Session entered: INDEX
+```
+
+* Enters the session in the displayed session list at the specified `INDEX`.
+* The index refers to the index number shown in the session list.
 * The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
 * `enterses 1` enters the first session and allows you to use PARTICIPATE and PRESENCE commands.
+
+{ end of `sessions` written by: Alvin Chee Teck Weng }
 
 ### 5.5. Current session
 
