@@ -180,6 +180,13 @@ public class AtasParserTest {
     }
 
     @Test
+    public void parseCommand_addNote_onlyWhiteSpace() throws Exception {
+        AddNoteCommand command = (AddNoteCommand) parser.parseCommand(
+                AddNoteCommand.COMMAND_WORD + " \n \t \r ");
+        assertEquals(new AddNoteCommand("\n \t \r "), command);
+    }
+
+    @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE), ()
             -> parser.parseCommand(""));
