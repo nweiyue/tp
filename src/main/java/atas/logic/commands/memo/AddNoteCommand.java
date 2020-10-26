@@ -16,7 +16,7 @@ public class AddNoteCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Appends a note on a new line to the end of the memo.\n"
             + "Parameters: "
-            + "NOTE (must not be empty)\n"
+            + "NOTE\n"
             + "Example: " + COMMAND_WORD + " "
             + "clarify qn 4 with prof";
 
