@@ -454,7 +454,7 @@ Examples:
 
 Deletes a session from the session list.
 
-The user will be prompted to confirm their decision here.
+You will be prompted to confirm your decision here.
 
 **Format:**
 ```
@@ -471,7 +471,7 @@ Delete INDEX? (yes/no)
 * Deletes the session from the displayed session list at the specified `INDEX`.
 * The index refers to the index number shown in the session list.
 * The index **must be a positive integer** 1, 2, 3, …
-* User will then be prompted for a confirmation input **`(yes/no)`**.
+* You will be prompted for a confirmation input **`(yes/no)`**.
    * If yes: the specified session will be removed from the session list.
    * If no: the specified session will not be removed from the session list.
 
@@ -483,7 +483,7 @@ Examples:
 
 Edits a session in the session list.
 
-The user will be prompted to confirm their decision here.
+You will be prompted to confirm your decision here.
 
 **Format:**
 ```
@@ -504,7 +504,7 @@ The updated session cannot have the same name as any of the other sessions in th
 * Edits the session in the displayed session list at the specified `INDEX` with the specified details.
 * The index refers to the index number shown in the session list.
 * The index **must be a positive integer** 1, 2, 3, …
-* User will then be prompted for a confirmation input **`(yes/no)`**.
+* You will be prompted for a confirmation input **`(yes/no)`**.
    * If yes: the specified session will be updated with the specified details.
    * If no: the specified session will not be updated.
 
@@ -515,7 +515,7 @@ Examples:
 
 Deletes all the sessions in the session list.
 
-The user will be prompted to confirm their decision here.
+You will be prompted to confirm your decision here.
 
 **Format:**
 ```
@@ -530,7 +530,7 @@ Clear session list? (yes/no)
 :tip: After receiving the confirmation prompt, enter `yes` to confirm the clearance of all sessions or reject the command by entering `no`.
 
 * Clears all the sessions in the displayed session list.
-* User will then be prompted for a confirmation input **`(yes/no)`**.
+* You will be prompted for a confirmation input **`(yes/no)`**.
    * If yes: all sessions will be removed from the session list.
    * If no: no sessions will be removed from the session list.
    
