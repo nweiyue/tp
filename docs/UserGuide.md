@@ -396,7 +396,7 @@ Removes a student from the student list.
 * Deletes the student at the specified `INDEX`.
 * The index refers to the index number shown in the displayed student list.
 * The index **must be a positive integer** 1, 2, 3, …
-* User will then be prompted for a confirmation input **`(yes/no)`**.
+* You will then be prompted for a confirmation input **`(yes/no)`**.
    * If yes: deletes the specified student from the student list.
    * If no: student will not be removed from the student list.
 
@@ -442,7 +442,7 @@ Examples:
 * Edits the student at the specified `INDEX` with the specified updated particular to be updated.
 * The index refers to the index number shown in the displayed student list.
 * The index **must be a positive integer** 1, 2, 3, …
-* User will then be prompted for a confirmation input **`(yes/no)`**.
+* You will then be prompted for a confirmation input **`(yes/no)`**.
    * If yes: edits and updates the particulars of the specified student from the student list.
    * If no: the specified student's particulars will not be edited.
    
@@ -486,7 +486,7 @@ Clears and removes all students from the student list.
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the usage of this command:**<br>
-* The user will be prompted to confirm their decision here.
+* You will be prompted to confirm their decision here.
    * If yes: removes all students from the student list.
    * If no: student list will not be cleared.
    
@@ -642,7 +642,7 @@ Examples:
 ### 5.7. User confirmation
 
 Some commands have the ability to alter the data stored in the hard disk.
-ATAS aims to make careful decisions and further prompts the user to confirm the execution of those commands.
+ATAS aims to make careful decisions and further prompts user to confirm the execution of those commands.
 These commands are: `deletestu`, `editstu`,`clearstu`, `deleteses`, `editses`.
 
 :bulb: **Tip:**<div markdown="span" class="alert alert-primary">
