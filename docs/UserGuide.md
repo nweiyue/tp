@@ -123,7 +123,7 @@ You will come across some of these terms in this document, and it will be good t
 |presence | An attribute indicating if a student is present in the session or not. |
 |session | A tutorial session or lesson that you conduct. |
 |student | A person that is in your tutorial class. |
-|tag(s) | Keyword(s)  to a student |
+|tag(s) | Keyword(s) tagged to a student for your own identification purpose. |
 
 { end of `about_this_user_guide#glossary` written by: Marcus Tan Wei }
 
