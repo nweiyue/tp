@@ -494,17 +494,17 @@ Examples:
 
 ### 5.5. Current session
 
-{ start of `Current session#overview` written by: Zhang Sheng Yang }
+{ start of `features#current_session` written by: Zhang Sheng Yang }
 <br/>
 <br/>
 After entering a session, which is mentioned above, you can now edit the presence and participation details
 of a student. `participate` allows you to toggle the participation status (from absent to present or from 
-present to absent), and `presence` allows you to toggle the presence status of a student(from not 
+present to absent), and `presence` allows you to toggle the presence status of a student (from not 
 participated to participated or from participated to not participated).
 <br/>
 <br/>
 
-{ end of `Current session overview` written by: Zhang Sheng Yang }
+{ end of `features#current_session` written by: Zhang Sheng Yang }
 
 <br/>
 
