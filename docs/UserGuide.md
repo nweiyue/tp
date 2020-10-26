@@ -134,7 +134,7 @@ For the good majority of visual learners, we figured to present information in a
   |Symbol/Format | Explanation |
  |--------------|-------------|
  |:bulb: | Tips |
- |:instruction_source: | Important information to take note |
+ |:information_source: | Important information to take note |
  |``consolas font`` | Representing a keyterm or a command |
  
 --------------------------------------------------------------------------------------------------------------------
