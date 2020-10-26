@@ -23,7 +23,15 @@ public class AddNoteCommandParserTest {
         // no leading and trailing whitespaces
         AddNoteCommand expectedAddNoteCommand =
                 new AddNoteCommand("note");
-        assertParseSuccess(parser, "note", expectedAddNoteCommand);
+        assertParseSuccess(parser, " note", expectedAddNoteCommand);
+    }
+
+    @Test
+    public void parse_validArgsOnlyWhiteSpace_returnsAddNoteCommand() {
+        // no leading and trailing whitespaces
+        AddNoteCommand expectedAddNoteCommand =
+                new AddNoteCommand("  ");
+        assertParseSuccess(parser, "   ", expectedAddNoteCommand);
     }
 
 }
