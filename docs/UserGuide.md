@@ -303,7 +303,7 @@ bye
 
 ### 5.3. Students
 
-{ start of `Features#Students` written by: Zhang Sheng Yang }
+{ start of `features#students` written by: Zhang Sheng Yang }
 <br/>
 <br/>
 With ATAS, you can easily manage your students in your class!
@@ -319,7 +319,7 @@ the students one by one, you can utilize `clearstu` to empty the class.
 <br/>
 <br/>
 
-{ end of `Features#Students` written by: Zhang Sheng Yang }
+{ end of `features#students` written by: Zhang Sheng Yang }
 
 #### 5.3.1. Adding a student : `addstu`
 
@@ -596,7 +596,7 @@ Command | Format, Examples
 
 ### 7.2. Students
 
-{ start of `Command summary#Students` written by: Zhang Sheng Yang }
+{ start of `command_summary#students` written by: Zhang Sheng Yang }
 <br/>
 <br/>
 The following is a summary of commands related to students.
@@ -612,7 +612,7 @@ Command | Format, Examples
 
 <br/>
 
-{ end of `Command summary#Students` written by: Zhang Sheng Yang }
+{ end of `command_summary#students` written by: Zhang Sheng Yang }
 
 ### 7.3. Sessions
 
@@ -620,7 +620,7 @@ Command | Format, Examples
 
 ### 7.4. Current session
 
-{ start of `Command summary#Current session` written by: Zhang Sheng Yang }
+{ start of `command_summary#current_session` written by: Zhang Sheng Yang }
 <br/>
 <br/>
 The following is a summary relevant commands after entering a session.
@@ -632,7 +632,7 @@ Command | Format, Examples
 
 <br/>
 
-{ end of `Command summary#Current session` written by: Zhang Sheng Yang }
+{ end of `command_summary#current_session` written by: Zhang Sheng Yang }
 
 ### 7.5. Memo
 
