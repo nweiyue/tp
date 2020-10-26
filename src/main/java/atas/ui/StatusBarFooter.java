@@ -13,6 +13,10 @@ import javafx.scene.layout.Region;
 public class StatusBarFooter extends UiPart<Region> {
 
     private static final String FXML = "StatusBarFooter.fxml";
+    private static final String SPACE = "   ";
+
+    @FXML
+    private Label empty;
 
     @FXML
     private Label saveLocationStatus;
@@ -23,6 +27,7 @@ public class StatusBarFooter extends UiPart<Region> {
     public StatusBarFooter(Path saveLocation) {
         super(FXML);
         saveLocationStatus.setText(Paths.get(".").resolve(saveLocation).toString());
+        empty.setText(SPACE);
     }
 
     /**
@@ -31,6 +36,7 @@ public class StatusBarFooter extends UiPart<Region> {
     public StatusBarFooter(String sessionStatus) {
         super(FXML);
         saveLocationStatus.setText(sessionStatus);
+        empty.setText(SPACE);
     }
 
 }
