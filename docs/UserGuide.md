@@ -420,7 +420,7 @@ clearstu
 <br/>
 With **ATAS**, you can also manage each tutorial session efficiently!
 <br/>
-- First, at the start of each tutorial, you can use `addses` to add a tutorial session. If you have typed the session details wrongly, simply use `editses` or `deleteses` on the wrongly-typed session.
+- First, at the start of each tutorial, you can use `addses` to add a tutorial session. If you have mistyped the session details, simply use `editses` or `deleteses` on the wrongly-typed session.
 - Next, if you wish to change the presence and participation status of your students of a particular session, simply use `enterses` to enter that session to do so.
 - Finally, you may want to take up the same teaching assistant job again for a different class in the next semester. All the tutorial sessions may now contain inaccurate details. In this case, instead of removing 
 the sessions one by one, you can utilize `clearses` to remove all existing sessions.
@@ -431,8 +431,14 @@ the sessions one by one, you can utilize `clearses` to remove all existing sessi
 
 Adds a session to the session list.
 
+**Format:**
 ```
 addses s/SESSION_NAME d/SESSION_DATE
+```
+
+**Expected result:**
+```
+New session added: Tutorial 4 @ 12/07/2020
 ```
 
 * Adds a session with the specified name and date to the displayed session list.
@@ -450,11 +456,17 @@ Deletes a session from the session list.
 
 The user will be prompted to confirm their decision here.
 
-:tip: After receiving the confirmation prompt, enter `yes` to confirm the removal of session at the specified `INDEX` or reject the command by entering `no`.
-
+**Format:**
 ```
 deleteses INDEX
 ```
+
+**Expected result:**
+```
+Delete INDEX? (yes/no)
+```
+
+:tip: After receiving the confirmation prompt, enter `yes` to confirm the removal of session at the specified `INDEX` or reject the command by entering `no`.
 
 * Deletes the session from the displayed session list at the specified `INDEX`.
 * The index refers to the index number shown in the session list.
@@ -464,6 +476,7 @@ deleteses INDEX
    * If no: the specified session will not be removed from the session list.
 
 Examples:
+* `deleteses 1` followed by `no` results in nothing changed.
 * `deleteses 2` followed by `yes` deletes the 2nd session in the session list.
 
 #### 5.4.3. Editing a session : `editses`
@@ -472,11 +485,17 @@ Edits a session in the session list.
 
 The user will be prompted to confirm their decision here.
 
-:tip: After receiving the confirmation prompt, enter `yes` to confirm the update of session at the specified `INDEX` or reject the command by entering `no`.
-
+**Format:**
 ```
 editses INDEX s/UPDATED_NAME d/UPDATED_DATE
 ```
+
+**Expected result:**
+```
+Edit INDEX? (yes/no)
+```
+
+:tip: After receiving the confirmation prompt, enter `yes` to confirm the update of session at the specified `INDEX` or reject the command by entering `no`.
 
 :bulb: **Tip:**<div markdown="span" class="alert alert-primary">
 The updated session cannot have the same name as any of the other sessions in the list but they can have the same date
@@ -498,11 +517,17 @@ Deletes all the sessions in the session list.
 
 The user will be prompted to confirm their decision here.
 
-:tip: After receiving the confirmation prompt, enter `yes` to confirm the clearance of all sessions or reject the command by entering `no`.
-
+**Format:**
 ```
 clearses
 ```
+
+**Expected result:**
+```
+Clear session list? (yes/no)
+```
+
+:tip: After receiving the confirmation prompt, enter `yes` to confirm the clearance of all sessions or reject the command by entering `no`.
 
 * Clears all the sessions in the displayed session list.
 * User will then be prompted for a confirmation input **`(yes/no)`**.
@@ -516,8 +541,14 @@ Examples:
 
 Enters a session in the session list.
 
+**Format:**
 ```
 enterses INDEX
+```
+
+**Expected result:**
+```
+Session entered: INDEX
 ```
 
 * Enters the session in the displayed session list at the specified `INDEX`.
