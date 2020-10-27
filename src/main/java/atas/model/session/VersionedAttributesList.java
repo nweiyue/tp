@@ -66,14 +66,18 @@ public class VersionedAttributesList implements VersionedEntity {
     public ObservableList<Attributes> getCurrentAttributeList() {
         return currentAttributeList;
     }
+
     public void setCurrentAttributeList(List<Attributes> attributeList) {
         this.currentAttributeList.setAll(attributeList);
     }
+
     private void resetData(List<Attributes> newData) {
         this.currentAttributeList.setAll(newData);
     }
+
     private void removeStatesAfterCurrentPointer() {
-        this.attributeStateList.subList(currentStatePointer + 1, attributeStateList.size()).clear();
+        List<List<Attributes>> subList = attributeStateList.subList(currentStatePointer + 1, attributeStateList.size());
+        subList.clear();
     }
 
 }
