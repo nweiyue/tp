@@ -201,7 +201,7 @@ To find out which features are supported by the `Students` tab, you can head ove
 
 ### 4.2. Sessions
 
-Over at `Sessions` tab, you can find the list of sessions that you have. Each session will display details like their name, date and the overall percentage of students present and participating in that particular session. The sessions are sorted by their dates, starting ftom the latest at the top.
+Over at `Sessions` tab, you can find the list of sessions that you have. Each session will display details like their name, date and the overall percentage of students present and participating in that particular session. The sessions are sorted by their dates, starting from the latest at the top.
 
 The following is how the `Sessions` tab looks like:
 
@@ -276,7 +276,7 @@ With the exception of [save memo](#562-save-memo), all commands that are availab
 
 { start of `features#general` written by: Ngoh Wei Yue }
 
-### 5.2 General
+### 5.2. General
 
 This category consists of conventional features (`help`, `exit`, `undo` and `redo`) that you can find in most applications. It also consists of features that are  responsible for navigating through **ATAS** (`switch`) and those that have no specific relation to any of the other categories below (`rng`).
 
@@ -367,7 +367,7 @@ Undoes a command and essentially returns ATAS to the state prior to performing t
    * Toggling the presence status of students: `presence`
 * Commands not stated above make no change to the application state and thus cannot be undone.
 * Successive `undo` commands will bring the application state further back, until there are no more changes to `undo`.
-* You can `undo` if there is no previous state to return to.
+* You cannot `undo` if there is no previous state to return to.
 
 </div>
 
@@ -401,7 +401,6 @@ Essentially the reverse of undo-ing a command.
 
 </div>
 
-<div>
 **Format:**
 ```
 redo
@@ -463,6 +462,7 @@ addstu n/NAME m/MATRICULATION_NUMBER e/NUS_EMAIL_ADDRESS [t/TAG]…
 :bulb: **Tip:**<div markdown="span" class="alert alert-primary">
 A student can have any number of tags (including 0) 
 
+/div>
 
 Examples:
 * `addstu n/John Cena m/A0123456J e/thechamp@u.nus.edu`
