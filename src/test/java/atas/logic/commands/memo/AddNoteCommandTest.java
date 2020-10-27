@@ -275,61 +275,6 @@ public class AddNoteCommandTest {
         }
 
         @Override
-        public void commit() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void commitStudentList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean canUndoStudentList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void undoStudentList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean canRedoStudentList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void redoStudentList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void commitSessionList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean canUndoSessionList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void undoSessionList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean canRedoSessionList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void redoSessionList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void refreshStatistics() {
             throw new AssertionError("This method should not be called.");
         }
@@ -343,6 +288,32 @@ public class AddNoteCommandTest {
         public void refreshSessionStatistics() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void commit() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean canUndo() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void undo() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean canRedo() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void redo() {
+            throw new AssertionError("This method should not be called.");
+        }
+
     }
 
     /**

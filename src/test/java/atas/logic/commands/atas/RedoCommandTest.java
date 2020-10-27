@@ -108,7 +108,6 @@ public class RedoCommandTest {
 
     @Test
     public void execute_redoParticipateCommand_success() throws CommandException {
-        modelCopy.setCurrentSessionTrue();
         expectedModel.setCurrentSessionTrue();
         modelCopy.enterSession(Index.fromZeroBased(1));
         expectedModel.enterSession(Index.fromZeroBased(1));
@@ -121,7 +120,6 @@ public class RedoCommandTest {
 
     @Test
     public void execute_redoPresenceCommand_success() throws CommandException {
-        modelCopy.setCurrentSessionTrue();
         expectedModel.setCurrentSessionTrue();
         modelCopy.enterSession(Index.fromZeroBased(1));
         expectedModel.enterSession(Index.fromZeroBased(1));
