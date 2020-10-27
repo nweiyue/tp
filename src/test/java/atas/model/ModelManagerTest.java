@@ -110,6 +110,8 @@ public class ModelManagerTest {
 
     @Test
     public void getSessionId() {
+        modelManager = ModelManagerBuilder.buildTypicalModelManager();
+
         modelManager.enterSession(Index.fromZeroBased(0));
         assertEquals(0, modelManager.getSessionId().getZeroBased());
 
@@ -141,14 +143,12 @@ public class ModelManagerTest {
     @Test
     public void testInitialAbilityToUndo() {
         modelManager = ModelManagerBuilder.buildTypicalModelManager();
-        assertFalse(modelManager.canUndoStudentList());
-        assertFalse(modelManager.canUndoSessionList());
+        assertFalse(modelManager.canUndo());
     }
     @Test
     public void testInitialAbilityToRedo() {
         modelManager = ModelManagerBuilder.buildTypicalModelManager();
-        assertFalse(modelManager.canRedoStudentList());
-        assertFalse(modelManager.canRedoSessionList());
+        assertFalse(modelManager.canRedo());
     }
 
     @Test

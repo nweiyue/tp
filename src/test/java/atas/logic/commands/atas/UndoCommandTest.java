@@ -98,7 +98,6 @@ public class UndoCommandTest {
 
     @Test
     public void execute_undoParticipateCommand_success() throws CommandException {
-        modelCopy.setCurrentSessionTrue();
         modelCopy.enterSession(Index.fromZeroBased(1));
         expectedModel.enterSession(Index.fromZeroBased(1));
         createCommandAndExecute(
@@ -109,7 +108,6 @@ public class UndoCommandTest {
 
     @Test
     public void execute_undoPresenceCommand_success() throws CommandException {
-        modelCopy.setCurrentSessionTrue();
         modelCopy.enterSession(Index.fromZeroBased(1));
         expectedModel.enterSession(Index.fromZeroBased(1));
         createCommandAndExecute(

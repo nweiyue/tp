@@ -19,8 +19,7 @@ public class UndoCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws UnableToUndoException, CommandException {
         try {
-            model.undoStudentList();
-            model.undoSessionList();
+            model.undo();
             model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
             model.updateFilteredSessionList(PREDICATE_SHOW_ALL_SESSIONS);
         } catch (UnableToUndoException e) {

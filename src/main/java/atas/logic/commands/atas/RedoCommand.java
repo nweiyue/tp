@@ -19,8 +19,7 @@ public class RedoCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws UnableToRedoException, CommandException {
         try {
-            model.redoStudentList();
-            model.redoSessionList();
+            model.redo();
             model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
             model.updateFilteredSessionList(PREDICATE_SHOW_ALL_SESSIONS);
         } catch (UnableToRedoException e) {

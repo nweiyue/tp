@@ -258,52 +258,23 @@ public interface Model {
     void commit();
 
     /**
-     * Saves the current student list in its history.
+     * Returns <code>true</code> if this {@code Model} can be undone, returns <code>false</code> otherwise.
      */
-    void commitStudentList();
+    boolean canUndo();
 
     /**
-     * Returns <code>true</code> if student list can be undone, <code>false</code> otherwise.
+     * Returns this {@code Model} back to a previous history state if possible.
      */
-    boolean canUndoStudentList();
+    void undo();
 
     /**
-     * Restores the previous student list from history if possible.
+     * Returns <code>true</code> if this {@code Model} can be redone, returns <code>false</code> otherwise.
      */
-    void undoStudentList();
+    boolean canRedo();
 
     /**
-     * Returns <code>true</code> if student list can be redone, <code>false</code> otherwise.
+     * Returns this {@code Model} forward to a later history state if possible.
      */
-    boolean canRedoStudentList();
+    void redo();
 
-    /**
-     * Returns a previously undo entity from its history if possible.
-     */
-    void redoStudentList();
-
-    /**
-     * Saves the current session list in its history.
-     */
-    void commitSessionList();
-
-    /**
-     * Returns <code>true</code> if session list can be undone, <code>false</code> otherwise.
-     */
-    boolean canUndoSessionList();
-
-    /**
-     * Restores the previous session list from history if possible.
-     */
-    void undoSessionList();
-
-    /**
-     * Returns <code>true</code> if session list can be redone, <code>false</code> otherwise.
-     */
-    boolean canRedoSessionList();
-
-    /**
-     * Returns a previously undo entity from its history if possible.
-     */
-    void redoSessionList();
 }

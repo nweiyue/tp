@@ -18,6 +18,7 @@ import atas.model.session.ReadOnlySessionList;
 import atas.model.session.Session;
 import atas.model.session.SessionList;
 import atas.model.session.SessionName;
+import atas.model.session.VersionedAttributesList;
 import atas.model.session.VersionedSessionList;
 import atas.model.student.ReadOnlyStudentList;
 import atas.model.student.Student;
@@ -34,6 +35,7 @@ public class ModelManager implements Model {
 
     private final VersionedStudentList studentList;
     private final VersionedSessionList sessionList;
+    private final VersionedAttributesList attributesList;
     private final UserPrefs userPrefs;
     private final FilteredList<Student> filteredStudents;
     private final FilteredList<Session> filteredSessions;
@@ -54,6 +56,7 @@ public class ModelManager implements Model {
 
         this.sessionList = new VersionedSessionList(sessionList);
         this.studentList = new VersionedStudentList(studentList);
+        this.attributesList = new VersionedAttributesList();
         this.userPrefs = new UserPrefs(userPrefs);
         this.filteredStudents = new FilteredList<>(this.studentList.getStudentList());
         this.filteredSessions = new FilteredList<>(this.sessionList.getSessions());
@@ -230,15 +233,21 @@ public class ModelManager implements Model {
 
     @Override
     public void updateParticipationBySessionName(SessionName sessionName, IndexRange indexRange) {
-        sessionName = sessionList.getSessionBasedOnId(sessionId).getSessionName();
+        Session session = sessionList.getSessionBasedOnId(sessionId);
+        sessionName = session.getSessionName();
+
         sessionList.updateStudentParticipation(sessionName, indexRange);
+        attributesList.setCurrentAttributeList(session.getAttributeList());
         refreshStatistics();
     }
 
     @Override
     public void updatePresenceBySessionName(SessionName sessionName, IndexRange indexRange) {
-        sessionName = sessionList.getSessionBasedOnId(sessionId).getSessionName();
+        Session session = sessionList.getSessionBasedOnId(sessionId);
+        sessionName = session.getSessionName();
+
         sessionList.updateStudentPresence(sessionName, indexRange);
+        attributesList.setCurrentAttributeList(session.getAttributeList());
         refreshStatistics();
     }
 
@@ -280,11 +289,12 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Attributes> getFilteredAttributesList() {
-        return sessionList.getSessionBasedOnId(sessionId).getAttributeList();
+        return attributesList.getCurrentAttributeList();
     }
 
     @Override
     public void enterSession(Index sessionId) {
+        this.attributesList.setCurrentAttributeList(sessionList.getSessionBasedOnId(sessionId).getAttributeList());
         this.sessionId = sessionId;
         setCurrentSessionTrue();
     }
@@ -387,56 +397,37 @@ public class ModelManager implements Model {
 
     @Override
     public void commit() {
-        commitStudentList();
-        commitSessionList();
-    }
-    @Override
-    public void commitStudentList() {
         studentList.commit();
-    }
-
-    @Override
-    public boolean canUndoStudentList() {
-        return studentList.canUndo();
-    }
-
-    @Override
-    public void undoStudentList() {
-        studentList.undo();
-    }
-
-    @Override
-    public boolean canRedoStudentList() {
-        return studentList.canRedo();
-    }
-
-    @Override
-    public void redoStudentList() {
-        studentList.redo();
-    }
-
-    @Override
-    public void commitSessionList() {
         sessionList.commit();
+        attributesList.commit();
     }
 
     @Override
-    public boolean canUndoSessionList() {
-        return sessionList.canUndo();
+    public boolean canUndo() {
+        return studentList.canUndo()
+                && sessionList.canUndo()
+                && attributesList.canUndo();
     }
 
     @Override
-    public void undoSessionList() {
+    public void undo() {
+        studentList.undo();
         sessionList.undo();
+        attributesList.undo();
     }
 
     @Override
-    public boolean canRedoSessionList() {
-        return sessionList.canRedo();
+    public boolean canRedo() {
+        return studentList.canRedo()
+                && sessionList.canRedo()
+                && attributesList.canRedo();
     }
 
     @Override
-    public void redoSessionList() {
+    public void redo() {
+        studentList.redo();
         sessionList.redo();
+        attributesList.redo();
     }
+
 }
