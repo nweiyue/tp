@@ -254,7 +254,7 @@
 /**
  * Table of Contents with no list style (empty bullets)
  */
-.toc-no-list-style ul, ol {
+.toc-no-list-style ul, .toc-no-list-style ol {
   list-style-type: none;
 }
 
