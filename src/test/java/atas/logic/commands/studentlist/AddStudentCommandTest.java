@@ -123,7 +123,7 @@ public class AddStudentCommandTest {
         }
 
         @Override
-        public void setStudentList(ReadOnlyStudentList studentList) {
+        public void clearStudentList() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -190,6 +190,11 @@ public class AddStudentCommandTest {
         @Override
         public ObservableList<Attributes> getCurrentAttributesList() {
             return null;
+        }
+
+        @Override
+        public void updateCurrentAttributesList() {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override

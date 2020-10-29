@@ -75,9 +75,9 @@ public interface Model {
     void setMemoFilePath(Path memoPadFilePath);
 
     /**
-     * Replaces student list data with the data in {@code studentList}.
+     * Clears the student list.
      */
-    void setStudentList(ReadOnlyStudentList studentList);
+    void clearStudentList();
 
     /** Returns the StudentList */
     ReadOnlyStudentList getStudentList();
@@ -167,6 +167,11 @@ public interface Model {
      * @return Attributes of the students in the session.
      */
     ObservableList<Attributes> getCurrentAttributesList();
+
+    /**
+     * Updates the attribute list in current session if a session has been entered into.
+     */
+    void updateCurrentAttributesList();
 
     /** Returns an unmodifiable view of the filtered student list */
     ObservableList<Student> getFilteredStudentList();

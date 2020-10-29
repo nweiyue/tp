@@ -19,7 +19,7 @@ public class ClearStudentListCommand extends DangerousCommand {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setStudentList(new StudentList());
+        model.clearStudentList();
         model.commit();
         return new CommandResult(MESSAGE_SUCCESS);
     }

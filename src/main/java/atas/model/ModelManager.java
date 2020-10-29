@@ -140,9 +140,11 @@ public class ModelManager implements Model {
     //=========== StudentList ================================================================================
 
     @Override
-    public void setStudentList(ReadOnlyStudentList studentList) {
-        this.studentList.resetData(studentList);
-        //resetSessionList();
+    public void clearStudentList() {
+        studentList.resetData(new StudentList());
+        sessionList.updateStudentList(studentList.getStudentList());
+        sessionList.updateAllSessionsAfterClear();
+        updateCurrentAttributesList();
     }
 
     @Override
@@ -161,6 +163,7 @@ public class ModelManager implements Model {
         studentList.removeStudent(target);
         sessionList.updateStudentList(studentList.getStudentList());
         sessionList.updateAllSessionsAfterDelete(id);
+        updateCurrentAttributesList();
         refreshSessionStatistics();
     }
 
@@ -170,6 +173,7 @@ public class ModelManager implements Model {
         updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         sessionList.updateStudentList(studentList.getStudentList());
         sessionList.updateAllSessionsAfterAdd();
+        updateCurrentAttributesList();
         refreshSessionStatistics();
     }
 
@@ -179,6 +183,7 @@ public class ModelManager implements Model {
 
         studentList.setStudent(target, editedStudent);
         sessionList.updateStudentList(studentList.getStudentList());
+        updateCurrentAttributesList();
     }
 
     //=========== SessionList ================================================================================
@@ -262,6 +267,13 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Attributes> getCurrentAttributesList() {
         return attributesList.getCurrentAttributeList();
+    }
+
+    @Override
+    public void updateCurrentAttributesList() {
+        if (sessionId != null) {
+            attributesList.resetData(getCurrentSession().getAttributeList());
+        }
     }
 
     //=========== Filtered Student List Accessors =============================================================

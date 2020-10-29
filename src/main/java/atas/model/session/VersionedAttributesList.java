@@ -71,7 +71,7 @@ public class VersionedAttributesList implements VersionedEntity {
         this.currentAttributeList.setAll(attributeList);
     }
 
-    private void resetData(List<Attributes> newData) {
+    public void resetData(List<Attributes> newData) {
         this.currentAttributeList.setAll(newData);
     }
 
