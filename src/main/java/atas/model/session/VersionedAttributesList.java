@@ -15,6 +15,7 @@ public class VersionedAttributesList implements VersionedEntity {
     private final ObservableList<Attributes> currentAttributeList;
     private final List<List<Attributes>> attributeStateList;
     private int currentStatePointer;
+    private final List<String> tracker;
 
     /**
      * Creates a VersionedStudentList with an empty initial state.
@@ -24,6 +25,7 @@ public class VersionedAttributesList implements VersionedEntity {
         attributeStateList = new ArrayList<>();
         attributeStateList.add(new ArrayList<>());
         currentStatePointer = 0;
+        tracker = new ArrayList<>();
     }
 
     public List<List<Attributes>> getAttributeStateList() {
@@ -47,7 +49,8 @@ public class VersionedAttributesList implements VersionedEntity {
         if (!canUndo()) {
             throw new UnableToUndoException();
         }
-        resetData(attributeStateList.get(--currentStatePointer));
+        resetData(attributeStateList.get(currentStatePointer-1));
+        currentStatePointer--;
     }
 
     @Override
@@ -67,8 +70,15 @@ public class VersionedAttributesList implements VersionedEntity {
         return currentAttributeList;
     }
 
-    public void setCurrentAttributeList(List<Attributes> attributeList) {
+    public void setCurrentAttributeList(String name, List<Attributes> attributeList) {
         this.currentAttributeList.setAll(attributeList);
+        if (tracker.isEmpty() || !tracker.get(tracker.size() - 1).equals(name)) {
+            saveInitialCommitAfterEnterSession(name);
+        }
+    }
+
+    private void saveInitialCommitAfterEnterSession(String name) {
+        tracker.add(name);
         commit();
     }
 
@@ -80,4 +90,5 @@ public class VersionedAttributesList implements VersionedEntity {
         List<List<Attributes>> subList = attributeStateList.subList(currentStatePointer + 1, attributeStateList.size());
         subList.clear();
     }
+
 }
