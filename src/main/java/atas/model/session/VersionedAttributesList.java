@@ -3,7 +3,6 @@ package atas.model.session;
 import java.util.ArrayList;
 import java.util.List;
 
-import atas.commons.core.index.Index;
 import atas.model.VersionedEntity;
 import atas.model.exceptions.UnableToRedoException;
 import atas.model.exceptions.UnableToUndoException;
