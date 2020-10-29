@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 
 import atas.model.Model;
 import atas.model.ModelManager;
-import atas.model.student.StudentList;
 import atas.testutil.ModelManagerBuilder;
 
 public class ClearStudentListCommandTest {
@@ -24,7 +23,7 @@ public class ClearStudentListCommandTest {
     public void execute_nonEmptyStudentList_success() {
         Model model = ModelManagerBuilder.buildTypicalModelManager();
         Model expectedModel = ModelManagerBuilder.buildTypicalModelManager();
-        expectedModel.setStudentList(new StudentList());
+        expectedModel.clearStudentList();
 
         assertCommandSuccess(new ClearStudentListCommand(), model,
                 ClearStudentListCommand.MESSAGE_SUCCESS, expectedModel);

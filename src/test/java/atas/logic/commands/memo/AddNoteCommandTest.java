@@ -110,7 +110,7 @@ public class AddNoteCommandTest {
         }
 
         @Override
-        public void setStudentList(ReadOnlyStudentList studentList) {
+        public void clearStudentList() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -175,7 +175,17 @@ public class AddNoteCommandTest {
         }
 
         @Override
-        public ObservableList<Attributes> getFilteredAttributesList() {
+        public ObservableList<Attributes> getCurrentAttributesList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Session getCurrentSession() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateCurrentAttributesList() {
             throw new AssertionError("This method should not be called.");
         }
 

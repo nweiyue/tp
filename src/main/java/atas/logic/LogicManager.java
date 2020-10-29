@@ -74,7 +74,7 @@ public class LogicManager implements Logic {
 
     @Override
     public ObservableList<Attributes> getFilteredAttributesList() {
-        return model.getFilteredAttributesList();
+        return model.getCurrentAttributesList();
     }
 
     @Override

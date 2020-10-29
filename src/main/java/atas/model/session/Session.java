@@ -163,9 +163,14 @@ public class Session implements Comparable<Session> {
         return attributeList.get(index).getName();
     }
 
-    public void setAttributeList(List<Attributes> attributeList) {
+    public void resetAttributeList() {
+        setAttributeList(new ArrayList<>());
+    }
+
+    private void setAttributeList(List<Attributes> attributeList) {
         this.attributeList.setAll(attributeList);
     }
+
     /**
      * Returns true if both sessions have the same session name.
      * This defines a weaker notion of equality between two sessions.

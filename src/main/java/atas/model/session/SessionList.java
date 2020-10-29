@@ -162,7 +162,7 @@ public class SessionList implements Iterable<Session>, ReadOnlySessionList {
     }
 
     /**
-     * Updates all sessions after the deletion of a student (with a given student ID)
+     * Updates all sessions after the deletion of a student (with a given student ID).
      */
     public void updateAllSessionsAfterDelete(Index studentId) {
         requireNonNull(studentId);
@@ -173,11 +173,21 @@ public class SessionList implements Iterable<Session>, ReadOnlySessionList {
     }
 
     /**
-     * Updates all sessions after adding a student
+     * Updates all sessions after adding a student.
      */
     public void updateAllSessionsAfterAdd() {
         for (Session s : sessions) {
             s.updateSessionAfterAdd(internalStudentList);
+        }
+        FXCollections.sort(this.sessions);
+    }
+
+    /**
+     * Updates all sessions after clearing all students.
+     */
+    public void updateAllSessionsAfterClear() {
+        for (Session s : sessions) {
+            s.resetAttributeList();
         }
         FXCollections.sort(this.sessions);
     }
