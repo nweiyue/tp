@@ -3,6 +3,7 @@ package atas.model.session;
 import java.util.ArrayList;
 import java.util.List;
 
+import atas.commons.core.index.Index;
 import atas.model.VersionedEntity;
 import atas.model.exceptions.UnableToRedoException;
 import atas.model.exceptions.UnableToUndoException;
@@ -15,6 +16,7 @@ public class VersionedAttributesList implements VersionedEntity {
     private final ObservableList<Attributes> currentAttributeList;
     private final List<List<Attributes>> attributeStateList;
     private int currentStatePointer;
+    private List<SessionName> sessionsEntered;
 
     /**
      * Creates a VersionedStudentList with an empty initial state.
@@ -24,6 +26,7 @@ public class VersionedAttributesList implements VersionedEntity {
         attributeStateList = new ArrayList<>();
         attributeStateList.add(new ArrayList<>());
         currentStatePointer = 0;
+        sessionsEntered = new ArrayList<>();
     }
 
     public List<List<Attributes>> getAttributeStateList() {
@@ -67,8 +70,11 @@ public class VersionedAttributesList implements VersionedEntity {
         return currentAttributeList;
     }
 
-    public void setCurrentAttributeList(List<Attributes> attributeList) {
+    public void setCurrentAttributeList(SessionName sessionName, List<Attributes> attributeList) {
         this.currentAttributeList.setAll(attributeList);
+        if (!sessionsEntered.contains(sessionName)) {
+            initializeFirstEnterses(sessionName);
+        }
     }
 
     public void resetData(List<Attributes> newData) {
@@ -80,4 +86,9 @@ public class VersionedAttributesList implements VersionedEntity {
         subList.clear();
     }
 
+    private void initializeFirstEnterses(SessionName sessionName) {
+        commit();
+        sessionsEntered.add(sessionName);
+        System.out.println("first time enter session " + sessionName);
+    }
 }
