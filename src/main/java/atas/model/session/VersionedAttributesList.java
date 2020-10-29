@@ -15,7 +15,6 @@ public class VersionedAttributesList implements VersionedEntity {
     private final ObservableList<Attributes> currentAttributeList;
     private final List<List<Attributes>> attributeStateList;
     private int currentStatePointer;
-    private List<SessionName> sessionsEntered;
 
     /**
      * Creates a VersionedStudentList with an empty initial state.
@@ -25,7 +24,6 @@ public class VersionedAttributesList implements VersionedEntity {
         attributeStateList = new ArrayList<>();
         attributeStateList.add(new ArrayList<>());
         currentStatePointer = 0;
-        sessionsEntered = new ArrayList<>();
     }
 
     public List<List<Attributes>> getAttributeStateList() {
@@ -69,11 +67,9 @@ public class VersionedAttributesList implements VersionedEntity {
         return currentAttributeList;
     }
 
-    public void setCurrentAttributeList(SessionName sessionName, List<Attributes> attributeList) {
+    public void setCurrentAttributeList(List<Attributes> attributeList) {
         this.currentAttributeList.setAll(attributeList);
-        if (!sessionsEntered.contains(sessionName)) {
-            initializeFirstEnterses(sessionName);
-        }
+        commit();
     }
 
     public void resetData(List<Attributes> newData) {
@@ -83,10 +79,5 @@ public class VersionedAttributesList implements VersionedEntity {
     private void removeStatesAfterCurrentPointer() {
         List<List<Attributes>> subList = attributeStateList.subList(currentStatePointer + 1, attributeStateList.size());
         subList.clear();
-    }
-
-    private void initializeFirstEnterses(SessionName sessionName) {
-        commit();
-        sessionsEntered.add(sessionName);
     }
 }

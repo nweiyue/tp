@@ -242,7 +242,7 @@ public class ModelManager implements Model {
         sessionName = session.getSessionName();
 
         sessionList.updateStudentParticipation(sessionName, indexRange);
-        attributesList.setCurrentAttributeList(sessionName, session.getAttributeList());
+        attributesList.setCurrentAttributeList(session.getAttributeList());
         refreshStatistics();
     }
 
@@ -252,7 +252,7 @@ public class ModelManager implements Model {
         sessionName = session.getSessionName();
 
         sessionList.updateStudentPresence(sessionName, indexRange);
-        attributesList.setCurrentAttributeList(sessionName, session.getAttributeList());
+        attributesList.setCurrentAttributeList(session.getAttributeList());
         refreshStatistics();
     }
 
@@ -315,8 +315,7 @@ public class ModelManager implements Model {
     @Override
     public void enterSession(Index sessionId) {
         this.sessionId = sessionId;
-        SessionName sessionName = sessionList.getSessionBasedOnId(sessionId).getSessionName();
-        this.attributesList.setCurrentAttributeList(sessionName, getCurrentSession().getAttributeList());
+        this.attributesList.setCurrentAttributeList(getCurrentSession().getAttributeList());
         setCurrentSessionTrue();
     }
 
