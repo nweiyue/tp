@@ -139,13 +139,6 @@ public interface Model {
     void enterSession(Index sessionIndex);
 
     /**
-     * Returns attributes of the students given session.
-     * The session must exist in the session list.
-     * @return Attributes of the students in the session.
-     */
-    ObservableList<Attributes> getFilteredAttributesList();
-
-    /**
      * Replaces the given session {@code target} with {@code editedSession}.
      * {@code target} must exist in the session list.
      * The session identity of {@code editedSession} must not be the same as another
@@ -163,6 +156,17 @@ public interface Model {
      */
     void updatePresenceBySessionName(SessionName sessionName, IndexRange indexRange);
 
+    /**
+     * Returns the {@code Session} currently in.
+     */
+    Session getCurrentSession();
+
+    /**
+     * Returns attributes of the students given session.
+     * The session must exist in the session list.
+     * @return Attributes of the students in the session.
+     */
+    ObservableList<Attributes> getCurrentAttributesList();
 
     /** Returns an unmodifiable view of the filtered student list */
     ObservableList<Student> getFilteredStudentList();

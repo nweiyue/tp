@@ -189,8 +189,13 @@ public class AddSessionCommandTest {
         }
 
         @Override
-        public ObservableList<Attributes> getFilteredAttributesList() {
+        public ObservableList<Attributes> getCurrentAttributesList() {
             return null;
+        }
+
+        @Override
+        public Session getCurrentSession() {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override

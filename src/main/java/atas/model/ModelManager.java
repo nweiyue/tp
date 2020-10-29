@@ -233,7 +233,7 @@ public class ModelManager implements Model {
 
     @Override
     public void updateParticipationBySessionName(SessionName sessionName, IndexRange indexRange) {
-        Session session = sessionList.getSessionBasedOnId(sessionId);
+        Session session = getCurrentSession();
         sessionName = session.getSessionName();
 
         sessionList.updateStudentParticipation(sessionName, indexRange);
@@ -243,12 +243,25 @@ public class ModelManager implements Model {
 
     @Override
     public void updatePresenceBySessionName(SessionName sessionName, IndexRange indexRange) {
-        Session session = sessionList.getSessionBasedOnId(sessionId);
+        Session session = getCurrentSession();
         sessionName = session.getSessionName();
 
         sessionList.updateStudentPresence(sessionName, indexRange);
         attributesList.setCurrentAttributeList(session.getAttributeList());
         refreshStatistics();
+    }
+
+    //=========== Current Session Attribute List =============================================================
+
+    @Override
+    public Session getCurrentSession() {
+        assert sessionId != null : "Attempted to get current session when session ID is null";
+        return sessionList.getSessionBasedOnId(sessionId);
+    }
+
+    @Override
+    public ObservableList<Attributes> getCurrentAttributesList() {
+        return attributesList.getCurrentAttributeList();
     }
 
     //=========== Filtered Student List Accessors =============================================================
@@ -288,14 +301,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ObservableList<Attributes> getFilteredAttributesList() {
-        return attributesList.getCurrentAttributeList();
-    }
-
-    @Override
     public void enterSession(Index sessionId) {
-        this.attributesList.setCurrentAttributeList(sessionList.getSessionBasedOnId(sessionId).getAttributeList());
         this.sessionId = sessionId;
+        this.attributesList.setCurrentAttributeList(getCurrentSession().getAttributeList());
         setCurrentSessionTrue();
     }
 
@@ -321,7 +329,7 @@ public class ModelManager implements Model {
             return nullSessionDetails;
         } else {
             requireNonNull(sessionList);
-            Session currentEnteredSession = sessionList.getSessionBasedOnId(sessionId);
+            Session currentEnteredSession = getCurrentSession();
             requireNonNull(currentEnteredSession);
             String sessionName = currentEnteredSession.getSessionName().toString();
             String sessionDate = currentEnteredSession.getSessionDate().toString();
