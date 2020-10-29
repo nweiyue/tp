@@ -335,7 +335,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public String getSessionDetails() {
+    public String getLeftSessionDetails() {
         if (sessionId == null) {
             String nullSessionDetails = "Currently not in any session";
             return nullSessionDetails;
@@ -345,14 +345,28 @@ public class ModelManager implements Model {
             requireNonNull(currentEnteredSession);
             String sessionName = currentEnteredSession.getSessionName().toString();
             String sessionDate = currentEnteredSession.getSessionDate().toString();
+            return String.format("Current Session: %s   Date: %s", sessionName, sessionDate);
+        }
+    }
+
+    @Override
+    public String getRightSessionDetails() {
+        if (sessionId == null) {
+            String nullSessionDetails = "";
+            return nullSessionDetails;
+        } else {
+            requireNonNull(sessionList);
+            Session currentEnteredSession = getCurrentSession();
+            requireNonNull(currentEnteredSession);
             String presenceStats = currentEnteredSession.getSessionStats()
                 .getPresenceStatistics().getDataAsPercentage();
             String participationStats = currentEnteredSession.getSessionStats()
                 .getParticipationStatistics().getDataAsPercentage();
-            return String.format("Current Session: %s   Date: %s        %s    %s",
-                sessionName, sessionDate, presenceStats, participationStats);
+            return String.format("%s    %s", presenceStats, participationStats);
         }
     }
+
+
 
     //=========== Memo ================================================================================
 

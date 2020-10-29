@@ -219,7 +219,7 @@
 
 .status-bar .label {
     -fx-font-family: "Verdana";
-    -fx-text-fill: aqua;;
+    -fx-text-fill: aqua;
     -fx-pref-height: 20px;
     -fx-padding: 0 0 10 0;
 }
