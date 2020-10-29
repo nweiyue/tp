@@ -26,10 +26,15 @@
                     </minWidth>
                 </Label>
                 <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
+                <!-- Add space between Name and Date labels -->
+                <Region prefWidth="8" />
                 <Label fx:id="date" text="\$second" styleClass="cell_big_label" />
             </HBox>
+            <!-- Add space between Name/Date labels and Statistics labels -->
+            <Region prefHeight="3" />
             <FlowPane fx:id="tags" />
             <FlowPane fx:id="stats" />
+            <Region prefHeight="4" />
         </VBox>
     </GridPane>
 </HBox>
