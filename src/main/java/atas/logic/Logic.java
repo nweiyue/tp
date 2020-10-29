@@ -69,9 +69,14 @@ public interface Logic {
     String getMemoContent();
 
     /**
-     * Returns the details of the current entered session.
+     * Returns the name and date of the current entered session.
      */
-    String getSessionDetails();
+    String getLeftSessionDetails();
+
+    /**
+     * Returns the stats of the current entered session.
+     */
+    String getRightSessionDetails();
 
     /**
      * Saves content into the Memo.
