@@ -88,6 +88,5 @@ public class VersionedAttributesList implements VersionedEntity {
     private void initializeFirstEnterses(SessionName sessionName) {
         commit();
         sessionsEntered.add(sessionName);
-        System.out.println("first time enter session " + sessionName);
     }
 }
