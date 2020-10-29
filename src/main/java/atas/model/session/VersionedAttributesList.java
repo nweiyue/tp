@@ -94,6 +94,11 @@ public class VersionedAttributesList implements VersionedEntity {
         commit();
     }
 
+    /**
+     * Resets the current attribute list to a new set of attribute list.
+     *
+     * @param newData The new set of attribute list.
+     */
     public void resetData(List<Attributes> newData) {
         requireNonNull(newData);
         this.currentAttributeList.setAll(newData);
