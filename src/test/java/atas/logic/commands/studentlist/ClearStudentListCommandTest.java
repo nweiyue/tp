@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 
 import atas.model.Model;
 import atas.model.ModelManager;
-import atas.model.student.StudentList;
 import atas.testutil.ModelManagerBuilder;
 
 public class ClearStudentListCommandTest {
