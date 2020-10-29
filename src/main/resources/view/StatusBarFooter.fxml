@@ -9,8 +9,10 @@
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10" />
   </columnConstraints>
-  <HBox minWidth="340" prefWidth="340" HBox.hgrow="ALWAYS">
-    <Label fx:id="empty" />
-    <Label fx:id="saveLocationStatus" />
+  <HBox minWidth="340" prefWidth="500"  HBox.hgrow="ALWAYS">
+    <Label fx:id="emptyLeft" alignment="CENTER_LEFT"/>
+    <Label fx:id="currentSessionLeftStatus" prefWidth="1000" alignment="CENTER_LEFT"/>
+    <Label fx:id="currentSessionRightStatus" prefWidth="500" textAlignment="RIGHT" alignment="CENTER_RIGHT"/>
+    <Label fx:id="emptyRight" alignment="CENTER_RIGHT"/>
   </HBox>
 </GridPane>

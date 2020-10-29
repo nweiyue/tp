@@ -242,7 +242,7 @@ public class ModelManager implements Model {
         sessionName = session.getSessionName();
 
         sessionList.updateStudentParticipation(sessionName, indexRange);
-        attributesList.setCurrentAttributeList(session.getAttributeList());
+        attributesList.setCurrentAttributeList(sessionName.value, session.getAttributeList());
         refreshStatistics();
     }
 
@@ -252,7 +252,7 @@ public class ModelManager implements Model {
         sessionName = session.getSessionName();
 
         sessionList.updateStudentPresence(sessionName, indexRange);
-        attributesList.setCurrentAttributeList(session.getAttributeList());
+        attributesList.setCurrentAttributeList(sessionName.value, session.getAttributeList());
         refreshStatistics();
     }
 
@@ -315,7 +315,8 @@ public class ModelManager implements Model {
     @Override
     public void enterSession(Index sessionId) {
         this.sessionId = sessionId;
-        this.attributesList.setCurrentAttributeList(getCurrentSession().getAttributeList());
+        SessionName sessionName = sessionList.getSessionBasedOnId(sessionId).getSessionName();
+        this.attributesList.setCurrentAttributeList(sessionName.value, getCurrentSession().getAttributeList());
         setCurrentSessionTrue();
     }
 
@@ -335,7 +336,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public String getSessionDetails() {
+    public String getLeftSessionDetails() {
         if (sessionId == null) {
             String nullSessionDetails = "Currently not in any session";
             return nullSessionDetails;
@@ -345,9 +346,28 @@ public class ModelManager implements Model {
             requireNonNull(currentEnteredSession);
             String sessionName = currentEnteredSession.getSessionName().toString();
             String sessionDate = currentEnteredSession.getSessionDate().toString();
-            return String.format("Current Session: %s    Date: %s", sessionName, sessionDate);
+            return String.format("Current Session: %s   Date: %s", sessionName, sessionDate);
         }
     }
+
+    @Override
+    public String getRightSessionDetails() {
+        if (sessionId == null) {
+            String nullSessionDetails = "";
+            return nullSessionDetails;
+        } else {
+            requireNonNull(sessionList);
+            Session currentEnteredSession = getCurrentSession();
+            requireNonNull(currentEnteredSession);
+            String presenceStats = currentEnteredSession.getSessionStats()
+                .getPresenceStatistics().getDataAsPercentage();
+            String participationStats = currentEnteredSession.getSessionStats()
+                .getParticipationStatistics().getDataAsPercentage();
+            return String.format("%s    %s", presenceStats, participationStats);
+        }
+    }
+
+
 
     //=========== Memo ================================================================================
 
@@ -451,5 +471,4 @@ public class ModelManager implements Model {
         attributesList.redo();
         refreshStatistics();
     }
-
 }
