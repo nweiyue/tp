@@ -434,6 +434,7 @@ public class ModelManager implements Model {
         studentList.undo();
         sessionList.undo();
         attributesList.undo();
+        refreshStatistics();
     }
 
     @Override
@@ -448,6 +449,7 @@ public class ModelManager implements Model {
         studentList.redo();
         sessionList.redo();
         attributesList.redo();
+        refreshStatistics();
     }
 
 }
