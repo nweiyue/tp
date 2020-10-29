@@ -345,9 +345,12 @@ public class ModelManager implements Model {
             requireNonNull(currentEnteredSession);
             String sessionName = currentEnteredSession.getSessionName().toString();
             String sessionDate = currentEnteredSession.getSessionDate().toString();
-            String presenceStats = currentEnteredSession.getSessionStats().getPresenceStatistics().getDataAsPercentage();
-            String participationStats = currentEnteredSession.getSessionStats().getParticipationStatistics().getDataAsPercentage();
-            return String.format("Current Session: %s   Date: %s        %s    %s", sessionName, sessionDate, presenceStats, participationStats);
+            String presenceStats = currentEnteredSession.getSessionStats()
+                .getPresenceStatistics().getDataAsPercentage();
+            String participationStats = currentEnteredSession.getSessionStats()
+                .getParticipationStatistics().getDataAsPercentage();
+            return String.format("Current Session: %s   Date: %s        %s    %s",
+                sessionName, sessionDate, presenceStats, participationStats);
         }
     }
 
