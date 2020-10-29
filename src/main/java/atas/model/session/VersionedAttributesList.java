@@ -49,8 +49,7 @@ public class VersionedAttributesList implements VersionedEntity {
         if (!canUndo()) {
             throw new UnableToUndoException();
         }
-        resetData(attributeStateList.get(currentStatePointer-1));
-        currentStatePointer--;
+        resetData(attributeStateList.get(--currentStatePointer));
     }
 
     @Override
