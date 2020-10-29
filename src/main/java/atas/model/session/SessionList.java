@@ -10,6 +10,7 @@ import java.util.List;
 import atas.commons.core.index.Index;
 import atas.model.session.exceptions.DuplicateSessionException;
 import atas.model.session.exceptions.SessionNotFoundException;
+import atas.model.student.Name;
 import atas.model.student.Student;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -106,6 +107,17 @@ public class SessionList implements Iterable<Session>, ReadOnlySessionList {
      */
     @Override
     public void updateStudentList(List<Student> list) {
+        if (list.size() == internalStudentList.size()) {
+            for (int i = 0; i < list.size(); i++) {
+                Name oldName = internalStudentList.get(i).getName();
+                Name newName = list.get(i).getName();
+                if (!oldName.equals(newName)) {
+                    for (Session session: sessions) {
+                        session.updateAttributeName(newName, i);
+                    }
+                }
+            }
+        }
         internalStudentList.clear();
         internalStudentList.addAll(list);
     }
