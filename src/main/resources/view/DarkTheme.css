@@ -60,7 +60,6 @@
     dark-tab-color: #8c8c8c;
     light-tab-color: #1fc7b8;
     tab-color: #1c2126; /* background color of tabs */
-    -fx-border-radius: 10;
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
     -fx-pref-width: 65;
@@ -142,24 +141,26 @@
 .list-cell {
     -fx-label-padding: 0 0 0 0;
     -fx-graphic-text-gap : 0;
-    -fx-padding: 0 0 0 0;
-}
-
-.list-cell:filled:even {
-    -fx-background-color: #39434c; /* color of list boxes: even */
-}
-
-.list-cell:filled:odd {
-    -fx-background-color: #505a61;  /* color of list boxes: odd */
+    -fx-padding: 2 2 15 2;
+    -fx-border-radius: 10;
+    -fx-background-color: transparent, border-color, background-color;
+    -fx-background-insets: 0, 0 0 7 0, 3 3 10 3;
+    -fx-background-radius: 10 10 10;
+    border-color: dark-border-color;
+    /*-fx-border-color: dark-tab-color; !*border color of tabs *!*/
+    /*-fx-border-width: 4;*/
+    dark-border-color: #8c8c8c;
+    light-border-color: #1fc7b8;
+    background-color: #1c2126;
+    /*tab-color: #1c2126; !* background color of tabs *!*/
 }
 
 .list-cell:filled:selected {
-    -fx-background-color: #1fc7b8;  /* color of list boxes: when selected */
+    border-color: light-border-color;
 }
 
 .list-cell:filled:selected #cardPane {
-    -fx-border-color: #3e7b91;
-    -fx-border-width: 1;
+    /* */
 }
 
 .list-cell .label {
@@ -167,7 +168,7 @@
 }
 
 .list-cell:selected .label {
-    -fx-text-fill: black;
+    /* */
 }
 
 .cell_big_label {
@@ -210,6 +211,7 @@
 
 .memo-box {
     -fx-background-color: transparent;
+    -fx-background-radius: 10;
     -fx-font-family: "Segoe UI Light";
     -fx-text-fill: white;
     -fx-font-size: 12pt;
@@ -217,8 +219,8 @@
 
 .memo-box:focused {
     -fx-border-color: #1fc7b8;
-    -fx-border-width: 1px;
-    fx-border-radius: 1px;
+    -fx-border-width: 3px;
+    fx-border-radius: 10px;
 }
 
 .status-bar {
@@ -226,8 +228,8 @@
 }
 
 .status-bar .label {
-    -fx-font-family: "Verdana";
-    -fx-text-fill: aqua;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: #1fc7b8;
     -fx-pref-height: 20px;
     -fx-padding: 0 0 10 0;
 }
@@ -354,7 +356,7 @@
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: derive(#1d1d1d, 50%);
+    -fx-background-color: #8c8c8c;
     -fx-background-insets: 3;
 }
 
