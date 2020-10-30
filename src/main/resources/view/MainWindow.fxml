@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="ATAS" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="700" minWidth="700" onCloseRequest="#handleExit" title="ATAS" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/atas.png" />
   </icons>
@@ -35,6 +35,15 @@
         </MenuBar>
         <TabPane fx:id="tabPane" prefHeight="800.0" prefWidth="400.0" side="LEFT" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
           <tabs>
+            <Tab text="ATAS">
+               <content>
+                 <VBox minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+                   <padding>
+                     <Insets bottom="10" left="10" right="10" top="10" />
+                   </padding>
+                   <StackPane fx:id="startDisplayPlaceHolder" />
+                 </VBox>
+               </content></Tab>
             <Tab id="studentsTab" fx:id="studentsTab" text="Students">
               <content>
                 <VBox fx:id="studentList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">

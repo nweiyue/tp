@@ -84,6 +84,18 @@
     -fx-text-fill: light-tab-color;
 }
 
+.empty-box {
+    -fx-border-color: #1fc7b8;
+    -fx-alignment: top-left;
+}
+
+.empty-box-label {
+    -fx-text-fill: #1fc7b8;
+    -fx-text-alignment: center;
+    -fx-font-size: 13;
+    -fx-font-family: "Segoe UI Historic";
+}
+
 .table-view {
     -fx-base: #1d1d1d;
     -fx-control-inner-background: #1d1d1d;
