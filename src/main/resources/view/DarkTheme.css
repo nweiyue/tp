@@ -41,40 +41,48 @@
 }
 
 .tab-pane {
-    -fx-padding: 0 0 0 0;
+    -fx-padding: 0;
     -fx-tab-min-width:100px;
     -fx-tab-max-height:300px;
     -fx-background-color: #1c2126; /* background color for the entire tab view */
 }
 
 .tab-pane .tab-header-background {
-    -fx-background-color: #263037 ; /* background color for the entire bar of tabs */
+    -fx-background-color: #1c2126;  ; /* background color for the entire bar of tabs */
 }
 
 .tab {
-    -fx-background-insets: 0 4 0 4,0,0, 0; /* spacing between tabs */
-    -fx-background-radius: 10 10 0 0 ;
-    -fx-background-color: #39434c; /* background color of tabs */
+    -fx-padding: 4 10 2 4;
+    -fx-background-insets: 0, 0 7 0 0, 2 9 2 2; /* spacing between tabs */
+    -fx-background-color: transparent, tab-border-color, tab-color;
+    -fx-background-radius: 10 10 10;
+    tab-border-color: dark-tab-color; /*border color of tabs */
+    dark-tab-color: #8c8c8c;
+    light-tab-color: #1fc7b8;
+    tab-color: #1c2126; /* background color of tabs */
+    -fx-border-radius: 10;
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
-    -fx-pref-width: 150;
-    -fx-pref-height: 35;
+    -fx-pref-width: 65;
+    -fx-pref-height: 110;
 }
 
-.tab-pane .tab:selected
-{
-    -fx-background-color: #1c2126;  /* background color of tabs when selected*/
+.tab:selected {
+    -fx-text-fill: light-tab-color;  /* border color of tabs when selected*/
+    tab-border-color: light-tab-color;
 }
 
 .tab .tab-label {
-    -fx-pref-width: 140;
-    -fx-text-fill: #8c8c8c;
+    -fx-padding: 54 4 4 4;
+    -fx-background-insets: 0, 0 7 0 0, 2 9 2 2; /* spacing between tab labels */
+    -fx-rotate: 90;
+    -fx-text-fill: dark-tab-color;
     -fx-font-size: 12.5pt;
     -fx-font-family: "Segoe UI Semibold";
 }
 
 .tab:selected .tab-label {
-    -fx-text-fill: #1fc7b8;
+    -fx-text-fill: light-tab-color;
 }
 
 .table-view {
@@ -189,10 +197,6 @@
      -fx-border-top-width: 1px;
 }
 
-.status-bar {
-    -fx-background-color: #1C2126;  /* color of the bar at the bottom */
-}
-
 .result-display {
     -fx-background-color: transparent;
     -fx-font-family: "Segoe UI Light";
@@ -215,6 +219,10 @@
     -fx-border-color: #1fc7b8;
     -fx-border-width: 1px;
     fx-border-radius: 1px;
+}
+
+.status-bar {
+    -fx-background-color: #1C2126;  /* color of the bar at the bottom */
 }
 
 .status-bar .label {
