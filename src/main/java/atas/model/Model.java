@@ -75,9 +75,9 @@ public interface Model {
     void setMemoFilePath(Path memoPadFilePath);
 
     /**
-     * Replaces student list data with the data in {@code studentList}.
+     * Clears the student list.
      */
-    void setStudentList(ReadOnlyStudentList studentList);
+    void clearStudentList();
 
     /** Returns the StudentList */
     ReadOnlyStudentList getStudentList();
@@ -139,13 +139,6 @@ public interface Model {
     void enterSession(Index sessionIndex);
 
     /**
-     * Returns attributes of the students given session.
-     * The session must exist in the session list.
-     * @return Attributes of the students in the session.
-     */
-    ObservableList<Attributes> getFilteredAttributesList();
-
-    /**
      * Replaces the given session {@code target} with {@code editedSession}.
      * {@code target} must exist in the session list.
      * The session identity of {@code editedSession} must not be the same as another
@@ -163,6 +156,22 @@ public interface Model {
      */
     void updatePresenceBySessionName(SessionName sessionName, IndexRange indexRange);
 
+    /**
+     * Returns the {@code Session} currently in.
+     */
+    Session getCurrentSession();
+
+    /**
+     * Returns attributes of the students given session.
+     * The session must exist in the session list.
+     * @return Attributes of the students in the session.
+     */
+    ObservableList<Attributes> getCurrentAttributesList();
+
+    /**
+     * Updates the attribute list in current session if a session has been entered into.
+     */
+    void updateCurrentAttributesList();
 
     /** Returns an unmodifiable view of the filtered student list */
     ObservableList<Student> getFilteredStudentList();
@@ -248,9 +257,15 @@ public interface Model {
     void refreshSessionStatistics();
 
     /**
-     * Returns the session details of the current entered session.
+     * Returns the name and date of the current entered session.
      */
-    String getSessionDetails();
+    String getLeftSessionDetails();
+
+
+    /**
+     * Returns the stats of the current entered session.
+     */
+    String getRightSessionDetails();
 
     /**
     * Saves the current entities in their respective history.

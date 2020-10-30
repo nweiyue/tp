@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import atas.logic.commands.CommandResult;
 import atas.logic.commands.confirmation.DangerousCommand;
 import atas.model.Model;
-import atas.model.student.StudentList;
 
 /**
  * Clears the student list.
@@ -19,7 +18,7 @@ public class ClearStudentListCommand extends DangerousCommand {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setStudentList(new StudentList());
+        model.clearStudentList();
         model.commit();
         return new CommandResult(MESSAGE_SUCCESS);
     }

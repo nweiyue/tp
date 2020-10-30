@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 
 import atas.logic.commands.exceptions.CommandException;
 import atas.model.Model;
-import atas.model.student.StudentList;
 import atas.testutil.ModelManagerBuilder;
 import atas.testutil.TypicalStudents;
 
@@ -24,7 +23,7 @@ public class RngCommandTest {
 
     @Test
     public void execute_rngEmptyList_throwsCommandException() {
-        model.setStudentList(new StudentList()); // clear student list
+        model.clearStudentList(); // clear student list
         assertThrows(CommandException.class, RngCommand.MESSAGE_NO_STUDENTS, () -> new RngCommand().execute(model));
     }
 

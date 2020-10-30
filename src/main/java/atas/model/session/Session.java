@@ -141,7 +141,7 @@ public class Session implements Comparable<Session> {
     }
 
     /**
-     * Recalculate the participation and presence statistics of this session.
+     * Recalculates the participation and presence statistics of this session.
      */
     public void refreshSessionStatistics() {
         sessionStats.replaceStatistics(
@@ -150,7 +150,7 @@ public class Session implements Comparable<Session> {
     }
 
     /**
-     * Initialize the studentList using the given masterList.
+     * Initializes the studentList using the given masterList.
      */
     public void initializeSession(List<Student> masterList) {
         for (int i = 0; i < masterList.size(); i++) {
@@ -159,13 +159,26 @@ public class Session implements Comparable<Session> {
 
     }
 
+    /**
+     * Updates the student name after editing a student's name.
+     */
+    public void updateAttributeName(Name name, int index) {
+        Attributes original = attributeList.get(index);
+        attributeList.set(index, original.setName(name));
+    }
+
     public String returnStudentNameStringByIndex(int index) throws Exception {
         return attributeList.get(index).getName();
     }
 
-    public void setAttributeList(List<Attributes> attributeList) {
+    public void resetAttributeList() {
+        setAttributeList(new ArrayList<>());
+    }
+
+    private void setAttributeList(List<Attributes> attributeList) {
         this.attributeList.setAll(attributeList);
     }
+
     /**
      * Returns true if both sessions have the same session name.
      * This defines a weaker notion of equality between two sessions.

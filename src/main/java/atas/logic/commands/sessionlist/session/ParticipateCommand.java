@@ -57,7 +57,7 @@ public class ParticipateCommand extends Command {
             throw new CommandException(Messages.MESSAGE_NOT_IN_SESSION_TAB);
         }
 
-        List<Attributes> lastShownList = model.getFilteredAttributesList();
+        List<Attributes> lastShownList = model.getCurrentAttributesList();
 
         if (range.getZeroBasedUpper() >= lastShownList.size()) {
             throw new CommandException(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX_RANGE);
