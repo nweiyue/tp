@@ -80,7 +80,7 @@
 }
 
 .tab:selected .tab-label {
-    -fx-text-fill: light-tab-color;
+    -fx-text-fill: white;
 }
 
 .empty-box {

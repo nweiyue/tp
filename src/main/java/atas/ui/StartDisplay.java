@@ -22,10 +22,6 @@ public class StartDisplay extends UiPart<Region> {
 
     private static final String FXML = "StartDisplay.fxml";
 
-    private Image getImage(String imagePath) {
-        return new Image(MainApp.class.getResourceAsStream(imagePath));
-    }
-
     @FXML
     private Label gettingStartedDisplay;
 
@@ -40,6 +36,10 @@ public class StartDisplay extends UiPart<Region> {
         super(FXML);
         gettingStartedDisplay.setText(GETTING_STARTED_DISPLAY);
         atasLogo.setImage(getImage(ATAS_LOGO));
+    }
+
+    private Image getImage(String imagePath) {
+        return new Image(MainApp.class.getResourceAsStream(imagePath));
     }
 
 }
