@@ -221,6 +221,9 @@ public class ModelManager implements Model {
     public void deleteSession(Session target, Index id) {
         sessionList.updateStudentList(studentList.getStudentList());
         sessionList.deleteSession(target);
+        if (id.equals(this.sessionId)) {
+            this.sessionId = null;
+        }
         refreshStudentStatistics();
     }
 
@@ -229,7 +232,7 @@ public class ModelManager implements Model {
         sessionList.updateStudentList(studentList.getStudentList());
         sessionList.addSession(session);
         updateFilteredSessionList(PREDICATE_SHOW_ALL_SESSIONS);
-        refreshStudentStatistics();
+        refreshStatistics();
     }
 
     @Override

@@ -282,6 +282,12 @@ public class MainWindow extends UiPart<Stage> {
         });
     }
 
+    private void handleCurrentSession() {
+        StatusBarFooter statusBarFooter = new StatusBarFooter(
+                logic.getLeftSessionDetails(), logic.getRightSessionDetails());
+        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+    }
+
     /**
      * Displays the command result feedback.
      * @param commandResult Command result of the user command.
@@ -323,6 +329,8 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isEnterSession()) {
                 handleEnterSessionTab(commandResult.getTab());
             }
+
+            handleCurrentSession();
 
             if (commandResult.isExit()) {
                 Thread.sleep(SLEEP_TIME);
