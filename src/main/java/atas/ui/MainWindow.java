@@ -267,7 +267,6 @@ public class MainWindow extends UiPart<Stage> {
         tabPane.getSelectionModel().select(toSwitchTabIndex);
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getSessionDetails());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
-
     }
 
     @FXML
