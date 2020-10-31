@@ -1,7 +1,10 @@
 package atas.ui;
 
+import atas.MainApp;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Region;
 
 /**
@@ -15,10 +18,19 @@ public class StartDisplay extends UiPart<Region> {
             + "Each tab will display the relevant information once you go to that tab.\n"
             + "To see an overview of the supported commands, type \"help\" in the command box!";
 
+    public static final String ATAS_LOGO = "/images/atas_logo.png";
+
     private static final String FXML = "StartDisplay.fxml";
+
+    private Image getImage(String imagePath) {
+        return new Image(MainApp.class.getResourceAsStream(imagePath));
+    }
 
     @FXML
     private Label gettingStartedDisplay;
+
+    @FXML
+    private ImageView atasLogo;
 
     /**
      * Creates a new HelpWindow.
@@ -27,6 +39,7 @@ public class StartDisplay extends UiPart<Region> {
     public StartDisplay() {
         super(FXML);
         gettingStartedDisplay.setText(GETTING_STARTED_DISPLAY);
+        atasLogo.setImage(getImage(ATAS_LOGO));
     }
 
 }
