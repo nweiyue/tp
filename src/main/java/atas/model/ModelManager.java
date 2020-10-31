@@ -235,6 +235,7 @@ public class ModelManager implements Model {
     @Override
     public void setSession(Session target, Session editedSession) {
         sessionList.setSession(target, editedSession);
+        refreshStatistics();
     }
 
     @Override
