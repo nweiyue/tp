@@ -1,8 +1,5 @@
 package atas.ui;
 
-import java.util.logging.Logger;
-
-import atas.commons.core.LogsCenter;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;

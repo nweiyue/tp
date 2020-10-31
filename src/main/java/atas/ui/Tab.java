@@ -54,8 +54,11 @@ public enum Tab {
     public String toDisplayName() {
         if (this.equals(Tab.CURRENT)) {
             return "current session";
-        } else {
-            return this.toString().toLowerCase();
         }
+        if (this.equals(Tab.ATAS)) {
+            return "main";
+        }
+
+        return this.toString().toLowerCase();
     }
 }
