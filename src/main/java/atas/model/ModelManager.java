@@ -194,6 +194,8 @@ public class ModelManager implements Model {
     @Override
     public void resetSessionList() {
         this.sessionList.clearSessions();
+        this.sessionId = null;
+        attributesList.resetData(new ArrayList<>());
     }
 
     @Override
