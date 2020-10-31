@@ -32,17 +32,7 @@ public class SampleDataUtil {
             new Student(new Name("Dianne Loh"), new Matriculation("A0155555C"),
                 new Email("diannecap5@u.nus.edu"), getTagSet("smart")),
             new Student(new Name("Elon Gates"), new Matriculation("A0123123X"),
-                new Email("tesloft@u.nus.edu"), getTagSet()),
-            new Student(new Name("Faramir Ring"), new Matriculation("A9873210G"),
-                new Email("forgondor@u.nus.edu"), getTagSet()),
-            new Student(new Name("Gary Tan"), new Matriculation("A0234123T"),
-                new Email("garytan@u.nus.edu"), getTagSet()),
-            new Student(new Name("Harsha Vardna"), new Matriculation("A0420690X"),
-                new Email("harsha@u.nus.edu"), getTagSet("active")),
-            new Student(new Name("Iman Shumpert"), new Matriculation("A1023956S"),
-                new Email("shumps@u.nus.edu"), getTagSet()),
-            new Student(new Name("Julius Erving"), new Matriculation("A6666666J"),
-                new Email("doctorj@u.nus.edu"), getTagSet("helpful"))
+                new Email("tesloft@u.nus.edu"), getTagSet())
         };
     }
 
@@ -69,12 +59,7 @@ public class SampleDataUtil {
             new Session(new SessionName("Tutorial 2"), new SessionDate("19/8/2020")),
             new Session(new SessionName("Tutorial 3"), new SessionDate("26/8/2020")),
             new Session(new SessionName("Tutorial 4"), new SessionDate("2/9/2020")),
-            new Session(new SessionName("Tutorial 5"), new SessionDate("9/9/2020")),
-            new Session(new SessionName("Tutorial 6"), new SessionDate("16/9/2020")),
-            new Session(new SessionName("Tutorial 7"), new SessionDate("30/9/2020")),
-            new Session(new SessionName("Tutorial 8"), new SessionDate("7/10/2020")),
-            new Session(new SessionName("Tutorial 9"), new SessionDate("14/10/2020")),
-            new Session(new SessionName("Tutorial 10"), new SessionDate("21/10/2020"))
+            new Session(new SessionName("Tutorial 5"), new SessionDate("9/9/2020"))
         };
     }
 
