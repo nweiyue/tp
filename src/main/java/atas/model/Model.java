@@ -257,9 +257,15 @@ public interface Model {
     void refreshSessionStatistics();
 
     /**
-     * Returns the session details of the current entered session.
+     * Returns the name and date of the current entered session.
      */
-    String getSessionDetails();
+    String getLeftSessionDetails();
+
+
+    /**
+     * Returns the stats of the current entered session.
+     */
+    String getRightSessionDetails();
 
     /**
     * Saves the current entities in their respective history.

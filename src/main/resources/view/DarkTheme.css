@@ -255,9 +255,10 @@
 }
 
 .status-bar .label {
-    -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: white;
-    -fx-pref-height: 30px;
+    -fx-font-family: "Verdana";
+    -fx-text-fill: aqua;
+    -fx-pref-height: 20px;
+    -fx-padding: 0 0 10 0;
 }
 
 .status-bar-with-border {
