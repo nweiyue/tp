@@ -68,13 +68,13 @@ public class SampleDataUtil {
             new Session(new SessionName("Tutorial 1"), new SessionDate("12/8/2020")),
             new Session(new SessionName("Tutorial 2"), new SessionDate("19/8/2020")),
             new Session(new SessionName("Tutorial 3"), new SessionDate("26/8/2020")),
-            new Session(new SessionName("Tutorial 4"), new SessionDate("26/8/2020")),
-            new Session(new SessionName("Tutorial 5"), new SessionDate("2/9/2020")),
-            new Session(new SessionName("Tutorial 6"), new SessionDate("9/9/2020")),
-            new Session(new SessionName("Tutorial 7"), new SessionDate("23/9/2020")),
-            new Session(new SessionName("Tutorial 8"), new SessionDate("30/9/2020")),
-            new Session(new SessionName("Tutorial 9"), new SessionDate("7/10/2020")),
-            new Session(new SessionName("Tutorial 10"), new SessionDate("14/10/2020"))
+            new Session(new SessionName("Tutorial 4"), new SessionDate("2/9/2020")),
+            new Session(new SessionName("Tutorial 5"), new SessionDate("9/9/2020")),
+            new Session(new SessionName("Tutorial 6"), new SessionDate("16/9/2020")),
+            new Session(new SessionName("Tutorial 7"), new SessionDate("30/9/2020")),
+            new Session(new SessionName("Tutorial 8"), new SessionDate("7/10/2020")),
+            new Session(new SessionName("Tutorial 9"), new SessionDate("14/10/2020")),
+            new Session(new SessionName("Tutorial 10"), new SessionDate("21/10/2020"))
         };
     }
 
