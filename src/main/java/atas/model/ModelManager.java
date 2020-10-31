@@ -164,7 +164,7 @@ public class ModelManager implements Model {
         sessionList.updateStudentList(studentList.getStudentList());
         sessionList.updateAllSessionsAfterDelete(id);
         updateCurrentAttributesList();
-        refreshSessionStatistics();
+        refreshStatistics();
     }
 
     @Override
@@ -174,7 +174,7 @@ public class ModelManager implements Model {
         sessionList.updateStudentList(studentList.getStudentList());
         sessionList.updateAllSessionsAfterAdd();
         updateCurrentAttributesList();
-        refreshSessionStatistics();
+        refreshStatistics();
     }
 
     @Override
@@ -184,6 +184,7 @@ public class ModelManager implements Model {
         studentList.setStudent(target, editedStudent);
         sessionList.updateStudentList(studentList.getStudentList());
         updateCurrentAttributesList();
+        refreshStatistics();
     }
 
     //=========== SessionList ================================================================================
