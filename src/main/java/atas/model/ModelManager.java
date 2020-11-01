@@ -287,6 +287,14 @@ public class ModelManager implements Model {
         return filteredStudents;
     }
 
+    /**
+     * Returns the number of students in the student list.
+     */
+    @Override
+    public int getNumberOfStudents() {
+        return filteredStudents.size();
+    }
+
     @Override
     public void updateFilteredStudentList(Predicate<Student> predicate) {
         requireNonNull(predicate);
@@ -298,6 +306,14 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Session> getFilteredSessionList() {
         return filteredSessions;
+    }
+
+    /**
+     * Returns the number of sessions in the session list.
+     */
+    @Override
+    public int getNumberOfSessions() {
+        return filteredSessions.size();
     }
 
     @Override

@@ -223,8 +223,18 @@ public class AddStudentCommandTest {
         }
 
         @Override
+        public int getNumberOfStudents() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Session> getFilteredSessionList() {
-            return null;
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public int getNumberOfSessions() {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override

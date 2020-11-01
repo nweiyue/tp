@@ -1,6 +1,8 @@
 package atas.logic.parser;
 
 import static atas.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static atas.commons.core.Messages.MESSAGE_INVALID_SESSION_DISPLAYED_INDEX;
+import static atas.commons.core.Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
 import static atas.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static atas.logic.commands.atas.HelpCommand.MESSAGE_USAGE;
 
@@ -16,6 +18,7 @@ import atas.logic.commands.atas.RngCommand;
 import atas.logic.commands.atas.SwitchCommand;
 import atas.logic.commands.atas.UndoCommand;
 import atas.logic.commands.confirmation.ConfirmationCommand;
+import atas.logic.commands.exceptions.CommandException;
 import atas.logic.commands.memo.AddNoteCommand;
 import atas.logic.commands.sessionlist.AddSessionCommand;
 import atas.logic.commands.sessionlist.ClearSessionsCommand;
@@ -173,6 +176,28 @@ public class AtasParser {
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
+    }
+
+    /**
+     * Removes the previousCommand if CommandException thrown recently is related to displayed indexes.
+     *
+     * @param e The recent CommandException that is thrown in Logic.
+     */
+    public void refreshInternalState(CommandException e) {
+        if (checkExceptionMessageIsIndexRelated(e.getMessage())) {
+            removePreviousCommand();
+        }
+    }
+
+    /**
+     * Checks if CommandException thrown is with regards to invalid displayed indexes.
+     *
+     * @param message The message of CommandException.
+     * @return True if message is related to invalid indexes.
+     */
+    private boolean checkExceptionMessageIsIndexRelated(String message) {
+        return message.equals(MESSAGE_INVALID_SESSION_DISPLAYED_INDEX) ||
+                message.equals(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
 }
