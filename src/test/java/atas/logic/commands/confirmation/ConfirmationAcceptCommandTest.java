@@ -48,7 +48,7 @@ public class ConfirmationAcceptCommandTest {
 
     @Test
     public void execute_invalidDeleteStudentCommand_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getNumberOfStudents() + 1);
         DeleteStudentCommand deleteStudentCommand = new DeleteStudentCommand(outOfBoundIndex);
 
         ConfirmationAcceptCommand confirmationAcceptCommand = new ConfirmationAcceptCommand(deleteStudentCommand);
@@ -76,7 +76,7 @@ public class ConfirmationAcceptCommandTest {
 
     @Test
     public void execute_invalidEditStudentCommand_failure() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getNumberOfStudents() + 1);
         EditStudentCommand.EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder()
 
                 .withName(VALID_NAME_BOB).build();

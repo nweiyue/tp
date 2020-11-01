@@ -4,6 +4,7 @@ import static atas.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -164,7 +165,7 @@ public class ModelManager implements Model {
         sessionList.updateStudentList(studentList.getStudentList());
         sessionList.updateAllSessionsAfterDelete(id);
         updateCurrentAttributesList();
-        refreshSessionStatistics();
+        refreshStatistics();
     }
 
     @Override
@@ -174,7 +175,7 @@ public class ModelManager implements Model {
         sessionList.updateStudentList(studentList.getStudentList());
         sessionList.updateAllSessionsAfterAdd();
         updateCurrentAttributesList();
-        refreshSessionStatistics();
+        refreshStatistics();
     }
 
     @Override
@@ -184,6 +185,7 @@ public class ModelManager implements Model {
         studentList.setStudent(target, editedStudent);
         sessionList.updateStudentList(studentList.getStudentList());
         updateCurrentAttributesList();
+        refreshStatistics();
     }
 
     //=========== SessionList ================================================================================
@@ -192,6 +194,8 @@ public class ModelManager implements Model {
     @Override
     public void resetSessionList() {
         this.sessionList.clearSessions();
+        this.sessionId = null;
+        attributesList.resetData(new ArrayList<>());
     }
 
     @Override
@@ -220,6 +224,10 @@ public class ModelManager implements Model {
     public void deleteSession(Session target, Index id) {
         sessionList.updateStudentList(studentList.getStudentList());
         sessionList.deleteSession(target);
+        if (id.equals(this.sessionId)) {
+            this.sessionId = null;
+            attributesList.resetData(new ArrayList<>());
+        }
         refreshStudentStatistics();
     }
 
@@ -228,12 +236,13 @@ public class ModelManager implements Model {
         sessionList.updateStudentList(studentList.getStudentList());
         sessionList.addSession(session);
         updateFilteredSessionList(PREDICATE_SHOW_ALL_SESSIONS);
-        refreshStudentStatistics();
+        refreshStatistics();
     }
 
     @Override
     public void setSession(Session target, Session editedSession) {
         sessionList.setSession(target, editedSession);
+        refreshStatistics();
     }
 
     @Override
@@ -287,6 +296,14 @@ public class ModelManager implements Model {
         return filteredStudents;
     }
 
+    /**
+     * Returns the number of students in the student list.
+     */
+    @Override
+    public int getNumberOfStudents() {
+        return filteredStudents.size();
+    }
+
     @Override
     public void updateFilteredStudentList(Predicate<Student> predicate) {
         requireNonNull(predicate);
@@ -298,6 +315,14 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Session> getFilteredSessionList() {
         return filteredSessions;
+    }
+
+    /**
+     * Returns the number of sessions in the session list.
+     */
+    @Override
+    public int getNumberOfSessions() {
+        return filteredSessions.size();
     }
 
     @Override
