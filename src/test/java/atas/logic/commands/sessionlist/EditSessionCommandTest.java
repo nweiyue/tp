@@ -27,6 +27,7 @@ import atas.model.student.StudentList;
 import atas.testutil.EditSessionDescriptorBuilder;
 import atas.testutil.ModelManagerBuilder;
 import atas.testutil.SessionBuilder;
+import atas.testutil.TypicalStudents;
 
 
 public class EditSessionCommandTest {
@@ -44,6 +45,7 @@ public class EditSessionCommandTest {
         Model expectedModel = new ModelManager(getTypicalSessionList(
                 model.getStudentList().getStudentList()),
                 new StudentList(model.getStudentList()), new UserPrefs(), EMPTY_MEMO_CONTENT);
+        editedSession.initializeSession(TypicalStudents.getTypicalStudents());
         expectedModel.setSession(model.getFilteredSessionList().get(0), editedSession);
 
         assertCommandSuccess(editSessionCommand, model, expectedMessage, expectedModel);
@@ -67,6 +69,7 @@ public class EditSessionCommandTest {
         Model expectedModel = new ModelManager(getTypicalSessionList(
                 model.getStudentList().getStudentList()),
                 new StudentList(model.getStudentList()), new UserPrefs(), EMPTY_MEMO_CONTENT);
+        editedSession.initializeSession(TypicalStudents.getTypicalStudents());
         expectedModel.setSession(lastSession, editedSession);
 
         assertCommandSuccess(editSessionCommand, model, expectedMessage, expectedModel);
@@ -88,6 +91,7 @@ public class EditSessionCommandTest {
 
         Model expectedModel = new ModelManager(getTypicalSessionList(model.getStudentList().getStudentList()),
                 new StudentList(model.getStudentList()), new UserPrefs(), EMPTY_MEMO_CONTENT);
+        editedSession.initializeSession(TypicalStudents.getTypicalStudents());
         expectedModel.setSession(lastSession, editedSession);
 
         assertCommandSuccess(editSessionCommand, model, expectedMessage, expectedModel);
