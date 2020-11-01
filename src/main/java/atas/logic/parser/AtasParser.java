@@ -196,8 +196,8 @@ public class AtasParser {
      * @return True if message is related to invalid indexes.
      */
     private boolean checkExceptionMessageIsIndexRelated(String message) {
-        return message.equals(MESSAGE_INVALID_SESSION_DISPLAYED_INDEX) ||
-                message.equals(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+        return message.equals(MESSAGE_INVALID_SESSION_DISPLAYED_INDEX)
+                || message.equals(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
 }
