@@ -1,8 +1,5 @@
 package atas.ui;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
@@ -16,27 +13,26 @@ public class StatusBarFooter extends UiPart<Region> {
     private static final String SPACE = "   ";
 
     @FXML
-    private Label empty;
+    private Label currentSessionLeftStatus;
 
     @FXML
-    private Label saveLocationStatus;
+    private Label currentSessionRightStatus;
+
+    @FXML
+    private Label emptyLeft;
+
+    @FXML
+    private Label emptyRight;
 
     /**
-     * Creates a {@code StatusBarFooter} with the given {@code Path}.
+     * Creates a {@code StatusBarFooterLeft} with the given {@code Path}.
      */
-    public StatusBarFooter(Path saveLocation) {
+    public StatusBarFooter(String sessionStatusLeft , String sessionStatusRight) {
         super(FXML);
-        saveLocationStatus.setText(Paths.get(".").resolve(saveLocation).toString());
-        empty.setText(SPACE);
-    }
-
-    /**
-     * Creates a {@code StatusBarFooter} with the given {@code Path}.
-     */
-    public StatusBarFooter(String sessionStatus) {
-        super(FXML);
-        saveLocationStatus.setText(sessionStatus);
-        empty.setText(SPACE);
+        emptyLeft.setText(SPACE);
+        currentSessionLeftStatus.setText(sessionStatusLeft);
+        currentSessionRightStatus.setText(sessionStatusRight);
+        emptyRight.setText(SPACE);
     }
 
 }

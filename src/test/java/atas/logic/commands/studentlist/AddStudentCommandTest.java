@@ -298,11 +298,6 @@ public class AddStudentCommandTest {
         }
 
         @Override
-        public String getSessionDetails() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void refreshStudentStatistics() {
             throw new AssertionError("This method should not be called.");
         }
@@ -332,6 +327,16 @@ public class AddStudentCommandTest {
 
         @Override
         public void refreshSessionStatistics() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public String getLeftSessionDetails() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public String getRightSessionDetails() {
             throw new AssertionError("This method should not be called.");
         }
 

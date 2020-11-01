@@ -108,8 +108,13 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public String getSessionDetails() {
-        return model.getSessionDetails();
+    public String getLeftSessionDetails() {
+        return model.getLeftSessionDetails();
+    }
+
+    @Override
+    public String getRightSessionDetails() {
+        return model.getRightSessionDetails();
     }
 
     @Override

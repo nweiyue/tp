@@ -54,6 +54,13 @@ public class Attributes {
         return new Attributes(presence, participation.toggleParticipation(), studentName);
     }
 
+    /**
+     * Returns a new attributes with the new name.
+     */
+    public Attributes setName(Name name) {
+        return new Attributes(presence, participation, name);
+    }
+
     public boolean getPresenceStatus() {
         return presence.isPresent();
     }
