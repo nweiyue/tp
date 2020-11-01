@@ -58,7 +58,7 @@ public class SessionStudentListPanel extends UiPart<Region> {
     }
 
     private void addAttributesListChangeListener(ObservableList<Attributes> sessionStudentList) {
-        sessionStudentListView.getItems().addListener(new ListChangeListener() {
+        sessionStudentListView.getItems().addListener(new ListChangeListener<Attributes>() {
             @Override
             public void onChanged(ListChangeListener.Change change) {
                 if (sessionStudentList.isEmpty()) {

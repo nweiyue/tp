@@ -60,7 +60,7 @@ public class StudentListPanel extends UiPart<Region> {
     }
 
     private void addStudentListChangeListener(ObservableList<Student> studentList) {
-        studentListView.getItems().addListener(new ListChangeListener() {
+        studentListView.getItems().addListener(new ListChangeListener<Student>() {
             @Override
             public void onChanged(ListChangeListener.Change change) {
                 if (studentList.isEmpty()) {

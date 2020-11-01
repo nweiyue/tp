@@ -205,7 +205,7 @@ public class HelpWindow extends UiPart<Stage> {
      *
      * @params table Table to resize.
      */
-    private void resizeTableHeight(TableView table) {
+    private void resizeTableHeight(TableView<CommandSummary> table) {
         table.setFixedCellSize(25);
         table.prefHeightProperty().bind(table.fixedCellSizeProperty()
                 .multiply(Bindings.size(table.getItems()).add(1.9)));

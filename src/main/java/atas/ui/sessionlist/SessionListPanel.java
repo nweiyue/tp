@@ -57,7 +57,7 @@ public class SessionListPanel extends UiPart<Region> {
     }
 
     private void addSessionListChangeListener(ObservableList<Session> sessionList) {
-        sessionListView.getItems().addListener(new ListChangeListener() {
+        sessionListView.getItems().addListener(new ListChangeListener<Session>() {
             @Override
             public void onChanged(ListChangeListener.Change change) {
                 if (sessionList.isEmpty()) {
