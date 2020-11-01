@@ -43,6 +43,9 @@ public class MatriculationTest {
         assertTrue(Matriculation.isValidMatriculation("A1234567X")); // standard
         assertTrue(Matriculation.isValidMatriculation("A2534564F")); // random
         assertTrue(Matriculation.isValidMatriculation("A0000000X")); // full of zeros
+        assertTrue(Matriculation.isValidMatriculation("a0123456z")); // small case first and last letters
+        assertTrue(Matriculation.isValidMatriculation("A0123456z")); // small case for last letter
+        assertTrue(Matriculation.isValidMatriculation("a0123456Z")); // small case for first letter
     }
 
     @Test
