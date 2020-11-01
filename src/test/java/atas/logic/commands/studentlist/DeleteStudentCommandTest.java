@@ -45,7 +45,7 @@ public class DeleteStudentCommandTest {
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getNumberOfStudents() + 1);
         DeleteStudentCommand deleteStudentCommand = new DeleteStudentCommand(outOfBoundIndex);
 
         assertCommandFailure(deleteStudentCommand, model, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);

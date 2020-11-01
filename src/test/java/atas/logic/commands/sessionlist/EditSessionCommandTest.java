@@ -54,7 +54,7 @@ public class EditSessionCommandTest {
     @Test
     public void execute_editOnlySessionName_success() {
 
-        Index indexLastSession = Index.fromOneBased(model.getFilteredSessionList().size());
+        Index indexLastSession = Index.fromOneBased(model.getNumberOfSessions());
         Session lastSession = model.getFilteredSessionList().get(indexLastSession.getZeroBased());
 
         SessionBuilder sessionInList = new SessionBuilder(lastSession);
@@ -77,7 +77,7 @@ public class EditSessionCommandTest {
 
     @Test
     public void execute_editOnlySessionDate_success() {
-        Index indexLastSession = Index.fromOneBased(model.getFilteredSessionList().size());
+        Index indexLastSession = Index.fromOneBased(model.getNumberOfSessions());
         Session lastSession = model.getFilteredSessionList().get(indexLastSession.getZeroBased());
 
         SessionBuilder sessionInList = new SessionBuilder(lastSession);

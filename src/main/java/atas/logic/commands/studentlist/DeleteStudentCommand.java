@@ -15,7 +15,7 @@ import atas.model.student.Student;
 /**
  * Deletes a student identified using it's displayed index from the student list.
  */
-public class DeleteStudentCommand extends DangerousCommand {
+public class DeleteStudentCommand extends DangerousCommand implements IndexedStudentCommand {
 
     public static final String COMMAND_WORD = "deletestu";
 
@@ -58,5 +58,10 @@ public class DeleteStudentCommand extends DangerousCommand {
     public String toString() {
         String oneBasedIndex = String.valueOf(targetIndex.getOneBased());
         return "Delete " + oneBasedIndex;
+    }
+
+    @Override
+    public Index getTargetIndex() {
+        return targetIndex;
     }
 }
