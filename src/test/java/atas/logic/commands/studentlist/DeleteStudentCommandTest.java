@@ -63,7 +63,6 @@ public class DeleteStudentCommandTest {
         Model expectedModel = new ModelManager(getTypicalSessionList(model.getStudentList().getStudentList()),
                 model.getStudentList(), new UserPrefs(), EMPTY_MEMO_CONTENT);
         expectedModel.deleteStudent(studentToDelete, INDEX_FIRST_STUDENT);
-        showNoPerson(expectedModel);
 
         assertCommandSuccess(deleteStudentCommand, model, expectedMessage, expectedModel);
     }

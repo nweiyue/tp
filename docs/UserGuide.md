@@ -656,7 +656,7 @@ New session added: Tutorial 4 @ 12/07/2020
 
 **:information_source: Notes about the usage of this command:**<br>
 * Adds a session with the specified name and date to the displayed session list.
-* `SESSION_DATE` should be given in the format of d/M/yyyy. This means if your day or month is single digit, you do not
+* `SESSION_DATE` should be given in the format of d/M/yyyy or dd/MM/yyyy. This means if your day or month is single digit, you do not
 need to add a '0' in front, for e.g., 09/01/2020 and 9/1/2020 are both accepted.
 
 :bulb: **Tip:** Two sessions cannot have the same name but they can have the same date
