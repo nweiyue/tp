@@ -67,6 +67,7 @@ public class AtasParser {
         assert userInput != null;
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         assert matcher != null;
+
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
         }
@@ -87,86 +88,90 @@ public class AtasParser {
             removePreviousCommand();
             return result;
         } else {
-            switch (commandWord) {
+            return parseNonConfirmationCommand(commandWord, arguments);
+        }
+    }
 
-            case AddStudentCommand.COMMAND_WORD:
-                return new AddStudentCommandParser().parse(arguments);
+    private Command parseNonConfirmationCommand(String commandWord, String arguments) throws ParseException {
+        switch (commandWord) {
 
-            case EditStudentCommand.COMMAND_WORD:
-                //Sets the previous command to a confirmation edit student command.
-                this.previousCommand =
-                        Optional.of(new ConfirmationCommand(new EditStudentCommandParser().parse(arguments)));
-                return previousCommand.get();
+        case AddStudentCommand.COMMAND_WORD:
+            return new AddStudentCommandParser().parse(arguments);
 
-            case DeleteStudentCommand.COMMAND_WORD:
-                //Sets the previous command to a confirmation delete student command.
-                this.previousCommand =
-                        Optional.of(new ConfirmationCommand(new DeleteStudentCommandParser().parse(arguments)));
-                return previousCommand.get();
+        case EditStudentCommand.COMMAND_WORD:
+            //Sets the previous command to a confirmation edit student command.
+            this.previousCommand =
+                Optional.of(new ConfirmationCommand(new EditStudentCommandParser().parse(arguments)));
+            return previousCommand.get();
 
-            case ClearStudentListCommand.COMMAND_WORD:
-                //Sets the previous command to a confirmation clear students command.
-                this.previousCommand =
-                        Optional.of(new ConfirmationCommand(new ClearStudentListCommand()));
-                return previousCommand.get();
+        case DeleteStudentCommand.COMMAND_WORD:
+            //Sets the previous command to a confirmation delete student command.
+            this.previousCommand =
+                Optional.of(new ConfirmationCommand(new DeleteStudentCommandParser().parse(arguments)));
+            return previousCommand.get();
 
-            case FindStudentsCommand.COMMAND_WORD:
-                return new FindStudentsCommandParser().parse(arguments);
+        case ClearStudentListCommand.COMMAND_WORD:
+            //Sets the previous command to a confirmation clear students command.
+            this.previousCommand =
+                Optional.of(new ConfirmationCommand(new ClearStudentListCommand()));
+            return previousCommand.get();
 
-            case ListStudentsCommand.COMMAND_WORD:
-                return new ListStudentsCommand();
+        case FindStudentsCommand.COMMAND_WORD:
+            return new FindStudentsCommandParser().parse(arguments);
 
-            case ExitCommand.COMMAND_WORD:
-                return new ExitCommand();
+        case ListStudentsCommand.COMMAND_WORD:
+            return new ListStudentsCommand();
 
-            case HelpCommand.COMMAND_WORD:
-                return new HelpCommand();
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
 
-            case SwitchCommand.COMMAND_WORD:
-                return new SwitchCommandParser().parse(arguments);
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
 
-            case UndoCommand.COMMAND_WORD:
-                return new UndoCommand();
+        case SwitchCommand.COMMAND_WORD:
+            return new SwitchCommandParser().parse(arguments);
 
-            case RedoCommand.COMMAND_WORD:
-                return new RedoCommand();
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommand();
 
-            case AddSessionCommand.COMMAND_WORD:
-                return new AddSessionCommandParser().parse(arguments);
+        case RedoCommand.COMMAND_WORD:
+            return new RedoCommand();
 
-            case DeleteSessionCommand.COMMAND_WORD:
-                this.previousCommand =
-                        Optional.of(new ConfirmationCommand(new DeleteSessionCommandParser().parse(arguments)));
-                return previousCommand.get();
+        case AddSessionCommand.COMMAND_WORD:
+            return new AddSessionCommandParser().parse(arguments);
 
-            case EditSessionCommand.COMMAND_WORD:
-                this.previousCommand =
-                        Optional.of(new ConfirmationCommand(new EditSessionCommandParser().parse(arguments)));
-                return previousCommand.get();
+        case DeleteSessionCommand.COMMAND_WORD:
+            this.previousCommand =
+                Optional.of(new ConfirmationCommand(new DeleteSessionCommandParser().parse(arguments)));
+            return previousCommand.get();
 
-            case ClearSessionsCommand.COMMAND_WORD:
-                this.previousCommand =
-                        Optional.of(new ConfirmationCommand(new ClearSessionsCommand()));
-                return previousCommand.get();
+        case EditSessionCommand.COMMAND_WORD:
+            this.previousCommand =
+                Optional.of(new ConfirmationCommand(new EditSessionCommandParser().parse(arguments)));
+            return previousCommand.get();
 
-            case ParticipateCommand.COMMAND_WORD:
-                return new ParticipateCommandParser().parse(arguments);
+        case ClearSessionsCommand.COMMAND_WORD:
+            this.previousCommand =
+                Optional.of(new ConfirmationCommand(new ClearSessionsCommand()));
+            return previousCommand.get();
 
-            case PresenceCommand.COMMAND_WORD:
-                return new PresenceCommandParser().parse(arguments);
+        case ParticipateCommand.COMMAND_WORD:
+            return new ParticipateCommandParser().parse(arguments);
 
-            case EnterSessionCommand.COMMAND_WORD:
-                return new EnterSessionCommandParser().parse(arguments);
+        case PresenceCommand.COMMAND_WORD:
+            return new PresenceCommandParser().parse(arguments);
 
-            case AddNoteCommand.COMMAND_WORD:
-                return new AddNoteCommandParser().parse(arguments);
+        case EnterSessionCommand.COMMAND_WORD:
+            return new EnterSessionCommandParser().parse(arguments);
 
-            case RngCommand.COMMAND_WORD:
-                return new RngCommand();
+        case AddNoteCommand.COMMAND_WORD:
+            return new AddNoteCommandParser().parse(arguments);
 
-            default:
-                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
-            }
+        case RngCommand.COMMAND_WORD:
+            return new RngCommand();
+
+        default:
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
 

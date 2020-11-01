@@ -26,7 +26,7 @@ public class AddStudentCommand extends Command {
             + CliSyntax.PREFIX_NAME + "John Doe "
             + CliSyntax.PREFIX_MATRICULATION + "A1234567X "
             + CliSyntax.PREFIX_EMAIL + "johnd@u.nus.edu "
-            + CliSyntax.PREFIX_TAG + "absent "
+            + CliSyntax.PREFIX_TAG + "outspoken "
             + CliSyntax.PREFIX_TAG + "foreigner";
 
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";

@@ -58,7 +58,7 @@ public class EmailTest {
         assertTrue(Email.isValidEmail("PeterJack_1190@u.nus.edu"));
         assertTrue(Email.isValidEmail("a@u.nus.edu")); // minimal
         assertTrue(Email.isValidEmail("test@u.nus.edu")); // alphabets only
-        assertTrue(Email.isValidEmail("!#$%&'*+/=?`{|}~^.-@u.nus.edu")); // special characters local part
+        assertTrue(Email.isValidEmail("!#$%&'*+/=?`{|}~^._-@u.nus.edu")); // special characters local part
         assertTrue(Email.isValidEmail("123@u.nus.edu")); // numeric local part and domain name
         assertTrue(Email.isValidEmail("a1+be!@u.nus.edu")); // mixture of alphanumeric and special characters
         assertTrue(Email.isValidEmail("if.you.dream.it_you.can.do.it@u.nus.edu")); // long local part
