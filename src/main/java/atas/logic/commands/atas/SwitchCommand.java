@@ -38,10 +38,13 @@ public class SwitchCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        Tab tab;
+        Tab tab = Tab.ATAS;
         requireNonNull(tabName);
         String trimmedTab = tabName.toLowerCase();
         switch(trimmedTab) {
+        case "atas":
+            tab = Tab.ATAS;
+            break;
         case "students":
             tab = Tab.STUDENTS;
             break;
