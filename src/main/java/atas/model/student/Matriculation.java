@@ -13,7 +13,8 @@ public class Matriculation {
     public static final String MESSAGE_CONSTRAINTS =
             "Matriculation Number should be in the form of A1234567X, starting with 'A', followed by "
             + "7 digits, ends with another letter.";
-    public static final String VALIDATION_REGEX = "A[0-9]{7}[A-Z]";
+    /* For better user experience, ATAS allows user input to have small cases for first and last letter. */
+    public static final String VALIDATION_REGEX = "[a,A][0-9]{7}[a-z,A-Z]";
     public final String value;
 
     /**
@@ -24,7 +25,8 @@ public class Matriculation {
     public Matriculation(String matriculation) {
         requireNonNull(matriculation);
         checkArgument(isValidMatriculation(matriculation), MESSAGE_CONSTRAINTS);
-        value = matriculation;
+        // Capitalizes the small cases of user input.
+        value = matriculation.toUpperCase();
     }
 
     /**
