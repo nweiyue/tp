@@ -14,8 +14,8 @@ public class TabTest {
     @Test
     public void testGetIndex() {
         // actual index -> true
-        assertEquals(Tab.STUDENTS.getIndex().getZeroBased(), Index.fromZeroBased(0).getZeroBased());
-        assertEquals(Tab.SESSIONS.getIndex().getZeroBased(), Index.fromZeroBased(1).getZeroBased());
+        assertEquals(Tab.STUDENTS.getIndex().getZeroBased(), Index.fromZeroBased(1).getZeroBased());
+        assertEquals(Tab.SESSIONS.getIndex().getZeroBased(), Index.fromZeroBased(2).getZeroBased());
 
         // zeroBased index but different values -> false
         assertNotEquals(Tab.STUDENTS.getIndex(), Index.fromZeroBased(3).getZeroBased());
