@@ -9,8 +9,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.time.format.DateTimeParseException;
-
 import org.junit.jupiter.api.Test;
 
 public class SessionDateTest {
@@ -25,8 +23,8 @@ public class SessionDateTest {
         String invalidSessionDateDay = "32/12/2020";
         String invalidSessionDateMonth = "12/13/2020";
 
-        assertThrows(DateTimeParseException.class, () -> new SessionDate(invalidSessionDateDay));
-        assertThrows(DateTimeParseException.class, () -> new SessionDate(invalidSessionDateMonth));
+        assertThrows(IllegalArgumentException.class, () -> new SessionDate(invalidSessionDateDay));
+        assertThrows(IllegalArgumentException.class, () -> new SessionDate(invalidSessionDateMonth));
     }
 
     @Test

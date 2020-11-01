@@ -46,12 +46,16 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
+    private StartDisplay startDisplay;
     private StudentListPanel studentListPanel;
     private SessionListPanel sessionListPanel;
     private SessionStudentListPanel sessionStudentListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private MemoBox memoBox;
+
+    @FXML
+    private StackPane startDisplayPlaceHolder;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -146,6 +150,9 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        startDisplay = new StartDisplay();
+        startDisplayPlaceHolder.getChildren().add(startDisplay.getRoot());
+
         studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
         personListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
 
@@ -282,6 +289,12 @@ public class MainWindow extends UiPart<Stage> {
         });
     }
 
+    private void handleCurrentSession() {
+        StatusBarFooter statusBarFooter = new StatusBarFooter(
+                logic.getLeftSessionDetails(), logic.getRightSessionDetails());
+        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+    }
+
     /**
      * Displays the command result feedback.
      * @param commandResult Command result of the user command.
@@ -323,6 +336,8 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isEnterSession()) {
                 handleEnterSessionTab(commandResult.getTab());
             }
+
+            handleCurrentSession();
 
             if (commandResult.isExit()) {
                 Thread.sleep(SLEEP_TIME);
