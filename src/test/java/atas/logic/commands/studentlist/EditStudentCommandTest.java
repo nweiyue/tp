@@ -121,8 +121,12 @@ public class EditStudentCommandTest {
 
         // edit student in filtered list into a duplicate in student list
         Student studentInList = model.getStudentList().getStudentList().get(INDEX_SECOND_STUDENT.getZeroBased());
+        EditStudentDescriptor editStudentDescriptor = new EditStudentDescriptorBuilder(studentInList).build();
         EditStudentCommand editStudentCommand = new EditStudentCommand(INDEX_FIRST_STUDENT,
-                new EditStudentDescriptorBuilder(studentInList).build());
+                editStudentDescriptor);
+
+        System.out.println("STUDENT IN LIST = " + studentInList.getName() + studentInList.getMatriculation() + studentInList.getEmail());
+        System.out.println("EDITED STUDENT = " + editStudentDescriptor.getName() + editStudentDescriptor.getMatriculation() + editStudentDescriptor.getEmail());
 
         assertCommandFailure(editStudentCommand, model, EditStudentCommand.MESSAGE_DUPLICATE_STUDENT);
     }
