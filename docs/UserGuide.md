@@ -167,7 +167,7 @@ For the good majority of visual learners, we figured to present information in a
 
    * **`clearstu`** : Deletes all the students.
 
-   * **`bye`** : Exits out of the application.
+   * **`exit`** : Exits out of the application.
 
 6. Refer to the [Features](#features) below for details of each command.
 
@@ -459,10 +459,7 @@ Adds a student to the student list.
 addstu n/NAME m/MATRICULATION_NUMBER e/NUS_EMAIL_ADDRESS [t/TAG]…
 ```
 
-:bulb: **Tip:**<div markdown="span" class="alert alert-primary">
-A student can have any number of tags (including 0) 
-
-/div>
+:bulb: **Tip:** A student can have any number of tags (including 0) 
 
 Examples:
 * `addstu n/John Cena m/A0123456J e/thechamp@u.nus.edu`
@@ -659,6 +656,8 @@ New session added: Tutorial 4 @ 12/07/2020
 
 **:information_source: Notes about the usage of this command:**<br>
 * Adds a session with the specified name and date to the displayed session list.
+* `SESSION_DATE` should be given in the format of d/M/yyyy. This means if your day or month is single digit, you do not
+need to add a '0' in front, for e.g., 09/01/2020 and 9/1/2020 are both accepted.
 
 :bulb: **Tip:** Two sessions cannot have the same name but they can have the same date
 
@@ -687,6 +686,7 @@ Delete INDEX? (yes/no)
 * The index **must be a positive integer** 1, 2, 3, …
 * You will be prompted for a confirmation input **`(yes/no)`**.
    * If yes: the specified session will be removed from the session list.
+      * If the specified `INDEX` is invalid, error message will appear.
    * If no: the specified session will not be removed from the session list.
 
 Examples:
@@ -882,8 +882,7 @@ Some commands have the ability to alter the data stored in the hard disk.
 ATAS aims to make careful decisions and further prompts user to confirm the execution of those commands.
 These commands are: `deletestu`, `editstu`,`clearstu`, `deleteses`, `editses`.
 
-:bulb: **Tip:**<div markdown="span" class="alert alert-primary">
-Both `yes` and `y` are accepted when confirming the execution of a command while `no` and `n` are both accepted when rejecting the execution of a command.
+:bulb: **Tip:** Both `yes` and `y` are accepted when confirming the execution of a command while `no` and `n` are both accepted when rejecting the execution of a command.
 
 Examples:
 * `deletestu 3` is followed with `Delete 3? (yes/no)`.
@@ -956,7 +955,7 @@ Command | Format, Examples
 **Random Name Generation** | `rng`
 **Undo** | `undo`
 **Redo** | `redo`
-**Exit** | `bye`
+**Exit** | `exit`
 
 { end of `command_summary#general` written by: Masagca Eris Jacey }
 
@@ -970,11 +969,11 @@ The following is a summary of commands related to students.
 Command | Format, Examples
 --------|------------------
 **Add** | `addstu n/NAME m/MATRICULATION_NUMBER e/NUS_EMAIL_ADDRESS [t/TAG]…` <br/> e.g.,<br/> `addstu n/John Cena m/A0123456J e/thechamp@u.nus.edu`,<br/> `addstu n/Alvina Handsome m/A0123456X e/handsome.alvina@u.nus.edu t/new`
-**List** | `list`
+**List** | `liststu`
 **Find** | `findstu KEYWORD [MORE_KEYWORDS]` <br/> e.g.,<br/> `findstu John`,<br/> `findstu kent ridge`
 **Edit** | `editstu INDEX n/UPDATED_NAME` <br/> e.g.,<br/> `editstu 2 n/John Cena`,<br/> `editstu 3 t/Joker`
 **Delete** | `deletestu INDEX` <br/> e.g.,<br/> `deletestu 2`
-**Clear** | `clear`
+**Clear** | `clearstu`
 
 <br/>
 
