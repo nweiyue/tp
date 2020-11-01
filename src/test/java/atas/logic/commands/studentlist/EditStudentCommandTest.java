@@ -125,9 +125,6 @@ public class EditStudentCommandTest {
         EditStudentCommand editStudentCommand = new EditStudentCommand(INDEX_FIRST_STUDENT,
                 editStudentDescriptor);
 
-        System.out.println("STUDENT IN LIST = " + studentInList.getName() + studentInList.getMatriculation() + studentInList.getEmail());
-        System.out.println("EDITED STUDENT = " + editStudentDescriptor.getName() + editStudentDescriptor.getMatriculation() + editStudentDescriptor.getEmail());
-
         assertCommandFailure(editStudentCommand, model, EditStudentCommand.MESSAGE_DUPLICATE_STUDENT);
     }
 

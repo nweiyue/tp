@@ -27,7 +27,7 @@ public class StudentTest {
         // same object -> returns true
         assertTrue(ALICE.isSameStudent(ALICE));
 
-        // null -> returns false
+        // null -> throws exception
         assertThrows(NullPointerException.class, () -> ALICE.isSameStudent(null));
 
         // different matriculation and email -> returns false
@@ -55,6 +55,32 @@ public class StudentTest {
         // same name, same matriculation, different email,  -> return false;
         editedAlice = new StudentBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(ALICE.isSameStudent(editedAlice));
+    }
+
+    @Test
+    public void hasSameField() {
+        // same object -> have same fields -> returns true
+        assertTrue(ALICE.hasSameField(ALICE));
+
+        // null -> throws exception
+        assertThrows(NullPointerException.class, () -> ALICE.hasSameField(null));
+
+        // same student -> same matriculation, same email -> returns true
+        Student editedAlice = new StudentBuilder(ALICE).build();
+        assertTrue(ALICE.hasSameField(editedAlice));
+
+        // same matriculation, different email -> returns true
+        editedAlice = new StudentBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
+        assertTrue(ALICE.hasSameField(editedAlice));
+
+        // different matriculation, same email -> returns true
+        editedAlice = new StudentBuilder(ALICE).withMatriculation(VALID_MATRICULATION_BOB).build();
+        assertTrue(ALICE.hasSameField(editedAlice));
+
+        // different matriculation, different email -> returns false
+        editedAlice = new StudentBuilder(ALICE).withMatriculation(VALID_MATRICULATION_BOB)
+                .withEmail(VALID_EMAIL_BOB).build();
+        assertFalse(ALICE.hasSameField(editedAlice));
     }
 
     @Test

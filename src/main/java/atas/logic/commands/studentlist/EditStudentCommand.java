@@ -78,7 +78,6 @@ public class EditStudentCommand extends DangerousCommand implements IndexedStude
 
         // checks if model has the same student identification fields
         if (!editedStudent.isSameStudent(studentToEdit) && model.hasStudent(editedStudent)) {
-            System.out.println("---------------" + studentToEdit.isSameStudent(editedStudent));
             throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
         }
 
