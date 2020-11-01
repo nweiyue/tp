@@ -8,7 +8,7 @@ title: ATAS
 
 ![Ui](images/Ui.png)
 
-**Addendum for Teaching Assistants (ATAS)** is a desktop application that aims to *elevate* user's efficiency and make their experience of handling administrative tasks in classes as seamless as possible. It has a GUI but most of the user interactions happen using a CLI (Command Line Interface).
+**Addendum for Teaching Assistants (ATAS)** is a desktop application that aims to *elevate* user's efficiency and make their experience of handling administrative tasks in classes as seamless as possible. I has a GUI but most of the user interactions happen using a CLI (Command Line Interface).
 
 In the current version, **ATAS** targets NUS Teaching Assistants (TAs) that are teaching the CS1010S module.
 
