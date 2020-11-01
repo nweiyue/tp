@@ -3,7 +3,7 @@ plugins {
     id 'checkstyle'
     id 'com.github.johnrengelman.shadow' version '4.0.4'
     id 'application'
-    // Commenting to disable temporarily, todo id 'jacoco'
+    id 'jacoco'
 }
 
 mainClassName = 'atas.Main'
@@ -25,20 +25,20 @@ test {
     finalizedBy jacocoTestReport
 }
 
-task coverage(type: JacocoReport) {
-    sourceDirectories.from files(sourceSets.main.allSource.srcDirs)
-    classDirectories.from files(sourceSets.main.output)
-    executionData.from files(jacocoTestReport.executionData)
-    afterEvaluate {
-        classDirectories.from files(classDirectories.files.collect {
-            fileTree(dir: it, exclude: ['**/*.jar'])
-        })
-    }
-    reports {
-        html.enabled = true
-        xml.enabled = true
-    }
-}
+//task coverage(type: JacocoReport) {
+//    sourceDirectories.from files(sourceSets.main.allSource.srcDirs)
+//    classDirectories.from files(sourceSets.main.output)
+//    executionData.from files(jacocoTestReport.executionData)
+//    afterEvaluate {
+//        classDirectories.from files(classDirectories.files.collect {
+//            fileTree(dir: it, exclude: ['**/*.jar'])
+//        })
+//    }
+//    reports {
+//        html.enabled = true
+//        xml.enabled = true
+//    }
+//}
 
 dependencies {
     String jUnitVersion = '5.4.0'
