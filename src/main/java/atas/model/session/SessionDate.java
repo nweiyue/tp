@@ -14,7 +14,8 @@ public class SessionDate implements Comparable<SessionDate> {
 
     public static final String MESSAGE_CONSTRAINTS = "The date of a session should be in the form of dd/MM/yyyy "
             + "corresponding to a valid date.\n"
-            + "Example : 10/2/2019";
+            + "Example : 10/2/2019\n"
+            + "Note that the input day of the month must exists.";
     public static final String VALIDATION_REGEX = "[0-9]{1,2}/[0-9]{1,2}/[0-9]{4,4}";
     public static final String PLACEHOLDER_DATE = "1/1/2020";
 
@@ -49,7 +50,28 @@ public class SessionDate implements Comparable<SessionDate> {
      * Returns if a given string is a valid date.
      */
     public static boolean isValidSessionDate(String date) {
-        return date.matches(VALIDATION_REGEX);
+        if (!date.matches(VALIDATION_REGEX)) {
+            return false;
+        }
+
+        String[] values = date.split("/");
+        int day = Integer.parseInt(values[0]);
+        int month = Integer.parseInt(values[1]);
+        int year = Integer.parseInt(values[2]);
+
+        if (day < 1 || day > 32 || month < 1 || month > 12) {
+            return false;
+        }
+
+        if (month == 4 || month == 6 || month == 9 || month == 11) {
+            return day <= 30;
+        } else if (month != 2) {
+            return day <= 31;
+        } else if (year % 4 == 0) {
+            return day <= 29;
+        } else {
+            return day <= 28;
+        }
     }
 
     /**
