@@ -334,33 +334,25 @@
     -fx-border-color: black;
 }
 
-/*.button:focused {*/
-/*    -fx-border-color: white;*/
-/*    -fx-border-width: 2;*/
-/*    -fx-border-radius: 5pt;*/
-/*    -fx-background-radius: 5pt;*/
-/*}*/
+.button:focused {
+    -fx-border-color: white;
+    -fx-border-width: 2;
+}
 
 .button:disabled, .button:default:disabled {
     -fx-opacity: 0.4;
     -fx-background-color: black;
     -fx-text-fill: white;
-    -fx-border-radius: 5pt;
-    -fx-background-radius: 5pt;
 }
 
-/*.button:default {*/
-/*    -fx-background-color: -fx-focus-color;*/
-/*    -fx-text-fill: white;*/
-/*    -fx-border-radius: 5pt;*/
-/*    -fx-background-radius: 5pt;*/
-/*}*/
+.button:default {
+    -fx-background-color: -fx-focus-color;
+    -fx-text-fill: white;
+}
 
-/*.button:default:hover {*/
-/*    -fx-background-color: derive(-fx-focus-color, 30%);*/
-/*    -fx-border-radius: 5pt;*/
-/*    -fx-background-radius: 5pt;*/
-/*}*/
+.button:default:hover {
+    -fx-background-color: derive(-fx-focus-color, 30%);
+}
 
 .dialog-pane {
     -fx-background-color: #1d1d1d;
