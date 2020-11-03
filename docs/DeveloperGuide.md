@@ -129,9 +129,9 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the data of the following: 
-   * student list in a `StudentList` object 
-   * session list in a `SessionList` object 
+* stores the data of the following:
+   * student list in a `StudentList` object
+   * session list in a `SessionList` object
    * memo in a `Memo` object.
 * exposes an unmodifiable `ObservableList<Student>` and `ObservableList<Session>` that can be 'observed'. e.g. For each list, the UI can be bound to the list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
@@ -219,7 +219,7 @@ There are 6 DangerousCommand(s) that will change the existing local data upon ex
 
 'ConfirmationAcceptCommand' implements the method:
 
-* `ConfirmationAcceptCommand#execute(Model)` - Executes the `DangerousCommand` and returns a `CommandResult` from `DangerousCommand#execute(Model)`. 
+* `ConfirmationAcceptCommand#execute(Model)` - Executes the `DangerousCommand` and returns a `CommandResult` from `DangerousCommand#execute(Model)`.
 
 `ConfirmationRejectCommand` implements the method:
 
@@ -249,8 +249,8 @@ The following activity diagram summarizes what happens when a user executes a da
 
 ### <a name="adding_a_session"></a>Adding a session
 
-Adding a session to a class requires user input from the CLI. Adding a session to a class requires user input from 
-the CLI. The parser will then parse the user input to obtain the name and the date of the session. The newly added 
+Adding a session to a class requires user input from the CLI. Adding a session to a class requires user input from
+the CLI. The parser will then parse the user input to obtain the name and the date of the session. The newly added
 session will also be filled with students' default presence and participation.
 
 The below example given assumes that the user inputs `addses s/Tutorial 1 d/1/1/2020`, which 'Tutorial 1' and
@@ -259,10 +259,10 @@ The below example given assumes that the user inputs `addses s/Tutorial 1 d/1/1/
 Step 1: Parse input and create session
 
 An `AddSessionCommandParser` is created by `LogicManager` and calls `AddSessionCommandParser#parse()` with the given
-user input. Input is parsed according to the prefix `s/` and `d/` to identify the parts of the 
-user input and split it into `String` slices. If both the name and date are present in the input, 
-those `String` will be used to create a `SessionName` and a `SessionDate` object, which will be used to 
-create and initialize a `Session` object. The `Session` object created will be the one being added to 
+user input. Input is parsed according to the prefix `s/` and `d/` to identify the parts of the
+user input and split it into `String` slices. If both the name and date are present in the input,
+those `String` will be used to create a `SessionName` and a `SessionDate` object, which will be used to
+create and initialize a `Session` object. The `Session` object created will be the one being added to
 the current session list later.
 
 `AddSessionCommandParser#parse()` returns a `AddSessionCommand` object that contains the session object
@@ -273,11 +273,11 @@ the current session list later.
 Step 2: Add session to the model/session list
 
 `LogicManager` calls `AddSessionCommand#execute()` to proceed on to adding the session to the model.
-The `AddSessionCommand` will first check if the same session is already in the session list, if the 
+The `AddSessionCommand` will first check if the same session is already in the session list, if the
 session exists in the current session list, then the session will not be added to the session list.
 
 Assuming that the session to add is not a session already in the list, `ModelManager` will update
-the internal student list of the session list, then it uses addSession method to add the session to the 
+the internal student list of the session list, then it uses addSession method to add the session to the
 list.
 
 ![AddSessionSequenceDiagram2](images/AddSessionSequenceDiagram2.png)
@@ -327,7 +327,7 @@ The following activity diagram summarizes what happens when a user executes an e
 
 ### <a name="rng"></a>Generating the name of a randomly-selected student
 
-This feature (henceforth referred to as 'RNG') is facilitated by `RngCommand` and `RandomGenerator`. 
+This feature (henceforth referred to as 'RNG') is facilitated by `RngCommand` and `RandomGenerator`.
 
 `RngCommand` implements the method:
 
@@ -443,7 +443,7 @@ _{more aspects and alternatives to be added}_
 ### <a name="data_archiving"></a>\[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
- 
+
 
 --------------------------------------------------------------------------------------------------------------------
 
