@@ -54,6 +54,17 @@ class JsonSerializableStudentList {
             }
             studentList.addStudent(student);
         }
+
+        // Recheck once again if student list contains any duplicate students
+        List<Student> listToCheck = studentList.getStudentList();
+        for (int i = 0; i < listToCheck.size(); i++) {
+            for (int j = 0; j < listToCheck.size(); j++) {
+                if (i != j && listToCheck.get(i).hasSameField(listToCheck.get(j))) {
+                    throw new IllegalValueException(MESSAGE_DUPLICATE_STUDENT);
+                }
+            }
+        }
+
         return studentList;
     }
 

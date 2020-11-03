@@ -54,6 +54,7 @@ public class ConfirmationCommand extends ConfirmCommand {
                 throw new CommandException(MESSAGE_INVALID_SESSION_DISPLAYED_INDEX);
             }
         }
+
         return new CommandResult(String.format("%s? %s", getDangerousCommand(), MESSAGE_CONFIRMATION));
     }
 

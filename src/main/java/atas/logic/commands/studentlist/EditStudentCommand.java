@@ -43,7 +43,8 @@ public class EditStudentCommand extends DangerousCommand implements IndexedStude
 
     public static final String MESSAGE_EDIT_STUDENT_SUCCESS = "Edited student: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the student list.";
+    public static final String MESSAGE_DUPLICATE_STUDENT = "The field you want to change to is the same as "
+            + "another student in the student list!";
 
     private final Index targetIndex;
     private final EditStudentDescriptor editStudentDescriptor;
@@ -75,7 +76,8 @@ public class EditStudentCommand extends DangerousCommand implements IndexedStude
         Student studentToEdit = lastShownList.get(targetIndex.getZeroBased());
         Student editedStudent = createEditedStudent(studentToEdit, editStudentDescriptor);
 
-        if (!studentToEdit.isSameStudent(editedStudent) && model.hasStudent(editedStudent)) {
+        // checks if model has the same student identification fields
+        if (!editedStudent.isSameStudent(studentToEdit) && model.hasStudent(editedStudent)) {
             throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
         }
 

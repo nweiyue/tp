@@ -1,6 +1,7 @@
 package atas.model.student;
 
 import static atas.commons.util.CollectionUtil.requireAllNonNull;
+import static java.util.Objects.requireNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -17,8 +18,10 @@ import atas.model.tag.Tag;
  */
 public class Student {
 
-    // Identity fields
+    // Identity field
     private final Name name;
+
+    // Unique student identification fields
     private final Matriculation matriculation;
     private final Email email;
 
@@ -69,18 +72,31 @@ public class Student {
     }
 
     /**
-     * Returns true if both students of the same name have the same matriculation number.
+     * Returns true if both students of the same name have the same matriculation number and email.
      * This defines a weaker notion of equality between two students.
      */
     public boolean isSameStudent(Student otherStudent) {
+        requireNonNull(otherStudent);
+        if (otherStudent == this) {
+            return true;
+        }
+
+        return otherStudent.getMatriculation().equals(getMatriculation())
+                && otherStudent.getEmail().equals(getEmail());
+    }
+
+    /**
+     * Returns true if both are not unique.
+     */
+    public boolean hasSameField(Student otherStudent) {
+        requireNonNull(otherStudent);
         if (otherStudent == this) {
             return true;
         }
 
         // unique students should not have the same matriculation number and email address
-        return otherStudent != null
-                && (otherStudent.getMatriculation().equals(getMatriculation())
-                || otherStudent.getEmail().equals(getEmail()));
+        return otherStudent.getMatriculation().equals(getMatriculation())
+                || otherStudent.getEmail().equals(getEmail());
     }
 
     /**
