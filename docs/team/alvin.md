@@ -35,6 +35,5 @@ Given below are my contributions to the project.
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#81](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/81), [\#99](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/99), [\#154](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/154), [\#147](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/147)
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
+  * Contributed to forum discussions (examples: [173](https://github.com/nus-cs2103-AY2021S1/forum/issues/173))
+  * Reported 11 bugs and suggestions for another team during practical dry-run ([PED](https://github.com/CodingCookieRookie/ped/issues))
