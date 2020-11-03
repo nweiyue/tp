@@ -2,7 +2,7 @@
 [![CI Status](https://github.com/AY2021S1-CS2103T-W16-4/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S1-CS2103T-W16-4/tp/actions)
 [![codecov](https://codecov.io/gh/AY2021S1-CS2103T-W16-4/tp/branch/master/graph/badge.svg)](https://codecov.io/gh/AY2021S1-CS2103T-W16-4/tp)
 
-![Ui](images/Ui.png)
+![Ui](docs/images/Ui.png)
 
 **Addendum for Teaching Assistants (ATAS)** is a desktop application that aims to *elevate* user's efficiency and make their experience of handling administrative tasks in classes as seamless as possible. It has a GUI but most of the user interactions happen using a CLI (Command Line Interface).
 
