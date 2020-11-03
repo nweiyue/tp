@@ -19,21 +19,21 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=CodingCookieRookie&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Enhancements to existing features**:
-  * Updated the status bar footer to show current session details(Pull requests [\#167](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/167))
-  * Enable list to be sorted automatically according to date(Pull requests [\#146](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/146))
-  * Integrated all the session commands including participation and presence commands into ATAS(Pull requests [\#95](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/95))
+  * Updated the status bar footer to show current session details (Pull request [\#167](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/167))
+  * Enabled list to be sorted automatically according to date (Pull request [\#146](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/146))
+  * Integrated all the session commands including participation and presence commands into ATAS (Pull request [\#95](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/95))
 
 * **Documentation**:
   * User Guide:
-    * Edited quickstart to make it more user-friendly [\#157](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/157)
-    * Added documentation to exit feature [\#157](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/157)
-    * Added documentation to all sessions feature including: [\#157](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/157)
+    * Edited quickstart to make it more user-friendly (Pull request[\#157](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/157))
+    * Added documentation to exit feature (Pull request[\#157](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/157))
+    * Added documentation to all sessions feature including: (Pull request[\#157](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/157))
          * `addses`, `deleteses`, `editses`, `clearses`, `enterses`
   * Developer Guide:
-    * Added implementation details of the `enterses` feature.(Pull requests [\#128](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/128))
-    * Added sequence and activity UML diagrams for the `enterses` feature.(Pull requests [\#128](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/128))
+    * Added implementation details of the `enterses` feature. (Pull request [\#128](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/128))
+    * Added sequence and activity UML diagrams for the `enterses` feature. (Pull request [\#128](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/128))
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#81](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/81), [\#99](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/99), [\#154](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/154), [\#147](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/147)
-  * Contributed to forum discussions (examples: [173](https://github.com/nus-cs2103-AY2021S1/forum/issues/173))
-  * Reported 11 bugs and suggestions for another team during practical dry-run ([PED](https://github.com/CodingCookieRookie/ped/issues))
+  * PRs reviewed (with non-trivial review comments): (Pull request[\#81](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/81)), (Pull request[\#99](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/99)), (Pull request[\#154](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/154)), (Pull request[\#147](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/147))
+  * Contributed to forum discussions (examples: (Pull request[173](https://github.com/nus-cs2103-AY2021S1/forum/issues/173))
+  * Reported 11 bugs and suggestions for another team during practical dry-run (Pull request[PED](https://github.com/CodingCookieRookie/ped/issues))
