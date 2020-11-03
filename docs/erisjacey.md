@@ -3,7 +3,7 @@ layout: page
 title: Eris Jacey Masagca's Project Portfolio Page
 ---
 
-## Project: ATAS
+## Project: Addendum for Teaching Assistants (ATAS)
 
 **ATAS** is a desktop application designed to be a handy in-class companion for CS1010S Teaching Assistants. 
 It aims to **elevate users' efficiency** and make their experience of handling administrative tasks as **seamless** as possible. 
@@ -80,13 +80,13 @@ Given below are my contributions to the project.
    [#155](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/155),
    [#158](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/158),
    [#165](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/165)
-   * Contributed to forum discussions 
+   * Contributed to forum discussions - partook in general discussions 
    (examples: [1](https://github.com/nus-cs2103-AY2021S1/forum/issues/24#issuecomment-675483348),
               [2](https://github.com/nus-cs2103-AY2021S1/forum/issues/66),
               [3](https://github.com/nus-cs2103-AY2021S1/forum/issues/136),
               [4](https://github.com/nus-cs2103-AY2021S1/forum/issues/147),
               [5](https://github.com/nus-cs2103-AY2021S1/forum/issues/156#issuecomment-684881309))
-   * Reported bugs and suggestions for other students in the class 
+   * Contributed to forum discussions - gave suggestions to fix various problems for other students in the class 
    (examples: [1](https://github.com/nus-cs2103-AY2021S1/forum/issues/4#issuecomment-674324666),
               [2](https://github.com/nus-cs2103-AY2021S1/forum/issues/6#issuecomment-674372429),
               [3](https://github.com/nus-cs2103-AY2021S1/forum/issues/7#issuecomment-674409588),
@@ -97,6 +97,7 @@ Given below are my contributions to the project.
               [8](https://github.com/nus-cs2103-AY2021S1/forum/issues/134#issuecomment-683781950),
               [9](https://github.com/nus-cs2103-AY2021S1/forum/issues/128#issuecomment-684471615),
               [10](https://github.com/nus-cs2103-AY2021S1/forum/issues/160#issuecomment-685331533))
+   * Reported 10 bugs and suggestsions for another team during a dry-run of the practical exam ([link here](https://github.com/erisjacey/ped/issues)) 
    * Some parts of my CSS stylesheet for a similar school project was adopted by several other classmates
    ([1](https://github.com/nweiyue/ip/blob/master/src/main/resources/view/style.css))           
 
