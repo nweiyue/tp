@@ -82,7 +82,7 @@ public interface Logic {
      * Saves content into the Memo.
      *
      * @param memoContent The String content that should be saved into the Memo.
-     * @throws CommandException If an error occurs during command execution.
+     * @throws CommandException If file to save content does not exist and cannot be created.
      */
     void saveMemoContent(String memoContent) throws CommandException;
 }
