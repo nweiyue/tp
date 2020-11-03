@@ -24,7 +24,7 @@ You can reach us at the email `e0406158@u.nus.edu`
 <img src="images/marcustw.png" width="200px">
 
 [[github](http://github.com/marcustw)]
-[[portfolio](team/marcustan.md)]
+[[portfolio](team/marcustw.md)]
 
 * Role: Testing
 * Responsibilities: Looks after testing and ensures the testing of the project is done properly and on time.
