@@ -22,13 +22,13 @@ title: User Guide
 
 Hello, fellow teaching assistants of CS1010S!
 
-Have you ever struggled with keeping track of _all_ your students' attendance and participation status for each of your classes? 
+Have you ever struggled with keeping track of _all_ your students' attendance and participation status for each of your classes?
 
 Have you ever needed to make a mental note in class, only to forget about it because there was no convenient place to write it in?
 
 Have you ever wished an application would have a more streamlined **Command Line Interface** to suit your typing prowess?
 
-If you found yourself saying yes to any of the above, then **ATAS (Addendum for Teaching Assistants)** is ***the*** *in-class management application* for you! 
+If you found yourself saying yes to any of the above, then **ATAS (Addendum for Teaching Assistants)** is ***the*** *in-class management application* for you!
 Made by teaching assistants, for teaching assistants, **ATAS** aims to *elevate your efficiency* and make your experience handling administrative tasks while in class as seamless as possible.
 
 { end of `introduction` written by: Masagca Eris Jacey }
@@ -37,7 +37,7 @@ Made by teaching assistants, for teaching assistants, **ATAS** aims to *elevate 
 
 ### 1.2. Overview
 
-**ATAS** is a **desktop application designed to be your handy in-class companion, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). 
+**ATAS** is a **desktop application designed to be your handy in-class companion, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
 If you can type really quickly, **ATAS** will help you to manage your in-class administrative needs more efficiently than traditional GUI apps.
 
 <div markdown="block" class="alert alert-info">
