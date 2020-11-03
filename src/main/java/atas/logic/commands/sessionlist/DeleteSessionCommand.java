@@ -12,7 +12,7 @@ import atas.logic.commands.exceptions.CommandException;
 import atas.model.Model;
 import atas.model.session.Session;
 
-public class DeleteSessionCommand extends DangerousCommand {
+public class DeleteSessionCommand extends DangerousCommand implements IndexedSessionListCommand {
 
     public static final String COMMAND_WORD = "deleteses";
 
@@ -55,10 +55,6 @@ public class DeleteSessionCommand extends DangerousCommand {
         return new CommandResult(String.format(MESSAGE_DELETE_SESSION_SUCCESS, sessionToDelete));
     }
 
-    public Index getIndex() {
-        return targetIndex;
-    }
-
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
@@ -70,5 +66,10 @@ public class DeleteSessionCommand extends DangerousCommand {
     public String toString() {
         String oneBasedIndex = String.valueOf(targetIndex.getOneBased());
         return "Delete " + oneBasedIndex;
+    }
+
+    @Override
+    public Index getTargetIndex() {
+        return targetIndex;
     }
 }

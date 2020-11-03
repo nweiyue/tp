@@ -2,7 +2,15 @@
 
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.Label?>
 
-<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <ListView fx:id="sessionListView" VBox.vgrow="ALWAYS" />
-</VBox>
+
+  <VBox fx:id="emptySessionListView" styleClass="empty-state" alignment="CENTER" >
+    <Label fx:id="emptySessionListMessage" text="Label" prefWidth="Infinity">
+    </Label>
+  </VBox>
+
+</StackPane>

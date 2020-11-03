@@ -36,7 +36,8 @@ public class DeleteSessionCommandTest {
         String expectedMessage = String.format(DeleteSessionCommand.MESSAGE_DELETE_SESSION_SUCCESS, sessionToDelete);
 
         ModelManager expectedModel = new ModelManager(TypicalSessions.getTypicalSessionList(
-                model.getStudentList().getStudentList()), model.getStudentList(), new UserPrefs(), EMPTY_MEMO_CONTENT);
+                model.getStudentList().getStudentList()), model.getStudentList(),
+                new UserPrefs(), EMPTY_MEMO_CONTENT);
 
         expectedModel.deleteSession(sessionToDelete, INDEX_FIRST_SESSION);
         showNoSession(expectedModel);
@@ -68,7 +69,8 @@ public class DeleteSessionCommandTest {
         assertTrue(deleteFirstSessionCommand.equals(deleteFirstSessionCommand));
 
         // same sessionName -> returns true
-        DeleteSessionCommand deleteTutCommandCopy = new DeleteSessionCommand(deleteFirstSessionCommand.getIndex());
+        DeleteSessionCommand deleteTutCommandCopy =
+                new DeleteSessionCommand(deleteFirstSessionCommand.getTargetIndex());
         assertTrue(deleteFirstSessionCommand.equals(deleteTutCommandCopy));
 
         // different types -> returns false
