@@ -34,7 +34,8 @@ public class EditSessionCommand extends DangerousCommand implements IndexedSessi
     public static final String MESSAGE_EDIT_SESSION_SUCCESS = "Edited session: %1$s";
 
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_SESSION = "This session already exists in the session list.";
+    public static final String MESSAGE_DUPLICATE_SESSION = "The field you want to edit to already exists in the "
+            + "session list!";
 
     private final Index targetIndex;
     private final EditSessionCommand.EditSessionDescriptor editSessionDescriptor;
