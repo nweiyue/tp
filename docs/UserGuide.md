@@ -44,7 +44,7 @@ If you can type really quickly, **ATAS** will help you to manage your in-class a
 
 :information_source: Going forward, to minimize ambiguity, the following terms will be named as such: <br>
 * `classes` will be henceforth referred to as `sessions`.
-* `attendance` (of student(s)) will be henceforth referred to as `presence`. 
+* `attendance` (of student(s)) will be henceforth referred to as `presence`.
 
 See the parts under `session` and `presence` in the [glossary](#22-glossary) for more information.
 
@@ -61,7 +61,7 @@ Specifically, **ATAS** allows you to keep track of four different aspects (see [
 1. [Current session](#43-current-session)
    * Keep track of student progress within each session itself
    * Specifically, for each session, keep track of each student's [`participation`](#551-toggling-participation-status-of-students--participate) and [`presence`](#552-toggling-presence-status-of-students--presence)
-1. [Memo](#44-memo): 
+1. [Memo](#44-memo):
    * Keep track of any note you think you will need to remember for later use
    * For example, take note of any interesting question raised by your student so you can follow it up with him/her after the session
 
@@ -73,7 +73,7 @@ Specifically, **ATAS** allows you to keep track of four different aspects (see [
 
 The following is the GUI of our application:
     ![UiPreview](images/UiPreview.png)
-    
+
 GUI Components:
    1. **Command box**: where you enter your commands.
    1. **Result box**: where the result of a command is shown. It can show a success message or a failure message if something wrong happens.

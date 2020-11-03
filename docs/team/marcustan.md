@@ -61,4 +61,3 @@ Given below are my contributions to the project.
   * PRs reviewed (with non-trivial review comments): [\#75](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/75), [\#99](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/99), [\#152](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/152), [\#157](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/157)
   * Contributed to forum discussions (Issue [\#196](https://github.com/nus-cs2103-AY2021S1/forum/issues/196), [\#213](https://github.com/nus-cs2103-AY2021S1/forum/issues/213), [\#278](https://github.com/nus-cs2103-AY2021S1/forum/issues/278))
   * Reported 6 bugs and suggestions for another team during practical dry-run ([PED](https://github.com/MarcusTw/ped/issues))]
-  
