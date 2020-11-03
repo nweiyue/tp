@@ -34,7 +34,7 @@ You can reach us at the email `e0406158@u.nus.edu`
 <img src="images/erisjacey.png" width="200px">
 
 [[github](http://github.com/erisjacey)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/erisjacey.md)]
 
 * Role: Team Lead; Code Quality; Deliverables and Deadlines
 * Responsibilities:
