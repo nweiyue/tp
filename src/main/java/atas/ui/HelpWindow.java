@@ -3,9 +3,13 @@ package atas.ui;
 import java.util.logging.Logger;
 
 import atas.commons.core.LogsCenter;
+import javafx.beans.binding.Bindings;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
@@ -14,51 +18,76 @@ import javafx.stage.Stage;
  * Controller for a help page
  */
 public class HelpWindow extends UiPart<Stage> {
-
+    public static final String HELP_MESSAGE = "Here is the list of commands you can try with ATAS:\n";
     public static final String USERGUIDE_URL = "https://ay2021s1-cs2103t-w16-4.github.io/tp/UserGuide.html";
     public static final String LINK_MESSAGE = "Link to the full user guide: " + USERGUIDE_URL;
 
-    public static final String COMMAND_LIST_GENERAL = "General:\n"
-            + "Get help: help\n"
-            + "Switch between tabs: switch TAB_NAME\n"
-            + "Generate the name of a randomly selected student: rng\n"
-            + "Undo a command: undo\n"
-            + "Redo a command: redo\n"
-            + "Exit the application: exit\n";
-
-    public static final String COMMAND_LIST_STUDENTS = "Students: \n"
-            + "Add a student: addstu n/NAME m/MATRICULATION_NUMBER e/NUS_EMAIL_ADDRESS [t/TAG]…\u200B\n"
-            + "List all students: liststu\n"
-            + "Find student(s): findstu KEYWORD [MORE_KEYWORDS]\n"
-            + "Edit a student's particulars: editstu INDEX [n/NAME] [m/MATRICULATION_NUMBER] "
-            + "[e/NUS_EMAIL_ADDRESS] [t/TAG]…\u200B\n"
-            + "Delete a student: deletestu INDEX\n"
-            + "Clear the student list: clearstu\n";
-
-    public static final String COMMAND_LIST_SESSIONS = "Sessions:\n"
-            + "Add a session: addses s/SESSION_NAME d/SESSION_DATE\n"
-            + "Delete a session: deleteses INDEX\n"
-            + "Clear the session list: clearses\n"
-            + "Edit a session: editses INDEX [s/SESSION_NAME] [d/SESSION_DATE]\n"
-            + "Enter a session: enterses INDEX\n";
-
-    public static final String COMMAND_LIST_CURRENT_SESSION = "Current Session:\n"
-            + "Toggle the presence status of student(s): presence INDEX_RANGE\n"
-            + "Toggle the participation status of student(s): participate INDEX_RANGE\n";
-
-    public static final String COMMAND_LIST_MEMO = "Memo:\n"
-            + "Add a note: addnote NOTE\n"
-            + "Save memo: Keyboard shortcut: \"Ctrl + s\" or \"Cmd + s\" for MacOs\n";
-
-    public static final String COMMAND_LIST = "Here is the list of commands you can try with ATAS:\n\n"
-            + COMMAND_LIST_GENERAL + "\n"
-            + COMMAND_LIST_STUDENTS + "\n"
-            + COMMAND_LIST_SESSIONS + "\n"
-            + COMMAND_LIST_CURRENT_SESSION + "\n"
-            + COMMAND_LIST_MEMO + "\n";
-
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
+
+    private final CommandSummary helpCmd =
+            new CommandSummary("Get help", "help");
+    private final CommandSummary switchCmd =
+            new CommandSummary("Switch between tabs", "switch TAB_NAME");
+    private final CommandSummary rngCmd =
+            new CommandSummary("Generate the name of a randomly selected student", "rng");
+    private final CommandSummary undoCmd =
+            new CommandSummary("Undo a command", "undo");
+    private final CommandSummary redoCmd =
+            new CommandSummary("Redo a command", "redo");
+    private final CommandSummary exitCmd =
+            new CommandSummary("Exit ATAS", "exit");
+
+    public final ObservableList<CommandSummary> generalCmds = FXCollections
+            .observableArrayList(helpCmd, switchCmd, rngCmd, undoCmd, redoCmd, exitCmd);
+
+    private final CommandSummary addStuCmd =
+            new CommandSummary("Add a student",
+                    "addstu n/NAME m/MATRICULATION_NUMBER e/NUS_EMAIL_ADDRESS [t/TAG]…\u200B");
+    private final CommandSummary listStuCmd =
+            new CommandSummary("List all students", "liststu");
+    private final CommandSummary findStuCmd =
+            new CommandSummary("Find student(s)", "findstu KEYWORD [MORE_KEYWORDS]");
+    private final CommandSummary editStuCmd =
+            new CommandSummary("Edit a student's particulars",
+                    "editstu INDEX [n/NAME] [m/MATRICULATION_NUMBER] [e/NUS_EMAIL_ADDRESS] [t/TAG]…\u200B");
+    private final CommandSummary deleteStuCmd =
+            new CommandSummary("Delete a student", "deletestu INDEX");
+    private final CommandSummary clearStuCmd =
+            new CommandSummary("Clear the student list", "clearstu");
+
+    public final ObservableList<CommandSummary> studentsCmds = FXCollections
+            .observableArrayList(addStuCmd, listStuCmd, findStuCmd, editStuCmd, deleteStuCmd, clearStuCmd);
+
+    private final CommandSummary addSesCmd =
+            new CommandSummary("Add a session", "addses s/SESSION_NAME d/SESSION_DATE");
+    private final CommandSummary clearSesCmd =
+            new CommandSummary("Clear the session list", "clearses");
+    private final CommandSummary deleteSesCmd =
+            new CommandSummary("Delete a session", "deleteses INDEX");
+    private final CommandSummary editSesCmd =
+            new CommandSummary("Edit a session", "editses INDEX [s/SESSION_NAME] [d/SESSION_DATE]");
+    private final CommandSummary enterSesCmd =
+            new CommandSummary("Enter a session", "enterses INDEX");
+
+    public final ObservableList<CommandSummary> sessionsCmds = FXCollections
+            .observableArrayList(addSesCmd, clearSesCmd, deleteSesCmd, editSesCmd, enterSesCmd);
+
+    private final CommandSummary participateCmd =
+            new CommandSummary("Toggle the participation status of student(s)", "participate INDEX_RANGE");
+    private final CommandSummary presenceCmd =
+            new CommandSummary("Toggle the presence status of student(s)", "presence INDEX_RANGE");
+
+    public final ObservableList<CommandSummary> currentSessionCmds = FXCollections
+            .observableArrayList(participateCmd, presenceCmd);
+
+    private final CommandSummary addNoteCmd =
+            new CommandSummary("Add a note", "addnote NOTE");
+    private final CommandSummary saveMemoCmd =
+            new CommandSummary("Save memo", "Keyboard shortcut: \"Ctrl + s\" or \"Cmd + s\" for MacOs");
+
+    public final ObservableList<CommandSummary> memoCmds = FXCollections
+            .observableArrayList(addNoteCmd, saveMemoCmd);
 
     @FXML
     private Button copyButton;
@@ -67,7 +96,22 @@ public class HelpWindow extends UiPart<Stage> {
     private Label linkMessage;
 
     @FXML
-    private Label commandList;
+    private Label helpMessage;
+
+    @FXML
+    private TableView<CommandSummary> generalCommandTable;
+
+    @FXML
+    private TableView<CommandSummary> studentsCommandTable;
+
+    @FXML
+    private TableView<CommandSummary> sessionsCommandTable;
+
+    @FXML
+    private TableView<CommandSummary> currentSessionCommandTable;
+
+    @FXML
+    private TableView<CommandSummary> memoCommandTable;
 
     /**
      * Creates a new HelpWindow.
@@ -76,8 +120,7 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public HelpWindow(Stage root) {
         super(FXML, root);
-        linkMessage.setText(LINK_MESSAGE);
-        commandList.setText(COMMAND_LIST);
+        initHelpWindow();
     }
 
     /**
@@ -85,6 +128,20 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public HelpWindow() {
         this(new Stage());
+    }
+
+    /**
+     * Initialise the HelpWindow by setting messages and data in tables
+     */
+    private void initHelpWindow() {
+        linkMessage.setText(LINK_MESSAGE);
+        helpMessage.setText(HELP_MESSAGE);
+        generalCommandTable.setItems(generalCmds);
+        studentsCommandTable.setItems(studentsCmds);
+        sessionsCommandTable.setItems(sessionsCmds);
+        currentSessionCommandTable.setItems(currentSessionCmds);
+        memoCommandTable.setItems(memoCmds);
+        resizeTables();
     }
 
     /**
@@ -142,4 +199,29 @@ public class HelpWindow extends UiPart<Stage> {
         url.putString(USERGUIDE_URL);
         clipboard.setContent(url);
     }
+
+    /**
+     * Resizes table height to fit only the number of data in the table.
+     *
+     * @params table Table to resize.
+     */
+    private void resizeTableHeight(TableView<CommandSummary> table) {
+        table.setFixedCellSize(25);
+        table.prefHeightProperty().bind(table.fixedCellSizeProperty()
+                .multiply(Bindings.size(table.getItems()).add(1.9)));
+        table.minHeightProperty().bind(table.prefHeightProperty());
+        table.maxHeightProperty().bind(table.prefHeightProperty());
+    }
+
+    /**
+     * Resizes all the tables in HelpWindow.
+     */
+    private void resizeTables() {
+        resizeTableHeight(generalCommandTable);
+        resizeTableHeight(studentsCommandTable);
+        resizeTableHeight(sessionsCommandTable);
+        resizeTableHeight(currentSessionCommandTable);
+        resizeTableHeight(memoCommandTable);
+    }
+
 }

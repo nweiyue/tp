@@ -1,11 +1,11 @@
 package atas.logic;
 
+import static atas.commons.core.Messages.MESSAGE_INVALID_SESSION_DISPLAYED_INDEX;
 import static atas.commons.core.Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
 import static atas.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static atas.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static atas.logic.commands.CommandTestUtil.MATRICULATION_DESC_AMY;
 import static atas.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static atas.logic.commands.confirmation.ConfirmationCommand.ACCEPT_COMMAND_FULL;
 import static atas.logic.parser.CliSyntax.PREFIX_TAG;
 import static atas.testutil.Assert.assertThrows;
 import static atas.testutil.TypicalMemoContents.EMPTY_MEMO_CONTENT;
@@ -22,8 +22,8 @@ import org.junit.jupiter.api.io.TempDir;
 
 import atas.commons.core.index.Index;
 import atas.logic.commands.CommandResult;
-import atas.logic.commands.confirmation.ConfirmationCommand;
 import atas.logic.commands.exceptions.CommandException;
+import atas.logic.commands.sessionlist.DeleteSessionCommand;
 import atas.logic.commands.studentlist.AddStudentCommand;
 import atas.logic.commands.studentlist.DeleteStudentCommand;
 import atas.logic.commands.studentlist.EditStudentCommand;
@@ -73,20 +73,22 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void execute_commandExecutionError_throwsCommandException() throws CommandException, ParseException {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
+    public void execute_commandExecutionError_throwsCommandException() {
+        Index outOfBoundIndex = Index.fromOneBased(model.getNumberOfStudents() + 1);
         int outOfBoundIndexOneBased = outOfBoundIndex.getOneBased();
 
         String deleteStudentCommand = DeleteStudentCommand.COMMAND_WORD + " " + outOfBoundIndexOneBased;
-        assertCommandSuccess(deleteStudentCommand, String.format(ConfirmationCommand.MESSAGE_CONFIRMATION_DELETE,
-                outOfBoundIndexOneBased), model);
-        assertCommandException(ACCEPT_COMMAND_FULL, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+        assertCommandException(deleteStudentCommand, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
 
         String editStudentCommand = EditStudentCommand.COMMAND_WORD + " " + outOfBoundIndexOneBased + " "
                 + PREFIX_TAG + "newTag";
-        assertCommandSuccess(editStudentCommand, String.format(ConfirmationCommand.MESSAGE_CONFIRMATION_EDIT,
-                outOfBoundIndexOneBased), model);
-        assertCommandException(ACCEPT_COMMAND_FULL, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+        assertCommandException(editStudentCommand, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+
+        Index outOfBoundSessionIndex = Index.fromOneBased(model.getNumberOfSessions() + 1);
+        int outOfBoundsSessionIndexOneBased = outOfBoundSessionIndex.getOneBased();
+
+        String deleteSessionCommand = DeleteSessionCommand.COMMAND_WORD + " " + outOfBoundsSessionIndexOneBased;
+        assertCommandException(deleteSessionCommand, MESSAGE_INVALID_SESSION_DISPLAYED_INDEX);
     }
 
     @Test

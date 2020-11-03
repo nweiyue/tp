@@ -4,6 +4,7 @@ import static atas.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -164,7 +165,7 @@ public class ModelManager implements Model {
         sessionList.updateStudentList(studentList.getStudentList());
         sessionList.updateAllSessionsAfterDelete(id);
         updateCurrentAttributesList();
-        refreshSessionStatistics();
+        refreshStatistics();
     }
 
     @Override
@@ -174,7 +175,7 @@ public class ModelManager implements Model {
         sessionList.updateStudentList(studentList.getStudentList());
         sessionList.updateAllSessionsAfterAdd();
         updateCurrentAttributesList();
-        refreshSessionStatistics();
+        refreshStatistics();
     }
 
     @Override
@@ -184,6 +185,7 @@ public class ModelManager implements Model {
         studentList.setStudent(target, editedStudent);
         sessionList.updateStudentList(studentList.getStudentList());
         updateCurrentAttributesList();
+        refreshStatistics();
     }
 
     //=========== SessionList ================================================================================
@@ -192,6 +194,8 @@ public class ModelManager implements Model {
     @Override
     public void resetSessionList() {
         this.sessionList.clearSessions();
+        this.sessionId = null;
+        attributesList.resetData(new ArrayList<>());
     }
 
     @Override
@@ -220,6 +224,10 @@ public class ModelManager implements Model {
     public void deleteSession(Session target, Index id) {
         sessionList.updateStudentList(studentList.getStudentList());
         sessionList.deleteSession(target);
+        if (id.equals(this.sessionId)) {
+            this.sessionId = null;
+            attributesList.resetData(new ArrayList<>());
+        }
         refreshStudentStatistics();
     }
 
@@ -228,12 +236,13 @@ public class ModelManager implements Model {
         sessionList.updateStudentList(studentList.getStudentList());
         sessionList.addSession(session);
         updateFilteredSessionList(PREDICATE_SHOW_ALL_SESSIONS);
-        refreshStudentStatistics();
+        refreshStatistics();
     }
 
     @Override
     public void setSession(Session target, Session editedSession) {
         sessionList.setSession(target, editedSession);
+        refreshStatistics();
     }
 
     @Override
@@ -242,7 +251,7 @@ public class ModelManager implements Model {
         sessionName = session.getSessionName();
 
         sessionList.updateStudentParticipation(sessionName, indexRange);
-        attributesList.setCurrentAttributeList(session.getAttributeList());
+        attributesList.setCurrentAttributeList(sessionName.value, session.getAttributeList());
         refreshStatistics();
     }
 
@@ -252,7 +261,7 @@ public class ModelManager implements Model {
         sessionName = session.getSessionName();
 
         sessionList.updateStudentPresence(sessionName, indexRange);
-        attributesList.setCurrentAttributeList(session.getAttributeList());
+        attributesList.setCurrentAttributeList(sessionName.value, session.getAttributeList());
         refreshStatistics();
     }
 
@@ -287,6 +296,14 @@ public class ModelManager implements Model {
         return filteredStudents;
     }
 
+    /**
+     * Returns the number of students in the student list.
+     */
+    @Override
+    public int getNumberOfStudents() {
+        return filteredStudents.size();
+    }
+
     @Override
     public void updateFilteredStudentList(Predicate<Student> predicate) {
         requireNonNull(predicate);
@@ -298,6 +315,14 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Session> getFilteredSessionList() {
         return filteredSessions;
+    }
+
+    /**
+     * Returns the number of sessions in the session list.
+     */
+    @Override
+    public int getNumberOfSessions() {
+        return filteredSessions.size();
     }
 
     @Override
@@ -315,7 +340,8 @@ public class ModelManager implements Model {
     @Override
     public void enterSession(Index sessionId) {
         this.sessionId = sessionId;
-        this.attributesList.setCurrentAttributeList(getCurrentSession().getAttributeList());
+        SessionName sessionName = sessionList.getSessionBasedOnId(sessionId).getSessionName();
+        this.attributesList.setCurrentAttributeList(sessionName.value, getCurrentSession().getAttributeList());
         setCurrentSessionTrue();
     }
 
@@ -335,7 +361,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public String getSessionDetails() {
+    public String getLeftSessionDetails() {
         if (sessionId == null) {
             String nullSessionDetails = "Currently not in any session";
             return nullSessionDetails;
@@ -345,9 +371,28 @@ public class ModelManager implements Model {
             requireNonNull(currentEnteredSession);
             String sessionName = currentEnteredSession.getSessionName().toString();
             String sessionDate = currentEnteredSession.getSessionDate().toString();
-            return String.format("Current Session: %s    Date: %s", sessionName, sessionDate);
+            return String.format("Current Session: %s   Date: %s", sessionName, sessionDate);
         }
     }
+
+    @Override
+    public String getRightSessionDetails() {
+        if (sessionId == null) {
+            String nullSessionDetails = "";
+            return nullSessionDetails;
+        } else {
+            requireNonNull(sessionList);
+            Session currentEnteredSession = getCurrentSession();
+            requireNonNull(currentEnteredSession);
+            String presenceStats = currentEnteredSession.getSessionStats()
+                .getPresenceStatistics().getDataAsPercentage();
+            String participationStats = currentEnteredSession.getSessionStats()
+                .getParticipationStatistics().getDataAsPercentage();
+            return String.format("%s    %s", presenceStats, participationStats);
+        }
+    }
+
+
 
     //=========== Memo ================================================================================
 
@@ -451,5 +496,4 @@ public class ModelManager implements Model {
         attributesList.redo();
         refreshStatistics();
     }
-
 }

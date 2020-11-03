@@ -2,6 +2,7 @@ package atas.logic.commands.atas;
 
 import static atas.logic.commands.CommandTestUtil.assertCommandFailure;
 import static atas.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static atas.testutil.TypicalTabNames.ATAS_TAB_NAME;
 import static atas.testutil.TypicalTabNames.CURRENT_SESSION_TAB_NAME;
 import static atas.testutil.TypicalTabNames.INVALID_TAB_NAME;
 import static atas.testutil.TypicalTabNames.MEMO_TAB_NAME;
@@ -21,6 +22,17 @@ public class SwitchCommandTest {
 
     private Model model = new ModelManager();
     private Model expectedModel = new ModelManager();
+
+    @Test
+    public void execute_switchAtasTab_success() {
+        String expectedMessage = String.format(SwitchCommand.MESSAGE_SWITCH_TAB_SUCCESS,
+                Tab.ATAS.toDisplayName().toLowerCase());
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, false, Tab.ATAS,
+                false, false, false);
+        SwitchCommand switchCommand = new SwitchCommand(ATAS_TAB_NAME);
+
+        assertCommandSuccess(switchCommand, model, expectedCommandResult, expectedModel);
+    }
 
     @Test
     public void execute_switchStudentsTab_success() {

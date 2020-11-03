@@ -210,7 +210,17 @@ public class AddNoteCommandTest {
         }
 
         @Override
+        public int getNumberOfStudents() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Session> getFilteredSessionList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public int getNumberOfSessions() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -280,11 +290,6 @@ public class AddNoteCommandTest {
         }
 
         @Override
-        public String getSessionDetails() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void refreshStatistics() {
             throw new AssertionError("This method should not be called.");
         }
@@ -296,6 +301,16 @@ public class AddNoteCommandTest {
 
         @Override
         public void refreshSessionStatistics() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public String getLeftSessionDetails() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public String getRightSessionDetails() {
             throw new AssertionError("This method should not be called.");
         }
 

@@ -44,7 +44,13 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
         CommandResult commandResult;
         Command command = atasParser.parseCommand(commandText);
-        commandResult = command.execute(model);
+        try {
+            commandResult = command.execute(model);
+        } catch (CommandException e) {
+            // if e is related to invalid indexes, atasParser will need to refresh internal state.
+            atasParser.refreshInternalState(e);
+            throw e;
+        }
 
         try {
             storage.saveSessionList(model.getSessionList());
@@ -108,8 +114,13 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public String getSessionDetails() {
-        return model.getSessionDetails();
+    public String getLeftSessionDetails() {
+        return model.getLeftSessionDetails();
+    }
+
+    @Override
+    public String getRightSessionDetails() {
+        return model.getRightSessionDetails();
     }
 
     @Override

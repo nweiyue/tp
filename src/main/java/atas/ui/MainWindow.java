@@ -46,12 +46,16 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
+    private StartDisplay startDisplay;
     private StudentListPanel studentListPanel;
     private SessionListPanel sessionListPanel;
     private SessionStudentListPanel sessionStudentListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private MemoBox memoBox;
+
+    @FXML
+    private StackPane startDisplayPlaceHolder;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -146,6 +150,9 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        startDisplay = new StartDisplay();
+        startDisplayPlaceHolder.getChildren().add(startDisplay.getRoot());
+
         studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
         personListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
 
@@ -155,7 +162,8 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getSessionDetails());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(
+            logic.getLeftSessionDetails(), logic.getRightSessionDetails());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
@@ -265,9 +273,9 @@ public class MainWindow extends UiPart<Stage> {
         sessionStudentListPanel = new SessionStudentListPanel(logic.getFilteredAttributesList());
         sessionStudentListPanelPlaceholder.getChildren().add(sessionStudentListPanel.getRoot());
         tabPane.getSelectionModel().select(toSwitchTabIndex);
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getSessionDetails());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(
+            logic.getLeftSessionDetails(), logic.getRightSessionDetails());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
-
     }
 
     @FXML
@@ -279,6 +287,12 @@ public class MainWindow extends UiPart<Stage> {
             helpWindow.hide();
             primaryStage.hide();
         });
+    }
+
+    private void handleCurrentSession() {
+        StatusBarFooter statusBarFooter = new StatusBarFooter(
+                logic.getLeftSessionDetails(), logic.getRightSessionDetails());
+        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
     }
 
     /**
@@ -322,6 +336,8 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isEnterSession()) {
                 handleEnterSessionTab(commandResult.getTab());
             }
+
+            handleCurrentSession();
 
             if (commandResult.isExit()) {
                 Thread.sleep(SLEEP_TIME);

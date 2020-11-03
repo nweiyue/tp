@@ -1,7 +1,7 @@
 package atas.storage;
 
 import static atas.testutil.Assert.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -36,7 +36,7 @@ public class TxtMemoStorageTest {
 
     @Test
     public void read_missingFile_emptyResult() throws Exception {
-        assertFalse(readMemo("NonExistentFile.txt").isEmpty());
+        assertTrue(readMemo("NonExistentFile.txt").isEmpty());
     }
 
     @Test
