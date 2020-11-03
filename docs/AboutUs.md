@@ -57,7 +57,7 @@ You can reach us at the email `e0406158@u.nus.edu`
 <img src="images/yuunokun.png" width="200px">
 
 [[github](http://github.com/YuunoKun)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/yuunokun.md)]
 
 * Role: Tech lead
 * Responsibilities: Coding
