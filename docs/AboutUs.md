@@ -14,7 +14,7 @@ You can reach us at the email `e0406158@u.nus.edu`
 <img src="images/codingcookierookie.png" width="200px">
 
 [[github](https://github.com/CodingCookieRookie)]
-[[portfolio](team/alvin.md)]
+[[portfolio](team/codingcookierookie.md)]
 
 * Role: Integrator
 * Responsibilities: Ensures that all the classes that are done by all members are integrated and work as intended.
