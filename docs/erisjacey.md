@@ -99,4 +99,4 @@ Given below are my contributions to the project.
               [10](https://github.com/nus-cs2103-AY2021S1/forum/issues/160#issuecomment-685331533))
    * Some parts of my CSS stylesheet for a similar school project was adopted by several other classmates
    ([1](https://github.com/nweiyue/ip/blob/master/src/main/resources/view/style.css))           
-                 
+
