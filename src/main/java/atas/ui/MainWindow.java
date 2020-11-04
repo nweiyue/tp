@@ -185,8 +185,8 @@ public class MainWindow extends UiPart<Stage> {
                     logic.saveMemoContent(memoTextBox.getText());
                     resultDisplay.setFeedbackToUser("Memo saved!");
                 } catch (CommandException e) {
-                    logger.info("Saving memory failed");
-                    resultDisplay.setFeedbackToUser(e.getMessage());
+                    logger.info("Error in creating memo.txt");
+                    resultDisplay.setFeedbackToUser("Memo.txt cannot be created.");
                 }
             }
         });
@@ -198,8 +198,8 @@ public class MainWindow extends UiPart<Stage> {
                 try {
                     logic.saveMemoContent(memoTextBox.getText());
                 } catch (CommandException e) {
-                    logger.info("Unable to save memo content");
-                    resultDisplay.setFeedbackToUser(e.getMessage());
+                    logger.info("Error in creating memo.txt");
+                    resultDisplay.setFeedbackToUser("Memo.txt cannot be created.");
                 }
             }
         });
