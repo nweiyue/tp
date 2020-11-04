@@ -2,49 +2,41 @@
 layout: page
 title: Developer Guide
 ---
-* [**Setting up, getting started**](#su_gs)
-* [**Design**](#design)
-   * [Architecture](#architecture)
-   * [UI component](#ui_component)
-   * [Logic component](#logic_component)
-   * [Model component](#model_component)
-   * [Storage component](#storage_component)
-   * [Common classes](#common_classes)
-* [**Implementation**](#implementation)
-   * [Switching between tabs](#switching)
-     * [Design consideration:](#switch_design_consideration)
-   * [User confirmation](#ucp)
-   * [Adding a session](#adding_a_session)
-   * [Entering a session](#enter_session)
-   * [Generating the name of a randomly-selected student](#rng)
-   * [[Proposed] Undo/redo feature](#undo_redo)
-     * [Proposed Implementation](#proposed_implementation)
-     * [Design consideration:](#design_consideration)
-       * [Aspect: How undo & redo executes](#aspect_undo_redo)
-  * [[Proposed] Data archiving](#data_archiving)
-* [**Documentation, logging, testing, configuration, dev-ops**](#documentation_etc)
-* [**Appendix: Requirements**](#appendix_requirements)
-  * [Product scope](#product_scope)
-  * [User stories](#user_stories)
-  * [Use cases](#use_cases)
-  * [Non-Functional Requirements](#nfr)
-  * [Glossary](#glossary)
-* [**Appendix: Instructions for manual testing**](#appendix_manual_testing)
-  * [Launch and shutdown](#launch_shutdown)
-  * [Deleting a student](#deleting_a_student)
-  * [Saving data](#saving_data)
+
+{ start of `table_of_contents` written by: Masagca Eris Jacey }
+
+<div class="toc-no-list-style">
+  * Table of contents
+  {:toc}
+</div>
+
+{ end of `table_of_contents` written by: Masagca Eris Jacey }
 
 --------------------------------------------------------------------------------------------------------------------
 
-## <a name="su_gs"></a>**Setting up, getting started**
+{ start of `introduction` written by: Masagca Eris Jacey }
+
+## 1. Introduction
+
+{ end of `introduction` written by: Masagca Eris Jacey }
+
+--------------------------------------------------------------------------------------------------------------------
+
+{ start of `setting_up` written by: ___________ }
+
+## 2. Setting up
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
+{ end of `setting_up` written by: ___________ }
+
 --------------------------------------------------------------------------------------------------------------------
 
-## <a name="design"></a>**Design**
+## 3. Design
 
-### <a name="architecture"></a>Architecture
+{ start of `design#architecture` written by: ___________ }
+
+### 3.1 Architecture
 
 <img src="images/ArchitectureDiagram.png" width="450" />
 
@@ -86,7 +78,11 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 The sections below give more details of each component.
 
-### <a name="ui_component"></a>UI component
+{ end of `design#architecture` written by: ___________ }
+
+{ start of `design#ui_component` written by: ___________ }
+
+### 3.2. UI component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -103,7 +99,11 @@ The `UI` component,
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 * Displays results to user if any.
 
-### <a name="logic_component"></a>Logic component
+{ end of `design#ui_component` written by: ___________ }
+
+{ start of `design#logic_component` written by: ___________ }
+
+### 3.3. Logic component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
@@ -120,7 +120,11 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Interactions Inside the Logic Component for the `enterses 1` Command](images/EnterSessionSequenceDiagram.png)
 
-### <a name="model_component"></a>Model component
+{ end of `design#logic_component` written by: ___________ }
+
+{ start of `design#model_component` written by: Masagca Eris Jacey }
+
+### 3.4. Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
@@ -136,7 +140,11 @@ The `Model`,
 * exposes an unmodifiable `ObservableList<Student>` and `ObservableList<Session>` that can be 'observed'. e.g. For each list, the UI can be bound to the list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
-### <a name="storage_component"></a>Storage component
+{ end of `design#model_component` written by: Masagca Eris Jacey }
+
+{ start of `design#storage_component` written by: Masagca Eris Jacey }
+
+### 3.5. Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
@@ -148,17 +156,25 @@ The `Storage` component,
 * can save the session list data in json format and read it back.
 * can save the memo data in txt file and read it back.
 
-### <a name="common_classes"></a>Common classes
+{ end of `design#storage_component` written by: Masagca Eris Jacey }
+
+{ start of `design#common_classes` written by: Masagca Eris Jacey }
+
+### 3.6. Common classes
 
 Classes used by multiple components are in the `seedu.atas.commons` package.
 
+{ end of `design#common_classes` written by: Masagca Eris Jacey }
+
 --------------------------------------------------------------------------------------------------------------------
 
-## <a name="implementation"></a>**Implementation**
+## 4. Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### <a name="switching"></a>Switching between tabs
+{ start of `implementation#switch_between_tabs` written by: ________ }
+
+### 4.1. Switching between different tabs
 
 The switching of tabs is facilitated by `SwitchCommand`, `LogicManager`, `MainWindow` and `Tab`. `Tab` is an enum class that represents the various tabs that exist in ATAS.
 
@@ -193,11 +209,15 @@ The following activity diagram summarizes what happens when a user executes a sw
 
 ![SwitchTabsActivityDiagram](images/SwitchTabsActivityDiagram.png)
 
-#### <a name="switch_design_consideration"></a>Design consideration:
+#### 4.1.1. Design consideration
 
 * `Tab` is being implemented as an enum class because there is a fixed set of tabs that are available to be switched to. This prevents invalid values to be assigned to `Tab`.
 
-### <a name="ucp"></a>Getting user confirmation for commands that changes the local data.
+{ end of `implementation#switch_between_tabs` written by: ________ }
+
+{ start of `implementation#user_confirmation` written by: ________ }
+
+### 4.2. User confirmation
 
 This feature (henceforth referred to as 'user confirmation') is facilitated by 'ConfirmCommand', 'DangerousCommand', 'Logic', and 'Model'.
 
@@ -247,7 +267,11 @@ The following activity diagram summarizes what happens when a user executes a da
 
 ![DeleteStudentActivityDiagram](images/DeleteStudentActivityDiagram.png)
 
-### <a name="adding_a_session"></a>Adding a session
+{ end of `implementation#user_confirmation` written by: ________ }
+
+{ start of `implementation#adding_a_session` written by: ________ }
+
+### 4.3. Adding a session
 
 Adding a session to a class requires user input from the CLI. Adding a session to a class requires user input from
 the CLI. The parser will then parse the user input to obtain the name and the date of the session. The newly added
@@ -287,7 +311,11 @@ The following activity diagram summarizes what happens when a user executes an `
 
 ![AddSessionActivityDiagram](images/AddSessionActivityDiagram.png)
 
-### <a name="enter_session"></a>Entering a session
+{ end of `implementation#adding_a_session` written by: ________ }
+
+{ start of `implementation#entering_a_session` written by: ________ }
+
+### 4.4. Entering a session
 
 This feature (henceforth referred to as 'enter session') is facilitated by `EnterSessionCommand`, `LogicManager` and `Model`.
 
@@ -325,7 +353,19 @@ The following activity diagram summarizes what happens when a user executes an e
 
 ![EnterSessionActivityDiagram](images/EnterSessionActivityDiagram.png)
 
-### <a name="rng"></a>Generating the name of a randomly-selected student
+{ end of `implementation#entering_a_session` written by: ________ }
+
+{ start of `implementation#presence_and_participation` written by: ________ }
+
+### 4.5. Presence and participation
+
+todo
+
+{ end of `implementation#presence_and_participation` written by: ________ }
+
+{ start of `implementation#random_name_generation` written by: Masagca Eris Jacey }
+
+### 4.6. Generating the name of a randomly-selected student
 
 This feature (henceforth referred to as 'RNG') is facilitated by `RngCommand` and `RandomGenerator`.
 
@@ -359,10 +399,13 @@ The following activity diagram summarizes what happens when a user executes an R
 
 ![RngActivityDiagram](images/RngActivityDiagram.png)
 
+{ end of `implementation#random_name_generation` written by: Masagca Eris Jacey }
 
-### <a name="undo_redo"></a>\[Proposed\] Undo/redo feature
+{ start of `implementation#undo_redo` written by: Masagca Eris Jacey }
 
-#### <a name="proposed_implementation"></a>Proposed Implementation
+### 4.7. Undo/redo feature
+
+todo below
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
@@ -425,9 +468,9 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ![CommitActivityDiagram](images/CommitActivityDiagram.png)
 
-#### <a name="design_consideration"></a>Design consideration:
+#### 4.7.1. Design consideration
 
-##### <a name="aspect_undo_redo"></a>Aspect: How undo & redo executes
+**Aspect: how undo & redo execute**
 
 * **Alternative 1 (current choice):** Saves the entire address book.
  * Pros: Easy to implement.
@@ -438,28 +481,79 @@ The following activity diagram summarizes what happens when a user executes a ne
  * Pros: Will use less memory (e.g. for `delete`, just save the student being deleted).
  * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
+{ end of `implementation#undo_redo` written by: Masagca Eris Jacey }
 
-### <a name="data_archiving"></a>\[Proposed\] Data archiving
+{ start of `implementation#adding_a_note` written by: ______________ }
 
-_{Explain here how the data archiving feature will be implemented}_
+### 4.8. Adding a note
 
+todo
+
+{ end of `implementation#adding_a_note` written by: ______________ }
+
+{ start of `implementation#exporting_data` written by: ______________ }
+
+### 4.9. [Proposed] Exporting data to csv
+
+todo
+
+{ end of `implementation#exporting_data` written by: ______________ }
+
+{ start of `implementation#data_encryption` written by: ______________ }
+
+### 4.10. [Proposed] Data encryption
+
+todo
+
+{ end of `implementation#dat_encryption` written by: ______________ }
 
 --------------------------------------------------------------------------------------------------------------------
 
-## <a name="documentation_etc"></a>**Documentation, logging, testing, configuration, dev-ops**
+{ start of `logging` written by: _____________ }
 
-* [Documentation guide](Documentation.md)
-* [Testing guide](Testing.md)
-* [Logging guide](Logging.md)
-* [Configuration guide](Configuration.md)
-* [DevOps guide](DevOps.md)
+## 6. Logging
+
+Refer to this guide [here](Logging.md).
+
+{ end of `logging` written by: _____________ }
 
 --------------------------------------------------------------------------------------------------------------------
 
-## <a name="appendix_requirements"></a>**Appendix: Requirements**
+{ start of `testing` written by: _____________ }
 
-### <a name="product_scope"></a>Product scope
+## 7. Testing
+
+Refer to this guide [here](Testing.md).
+
+{ end of `testing` written by: _____________ }
+
+--------------------------------------------------------------------------------------------------------------------
+
+{ start of `configuration` written by: _____________ }
+
+## 8. Configuration
+
+Refer to this guide [here](Configuration.md).
+
+{ end of `configuration` written by: _____________ }
+
+--------------------------------------------------------------------------------------------------------------------
+
+{ start of `devops` written by: Masagca Eris Jacey }
+
+## 9. DevOps
+
+Refer to this guide [here](DevOps.md).
+
+{ end of `devops` written by: Masagca Eris Jacey }
+
+--------------------------------------------------------------------------------------------------------------------
+
+## 10. Appendix: requirements
+
+{ start of `requirements#product_scope` written by: Masagca Eris Jacey }
+
+### 10.1. Product scope
 
 **Target user profile**:
 
@@ -489,9 +583,11 @@ _{Explain here how the data archiving feature will be implemented}_
  * Schedule consultations/Zoom meeting
  * Automate formation of Telegram groups
 
+{ end of `requirements#product_scope` written by: Masagca Eris Jacey }
 
+{ start of `requirements#user_stories` written by: ___________ }
 
-### <a name="user_stories"></a>User stories
+### 10.2. User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -519,8 +615,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
+{ end of `requirements#user_stories` written by: ___________ }
 
-### <a name="use_cases"></a>Use cases
+{ start of `requirements#use_cases` written by: ___________ }
+
+### 10.3. Use cases
 
 (For all use cases below, the **System** is the `ATAS` and the **Actor** is the `user`, unless specified otherwise)
 
@@ -607,7 +706,11 @@ Use case ends.
 
 *{More to be added}*
 
-### <a name="nfr"></a>Non-Functional Requirements
+{ end of `requirements#use_cases` written by: ___________ }
+
+{ start of `requirements#non_functional_requirements` written by: ___________ }
+
+### 10.4. Non-functional requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 1. Should be able to hold up to 1000 students without a noticeable sluggishness in performance for typical usage.
@@ -620,15 +723,21 @@ Use case ends.
 
 *{More to be added}*
 
-### <a name="glossary"></a>Glossary
+{ end of `requirements#non_functional_requirements` written by: ___________ }
+
+{ start of `requirements#glossary` written by: ___________ }
+
+### 10.5. Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Matriculation number**: A unique alphanumeric number attributed to each NUS student. Follows the format A0123456X, where each digit can be from 0-9 and the last letter can be any alphabet A-Z
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 
+{ end of `requirements#glossary` written by: ___________ }
+
 --------------------------------------------------------------------------------------------------------------------
 
-## <a name="appendix_manual_testing"></a>**Appendix: Instructions for manual testing**
+## 11. Appendix: instructions for manual testing
 
 Given below are instructions to test the app manually.
 
@@ -637,7 +746,9 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### <a name="launch_shutdown"></a>Launch and shutdown
+{ start of `manual_testing#launch_and_shutdown` written by: __________ }
+
+### 11.1. Launch and shutdown
 
 1. Initial launch
 
@@ -654,7 +765,11 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### <a name="deleting_a_student"></a>Deleting a student
+{ end of `manual_testing#launch_and_shutdown` written by: __________ }
+
+{ start of `manual_testing#adding_a_student` written by: __________ }
+
+### 11.2. Adding a student
 
 1. Deleting a student while all students are being shown
 
@@ -671,11 +786,10 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### <a name="saving_data"></a>Saving data
+{ end of `manual_testing#adding_a_student` written by: __________ }
 
-1. Dealing with missing/corrupted data files
+{ start of `manual_testing#deleting_a_student` written by: __________ }
 
-  1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+### 11.3. Deleting a student
 
-1. _{ more test cases …​ }_
-
+{ end of `manual_testing#deleting_a_student` written by: __________ }

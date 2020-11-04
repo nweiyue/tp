@@ -8,6 +8,7 @@ import atas.logic.commands.exceptions.CommandException;
 import atas.logic.parser.CliSyntax;
 import atas.model.Model;
 import atas.model.student.Student;
+import atas.model.student.exceptions.DuplicateStudentException;
 
 /**
  * Adds a student to the class.
@@ -49,9 +50,12 @@ public class AddStudentCommand extends Command {
         if (model.hasStudent(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
         }
-
-        model.addStudent(toAdd);
-        model.commit();
+        try {
+            model.addStudent(toAdd);
+            model.commit();
+        } catch (DuplicateStudentException e) {
+            throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
+        }
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

@@ -21,6 +21,10 @@ import atas.model.student.StudentList;
  */
 public class TypicalStudents {
 
+    public static final String UNUSED_VALID_MATRICULATION = "A9999999A";
+
+    public static final String UNUSED_VALID_EMAIL = "nussu@u.nus.edu";
+
     public static final Student ALICE = new StudentBuilder().withName("Alice Pauline")
             .withEmail("alice@u.nus.edu").withMatriculation("A2395823W").withTags("friends").build();
     public static final Student BENSON = new StudentBuilder().withName("Benson Meier")
@@ -49,8 +53,6 @@ public class TypicalStudents {
     public static final Student BOB = new StudentBuilder().withName(VALID_NAME_BOB)
             .withMatriculation(VALID_MATRICULATION_BOB).withEmail(VALID_EMAIL_BOB)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
-
-    public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalStudents() {} // prevents instantiation
 

@@ -20,6 +20,7 @@ import atas.model.student.Email;
 import atas.model.student.Matriculation;
 import atas.model.student.Name;
 import atas.model.student.Student;
+import atas.model.student.exceptions.DuplicateStudentException;
 import atas.model.tag.Tag;
 
 /**
@@ -81,9 +82,13 @@ public class EditStudentCommand extends DangerousCommand implements IndexedStude
             throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
         }
 
-        model.setStudent(studentToEdit, editedStudent);
-        model.commit();
-        model.updateFilteredStudentList(Model.PREDICATE_SHOW_ALL_STUDENTS);
+        try {
+            model.setStudent(studentToEdit, editedStudent);
+            model.commit();
+            model.updateFilteredStudentList(Model.PREDICATE_SHOW_ALL_STUDENTS);
+        } catch (DuplicateStudentException e) {
+            throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
+        }
         return new CommandResult(String.format(MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent));
     }
 
