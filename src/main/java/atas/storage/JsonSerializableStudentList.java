@@ -12,6 +12,7 @@ import atas.commons.exceptions.IllegalValueException;
 import atas.model.student.ReadOnlyStudentList;
 import atas.model.student.Student;
 import atas.model.student.StudentList;
+import atas.model.student.exceptions.DuplicateStudentException;
 
 /**
  * An Immutable StudentList that is serializable to JSON format.
@@ -49,10 +50,11 @@ class JsonSerializableStudentList {
         StudentList studentList = new StudentList();
         for (JsonAdaptedStudent jsonAdaptedStudent : students) {
             Student student = jsonAdaptedStudent.toModelType();
-            if (studentList.hasStudent(student)) {
+            try {
+                studentList.addStudent(student);
+            } catch (DuplicateStudentException e) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_STUDENT);
             }
-            studentList.addStudent(student);
         }
 
         // Recheck once again if student list contains any duplicate students
