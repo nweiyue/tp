@@ -85,4 +85,9 @@ public interface Logic {
      * @throws CommandException If an error occurs during command execution.
      */
     void saveMemoContent(String memoContent) throws CommandException;
+
+    /**
+     * Refresh statistics of model.
+     */
+    void refreshStatistics();
 }

@@ -132,4 +132,9 @@ public class LogicManager implements Logic {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
     }
+
+    @Override
+    public void refreshStatistics() {
+        model.refreshStatistics();
+    }
 }
