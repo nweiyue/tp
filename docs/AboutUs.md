@@ -14,7 +14,7 @@ You can reach us at the email `e0406158@u.nus.edu`
 <img src="images/codingcookierookie.png" width="200px">
 
 [[github](https://github.com/CodingCookieRookie)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/codingcookierookie.md)]
 
 * Role: Integrator
 * Responsibilities: Ensures that all the classes that are done by all members are integrated and work as intended.
@@ -24,7 +24,7 @@ You can reach us at the email `e0406158@u.nus.edu`
 <img src="images/marcustw.png" width="200px">
 
 [[github](http://github.com/marcustw)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/marcustw.md)]
 
 * Role: Testing
 * Responsibilities: Looks after testing and ensures the testing of the project is done properly and on time.
@@ -34,20 +34,20 @@ You can reach us at the email `e0406158@u.nus.edu`
 <img src="images/erisjacey.png" width="200px">
 
 [[github](http://github.com/erisjacey)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/erisjacey.md)]
 
 * Role: Team Lead; Code Quality; Deliverables and Deadlines
 * Responsibilities:
    * Responsible for overall project coordination
    * Looks after code quality, ensures adherance to coding standards, etc.
-   * Ensures project deliverables are done on time and in the right format 
+   * Ensures project deliverables are done on time and in the right format
 
 ### Ngoh Wei Yue
 
 <img src="images/nweiyue.png" width="200px">
 
 [[github](http://github.com/nweiyue)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/nweiyue.md)]
 
 * Role: Documentation
 * Responsibilities: Looks after the quality of various project documents like user and developer guides
@@ -57,7 +57,7 @@ You can reach us at the email `e0406158@u.nus.edu`
 <img src="images/yuunokun.png" width="200px">
 
 [[github](http://github.com/YuunoKun)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/yuunokun.md)]
 
 * Role: Tech lead
 * Responsibilities: Coding
