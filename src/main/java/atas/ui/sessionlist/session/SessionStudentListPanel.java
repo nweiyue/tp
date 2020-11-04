@@ -16,8 +16,12 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
 public class SessionStudentListPanel extends UiPart<Region> {
+
     public static final String NO_SESSION_STUDENTS_MESSAGE = "You currently have no students in this session!\n"
             + "Type \"addstu …\" to start adding one!";
+    public static final String NOT_IN_SESSION = "You are currently not in any session!\n"
+            + "Type \"enterses …\" to enter one!";
+
     private static final String FXML = "SessionStudentListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(StudentListPanel.class);
 
@@ -25,19 +29,36 @@ public class SessionStudentListPanel extends UiPart<Region> {
     private ListView<Attributes> sessionStudentListView;
 
     @FXML
-    private VBox emptySessionStudentListView;
+    private VBox labelView;
 
     @FXML
-    private Label emptySessionStudentListMessage;
+    private Label displayMessage;
 
     /**
-     * Creates a {@code StudentListPanel} with the given {@code ObservableList}.
+     * Creates a {@code SessionStudentListPanel} with no {@code Session}.
      */
-    public SessionStudentListPanel(ObservableList<Attributes> attributesList) {
+    public SessionStudentListPanel() {
         super(FXML);
+        showNotInSession();
+    }
+
+    /**
+     * Changes the view to show a message declaring that user is not in a session.
+     */
+    public void showNotInSession() {
+        displayMessage.setText(NOT_IN_SESSION);
+        sessionStudentListView.setVisible(false);
+        displayMessage.setVisible(true);
+    }
+
+    /**
+     * Changes the view to show the attribute list of a session.
+     *
+     * @param attributesList ObservableList of attributes to be displayed.
+     */
+    public void showSessionStudentList(ObservableList<Attributes> attributesList) {
         sessionStudentListView.setItems(attributesList);
         sessionStudentListView.setCellFactory(listView -> new SessionStudentListViewCell());
-        emptySessionStudentListMessage.setText(NO_SESSION_STUDENTS_MESSAGE);
 
         if (attributesList.isEmpty()) {
             showEmptyAttributesState();
@@ -47,16 +68,28 @@ public class SessionStudentListPanel extends UiPart<Region> {
         addAttributesListChangeListener(attributesList);
     }
 
+    /**
+     * Changes the view to show the attributes list of a session.
+     */
     private void showAttributesList() {
         sessionStudentListView.setVisible(true);
-        emptySessionStudentListView.setVisible(false);
+        displayMessage.setVisible(false);
     }
 
+    /**
+     * Changes the view to show a message declaring that there is no students in this session.
+     */
     private void showEmptyAttributesState() {
+        displayMessage.setText(NO_SESSION_STUDENTS_MESSAGE);
         sessionStudentListView.setVisible(false);
-        emptySessionStudentListView.setVisible(true);
+        displayMessage.setVisible(true);
     }
 
+    /**
+     * Adds a listener to listen if the attribute list becomes empty.
+     *
+     * @param sessionStudentList Observable list of attributes to be listened to.
+     */
     private void addAttributesListChangeListener(ObservableList<Attributes> sessionStudentList) {
         sessionStudentListView.getItems().addListener(new ListChangeListener<Attributes>() {
             @Override

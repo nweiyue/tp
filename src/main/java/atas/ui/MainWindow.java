@@ -159,6 +159,9 @@ public class MainWindow extends UiPart<Stage> {
         sessionListPanel = new SessionListPanel(logic.getFilteredSessionList());
         sessionListPanelPlaceholder.getChildren().add(sessionListPanel.getRoot());
 
+        sessionStudentListPanel = new SessionStudentListPanel();
+        sessionStudentListPanelPlaceholder.getChildren().add(sessionStudentListPanel.getRoot());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -270,8 +273,7 @@ public class MainWindow extends UiPart<Stage> {
     private void handleEnterSessionTab(Tab tab) {
         int toSwitchTabIndex = tab.getIndex().getZeroBased();
         logic.enableCurrentSession();
-        sessionStudentListPanel = new SessionStudentListPanel(logic.getFilteredAttributesList());
-        sessionStudentListPanelPlaceholder.getChildren().add(sessionStudentListPanel.getRoot());
+        sessionStudentListPanel.showSessionStudentList(logic.getFilteredAttributesList());
         tabPane.getSelectionModel().select(toSwitchTabIndex);
         StatusBarFooter statusBarFooter = new StatusBarFooter(
             logic.getLeftSessionDetails(), logic.getRightSessionDetails());
@@ -338,6 +340,11 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             handleCurrentSession();
+
+            if (logic.getSessionId() == null) {
+                logic.disableCurrentSession();
+                sessionStudentListPanel.showNotInSession();
+            }
 
             if (commandResult.isExit()) {
                 Thread.sleep(SLEEP_TIME);
