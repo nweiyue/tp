@@ -131,8 +131,8 @@ public class LogicManager implements Logic {
 
     @Override
     public void saveMemoContent(String content) throws CommandException {
-        model.saveMemoContent(content);
         try {
+            model.saveMemoContent(content);
             storage.saveMemo(model.getMemo());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
