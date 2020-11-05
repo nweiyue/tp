@@ -340,10 +340,9 @@ Chooses a student at random from the student list.
 rng
 ```
 
-**Expected result:**
-```
-Student selected: NAME_OF_RANDOMLY_SELECTED_STUDENT
-```
+**Outcome:** 
+![523-rng](images/user-guide/523-rng.png)
+Figure 5.2.3.1. Application view after performing the `rng` command
 
 { end of `features#general#rng` written by: Masagca Eris Jacey }
 
