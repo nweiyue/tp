@@ -47,6 +47,8 @@ public class EnterSessionCommand extends Command {
             throw new CommandException(String.format(MESSAGE_ALREADY_IN_SESSION,
                     e.getSessionIndex().getOneBased()));
         }
+
+        model.commit();
         return new CommandResult(String.format(MESSAGE_SUCCESS, sessionIndex.getOneBased()),
             false, Tab.CURRENT, false, false, true);
     }

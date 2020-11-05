@@ -1,6 +1,6 @@
 package atas.model.session;
 
-import static java.util.Objects.requireNonNull;
+import static atas.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +30,7 @@ public class VersionedAttributesList extends AttributesList implements Versioned
     @Override
     public void commit() {
         removeStatesAfterCurrentPointer();
-        this.attributeStateList.add(new AttributesList(this));
+        this.attributeStateList.add(new AttributesList(this, this.currentSessionIndex));
         currentStatePointer++;
     }
 
@@ -64,26 +64,10 @@ public class VersionedAttributesList extends AttributesList implements Versioned
         return attributes;
     }
 
-    public void setCurrentAttributeList(String name, Index index, List<Attributes> attributeList) {
-        requireNonNull(name);
-        requireNonNull(attributeList);
-        this.attributes.setAll(attributeList);
-        // If no sessions were entered or user enters a different session
-        if (currentSessionName.isEmpty() || !currentSessionName.get().equals(name)) {
-            saveInitialCommitAfterEnterSession(name, index.getCopy());
-        }
-    }
-
-    /**
-     * Creates an initial commit when entering a different session.
-     *
-     * @param name Session name.
-     */
-    private void saveInitialCommitAfterEnterSession(String name, Index index) {
-        requireNonNull(name);
-        currentSessionName = Optional.of(name);
-        currentSessionIndex = Optional.of(index);
-        commit();
+    public void setCurrentAttributeList(Index index, List<Attributes> attributeList) {
+        requireAllNonNull(index, attributeList);
+        attributes.setAll(attributeList);
+        currentSessionIndex = Optional.ofNullable(index);
     }
 
 

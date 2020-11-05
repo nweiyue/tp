@@ -18,7 +18,6 @@ public class AttributesList implements ReadOnlyAttributesList {
     protected final ObservableList<Attributes> attributes;
 
     /* Tracks the session name and index of the session entered */
-    protected Optional<String> currentSessionName;
     protected Optional<Index> currentSessionIndex;
 
     /**
@@ -26,15 +25,15 @@ public class AttributesList implements ReadOnlyAttributesList {
      */
     public AttributesList() {
         attributes = FXCollections.observableArrayList();
-        currentSessionName = Optional.empty();
         currentSessionIndex = Optional.empty();
     }
 
     /**
      * Replaces the contents of the attributes list with {@code attributes}.
      */
-    public AttributesList(ReadOnlyAttributesList newState) {
-        this();
+    public AttributesList(ReadOnlyAttributesList newState, Optional<Index> currentSessionIndex) {
+        this.attributes = FXCollections.observableArrayList();
+        this.currentSessionIndex = currentSessionIndex;
         resetData(newState);
     }
 
@@ -46,6 +45,7 @@ public class AttributesList implements ReadOnlyAttributesList {
     public void resetData(ReadOnlyAttributesList newData) {
         requireNonNull(newData);
         this.attributes.setAll(newData.getAttributesList());
+        this.currentSessionIndex = newData.getCurrentSessionIndex();
     }
 
     /**
@@ -61,17 +61,21 @@ public class AttributesList implements ReadOnlyAttributesList {
      */
     public void resetData() {
         this.attributes.setAll(new ArrayList<>());
-        this.currentSessionName = Optional.empty();
         this.currentSessionIndex = Optional.empty();
     }
 
-    public Index getSessionIndex() {
+    public Index getCurrentSessionIndexValue() {
         return currentSessionIndex.orElse(null);
     }
 
     @Override
     public ObservableList<Attributes> getAttributesList() {
         return attributes;
+    }
+
+    @Override
+    public Optional<Index> getCurrentSessionIndex() {
+        return currentSessionIndex;
     }
 
 }

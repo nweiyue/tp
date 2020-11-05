@@ -249,7 +249,7 @@ public class ModelManager implements Model {
         sessionName = session.getSessionName();
 
         sessionList.updateStudentParticipation(sessionName, indexRange);
-        attributesList.setCurrentAttributeList(sessionName.value, sessionId, session.getAttributeList());
+        attributesList.setCurrentAttributeList(sessionId.getCopy(), session.getAttributeList());
         refreshStatistics();
     }
 
@@ -259,7 +259,7 @@ public class ModelManager implements Model {
         sessionName = session.getSessionName();
 
         sessionList.updateStudentPresence(sessionName, indexRange);
-        attributesList.setCurrentAttributeList(sessionName.value, sessionId, session.getAttributeList());
+        attributesList.setCurrentAttributeList(sessionId.getCopy(), session.getAttributeList());
         refreshStatistics();
     }
 
@@ -349,9 +349,7 @@ public class ModelManager implements Model {
         }
 
         this.sessionId = sessionId;
-        SessionName sessionName = sessionList.getSessionBasedOnId(sessionId).getSessionName();
-        this.attributesList.setCurrentAttributeList(sessionName.value, sessionId,
-                getCurrentSession().getAttributeList());
+        this.attributesList.setCurrentAttributeList(sessionId.getCopy(), getCurrentSession().getAttributeList());
         setCurrentSessionTrue();
     }
 
@@ -489,7 +487,7 @@ public class ModelManager implements Model {
         studentList.undo();
         sessionList.undo();
         attributesList.undo();
-        sessionId = attributesList.getSessionIndex();
+        sessionId = attributesList.getCurrentSessionIndexValue();
         refreshStatistics();
     }
 
@@ -505,7 +503,7 @@ public class ModelManager implements Model {
         studentList.redo();
         sessionList.redo();
         attributesList.redo();
-        sessionId = attributesList.getSessionIndex();
+        sessionId = attributesList.getCurrentSessionIndexValue();
         refreshStatistics();
     }
 }
