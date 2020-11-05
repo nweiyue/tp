@@ -144,16 +144,6 @@ public class MainWindow extends UiPart<Stage> {
                 event.consume();
             }
         });
-
-        getRoot().addEventFilter(KeyEvent.KEY_RELEASED, keyEvent -> {
-            if (keyEvent.getCode() == KeyCode.ENTER) {
-
-                //sessionStudentListPanelPlaceholder.getChildren().add(sessionStudentListPanel.getRoot());
-                StatusBarFooter statusBarFooter = new StatusBarFooter(
-                    logic.getLeftSessionDetails(), logic.getRightSessionDetails());
-                statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
-            }
-        });
     }
 
     /**
@@ -325,6 +315,7 @@ public class MainWindow extends UiPart<Stage> {
             CommandException, ParseException, InterruptedException {
         try {
             CommandResult commandResult = logic.execute(commandText);
+            logic.refreshStatistics();
             Task displayResultTask = new Task() {
                 @Override
                 protected Object call() throws Exception {
@@ -352,11 +343,9 @@ public class MainWindow extends UiPart<Stage> {
             handleCurrentSession();
 
             if (logic.getSessionId() == null) {
-                logic.refreshStatistics();
                 logic.disableCurrentSession();
                 sessionStudentListPanel.showNotInSession();
             } else {
-                logic.refreshStatistics();
                 sessionStudentListPanel.showSessionStudentList(logic.getFilteredAttributesList());
             }
 
