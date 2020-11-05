@@ -25,6 +25,6 @@ public class ClearStudentListCommand extends DangerousCommand {
 
     @Override
     public String toString() {
-        return "Clear list";
+        return "Clear student list";
     }
 }

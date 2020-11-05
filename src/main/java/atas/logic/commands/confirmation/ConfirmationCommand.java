@@ -16,9 +16,12 @@ import atas.model.Model;
  */
 public class ConfirmationCommand extends ConfirmCommand {
     public static final String MESSAGE_CONFIRMATION = "(yes/no)";
-    public static final String MESSAGE_CONFIRMATION_DELETE = "Delete %1$d? " + MESSAGE_CONFIRMATION;
-    public static final String MESSAGE_CONFIRMATION_EDIT = "Edit %1$d? " + MESSAGE_CONFIRMATION;
-    public static final String MESSAGE_CONFIRMATION_CLEAR = "Clear list? " + MESSAGE_CONFIRMATION;
+    public static final String MESSAGE_CONFIRMATION_DELETE_STUDENT = "Delete student %1$d? " + MESSAGE_CONFIRMATION;
+    public static final String MESSAGE_CONFIRMATION_EDIT_STUDENT = "Edit student %1$d? " + MESSAGE_CONFIRMATION;
+    public static final String MESSAGE_CONFIRMATION_CLEAR_STUDENT_LIST = "Clear student list? " + MESSAGE_CONFIRMATION;
+    public static final String MESSAGE_CONFIRMATION_DELETE_SESSION = "Delete session %1$d? " + MESSAGE_CONFIRMATION;
+    public static final String MESSAGE_CONFIRMATION_EDIT_SESSION = "Edit session %1$d? " + MESSAGE_CONFIRMATION;
+    public static final String MESSAGE_CONFIRMATION_CLEAR_SESSION_LIST = "Clear session list? " + MESSAGE_CONFIRMATION;
     public static final String ACCEPT_COMMAND_FULL = "yes";
     public static final String ACCEPT_COMMAND_SHORT = "y";
     public static final String REJECT_COMMAND_FULL = "no";
