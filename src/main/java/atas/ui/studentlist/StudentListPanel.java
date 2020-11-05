@@ -18,8 +18,10 @@ import javafx.scene.layout.VBox;
  * Panel containing the list of students.
  */
 public class StudentListPanel extends UiPart<Region> {
+
     public static final String NO_STUDENTS_MESSAGE = "You currently have no students!\n"
             + "Type \"addstu …\" to start adding one!";
+
     private static final String FXML = "StudentListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(StudentListPanel.class);
 
@@ -49,16 +51,27 @@ public class StudentListPanel extends UiPart<Region> {
         addStudentListChangeListener(studentList);
     }
 
+    /**
+     * Changes the view to show the student list.
+     */
     private void showStudentList() {
         studentListView.setVisible(true);
         emptyStudentListView.setVisible(false);
     }
 
+    /**
+     * Changes the view to show a message declaring that there is no students.
+     */
     private void showEmptyStudentState() {
         studentListView.setVisible(false);
         emptyStudentListView.setVisible(true);
     }
 
+    /**
+     * Adds a listener to listen if the student list becomes empty.
+     *
+     * @param studentList Observable list of students to be listened to.
+     */
     private void addStudentListChangeListener(ObservableList<Student> studentList) {
         studentListView.getItems().addListener(new ListChangeListener<Student>() {
             @Override

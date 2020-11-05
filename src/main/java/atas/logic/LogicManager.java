@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 
 import atas.commons.core.GuiSettings;
 import atas.commons.core.LogsCenter;
+import atas.commons.core.index.Index;
 import atas.logic.commands.Command;
 import atas.logic.commands.CommandResult;
 import atas.logic.commands.exceptions.CommandException;
@@ -109,6 +110,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public Index getSessionId() {
+        return model.getSessionId();
+    }
+
+    @Override
     public String getMemoContent() {
         return model.getMemoContent();
     }
@@ -125,8 +131,8 @@ public class LogicManager implements Logic {
 
     @Override
     public void saveMemoContent(String content) throws CommandException {
-        model.saveMemoContent(content);
         try {
+            model.saveMemoContent(content);
             storage.saveMemo(model.getMemo());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
