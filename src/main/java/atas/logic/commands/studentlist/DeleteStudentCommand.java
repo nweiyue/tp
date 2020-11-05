@@ -57,7 +57,7 @@ public class DeleteStudentCommand extends DangerousCommand implements IndexedStu
     @Override
     public String toString() {
         String oneBasedIndex = String.valueOf(targetIndex.getOneBased());
-        return "Delete " + oneBasedIndex;
+        return "Delete student " + oneBasedIndex;
     }
 
     @Override

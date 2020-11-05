@@ -95,7 +95,7 @@ public class EditStudentCommand extends DangerousCommand implements IndexedStude
     @Override
     public String toString() {
         String oneBasedIndex = String.valueOf(targetIndex.getOneBased());
-        return "Edit " + oneBasedIndex;
+        return "Edit student " + oneBasedIndex;
     }
 
     /**
