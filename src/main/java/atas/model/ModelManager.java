@@ -195,7 +195,7 @@ public class ModelManager implements Model {
     public void resetSessionList() {
         this.sessionList.clearSessions();
         this.sessionId = null;
-        attributesList.resetData(new ArrayList<>());
+        attributesList.resetData();
     }
 
     @Override
@@ -226,7 +226,7 @@ public class ModelManager implements Model {
         sessionList.deleteSession(target);
         if (id.equals(this.sessionId)) {
             this.sessionId = null;
-            attributesList.resetData(new ArrayList<>());
+            attributesList.resetData();
         }
         refreshStudentStatistics();
     }

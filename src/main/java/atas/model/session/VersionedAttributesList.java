@@ -6,21 +6,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import atas.commons.core.index.Index;
 import atas.model.VersionedEntity;
 import atas.model.exceptions.UnableToRedoException;
 import atas.model.exceptions.UnableToUndoException;
 import javafx.collections.ObservableList;
 
-
 public class VersionedAttributesList extends AttributesList implements VersionedEntity {
 
-    private final List<List<Attributes>> attributeStateList;
+    private final List<AttributesList> attributeStateList;
     private int currentStatePointer;
-
-    /* Tracks the session name and index of the session entered */
-    private Optional<String> currentSessionName;
-    private Optional<Index> currentSessionIndex;
 
     /**
      * Creates a VersionedAttributesList with an empty initial state.
@@ -28,20 +22,14 @@ public class VersionedAttributesList extends AttributesList implements Versioned
     public VersionedAttributesList() {
         super();
         attributeStateList = new ArrayList<>();
-        attributeStateList.add(new ArrayList<>());
+        attributeStateList.add(new AttributesList());
         currentStatePointer = 0;
-        currentSessionName = Optional.empty();
-        currentSessionIndex = Optional.empty();
-    }
-
-    public List<List<Attributes>> getAttributeStateList() {
-        return attributeStateList;
     }
 
     @Override
     public void commit() {
         removeStatesAfterCurrentPointer();
-        this.attributeStateList.add(new ArrayList<>(attributes));
+        this.attributeStateList.add(new AttributesList(this));
         currentStatePointer++;
     }
 
@@ -96,18 +84,9 @@ public class VersionedAttributesList extends AttributesList implements Versioned
         commit();
     }
 
-    /**
-     * Resets the current attribute list to a new set of attribute list.
-     *
-     * @param newData The new set of attribute list.
-     */
-    public void resetData(List<Attributes> newData) {
-        requireNonNull(newData);
-        this.attributes.setAll(newData);
-    }
 
     private void removeStatesAfterCurrentPointer() {
-        List<List<Attributes>> subList = attributeStateList.subList(currentStatePointer + 1, attributeStateList.size());
+        List<AttributesList> subList = attributeStateList.subList(currentStatePointer + 1, attributeStateList.size());
         subList.clear();
     }
 
