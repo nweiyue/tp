@@ -1,5 +1,6 @@
 package atas.storage;
 
+import static atas.commons.util.FileUtil.createIfMissing;
 import static java.util.Objects.requireNonNull;
 
 import java.io.File;
@@ -63,6 +64,7 @@ public class TxtMemoStorage implements MemoStorage {
         requireNonNull(memo);
         requireNonNull(filePath);
 
+        createIfMissing(filePath);
         FileWriter fw = new FileWriter(String.valueOf(filePath));
         String memoContent = memo.getContent();
         fw.write(memoContent);
