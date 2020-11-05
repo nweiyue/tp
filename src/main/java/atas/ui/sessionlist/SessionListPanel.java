@@ -15,8 +15,10 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
 public class SessionListPanel extends UiPart<Region> {
+
     public static final String NO_SESSIONS_MESSAGE = "You currently have no sessions!\n"
             + "Type \"addses …\" to start adding one!";
+
     private static final String FXML = "SessionListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(SessionListPanel.class);
 
@@ -46,16 +48,27 @@ public class SessionListPanel extends UiPart<Region> {
         addSessionListChangeListener(sessionList);
     }
 
+    /**
+     * Changes the view to show the session list.
+     */
     private void showSessionList() {
         sessionListView.setVisible(true);
         emptySessionListView.setVisible(false);
     }
 
+    /**
+     * Changes the view to show a message declaring that there is no sessions.
+     */
     private void showEmptySessionState() {
         sessionListView.setVisible(false);
         emptySessionListView.setVisible(true);
     }
 
+    /**
+     * Adds a listener to listen if the session list becomes empty.
+     *
+     * @param sessionList Observable list of sessions to be listened to.
+     */
     private void addSessionListChangeListener(ObservableList<Session> sessionList) {
         sessionListView.getItems().addListener(new ListChangeListener<Session>() {
             @Override

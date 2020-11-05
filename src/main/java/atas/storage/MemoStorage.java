@@ -21,6 +21,7 @@ public interface MemoStorage {
 
     /**
      * Returns the memo content as a String.
+     *
      * @return memo content.
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
@@ -34,8 +35,8 @@ public interface MemoStorage {
 
     /**
      * Saves the given {@link Memo} to the storage.
+     *
      * @param memo Memo to be saved.
-     * @throws IOException if there was any problem writing to the file.
      */
     void saveMemo(Memo memo) throws IOException;
 
