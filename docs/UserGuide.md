@@ -72,7 +72,9 @@ Specifically, **ATAS** allows you to keep track of four different aspects (see [
 ### 1.3. Preview
 
 The following is the GUI of our application:
-    ![UiPreview](images/UiPreview.png)
+    ![UiPreview](images/user-guide/1.3-UiPreview.png)
+    <p align="center"> <sub> <b>Figure 1.3</b>: UI Preview </sub> </p>
+    
 
 GUI Components:
    1. **Command box**: where you enter your commands.
@@ -531,11 +533,11 @@ deletestu INDEX
 
 **Outcome**
 
-![ScreenshotDeletestuConfirmation](images/ScreenshotDeletestuConfirmationExample.png)
+![DeletestuConfirmation](images/user-guide/5.3.4-1-DeletestuConfirmationPrompt.png)
 <p align="center"> <sub> <b>Figure 5.3.4-1</b>: Confirmation for deleting student 2 </sub> </p>
    
-![ScreenshotDeletestu](images/ScreenshotDeletestu.png)
-<p align="center"> <sub> <b>Figure 5.3.4-1</b>: After confirming the deletion of student 2 </sub> </p>   
+![Deletestu](images/user-guide/5.3.4-2-Deletestu.png)
+<p align="center"> <sub> <b>Figure 5.3.4-2</b>: After confirming the deletion of student 2 </sub> </p>   
    
 
 Examples:
@@ -576,8 +578,8 @@ editstu INDEX (n/UPDATED_NAME) (e/UPDATED_EMAIL_ADDRESS) (m/UPDATED_MATRICULATIO
 
 **Outcome:**
 
-![ScreenshotEditstu](images/ScreenshotEditstu.png)
-<p align="center"> <sub> <b>Figure 5.3.5-1</b>: After confirming the editing of student 2 (confirmation is similar to delete student, thus not shown)</sub> </p>   
+![Editstu](images/user-guide/5.3.5-Editstu.png)
+<p align="center"> <sub> <b>Figure 5.3.5</b>: After confirming the editing of student 2 (confirmation is similar to delete student, thus not shown)</sub> </p>   
 
 { end of `features#student#editstu` written by: Marcus Tan Wei }
 
@@ -611,8 +613,8 @@ clearstu
 </div>
 
 **Outcome:**
-![ScreenshotClearstu](images/ScreenshotClearstu.png)
-<p align="center"> <sub> <b>Figure 5.3.6-1</b>: Clearing the student list (confirmation is similar to delete student, thus not shown) </sub> </p>
+![Clearstu](images/user-guide/5.3.6-Clearstu.png)
+<p align="center"> <sub> <b>Figure 5.3.6</b>: Clearing the student list (confirmation is similar to delete student, thus not shown) </sub> </p>
 
 { end of `features#student#clearstu` written by: Marcus Tan Wei }
 
@@ -886,7 +888,7 @@ These commands are: [`deletestu`](#534-deleting-a-student--deletestu), [`editstu
 * `clearses` is followed with the following displayed message `Clear student list? (yes/no)`.
 </div>
 
-For example, confirmation of `clearstu` is shown above at [Section 5.3.6 - Clearing](#536-clearing-the-student-list--clearstu).
+For example, confirmation of `clearstu` is shown above at [Section 5.3.6 - Clearing the student list](#536-clearing-the-student-list--clearstu).
 In this case, we will show an example of the confirmation prompt following the `clearstu` command (**Figure 5.7-1**) and result of rejecting a `clearstu` command (**Figure 5.7-2**).
 
 **Format:**
@@ -903,10 +905,10 @@ clearstu
 
 **Outcome:**
 
-![ClearstuConfirmationExample](images/ScreenshotClearstuConfirmationExample.png)
+![ClearstuConfirmationExample](images/user-guide/5.7-1-ClearstuConfirmationPrompt.png)
 <p align="center"> <sub> <b>Figure 5.7-1</b>: Confirmation prompt after entering the clear student list command </sub> </p> 
 
-![ClearstuReject](images/ScreenshotClearstuReject.png)
+![ClearstuReject](images/user-guide/5.7-2-ClearstuReject.png)
 <p align="center"> <sub> <b>Figure 5.7-2</b>: Clear student list command is rejected </sub> </p> 
 
 { end of `features#userconfirmation#clearstu` written by: Marcus Tan Wei }
