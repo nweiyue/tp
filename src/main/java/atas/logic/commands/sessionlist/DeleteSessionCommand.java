@@ -65,7 +65,7 @@ public class DeleteSessionCommand extends DangerousCommand implements IndexedSes
     @Override
     public String toString() {
         String oneBasedIndex = String.valueOf(targetIndex.getOneBased());
-        return "Delete " + oneBasedIndex;
+        return "Delete session " + oneBasedIndex;
     }
 
     @Override
