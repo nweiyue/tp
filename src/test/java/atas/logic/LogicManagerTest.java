@@ -147,6 +147,7 @@ public class LogicManagerTest {
         assertEquals(logicManager.getFilteredSessionList(), logic.getFilteredSessionList());
         assertEquals(logicManager.getStudentListFilePath(), logic.getStudentListFilePath());
         assertEquals(logicManager.getGuiSettings(), logic.getGuiSettings());
+        assertEquals(logicManager.getSessionId(), logic.getSessionId());
         assertEquals(logicManager.getMemoContent(), logic.getMemoContent());
     }
 
