@@ -91,4 +91,9 @@ public interface Logic {
      * @throws CommandException If file to save content in does not exist and cannot be created.
      */
     void saveMemoContent(String memoContent) throws CommandException;
+
+    /**
+     * Refresh statistics of model.
+     */
+    void refreshStatistics();
 }

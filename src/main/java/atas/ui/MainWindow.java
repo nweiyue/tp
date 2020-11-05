@@ -315,6 +315,7 @@ public class MainWindow extends UiPart<Stage> {
             CommandException, ParseException, InterruptedException {
         try {
             CommandResult commandResult = logic.execute(commandText);
+            logic.refreshStatistics();
             Task displayResultTask = new Task() {
                 @Override
                 protected Object call() throws Exception {
@@ -344,6 +345,8 @@ public class MainWindow extends UiPart<Stage> {
             if (logic.getSessionId() == null) {
                 logic.disableCurrentSession();
                 sessionStudentListPanel.showNotInSession();
+            } else {
+                sessionStudentListPanel.showSessionStudentList(logic.getFilteredAttributesList());
             }
 
             if (commandResult.isExit()) {
