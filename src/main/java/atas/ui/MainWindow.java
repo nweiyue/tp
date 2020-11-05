@@ -147,9 +147,8 @@ public class MainWindow extends UiPart<Stage> {
 
         getRoot().addEventFilter(KeyEvent.KEY_RELEASED, keyEvent -> {
             if (keyEvent.getCode() == KeyCode.ENTER) {
-                logic.refreshStatistics();
-                sessionStudentListPanel = new SessionStudentListPanel(logic.getFilteredAttributesList());
-                sessionStudentListPanelPlaceholder.getChildren().add(sessionStudentListPanel.getRoot());
+
+                //sessionStudentListPanelPlaceholder.getChildren().add(sessionStudentListPanel.getRoot());
                 StatusBarFooter statusBarFooter = new StatusBarFooter(
                     logic.getLeftSessionDetails(), logic.getRightSessionDetails());
                 statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
@@ -353,8 +352,12 @@ public class MainWindow extends UiPart<Stage> {
             handleCurrentSession();
 
             if (logic.getSessionId() == null) {
+                logic.refreshStatistics();
                 logic.disableCurrentSession();
                 sessionStudentListPanel.showNotInSession();
+            } else {
+                logic.refreshStatistics();
+                sessionStudentListPanel.showSessionStudentList(logic.getFilteredAttributesList());
             }
 
             if (commandResult.isExit()) {
