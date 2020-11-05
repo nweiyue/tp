@@ -1,5 +1,6 @@
 package atas.model.session;
 
+import static atas.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
@@ -15,10 +16,10 @@ import javafx.collections.ObservableList;
  */
 public class AttributesList implements ReadOnlyAttributesList {
 
-    protected final ObservableList<Attributes> attributes;
+    private final ObservableList<Attributes> attributes;
 
-    /* Tracks the session name and index of the session entered */
-    protected Optional<Index> currentSessionIndex;
+    // Tracks the index of the session entered
+    private Optional<Index> currentSessionIndex;
 
     /**
      * Creates a VersionedAttributesList with an empty initial state.
@@ -69,6 +70,12 @@ public class AttributesList implements ReadOnlyAttributesList {
     public void resetData() {
         this.attributes.setAll(new ArrayList<>());
         this.currentSessionIndex = Optional.empty();
+    }
+
+    public void setCurrentAttributeList(Index index, List<Attributes> attributeList) {
+        requireAllNonNull(index, attributeList);
+        attributes.setAll(attributeList);
+        currentSessionIndex = Optional.ofNullable(index);
     }
 
     public Index getCurrentSessionIndexValue() {
