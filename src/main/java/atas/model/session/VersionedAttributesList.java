@@ -27,6 +27,16 @@ public class VersionedAttributesList extends AttributesList implements Versioned
         currentStatePointer = 0;
     }
 
+    /**
+     * Creates a VersionedAttributesList with {@code newData} initialized.
+     */
+    public VersionedAttributesList(ReadOnlyAttributesList newData) {
+        super(newData);
+        attributeStateList = new ArrayList<>();
+        attributeStateList.add(new AttributesList());
+        currentStatePointer = 0;
+    }
+
     @Override
     public void commit() {
         removeStatesAfterCurrentPointer();
@@ -70,6 +80,17 @@ public class VersionedAttributesList extends AttributesList implements Versioned
         currentSessionIndex = Optional.ofNullable(index);
     }
 
+    public List<AttributesList> getAttributeStateList() {
+        return attributeStateList;
+    }
+
+    public int getCurrentStatePointer() {
+        return currentStatePointer;
+    }
+
+    public void setCurrentStatePointer(int newPointer) {
+        currentStatePointer = newPointer;
+    }
 
     private void removeStatesAfterCurrentPointer() {
         List<AttributesList> subList = attributeStateList.subList(currentStatePointer + 1, attributeStateList.size());

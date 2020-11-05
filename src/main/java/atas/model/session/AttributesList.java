@@ -38,6 +38,13 @@ public class AttributesList implements ReadOnlyAttributesList {
     }
 
     /**
+     * Replaces the contents of the attributes list with {@code attributes}.
+     */
+    public AttributesList(ReadOnlyAttributesList newState) {
+        this(newState, Optional.empty());
+    }
+
+    /**
      * Resets the current attribute list to a new set of attribute list.
      *
      * @param newData The new set of attribute list.
