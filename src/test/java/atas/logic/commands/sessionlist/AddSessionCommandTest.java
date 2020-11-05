@@ -199,6 +199,11 @@ public class AddSessionCommandTest {
         }
 
         @Override
+        public void resetCurrentAttributesList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateCurrentAttributesList() {
             throw new AssertionError("This method should not be called.");
         }

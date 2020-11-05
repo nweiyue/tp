@@ -60,6 +60,14 @@ public class VersionedSessionList extends SessionList implements VersionedEntity
         resetData(sessionStateList.get(++currentStatePointer));
     }
 
+    public int getCurrentStatePointer() {
+        return currentStatePointer;
+    }
+
+    public void setCurrentStatePointer(int newPointer) {
+        currentStatePointer = newPointer;
+    }
+
     private void removeStatesAfterCurrentPointer() {
         this.sessionStateList.subList(currentStatePointer + 1, sessionStateList.size()).clear();
     }
