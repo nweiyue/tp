@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import atas.commons.core.index.Index;
 import atas.model.VersionedEntity;
 import atas.model.exceptions.UnableToRedoException;
 import atas.model.exceptions.UnableToUndoException;
@@ -63,13 +64,13 @@ public class VersionedAttributesList extends AttributesList implements Versioned
         return attributes;
     }
 
-    public void setCurrentAttributeList(String name, List<Attributes> attributeList) {
+    public void setCurrentAttributeList(String name, Index index, List<Attributes> attributeList) {
         requireNonNull(name);
         requireNonNull(attributeList);
         this.attributes.setAll(attributeList);
         // If no sessions were entered or user enters a different session
         if (currentSessionName.isEmpty() || !currentSessionName.get().equals(name)) {
-            saveInitialCommitAfterEnterSession(name);
+            saveInitialCommitAfterEnterSession(name, index.getCopy());
         }
     }
 
@@ -78,9 +79,10 @@ public class VersionedAttributesList extends AttributesList implements Versioned
      *
      * @param name Session name.
      */
-    private void saveInitialCommitAfterEnterSession(String name) {
+    private void saveInitialCommitAfterEnterSession(String name, Index index) {
         requireNonNull(name);
         currentSessionName = Optional.of(name);
+        currentSessionIndex = Optional.of(index);
         commit();
     }
 

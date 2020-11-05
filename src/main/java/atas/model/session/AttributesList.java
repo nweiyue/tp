@@ -61,6 +61,12 @@ public class AttributesList implements ReadOnlyAttributesList {
      */
     public void resetData() {
         this.attributes.setAll(new ArrayList<>());
+        this.currentSessionName = Optional.empty();
+        this.currentSessionIndex = Optional.empty();
+    }
+
+    public Index getSessionIndex() {
+        return currentSessionIndex.orElse(null);
     }
 
     @Override
