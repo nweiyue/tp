@@ -8,6 +8,7 @@ import atas.logic.commands.Command;
 import atas.logic.commands.CommandResult;
 import atas.logic.commands.exceptions.CommandException;
 import atas.model.Model;
+import atas.model.session.exceptions.SameSessionException;
 import atas.ui.Tab;
 
 public class EnterSessionCommand extends Command {
@@ -40,7 +41,14 @@ public class EnterSessionCommand extends Command {
             throw new CommandException(MESSAGE_INVALID_SESSION_DISPLAYED_INDEX);
         }
 
-        model.enterSession(sessionIndex);
+        try {
+            model.enterSession(sessionIndex);
+        } catch (SameSessionException e) {
+            throw new CommandException(String.format(MESSAGE_ALREADY_IN_SESSION,
+                    e.getSessionIndex().getOneBased()));
+        }
+
+        model.commit();
         return new CommandResult(String.format(MESSAGE_SUCCESS, sessionIndex.getOneBased()),
             false, Tab.CURRENT, false, false, true);
     }
