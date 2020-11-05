@@ -275,7 +275,7 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Attributes> getCurrentAttributesList() {
-        return attributesList.getCurrentAttributeList();
+        return attributesList.getAttributesList();
     }
 
     @Override

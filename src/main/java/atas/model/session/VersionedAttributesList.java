@@ -6,30 +6,32 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import atas.commons.core.index.Index;
 import atas.model.VersionedEntity;
 import atas.model.exceptions.UnableToRedoException;
 import atas.model.exceptions.UnableToUndoException;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 
-public class VersionedAttributesList implements VersionedEntity {
+public class VersionedAttributesList extends AttributesList implements VersionedEntity {
 
-    private final ObservableList<Attributes> currentAttributeList;
     private final List<List<Attributes>> attributeStateList;
     private int currentStatePointer;
-    /* Tracks all the session names of the sessions entered */
+
+    /* Tracks the session name and index of the session entered */
     private Optional<String> currentSessionName;
+    private Optional<Index> currentSessionIndex;
 
     /**
-     * Creates a VersionedStudentList with an empty initial state.
+     * Creates a VersionedAttributesList with an empty initial state.
      */
     public VersionedAttributesList() {
-        currentAttributeList = FXCollections.observableArrayList();
+        super();
         attributeStateList = new ArrayList<>();
         attributeStateList.add(new ArrayList<>());
         currentStatePointer = 0;
         currentSessionName = Optional.empty();
+        currentSessionIndex = Optional.empty();
     }
 
     public List<List<Attributes>> getAttributeStateList() {
@@ -39,7 +41,7 @@ public class VersionedAttributesList implements VersionedEntity {
     @Override
     public void commit() {
         removeStatesAfterCurrentPointer();
-        this.attributeStateList.add(new ArrayList<>(currentAttributeList));
+        this.attributeStateList.add(new ArrayList<>(attributes));
         currentStatePointer++;
     }
 
@@ -69,14 +71,14 @@ public class VersionedAttributesList implements VersionedEntity {
         resetData(attributeStateList.get(++currentStatePointer));
     }
 
-    public ObservableList<Attributes> getCurrentAttributeList() {
-        return currentAttributeList;
+    public ObservableList<Attributes> getAttributesList() {
+        return attributes;
     }
 
     public void setCurrentAttributeList(String name, List<Attributes> attributeList) {
         requireNonNull(name);
         requireNonNull(attributeList);
-        this.currentAttributeList.setAll(attributeList);
+        this.attributes.setAll(attributeList);
         // If no sessions were entered or user enters a different session
         if (currentSessionName.isEmpty() || !currentSessionName.get().equals(name)) {
             saveInitialCommitAfterEnterSession(name);
@@ -101,7 +103,7 @@ public class VersionedAttributesList implements VersionedEntity {
      */
     public void resetData(List<Attributes> newData) {
         requireNonNull(newData);
-        this.currentAttributeList.setAll(newData);
+        this.attributes.setAll(newData);
     }
 
     private void removeStatesAfterCurrentPointer() {
