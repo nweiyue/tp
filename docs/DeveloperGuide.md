@@ -84,7 +84,7 @@ The sections below give more details of each component.
 
 ### 3.2. UI component
 
-![Class Diagram of the UI Component](images/3.2.1-UiClassDiagram.png)
+![Class Diagram of the UI Component](images/developer-guide/3.2.1-UiClassDiagram.png)
 Figure 3.2.1. Class diagram of the Ui component
 
 **API** :
@@ -205,13 +205,13 @@ Step 5. `MainWindow#handleSwitchTab()` will then be called and will check if the
 
 The following sequence diagram shows how the switch operation works:
 
-![SwitchTabsSequenceDiagram](images/4.1.1-SwitchTabsSequenceDiagram.png)
+![SwitchTabsSequenceDiagram](images/developer-guide/4.1.1-SwitchTabsSequenceDiagram.png)
 
 Figure 4.1.1. Sequence diagram showing how `Ui` component works with the `Logic` component to switch tabs
 
 The following activity diagram summarizes what happens when a user executes a switch command:
 
-![SwitchTabsActivityDiagram](images/4.1.2-SwitchTabsActivityDiagram.png)
+![SwitchTabsActivityDiagram](images/developer-guide/4.1.2-SwitchTabsActivityDiagram.png)
 
 Figure 4.1.2. Activity diagram showing the implementation of switching between tabs
 
@@ -569,7 +569,7 @@ Step 3. `ModelManager#addNoteToMemo()` calls `Memo#addNote()` which concatenates
 
 The following sequence diagram shows how adding a note updates the content in `Memo`:
 
-![AddNoteSequenceDiagram1](images/4.8.1-AddNoteSequenceDiagram.png)
+![AddNoteSequenceDiagram1](images/developer-guide/4.8.1-AddNoteSequenceDiagram.png)
 
 Figure 4.8.1. Sequence diagram showing how the `Logic` component updates the content in `Memo`
 
@@ -579,7 +579,7 @@ Step 5: `StorageManager#saveMemo()` calls `TxtMemoStorage#saveMemo()` which retr
 
 The following sequence diagram shows how adding a note updates the data in the hard disk:
 
-![AddNoteSequenceDiagram2](images/4.8.2-AddNoteSequenceDiagram.png) 
+![AddNoteSequenceDiagram2](images/developer-guide/4.8.2-AddNoteSequenceDiagram.png) 
 
 Figure 4.8.2. Sequence diagram showing how the `Logic` component updates the memo data in the hard disk
 
@@ -589,7 +589,7 @@ Step 6: `MainWindow#handleEditMemo()` retrieves the updated `Memo` content using
 
 The following sequence diagram shows how adding a note updates the text box of `MemoBox` to be displayed to user:
 
-![AddNoteSequenceDiagram3](images/4.8.3-AddNoteSequenceDiagram.png) 
+![AddNoteSequenceDiagram3](images/developer-guide/4.8.3-AddNoteSequenceDiagram.png) 
 
 Figure 4.8.1. Sequence diagram showing how the `Ui` component works with the `Logic` component to update the GUI
 
