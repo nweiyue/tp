@@ -131,6 +131,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 ### 3.4. Model component
 
 ![Structure of the Model Component](images/developer-guide/3.4-ModelClassDiagram.png)
+Figure 3.4. Class diagram of the Model component
 
 **API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-W16-4/tp/blob/master/src/main/java/atas/model/Model.java)
 
