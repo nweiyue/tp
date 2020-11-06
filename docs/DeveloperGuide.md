@@ -163,7 +163,7 @@ The `Storage` component,
 
 ### 3.6. Common classes
 
-Classes used by multiple components are in the `seedu.atas.commons` package.
+Classes used by multiple components are in the `atas.commons` package.
 
 { end of `design#common_classes` written by: Zhang Sheng Yang }
 
@@ -794,7 +794,7 @@ Use case ends.
 
 <div markdown="block" class="alert alert-info">
 
-**Use case: UC04 - Clear the class list**
+**Use case: UC04 - Clear the student list**
 
 **MSS**
 
@@ -982,6 +982,11 @@ Use case ends.
 
 * 1a. The session index is invalid.
    * 1a1. ATAS shows an error message.
+   
+   Use case ends.
+
+* 1b. The session index is the same as current session.
+   * 1b1. ATAS shows an error message.
    
    Use case ends.
 
