@@ -438,17 +438,20 @@ Given below is an example usage scenario and how the undo/redo mechanism behaves
 
 Step 1. The user launches the application for the first time. Each `Versioned<<Entity>>` will be initialized with the initial entity state, and the `currentStatePointer` pointing to that single entity state.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+![UndoRedoState0](images/developer-guide/UndoRedoState0.png)
+Figure 4.7.1. Each versioned entity state upon initialization
 
 Step 2. The user executes `deletestu 5` command to delete the 5th student in the student list. 
 The `deletestu` command calls `Model#commit()`, causing the modified state of all versioned entities after the `deletestu 5` command executes to be saved in the `<<entity>>StateList`,
  and the `currentStatePointer` for each `Versioned<<Entity>>List>>` is shifted to the newly inserted entity state.
 
-![UndoRedoState1](images/UndoRedoState1.png)
+![UndoRedoState1](images/developer-guide/UndoRedoState1.png)
+Figure 4.7.2. Each versioned entity state upon executing the `deletestu` command
 
 Step 3. The user executes `addstu n/David …​` to add a new student. The `addstu` command also calls `Model#commit()`, causing another modified address entity state (for each state) to be saved into the `<<entity>>StateList`.
 
-![UndoRedoState2](images/UndoRedoState2.png)
+![UndoRedoState2](images/developer-guide/UndoRedoState2.png)
+Figure 4.7.3. Each versioned entity state upon executing the `addstu` command
 
 <div markdown="span" class="alert alert-info">
 
@@ -459,7 +462,8 @@ Step 3. The user executes `addstu n/David …​` to add a new student. The `add
 Step 4. The user now decides that adding the student was a mistake, and decides to undo that action by executing the `undo` command.
 The `undo` command will call `Model#undo()`, which will shift the `currentStatePointer` for *all* versioned entities once to the left, pointing it to the previous entity state, and restores each entity to that state.
 
-![UndoRedoState3](images/UndoRedoState3.png)
+![UndoRedoState3](images/developer-guide/UndoRedoState3.png)
+Figure 4.7.4. Each versioned entity state upon executing a single `undo` command
 
 <div markdown="span" class="alert alert-info">
 
@@ -471,7 +475,8 @@ If so, it will return an error to the user rather than attempting to perform the
 
 The following sequence diagram shows how the undo operation works:
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+![UndoSequenceDiagram](images/developer-guide/UndoSequenceDiagram.png)
+Figure 4.7.5. A sequence diagram showing the implementation of the `undo` operation
 
 <div markdown="span" class="alert alert-info">
 
@@ -491,17 +496,20 @@ The `redo` command uses `Model#canRedo()` to check if this is the case. If so, i
 Step 5. The user then decides to execute the command `liststu`. Commands that do not modify any entity, such as `liststu`, will usually not call `Model#commit()`, `Model#undo()` or `Model#redo()`. 
 Thus, the `<<entity>>StateList` for each versioned entity remains unchanged.
 
-![UndoRedoState4](images/UndoRedoState4.png)
+![UndoRedoState4](images/developer-guide/UndoRedoState4.png)
+Figure 4.7.6. Each versioned entity state upon executing the `liststu` command
 
 Step 6. The user executes `clearstu`, which calls `Model#commit()`. 
 Since the `currentStatePointer` for each versioned entity is not pointing at the end of the `<<entity>>StateList`, all entity states after the `currentStatePointer` will be purged. 
 Reason: It no longer makes sense to redo the `addstu n/David …​` command. This is the behavior that most modern desktop applications follow.
 
-![UndoRedoState5](images/UndoRedoState5.png)
+![UndoRedoState5](images/developer-guide/UndoRedoState5.png)
+Figure 4.7.7. Each versioned entity state upon executing the `clearstu` command
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
+![CommitActivityDiagram](images/developer-guide/CommitActivityDiagram.png)
+Figure 4.7.8. An activity diagram showing the series of events upon a user executing a command
 
 #### 4.7.1. Design consideration
 
