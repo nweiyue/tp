@@ -66,6 +66,10 @@ public class Index {
         return new Index(oneBasedIndex - 1);
     }
 
+    public Index getCopy() {
+        return new Index(zeroBasedIndex);
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

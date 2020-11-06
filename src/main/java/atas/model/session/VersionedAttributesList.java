@@ -1,45 +1,41 @@
 package atas.model.session;
 
-import static java.util.Objects.requireNonNull;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import atas.model.VersionedEntity;
 import atas.model.exceptions.UnableToRedoException;
 import atas.model.exceptions.UnableToUndoException;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 
+public class VersionedAttributesList extends AttributesList implements VersionedEntity {
 
-public class VersionedAttributesList implements VersionedEntity {
-
-    private final ObservableList<Attributes> currentAttributeList;
-    private final List<List<Attributes>> attributeStateList;
+    private final List<AttributesList> attributeStateList;
     private int currentStatePointer;
-    /* Tracks all the session names of the sessions entered */
-    private Optional<String> currentSessionName;
 
     /**
-     * Creates a VersionedStudentList with an empty initial state.
+     * Creates a VersionedAttributesList with an empty initial state.
      */
     public VersionedAttributesList() {
-        currentAttributeList = FXCollections.observableArrayList();
+        super();
         attributeStateList = new ArrayList<>();
-        attributeStateList.add(new ArrayList<>());
+        attributeStateList.add(new AttributesList());
         currentStatePointer = 0;
-        currentSessionName = Optional.empty();
     }
 
-    public List<List<Attributes>> getAttributeStateList() {
-        return attributeStateList;
+    /**
+     * Creates a VersionedAttributesList with {@code newData} initialized.
+     */
+    public VersionedAttributesList(ReadOnlyAttributesList newData) {
+        super(newData);
+        attributeStateList = new ArrayList<>();
+        attributeStateList.add(new AttributesList());
+        currentStatePointer = 0;
     }
 
     @Override
     public void commit() {
         removeStatesAfterCurrentPointer();
-        this.attributeStateList.add(new ArrayList<>(currentAttributeList));
+        this.attributeStateList.add(new AttributesList(this, getCurrentSessionIndex()));
         currentStatePointer++;
     }
 
@@ -69,43 +65,20 @@ public class VersionedAttributesList implements VersionedEntity {
         resetData(attributeStateList.get(++currentStatePointer));
     }
 
-    public ObservableList<Attributes> getCurrentAttributeList() {
-        return currentAttributeList;
+    public List<AttributesList> getAttributeStateList() {
+        return attributeStateList;
     }
 
-    public void setCurrentAttributeList(String name, List<Attributes> attributeList) {
-        requireNonNull(name);
-        requireNonNull(attributeList);
-        this.currentAttributeList.setAll(attributeList);
-        // If no sessions were entered or user enters a different session
-        if (currentSessionName.isEmpty() || !currentSessionName.get().equals(name)) {
-            saveInitialCommitAfterEnterSession(name);
-        }
+    public int getCurrentStatePointer() {
+        return currentStatePointer;
     }
 
-    /**
-     * Creates an initial commit when entering a different session.
-     *
-     * @param name Session name.
-     */
-    private void saveInitialCommitAfterEnterSession(String name) {
-        requireNonNull(name);
-        currentSessionName = Optional.of(name);
-        commit();
-    }
-
-    /**
-     * Resets the current attribute list to a new set of attribute list.
-     *
-     * @param newData The new set of attribute list.
-     */
-    public void resetData(List<Attributes> newData) {
-        requireNonNull(newData);
-        this.currentAttributeList.setAll(newData);
+    public void setCurrentStatePointer(int newPointer) {
+        currentStatePointer = newPointer;
     }
 
     private void removeStatesAfterCurrentPointer() {
-        List<List<Attributes>> subList = attributeStateList.subList(currentStatePointer + 1, attributeStateList.size());
+        List<AttributesList> subList = attributeStateList.subList(currentStatePointer + 1, attributeStateList.size());
         subList.clear();
     }
 

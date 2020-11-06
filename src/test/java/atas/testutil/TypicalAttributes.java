@@ -1,6 +1,9 @@
 package atas.testutil;
 
+import java.util.List;
+
 import atas.model.session.Attributes;
+import atas.model.session.AttributesList;
 import atas.model.session.Participation;
 import atas.model.session.Presence;
 import atas.model.student.Name;
@@ -19,4 +22,17 @@ public class TypicalAttributes {
         new Attributes(IS_ABSENT, HAS_PARTICIPATED, STUDENT_NAME);
     public static final Attributes PRESENT_AND_HAS_PARTICIPATED =
         new Attributes(IS_PRESENT, HAS_PARTICIPATED, STUDENT_NAME);
+
+    public static AttributesList getTypicalAttributesList() {
+        AttributesList toReturn = new AttributesList();
+        toReturn.getAttributesList().addAll(getTypicalAttributes());
+        return toReturn;
+    }
+
+    public static List<Attributes> getTypicalAttributes() {
+        return List.of(DEFAULT_PARTICIPATION,
+                PRESENT_BUT_HAS_NOT_PARTICIPATED,
+                ABSENT_BUT_HAS_PARTICIPATED,
+                PRESENT_AND_HAS_PARTICIPATED);
+    }
 }
