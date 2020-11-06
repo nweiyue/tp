@@ -475,7 +475,7 @@ Examples:
 **Outcome**
 
 ![Addstu](images/user-guide/5.3.1-AddStudent.png)
-<p align="center"><b>Figure 5.3.1</b></p> 
+<p align="center"><b>Figure 5.3.1 - Addstu Command</b></p> 
 
 #### 5.3.2. Locating students by name : `findstu`
 
@@ -507,7 +507,7 @@ Examples:
 **Outcome**
 
 ![Findstu](images/user-guide/5.3.2-FindStudent.png)
-<p align="center"><b>Figure 5.3.2</b></p> 
+<p align="center"><b>Figure 5.3.2 - Findstu Command</b></p> 
 
 #### 5.3.3. Listing all students : `liststu`
 
@@ -527,7 +527,7 @@ Example:
 **Outcome**
 
 ![Liststu](images/user-guide/5.3.3-ListStudent.png)
-<p align="center"><b>Figure 5.3.3</b></p> 
+<p align="center"><b>Figure 5.3.3 - Liststu Command</b></p> 
 
 { end of `features#students` written by: Zhang Sheng Yang }
 
@@ -850,7 +850,7 @@ Examples:
 **Outcome**
 
 ![Participate](images/user-guide/5.5.1-Participate.png)
-<p align="center"><b>Figure 5.5.1</b></p> 
+<p align="center"><b>Figure 5.5.1 - Participate Command</b></p> 
 
 
 
@@ -881,7 +881,7 @@ Examples:
 **Outcome**
 
 ![Presence](images/user-guide/5.5.2-Presence.png)
-<p align="center"><b>Figure 5.5.2</b></p> 
+<p align="center"><b>Figure 5.5.2 - Presence Command</b></p> 
 
 
 { end of `features#current_session` written by: Zhang Sheng Yang }
