@@ -195,9 +195,9 @@ To allow you to easily keep track of students presence and participation records
 
 The following is how the `Students` tab looks like:
 
-![41-studentsLayout](images/41-studentsLayout.png)
+![StudentsLayout](images/user-guide/4.1.1-StudentsLayout.png)
 
-Figure 4.1.1: Layout of `Students` tab when there is at least one student
+Figure 4.1.1. Layout of `Students` tab when there is at least one student
 
 Notes:
    * **Student list box**: Contains a list of students and their particulars such as their name, matriculation number, NUS email address and tags (if any). Students are arranged in the order that you add them. 
@@ -217,9 +217,9 @@ Notes:
 
 If there are no students in your list, you will see a message indicating as such.
 
-![41-emptyStudentsLayout](images/41-emptyStudentsLayout.png)
+![EmptyStudentsLayout](images/user-guide/4.1.2-EmptyStudentsLayout.png)
 
-Figure 4.1.2: Layout of `Students` tab when there are no students
+Figure 4.1.2. Layout of `Students` tab when there are no students
    
 To find out which features are supported by the `Students` tab, you can head over to [Section 5.3 - Students](#53-students).
 
@@ -231,9 +231,9 @@ To find out which features are supported by the `Students` tab, you can head ove
 
 The following is how the `Sessions` tab looks like:
 
-![42-sessionsLayout](images/42-sessionsLayout.png)
+![SessionsLayout](images/user-guide/4.2.1-SessionsLayout.png)
 
-Figure 4.2.1: Layout of `Sessions` tab when there is at least one session
+Figure 4.2.1. Layout of `Sessions` tab when there is at least one session
 
 Notes:
    * **Student list box**: Contains a list of sessions and their details such as their name and date. Sessions are arranged by their dates, starting from the latest at the top.
@@ -253,9 +253,9 @@ Notes:
 
 If there are no sessions in your list, you will see a message indicating as such.
 
-![42-emptySessionsLayout](images/42-emptySessionsLayout.png)
+![EmptySessionsLayout](images/user-guide/4.2.2-EmptySessionsLayout.png)
 
-Figure 4.2.2: Layout of `Sessions` tab when there are no sessions
+Figure 4.2.2. Layout of `Sessions` tab when there are no sessions
 
 To find out which features are supported by the `Sessions` tab, you can head over to [Section 5.4 - Sessions](#54-sessions).
 
@@ -267,9 +267,9 @@ To find out which features are supported by the `Sessions` tab, you can head ove
 
 The following is how the `Current Session` tab looks like:
 
-![43-currentSessionLayout](images/43-currentSessionLayout.png)
+![CurrentSessionLayout](images/user-guide/4.3.1-CurrentSessionLayout.png)
 
-Figure 4.3.1: Layout of `Current Session` tab when a session is entered
+Figure 4.3.1. Layout of `Current Session` tab when a session is entered
 
 Notes:
    * **Student list box**: Contains a list of sessions and their details such as their name and date. Sessions are arranged by their dates, starting from the latest at the top.
@@ -280,9 +280,9 @@ Similar to the [`Students`](#41-students) tab, if there are no students in that 
 
 If you have not entered any session or left a session (by removing that session), you will see a message indicating as such. You can enter a session by using `enterses INDEX` as described in [Section 5.4.5 - Entering a session](#545-entering-a-session).
 
-![43-notInCurrentSessionsLayout](images/43-notInCurrentSessionLayout.png)
+![NotInCurrentSessionsLayout](images/user-guide/4.3.2-NotInCurrentSessionLayout.png)
 
-Figure 4.3.2: Layout of `Current Session` tab when there are no session is entered
+Figure 4.3.2. Layout of `Current Session` tab when there are no session is entered
 
 To find out which features are supported by the `Current Session` tab, you can head over to [Section 5.5 - Current session](#55-current-session).
 
@@ -294,9 +294,9 @@ To find out which features are supported by the `Current Session` tab, you can h
 
 The following is how the `Memo` tab looks like:
 
-![44-memoLayout](images/44-memoLayout.png)
+![MemoLayout](images/user-guide/4.4.1-MemoLayout.png)
 
-Figure 4.4.1: Layout of `Memo` tab
+Figure 4.4.1. Layout of `Memo` tab
 
 Note:
    * **Memo box**: A text box where you can input any notes that you need for future references. The amount of space you can see is tied to size of your application window, but the actual text space that you can typed in will automatically be extended if you need more space.
@@ -312,7 +312,7 @@ To find out which features are supported by the `Memo` tab, you can head over to
 { start of `features#overview` written by: Ngoh Wei Yue }
 
 ### 5.1. Overview
-In this secton, you can find the details such as the description and format of all the available features in **ATAS**. We have grouped the features into 7 main groups, namely [General](#52-general), [Students](#53-students), [Sessions](#54-sessions), [Current session](#55-current-session), [Memo](#56-memo), [User confirmation](#57-user-confirmation), and [Saving the data](#58-saving-the-data). 
+In this section, you can find the details such as the description and format of all the available features in **ATAS**. We have grouped the features into 7 main groups, namely [General](#52-general), [Students](#53-students), [Sessions](#54-sessions), [Current session](#55-current-session), [Memo](#56-memo), [User confirmation](#57-user-confirmation), and [Saving the data](#58-saving-the-data). 
 
 There are 2 main types of features:
 1. Commands that you can execute in the command box or through keyboard shortcuts
@@ -381,15 +381,15 @@ help
 
 1. A help window that look like the following will open up.
 
-![521-helpWindow](images/521-helpWindow.png)
+![HelpWindow](images/user-guide/5.2.1.1-HelpWindow.png)
 
-Figure 5.2.1.1: Help window
+Figure 5.2.1.1. Help window
 
 2. A message indicating a help window has been opened will be displayed in the main **ATAS** window.
 
-![521-help](images/521-help.png)
+![Help](images/user-guide/5.2.1.2-Help.png)
 
-Figure 5.2.1.2: Main window view after opening help window
+Figure 5.2.1.2. Main window view after opening help window
 
 { end of `features#general#help` written by: Ngoh Wei Yue }
 
@@ -424,9 +424,9 @@ switch TAB_NAME
 **Outcome:**
 
 The sessions tab will be displayed.
-![522-switch](images/522-switch.png)
+![Switch](images/user-guide/5.2.2.1-Switch.png)
 
-Figure 5.2.2.1: Application view after switching to the `Sessions` tab
+Figure 5.2.2.1. Application view after switching to the `Sessions` tab
 
 { end of `features#general#switch` written by: Ngoh Wei Yue }
 
@@ -1020,13 +1020,13 @@ addnote NOTE
 
 The text "clarify qn 3 with prof" is added onto a new line in the memo box.
 
-![5611-beforeAddNote](images/5611-beforeAddNote.png)
+![BeforeAddNote](images/user-guide/5.6.1.1.1-BeforeAddNote.png)
 
-Figure 5.6.1.1.1: Application view before adding a note
+Figure 5.6.1.1.1. Application view before adding a note
 
-![5611-afterAddNote](images/5611-afterAddNote.png)
+![AfterAddNote](images/user-guide/5.6.1.1.2-AfterAddNote.png)
 
-Figure 5.6.1.1.1: Application view after adding a note
+Figure 5.6.1.1.2. Application view after adding a note
 
 
 { end of `features#memo#addnote` written by: Ngoh Wei Yue }
@@ -1072,9 +1072,9 @@ cmd + s
 **Outcome:**
 1. The content in the memo is saved in the hard disk.
 
-![562-saveMemo](images/562-saveMemo.png)
+![SaveMemo](images/user-guide/5.6.2.1-SaveMemo.png)
 
-Figure 5.6.2.1: Application view after saving the memo
+Figure 5.6.2.1. Application view after saving the memo
 
 { end of `features#memo#save_memo` written by: Ngoh Wei Yue }
 
