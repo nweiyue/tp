@@ -126,7 +126,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ### 3.4. Model component
 
-![Structure of the Model Component](images/ModelClassDiagram.png)
+![Structure of the Model Component](images/developer-guide/ModelClassDiagram.png)
 
 **API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-W16-4/tp/blob/master/src/main/java/atas/model/Model.java)
 
@@ -393,11 +393,11 @@ Step 3. The `Index` returned during the execution of `RngCommand#execute(Model)`
 
 The following sequence diagram shows how the RNG operation works:
 
-![RngSequenceDiagram](images/RngSequenceDiagram.png)
+![RngSequenceDiagram](images/developer-guide/RngSequenceDiagram.png)
 
 The following activity diagram summarizes what happens when a user executes an RNG command:
 
-![RngActivityDiagram](images/RngActivityDiagram.png)
+![RngActivityDiagram](images/developer-guide/RngActivityDiagram.png)
 
 { end of `implementation#random_name_generation` written by: Masagca Eris Jacey }
 
