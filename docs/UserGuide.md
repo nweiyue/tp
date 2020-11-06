@@ -424,7 +424,7 @@ Exits the application.
 exit
 ```
 
-**Expected result:**
+**Outcome:**
 ```
 Program window will be closed.
 ```
@@ -649,20 +649,25 @@ Adds a session to the session list.
 addses s/SESSION_NAME d/SESSION_DATE
 ```
 
-**Expected result:**
-```
-New session added: Tutorial 4 @ 12/07/2020
-```
+<div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the usage of this command:**<br>
 * Adds a session with the specified name and date to the displayed session list.
 * `SESSION_DATE` should be given in the format of d/M/yyyy or dd/MM/yyyy. This means if your day or month is single digit, you do not
 need to add a '0' in front, for e.g., 09/01/2020 and 9/1/2020 are both accepted.
 
+</div>
+
+:alert-warning: You will be exited from any currently entered session upon using the command.
+
+:green_book: Examples:
+* `addses s/tut1 d/12/7/2020`
+
 :bulb: **Tip:** Two sessions cannot have the same name but they can have the same date
 
-Examples:
-* `addses s/tut1 d/12/7/2020`
+**Outcome:**
+![addses](images/user-guide/5.4.1-addses.png)
+<b>Figure 5.4.1</b>: Adding a session.
 
 #### 5.4.2. Deleting a session : `deleteses`
 
@@ -673,12 +678,7 @@ Deletes a session from the session list.
 deleteses INDEX
 ```
 
-**Expected result:**
-```
-Delete INDEX? (yes/no)
-```
-
-:information_source: After receiving the confirmation prompt, enter `yes` to confirm the removal of session at the specified `INDEX` or reject the command by entering `no`.
+<div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the usage of this command:**<br>
 * Deletes the session from the displayed session list at the specified `INDEX`.
@@ -689,9 +689,17 @@ Delete INDEX? (yes/no)
       * If the specified `INDEX` is invalid, error message will appear.
    * If no: the specified session will not be removed from the session list.
 
-Examples:
+</div>
+
+:alert-warning: You will be exited from any currently entered session upon using the command.
+
+:green_book: Examples:
 * `deleteses 1` followed by `no` results in nothing changed.
 * `deleteses 2` followed by `yes` deletes the 2nd session in the session list.
+
+**Outcome:**
+![deleteses](images/user-guide/5.4.2-deleteses.png)
+<b>Figure 5.4.2</b>: Deleting a session.
 
 #### 5.4.3. Editing a session : `editses`
 
@@ -702,14 +710,7 @@ Edits a session in the session list.
 editses INDEX s/UPDATED_NAME d/UPDATED_DATE
 ```
 
-**Expected result:**
-```
-Edit INDEX? (yes/no)
-```
-
-:information_source: After receiving the confirmation prompt, enter `yes` to confirm the update of session at the specified `INDEX` or reject the command by entering `no`.
-
-:bulb: **Tip:** The updated session cannot have the same name as any of the other sessions in the list but they can have the same date
+<div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the usage of this command:**<br>
 * Edits the session in the displayed session list at the specified `INDEX` with the specified details.
@@ -719,8 +720,18 @@ Edit INDEX? (yes/no)
    * If yes: the specified session will be updated with the specified details.
    * If no: the specified session will not be updated.
 
-Examples:
-* `editses 2 s/Tutorial1 d/10/10/2020` followed by `yes` edits the 2nd session in the session list with a new session name `Tutorial1` and a new session date `10/10/2020`.
+</div>
+
+:alert-warning: You will be exited from any currently entered session upon using the command.
+
+:green_book: Examples:
+* `editses 1 s/Tutorial 6 d/10/10/2020` followed by `yes` edits the 1st session in the session list with a new session name `Tutorial 6` and a new session date `10/10/2020`.
+
+:bulb: **Tip:** The updated session cannot have the same name as any of the other sessions in the list but they can have the same date
+
+**Outcome:**
+![editses](images/user-guide/5.4.3-editses.png)
+<b>Figure 5.4.3</b>: Editing a session.
 
 #### 5.4.4. Clearing the session list : `clearses`
 
@@ -731,21 +742,24 @@ Deletes all the sessions in the session list.
 clearses
 ```
 
-**Expected result:**
-```
-Clear session list? (yes/no)
-```
-
-:information_source: After receiving the confirmation prompt, enter `yes` to confirm the clearance of all sessions or reject the command by entering `no`.
+<div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the usage of this command:**<br>
 * Clears all the sessions in the displayed session list.
 * You will be prompted for a confirmation input **`(yes/no)`**.
    * If yes: all sessions will be removed from the session list.
    * If no: no sessions will be removed from the session list.
+
+</div>
+
+:alert-warning: You will be exited from any currently entered session upon using the command.
    
-Examples:
+:green_book: Examples:
 * `clearses` followed by `yes` deletes all the sessions in the session list. 
+
+**Outcome:**
+![clearses](images/user-guide/5.4.4-clearses.png)
+<b>Figure 5.4.4</b>: Clearing a session.
 
 #### 5.4.5. Entering a session : `enterses`
 
@@ -756,18 +770,23 @@ Enters a session in the session list.
 enterses INDEX
 ```
 
-**Expected result:**
-```
-Session entered: INDEX
-```
+<div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the usage of this command:**<br>
 * Enters the session in the displayed session list at the specified `INDEX`.
 * The index refers to the index number shown in the session list.
 * The index **must be a positive integer** 1, 2, 3, …
 
-Examples:
+</div>
+
+:alert-warning: You cannot be in one session and enter that particular session again.
+
+:green_book: Examples:
 * `enterses 1` enters the first session and allows you to use PARTICIPATE and PRESENCE commands.
+
+**Outcome:**
+![enterses](images/user-guide/5.4.5-enterses.png)
+<b>Figure 5.4.5</b>: Entering a session.
 
 { end of `sessions` written by: Alvin Chee Teck Weng }
 
