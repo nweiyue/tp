@@ -341,7 +341,7 @@ rng
 ```
 
 **Outcome:** 
-![523-rng](images/user-guide/523-rng.png)
+![523-rng](images/user-guide/5.2.3-Rng.png)
 Figure 5.2.3.1. Application view after performing the `rng` command
 
 { end of `features#general#rng` written by: Masagca Eris Jacey }
@@ -386,13 +386,13 @@ The example we are about to use follows that used in [Section 5.3.4 - Deleting a
 
 1. Suppose we have indeed deleted Alvin Lee from our student list. 
 This change is reflected in the [students' tab](#41-students).
-![524-undo-1](images/user-guide/524-undo-1.png)
+![524-undo-1](images/user-guide/5.2.4.1-Undo.png)
 Figure 5.2.4.1. Application view after deleting Alvin Lee as seen in the students' tab
 
 1. However, we realise that deleting him was mistake.
 He does belong to our class after all!
 In this case, we can revert the deletion we have made with `undo`.
-![524-undo-2](images/user-guide/524-undo-2.png)
+![524-undo-2](images/user-guide/5.2.4.2-Undo.png)
 Figure 5.2.4.2. Application view after performing the `undo` command
 
 { end of `features#general#undo` written by: Masagca Eris Jacey }
@@ -433,7 +433,7 @@ We will be following up from the same example used in [Section 5.2.4 - Undo-ing 
 1. Suppose it seems like Alvin Lee has tricked us all this while and isn't actually our student!
 This means that when we had initially deleted him from our list, it was actually the right thing to do. 
 We can simply reverse the undo we have made using `redo`.
-![525-redo](images/user-guide/525-redo.png)
+![525-redo](images/user-guide/5.2.5-Redo.png)
 Figure 5.2.5.1. Application view after performing the `redo` command as seen in the students' tab
 <br> <br>
 As can be seen above, Alvin Lee has been removed from the student list again.
