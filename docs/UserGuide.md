@@ -440,20 +440,15 @@ Program window will be closed.
 { start of `features#students` written by: Zhang Sheng Yang }
 <br/>
 <br/>
-With ATAS, you can easily manage your students in your class!
+This category consists of features related to students.
 <br/>
-- First, at the start of a semester, you can use `addstu` and `deletestu` to include or remove 
-students in your class. You can also edit student's particulars with `editstu` if you want to change any of
-the student's details.
-- Next, if you want to find any student or students, you can try `findstu` to search the class for 
-the student you are looking for with a keyword, your class will now only show the the student or students you've 
-searched for. When you are done, you can simply use `liststu` to view the entire class again!
-- Finally, you might want to have an empty class to get ready for the next semester. In this case, instead of removing 
-the students one by one, you can utilize `clearstu` to empty the class.
+Student commands allow you to add a student with `addstu` or remove a student from the student 
+list by using `deletestu`. You can also modify the particulars of a student with `editstu` command.
+Furthermore, if you want to search for certain students in the student list, try out `findstu` and utilize 
+`liststu` to gain a full view of the list again. Lastly, `clearstu` is a easy to remove all the students
+in the current student list.
 <br/>
 <br/>
-
-{ end of `features#students` written by: Zhang Sheng Yang }
 
 #### 5.3.1. Adding a student : `addstu`
 
@@ -463,28 +458,39 @@ Adds a student to the student list.
 addstu n/NAME m/MATRICULATION_NUMBER e/NUS_EMAIL_ADDRESS [t/TAG]…
 ```
 
-:bulb: **Tip:** A student can have any number of tags (including 0) 
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Notes about the usage of this command:** 
+* The name of a student should not contain special characters.
+* The matriculation number of a student should be in the form of A0123456X
+* ATAS only accepts NUS emails, i.e. xxx@u.nus.edu
+* A student can have any number of tags (including 0) 
+
+</div>
+
+<div markdown="block" class="alert alert-success">
 
 Examples:
-* `addstu n/John Cena m/A0123456J e/thechamp@u.nus.edu`
+* `addstu n/John Cena m/A0123456J e/thechamp@u.nus.edu` **(Figure 5.3.1)**
 * `addstu n/Alvina Handsome m/A0123456X e/handsome.alvina@u.nus.edu t/new`
 
-#### 5.3.2. Listing all students : `liststu`
+</div>
 
-Shows a list of all students in the current student list.
+**Outcome**
 
-```
-liststu
-```
+![Addstu](images/user-guide/5.3.1-AddStudent.png)
+<p align="center"><b>Figure 5.3.1 - Addstu Command</b></p> 
 
-#### 5.3.3. Locating students by name : `findstu`
+#### 5.3.2. Locating students by name : `findstu`
 
 Finds students whose names contain any of the given keywords.
 
 ```
 findstu KEYWORD [MORE_KEYWORDS]
 ````
+<div markdown="block" class="alert alert-info">
 
+:information_source: **Notes about the usage of this command:** 
 * The search is case-insensitive. e.g `john` will match `John`
 * The order of the keywords does not matter. e.g. `John Cena` will match `Cena John`
 * Only the name is searched.
@@ -492,10 +498,42 @@ findstu KEYWORD [MORE_KEYWORDS]
 * Students matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `John Cena` will return `John Tan`, `Mark Cena`
 
+</div>
+
+<div markdown="block" class="alert alert-success">
+
 Examples:
-* `findstu John` returns `john` and `John Cena`
+* `findstu bob` returns `Bobby Bob` **(Figure 5.3.2)**
 * `findstu kent ridge` returns `Kent Tan` and `Mark Ridge`<br>
-[Insert image of an example of result of `findstu Cena`]
+
+</div>
+
+**Outcome**
+
+![Findstu](images/user-guide/5.3.2-FindStudent.png)
+<p align="center"><b>Figure 5.3.2 - Findstu Command</b></p> 
+
+#### 5.3.3. Listing all students : `liststu`
+
+Shows a list of all students in the current student list.
+
+```
+liststu
+```
+
+<div markdown="block" class="alert alert-success">
+
+Example:
+* `liststu`  **(Figure 5.3.3)**
+
+</div>
+
+**Outcome**
+
+![Liststu](images/user-guide/5.3.3-ListStudent.png)
+<p align="center"><b>Figure 5.3.3 - Liststu Command</b></p> 
+
+{ end of `features#students` written by: Zhang Sheng Yang }
 
 { start of `features#student#deletestu` written by: Marcus Tan Wei }
 
@@ -766,17 +804,15 @@ Examples:
 ### 5.5. Current session
 
 { start of `features#current_session` written by: Zhang Sheng Yang }
+
 <br/>
+This category consists of features related to students.
 <br/>
 After entering a session, which is mentioned above, you can now edit the presence and participation details
 of a student. `participate` allows you to toggle the participation status (from absent to present or from 
 present to absent), and `presence` allows you to toggle the presence status of a student (from not 
 participated to participated or from participated to not participated).
 <br/>
-<br/>
-
-{ end of `features#current_session` written by: Zhang Sheng Yang }
-
 <br/>
 
 #### 5.5.1. Toggling participation status of students : `participate`
@@ -787,12 +823,28 @@ Toggles the participation status of the students in the student list of the sess
 participate INDEX_RANGE
 ```
 
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Notes about the usage of this command:** 
 * Toggles the participation status of the students at the specified `INDEX_RANGE`.
 * The index range refers to the range of index numbers shown in the displayed student list of the session.
 * The index range **must be a positive integer** 1, 2, 3, … OR **a positive index range** 1-4, 2-5, 2-9 … 
 
+</div>
+
+<div markdown="block" class="alert alert-success">
+
 Examples:
-* `participate 1-4` toggles the participation status of students 1 to 4.
+* `participate 1-4` toggles the participation status of students 1 to 4. **(Figure 5.5.1)**
+
+</div>
+
+**Outcome**
+
+![Participate](images/user-guide/5.5.1-Participate.png)
+<p align="center"><b>Figure 5.5.1 - Participate Command</b></p> 
+
+
 
 #### 5.5.2. Toggling presence status of students : `presence`
 
@@ -802,12 +854,29 @@ Toggles the presence status of students in the student list of the session.
 presence INDEX_RANGE
 ```
 
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Notes about the usage of this command:** 
 * Toggles the presence status of the students at the specified `INDEX_RANGE`.
 * The index range refers to the range of index numbers shown in the displayed student list of the session.
-* The index range **must be a positive integer** 1, 2, 3, … OR **a positive index range** 1-4, 2-5, 2-9 … 
+* The index range **must be a positive integer** 1, 2, 3, … OR **a positive index range** 1-4, 2-5, 2-9 …
+
+</div>
+
+<div markdown="block" class="alert alert-success">
 
 Examples:
-* `presence 1-4` toggles the presence status of students 1 to 4.
+* `presence 1-4` toggles the presence status of students 1 to 4. **(Figure 5.5.2)**
+
+</div>
+
+**Outcome**
+
+![Presence](images/user-guide/5.5.2-Presence.png)
+<p align="center"><b>Figure 5.5.2 - Presence Command</b></p> 
+
+
+{ end of `features#current_session` written by: Zhang Sheng Yang }
 
 { start of `features#memo` written by: Ngoh Wei Yue }
 
