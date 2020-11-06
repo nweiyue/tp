@@ -18,6 +18,10 @@ title: Developer Guide
 
 ## 1. Introduction
 
+This developer guide provides an overview and details of the system architecture and implementation of **ATAS**.
+Its purpose is to provide a useful reference for other developers who wish to contribute to the ongoing project of **ATAS**,
+or to simply gain a deeper insight into [the team's](AboutUs.md) development process and considerations.
+
 { end of `introduction` written by: Masagca Eris Jacey }
 
 --------------------------------------------------------------------------------------------------------------------
@@ -142,7 +146,7 @@ The `Model`,
 
 { end of `design#model_component` written by: Masagca Eris Jacey }
 
-{ start of `design#storage_component` written by: Masagca Eris Jacey }
+{ start of `design#storage_component` written by: _________________ }
 
 ### 3.5. Storage component
 
@@ -156,15 +160,15 @@ The `Storage` component,
 * can save the session list data in json format and read it back.
 * can save the memo data in txt file and read it back.
 
-{ end of `design#storage_component` written by: Masagca Eris Jacey }
+{ end of `design#storage_component` written by: __________________ }
 
-{ start of `design#common_classes` written by: Masagca Eris Jacey }
+{ start of `design#common_classes` written by: _________________ }
 
 ### 3.6. Common classes
 
 Classes used by multiple components are in the `seedu.atas.commons` package.
 
-{ end of `design#common_classes` written by: Masagca Eris Jacey }
+{ end of `design#common_classes` written by: _________________ }
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -477,7 +481,7 @@ If so, it will return an error to the user rather than attempting to perform the
 
 The following sequence diagram shows how the undo operation works:
 
-![UndoSequenceDiagram](images/developer-guide/UndoSequenceDiagram.png)
+![UndoSequenceDiagram](images/developer-guide/4.7.5-UndoSequenceDiagram.png)
 Figure 4.7.5. A sequence diagram showing the implementation of the `undo` operation
 
 <div markdown="span" class="alert alert-info">
@@ -498,19 +502,19 @@ The `redo` command uses `Model#canRedo()` to check if this is the case. If so, i
 Step 5. The user then decides to execute the command `liststu`. Commands that do not modify any entity, such as `liststu`, will usually not call `Model#commit()`, `Model#undo()` or `Model#redo()`. 
 Thus, the `<<entity>>StateList` for each versioned entity remains unchanged.
 
-![UndoRedoState4](images/developer-guide/4.7.5-UndoRedoState4.png)
+![UndoRedoState4](images/developer-guide/4.7.6-UndoRedoState4.png)
 Figure 4.7.6. Each versioned entity state upon executing the `liststu` command
 
 Step 6. The user executes `clearstu`, which calls `Model#commit()`. 
 Since the `currentStatePointer` for each versioned entity is not pointing at the end of the `<<entity>>StateList`, all entity states after the `currentStatePointer` will be purged. 
 Reason: It no longer makes sense to redo the `addstu n/David …​` command. This is the behavior that most modern desktop applications follow.
 
-![UndoRedoState5](images/developer-guide/4.7.6-UndoRedoState5.png)
+![UndoRedoState5](images/developer-guide/4.7.7-UndoRedoState5.png)
 Figure 4.7.7. Each versioned entity state upon executing the `clearstu` command
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-![CommitActivityDiagram](images/developer-guide/CommitActivityDiagram.png)
+![CommitActivityDiagram](images/developer-guide/4.7.8-CommitActivityDiagram.png)
 Figure 4.7.8. An activity diagram showing the series of events upon a user executing a command
 
 #### 4.7.1. Design consideration
@@ -616,6 +620,7 @@ Refer to this guide [here](DevOps.md).
 * Bob finds the features on Excel clunky at times and he finds them difficult to learn.
 * Bob is looking for an application with a sleeker and cleaner UI so he doesn’t have to remember where the different features in Excel are.
 * Bob has limited memory in his computer and wants to install smaller softwares.
+* Bob is looking for an application that specifically enhances in-class management efficiency.
 * Bob is a fast typist.
 * Bob hates to move his mouse at all (to save file, to categorise data fields and student data)
 * Bob uses a laptop and doesn’t have a mouse with him all the time(or he doesn’t have a place to use his mouse when on the bus or mrt).
@@ -628,14 +633,20 @@ Refer to this guide [here](DevOps.md).
 * Less memory
 * Intuitive command-line interface - easy to learn and pick up, especially for technologically savvy individuals
 * CS student-friendly
-* Potential Features:
- * Mass sending of emails/files
- * Import/export data files from Excel, csv files
- * Track student’s progress (assignments, tests, class participation)
- * Record student’s attendance
- * Profile pictures for recognisability
- * Schedule consultations/Zoom meeting
- * Automate formation of Telegram groups
+* Current features:
+   * Manage students' particulars (name, matriculation number, email, additional tag(s))
+   * Manage sessions' particulars (name, date)
+   * Track students' progress for each session (attendance/presence, participation)
+   * Random name generation to easily randomly select a student
+   * Memo box for user to note down sticky notes in a pinch
+* Potential features (in future iterations):
+   * Mass sending of emails/files
+   * Import/export data files from Excel, csv files
+   * Track student’s progress (assignments, tests)
+   * Record student’s attendance
+   * Profile pictures for recognisability
+   * Schedule consultations/Zoom meeting
+   * Automate formation of Telegram groups
 
 { end of `requirements#product_scope` written by: Masagca Eris Jacey }
 
@@ -810,6 +821,8 @@ testers are expected to do more *exploratory* testing.
 
   1. Double-click the jar file Expected: Shows the GUI with a set of sample students and sample sessions. 
   The window size may not be optimum.
+  [ExpectedLaunchWindow](images/developer-guide/11.1-ExpectedLaunchWindow.png)
+  Figure 11.1.1. Application view of the expected window appearance upon launch
 
 1. Saving window preferences
 
@@ -817,8 +830,6 @@ testers are expected to do more *exploratory* testing.
 
   1. Re-launch the app by double-clicking the jar file.<br>
       Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
 
 { end of `manual_testing#launch_and_shutdown` written by: Masagca Eris Jacey }
 
