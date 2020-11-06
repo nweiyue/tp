@@ -72,13 +72,14 @@ Specifically, **ATAS** allows you to keep track of four different aspects (see [
 ### 1.3. Preview
 
 The following is the GUI of our application:
-    ![UiPreview](images/UiPreview.png)
+    ![UiPreview](images/user-guide/1.3-UiPreview.png)
+    <p align="center"> <sub> <b>Figure 1.3</b>: UI Preview </sub> </p>
+    
 
 GUI Components:
    1. **Command box**: where you enter your commands.
    1. **Result box**: where the result of a command is shown. It can show a success message or a failure message if something wrong happens.
    1. **Tabs**: shows what item type you are viewing.
-   1. **List box**: where the list of students, sessions or attendance attributes are shown. For example, if you are in `Students` tab, then a list of students and their particulars are shown. It includes a scrollbar for you to scroll down to view more students' particulars.
 
 { end of `introduction#preview` written by: Marcus Tan Wei }
 
@@ -116,7 +117,8 @@ You will come across some of these terms in this document, and it will be good t
 |Term |Explanation |
 |-----|------------|
 |command | A line of text that you can type into the command box for the application to execute. |
-|index | The position of an item (student or session) in a displayed list. For simplicity, indexes start from 1.|
+|GUI | Graphical User Interface (GUI) is a type of user interface through which user interacts with electronic devices through visual representations. |
+|index | The position of an item (student or session) in a displayed list. For simplicity, indexes start from 1. |
 |memo | A brief written message written by you for note-taking. |
 |parameter| Specific information that you input. |
 |participate | An attribute indicating if a student has participated in the session or not. |
@@ -124,6 +126,7 @@ You will come across some of these terms in this document, and it will be good t
 |session | A tutorial session or lesson that you conduct. |
 |student | A person that is in your tutorial class. |
 |tag(s) | Keyword(s) tagged to a student for your own identification purpose. |
+|Ui | User interface (Ui) is the means by which user and a computer system interact. |
 
 { end of `about_this_user_guide#glossary` written by: Marcus Tan Wei }
 
@@ -134,8 +137,9 @@ For the good majority of visual learners, we figured to present information in a
   |Symbol/Format | Explanation |
  |--------------|-------------|
  |:bulb: | Tips |
+ |:green_book: | Example(s) |
  |:information_source: | Important information to take note |
- |``consolas font`` | Representing a keyterm or a command |
+ |`consolas font` | Representing a key term or a command |
  
 --------------------------------------------------------------------------------------------------------------------
 
@@ -533,20 +537,15 @@ Program window will be closed.
 { start of `features#students` written by: Zhang Sheng Yang }
 <br/>
 <br/>
-With ATAS, you can easily manage your students in your class!
+This category consists of features related to students.
 <br/>
-- First, at the start of a semester, you can use `addstu` and `deletestu` to include or remove 
-students in your class. You can also edit student's particulars with `editstu` if you want to change any of
-the student's details.
-- Next, if you want to find any student or students, you can try `findstu` to search the class for 
-the student you are looking for with a keyword, your class will now only show the the student or students you've 
-searched for. When you are done, you can simply use `liststu` to view the entire class again!
-- Finally, you might want to have an empty class to get ready for the next semester. In this case, instead of removing 
-the students one by one, you can utilize `clearstu` to empty the class.
+Student commands allow you to add a student with `addstu` or remove a student from the student 
+list by using `deletestu`. You can also modify the particulars of a student with `editstu` command.
+Furthermore, if you want to search for certain students in the student list, try out `findstu` and utilize 
+`liststu` to gain a full view of the list again. Lastly, `clearstu` is a easy to remove all the students
+in the current student list.
 <br/>
 <br/>
-
-{ end of `features#students` written by: Zhang Sheng Yang }
 
 #### 5.3.1. Adding a student : `addstu`
 
@@ -556,28 +555,39 @@ Adds a student to the student list.
 addstu n/NAME m/MATRICULATION_NUMBER e/NUS_EMAIL_ADDRESS [t/TAG]…
 ```
 
-:bulb: **Tip:** A student can have any number of tags (including 0) 
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Notes about the usage of this command:** 
+* The name of a student should not contain special characters.
+* The matriculation number of a student should be in the form of A0123456X
+* ATAS only accepts NUS emails, i.e. xxx@u.nus.edu
+* A student can have any number of tags (including 0) 
+
+</div>
+
+<div markdown="block" class="alert alert-success">
 
 Examples:
-* `addstu n/John Cena m/A0123456J e/thechamp@u.nus.edu`
+* `addstu n/John Cena m/A0123456J e/thechamp@u.nus.edu` **(Figure 5.3.1)**
 * `addstu n/Alvina Handsome m/A0123456X e/handsome.alvina@u.nus.edu t/new`
 
-#### 5.3.2. Listing all students : `liststu`
+</div>
 
-Shows a list of all students in the current student list.
+**Outcome**
 
-```
-liststu
-```
+![Addstu](images/user-guide/5.3.1-AddStudent.png)
+<p align="center"><b>Figure 5.3.1 - Addstu Command</b></p> 
 
-#### 5.3.3. Locating students by name : `findstu`
+#### 5.3.2. Locating students by name : `findstu`
 
 Finds students whose names contain any of the given keywords.
 
 ```
 findstu KEYWORD [MORE_KEYWORDS]
 ````
+<div markdown="block" class="alert alert-info">
 
+:information_source: **Notes about the usage of this command:** 
 * The search is case-insensitive. e.g `john` will match `John`
 * The order of the keywords does not matter. e.g. `John Cena` will match `Cena John`
 * Only the name is searched.
@@ -585,10 +595,42 @@ findstu KEYWORD [MORE_KEYWORDS]
 * Students matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `John Cena` will return `John Tan`, `Mark Cena`
 
+</div>
+
+<div markdown="block" class="alert alert-success">
+
 Examples:
-* `findstu John` returns `john` and `John Cena`
+* `findstu bob` returns `Bobby Bob` **(Figure 5.3.2)**
 * `findstu kent ridge` returns `Kent Tan` and `Mark Ridge`<br>
-[Insert image of an example of result of `findstu Cena`]
+
+</div>
+
+**Outcome**
+
+![Findstu](images/user-guide/5.3.2-FindStudent.png)
+<p align="center"><b>Figure 5.3.2 - Findstu Command</b></p> 
+
+#### 5.3.3. Listing all students : `liststu`
+
+Shows a list of all students in the current student list.
+
+```
+liststu
+```
+
+<div markdown="block" class="alert alert-success">
+
+Example:
+* `liststu`  **(Figure 5.3.3)**
+
+</div>
+
+**Outcome**
+
+![Liststu](images/user-guide/5.3.3-ListStudent.png)
+<p align="center"><b>Figure 5.3.3 - Liststu Command</b></p> 
+
+{ end of `features#students` written by: Zhang Sheng Yang }
 
 { start of `features#student#deletestu` written by: Marcus Tan Wei }
 
@@ -603,7 +645,7 @@ Removes a student from the student list.
 * Deletes the student at the specified `INDEX`.
 * The index refers to the index number shown in the displayed student list.
 * The index **must be a positive integer** 1, 2, 3, …
-* You will then be prompted for a confirmation input **`(yes/no)`**.
+* You will then be prompted for a confirmation input **`Delete student INDEX? (yes/no)`**.
    * If yes: deletes the specified student from the student list.
    * If no: the specified student remains in the student list.
 
@@ -614,27 +656,26 @@ Removes a student from the student list.
 deletestu INDEX
 ```
 
-**Expected result:**
-```
-Delete INDEX? (yes/no)
-```
-
 :information_source: After receiving the confirmation prompt, enter `yes` to confirm the removal of student at the specified `INDEX`, or reject the command by entering `no`.
 
-**Format:**
-```
-yes
-```
+<div markdown="block" class="alert alert-success">
 
-**Expected result:**
-```
-Deleted student: PARTICULARS_OF_STUDENT_AT_SPECIFIED_INDEX
-```
-   ![ScreenshotDeletestu](images/ScreenshotDeletestu.png)
+:green_book: **Examples:**
+
+* `liststu` followed by `deletestu 2` followed by `yes`: Deletes and removes the 2nd student (**Figure 5.3.4-2**) from the student list.
+* `findstu Bob` followed by `deletestu 1` followed by `yes`: Deletes and removes the 1st student from the results of the `findstu Bob` command.
+</div>
+
+**Outcome**
+
+![DeletestuConfirmation](images/user-guide/5.3.4-1-DeletestuConfirmationPrompt.png)
+<p align="center"> <sub> <b>Figure 5.3.4-1</b>: Confirmation for deleting student 2 </sub> </p>
+   
+![Deletestu](images/user-guide/5.3.4-2-Deletestu.png)
+<p align="center"> <sub> <b>Figure 5.3.4-2</b>: After confirming the deletion of student 2 </sub> </p>   
+   
 
 Examples:
-* `liststu` followed by `deletestu 2` followed by `yes` deletes the 2nd student in the student list.
-* `findstu Betsy` followed by `deletestu 1` followed by `y` deletes the 1st student in the results of the `findstu Betsy` command.
 
 { end of `features#student#deletestu` written by: Marcus Tan Wei }
 
@@ -649,38 +690,31 @@ Examples:
 * Edits the student at the specified `INDEX` with the specified updated particular to be updated.
 * The index refers to the index number shown in the displayed student list.
 * The index **must be a positive integer** 1, 2, 3, …
-* You will then be prompted for a confirmation input **`(yes/no)`**.
+* You will then be prompted for a confirmation input **`Edit student INDEX? (yes/no)`**.
    * If yes: edits and updates the particulars of the specified student from the student list.
    * If no: the specified student's particulars remains the same.
-   
+
 </div>
 
 **Format:**
 ```
-editstu INDEX n/UPDATED_NAME
+editstu INDEX (n/UPDATED_NAME) (e/UPDATED_EMAIL_ADDRESS) (m/UPDATED_MATRICULATION_NUMBER) (t/UPDATED_TAG)
 ```
 
-**Expected result:**
-```
-Edit INDEX? (yes/no)
-```
+<div markdown="block" class="alert alert-success">
+
+:green_book: **Examples:**
+
+* `editstu 1 n/Alvina Lee` followed by `yes` : Edits the 2nd student (**Figure 5.3.5-1**) in the student list with an updated name `Alvina Lee`.
+* `editstu 3 t/active` followed by `y`: Edits the 3rd student in the student list with an updated tag `active`.
+</div>
 
 :information_source: After receiving the confirmation prompt, enter `yes` to confirm the editing of student's particulars at the specified `INDEX`, or reject the command by entering `no`.
 
-**Format:**
-```
-yes
-```
+**Outcome:**
 
-**Expected result:**
-```
-Edited student: PARTICULARS_OF_STUDENT_AT_SPECIFIED_INDEX
-```
-   ![ScreenshotEditstu](images/ScreenshotEditstu.png)
-
-Examples:
-* `editstu 2 n/John Cena` followed by `yes` edits the 2nd student in the student list with an updated name `John Cena`.
-* `editstu 3 t/Joker` followed by `y` edits the 3rd student in the student list with an updated tag `Joker`.
+![Editstu](images/user-guide/5.3.5-Editstu.png)
+<p align="center"> <sub> <b>Figure 5.3.5</b>: After confirming the editing of student 2 (confirmation is similar to delete student, thus not shown)</sub> </p>   
 
 { end of `features#student#editstu` written by: Marcus Tan Wei }
 
@@ -693,7 +727,7 @@ Clears and removes all students from the student list.
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the usage of this command:**<br>
-* You will be prompted to confirm their decision here.
+* You will then be prompted for a confirmation input **`Clear student list? (yes/no)`**.
    * If yes: removes all students from the student list.
    * If no: student list remains unchanged and no removal of students occurs.
    
@@ -704,22 +738,18 @@ Clears and removes all students from the student list.
 clearstu
 ```
 
-**Expected result:**
-```
-Clear list? (yes/no)
-```
-
 :information_source: After receiving the confirmation prompt, enter `yes` to confirm the removal of all students from the student list, or reject the command by entering `no`.
 
-**Format:**
-```
-yes
-```
+<div markdown="block" class="alert alert-success">
 
-**Expected result:**
-```
-ATAS has cleared all students from your list.
-```
+:green_book: **Example:**
+
+* `clearstu` : Clears the students from the student list (**Figure 5.3.6-1**).
+</div>
+
+**Outcome:**
+![Clearstu](images/user-guide/5.3.6-Clearstu.png)
+<p align="center"> <sub> <b>Figure 5.3.6</b>: Clearing the student list (confirmation is similar to delete student, thus not shown) </sub> </p>
 
 { end of `features#student#clearstu` written by: Marcus Tan Wei }
 
@@ -871,17 +901,15 @@ Examples:
 ### 5.5. Current session
 
 { start of `features#current_session` written by: Zhang Sheng Yang }
+
 <br/>
+This category consists of features related to students.
 <br/>
 After entering a session, which is mentioned above, you can now edit the presence and participation details
 of a student. `participate` allows you to toggle the participation status (from absent to present or from 
 present to absent), and `presence` allows you to toggle the presence status of a student (from not 
 participated to participated or from participated to not participated).
 <br/>
-<br/>
-
-{ end of `features#current_session` written by: Zhang Sheng Yang }
-
 <br/>
 
 #### 5.5.1. Toggling participation status of students : `participate`
@@ -892,12 +920,28 @@ Toggles the participation status of the students in the student list of the sess
 participate INDEX_RANGE
 ```
 
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Notes about the usage of this command:** 
 * Toggles the participation status of the students at the specified `INDEX_RANGE`.
 * The index range refers to the range of index numbers shown in the displayed student list of the session.
 * The index range **must be a positive integer** 1, 2, 3, … OR **a positive index range** 1-4, 2-5, 2-9 … 
 
+</div>
+
+<div markdown="block" class="alert alert-success">
+
 Examples:
-* `participate 1-4` toggles the participation status of students 1 to 4.
+* `participate 1-4` toggles the participation status of students 1 to 4. **(Figure 5.5.1)**
+
+</div>
+
+**Outcome**
+
+![Participate](images/user-guide/5.5.1-Participate.png)
+<p align="center"><b>Figure 5.5.1 - Participate Command</b></p> 
+
+
 
 #### 5.5.2. Toggling presence status of students : `presence`
 
@@ -907,12 +951,29 @@ Toggles the presence status of students in the student list of the session.
 presence INDEX_RANGE
 ```
 
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Notes about the usage of this command:** 
 * Toggles the presence status of the students at the specified `INDEX_RANGE`.
 * The index range refers to the range of index numbers shown in the displayed student list of the session.
-* The index range **must be a positive integer** 1, 2, 3, … OR **a positive index range** 1-4, 2-5, 2-9 … 
+* The index range **must be a positive integer** 1, 2, 3, … OR **a positive index range** 1-4, 2-5, 2-9 …
+
+</div>
+
+<div markdown="block" class="alert alert-success">
 
 Examples:
-* `presence 1-4` toggles the presence status of students 1 to 4.
+* `presence 1-4` toggles the presence status of students 1 to 4. **(Figure 5.5.2)**
+
+</div>
+
+**Outcome**
+
+![Presence](images/user-guide/5.5.2-Presence.png)
+<p align="center"><b>Figure 5.5.2 - Presence Command</b></p> 
+
+
+{ end of `features#current_session` written by: Zhang Sheng Yang }
 
 { start of `features#memo` written by: Ngoh Wei Yue }
 
@@ -1023,38 +1084,44 @@ Figure 5.6.2.1: Application view after saving the memo
 
 Some commands have the ability to alter the data stored in the hard disk.
 ATAS aims to make careful decisions and further prompts user to confirm the execution of those commands.
-These commands are: `deletestu`, `editstu`,`clearstu`, `deleteses`, `editses`.
+These commands are: [`deletestu`](#534-deleting-a-student--deletestu), [`editstu`](#535-editing-a-students-particulars--editstu),[`clearstu`](#536-clearing-the-student-list--clearstu),
+[`deleteses`](#542-deleting-a-session--deleteses), [`editses`](#543-editing-a-session--editses) and [`clearses`](#544-clearing-the-session-list--clearses).
 
-:bulb: **Tip:** Both `yes` and `y` are accepted when confirming the execution of a command while `no` and `n` are both accepted when rejecting the execution of a command.
+:bulb: **Tip:** For your convenience, both `yes` and `y` are accepted when confirming the execution of a command while both `no` and `n` are accepted when rejecting the execution of a command.
 
-Examples:
-* `deletestu 3` is followed with `Delete 3? (yes/no)`.
-* `editses 3 s/SESSION_NAME` is followed with `Edit 3? (yes/no)`.
-* `clearstu` is followed with `Clear list? (yes/no)`.
+<div markdown="block" class="alert alert-success">
 
-For example, confirmation of `deletestu` is shown above at [Section 5 - Features](#534-deleting-a-student--deletestu). In this case, we will show an example of rejection a `deletestu` command.
+:green_book: **Examples:**
+* `deletestu 1` is followed with the following displayed message `Delete student 1? (yes/no)`.
+* `editstu 3 n/UPDATED_STUDENT_NAME` is followed with the following displayed message `Edit student 3? (yes/no)`.
+* `clearstu` is followed with the following displayed message `Clear student list? (yes/no)` (**Figure 5.7-1**).
+* `deleteses 2` is followed with the following displayed message `Delete session 2? (yes/no)`.
+* `editses 2 s/UPDATED_SESSION_NAME` is followed with the following displayed message `Edit session 3? (yes/no)`.
+* `clearses` is followed with the following displayed message `Clear student list? (yes/no)`.
+</div>
 
-**Format:**
-```
-deletestu INDEX
-```
-
-**Expected result:**
-```
-Delete INDEX? (yes/no)
-```
-   ![DeletestuConfirmationExample](images/ScreenshotDeletestuConfirmationExample.png)
+For example, confirmation of `clearstu` is shown above at [Section 5.3.6 - Clearing the student list](#536-clearing-the-student-list--clearstu).
+In this case, we will show an example of the confirmation prompt following the `clearstu` command (**Figure 5.7-1**) and result of rejecting a `clearstu` command (**Figure 5.7-2**).
 
 **Format:**
 ```
-no
+clearstu
 ```
 
-**Expected result:**
-```
-Delete INDEX is not executed
-```
-   ![DeletestuNotExecuted](images/ScreenshotDeletestuNotExecuted.png)
+<div markdown="block" class="alert alert-success">
+
+:green_book: **Example:**
+
+* `clearstu` followed by `no`: No removal of any students from the student list.
+</div>
+
+**Outcome:**
+
+![ClearstuConfirmationExample](images/user-guide/5.7-1-ClearstuConfirmationPrompt.png)
+<p align="center"> <sub> <b>Figure 5.7-1</b>: Confirmation prompt after entering the clear student list command </sub> </p> 
+
+![ClearstuReject](images/user-guide/5.7-2-ClearstuReject.png)
+<p align="center"> <sub> <b>Figure 5.7-2</b>: Clear student list command is rejected </sub> </p> 
 
 { end of `features#userconfirmation#clearstu` written by: Marcus Tan Wei }
 
