@@ -179,7 +179,9 @@ For the good majority of visual learners, we figured to present information in a
 
 ## 4. Layout of ATAS
 
-Over here, you can get an idea of how the different aspects of **ATAS** look like. **ATAS** comprises of four different tabs, with each tab supporting [features](#5-features) of the different aspects of **ATAS**.
+Over here, you can familiarise yourself with the different UI components of **ATAS**. **ATAS** comprises of five different tabs, including a default home tab which can be seen in [Section 1.3 - Preview](#13-preview). Each of the remaining four tabs (`Students`, `Sessions`, `Current Session` and `Memo`) supports its respective section of [features](#5-features). All four of these tabs uses the same result box and command box.
+
+To allow you to easily keep track of students presence and participation records, **ATAS** will automatically do some calculations and display them as **statistics** in the `Students`, `Sessions` and `Current Session` tabs. The details of the calculation differs for each tab, and can you can find them under the statistics sub-header for each tab.
 
 { end of `layout_of_atas` written by: Ngoh Wei Yue }
 
@@ -187,11 +189,35 @@ Over here, you can get an idea of how the different aspects of **ATAS** look lik
 
 ### 4.1. Students
 
-The `Students` tab contains a list of the students in your class. In this tab, you can view your students' particulars such as their name, matriculation number, email and their overall presence and participation scores. The students are arranged in the order that you add them.
+The `Students` tab contains a list of the students in your class. The students are arranged in the order that you add them. In this tab, you can view your students' particulars such as their name, matriculation number, NUS email address and tags (if any). The tags of the students will be highlighted in a turquoise color.
 
 The following is how the `Students` tab looks like:
 
-![StudentsLayout](images/StudentsLayout.png)
+![41-studentsLayout](images/41-studentsLayout.png)
+
+Figure 4.1.1: Layout of `Students` tab wheen there is at least one student
+
+If there are no students in your list, you will see a message indicating as such.
+
+![41-emptyStudentsLayout](images/41-StudentsLayout.png)
+
+Figure 4.1.2: Layout of `Students` tab when there are no students
+
+### 4.1.1 Statistics
+
+The statistics of students is calculated as a percentage of the number of sessions the student was present or has particiapted out of all the available sessions. The list of sessions can be found in the `Sessions` tab.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about the color code of a student's statistics:**<br>
+
+* Grey: There are no sessions.
+
+* Red: Student was not present or did not particpated in all the sessions (<100%).
+
+* Green: Student was present or has particpated in all the sessions (100%).
+
+</div>
 
 To find out which features are supported by the `Students` tab, you can head over to [Section 5.3 - Students](#53-students).
 
@@ -201,11 +227,36 @@ To find out which features are supported by the `Students` tab, you can head ove
 
 ### 4.2. Sessions
 
-Over at `Sessions` tab, you can find the list of sessions that you have. Each session will display details like their name, date and the overall percentage of students present and participating in that particular session. The sessions are sorted by their dates, starting from the latest at the top.
+The `Sessions` tab contains a list of sessions you have. The sessions are sorted by their dates, starting from the latest at the top. In this tab, you can view your sessions' details such as their name and date.
 
 The following is how the `Sessions` tab looks like:
 
-![SessionsLayout](images/SessionsLayout.png)
+![42-sessionsLayout](images/42-sessionsLayout.png)
+
+Figure 4.2.1: Layout of `Sessions` tab when there is at least one session
+
+If there are no sessions in your list, you will see a message indicating as such.
+
+![42-emptySessionsLayout](images/41-emptySessionsLayout.png)
+
+Figure 4.2.2: Layout of `Sessions` tab when there are no sessions
+
+### 4.2.1 Statistics
+
+The statistics of sessions is calculated as a percentage of the number of students that was present or has particiapted out of all the students. The list of students can be found in the `Students` tab.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about the color code of a session's statistics:**<br>
+
+* Grey: There are no students.
+
+* Red: Not all students were present or has participated (<100%).
+
+* Green: All the students were present or has participated (100%).
+
+</div>
+
 
 To find out which features are supported by the `Sessions` tab, you can head over to [Section 5.4 - Sessions](#54-sessions).
 
@@ -215,11 +266,25 @@ To find out which features are supported by the `Sessions` tab, you can head ove
 
 ### 4.3. Current session
 
-Similar to the `Students` tab, you can also view the list of your students in the `Current Session` tab. The difference is that you can only view the students name and also whether they are present or have participated for that particular session. Students are sorted base on the student list in the `Students` tab.
+Similar to the `Students` tab, you can also view the list of your students in the `Current Session` tab if you enter a session. The difference is that you can only view the student's name and also whether they are present or have participated for that particular session. You can also see the status of which session you are currently in on the left side of the status bar footer.
 
 The following is how the `Current Session` tab looks like:
 
-![CurrentSessionLayout](images/CurrentSessionLayout.png)
+![431-currentSessionLayout](images/431-currentSessionLayout.png)
+
+Figure 4.3.1: Layout of `Current Session` tab when a session is entered
+
+If you have not entered any session or left a session (by removing that session), you will see a message indicating as such. You can enter a session by using `enterses INDEX` as described in [Section 5.4.5 - Entering a session](#54-entering-a-session).
+
+![432-notInCurrentSessionLayout](images/432-notInCurrentSessionLayout.png)
+
+Figure 4.3.2: Layout of `Current Session` tab when a session is not entered
+
+Similar to the the `Students` tab, if there are no students in that session, you will see a similar message as shown in **Figure 4.1.2**
+
+### 4.3.1 Statistics
+
+The statistics of a current session is similar to that of sessions, which is calculated as a percentage of the number of students that was present or has particiapted out of all the students. However, it is placed on the right side of the status bar footer instead.
 
 To find out which features are supported by the `Current Session` tab, you can head over to [Section 5.5 - Current session](#55-current-session).
 
@@ -229,7 +294,7 @@ To find out which features are supported by the `Current Session` tab, you can h
 
 ### 4.4. Memo
 
-The `Memo` tab contains a text box where you can input any notes that you need for future references. The outline of the text box will change color when u click into it.
+The `Memo` tab contains a memo box where you can input any notes that you need for future references. The amount of space you can see is tied to size of your application window, but the actual text space that you can typed in will automatically be extended if you need more space.
 
 The following is how the `Memo` tab looks like:
 
@@ -246,30 +311,33 @@ To find out which features are supported by the `Memo` tab, you can head over to
 { start of `features#overview` written by: Ngoh Wei Yue }
 
 ### 5.1. Overview
-In this secton, you can find the details of all the available features in **ATAS**. We have grouped the features into 7 main groups, namely [General](#52-general), [Students](#53-students), [Sessions](#54-sessions), [Current session](#55-current-session), [Memo](#56-memo), [User confirmation](#57-user-confirmation), and [Saving the data](#58-saving-the-data). 
+In this secton, you can find the details such as the description and format of all the available features in **ATAS**. We have grouped the features into 7 main groups, namely [General](#52-general), [Students](#53-students), [Sessions](#54-sessions), [Current session](#55-current-session), [Memo](#56-memo), [User confirmation](#57-user-confirmation), and [Saving the data](#58-saving-the-data). 
 
 There are 2 main types of features:
 1. Commands that you can execute in the command box or through keyboard shortcuts
 1. Features that are already inplace and require no actions from you
 
-With the exception of [save memo](#562-save-memo), all commands that are available can be executed regardless of which tab you are in.
+With the exception of [saving the memo](#562-saving-the-memo), all commands that are available can be executed regardless of which tab you are in.
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are placeholders to be replaced by you.<br>
-  e.g. you should change `addstu n/STUDENT_NAME` to `addstu n/John Cena`.
+  e.g. you should change `addstu n/STUDENT_NAME` to `addstu n/Elvin Ng`.
 
 * Items in square brackets are optional.<br>
-  e.g you can use `n/NAME [t/TAG]` as `n/John Cena t/foreigner` or simply as `n/John Cena`.
+  e.g you can use `n/NAME [t/TAG]` as `n/Elvin Ng t/helpful` or simply as `n/Elvin Ng`.
+  
+* If there are multiple items in round brackets, at least one of them should be supplied.
+e.g. you should use `(n/UPDATED_NAME) (e/UPDATED_EMAIL_ADDRESS)` as `n\Elvin Chee`, `e/elvinchee@u.nus.edu` (i.e. 1 parameter), or `n\Elvin Chee e/elvinchee@u.nus.edu`(i.e. 2 parameters).
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. you can use `[t/TAG]…​` as ` ` (i.e. 0 times), `t/foreigner`(i.e. 1 time), `t/foreigner t/enthusiastic`(i.e. 2 times) etc.
+  e.g. you can use `[t/TAG]…​` as ` ` (i.e. 0 times), `t/helpful`(i.e. 1 time), `t/helpful t/outspoken`(i.e. 2 times) etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME m/MATRICULATION_NUMBER`, `m/MATRICULATION_NUMBER n/NAME` is also acceptable. 
-
+  e.g. if the command specifies `n/NAME m/MATRICULATION_NUMBER`, `m/MATRICULATION_NUMBER n/NAME` is also acceptable.
+  
 </div>
 
 { end of `features#overview` written by: Ngoh Wei Yue }
@@ -286,21 +354,41 @@ This category consists of conventional features (`help`, `exit`, `undo` and `red
 
 #### 5.2.1. Viewing help : `help`
 
-Opens a popup window to show the list of available commands and a link to access this user guide.
-
-The following is how the help window looks like:
-
-![HelpWindow](images/helpWindow.png)
+Opens a popup window which shows the list of available commands and a link to access this user guide.
 
 **Format:**
 ```
 help
 ```
 
-**Expected result:**
-```
-Opened help window
-```
+<div markdown="block" class="alert alert-info">
+ 
+**:information_source: Notes about the usage of this command:**<br>
+* Only a maximum of one help window can be open
+
+</div>
+
+<div markdown="block" class="alert alert-success">
+
+:green_book: **Example:** Try typing in the following command:
+
+1. `help`
+
+</div>
+
+**Outcome:**
+
+1. A help window that look like the following will open up.
+
+![521-helpWindow](images/helpWindow.png)
+
+Figure 5.2.1.1: Help window
+
+1. A message indicating a help window has been opened will be displayed in the main **ATAS** window.
+
+![521-help](images/help.png)
+
+Figure 5.2.1.2: Application view after opening help window
 
 { end of `features#general#help` written by: Ngoh Wei Yue }
 
@@ -314,18 +402,30 @@ Switches between tabs.
 ```
 switch TAB_NAME
 ```
+<div markdown="block" class="alert alert-info">
+ 
 **:information_source: Notes about the usage of this command:**<br>
 * `TAB_NAME` is case-insensitive.
 * `Current` replaces `Current Session` as `TAB_NAME` here for simplicity.
-* `TAB_NAME` must be an existing tab (`Students`, `Sessions`, `Current` or `Memo`).
+* `TAB_NAME` must be an existing tab (`ATAS`, `Students`, `Sessions`, `Current` or `Memo`).
+* Switching to the same tab you are in will result in an error message.
 
+</div>
 
-**Expected result:**
-```
-Switched to TAB_NAME tab
-```
-Example:
-* `switch sessions` switches to the `Sessions` tab.
+<div markdown="block" class="alert alert-success">
+
+:green_book: **Example:** Try typing in the following command:
+
+1. `switch sessions`
+
+</div>
+
+**Outcome:**
+
+1. The sessions tab will be displayed.
+![521-switch](images/switch.png)
+
+Figure 5.2.2.1: Application view after switching to the `Sessions` tab
 
 { end of `features#general#switch` written by: Ngoh Wei Yue }
 
@@ -821,56 +921,98 @@ Examples:
 
 ### 5.6. Memo
 
-Under the `Memo` section, you can choose to `addnote` and save them when needed. 
+This category consists of features related to the memo. They allow you to add notes (`addnote`)and save what you have typed in the memo.
 
 { end of `features#memo` written by: Ngoh Wei Yue }
 
 { start of `features#memo#addnote` written by: Ngoh Wei Yue }
 
-#### 5.6.1. Adding a note : `addnote`
+#### 5.6.1. Adding text into memo
 
-Adds a note to a new line at the end of memo.
+You can add text into the memo in 2 ways:
+
+1. Type directly into the memo box in `Memo` tab.
+2. [Add a note](#5611-adding-a-note)
+
+##### 5.6.1.1 Adding a note : `addnote`
+
+Adds a note onto a new line at the end of the memo.
 
 **Format:**
 ```
 addnote NOTE
 ```
 
-**Expected result:**
-```
-Note added to memo!
-```
-Example:
-* `addnote clarify qn 3 with prof` adds "clarify qn 3 with prof" to memo.
+<div markdown="block" class="alert alert-info">
+ 
+**:information_source: Notes about the usage of this command:**<br>
+* `NOTE` can include any characters including whitespaces.
+
+</div>
+
+<div markdown="block" class="alert alert-success">
+
+:green_book: **Example:** Try typing in the following command:
+
+1. `addnote Note to add`
+
+</div>
+
+**Outcome:**
+
+1. The text "Note to add" is added onto a new line in the memo box.
+
+![561-switch](images/addnote.png)
+
+Figure 5.6.1.1: Application view after adding a note.
+
 
 { end of `features#memo#addnote` written by: Ngoh Wei Yue }
 
+
 { start of `features#memo#save_memo` written by: Ngoh Wei Yue }
 
-#### 5.6.2. Save memo
+#### 5.6.2. Saving the memo
 
 Saves the content of the memo in the hard disk.
 
-**Keyboard shortcut:**
+Unlike the above commands that you can execute by typing into the command box, this feature requires you to press a series of keys on your keyboard.
 
-Click on the text box in memo tab to bring focus to the text box. Text box should have a bright green outline when under focus.
+**Keyboard shortcuts:**
 
-![MemoTextBox](images/MemoTextBox.png)
+1. Click on the memo box in memo tab to bring focus to the memo box. Memo box should have a turquoise outline when under focus.
 
-Windows/Linux:
+If you are a Windows/Linux user,
+
+2. Press down and hold the 'ctrl' key on your keybord.
+
+3. Press the 's' key on your keyboard while holding down to the 'ctrl' key.
+
 ```
 ctrl + s
 ```
 
-MacOs:
+If you are a MacOS user,
+
+2. Press down and hold the 'command' key on your keybord.
+
+3. Press the 's' key on your keyboard while holding down to the 'command' key.
+
 ```
 cmd + s
 ```
 
-**Expected result:**
-```
-Memo saved!
-```
+<div markdown="block" class="alert alert-success">
+
+:green_book: **Example:** Depending on which OS you are using, try following the steps mentioned above.
+</div>
+
+**Outcome:**
+1. The content in the memo is saved in the hard disk.
+
+![562-saveMemo](images/saveMemo.png)
+
+Figure 5.6.2.1: Application view after saving the memo
 
 { end of `features#memo#save_memo` written by: Ngoh Wei Yue }
 
@@ -919,7 +1061,17 @@ Delete INDEX is not executed
 
 ### 5.8. Saving the data
 
-`Students`, `Sessions` and `Memo` data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually. However, you can also choose to manually save the `Memo` data if you want as described in [Section 5.6.2 - Save Memo](#562-save-memo).
+`Students`, `Sessions` and `Memo` data are saved in the hard disk automatically after any command that changes the data. This includes typing directly into the memo box. There is no need to save manually. However, you can also choose to manually save the `Memo` data if you want as described in [Section 5.6.2 - Save Memo](#562-save-memo) for that extra assurance!
+
+The following are the names of the files that contains the respective data:
+
+|Data |File name |
+|-----|------------|
+|Students' particulars | `studentlist.json` |
+|Sessions' details | `sessionlist.json` |
+|Text in memo box | ` memo.txt` |
+
+You can find all the three files in the `data` folder located in the same directory as your `atas.jar` file.
 
 { end of `features#saving_the_data` written by: Ngoh Wei Yue }
 
@@ -930,7 +1082,10 @@ Delete INDEX is not executed
 ## 6. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install **ATAS** in the other computer and overwrite the empty data files it creates with the files that contains the data of your previous **ATAS** home folder. The previous data files can be found in the *data* folder in the same directory as your `atas.jar` file.
+**A**: Install **ATAS** in the other computer and overwrite the empty data files it creates with the files that contains the data of your previous **ATAS** home folder.
+
+**Q:** What if I notice something wrong with my application?<br>
+**A:** Please help us improve by writing to our email stated [here](https://ay2021s1-cs2103t-w16-4.github.io/tp/AboutUs.html).
 
 { end of `faq` written by: Ngoh Wei Yue }
 
@@ -1016,6 +1171,6 @@ Command | Format, Examples
 Command | Format, Examples
 --------|------------------
 **Add Note** | `addnote NOTE`<br> e.g., `addnote clarify qn 3 with prof`
-**Save Memo** | Keyboard shortcut: `Ctrl + s` for Windows/Linux or `Cmd + s` for MacOs
+**Save Memo** | Keyboard shortcut: `Ctrl + s` for Windows/Linux and `Command + s` for MacOS
 
 { end of `command_summary#memo` written by: Ngoh Wei Yue }
