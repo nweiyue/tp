@@ -1,4 +1,5 @@
 ---
+---
 layout: page
 title: Developer Guide
 ---
@@ -38,7 +39,8 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ### 3.1 Architecture
 
-<img src="images/ArchitectureDiagram.png" width="450" />
+<img src="images/developer-guide/3.1-1-ArchitectureDiagram.png" width="450" />
+<p align="center"> <sub> <b>Figure 3.1-1</b>: Architecture Diagram </sub> </p> 
 
 The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
 
@@ -68,13 +70,15 @@ Each of the four components,
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
-![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
+![Class Diagram of the Logic Component](images/developer-guide/3.1-2-LogicClassDiagram.png)
+<p align="center"> <sub> <b>Figure 3.1-2</b>: Logic class diagram </sub> </p> 
 
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `addses s/Tutorial 1 d/10/10/2020`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<img src="images/developer-guide/3.1-3-ArchitectureSequenceDiagram.png" width="574" />
+<p align="center"> <sub> <b>Figure 3.1-3</b>: Architecture sequence diagram </sub> </p> 
 
 The sections below give more details of each component.
 
@@ -105,7 +109,7 @@ The `UI` component,
 
 ### 3.3. Logic component
 
-![Structure of the Logic Component](images/LogicClassDiagram.png)
+![Structure of the Logic Component](images/developer-guide/3.3-1-LogicClassDiagram.png)
 
 **API** :
 [`Logic.java`](https://github.com/AY2021S1-CS2103T-W16-4/tp/blob/master/src/main/java/atas/logic/Logic.java)
@@ -261,11 +265,16 @@ Step 5. The `ConfirmationAcceptCommand` or `ConfirmationRejectCommand` is then e
 
 The following sequence diagram shows how the user confirmation feature works:
 
-![UserConfirmationSequenceDiagram](images/UserConfirmationSequenceDiagram.png)
+![UserConfirmationSequenceDiagram1](images/developer-guide/4.2-1-UserConfirmationSequenceDiagram1.png)
+<p align="center"> <sub> <b>Figure 4.2-1</b>: User confirmation sequence part 1 </sub> </p> 
+
+![UserConfirmationSequenceDiagram2](images/developer-guide/4.2-2-UserConfirmationSequenceDiagram2.png)
+<p align="center"> <sub> <b>Figure 4.2-2</b>: User confirmation sequence part 2 </sub> </p> 
 
 The following activity diagram summarizes what happens when a user executes a dangerous command (for eg. `DeleteStudentCommand`).
 
-![DeleteStudentActivityDiagram](images/DeleteStudentActivityDiagram.png)
+![DeleteStudentActivityDiagram](images/developer-guide/4.2-3-DeleteStudentActivityDiagram.png)
+<p align="center"> <sub> <b>Figure 4.2-3</b>: Activity diagram for delete student</sub> </p> 
 
 { end of `implementation#user_confirmation` written by: Marcus Tan Wei }
 
@@ -309,7 +318,7 @@ list.
 
 The following activity diagram summarizes what happens when a user executes an `addses` command:
 
-![AddSessionActivityDiagram](images/AddSessionActivityDiagram.png)
+![AddSessionActivityDiagram](images/developer-guide/3.1-3-ArchitectureSequenceDiagram.png)
 
 { end of `implementation#adding_a_session` written by: ________ }
 
@@ -826,5 +835,8 @@ testers are expected to do more *exploratory* testing.
    
    1. Test case: `deletestu 101`<br>
       Expected: No student is deleted. Error details shown in the ResultDisplay.
+      
+   1. Other incorrect delete commands to try: `deletestu`, `deletestu x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
 
 { end of `manual_testing#deleting_a_student` written by: Marcus Tan Wei }
