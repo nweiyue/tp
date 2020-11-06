@@ -80,11 +80,12 @@ The sections below give more details of each component.
 
 { end of `design#architecture` written by: ___________ }
 
-{ start of `design#ui_component` written by: ___________ }
+{ start of `design#ui_component` written by: Ngoh Wei Yue }
 
 ### 3.2. UI component
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+![Class Diagram of the UI Component](images/3.2.1-UiClassDiagram.png)
+Figure 3.2.1. Class diagram of the Ui component
 
 **API** :
 [`Ui.java`](https://github.com/AY2021S1-CS2103T-W16-4/tp/blob/master/src/main/java/atas/ui/Ui.java)
@@ -99,7 +100,7 @@ The `UI` component,
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 * Displays results to user if any.
 
-{ end of `design#ui_component` written by: ___________ }
+{ end of `design#ui_component` written by: Ngoh Wei Yue }
 
 { start of `design#logic_component` written by: ___________ }
 
@@ -172,7 +173,7 @@ Classes used by multiple components are in the `seedu.atas.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-{ start of `implementation#switch_between_tabs` written by: ________ }
+{ start of `implementation#switch_between_tabs` written by: Ngoh Wei Yue }
 
 ### 4.1. Switching between different tabs
 
@@ -203,17 +204,21 @@ Step 5. `MainWindow#handleSwitchTab()` will then be called and will check if the
 
 The following sequence diagram shows how the switch operation works:
 
-![SwitchTabsSequenceDiagram](images/SwitchTabsSequenceDiagram.png)
+![SwitchTabsSequenceDiagram](images/4.1.1-SwitchTabsSequenceDiagram.png)
+
+Figure 4.1.1. Sequence diagram showing how `Ui` component works with the `Logic` component to switch tabs
 
 The following activity diagram summarizes what happens when a user executes a switch command:
 
-![SwitchTabsActivityDiagram](images/SwitchTabsActivityDiagram.png)
+![SwitchTabsActivityDiagram](images/4.1.2-SwitchTabsActivityDiagram.png)
+
+Figure 4.1.2. Activity diagram showing the implementation of switching between tabs
 
 #### 4.1.1. Design consideration
 
 * `Tab` is being implemented as an enum class because there is a fixed set of tabs that are available to be switched to. This prevents invalid values to be assigned to `Tab`.
 
-{ end of `implementation#switch_between_tabs` written by: ________ }
+{ end of `implementation#switch_between_tabs` written by: Ngoh Wei Yue }
 
 { start of `implementation#user_confirmation` written by: ________ }
 
@@ -483,13 +488,67 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 { end of `implementation#undo_redo` written by: Masagca Eris Jacey }
 
-{ start of `implementation#adding_a_note` written by: ______________ }
+{ start of `implementation#adding-a-note` written by: Ngoh Wei Yue }
 
 ### 4.8. Adding a note
 
-todo
+**Adding a note** is facilitated by `AddNoteCommand`, `Memo`, `TxtMemoStorage` and `MemoBox`.
 
-{ end of `implementation#adding_a_note` written by: ______________ }
+This implementation of this feature can be split into 3 main parts:
+1. Updating the content in `Memo`.
+2. Updating the data in the hard disk.
+3. Updating the content in `MemoBox` to be displayed to the user.
+
+`AddNoteCommand` implements the method:
+
+* `AddNoteCommand#execute(Model)` — Calls `Model#addNoteCommand()` and returns a `CommandResult` which notifies the `Ui` component to edit the content in the `MemoBox`.
+
+`Memo` is contained in `Model`. It implements the method:
+
+* `Memo#addNote()` — Appends the note to the current content and sets the new content to be the new content of `Memo`.
+
+`MemoStorage` implements `MemoStorage` which is contained in `Storage`. It implements the method:
+
+* `TxtMemoStorage#saveMemo()` — Writes the content in `Memo` to the hard disk.
+
+`MemoBox` implements the method:
+* `Memo#setTextContent()` — Sets text into a text box contained on `MemoBox` to be displayed to the user.
+
+Given below is an example usage scenario and how adding a note behaves at each step.
+
+Step 1. The user executes `addnote note` to add the word "note" onto a new line in the memo box.
+
+Step 2. An `AddNoteCommand` is created, and the `AddNoteCommand#execute()` is called which in turn calls `Model#addNoteToMemo()`.
+
+Step 3. `ModelManager#addNoteToMemo()` calls `Memo#addNote()` which concatenates "note" to the end of the original content and sets it to be the new content.
+
+The following sequence diagram shows how adding a note updates the content in `Memo`:
+
+![AddNoteSequenceDiagram1](images/4.8.1-AddNoteSequenceDiagram.png)
+
+Figure 4.8.1. Sequence diagram showing how the `Logic` component updates the content in `Memo`
+
+Step 4: After the content in `Memo` is updated, `Storage#saveMemo()` is called.
+
+Step 5: `StorageManager#saveMemo()` calls `TxtMemoStorage#saveMemo()` which retrieves the updated content in `Memo` and writes in to a hard disk, following a specified file path.
+
+The following sequence diagram shows how adding a note updates the data in the hard disk:
+
+![AddNoteSequenceDiagram2](images/4.8.2-AddNoteSequenceDiagram.png) 
+
+Figure 4.8.2. Sequence diagram showing how the `Logic` component updates the memo data in the hard disk
+
+Step 5: A `CommandResult` returned from `AddNoteCommand#execute()` is returned to `MainWindow#executeCommand()`. Since the boolean value `isEditMemo` contained in the `CommandResult` is true, `MainWindow#handleEditMemo()` is called.
+
+Step 6: `MainWindow#handleEditMemo()` retrieves the updated `Memo` content using `Logic#getMemoContent()` and calls `MemoBox#setTextContent()` to sets the updated content into the text box contained in `MemoBox`.
+
+The following sequence diagram shows how adding a note updates the text box of `MemoBox` to be displayed to user:
+
+![AddNoteSequenceDiagram3](images/4.8.3-AddNoteSequenceDiagram.png) 
+
+Figure 4.8.1. Sequence diagram showing how the `Ui` component works with the `Logic` component to update the GUI
+
+{ end of `implementation#adding_a_note` written by: Ngoh Wei Yue }
 
 { start of `implementation#exporting_data` written by: ______________ }
 
@@ -505,9 +564,17 @@ todo
 
 todo
 
-{ end of `implementation#dat_encryption` written by: ______________ }
+{ end of `implementation#data_encryption` written by: ______________ }
 
 --------------------------------------------------------------------------------------------------------------------
+
+{ start of `documentation` written by: Ngoh Wei Yue }
+
+## 5. Documentation
+
+Refer to this guide [here](Documentation.md).
+
+{ end of `documentation` written by: Ngoh Wei Yue }
 
 { start of `logging` written by: _____________ }
 
@@ -708,22 +775,21 @@ Use case ends.
 
 { end of `requirements#use_cases` written by: ___________ }
 
-{ start of `requirements#non_functional_requirements` written by: ___________ }
+{ start of `requirements#non_functional_requirements` written by: Ngoh Wei Yue }
 
 ### 10.4. Non-functional requirements
 
-1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-1. Should be able to hold up to 1000 students without a noticeable sluggishness in performance for typical usage.
-1. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-1. Should be for a single user and not a multi-user product.
-1. Should not depend on remote servers.
-1. Should be able to function without having to rely on being connected to a network.
-1. Should be able to work without requiring an installer.
-1. Should not contain very large file sizes (JAR files - 100Mb, PDF files - 15Mb/file).
+1. This product should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+1. This product should be able to hold up to 500 students and 500 sessions without a noticeable sluggishness in performance for typical usage.
+1. This product should be optimised for users who can type regular English text (i.e. not code, not system admin commands) fast and prefer typing over other means of input (e.g., mouse).
+1. This product should be for a single user and should not be a multi-user product.
+1. This product should not depend on remote servers.
+1. This product should be able to function without being connected to a network.
+1. This product should be able to work without requiring an installer.
+1. Data generated by the product should be stored locally in human-editable file.
+1. This product Should not contain very large file sizes (JAR files - 100Mb, PDF files - 15Mb/file).
 
-*{More to be added}*
-
-{ end of `requirements#non_functional_requirements` written by: ___________ }
+{ end of `requirements#non_functional_requirements` written by: Ngoh Wei Yue }
 
 { start of `requirements#glossary` written by: ___________ }
 
@@ -767,26 +833,49 @@ testers are expected to do more *exploratory* testing.
 
 { end of `manual_testing#launch_and_shutdown` written by: __________ }
 
-{ start of `manual_testing#adding_a_student` written by: __________ }
+{ start of `manual_testing#adding_a_student` written by: Ngoh Wei Yue }
 
 ### 11.2. Adding a student
 
-1. Deleting a student while all students are being shown
+  1. Adding a student while all students are being shown.
+  
+  1. Prerequisites: List all students using the list command. No students with the same matriculation number or NUS email address as any of the students to be added during testing.
 
-  1. Prerequisites: List all students using the `list` command. Multiple students in the list.
-
-  1. Test case: `delete 1`<br>
-     Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
-  1. Test case: `delete 0`<br>
-     Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
-
-  1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+  1. Test case: `addstu n/Alvin Boon m/A0123456X e/alvinboon@u.nus.edu`<br>
+     Expected: A student is added to the bottom of the student list. A success message including the particulars of the added student is shown in the result box.
+     
+  1. Test case: `addstu n/Cathy Duigan m/A1123456X e/cathyduigan@u.nus.edu t/helpful`<br>
+       Expected: Similar to previous.
+       
+  1. Test case: `addstu m/A2123456X n/Elbert Foo e/elbertfoo@u.nus.edu`<br>
+       Expected: Similar to previous.
+       
+  1. Test case: `addstu n/Gina Ho m/A3123456X`<br>
+     Expected: No student is added. Error message indicating an invalid command format is shown in the result box.
+     
+  1. Test case: `addstu n/Gina Ho e/ginaho@u.nus.edu`<br>
      Expected: Similar to previous.
+     
+  1. Test case: `addstu m/A3123456X e/ginaho@u.nus.edu`<br>
+     Expected: Similar to previous.
+       
+  1. Test case: `addstu n/Gina Ho m/A31234567 e/ginaho@u.nus.edu`<br>
+     Expected: No student is added. Error message indicating an invalid matric number is shown in the result box.
+     
+  1. Test case: `addstu n/Gina Ho m/A3123456X e/ginaho@u.ntu.edu`<br>
+     Expected: No student is added. Error message indicating an invalid NUS email address is shown in the result box.
+     
+  1. Test case: `addstu n/Gina Ho m/A0123456X e/ginaho@u.nus.edu`<br>
+       Expected: No student is added. Error message indicating that the student already exists is shown in the result box.
+       
+  1. Test case: `addstu n/Gina Ho m/A3123456X e/elbertfoo@u.nus.edu`<br>
+       Expected: No student is added. Error message indicating that the student already exists is shown in the result box.
+     
+  <div markdown="span" class="alert alert-info">:information_source: 
+  **Note:** The above list of test cases is not exhaustive. Please feel free to add more.
+  </div>
 
-1. _{ more test cases …​ }_
-
-{ end of `manual_testing#adding_a_student` written by: __________ }
+{ end of `manual_testing#adding_a_student` written by: Ngoh Wei Yue }
 
 { start of `manual_testing#deleting_a_student` written by: __________ }
 
