@@ -525,7 +525,7 @@ deletestu INDEX
 
 <div markdown="block" class="alert alert-success">
 
-:green_book: **Example:**
+:green_book: **Examples:**
 
 * `liststu` followed by `deletestu 2` followed by `yes`: Deletes and removes the 2nd student (**Figure 5.3.4-2**) from the student list.
 * `findstu Bob` followed by `deletestu 1` followed by `yes`: Deletes and removes the 1st student from the results of the `findstu Bob` command.
@@ -568,7 +568,7 @@ editstu INDEX (n/UPDATED_NAME) (e/UPDATED_EMAIL_ADDRESS) (m/UPDATED_MATRICULATIO
 
 <div markdown="block" class="alert alert-success">
 
-:green_book: **Example:**
+:green_book: **Examples:**
 
 * `editstu 1 n/Alvina Lee` followed by `yes` : Edits the 2nd student (**Figure 5.3.5-1**) in the student list with an updated name `Alvina Lee`.
 * `editstu 3 t/active` followed by `y`: Edits the 3rd student in the student list with an updated tag `active`.
@@ -879,7 +879,7 @@ These commands are: [`deletestu`](#534-deleting-a-student--deletestu), [`editstu
 
 <div markdown="block" class="alert alert-success">
 
-:green_book: **Example:**
+:green_book: **Examples:**
 * `deletestu 1` is followed with the following displayed message `Delete student 1? (yes/no)`.
 * `editstu 3 n/UPDATED_STUDENT_NAME` is followed with the following displayed message `Edit student 3? (yes/no)`.
 * `clearstu` is followed with the following displayed message `Clear student list? (yes/no)` (**Figure 5.7-1**).
