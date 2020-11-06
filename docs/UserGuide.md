@@ -181,7 +181,7 @@ For the good majority of visual learners, we figured to present information in a
 
 Over here, you can familiarise yourself with the different UI components of **ATAS**. **ATAS** comprises of five different tabs, including a default home tab which can be seen in [Section 1.3 - Preview](#13-preview). Each of the remaining four tabs (`Students`, `Sessions`, `Current Session` and `Memo`) supports its respective section of [features](#5-features). All four of these tabs uses the same result box and command box.
 
-To allow you to easily keep track of students presence and participation records, **ATAS** will automatically do some calculations and display them as **statistics** in the `Students`, `Sessions` and `Current Session` tabs. The details of the calculation differs for each tab, and can you can find them under the statistics sub-header for each tab.
+To allow you to easily keep track of students presence and participation records, **ATAS** will automatically do some calculations and display them as **statistics** in the `Students`, `Sessions` and `Current Session` tabs. The details of the calculation differs for each tab, and can you can find them under the **Statistics** sub-header for each tab.
 
 { end of `layout_of_atas` written by: Ngoh Wei Yue }
 
@@ -189,36 +189,34 @@ To allow you to easily keep track of students presence and participation records
 
 ### 4.1. Students
 
-The `Students` tab contains a list of the students in your class. The students are arranged in the order that you add them. In this tab, you can view your students' particulars such as their name, matriculation number, NUS email address and tags (if any). The tags of the students will be highlighted in a turquoise color.
-
 The following is how the `Students` tab looks like:
 
 ![41-studentsLayout](images/41-studentsLayout.png)
 
-Figure 4.1.1: Layout of `Students` tab wheen there is at least one student
+Figure 4.1.1: Layout of `Students` tab when there is at least one student
 
-If there are no students in your list, you will see a message indicating as such.
-
-![41-emptyStudentsLayout](images/41-StudentsLayout.png)
-
-Figure 4.1.2: Layout of `Students` tab when there are no students
-
-### 4.1.1 Statistics
-
-The statistics of students is calculated as a percentage of the number of sessions the student was present or has particiapted out of all the available sessions. The list of sessions can be found in the `Sessions` tab.
+Notes:
+   * **Student list box**: Contains a list of students and their particulars such as their name, matriculation number, NUS email address and tags (if any). Students are arranged in the order that you add them. 
+   * **Statistics**: Calculated as a percentage of the number of sessions the student was present or has participated out of all the available sessions.
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the color code of a student's statistics:**<br>
 
-* Grey: There are no sessions.
-
-* Red: Student was not present or did not particpated in all the sessions (<100%).
-
-* Green: Student was present or has particpated in all the sessions (100%).
+|Colour | Meaning |
+ |--------------|-------------|
+ | Grey | There are no sessions |
+ | Red | Student was not present or did not participated in all the sessions (<100%) |
+ | Green | Student was present or has participated in all the sessions (100%) |
 
 </div>
 
+If there are no students in your list, you will see a message indicating as such.
+
+![41-emptyStudentsLayout](images/41-emptyStudentsLayout.png)
+
+Figure 4.1.2: Layout of `Students` tab when there are no students
+   
 To find out which features are supported by the `Students` tab, you can head over to [Section 5.3 - Students](#53-students).
 
 { end of `layout_of_atas#students` written by: Ngoh Wei Yue }
@@ -227,36 +225,33 @@ To find out which features are supported by the `Students` tab, you can head ove
 
 ### 4.2. Sessions
 
-The `Sessions` tab contains a list of sessions you have. The sessions are sorted by their dates, starting from the latest at the top. In this tab, you can view your sessions' details such as their name and date.
-
 The following is how the `Sessions` tab looks like:
 
 ![42-sessionsLayout](images/42-sessionsLayout.png)
 
 Figure 4.2.1: Layout of `Sessions` tab when there is at least one session
 
-If there are no sessions in your list, you will see a message indicating as such.
-
-![42-emptySessionsLayout](images/41-emptySessionsLayout.png)
-
-Figure 4.2.2: Layout of `Sessions` tab when there are no sessions
-
-### 4.2.1 Statistics
-
-The statistics of sessions is calculated as a percentage of the number of students that was present or has particiapted out of all the students. The list of students can be found in the `Students` tab.
+Notes:
+   * **Student list box**: Contains a list of sessions and their details such as their name and date. Sessions are arranged by their dates, starting from the latest at the top.
+   * **Statistics**: Calculated as a percentage of the number of students that was present or has participated out of all the students.
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the color code of a session's statistics:**<br>
 
-* Grey: There are no students.
-
-* Red: Not all students were present or has participated (<100%).
-
-* Green: All the students were present or has participated (100%).
+|Colour | Meaning |
+ |--------------|-------------|
+ | Grey | There are no students |
+ | Red | Not all students were present or has participated (<100%) |
+ | Green | All the students were present or has participated (100%) |
 
 </div>
 
+If there are no sessions in your list, you will see a message indicating as such.
+
+![42-emptySessionsLayout](images/42-emptySessionsLayout.png)
+
+Figure 4.2.2: Layout of `Sessions` tab when there are no sessions
 
 To find out which features are supported by the `Sessions` tab, you can head over to [Section 5.4 - Sessions](#54-sessions).
 
@@ -266,25 +261,24 @@ To find out which features are supported by the `Sessions` tab, you can head ove
 
 ### 4.3. Current session
 
-Similar to the `Students` tab, you can also view the list of your students in the `Current Session` tab if you enter a session. The difference is that you can only view the student's name and also whether they are present or have participated for that particular session. You can also see the status of which session you are currently in on the left side of the status bar footer.
-
 The following is how the `Current Session` tab looks like:
 
-![431-currentSessionLayout](images/431-currentSessionLayout.png)
+![43-currentSessionLayout](images/43-currentSessionLayout.png)
 
 Figure 4.3.1: Layout of `Current Session` tab when a session is entered
 
-If you have not entered any session or left a session (by removing that session), you will see a message indicating as such. You can enter a session by using `enterses INDEX` as described in [Section 5.4.5 - Entering a session](#54-entering-a-session).
+Notes:
+   * **Student list box**: Contains a list of sessions and their details such as their name and date. Sessions are arranged by their dates, starting from the latest at the top.
+   * **Presence/Participation status**: Represents the student's presence and participation for the particular session that was entered.
+   * **Statistics**: Calculated as a percentage of the number of students that was present or has participated out of all the students.
 
-![432-notInCurrentSessionLayout](images/432-notInCurrentSessionLayout.png)
+Similar to the [`Students`](#41-students) tab, if there are no students in that session, you will see a similar message as shown in **Figure 4.1.2**
 
-Figure 4.3.2: Layout of `Current Session` tab when a session is not entered
+If you have not entered any session or left a session (by removing that session), you will see a message indicating as such. You can enter a session by using `enterses INDEX` as described in [Section 5.4.5 - Entering a session](#545-entering-a-session).
 
-Similar to the the `Students` tab, if there are no students in that session, you will see a similar message as shown in **Figure 4.1.2**
+![43-notInCurrentSessionsLayout](images/43-notInCurrentSessionLayout.png)
 
-### 4.3.1 Statistics
-
-The statistics of a current session is similar to that of sessions, which is calculated as a percentage of the number of students that was present or has particiapted out of all the students. However, it is placed on the right side of the status bar footer instead.
+Figure 4.3.2: Layout of `Current Session` tab when there are no session is entered
 
 To find out which features are supported by the `Current Session` tab, you can head over to [Section 5.5 - Current session](#55-current-session).
 
@@ -294,11 +288,14 @@ To find out which features are supported by the `Current Session` tab, you can h
 
 ### 4.4. Memo
 
-The `Memo` tab contains a memo box where you can input any notes that you need for future references. The amount of space you can see is tied to size of your application window, but the actual text space that you can typed in will automatically be extended if you need more space.
-
 The following is how the `Memo` tab looks like:
 
-![MemoLayout](images/MemoLayout.png)
+![44-memoLayout](images/44-memoLayout.png)
+
+Figure 4.4.1: Layout of `Memo` tab
+
+Note:
+   * **Memo box**: A text box where you can input any notes that you need for future references. The amount of space you can see is tied to size of your application window, but the actual text space that you can typed in will automatically be extended if you need more space.
 
 To find out which features are supported by the `Memo` tab, you can head over to [Section 5.6 - Memo](#56-memo).
 
@@ -372,7 +369,7 @@ help
 
 :green_book: **Example:** Try typing in the following command:
 
-1. `help`
+`help`
 
 </div>
 
@@ -380,15 +377,15 @@ help
 
 1. A help window that look like the following will open up.
 
-![521-helpWindow](images/helpWindow.png)
+![521-helpWindow](images/521-helpWindow.png)
 
 Figure 5.2.1.1: Help window
 
-1. A message indicating a help window has been opened will be displayed in the main **ATAS** window.
+2. A message indicating a help window has been opened will be displayed in the main **ATAS** window.
 
-![521-help](images/help.png)
+![521-help](images/521-help.png)
 
-Figure 5.2.1.2: Application view after opening help window
+Figure 5.2.1.2: Main window view after opening help window
 
 { end of `features#general#help` written by: Ngoh Wei Yue }
 
@@ -416,14 +413,14 @@ switch TAB_NAME
 
 :green_book: **Example:** Try typing in the following command:
 
-1. `switch sessions`
+`switch sessions`
 
 </div>
 
 **Outcome:**
 
-1. The sessions tab will be displayed.
-![521-switch](images/switch.png)
+The sessions tab will be displayed.
+![522-switch](images/522-switch.png)
 
 Figure 5.2.2.1: Application view after switching to the `Sessions` tab
 
@@ -921,7 +918,7 @@ Examples:
 
 ### 5.6. Memo
 
-This category consists of features related to the memo. They allow you to add notes (`addnote`)and save what you have typed in the memo.
+This category consists of features related to the memo. They allow you to add text by typing into the memo box or by adding a note (`addnote`) to the memo. You can also manually save the content in the memo box using certain keyboard shortcuts.
 
 { end of `features#memo` written by: Ngoh Wei Yue }
 
@@ -932,9 +929,9 @@ This category consists of features related to the memo. They allow you to add no
 You can add text into the memo in 2 ways:
 
 1. Type directly into the memo box in `Memo` tab.
-2. [Add a note](#5611-adding-a-note)
+2. [Add a note](#5611-adding-a-note--addnote).
 
-##### 5.6.1.1 Adding a note : `addnote`
+##### 5.6.1.1. Adding a note : `addnote`
 
 Adds a note onto a new line at the end of the memo.
 
@@ -954,17 +951,21 @@ addnote NOTE
 
 :green_book: **Example:** Try typing in the following command:
 
-1. `addnote Note to add`
+`addnote clarify qn 3 with prof`
 
 </div>
 
 **Outcome:**
 
-1. The text "Note to add" is added onto a new line in the memo box.
+The text "clarify qn 3 with prof" is added onto a new line in the memo box.
 
-![561-switch](images/addnote.png)
+![5611-beforeAddNote](images/5611-beforeAddNote.png)
 
-Figure 5.6.1.1: Application view after adding a note.
+Figure 5.6.1.1.1: Application view before adding a note
+
+![5611-afterAddNote](images/5611-afterAddNote.png)
+
+Figure 5.6.1.1.1: Application view after adding a note
 
 
 { end of `features#memo#addnote` written by: Ngoh Wei Yue }
@@ -984,7 +985,7 @@ Unlike the above commands that you can execute by typing into the command box, t
 
 If you are a Windows/Linux user,
 
-2. Press down and hold the 'ctrl' key on your keybord.
+2. Press down and hold the 'ctrl' key on your keyboard.
 
 3. Press the 's' key on your keyboard while holding down to the 'ctrl' key.
 
@@ -994,7 +995,7 @@ ctrl + s
 
 If you are a MacOS user,
 
-2. Press down and hold the 'command' key on your keybord.
+2. Press down and hold the 'command' key on your keyboard.
 
 3. Press the 's' key on your keyboard while holding down to the 'command' key.
 
@@ -1010,7 +1011,7 @@ cmd + s
 **Outcome:**
 1. The content in the memo is saved in the hard disk.
 
-![562-saveMemo](images/saveMemo.png)
+![562-saveMemo](images/562-saveMemo.png)
 
 Figure 5.6.2.1: Application view after saving the memo
 
