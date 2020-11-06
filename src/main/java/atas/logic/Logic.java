@@ -3,6 +3,7 @@ package atas.logic;
 import java.nio.file.Path;
 
 import atas.commons.core.GuiSettings;
+import atas.commons.core.index.Index;
 import atas.logic.commands.CommandResult;
 import atas.logic.commands.exceptions.CommandException;
 import atas.logic.parser.exceptions.ParseException;
@@ -64,6 +65,11 @@ public interface Logic {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
+     * Returns the id of the current session.
+     */
+    Index getSessionId();
+
+    /**
      * Returns the Memo content.
      */
     String getMemoContent();
@@ -85,4 +91,9 @@ public interface Logic {
      * @throws CommandException If file to save content in does not exist and cannot be created.
      */
     void saveMemoContent(String memoContent) throws CommandException;
+
+    /**
+     * Refresh statistics of model.
+     */
+    void refreshStatistics();
 }

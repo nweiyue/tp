@@ -60,6 +60,14 @@ public class VersionedStudentList extends StudentList implements VersionedEntity
         resetData(studentStateList.get(++currentStatePointer));
     }
 
+    public int getCurrentStatePointer() {
+        return currentStatePointer;
+    }
+
+    public void setCurrentStatePointer(int newPointer) {
+        currentStatePointer = newPointer;
+    }
+
     private void removeStatesAfterCurrentPointer() {
         this.studentStateList.subList(currentStatePointer + 1, studentStateList.size()).clear();
     }

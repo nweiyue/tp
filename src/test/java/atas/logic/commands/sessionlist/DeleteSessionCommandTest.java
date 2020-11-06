@@ -86,7 +86,7 @@ public class DeleteSessionCommandTest {
     @Test
     public void testToString() {
         DeleteSessionCommand deleteSessionCommand = new DeleteSessionCommand(INDEX_FIRST_SESSION);
-        String expectedString = "Delete 1";
+        String expectedString = "Delete session 1";
         assertEquals(expectedString, deleteSessionCommand.toString());
     }
 }

@@ -4,7 +4,6 @@ import static atas.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -21,6 +20,7 @@ import atas.model.session.SessionList;
 import atas.model.session.SessionName;
 import atas.model.session.VersionedAttributesList;
 import atas.model.session.VersionedSessionList;
+import atas.model.session.exceptions.SameSessionException;
 import atas.model.student.ReadOnlyStudentList;
 import atas.model.student.Student;
 import atas.model.student.StudentList;
@@ -194,8 +194,7 @@ public class ModelManager implements Model {
     @Override
     public void resetSessionList() {
         this.sessionList.clearSessions();
-        this.sessionId = null;
-        attributesList.resetData(new ArrayList<>());
+        resetCurrentAttributesList();
     }
 
     @Override
@@ -224,10 +223,7 @@ public class ModelManager implements Model {
     public void deleteSession(Session target, Index id) {
         sessionList.updateStudentList(studentList.getStudentList());
         sessionList.deleteSession(target);
-        if (id.equals(this.sessionId)) {
-            this.sessionId = null;
-            attributesList.resetData(new ArrayList<>());
-        }
+        resetCurrentAttributesList();
         refreshStudentStatistics();
     }
 
@@ -236,12 +232,14 @@ public class ModelManager implements Model {
         sessionList.updateStudentList(studentList.getStudentList());
         sessionList.addSession(session);
         updateFilteredSessionList(PREDICATE_SHOW_ALL_SESSIONS);
+        resetCurrentAttributesList();
         refreshStatistics();
     }
 
     @Override
     public void setSession(Session target, Session editedSession) {
         sessionList.setSession(target, editedSession);
+        resetCurrentAttributesList();
         refreshStatistics();
     }
 
@@ -251,7 +249,7 @@ public class ModelManager implements Model {
         sessionName = session.getSessionName();
 
         sessionList.updateStudentParticipation(sessionName, indexRange);
-        attributesList.setCurrentAttributeList(sessionName.value, session.getAttributeList());
+        attributesList.setCurrentAttributeList(sessionId.getCopy(), session.getAttributeList());
         refreshStatistics();
     }
 
@@ -261,7 +259,7 @@ public class ModelManager implements Model {
         sessionName = session.getSessionName();
 
         sessionList.updateStudentPresence(sessionName, indexRange);
-        attributesList.setCurrentAttributeList(sessionName.value, session.getAttributeList());
+        attributesList.setCurrentAttributeList(sessionId.getCopy(), session.getAttributeList());
         refreshStatistics();
     }
 
@@ -275,7 +273,14 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Attributes> getCurrentAttributesList() {
-        return attributesList.getCurrentAttributeList();
+        return attributesList.getAttributesList();
+    }
+
+    @Override
+    public void resetCurrentAttributesList() {
+        sessionId = null;
+        setCurrentSessionFalse();
+        attributesList.resetData();
     }
 
     @Override
@@ -339,9 +344,12 @@ public class ModelManager implements Model {
 
     @Override
     public void enterSession(Index sessionId) {
+        if (sessionId.equals(this.sessionId)) {
+            throw new SameSessionException(sessionId);
+        }
+
         this.sessionId = sessionId;
-        SessionName sessionName = sessionList.getSessionBasedOnId(sessionId).getSessionName();
-        this.attributesList.setCurrentAttributeList(sessionName.value, getCurrentSession().getAttributeList());
+        this.attributesList.setCurrentAttributeList(sessionId.getCopy(), getCurrentSession().getAttributeList());
         setCurrentSessionTrue();
     }
 
@@ -479,6 +487,7 @@ public class ModelManager implements Model {
         studentList.undo();
         sessionList.undo();
         attributesList.undo();
+        sessionId = attributesList.getCurrentSessionIndexValue();
         refreshStatistics();
     }
 
@@ -494,6 +503,7 @@ public class ModelManager implements Model {
         studentList.redo();
         sessionList.redo();
         attributesList.redo();
+        sessionId = attributesList.getCurrentSessionIndexValue();
         refreshStatistics();
     }
 }
