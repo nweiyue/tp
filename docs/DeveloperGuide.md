@@ -1,5 +1,4 @@
 ---
----
 layout: page
 title: Developer Guide
 ---
@@ -110,7 +109,7 @@ The `UI` component,
 
 { end of `design#ui_component` written by: Ngoh Wei Yue }
 
-{ start of `design#logic_component` written by: ___________ }
+{ start of `design#logic_component` written by: Alvin Chee Teck Weng }
 
 ### 3.3. Logic component
 
@@ -128,8 +127,9 @@ The `UI` component,
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("enterses 1")` API call.
 
 ![Interactions Inside the Logic Component for the `enterses 1` Command](images/EnterSessionSequenceDiagram.png)
+<p align="center"> <sub> <b>Figure 3.3.1</b>: Enter Session Sequence Diagram </sub> </p>
 
-{ end of `design#logic_component` written by: ___________ }
+{ end of `design#logic_component` written by: Alvin Chee Teck Weng }
 
 { start of `design#model_component` written by: Masagca Eris Jacey }
 
@@ -336,7 +336,7 @@ The following activity diagram summarizes what happens when a user executes an `
 
 { end of `implementation#adding_a_session` written by: Zhang Sheng Yang }
 
-{ start of `implementation#entering_a_session` written by: ________ }
+{ start of `implementation#entering_a_session` written by: Alvin Chee Teck Weng }
 
 ### 4.4. Entering a session
 
@@ -371,12 +371,14 @@ Step 4. `Model#enterSession()` will be called by `EnterSession#execute()` and th
 The following sequence diagram shows how the enter session operation works:
 
 ![EnterSessionSequenceDiagram](images/EnterSessionSequenceDiagram.png)
+<p align="center"> <sub> <b>Figure 4.4.1</b>: Enter Session Sequence Diagram </sub> </p>
 
 The following activity diagram summarizes what happens when a user executes an enter session command:
 
 ![EnterSessionActivityDiagram](images/EnterSessionActivityDiagram.png)
+<p align="center"> <sub> <b>Figure 4.4.2</b>: Enter Session Activity Diagram </sub> </p>
 
-{ end of `implementation#entering_a_session` written by: ________ }
+{ end of `implementation#entering_a_session` written by: Alvin Chee Teck Weng }
 
 { start of `implementation#presence_and_participation` written by: Zhang Sheng Yang }
 
@@ -673,13 +675,17 @@ Figure 4.8.1. Sequence diagram showing how the `Ui` component works with the `Lo
 
 { end of `implementation#adding_a_note` written by: Ngoh Wei Yue }
 
-{ start of `implementation#exporting_data` written by: ______________ }
+{ start of `implementation#exporting_data` written by: Alvin Chee Teck Weng }
 
 ### 4.9. [Proposed] Exporting data to csv
 
-todo
+A data exporting feature to csv can be implemented in the future.
 
-{ end of `implementation#exporting_data` written by: ______________ }
+Pros: Data are now more organised can be opened by apps such as Microsoft Excel.
+
+Cons: Not easy to implement because it requires the knowledge of how to organise the data into csv format.
+
+{ end of `implementation#exporting_data` written by: Alvin Chee Teck Weng }
 
 { start of `implementation#data_encryption` written by: Marcus Tan Wei }
 
@@ -728,13 +734,13 @@ Refer to this guide [here](Logging.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-{ start of `testing` written by: _____________ }
+{ start of `testing` written by: Alvin Chee Teck Weng }
 
 ## 7. Testing
 
 Refer to this guide [here](Testing.md).
 
-{ end of `testing` written by: _____________ }
+{ end of `testing` written by: Alvin Chee Teck Weng }
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -801,37 +807,32 @@ Refer to this guide [here](DevOps.md).
 
 { end of `requirements#product_scope` written by: Masagca Eris Jacey }
 
-{ start of `requirements#user_stories` written by: ___________ }
+{ start of `requirements#user_stories` written by: Alvin Chee Teck Weng }
 
 ### 10.2. User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
+| Priority | As a …​                                    | I want to …​                   | So that I can…​                                                         |
 | -------- | ------------------------------------------ | ------------------------------ | ----------------------------------------------------------------------- |
 | `* * *`  | user                                       | see usage instructions         | refer to instructions when I forget how to use the App                  |
-| `* * *`  | user                                       | add a new student              |                                                                         |
-| `* * *`  | user                                       | delete a student               | remove students no longer taking the module                             |
-| `* * *`  | user                                       | track all students in my class | so that I will know who is missing from my class                        |
-| `* * *`  | user                                       | find a student by name         | locate details of students without having to go through the entire list |
-| `* * *`  | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                 |
-| `* * *`  | user with many students in my class        | sort students by name          | locate a student easily                                                 |
-| `* *  `  | user                                       | track my students' attendance  | take note of the tutorial participation for each student                |
-| `* *  `  | user who has trouble putting face to name  | easily identify each student with a profile photo | recognise students through their faces more easily   |
-| `* *  `  | user who yearns for efficiency due to limited class time | have a random number generator | get a random student to answer my question instead of having to rely on online generators |
-| `* *  `  | user                                       | add non-registered Christian names or nicknames to my students | remember them more easily               |
-| `* *  `  | user                                       | send important emails to my students | not have to rely on Microsoft Outlook/LumiNUS                     |
-| `* *  `  | user                                       | have diagrams tracking students' progress | tell from one look that a student is not catching up with lecture material |
+| `* * *`  | tutor                                       | add a new student              | add details of the students in my class                                |                     
+| `* * *`  | tutor                                       | delete a student               | remove details of the students no longer taking the module             |                 
+| `* * *`  | tutor                                       | find a student by name         | locate details of students without having to go through the entire list|
+| `* * *`  | tutor with many students in my class        | sort students by name          | locate a student easily                                                |
+| `* *  `  | tutor                                       | track my students' attendance  | take note of the tutorial participation for each student               |
+| `* *  `  | tutor with limited class time | have a random number generator that generates a random number quickly | get a random student to answer my question more efficiently instead of having to rely on online generators |
+| `* *  `  | tutor                                       | add non-registered Christian names or nicknames to my students | remember my students more easily       |
+| `* *  `  | tutor who likes to do my administrative work on just one platform | send important emails to my students | not have to rely on external apps like Microsoft Outlook/LumiNUS |
+| `* *  `  | tutor                                       | have diagrams tracking students' progress | pick out easily which student is not catching up with lecture material |
 | `* *  `  | tutor who can be quite forgetful           | create a list of announcements | remember to convey them to my students                                  |
 | `* *  `  | tutor who wants to protect the particulars of my students | encrypt files with passwords | keep the module and students' data safe                    |
 | `* *  `  | tutor who often overshoots the time allocated for my lesson | be reminded at certain intervals | be on track throughout the lesson                    |
-| `* *  `  | tutor who wants the class to participate actively in class discussions | quickly record who has/has not spoken yet | call on those who haven't spoken for subsequent questions |
+| `* *  `  | tutor who wants the class to participate actively in class discussions | quickly record who has spoken | call on those who haven't spoken for subsequent questions |
 | `*    `  | user who likes customization               | customize my own keyboard shortcuts |                                                                    |
 | `*    `  | user who likes colors                      | customize the UI to whatever color scheme I want | enjoy using the App more                              |
 
-*{More to be added}*
-
-{ end of `requirements#user_stories` written by: ___________ }
+{ end of `requirements#user_stories` written by: Alvin Chee Teck Weng }
 
 { start of `requirements#use_cases` written by: Zhang Sheng Yang }
 
