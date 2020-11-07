@@ -441,10 +441,9 @@ Chooses a student at random from the student list.
 rng
 ```
 
-**Expected result:**
-```
-Student selected: NAME_OF_RANDOMLY_SELECTED_STUDENT
-```
+**Outcome:** 
+![523-rng](images/user-guide/5.2.3-Rng.png)
+Figure 5.2.3.1. Application view after performing the `rng` command
 
 { end of `features#general#rng` written by: Masagca Eris Jacey }
 
@@ -460,12 +459,13 @@ Undoes a command and essentially returns ATAS to the state prior to performing t
 
 * An `undo` is done *per command* and not per change. If you make multiple changes to a student, for example, using a single `editstu` command, then `undo` will revert *all* the changes.
 * Commands that can be undone are:
-   * Adding a student/session: `addstu` / `addses`
-   * Deleting a student/session: `deletestu` / `deleteses`
-   * Editing a student/session: `editstu` / `editses`
-   * Clearing all students/sessions: `clearstu` / `clearses`
-   * Toggling the participation status of students: `participate`
-   * Toggling the presence status of students: `presence`
+   * Adding a student/session: [`addstu`](#531-adding-a-student--addstu) / [`addses`](#541-adding-a-session--addses)
+   * Deleting a student/session: [`deletestu`](#534-deleting-a-student--deletestu) / [`deleteses`](#542-deleting-a-session--deleteses)
+   * Editing a student/session: [`editstu`](#535-editing-a-students-particulars--editstu) / [`editses`](#543-editing-a-session--editses)
+   * Clearing all students/sessions: [`clearstu`](#536-clearing-the-student-list--clearstu) / [`clearses`](#544-clearing-the-session-list--clearses)
+   * Entering a session: [`enterses`](#545-entering-a-session--enterses)
+   * Toggling the participation status of students: [`participate`](#551-toggling-participation-status-of-students--participate)
+   * Toggling the presence status of students: [`presence`](#552-toggling-presence-status-of-students--presence)
 * Commands not stated above make no change to the application state and thus cannot be undone.
 * Successive `undo` commands will bring the application state further back, until there are no more changes to `undo`.
 * You cannot `undo` if there is no previous state to return to.
@@ -477,10 +477,24 @@ Undoes a command and essentially returns ATAS to the state prior to performing t
 undo
 ```
 
-**Expected result:**
-```
-Previous command successfuly undone!
-```
+<div markdown="block" class="alert alert-success">
+
+:green_book: **Example:**<br>
+
+The example we are about to use follows that used in [Section 5.3.4 - Deleting a student](#534-deleting-a-student--deletestu).
+
+</div>
+
+1. Suppose we have indeed deleted Alvin Lee from our student list. 
+This change is reflected in the [students' tab](#41-students).
+![524-undo-1](images/user-guide/5.2.4.1-Undo.png)
+Figure 5.2.4.1. Application view after deleting Alvin Lee as seen in the students' tab
+
+1. However, we realise that deleting him was mistake.
+He does belong to our class after all!
+In this case, we can revert the deletion we have made with `undo`.
+![524-undo-2](images/user-guide/5.2.4.2-Undo.png)
+Figure 5.2.4.2. Application view after performing the `undo` command
 
 { end of `features#general#undo` written by: Masagca Eris Jacey }
 
@@ -488,9 +502,11 @@ Previous command successfuly undone!
 
 #### 5.2.5. Redo-ing a command : `redo`
 
-Redoes a command that was most recently undone and returns ATAS to the state after having performed that command.
+Redoes a command that was most recently undone and returns ATAS to the state *after* having performed that command.
 
 Essentially the reverse of undo-ing a command.
+
+You can think of it as performing that very same command you have undone!
 
 <div markdown="block" class="alert alert-info">
 
@@ -507,10 +523,21 @@ Essentially the reverse of undo-ing a command.
 redo
 ```
 
-**Expected result:**
-```
-Previous command successfuly redone!
-```
+<div markdown="block" class="alert alert-success">
+
+:green_book: **Example:**<br>
+
+We will be following up from the same example used in [Section 5.2.4 - Undo-ing a command](#524-undo-ing-a-command--undo). 
+
+</div>
+
+1. Suppose it seems like Alvin Lee has tricked us all this while and isn't actually our student!
+This means that when we had initially deleted him from our list, it was actually the right thing to do. 
+We can simply reverse the undo we have made using `redo`.
+![525-redo](images/user-guide/5.2.5-Redo.png)
+Figure 5.2.5.1. Application view after performing the `redo` command as seen in the students' tab
+<br> <br>
+As can be seen above, Alvin Lee has been removed from the student list again.
 
 { end of `features#general#redo` written by: Masagca Eris Jacey }
 
