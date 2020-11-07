@@ -675,7 +675,7 @@ Cons: Not easy to implement because it requires the knowledge of how to organise
 ### 4.10 [Proposed] Data encryption
 Data encryption can be implemented in the future versions. This is to further protect the students' particulars. 
 
-### 4.10.1 Solution 1
+#### 4.10.1 Solution 1
 Encrypt and store data locally.
 
 * Pros: 
@@ -685,7 +685,7 @@ Encrypt and store data locally.
    * Performance reduction may occur since every call to save to storage requires encrypting a lot of data.
    * Security issues may still arise if we store the encryption key in the same machine.
 
-### 4.10.2 Solution 2
+#### 4.10.2 Solution 2
 Store data outside the user’s machine and issue the user an access token.
 
 * Pros: 
