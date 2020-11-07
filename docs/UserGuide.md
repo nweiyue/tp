@@ -72,13 +72,14 @@ Specifically, **ATAS** allows you to keep track of four different aspects (see [
 ### 1.3. Preview
 
 The following is the GUI of our application:
-    ![UiPreview](images/UiPreview.png)
+    ![UiPreview](images/user-guide/1.3-1-UiPreview.png)
+    <p align="center"> <sub> <b>Figure 1.3-1</b>: UI Preview </sub> </p>
+    
 
 GUI Components:
    1. **Command box**: where you enter your commands.
    1. **Result box**: where the result of a command is shown. It can show a success message or a failure message if something wrong happens.
    1. **Tabs**: shows what item type you are viewing.
-   1. **List box**: where the list of students, sessions or attendance attributes are shown. For example, if you are in `Students` tab, then a list of students and their particulars are shown. It includes a scrollbar for you to scroll down to view more students' particulars.
 
 { end of `introduction#preview` written by: Marcus Tan Wei }
 
@@ -116,7 +117,8 @@ You will come across some of these terms in this document, and it will be good t
 |Term |Explanation |
 |-----|------------|
 |command | A line of text that you can type into the command box for the application to execute. |
-|index | The position of an item (student or session) in a displayed list. For simplicity, indexes start from 1.|
+|GUI | Graphical User Interface (GUI) is a type of user interface through which user interacts with electronic devices through visual representations. |
+|index | The position of an item (student or session) in a displayed list. For simplicity, indexes start from 1. |
 |memo | A brief written message written by you for note-taking. |
 |parameter| Specific information that you input. |
 |participate | An attribute indicating if a student has participated in the session or not. |
@@ -124,6 +126,7 @@ You will come across some of these terms in this document, and it will be good t
 |session | A tutorial session or lesson that you conduct. |
 |student | A person that is in your tutorial class. |
 |tag(s) | Keyword(s) tagged to a student for your own identification purpose. |
+|Ui | User interface (Ui) is the means by which user and a computer system interact. |
 
 { end of `about_this_user_guide#glossary` written by: Marcus Tan Wei }
 
@@ -134,8 +137,9 @@ For the good majority of visual learners, we figured to present information in a
   |Symbol/Format | Explanation |
  |--------------|-------------|
  |:bulb: | Tips |
+ |:green_book: | Example(s) |
  |:information_source: | Important information to take note |
- |``consolas font`` | Representing a keyterm or a command |
+ |`consolas font` | Representing a key term or a command |
  
 --------------------------------------------------------------------------------------------------------------------
 
@@ -179,7 +183,9 @@ For the good majority of visual learners, we figured to present information in a
 
 ## 4. Layout of ATAS
 
-Over here, you can get an idea of how the different aspects of **ATAS** look like. **ATAS** comprises of four different tabs, with each tab supporting [features](#5-features) of the different aspects of **ATAS**.
+Over here, you can familiarise yourself with the different UI components of **ATAS**. **ATAS** comprises of five different tabs, including a default home tab which can be seen in [Section 1.3 - Preview](#13-preview). Each of the remaining four tabs (`Students`, `Sessions`, `Current Session` and `Memo`) supports its respective section of [features](#5-features). All four of these tabs uses the same result box and command box.
+
+To allow you to easily keep track of students presence and participation records, **ATAS** will automatically do some calculations and display them as **statistics** in the `Students`, `Sessions` and `Current Session` tabs. The details of the calculation differs for each tab, and you can find out more about them under each sub-header.
 
 { end of `layout_of_atas` written by: Ngoh Wei Yue }
 
@@ -187,12 +193,34 @@ Over here, you can get an idea of how the different aspects of **ATAS** look lik
 
 ### 4.1. Students
 
-The `Students` tab contains a list of the students in your class. In this tab, you can view your students' particulars such as their name, matriculation number, email and their overall presence and participation scores. The students are arranged in the order that you add them.
-
 The following is how the `Students` tab looks like:
 
-![StudentsLayout](images/StudentsLayout.png)
+![StudentsLayout](images/user-guide/4.1.1-StudentsLayout.png)
 
+Figure 4.1.1. Layout of `Students` tab when there is at least one student
+
+Notes:
+   * **Student list box**: Contains a list of students and their particulars such as their name, matriculation number, NUS email address and tags (if any). <span style="background-color: #089788; color: white">Tags</span> are highlighted in a turquoise colour and students are arranged in the order that you add them. 
+   * **Statistics**: Calculated as a percentage of the number of sessions the student was present or has participated out of all the available sessions.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about the color code of a student's statistics:**<br>
+
+|Colour | Meaning |
+ |--------------|-------------|
+ | <span style="background-color: #E6E6E6; color: black">Grey</span> | There are no sessions |
+ | <span style="background-color: crimson; color: white">Red</span> | Student was not present or did not participated in all the sessions (<100%) |
+ | <span style="background-color: green; color: white">Green</span> | Student was present or has participated in all the sessions (100%) |
+
+</div>
+
+If there are no students in your list, you will see a message indicating as such.
+
+![EmptyStudentsLayout](images/user-guide/4.1.2-EmptyStudentsLayout.png)
+
+Figure 4.1.2. Layout of `Students` tab when there are no students
+   
 To find out which features are supported by the `Students` tab, you can head over to [Section 5.3 - Students](#53-students).
 
 { end of `layout_of_atas#students` written by: Ngoh Wei Yue }
@@ -201,11 +229,33 @@ To find out which features are supported by the `Students` tab, you can head ove
 
 ### 4.2. Sessions
 
-Over at `Sessions` tab, you can find the list of sessions that you have. Each session will display details like their name, date and the overall percentage of students present and participating in that particular session. The sessions are sorted by their dates, starting from the latest at the top.
-
 The following is how the `Sessions` tab looks like:
 
-![SessionsLayout](images/SessionsLayout.png)
+![SessionsLayout](images/user-guide/4.2.1-SessionsLayout.png)
+
+Figure 4.2.1. Layout of `Sessions` tab when there is at least one session
+
+Notes:
+   * **Student list box**: Contains a list of sessions and their details such as their name and date. Sessions are arranged by their dates, starting from the latest at the top.
+   * **Statistics**: Calculated as a percentage of the number of students that was present or has participated out of all the students.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about the color code of a session's statistics:**<br>
+
+|Colour | Meaning |
+ |--------------|-------------|
+ | <span style="background-color: #E6E6E6; color: black">Grey</span> | There are no students |
+ | <span style="background-color: crimson; color: white">Red</span> | Not all students were present or has participated (<100%) |
+ | <span style="background-color: green; color: white">Green</span> | All the students were present or has participated (100%) |
+
+</div>
+
+If there are no sessions in your list, you will see a message indicating as such.
+
+![EmptySessionsLayout](images/user-guide/4.2.2-EmptySessionsLayout.png)
+
+Figure 4.2.2. Layout of `Sessions` tab when there are no sessions
 
 To find out which features are supported by the `Sessions` tab, you can head over to [Section 5.4 - Sessions](#54-sessions).
 
@@ -215,11 +265,24 @@ To find out which features are supported by the `Sessions` tab, you can head ove
 
 ### 4.3. Current session
 
-Similar to the `Students` tab, you can also view the list of your students in the `Current Session` tab. The difference is that you can only view the students name and also whether they are present or have participated for that particular session. Students are sorted base on the student list in the `Students` tab.
-
 The following is how the `Current Session` tab looks like:
 
-![CurrentSessionLayout](images/CurrentSessionLayout.png)
+![CurrentSessionLayout](images/user-guide/4.3.1-CurrentSessionLayout.png)
+
+Figure 4.3.1. Layout of `Current Session` tab when a session is entered
+
+Notes:
+   * **Student list box**: Similar to the `Students` tab, this box contains a list of students. However, only their names are shown here. The order of students follows that of the `Students` tab.
+   * **Presence/Participation Status**: If student is absent or has not participated, <span style="background-color: crimson; color: white">label</span> will be red, whereas if student is present or has participated, then <span style="background-color: green; color: white">label</span> is green.
+   * **Statistics**: Calculated as a percentage of the number of students that was present or has participated out of all the students.
+
+Similar to the [`Students`](#41-students) tab, if there are no students in that session, you will see a similar message as shown in **Figure 4.1.2**.
+
+If you have not entered any session or left a session (by removing that session), you will see a message indicating as such. You can enter a session by using `enterses INDEX` as described in [Section 5.4.5 - Entering a session](#545-entering-a-session--enterses).
+
+![NotInCurrentSessionsLayout](images/user-guide/4.3.2-NotInCurrentSessionLayout.png)
+
+Figure 4.3.2. Layout of `Current Session` tab when there are no session is entered
 
 To find out which features are supported by the `Current Session` tab, you can head over to [Section 5.5 - Current session](#55-current-session).
 
@@ -229,11 +292,14 @@ To find out which features are supported by the `Current Session` tab, you can h
 
 ### 4.4. Memo
 
-The `Memo` tab contains a text box where you can input any notes that you need for future references. The outline of the text box will change color when u click into it.
-
 The following is how the `Memo` tab looks like:
 
-![MemoLayout](images/MemoLayout.png)
+![MemoLayout](images/user-guide/4.4.1-MemoLayout.png)
+
+Figure 4.4.1. Layout of `Memo` tab
+
+Note:
+   * **Memo box**: A text box where you can input any notes that you need for future references. The amount of space you can see is tied to size of your application window, but the actual text space that you can typed in will automatically be extended if you need more space.
 
 To find out which features are supported by the `Memo` tab, you can head over to [Section 5.6 - Memo](#56-memo).
 
@@ -246,30 +312,33 @@ To find out which features are supported by the `Memo` tab, you can head over to
 { start of `features#overview` written by: Ngoh Wei Yue }
 
 ### 5.1. Overview
-In this secton, you can find the details of all the available features in **ATAS**. We have grouped the features into 7 main groups, namely [General](#52-general), [Students](#53-students), [Sessions](#54-sessions), [Current session](#55-current-session), [Memo](#56-memo), [User confirmation](#57-user-confirmation), and [Saving the data](#58-saving-the-data). 
+In this section, you can find the details of all the available features in **ATAS** such as their descriptions and formats   . We have grouped the features into 7 main groups, namely [General](#52-general), [Students](#53-students), [Sessions](#54-sessions), [Current session](#55-current-session), [Memo](#56-memo), [User confirmation](#57-user-confirmation), and [Saving the data](#58-saving-the-data). 
 
 There are 2 main types of features:
 1. Commands that you can execute in the command box or through keyboard shortcuts
 1. Features that are already inplace and require no actions from you
 
-With the exception of [save memo](#562-save-memo), all commands that are available can be executed regardless of which tab you are in.
+With the exception of [saving the memo](#562-saving-the-memo), all commands that are available can be executed regardless of which tab you are in.
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are placeholders to be replaced by you.<br>
-  e.g. you should change `addstu n/STUDENT_NAME` to `addstu n/John Cena`.
+  e.g., you should change `addstu n/STUDENT_NAME` to `addstu n/Elvin Ng`.
 
 * Items in square brackets are optional.<br>
-  e.g you can use `n/NAME [t/TAG]` as `n/John Cena t/foreigner` or simply as `n/John Cena`.
+  e.g., you can use `n/NAME [t/TAG]` as `n/Elvin Ng t/helpful` or simply as `n/Elvin Ng`.
+  
+* If there are multiple items in round brackets, at least one of them should be supplied.<br>
+  e.g., you should use `(n/UPDATED_NAME) (e/UPDATED_EMAIL_ADDRESS)` separately as `n\Elvin Ng` / `e/elvinng@u.nus.edu` (i.e. 1 parameter), or together like `n\Elvin Ng e/elvinng@u.nus.edu`(i.e. 2 parameters).
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. you can use `[t/TAG]…​` as ` ` (i.e. 0 times), `t/foreigner`(i.e. 1 time), `t/foreigner t/enthusiastic`(i.e. 2 times) etc.
+  e.g., you can use `[t/TAG]…​` as ` ` (i.e. 0 times), `t/helpful`(i.e. 1 time), `t/helpful t/outspoken`(i.e. 2 times) etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME m/MATRICULATION_NUMBER`, `m/MATRICULATION_NUMBER n/NAME` is also acceptable. 
-
+  e.g., if the command specifies `n/NAME m/MATRICULATION_NUMBER`, `m/MATRICULATION_NUMBER n/NAME` is also acceptable.
+  
 </div>
 
 { end of `features#overview` written by: Ngoh Wei Yue }
@@ -286,21 +355,41 @@ This category consists of conventional features (`help`, `exit`, `undo` and `red
 
 #### 5.2.1. Viewing help : `help`
 
-Opens a popup window to show the list of available commands and a link to access this user guide.
-
-The following is how the help window looks like:
-
-![HelpWindow](images/helpWindow.png)
+Opens a popup window which shows the list of available commands and a link to access this user guide.
 
 **Format:**
 ```
 help
 ```
 
-**Expected result:**
-```
-Opened help window
-```
+<div markdown="block" class="alert alert-info">
+ 
+**:information_source: Notes about the usage of this command:**<br>
+* Only a maximum of one help window can be open
+
+</div>
+
+<div markdown="block" class="alert alert-success">
+
+:green_book: **Example:**
+
+`help`
+
+</div>
+
+**Outcome:**
+
+1. A help window that look like the following will open up.
+
+![HelpWindow](images/user-guide/5.2.1.1-HelpWindow.png)
+
+Figure 5.2.1.1. Help window
+
+2. A message indicating a help window has been opened will be displayed in the main **ATAS** window.
+
+![Help](images/user-guide/5.2.1.2-Help.png)
+
+Figure 5.2.1.2. Main window view after opening help window
 
 { end of `features#general#help` written by: Ngoh Wei Yue }
 
@@ -314,18 +403,30 @@ Switches between tabs.
 ```
 switch TAB_NAME
 ```
+<div markdown="block" class="alert alert-info">
+ 
 **:information_source: Notes about the usage of this command:**<br>
 * `TAB_NAME` is case-insensitive.
 * `Current` replaces `Current Session` as `TAB_NAME` here for simplicity.
-* `TAB_NAME` must be an existing tab (`Students`, `Sessions`, `Current` or `Memo`).
+* `TAB_NAME` must be an existing tab (`ATAS`, `Students`, `Sessions`, `Current` or `Memo`).
+* Switching to the same tab you are in will result in an error message.
 
+</div>
 
-**Expected result:**
-```
-Switched to TAB_NAME tab
-```
-Example:
-* `switch sessions` switches to the `Sessions` tab.
+<div markdown="block" class="alert alert-success">
+
+:green_book: **Example:**
+
+`switch sessions`
+
+</div>
+
+**Outcome:**
+
+The sessions tab will be displayed.
+![Switch](images/user-guide/5.2.2.1-Switch.png)
+
+Figure 5.2.2.1. Application view after switching to the `Sessions` tab
 
 { end of `features#general#switch` written by: Ngoh Wei Yue }
 
@@ -340,10 +441,9 @@ Chooses a student at random from the student list.
 rng
 ```
 
-**Expected result:**
-```
-Student selected: NAME_OF_RANDOMLY_SELECTED_STUDENT
-```
+**Outcome:** 
+![523-rng](images/user-guide/5.2.3-Rng.png)
+Figure 5.2.3.1. Application view after performing the `rng` command
 
 { end of `features#general#rng` written by: Masagca Eris Jacey }
 
@@ -359,12 +459,13 @@ Undoes a command and essentially returns ATAS to the state prior to performing t
 
 * An `undo` is done *per command* and not per change. If you make multiple changes to a student, for example, using a single `editstu` command, then `undo` will revert *all* the changes.
 * Commands that can be undone are:
-   * Adding a student/session: `addstu` / `addses`
-   * Deleting a student/session: `deletestu` / `deleteses`
-   * Editing a student/session: `editstu` / `editses`
-   * Clearing all students/sessions: `clearstu` / `clearses`
-   * Toggling the participation status of students: `participate`
-   * Toggling the presence status of students: `presence`
+   * Adding a student/session: [`addstu`](#531-adding-a-student--addstu) / [`addses`](#541-adding-a-session--addses)
+   * Deleting a student/session: [`deletestu`](#534-deleting-a-student--deletestu) / [`deleteses`](#542-deleting-a-session--deleteses)
+   * Editing a student/session: [`editstu`](#535-editing-a-students-particulars--editstu) / [`editses`](#543-editing-a-session--editses)
+   * Clearing all students/sessions: [`clearstu`](#536-clearing-the-student-list--clearstu) / [`clearses`](#544-clearing-the-session-list--clearses)
+   * Entering a session: [`enterses`](#545-entering-a-session--enterses)
+   * Toggling the participation status of students: [`participate`](#551-toggling-participation-status-of-students--participate)
+   * Toggling the presence status of students: [`presence`](#552-toggling-presence-status-of-students--presence)
 * Commands not stated above make no change to the application state and thus cannot be undone.
 * Successive `undo` commands will bring the application state further back, until there are no more changes to `undo`.
 * You cannot `undo` if there is no previous state to return to.
@@ -376,10 +477,24 @@ Undoes a command and essentially returns ATAS to the state prior to performing t
 undo
 ```
 
-**Expected result:**
-```
-Previous command successfuly undone!
-```
+<div markdown="block" class="alert alert-success">
+
+:green_book: **Example:**<br>
+
+The example we are about to use follows that used in [Section 5.3.4 - Deleting a student](#534-deleting-a-student--deletestu).
+
+</div>
+
+1. Suppose we have indeed deleted Alvin Lee from our student list. 
+This change is reflected in the [students' tab](#41-students).
+![524-undo-1](images/user-guide/5.2.4.1-Undo.png)
+Figure 5.2.4.1. Application view after deleting Alvin Lee as seen in the students' tab
+
+1. However, we realise that deleting him was mistake.
+He does belong to our class after all!
+In this case, we can revert the deletion we have made with `undo`.
+![524-undo-2](images/user-guide/5.2.4.2-Undo.png)
+Figure 5.2.4.2. Application view after performing the `undo` command
 
 { end of `features#general#undo` written by: Masagca Eris Jacey }
 
@@ -387,9 +502,11 @@ Previous command successfuly undone!
 
 #### 5.2.5. Redo-ing a command : `redo`
 
-Redoes a command that was most recently undone and returns ATAS to the state after having performed that command.
+Redoes a command that was most recently undone and returns ATAS to the state *after* having performed that command.
 
 Essentially the reverse of undo-ing a command.
+
+You can think of it as performing that very same command you have undone!
 
 <div markdown="block" class="alert alert-info">
 
@@ -406,10 +523,21 @@ Essentially the reverse of undo-ing a command.
 redo
 ```
 
-**Expected result:**
-```
-Previous command successfuly redone!
-```
+<div markdown="block" class="alert alert-success">
+
+:green_book: **Example:**<br>
+
+We will be following up from the same example used in [Section 5.2.4 - Undo-ing a command](#524-undo-ing-a-command--undo). 
+
+</div>
+
+1. Suppose it seems like Alvin Lee has tricked us all this while and isn't actually our student!
+This means that when we had initially deleted him from our list, it was actually the right thing to do. 
+We can simply reverse the undo we have made using `redo`.
+![525-redo](images/user-guide/5.2.5-Redo.png)
+Figure 5.2.5.1. Application view after performing the `redo` command as seen in the students' tab
+<br> <br>
+As can be seen above, Alvin Lee has been removed from the student list again.
 
 { end of `features#general#redo` written by: Masagca Eris Jacey }
 
@@ -436,20 +564,15 @@ Program window will be closed.
 { start of `features#students` written by: Zhang Sheng Yang }
 <br/>
 <br/>
-With ATAS, you can easily manage your students in your class!
+This category consists of features related to students.
 <br/>
-- First, at the start of a semester, you can use `addstu` and `deletestu` to include or remove 
-students in your class. You can also edit student's particulars with `editstu` if you want to change any of
-the student's details.
-- Next, if you want to find any student or students, you can try `findstu` to search the class for 
-the student you are looking for with a keyword, your class will now only show the the student or students you've 
-searched for. When you are done, you can simply use `liststu` to view the entire class again!
-- Finally, you might want to have an empty class to get ready for the next semester. In this case, instead of removing 
-the students one by one, you can utilize `clearstu` to empty the class.
+Student commands allow you to add a student with `addstu` or remove a student from the student 
+list by using `deletestu`. You can also modify the particulars of a student with `editstu` command.
+Furthermore, if you want to search for certain students in the student list, try out `findstu` and utilize 
+`liststu` to gain a full view of the list again. Lastly, `clearstu` is a easy to remove all the students
+in the current student list.
 <br/>
 <br/>
-
-{ end of `features#students` written by: Zhang Sheng Yang }
 
 #### 5.3.1. Adding a student : `addstu`
 
@@ -459,28 +582,39 @@ Adds a student to the student list.
 addstu n/NAME m/MATRICULATION_NUMBER e/NUS_EMAIL_ADDRESS [t/TAG]…
 ```
 
-:bulb: **Tip:** A student can have any number of tags (including 0) 
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Notes about the usage of this command:** 
+* The name of a student should not contain special characters.
+* The matriculation number of a student should be in the form of A0123456X
+* ATAS only accepts NUS emails, i.e. xxx@u.nus.edu
+* A student can have any number of tags (including 0) 
+
+</div>
+
+<div markdown="block" class="alert alert-success">
 
 Examples:
-* `addstu n/John Cena m/A0123456J e/thechamp@u.nus.edu`
+* `addstu n/John Cena m/A0123456J e/thechamp@u.nus.edu` **(Figure 5.3.1)**
 * `addstu n/Alvina Handsome m/A0123456X e/handsome.alvina@u.nus.edu t/new`
 
-#### 5.3.2. Listing all students : `liststu`
+</div>
 
-Shows a list of all students in the current student list.
+**Outcome**
 
-```
-liststu
-```
+![Addstu](images/user-guide/5.3.1-AddStudent.png)
+<p align="center"><b>Figure 5.3.1 - Addstu Command</b></p> 
 
-#### 5.3.3. Locating students by name : `findstu`
+#### 5.3.2. Locating students by name : `findstu`
 
 Finds students whose names contain any of the given keywords.
 
 ```
 findstu KEYWORD [MORE_KEYWORDS]
 ````
+<div markdown="block" class="alert alert-info">
 
+:information_source: **Notes about the usage of this command:** 
 * The search is case-insensitive. e.g `john` will match `John`
 * The order of the keywords does not matter. e.g. `John Cena` will match `Cena John`
 * Only the name is searched.
@@ -488,10 +622,42 @@ findstu KEYWORD [MORE_KEYWORDS]
 * Students matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `John Cena` will return `John Tan`, `Mark Cena`
 
+</div>
+
+<div markdown="block" class="alert alert-success">
+
 Examples:
-* `findstu John` returns `john` and `John Cena`
+* `findstu bob` returns `Bobby Bob` **(Figure 5.3.2)**
 * `findstu kent ridge` returns `Kent Tan` and `Mark Ridge`<br>
-[Insert image of an example of result of `findstu Cena`]
+
+</div>
+
+**Outcome**
+
+![Findstu](images/user-guide/5.3.2-FindStudent.png)
+<p align="center"><b>Figure 5.3.2 - Findstu Command</b></p> 
+
+#### 5.3.3. Listing all students : `liststu`
+
+Shows a list of all students in the current student list.
+
+```
+liststu
+```
+
+<div markdown="block" class="alert alert-success">
+
+Example:
+* `liststu`  **(Figure 5.3.3)**
+
+</div>
+
+**Outcome**
+
+![Liststu](images/user-guide/5.3.3-ListStudent.png)
+<p align="center"><b>Figure 5.3.3 - Liststu Command</b></p> 
+
+{ end of `features#students` written by: Zhang Sheng Yang }
 
 { start of `features#student#deletestu` written by: Marcus Tan Wei }
 
@@ -506,7 +672,7 @@ Removes a student from the student list.
 * Deletes the student at the specified `INDEX`.
 * The index refers to the index number shown in the displayed student list.
 * The index **must be a positive integer** 1, 2, 3, …
-* You will then be prompted for a confirmation input **`(yes/no)`**.
+* You will then be prompted for a confirmation input **`Delete student INDEX? (yes/no)`**.
    * If yes: deletes the specified student from the student list.
    * If no: the specified student remains in the student list.
 
@@ -517,27 +683,26 @@ Removes a student from the student list.
 deletestu INDEX
 ```
 
-**Expected result:**
-```
-Delete INDEX? (yes/no)
-```
-
 :information_source: After receiving the confirmation prompt, enter `yes` to confirm the removal of student at the specified `INDEX`, or reject the command by entering `no`.
 
-**Format:**
-```
-yes
-```
+<div markdown="block" class="alert alert-success">
 
-**Expected result:**
-```
-Deleted student: PARTICULARS_OF_STUDENT_AT_SPECIFIED_INDEX
-```
-   ![ScreenshotDeletestu](images/ScreenshotDeletestu.png)
+:green_book: **Examples:**
+
+* `liststu` followed by `deletestu 2` followed by `yes`: Deletes and removes the 2nd student (**Figure 5.3.4-2**) from the student list.
+* `findstu Bob` followed by `deletestu 1` followed by `yes`: Deletes and removes the 1st student from the results of the `findstu Bob` command.
+</div>
+
+**Outcome**
+
+![DeletestuConfirmation](images/user-guide/5.3.4-1-DeletestuConfirmationPrompt.png)
+<p align="center"> <sub> <b>Figure 5.3.4-1</b>: Confirmation for deleting student 2 </sub> </p>
+   
+![Deletestu](images/user-guide/5.3.4-2-Deletestu.png)
+<p align="center"> <sub> <b>Figure 5.3.4-2</b>: After confirming the deletion of student 2 </sub> </p>   
+   
 
 Examples:
-* `liststu` followed by `deletestu 2` followed by `yes` deletes the 2nd student in the student list.
-* `findstu Betsy` followed by `deletestu 1` followed by `y` deletes the 1st student in the results of the `findstu Betsy` command.
 
 { end of `features#student#deletestu` written by: Marcus Tan Wei }
 
@@ -552,38 +717,31 @@ Examples:
 * Edits the student at the specified `INDEX` with the specified updated particular to be updated.
 * The index refers to the index number shown in the displayed student list.
 * The index **must be a positive integer** 1, 2, 3, …
-* You will then be prompted for a confirmation input **`(yes/no)`**.
+* You will then be prompted for a confirmation input **`Edit student INDEX? (yes/no)`**.
    * If yes: edits and updates the particulars of the specified student from the student list.
    * If no: the specified student's particulars remains the same.
-   
+
 </div>
 
 **Format:**
 ```
-editstu INDEX n/UPDATED_NAME
+editstu INDEX (n/UPDATED_NAME) (e/UPDATED_EMAIL_ADDRESS) (m/UPDATED_MATRICULATION_NUMBER) (t/UPDATED_TAG)
 ```
 
-**Expected result:**
-```
-Edit INDEX? (yes/no)
-```
+<div markdown="block" class="alert alert-success">
+
+:green_book: **Examples:**
+
+* `editstu 1 n/Alvina Lee` followed by `yes` : Edits the 2nd student (**Figure 5.3.5-1**) in the student list with an updated name `Alvina Lee`.
+* `editstu 3 t/active` followed by `y`: Edits the 3rd student in the student list with an updated tag `active`.
+</div>
 
 :information_source: After receiving the confirmation prompt, enter `yes` to confirm the editing of student's particulars at the specified `INDEX`, or reject the command by entering `no`.
 
-**Format:**
-```
-yes
-```
+**Outcome:**
 
-**Expected result:**
-```
-Edited student: PARTICULARS_OF_STUDENT_AT_SPECIFIED_INDEX
-```
-   ![ScreenshotEditstu](images/ScreenshotEditstu.png)
-
-Examples:
-* `editstu 2 n/John Cena` followed by `yes` edits the 2nd student in the student list with an updated name `John Cena`.
-* `editstu 3 t/Joker` followed by `y` edits the 3rd student in the student list with an updated tag `Joker`.
+![Editstu](images/user-guide/5.3.5-Editstu.png)
+<p align="center"> <sub> <b>Figure 5.3.5</b>: After confirming the editing of student 2 (confirmation is similar to delete student, thus not shown)</sub> </p>   
 
 { end of `features#student#editstu` written by: Marcus Tan Wei }
 
@@ -596,7 +754,7 @@ Clears and removes all students from the student list.
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the usage of this command:**<br>
-* You will be prompted to confirm their decision here.
+* You will then be prompted for a confirmation input **`Clear student list? (yes/no)`**.
    * If yes: removes all students from the student list.
    * If no: student list remains unchanged and no removal of students occurs.
    
@@ -607,22 +765,18 @@ Clears and removes all students from the student list.
 clearstu
 ```
 
-**Expected result:**
-```
-Clear list? (yes/no)
-```
-
 :information_source: After receiving the confirmation prompt, enter `yes` to confirm the removal of all students from the student list, or reject the command by entering `no`.
 
-**Format:**
-```
-yes
-```
+<div markdown="block" class="alert alert-success">
 
-**Expected result:**
-```
-ATAS has cleared all students from your list.
-```
+:green_book: **Example:**
+
+* `clearstu` : Clears the students from the student list (**Figure 5.3.6-1**).
+</div>
+
+**Outcome:**
+![Clearstu](images/user-guide/5.3.6-Clearstu.png)
+<p align="center"> <sub> <b>Figure 5.3.6</b>: Clearing the student list (confirmation is similar to delete student, thus not shown) </sub> </p>
 
 { end of `features#student#clearstu` written by: Marcus Tan Wei }
 
@@ -774,17 +928,15 @@ Examples:
 ### 5.5. Current session
 
 { start of `features#current_session` written by: Zhang Sheng Yang }
+
 <br/>
+This category consists of features related to students.
 <br/>
 After entering a session, which is mentioned above, you can now edit the presence and participation details
 of a student. `participate` allows you to toggle the participation status (from absent to present or from 
 present to absent), and `presence` allows you to toggle the presence status of a student (from not 
 participated to participated or from participated to not participated).
 <br/>
-<br/>
-
-{ end of `features#current_session` written by: Zhang Sheng Yang }
-
 <br/>
 
 #### 5.5.1. Toggling participation status of students : `participate`
@@ -795,12 +947,28 @@ Toggles the participation status of the students in the student list of the sess
 participate INDEX_RANGE
 ```
 
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Notes about the usage of this command:** 
 * Toggles the participation status of the students at the specified `INDEX_RANGE`.
 * The index range refers to the range of index numbers shown in the displayed student list of the session.
 * The index range **must be a positive integer** 1, 2, 3, … OR **a positive index range** 1-4, 2-5, 2-9 … 
 
+</div>
+
+<div markdown="block" class="alert alert-success">
+
 Examples:
-* `participate 1-4` toggles the participation status of students 1 to 4.
+* `participate 1-4` toggles the participation status of students 1 to 4. **(Figure 5.5.1)**
+
+</div>
+
+**Outcome**
+
+![Participate](images/user-guide/5.5.1-Participate.png)
+<p align="center"><b>Figure 5.5.1 - Participate Command</b></p> 
+
+
 
 #### 5.5.2. Toggling presence status of students : `presence`
 
@@ -810,67 +978,130 @@ Toggles the presence status of students in the student list of the session.
 presence INDEX_RANGE
 ```
 
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Notes about the usage of this command:** 
 * Toggles the presence status of the students at the specified `INDEX_RANGE`.
 * The index range refers to the range of index numbers shown in the displayed student list of the session.
-* The index range **must be a positive integer** 1, 2, 3, … OR **a positive index range** 1-4, 2-5, 2-9 … 
+* The index range **must be a positive integer** 1, 2, 3, … OR **a positive index range** 1-4, 2-5, 2-9 …
+
+</div>
+
+<div markdown="block" class="alert alert-success">
 
 Examples:
-* `presence 1-4` toggles the presence status of students 1 to 4.
+* `presence 1-4` toggles the presence status of students 1 to 4. **(Figure 5.5.2)**
+
+</div>
+
+**Outcome**
+
+![Presence](images/user-guide/5.5.2-Presence.png)
+<p align="center"><b>Figure 5.5.2 - Presence Command</b></p> 
+
+
+{ end of `features#current_session` written by: Zhang Sheng Yang }
 
 { start of `features#memo` written by: Ngoh Wei Yue }
 
 ### 5.6. Memo
 
-Under the `Memo` section, you can choose to `addnote` and save them when needed. 
+This category consists of features related to `Memo`. They allow you to add text by typing into the memo box or by adding a note (`addnote`) to the memo. You can also manually save the content in the memo box using certain keyboard shortcuts.
 
 { end of `features#memo` written by: Ngoh Wei Yue }
 
 { start of `features#memo#addnote` written by: Ngoh Wei Yue }
 
-#### 5.6.1. Adding a note : `addnote`
+#### 5.6.1. Adding text into memo
 
-Adds a note to a new line at the end of memo.
+You can add text into the memo in 2 ways:
+
+1. Type directly into the memo box in `Memo` tab.
+2. [Add a note](#5611-adding-a-note--addnote).
+
+##### 5.6.1.1. Adding a note : `addnote`
+
+Adds a note onto a new line at the end of the memo.
 
 **Format:**
 ```
 addnote NOTE
 ```
 
-**Expected result:**
-```
-Note added to memo!
-```
-Example:
-* `addnote clarify qn 3 with prof` adds "clarify qn 3 with prof" to memo.
+<div markdown="block" class="alert alert-info">
+ 
+**:information_source: Notes about the usage of this command:**<br>
+* `NOTE` can include any characters including whitespaces.
+
+</div>
+
+<div markdown="block" class="alert alert-success">
+
+:green_book: **Example:**
+
+`addnote clarify qn 3 with prof`
+
+</div>
+
+**Outcome:**
+
+The text "clarify qn 3 with prof" is added onto a new line in the memo box.
+
+![BeforeAddNote](images/user-guide/5.6.1.1.1-BeforeAddNote.png)
+
+Figure 5.6.1.1.1. Application view before adding a note
+
+![AfterAddNote](images/user-guide/5.6.1.1.2-AfterAddNote.png)
+
+Figure 5.6.1.1.2. Application view after adding a note
+
 
 { end of `features#memo#addnote` written by: Ngoh Wei Yue }
 
+
 { start of `features#memo#save_memo` written by: Ngoh Wei Yue }
 
-#### 5.6.2. Save memo
+#### 5.6.2. Saving the memo
 
 Saves the content of the memo in the hard disk.
 
-**Keyboard shortcut:**
+Unlike the above commands that you can execute by typing into the command box, this feature requires you to press a series of keys on your keyboard.
 
-Click on the text box in memo tab to bring focus to the text box. Text box should have a bright green outline when under focus.
+**Keyboard shortcuts:**
 
-![MemoTextBox](images/MemoTextBox.png)
+1. Click on the memo box in memo tab to bring focus to the memo box. Memo box should have a turquoise outline when under focus **(Figure 5.6.2.1.)**.
 
-Windows/Linux:
+If you are a Windows/Linux user,
+
+2. Press down and hold the 'ctrl' key on your keyboard.
+
+3. Press the 's' key on your keyboard while holding down to the 'ctrl' key.
+
 ```
 ctrl + s
 ```
 
-MacOs:
+If you are a MacOS user,
+
+2. Press down and hold the 'command' key on your keyboard.
+
+3. Press the 's' key on your keyboard while holding down to the 'command' key.
+
 ```
-cmd + s
+command + s
 ```
 
-**Expected result:**
-```
-Memo saved!
-```
+<div markdown="block" class="alert alert-success">
+
+:green_book: **Example:** Depending on which OS you are using, try following the steps mentioned above.
+</div>
+
+**Outcome:**
+The content in the memo is saved in the hard disk.
+
+![SaveMemo](images/user-guide/5.6.2.1-SaveMemo.png)
+
+Figure 5.6.2.1. Application view after saving the memo
 
 { end of `features#memo#save_memo` written by: Ngoh Wei Yue }
 
@@ -880,38 +1111,44 @@ Memo saved!
 
 Some commands have the ability to alter the data stored in the hard disk.
 ATAS aims to make careful decisions and further prompts user to confirm the execution of those commands.
-These commands are: `deletestu`, `editstu`,`clearstu`, `deleteses`, `editses`.
+These commands are: [`deletestu`](#534-deleting-a-student--deletestu), [`editstu`](#535-editing-a-students-particulars--editstu),[`clearstu`](#536-clearing-the-student-list--clearstu),
+[`deleteses`](#542-deleting-a-session--deleteses), [`editses`](#543-editing-a-session--editses) and [`clearses`](#544-clearing-the-session-list--clearses).
 
-:bulb: **Tip:** Both `yes` and `y` are accepted when confirming the execution of a command while `no` and `n` are both accepted when rejecting the execution of a command.
+:bulb: **Tip:** For your convenience, both `yes` and `y` are accepted when confirming the execution of a command while both `no` and `n` are accepted when rejecting the execution of a command.
 
-Examples:
-* `deletestu 3` is followed with `Delete 3? (yes/no)`.
-* `editses 3 s/SESSION_NAME` is followed with `Edit 3? (yes/no)`.
-* `clearstu` is followed with `Clear list? (yes/no)`.
+<div markdown="block" class="alert alert-success">
 
-For example, confirmation of `deletestu` is shown above at [Section 5 - Features](#534-deleting-a-student--deletestu). In this case, we will show an example of rejection a `deletestu` command.
+:green_book: **Examples:**
+* `deletestu 1` is followed with the following displayed message `Delete student 1? (yes/no)`.
+* `editstu 3 n/UPDATED_STUDENT_NAME` is followed with the following displayed message `Edit student 3? (yes/no)`.
+* `clearstu` is followed with the following displayed message `Clear student list? (yes/no)` (**Figure 5.7-1**).
+* `deleteses 2` is followed with the following displayed message `Delete session 2? (yes/no)`.
+* `editses 2 s/UPDATED_SESSION_NAME` is followed with the following displayed message `Edit session 3? (yes/no)`.
+* `clearses` is followed with the following displayed message `Clear student list? (yes/no)`.
+</div>
 
-**Format:**
-```
-deletestu INDEX
-```
-
-**Expected result:**
-```
-Delete INDEX? (yes/no)
-```
-   ![DeletestuConfirmationExample](images/ScreenshotDeletestuConfirmationExample.png)
+For example, confirmation of `clearstu` is shown above at [Section 5.3.6 - Clearing the student list](#536-clearing-the-student-list--clearstu).
+In this case, we will show an example of the confirmation prompt following the `clearstu` command (**Figure 5.7-1**) and result of rejecting a `clearstu` command (**Figure 5.7-2**).
 
 **Format:**
 ```
-no
+clearstu
 ```
 
-**Expected result:**
-```
-Delete INDEX is not executed
-```
-   ![DeletestuNotExecuted](images/ScreenshotDeletestuNotExecuted.png)
+<div markdown="block" class="alert alert-success">
+
+:green_book: **Example:**
+
+* `clearstu` followed by `no`: No removal of any students from the student list.
+</div>
+
+**Outcome:**
+
+![ClearstuConfirmationExample](images/user-guide/5.7-1-ClearstuConfirmationPrompt.png)
+<p align="center"> <sub> <b>Figure 5.7-1</b>: Confirmation prompt after entering the clear student list command </sub> </p> 
+
+![ClearstuReject](images/user-guide/5.7-2-ClearstuReject.png)
+<p align="center"> <sub> <b>Figure 5.7-2</b>: Clear student list command is rejected </sub> </p> 
 
 { end of `features#userconfirmation#clearstu` written by: Marcus Tan Wei }
 
@@ -919,7 +1156,17 @@ Delete INDEX is not executed
 
 ### 5.8. Saving the data
 
-`Students`, `Sessions` and `Memo` data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually. However, you can also choose to manually save the `Memo` data if you want as described in [Section 5.6.2 - Save Memo](#562-save-memo).
+`Students`, `Sessions` and `Memo` data are saved in the hard disk automatically after any command that changes the data. This includes typing directly into the memo box. There is no need to save manually. However, you can also choose to manually save the `Memo` data if you want as described in [Section 5.6.2 - Saving the memo](#562-saving-the-memo) for that extra assurance!
+
+The following are the names of the files that contains the respective data:
+
+|Data |File name |
+|-----|------------|
+|Students' particulars | `studentlist.json` |
+|Sessions' details | `sessionlist.json` |
+|Text in memo box | ` memo.txt` |
+
+You can find all the three files in the `data` folder located in the same directory as your `atas.jar` file.
 
 { end of `features#saving_the_data` written by: Ngoh Wei Yue }
 
@@ -930,7 +1177,10 @@ Delete INDEX is not executed
 ## 6. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install **ATAS** in the other computer and overwrite the empty data files it creates with the files that contains the data of your previous **ATAS** home folder. The previous data files can be found in the *data* folder in the same directory as your `atas.jar` file.
+**A**: Install **ATAS** in the other computer and overwrite the empty data files it creates with the files that contains the data of your previous **ATAS** home folder. Details on where to find the data files can be found in [Section 5.8 - Saving the data](#58-saving-the-data)
+
+**Q:** What if I notice something wrong with my application?<br>
+**A:** Please help us improve by writing to our email stated [here](https://ay2021s1-cs2103t-w16-4.github.io/tp/AboutUs.html).
 
 { end of `faq` written by: Ngoh Wei Yue }
 
@@ -1016,6 +1266,6 @@ Command | Format, Examples
 Command | Format, Examples
 --------|------------------
 **Add Note** | `addnote NOTE`<br> e.g., `addnote clarify qn 3 with prof`
-**Save Memo** | Keyboard shortcut: `Ctrl + s` for Windows/Linux or `Cmd + s` for MacOs
+**Save Memo** | Keyboard shortcut: `Ctrl + s` for Windows/Linux and `Command + s` for MacOS
 
 { end of `command_summary#memo` written by: Ngoh Wei Yue }

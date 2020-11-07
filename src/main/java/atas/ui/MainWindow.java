@@ -266,7 +266,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleEditMemo() {
         String newContent = logic.getMemoContent();
-        memoTextBox.setText(newContent);
+        memoBox.setTextContent(newContent);
     }
 
     @FXML
