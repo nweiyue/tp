@@ -272,13 +272,13 @@ The following is how the `Current Session` tab looks like:
 Figure 4.3.1. Layout of `Current Session` tab when a session is entered
 
 Notes:
-   * **Student list box**: Contains a list of sessions and their details such as their name and date. Sessions are arranged by their dates, starting from the latest at the top.
-   * **Presence/Participation status**: Represents the student's presence and participation for the particular session that was entered.
+   * **Student list box**: Similar to the `Students` tab, this box contains a list of students. However, only their names are shown here. The order of students follows that of the `Students` tab.
+   * **Presence/Participation Status: If student is absent or has not participated, label will be green, whereas if student is present or has participated, then label is red.
    * **Statistics**: Calculated as a percentage of the number of students that was present or has participated out of all the students.
 
-Similar to the [`Students`](#41-students) tab, if there are no students in that session, you will see a similar message as shown in **Figure 4.1.2**
+Similar to the [`Students`](#41-students) tab, if there are no students in that session, you will see a similar message as shown in **Figure 4.1.2**.
 
-If you have not entered any session or left a session (by removing that session), you will see a message indicating as such. You can enter a session by using `enterses INDEX` as described in [Section 5.4.5 - Entering a session](#545-entering-a-session).
+If you have not entered any session or left a session (by removing that session), you will see a message indicating as such. You can enter a session by using `enterses INDEX` as described in [Section 5.4.5 - Entering a session](#545-entering-a-session--enterses).
 
 ![NotInCurrentSessionsLayout](images/user-guide/4.3.2-NotInCurrentSessionLayout.png)
 
@@ -312,7 +312,7 @@ To find out which features are supported by the `Memo` tab, you can head over to
 { start of `features#overview` written by: Ngoh Wei Yue }
 
 ### 5.1. Overview
-In this section, you can find the details such as the description and format of all the available features in **ATAS**. We have grouped the features into 7 main groups, namely [General](#52-general), [Students](#53-students), [Sessions](#54-sessions), [Current session](#55-current-session), [Memo](#56-memo), [User confirmation](#57-user-confirmation), and [Saving the data](#58-saving-the-data). 
+In this section, you can find the details of all the available features in **ATAS** such as their descriptions and formats   . We have grouped the features into 7 main groups, namely [General](#52-general), [Students](#53-students), [Sessions](#54-sessions), [Current session](#55-current-session), [Memo](#56-memo), [User confirmation](#57-user-confirmation), and [Saving the data](#58-saving-the-data). 
 
 There are 2 main types of features:
 1. Commands that you can execute in the command box or through keyboard shortcuts
@@ -325,19 +325,19 @@ With the exception of [saving the memo](#562-saving-the-memo), all commands that
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are placeholders to be replaced by you.<br>
-  e.g. you should change `addstu n/STUDENT_NAME` to `addstu n/Elvin Ng`.
+  e.g., you should change `addstu n/STUDENT_NAME` to `addstu n/Elvin Ng`.
 
 * Items in square brackets are optional.<br>
-  e.g you can use `n/NAME [t/TAG]` as `n/Elvin Ng t/helpful` or simply as `n/Elvin Ng`.
+  e.g., you can use `n/NAME [t/TAG]` as `n/Elvin Ng t/helpful` or simply as `n/Elvin Ng`.
   
-* If there are multiple items in round brackets, at least one of them should be supplied.
-e.g. you should use `(n/UPDATED_NAME) (e/UPDATED_EMAIL_ADDRESS)` as `n\Elvin Chee`, `e/elvinchee@u.nus.edu` (i.e. 1 parameter), or `n\Elvin Chee e/elvinchee@u.nus.edu`(i.e. 2 parameters).
+* If there are multiple items in round brackets, at least one of them should be supplied.<br>
+  e.g., you should use `(n/UPDATED_NAME) (e/UPDATED_EMAIL_ADDRESS)` separately as `n\Elvin Ng` / `e/elvinng@u.nus.edu` (i.e. 1 parameter), or together like `n\Elvin Ng e/elvinng@u.nus.edu`(i.e. 2 parameters).
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. you can use `[t/TAG]…​` as ` ` (i.e. 0 times), `t/helpful`(i.e. 1 time), `t/helpful t/outspoken`(i.e. 2 times) etc.
+  e.g., you can use `[t/TAG]…​` as ` ` (i.e. 0 times), `t/helpful`(i.e. 1 time), `t/helpful t/outspoken`(i.e. 2 times) etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME m/MATRICULATION_NUMBER`, `m/MATRICULATION_NUMBER n/NAME` is also acceptable.
+  e.g., if the command specifies `n/NAME m/MATRICULATION_NUMBER`, `m/MATRICULATION_NUMBER n/NAME` is also acceptable.
   
 </div>
 
@@ -371,7 +371,7 @@ help
 
 <div markdown="block" class="alert alert-success">
 
-:green_book: **Example:** Try typing in the following command:
+:green_book: **Example:**
 
 `help`
 
@@ -415,7 +415,7 @@ switch TAB_NAME
 
 <div markdown="block" class="alert alert-success">
 
-:green_book: **Example:** Try typing in the following command:
+:green_book: **Example:**
 
 `switch sessions`
 
@@ -1006,7 +1006,7 @@ Examples:
 
 ### 5.6. Memo
 
-This category consists of features related to the memo. They allow you to add text by typing into the memo box or by adding a note (`addnote`) to the memo. You can also manually save the content in the memo box using certain keyboard shortcuts.
+This category consists of features related to `Memo`. They allow you to add text by typing into the memo box or by adding a note (`addnote`) to the memo. You can also manually save the content in the memo box using certain keyboard shortcuts.
 
 { end of `features#memo` written by: Ngoh Wei Yue }
 
@@ -1037,7 +1037,7 @@ addnote NOTE
 
 <div markdown="block" class="alert alert-success">
 
-:green_book: **Example:** Try typing in the following command:
+:green_book: **Example:**
 
 `addnote clarify qn 3 with prof`
 
@@ -1069,7 +1069,7 @@ Unlike the above commands that you can execute by typing into the command box, t
 
 **Keyboard shortcuts:**
 
-1. Click on the memo box in memo tab to bring focus to the memo box. Memo box should have a turquoise outline when under focus.
+1. Click on the memo box in memo tab to bring focus to the memo box. Memo box should have a turquoise outline when under focus **(Figure 5.6.2.1.)**.
 
 If you are a Windows/Linux user,
 
@@ -1088,7 +1088,7 @@ If you are a MacOS user,
 3. Press the 's' key on your keyboard while holding down to the 'command' key.
 
 ```
-cmd + s
+command + s
 ```
 
 <div markdown="block" class="alert alert-success">
@@ -1097,7 +1097,7 @@ cmd + s
 </div>
 
 **Outcome:**
-1. The content in the memo is saved in the hard disk.
+The content in the memo is saved in the hard disk.
 
 ![SaveMemo](images/user-guide/5.6.2.1-SaveMemo.png)
 
@@ -1156,7 +1156,7 @@ clearstu
 
 ### 5.8. Saving the data
 
-`Students`, `Sessions` and `Memo` data are saved in the hard disk automatically after any command that changes the data. This includes typing directly into the memo box. There is no need to save manually. However, you can also choose to manually save the `Memo` data if you want as described in [Section 5.6.2 - Save Memo](#562-save-memo) for that extra assurance!
+`Students`, `Sessions` and `Memo` data are saved in the hard disk automatically after any command that changes the data. This includes typing directly into the memo box. There is no need to save manually. However, you can also choose to manually save the `Memo` data if you want as described in [Section 5.6.2 - Saving the memo](#562-saving-the-memo) for that extra assurance!
 
 The following are the names of the files that contains the respective data:
 
@@ -1177,7 +1177,7 @@ You can find all the three files in the `data` folder located in the same direct
 ## 6. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install **ATAS** in the other computer and overwrite the empty data files it creates with the files that contains the data of your previous **ATAS** home folder.
+**A**: Install **ATAS** in the other computer and overwrite the empty data files it creates with the files that contains the data of your previous **ATAS** home folder. Details on where to find the data files can be found in [Section 5.8 - Saving the data](#58-saving-the-data)
 
 **Q:** What if I notice something wrong with my application?<br>
 **A:** Please help us improve by writing to our email stated [here](https://ay2021s1-cs2103t-w16-4.github.io/tp/AboutUs.html).
