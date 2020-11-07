@@ -200,7 +200,7 @@ The following is how the `Students` tab looks like:
 Figure 4.1.1. Layout of `Students` tab when there is at least one student
 
 Notes:
-   * **Student list box**: Contains a list of students and their particulars such as their name, matriculation number, NUS email address and tags (if any). <span style="background-color: #089788">Tags</span> are highlighted in a turquoise colour and students are arranged in the order that you add them. 
+   * **Student list box**: Contains a list of students and their particulars such as their name, matriculation number, NUS email address and tags (if any). <span style="background-color: #089788; color: white">Tags</span> are highlighted in a turquoise colour and students are arranged in the order that you add them. 
    * **Statistics**: Calculated as a percentage of the number of sessions the student was present or has participated out of all the available sessions.
 
 <div markdown="block" class="alert alert-info">
@@ -209,9 +209,9 @@ Notes:
 
 |Colour | Meaning |
  |--------------|-------------|
- | Grey | There are no sessions |
- | Red | Student was not present or did not participated in all the sessions (<100%) |
- | Green | Student was present or has participated in all the sessions (100%) |
+ | <span style="background-color: #E6E6E6; color: black">Grey</span> | There are no sessions |
+ | <span style="background-color: crimson; color: white">Red</span> | Student was not present or did not participated in all the sessions (<100%) |
+ | <span style="background-color: green; color: white">Green</span> | Student was present or has participated in all the sessions (100%) |
 
 </div>
 
@@ -245,9 +245,9 @@ Notes:
 
 |Colour | Meaning |
  |--------------|-------------|
- | Grey | There are no students |
- | Red | Not all students were present or has participated (<100%) |
- | Green | All the students were present or has participated (100%) |
+ | <span style="background-color: #E6E6E6; color: black">Grey</span> | There are no students |
+ | <span style="background-color: crimson; color: white">Red</span> | Not all students were present or has participated (<100%) |
+ | <span style="background-color: green; color: white">Green</span> | All the students were present or has participated (100%) |
 
 </div>
 
@@ -273,7 +273,7 @@ Figure 4.3.1. Layout of `Current Session` tab when a session is entered
 
 Notes:
    * **Student list box**: Similar to the `Students` tab, this box contains a list of students. However, only their names are shown here. The order of students follows that of the `Students` tab.
-   * **Presence/Participation Status**: If student is absent or has not participated, label will be red, whereas if student is present or has participated, then label is green.
+   * **Presence/Participation Status**: If student is absent or has not participated, <span style="background-color: crimson; color: white">label</span> will be red, whereas if student is present or has participated, then <span style="background-color: green; color: white">label</span> is green.
    * **Statistics**: Calculated as a percentage of the number of students that was present or has participated out of all the students.
 
 Similar to the [`Students`](#41-students) tab, if there are no students in that session, you will see a similar message as shown in **Figure 4.1.2**.
