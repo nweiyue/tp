@@ -655,6 +655,11 @@ Example:
 
 Removes a student from the student list.
 
+**Format:**
+```
+deletestu INDEX
+```
+
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the usage of this command:**<br>
@@ -668,13 +673,6 @@ Removes a student from the student list.
 
 </div>
 
-**Format:**
-```
-deletestu INDEX
-```
-
-:information_source: After receiving the confirmation prompt, enter `yes` to confirm the removal of student at the specified `INDEX`, or reject the command by entering `no`.
-
 <div markdown="block" class="alert alert-success">
 
 :green_book: **Examples:**
@@ -687,10 +685,13 @@ deletestu INDEX
 
 ![DeletestuConfirmation](images/user-guide/5.3.4.1-DeletestuConfirmationPrompt.png)
 <p align="center"> <sub> <b>Figure 5.3.4.1</b>: Confirmation for deleting student 2 </sub> </p>
+
+<div markdown="block" class="alert alert-info">
+:information_source: After receiving the confirmation prompt, enter `yes` to confirm the removal of student at the specified `INDEX`, or reject the command by entering `no`.
+</div>
    
 ![Deletestu](images/user-guide/5.3.4.2-Deletestu.png)
 <p align="center"> <sub> <b>Figure 5.3.4.2</b>: After confirming the deletion of student 2 </sub> </p>   
-   
 
 Examples:
 
@@ -701,6 +702,11 @@ Examples:
 #### 5.3.5. Editing a student's particulars : `editstu`
 
 <div markdown="block" class="alert alert-info">
+
+**Format:**
+```
+editstu INDEX (n/UPDATED_NAME) (e/UPDATED_EMAIL_ADDRESS) (m/UPDATED_MATRICULATION_NUMBER) (t/UPDATED_TAG)
+```
 
 **:information_source: Notes about the usage of this command:**<br>
 
@@ -713,20 +719,13 @@ Examples:
 
 </div>
 
-**Format:**
-```
-editstu INDEX (n/UPDATED_NAME) (e/UPDATED_EMAIL_ADDRESS) (m/UPDATED_MATRICULATION_NUMBER) (t/UPDATED_TAG)
-```
-
 <div markdown="block" class="alert alert-success">
 
 :green_book: **Examples:**
 
-* `editstu 1 n/Alvina Lee` followed by `yes` : Edits the 2nd student (**Figure 5.3.5**) in the student list with an updated name `Alvina Lee`.
+* `editstu 1 n/Alvina Lee` followed by `yes`: Edits the 2nd student (**Figure 5.3.5**) in the student list with an updated name `Alvina Lee`.
 * `editstu 3 t/active` followed by `y`: Edits the 3rd student in the student list with an updated tag `active`.
 </div>
-
-:information_source: After receiving the confirmation prompt, enter `yes` to confirm the editing of student's particulars at the specified `INDEX`, or reject the command by entering `no`.
 
 **Outcome:**
 
@@ -741,6 +740,11 @@ editstu INDEX (n/UPDATED_NAME) (e/UPDATED_EMAIL_ADDRESS) (m/UPDATED_MATRICULATIO
 
 Clears and removes all students from the student list.
 
+**Format:**
+```
+clearstu
+```
+
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the usage of this command:**<br>
@@ -750,18 +754,11 @@ Clears and removes all students from the student list.
    
 </div>
 
-**Format:**
-```
-clearstu
-```
-
-:information_source: After receiving the confirmation prompt, enter `yes` to confirm the removal of all students from the student list, or reject the command by entering `no`.
-
 <div markdown="block" class="alert alert-success">
 
 :green_book: **Example:**
 
-* `clearstu` : Clears the students from the student list (**Figure 5.3.6**).
+* `clearstu`: Clears the students from the student list (**Figure 5.3.6**).
 </div>
 
 **Outcome:**
