@@ -185,7 +185,7 @@ For the good majority of visual learners, we figured to present information in a
 
 Over here, you can familiarise yourself with the different UI components of **ATAS**. **ATAS** comprises of five different tabs, including a default home tab which can be seen in [Section 1.3 - Preview](#13-preview). Each of the remaining four tabs (`Students`, `Sessions`, `Current Session` and `Memo`) supports its respective section of [features](#5-features). All four of these tabs uses the same result box and command box.
 
-To allow you to easily keep track of students presence and participation records, **ATAS** will automatically do some calculations and display them as **statistics** in the `Students`, `Sessions` and `Current Session` tabs. The details of the calculation differs for each tab, and can you can find them under the **Statistics** sub-header for each tab.
+To allow you to easily keep track of students presence and participation records, **ATAS** will automatically do some calculations and display them as **statistics** in the `Students`, `Sessions` and `Current Session` tabs. The details of the calculation differs for each tab, and you can find out more about them under each sub-header.
 
 { end of `layout_of_atas` written by: Ngoh Wei Yue }
 
@@ -200,7 +200,7 @@ The following is how the `Students` tab looks like:
 Figure 4.1.1. Layout of `Students` tab when there is at least one student
 
 Notes:
-   * **Student list box**: Contains a list of students and their particulars such as their name, matriculation number, NUS email address and tags (if any). Students are arranged in the order that you add them. 
+   * **Student list box**: Contains a list of students and their particulars such as their name, matriculation number, NUS email address and tags (if any). <span style="background-color: #089788">Tags</span> are highlighted in a turquoise colour and students are arranged in the order that you add them. 
    * **Statistics**: Calculated as a percentage of the number of sessions the student was present or has participated out of all the available sessions.
 
 <div markdown="block" class="alert alert-info">
