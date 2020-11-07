@@ -568,6 +568,7 @@ in the current student list.
 
 Adds a student to the student list.
 
+**Format:**
 ```
 addstu n/NAME m/MATRICULATION_NUMBER e/NUS_EMAIL_ADDRESS [t/TAG]…
 ```
@@ -599,6 +600,7 @@ Examples:
 
 Finds students whose names contain any of the given keywords.
 
+**Format:**
 ```
 findstu KEYWORD [MORE_KEYWORDS]
 ````
@@ -631,6 +633,7 @@ Examples:
 
 Shows a list of all students in the current student list.
 
+**Format:**
 ```
 liststu
 ```
@@ -989,6 +992,7 @@ participated to participated or from participated to not participated).
 
 Toggles the participation status of the students in the student list of the session.
 
+**Format:**
 ```
 participate INDEX_RANGE
 ```
@@ -1020,6 +1024,7 @@ Examples:
 
 Toggles the presence status of students in the student list of the session.
 
+**Format:**
 ```
 presence INDEX_RANGE
 ```
