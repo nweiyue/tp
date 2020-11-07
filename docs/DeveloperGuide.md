@@ -147,11 +147,12 @@ The `Model`,
 
 { end of `design#model_component` written by: Masagca Eris Jacey }
 
-{ start of `design#storage_component` written by: _________________ }
+{ start of `design#storage_component` written by: Zhang Sheng Yang }
 
 ### 3.5. Storage component
 
-![Structure of the Storage Component](images/StorageClassDiagram.png)
+![Structure of the Storage Component](images/developer-guide/3.5.1-StorageClassDiagram.png)
+<p align="center"><b>Figure 3.5.1 - Storage</b></p> 
 
 **API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-W16-4/tp/blob/master/src/main/java/atas/storage/Storage.java)
 
@@ -161,15 +162,15 @@ The `Storage` component,
 * can save the session list data in json format and read it back.
 * can save the memo data in txt file and read it back.
 
-{ end of `design#storage_component` written by: __________________ }
+{ end of `design#storage_component` written by: Zhang Sheng Yang }
 
-{ start of `design#common_classes` written by: _________________ }
+{ start of `design#common_classes` written by: Zhang Sheng Yang }
 
 ### 3.6. Common classes
 
-Classes used by multiple components are in the `seedu.atas.commons` package.
+Classes used by multiple components are in the `atas.commons` package.
 
-{ end of `design#common_classes` written by: _________________ }
+{ end of `design#common_classes` written by: Zhang Sheng Yang }
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -274,12 +275,12 @@ The following activity diagram summarizes what happens when a user executes a da
 
 { end of `implementation#user_confirmation` written by: ________ }
 
-{ start of `implementation#adding_a_session` written by: ________ }
+{ start of `implementation#adding_a_session` written by: Zhang Sheng Yang }
 
 ### 4.3. Adding a session
 
-Adding a session to a class requires user input from the CLI. Adding a session to a class requires user input from
-the CLI. The parser will then parse the user input to obtain the name and the date of the session. The newly added
+Adding a session to a class requires user input from the CLI. 
+The parser will parse the user input to obtain the name and the date of the session. The newly added
 session will also be filled with students' default presence and participation.
 
 The below example given assumes that the user inputs `addses s/Tutorial 1 d/1/1/2020`, which 'Tutorial 1' and
@@ -297,7 +298,8 @@ the current session list later.
 `AddSessionCommandParser#parse()` returns a `AddSessionCommand` object that contains the session object
  back to the `LogicManager`.
 
-![AddSessionSequenceDiagram1](images/AddSessionSequenceDiagram1.png)
+![AddSessionSequenceDiagram1](images/developer-guide/4.3.1-AddSessionSequenceDiagram1.png)
+<p align="center"><b>Figure 4.3.1 - Add Session Sequence Diagram 1</b></p> 
 
 Step 2: Add session to the model/session list
 
@@ -309,14 +311,16 @@ Assuming that the session to add is not a session already in the list, `ModelMan
 the internal student list of the session list, then it uses addSession method to add the session to the
 list.
 
-![AddSessionSequenceDiagram2](images/AddSessionSequenceDiagram2.png)
+![AddSessionSequenceDiagram2](images/developer-guide/4.3.2-AddSessionSequenceDiagram2.png)
+<p align="center"><b>Figure 4.3.2 - Add Session Sequence Diagram 2</b></p> 
 
 
 The following activity diagram summarizes what happens when a user executes an `addses` command:
 
-![AddSessionActivityDiagram](images/AddSessionActivityDiagram.png)
+![AddSessionActivityDiagram](images/developer-guide/4.3.3-AddSessionActivityDiagram.png)
+<p align="center"><b>Figure 4.3.3 - Add Session Activity Diagram</b></p> 
 
-{ end of `implementation#adding_a_session` written by: ________ }
+{ end of `implementation#adding_a_session` written by: Zhang Sheng Yang }
 
 { start of `implementation#entering_a_session` written by: ________ }
 
@@ -360,13 +364,54 @@ The following activity diagram summarizes what happens when a user executes an e
 
 { end of `implementation#entering_a_session` written by: ________ }
 
-{ start of `implementation#presence_and_participation` written by: ________ }
+{ start of `implementation#presence_and_participation` written by: Zhang Sheng Yang }
 
 ### 4.5. Presence and participation
 
-todo
+Below only shows the flow of `participate` command since `presence` command works the same way.
 
-{ end of `implementation#presence_and_participation` written by: ________ }
+Toggling the presence and participation status of students requires CLI input.
+The parser will parse the user input to obtain an index range in order to toggle students in that range. 
+The toggled presence or participation will change in color(either green or red) and statistics will be affected.
+
+The below example given assumes that the user inputs `participate 1-4`, which '1-4' is the index range
+, and `participate` command has already been parsed.
+
+Step 1: Parse input
+
+An `ParticipateCommandParser` is created by `LogicManager` and calls `ParticipateCommandParser#parse()` 
+with the given user input. Input is parsed according as a preamble to identify the parts of the
+user input and split it into `String` slices. If the input index range is valid, checked by validation method in 
+`IndexRange` class itself, a `IndexRange` object will be created and initialized with the a default session name as 
+a placeholder. The `ParticipateCommand` object created will be passed back to `LogicManager` to execute.
+
+![ParticipateSequenceDiagram1](images/developer-guide/4.5.1-ParticipateSequenceDiagram1.png)
+<p align="center"><b>Figure 4.5.1 - Participate Sequence Diagram 1</b></p> 
+
+Step 2: Toggling participation
+
+`LogicManager` calls `ParticipateCommand#execute()` to proceed on to toggling the participation status of students in 
+the student list in this current session.
+The `ParticipateCommand` will first check if we have entered a session, if `model#returnCurrentSessionEnabledStatus()` 
+return false, then an exception will be thrown to signal that we are currently not in a session.
+
+Assuming that we are in a session, `ModelManager#updateParticipationBySessionName()` will be called. The session 
+name of the current session is obtained and passed as a parameter together with index range during the invocation 
+of `SessionList#updateStudentPresence()`. Session list will now search through the list of sessions for a match, 
+when a matching session is found, `Session#updatePresence()` is called to toggle the participation status of students 
+according to the index range. 
+
+![ParticipateSequenceDiagram2](images/developer-guide/4.5.2-ParticipateSequenceDiagram2.png)
+<p align="center"><b>Figure 4.3.2 - Participate Sequence Diagram 2</b></p> 
+
+
+The following activity diagram summarizes what happens when a user executes an `participate` command:
+
+![ParticipateActivityDiagram](images/developer-guide/4.5.3-ParticipateActivityDiagram.png)
+<p align="center"><b>Figure 4.3.3 - Participate Activity Diagram</b></p> 
+
+
+{ end of `implementation#presence_and_participation` written by: Zhang Sheng Yang }
 
 { start of `implementation#random_name_generation` written by: Masagca Eris Jacey }
 
@@ -588,13 +633,13 @@ Refer to this guide [here](Testing.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-{ start of `configuration` written by: _____________ }
+{ start of `configuration` written by: Zhang Sheng Yang }
 
 ## 8. Configuration
 
 Refer to this guide [here](Configuration.md).
 
-{ end of `configuration` written by: _____________ }
+{ end of `configuration` written by: Zhang Sheng Yang }
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -683,29 +728,64 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 { end of `requirements#user_stories` written by: ___________ }
 
-{ start of `requirements#use_cases` written by: ___________ }
+{ start of `requirements#use_cases` written by: Zhang Sheng Yang }
 
 ### 10.3. Use cases
 
 (For all use cases below, the **System** is the `ATAS` and the **Actor** is the `user`, unless specified otherwise)
 
+<div markdown="block" class="alert alert-info">
+
 **Use case: UC01 - Add a student**
+
+**Guarantees :**
+* Student will be added only if the input name, Matriculation number, NUS email and tags are valid.
+* The student list will not have duplicate students.
 
 **MSS**
 
-1. User requests to add a student with specified Matriculation number and NUS email, as well as any additional tags (if any)
-1. ATAS adds the student
+1. User requests to add a student with specified Matriculation number and NUS email, as well as any additional tags (if any).
+1. ATAS checks if the input is valid and scans through the student list for duplication.
+1. ATAS adds the student.
 
 Use case ends.
+
+**Extensions**
+
+* 2a. A student in the list has the same Matriculation number.
+   * 2b1. ATAS shows an error message.
+   
+   Use case ends.
+
+* 2b. Matriculation number provided is invalid.
+  * 2b1. ATAS shows an error message.
+  
+  Use case ends.
+  
+* 2c. A student in the list has the same NUS email.
+  * 2c1. ATAS shows an error message.
+  
+  Use case ends.
+  
+* 2d. The email provided is not NUS email.
+  * 2d1. ATAS shows an error message.
+  
+  Use case ends.
+  
+</div>
+
+<div markdown="block" class="alert alert-info">
 
 **Use case: UC02 - Delete a student**
 
 **MSS**
 
-1.  User requests to list students
-1.  ATAS shows a list of students
-1.  User requests to delete a specific student in the list
-1.  ATAS deletes the student
+1.  User requests to list students.
+1.  ATAS shows a list of students.
+1.  User requests to delete a specific student in the list.
+1.  ATAS sends confirmation message.
+1.  User confirms.
+1.  ATAS deletes the student.
 
 Use case ends.
 
@@ -716,52 +796,337 @@ Use case ends.
    Use case ends.
 
 * 3a. The given index is invalid.
-
   * 3a1. ATAS shows an error message.
+  
+   Use case resumes at step 2.
 
-      Use case resumes at step 2.
+* 4a. User denies confirmation
 
-**Use case: UC03 - Clear the class list**
+   Use case ends.
+   
+
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+**Use case: UC03 - Edit a student**
+
+**Guarantees :**
+* Student will be edited only if the edited name, Matriculation number, NUS email and tags are valid.
+* The student list will not have duplicate students after edit.
 
 **MSS**
 
-1.  User requests to clear the class list
-1.  ATAS clears the class list
+1.  User requests to edit a student with name, Matriculation number, NUS email and tags with the student index of that student.
+1.  ATAS checks if the input is valid and scans through the student list for duplication.
+1.  ATAS sends confirmation message.
+1.  User confirms.
+1.  ATAS edits the student.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. A student in the list has the same Matriculation number.
+   * 2b1. ATAS shows an error message.
+   
+   Use case ends.
+
+* 2b. Matriculation number provided is invalid.
+  * 2b1. ATAS shows an error message.
+  
+  Use case ends.
+  
+* 2c. A student in the list has the same NUS email.
+  * 2c1. ATAS shows an error message.
+  
+  Use case ends.
+  
+* 2d. The email provided is not NUS email.
+  * 2d1. ATAS shows an error message.
+  
+  Use case ends.
+  
+* 2e. The given student index is invalid.
+  * 2e1. ATAS shows an error message.
+  
+  Use case ends.
+  
+* 3a. User denies confirmation.
+
+  Use case ends.
+  
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+**Use case: UC04 - Clear the student list**
+
+**MSS**
+
+1.  User requests to clear the student list.
+1.  ATAS ask for confirmation.
+1.  User confirms.
+1.  ATAS clears the student list.
 
 Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+   Use case ends.
+
+* 2a. User denies confirmation.
+
+  Use case ends.
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+**Use case: UC05 - List the registered students**
+
+**MSS**
+
+1. User requests to see the list of students that have been added to ATAS.
+1. ATAS shows the list of students.
+
+Use case ends.
+
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+**Use case: UC06 - Find a student**
+
+**MSS**
+
+1.  User requests to find a student with one or more keywords.
+1.  ATAS searches for students’ names that contain any of the keywords.
+1.  ATAS shows the filtered list of students to User.
+
+   Use case ends.
 
 **Extensions**
 
 * 2a. The list is empty.
 
    Use case ends.
+   
+</div>
 
-**Use case: UC04 - List the registered students**
+<div markdown="block" class="alert alert-info">
+
+**Use case: UC07 - Add a session**
+
+**Guarantees :**
+* Session will be added only if the input session name and session date are valid.
+* The session list will not have duplicate sessions after adding.
 
 **MSS**
 
-1. User requests to see the list of students that have been added to ATAS
-1. ATAS shows the list of students
-
-Use case ends.
-
-**Use case: UC05 - Find a student**
-
-**MSS**
-
-1.  User requests to find a student with one or more keywords
-1.  ATAS searches for students’ names that contain any of the keywords
-1.  ATAS shows the filtered list of students to User
+1.  User requests to add a session with a session name and date.
+1.  ATAS checks if the inputs are valid and scans though the session list for duplication.
+1.  ATAS adds the session to the session list.
+1.  ATAS sorts the session list according to date.
 
    Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The given date is invalid.
+  * 2a1. ATAS shows an error message.
+  
+  Use case ends.
+  
+* 2b. A session in the session list has the same session name.
+  * 2b1. ATAS shows an error message.
+  
+  Use case ends.
+  
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+**Use case: UC08 - Delete a session**
+
+**MSS**
+
+1.  User requests to delete a session with the given index.
+1.  ATAS asks for confirmation.
+1.  User confirms.
+1.  ATAS deletes the session.
 
    Use case ends.
 
-**Use case: UC06 - Exit ATAS**
+**Extensions**
+
+* 1a. The given session index is invalid.
+  * 1a1. ATAS shows an error message.
+  
+  Use case ends.
+
+* 2a. User denies confirmation.
+
+  Use case ends.
+  
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+**Use case: UC09 - Edit a session**
+
+**Guarantees :**
+* Session will be edited only if the edited session name and session date are valid.
+* The session list will not have duplicate sessions after edit.
+
+**MSS**
+
+1.  User requests to edit a session with session name and date with the session index of that session.
+1.  ATAS checks if the input is valid and scans through the session list for duplication.
+1.  ATAS asks for confirmation.
+1.  User confirms.
+1.  ATAS edits the session
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given session index is invalid
+   * 2a1. ATAS shows an error message.
+   
+   Use case ends.
+
+* 2b. The session date given is invalid
+  * 2b1. ATAS shows an error message.
+  
+  Use case ends.
+
+* 3a. User denies confirmation.
+
+  Use case ends.
+
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+**Use case: UC10 - Clear the session list**
+
+**MSS**
+
+1.  User requests to clear the session list.
+1.  ATAS asks for confirmation.
+1.  User confirms.
+1.  ATAS clears the session list.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The session list is empty
+   * 1a1. ATAS shows an empty session list.
+   
+   Use case ends.
+   
+* 2a. User denies confirmation.
+
+  Use case ends.
+   
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+**Use case: UC11 - Enter a session**
+
+**MSS**
+
+1.  User requests to enter a session with a session index.
+1.  ATAS shows the attributes of that session.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The session index is invalid.
+   * 1a1. ATAS shows an error message.
+   
+   Use case ends.
+
+* 1b. The session index is the same as current session.
+   * 1b1. ATAS shows an error message.
+   
+   Use case ends.
+
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+**Use case: UC12 - Toggle presence**
+
+**Preconditions : User has entered a session**
+
+**MSS**
+
+1.  User requests to toggle students' presence status of the given student index range.
+1.  ATAS toggles the presence status of students.
+1.  ATAS updates the statistics in session and student list.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given index range is invalid.
+   * 1a1. ATAS shows an error message.
+   
+   Use case ends.
+   
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+**Use case: UC13 - Toggle participation**
+
+**Preconditions : User has entered a session**
+
+**MSS**
+
+1.  User requests to toggle students' participation status of the given student index range.
+1.  ATAS toggles the participation status of students.
+1.  ATAS updates the statistics in session and student list.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given index range is invalid.
+   * 1a1. ATAS shows an error message.
+   
+   Use case ends.
+   
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+**Use case: UC14 - Choose random name**
+
+**MSS**
+
+1.  User requests to choose a random name from the student list.
+1.  ATAS shows the name of a random student in the student list.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The student list is empty
+   * 1a1. ATAS shows an error message.
+   
+   Use case ends.
+   
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+**Use case: UC15 - Exit ATAS**
 
 **MSS**
 
@@ -770,9 +1135,10 @@ Use case ends.
 
 Use case ends.
 
-*{More to be added}*
+</div>
 
-{ end of `requirements#use_cases` written by: ___________ }
+
+{ end of `requirements#use_cases` written by: Zhang Sheng Yang }
 
 { start of `requirements#non_functional_requirements` written by: ___________ }
 
