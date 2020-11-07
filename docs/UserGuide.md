@@ -273,7 +273,7 @@ Figure 4.3.1. Layout of `Current Session` tab when a session is entered
 
 Notes:
    * **Student list box**: Similar to the `Students` tab, this box contains a list of students. However, only their names are shown here. The order of students follows that of the `Students` tab.
-   * **Presence/Participation Status: If student is absent or has not participated, label will be green, whereas if student is present or has participated, then label is red.
+   * **Presence/Participation Status**: If student is absent or has not participated, label will be red, whereas if student is present or has participated, then label is green.
    * **Statistics**: Calculated as a percentage of the number of students that was present or has participated out of all the students.
 
 Similar to the [`Students`](#41-students) tab, if there are no students in that session, you will see a similar message as shown in **Figure 4.1.2**.
