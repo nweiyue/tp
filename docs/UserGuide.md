@@ -344,10 +344,9 @@ Chooses a student at random from the student list.
 rng
 ```
 
-**Expected result:**
-```
-Student selected: NAME_OF_RANDOMLY_SELECTED_STUDENT
-```
+**Outcome:** 
+![523-rng](images/user-guide/5.2.3-Rng.png)
+Figure 5.2.3.1. Application view after performing the `rng` command
 
 { end of `features#general#rng` written by: Masagca Eris Jacey }
 
@@ -363,12 +362,13 @@ Undoes a command and essentially returns ATAS to the state prior to performing t
 
 * An `undo` is done *per command* and not per change. If you make multiple changes to a student, for example, using a single `editstu` command, then `undo` will revert *all* the changes.
 * Commands that can be undone are:
-   * Adding a student/session: `addstu` / `addses`
-   * Deleting a student/session: `deletestu` / `deleteses`
-   * Editing a student/session: `editstu` / `editses`
-   * Clearing all students/sessions: `clearstu` / `clearses`
-   * Toggling the participation status of students: `participate`
-   * Toggling the presence status of students: `presence`
+   * Adding a student/session: [`addstu`](#531-adding-a-student--addstu) / [`addses`](#541-adding-a-session--addses)
+   * Deleting a student/session: [`deletestu`](#534-deleting-a-student--deletestu) / [`deleteses`](#542-deleting-a-session--deleteses)
+   * Editing a student/session: [`editstu`](#535-editing-a-students-particulars--editstu) / [`editses`](#543-editing-a-session--editses)
+   * Clearing all students/sessions: [`clearstu`](#536-clearing-the-student-list--clearstu) / [`clearses`](#544-clearing-the-session-list--clearses)
+   * Entering a session: [`enterses`](#545-entering-a-session--enterses)
+   * Toggling the participation status of students: [`participate`](#551-toggling-participation-status-of-students--participate)
+   * Toggling the presence status of students: [`presence`](#552-toggling-presence-status-of-students--presence)
 * Commands not stated above make no change to the application state and thus cannot be undone.
 * Successive `undo` commands will bring the application state further back, until there are no more changes to `undo`.
 * You cannot `undo` if there is no previous state to return to.
@@ -380,10 +380,24 @@ Undoes a command and essentially returns ATAS to the state prior to performing t
 undo
 ```
 
-**Expected result:**
-```
-Previous command successfuly undone!
-```
+<div markdown="block" class="alert alert-success">
+
+:green_book: **Example:**<br>
+
+The example we are about to use follows that used in [Section 5.3.4 - Deleting a student](#534-deleting-a-student--deletestu).
+
+</div>
+
+1. Suppose we have indeed deleted Alvin Lee from our student list. 
+This change is reflected in the [students' tab](#41-students).
+![524-undo-1](images/user-guide/5.2.4.1-Undo.png)
+Figure 5.2.4.1. Application view after deleting Alvin Lee as seen in the students' tab
+
+1. However, we realise that deleting him was mistake.
+He does belong to our class after all!
+In this case, we can revert the deletion we have made with `undo`.
+![524-undo-2](images/user-guide/5.2.4.2-Undo.png)
+Figure 5.2.4.2. Application view after performing the `undo` command
 
 { end of `features#general#undo` written by: Masagca Eris Jacey }
 
@@ -391,9 +405,11 @@ Previous command successfuly undone!
 
 #### 5.2.5. Redo-ing a command : `redo`
 
-Redoes a command that was most recently undone and returns ATAS to the state after having performed that command.
+Redoes a command that was most recently undone and returns ATAS to the state *after* having performed that command.
 
 Essentially the reverse of undo-ing a command.
+
+You can think of it as performing that very same command you have undone!
 
 <div markdown="block" class="alert alert-info">
 
@@ -410,10 +426,21 @@ Essentially the reverse of undo-ing a command.
 redo
 ```
 
-**Expected result:**
-```
-Previous command successfuly redone!
-```
+<div markdown="block" class="alert alert-success">
+
+:green_book: **Example:**<br>
+
+We will be following up from the same example used in [Section 5.2.4 - Undo-ing a command](#524-undo-ing-a-command--undo). 
+
+</div>
+
+1. Suppose it seems like Alvin Lee has tricked us all this while and isn't actually our student!
+This means that when we had initially deleted him from our list, it was actually the right thing to do. 
+We can simply reverse the undo we have made using `redo`.
+![525-redo](images/user-guide/5.2.5-Redo.png)
+Figure 5.2.5.1. Application view after performing the `redo` command as seen in the students' tab
+<br> <br>
+As can be seen above, Alvin Lee has been removed from the student list again.
 
 { end of `features#general#redo` written by: Masagca Eris Jacey }
 
@@ -440,20 +467,15 @@ Program window will be closed.
 { start of `features#students` written by: Zhang Sheng Yang }
 <br/>
 <br/>
-With ATAS, you can easily manage your students in your class!
+This category consists of features related to students.
 <br/>
-- First, at the start of a semester, you can use `addstu` and `deletestu` to include or remove 
-students in your class. You can also edit student's particulars with `editstu` if you want to change any of
-the student's details.
-- Next, if you want to find any student or students, you can try `findstu` to search the class for 
-the student you are looking for with a keyword, your class will now only show the the student or students you've 
-searched for. When you are done, you can simply use `liststu` to view the entire class again!
-- Finally, you might want to have an empty class to get ready for the next semester. In this case, instead of removing 
-the students one by one, you can utilize `clearstu` to empty the class.
+Student commands allow you to add a student with `addstu` or remove a student from the student 
+list by using `deletestu`. You can also modify the particulars of a student with `editstu` command.
+Furthermore, if you want to search for certain students in the student list, try out `findstu` and utilize 
+`liststu` to gain a full view of the list again. Lastly, `clearstu` is a easy to remove all the students
+in the current student list.
 <br/>
 <br/>
-
-{ end of `features#students` written by: Zhang Sheng Yang }
 
 #### 5.3.1. Adding a student : `addstu`
 
@@ -463,28 +485,39 @@ Adds a student to the student list.
 addstu n/NAME m/MATRICULATION_NUMBER e/NUS_EMAIL_ADDRESS [t/TAG]…
 ```
 
-:bulb: **Tip:** A student can have any number of tags (including 0) 
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Notes about the usage of this command:** 
+* The name of a student should not contain special characters.
+* The matriculation number of a student should be in the form of A0123456X
+* ATAS only accepts NUS emails, i.e. xxx@u.nus.edu
+* A student can have any number of tags (including 0) 
+
+</div>
+
+<div markdown="block" class="alert alert-success">
 
 Examples:
-* `addstu n/John Cena m/A0123456J e/thechamp@u.nus.edu`
+* `addstu n/John Cena m/A0123456J e/thechamp@u.nus.edu` **(Figure 5.3.1)**
 * `addstu n/Alvina Handsome m/A0123456X e/handsome.alvina@u.nus.edu t/new`
 
-#### 5.3.2. Listing all students : `liststu`
+</div>
 
-Shows a list of all students in the current student list.
+**Outcome**
 
-```
-liststu
-```
+![Addstu](images/user-guide/5.3.1-AddStudent.png)
+<p align="center"><b>Figure 5.3.1 - Addstu Command</b></p> 
 
-#### 5.3.3. Locating students by name : `findstu`
+#### 5.3.2. Locating students by name : `findstu`
 
 Finds students whose names contain any of the given keywords.
 
 ```
 findstu KEYWORD [MORE_KEYWORDS]
 ````
+<div markdown="block" class="alert alert-info">
 
+:information_source: **Notes about the usage of this command:** 
 * The search is case-insensitive. e.g `john` will match `John`
 * The order of the keywords does not matter. e.g. `John Cena` will match `Cena John`
 * Only the name is searched.
@@ -492,10 +525,42 @@ findstu KEYWORD [MORE_KEYWORDS]
 * Students matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `John Cena` will return `John Tan`, `Mark Cena`
 
+</div>
+
+<div markdown="block" class="alert alert-success">
+
 Examples:
-* `findstu John` returns `john` and `John Cena`
+* `findstu bob` returns `Bobby Bob` **(Figure 5.3.2)**
 * `findstu kent ridge` returns `Kent Tan` and `Mark Ridge`<br>
-[Insert image of an example of result of `findstu Cena`]
+
+</div>
+
+**Outcome**
+
+![Findstu](images/user-guide/5.3.2-FindStudent.png)
+<p align="center"><b>Figure 5.3.2 - Findstu Command</b></p> 
+
+#### 5.3.3. Listing all students : `liststu`
+
+Shows a list of all students in the current student list.
+
+```
+liststu
+```
+
+<div markdown="block" class="alert alert-success">
+
+Example:
+* `liststu`  **(Figure 5.3.3)**
+
+</div>
+
+**Outcome**
+
+![Liststu](images/user-guide/5.3.3-ListStudent.png)
+<p align="center"><b>Figure 5.3.3 - Liststu Command</b></p> 
+
+{ end of `features#students` written by: Zhang Sheng Yang }
 
 { start of `features#student#deletestu` written by: Marcus Tan Wei }
 
@@ -525,7 +590,7 @@ deletestu INDEX
 
 <div markdown="block" class="alert alert-success">
 
-:green_book: **Example:**
+:green_book: **Examples:**
 
 * `liststu` followed by `deletestu 2` followed by `yes`: Deletes and removes the 2nd student (**Figure 5.3.4-2**) from the student list.
 * `findstu Bob` followed by `deletestu 1` followed by `yes`: Deletes and removes the 1st student from the results of the `findstu Bob` command.
@@ -568,7 +633,7 @@ editstu INDEX (n/UPDATED_NAME) (e/UPDATED_EMAIL_ADDRESS) (m/UPDATED_MATRICULATIO
 
 <div markdown="block" class="alert alert-success">
 
-:green_book: **Example:**
+:green_book: **Examples:**
 
 * `editstu 1 n/Alvina Lee` followed by `yes` : Edits the 2nd student (**Figure 5.3.5-1**) in the student list with an updated name `Alvina Lee`.
 * `editstu 3 t/active` followed by `y`: Edits the 3rd student in the student list with an updated tag `active`.
@@ -766,17 +831,15 @@ Examples:
 ### 5.5. Current session
 
 { start of `features#current_session` written by: Zhang Sheng Yang }
+
 <br/>
+This category consists of features related to students.
 <br/>
 After entering a session, which is mentioned above, you can now edit the presence and participation details
 of a student. `participate` allows you to toggle the participation status (from absent to present or from 
 present to absent), and `presence` allows you to toggle the presence status of a student (from not 
 participated to participated or from participated to not participated).
 <br/>
-<br/>
-
-{ end of `features#current_session` written by: Zhang Sheng Yang }
-
 <br/>
 
 #### 5.5.1. Toggling participation status of students : `participate`
@@ -787,12 +850,28 @@ Toggles the participation status of the students in the student list of the sess
 participate INDEX_RANGE
 ```
 
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Notes about the usage of this command:** 
 * Toggles the participation status of the students at the specified `INDEX_RANGE`.
 * The index range refers to the range of index numbers shown in the displayed student list of the session.
 * The index range **must be a positive integer** 1, 2, 3, … OR **a positive index range** 1-4, 2-5, 2-9 … 
 
+</div>
+
+<div markdown="block" class="alert alert-success">
+
 Examples:
-* `participate 1-4` toggles the participation status of students 1 to 4.
+* `participate 1-4` toggles the participation status of students 1 to 4. **(Figure 5.5.1)**
+
+</div>
+
+**Outcome**
+
+![Participate](images/user-guide/5.5.1-Participate.png)
+<p align="center"><b>Figure 5.5.1 - Participate Command</b></p> 
+
+
 
 #### 5.5.2. Toggling presence status of students : `presence`
 
@@ -802,12 +881,29 @@ Toggles the presence status of students in the student list of the session.
 presence INDEX_RANGE
 ```
 
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Notes about the usage of this command:** 
 * Toggles the presence status of the students at the specified `INDEX_RANGE`.
 * The index range refers to the range of index numbers shown in the displayed student list of the session.
-* The index range **must be a positive integer** 1, 2, 3, … OR **a positive index range** 1-4, 2-5, 2-9 … 
+* The index range **must be a positive integer** 1, 2, 3, … OR **a positive index range** 1-4, 2-5, 2-9 …
+
+</div>
+
+<div markdown="block" class="alert alert-success">
 
 Examples:
-* `presence 1-4` toggles the presence status of students 1 to 4.
+* `presence 1-4` toggles the presence status of students 1 to 4. **(Figure 5.5.2)**
+
+</div>
+
+**Outcome**
+
+![Presence](images/user-guide/5.5.2-Presence.png)
+<p align="center"><b>Figure 5.5.2 - Presence Command</b></p> 
+
+
+{ end of `features#current_session` written by: Zhang Sheng Yang }
 
 { start of `features#memo` written by: Ngoh Wei Yue }
 
@@ -879,7 +975,7 @@ These commands are: [`deletestu`](#534-deleting-a-student--deletestu), [`editstu
 
 <div markdown="block" class="alert alert-success">
 
-:green_book: **Example:**
+:green_book: **Examples:**
 * `deletestu 1` is followed with the following displayed message `Delete student 1? (yes/no)`.
 * `editstu 3 n/UPDATED_STUDENT_NAME` is followed with the following displayed message `Edit student 3? (yes/no)`.
 * `clearstu` is followed with the following displayed message `Clear student list? (yes/no)` (**Figure 5.7-1**).
