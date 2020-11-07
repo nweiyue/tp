@@ -811,18 +811,18 @@ Refer to this guide [here](DevOps.md).
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
+| Priority | As a …​                                    | I want to …​                   | So that I can…​                                                         |
 | -------- | ------------------------------------------ | ------------------------------ | ----------------------------------------------------------------------- |
 | `* * *`  | user                                       | see usage instructions         | refer to instructions when I forget how to use the App                  |
-| `* * *`  | user                                       | add a new student              |                                                                         |
-| `* * *`  | user                                       | delete a student               | remove students no longer taking the module                             |                 |
-| `* * *`  | user                                       | find a student by name         | locate details of students without having to go through the entire list |
-| `* * *`  | user with many students in my class        | sort students by name          | locate a student easily                                                 |
-| `* *  `  | user                                       | track my students' attendance  | take note of the tutorial participation for each student                |
-| `* *  `  | user limited class time | have a random number generator that generates a random number quickly | get a random student to answer my question more efficiently instead of having to rely on online generators |
-| `* *  `  | user                                       | add non-registered Christian names or nicknames to my students | remember them more easily               |
-| `* *  `  | user                                       | send important emails to my students | not have to rely on Microsoft Outlook/LumiNUS                     |
-| `* *  `  | user                                       | have diagrams tracking students' progress | tell from one look that a student is not catching up with lecture material |
+| `* * *`  | tutor                                       | add a new student              | add details of the students in my class                                |                     
+| `* * *`  | tutor                                       | delete a student               | remove details of the students no longer taking the module             |                 
+| `* * *`  | tutor                                       | find a student by name         | locate details of students without having to go through the entire list|
+| `* * *`  | tutor with many students in my class        | sort students by name          | locate a student easily                                                |
+| `* *  `  | tutor                                       | track my students' attendance  | take note of the tutorial participation for each student               |
+| `* *  `  | tutor with limited class time | have a random number generator that generates a random number quickly | get a random student to answer my question more efficiently instead of having to rely on online generators |
+| `* *  `  | tutor                                       | add non-registered Christian names or nicknames to my students | remember my students more easily       |
+| `* *  `  | tutor who likes to do my administrative work on just one platform | send important emails to my students | not have to rely on external apps like Microsoft Outlook/LumiNUS |
+| `* *  `  | tutor                                       | have diagrams tracking students' progress | pick out easily which student is not catching up with lecture material |
 | `* *  `  | tutor who can be quite forgetful           | create a list of announcements | remember to convey them to my students                                  |
 | `* *  `  | tutor who wants to protect the particulars of my students | encrypt files with passwords | keep the module and students' data safe                    |
 | `* *  `  | tutor who often overshoots the time allocated for my lesson | be reminded at certain intervals | be on track throughout the lesson                    |
