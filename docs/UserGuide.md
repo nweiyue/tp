@@ -829,7 +829,7 @@ You will be exited from any currently entered session upon using the command.
 
 **Outcome:**
 ![addses](images/user-guide/5.4.1-addses.png)
-<b>Figure 5.4.1</b>: Adding a session.
+<p align="center"> <sub> <b>Figure 5.4.1</b>: After adding a session </sub> </p>
 
 #### 5.4.2. Deleting a session : `deleteses`
 
@@ -869,7 +869,7 @@ You will be exited from any currently entered session upon using the command.
 
 **Outcome:**
 ![deleteses](images/user-guide/5.4.2-deleteses.png)
-<b>Figure 5.4.2</b>: Deleting a session.
+<p align="center"> <sub> <b>Figure 5.4.2</b>: After deleting a session </sub> </p>
 
 #### 5.4.3. Editing a session : `editses`
 
@@ -909,7 +909,7 @@ You will be exited from any currently entered session upon using the command.
 
 **Outcome:**
 ![editses](images/user-guide/5.4.3-editses.png)
-<b>Figure 5.4.3</b>: Editing a session.
+<p align="center"> <sub> <b>Figure 5.4.3</b>: After editing a session </sub> </p>
 
 #### 5.4.4. Clearing the session list : `clearses`
 
@@ -945,7 +945,7 @@ You will be exited from any currently entered session upon using the command.
 
 **Outcome:**
 ![clearses](images/user-guide/5.4.4-clearses.png)
-<b>Figure 5.4.4</b>: Clearing a session.
+<p align="center"> <sub> <b>Figure 5.4.4</b>: After clearing a session </sub> </p>
 
 #### 5.4.5. Entering a session : `enterses`
 
@@ -980,7 +980,7 @@ You cannot be in one session and enter that particular session again.
 
 **Outcome:**
 ![enterses](images/user-guide/5.4.5-enterses.png)
-<b>Figure 5.4.5</b>: Entering a session.
+<p align="center"> <sub> <b>Figure 5.4.5</b>: After entering a session</sub> </p>
 
 { end of `sessions` written by: Alvin Chee Teck Weng }
 
