@@ -315,7 +315,6 @@ public class MainWindow extends UiPart<Stage> {
             CommandException, ParseException, InterruptedException {
         try {
             CommandResult commandResult = logic.execute(commandText);
-            logic.refreshStatistics();
             Task displayResultTask = new Task() {
                 @Override
                 protected Object call() throws Exception {
@@ -340,8 +339,6 @@ public class MainWindow extends UiPart<Stage> {
                 handleEnterSessionTab(commandResult.getTab());
             }
 
-            handleCurrentSession();
-
             if (logic.getSessionId() == null) {
                 logic.disableCurrentSession();
                 sessionStudentListPanel.showNotInSession();
@@ -354,6 +351,7 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+            handleCurrentSession();
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
