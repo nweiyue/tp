@@ -72,8 +72,8 @@ Specifically, **ATAS** allows you to keep track of four different aspects (see [
 ### 1.3. Preview
 
 The following is the GUI of our application:
-    ![UiPreview](images/user-guide/1.3-1-UiPreview.png)
-    <p align="center"> <sub> <b>Figure 1.3-1</b>: UI Preview </sub> </p>
+    ![UiPreview](images/user-guide/1.3.1-UiPreview.png)
+    <p align="center"> <sub> <b>Figure 1.3.1</b>: UI Preview </sub> </p>
     
 
 GUI Components:
@@ -196,8 +196,7 @@ To allow you to easily keep track of students presence and participation records
 The following is how the `Students` tab looks like:
 
 ![StudentsLayout](images/user-guide/4.1.1-StudentsLayout.png)
-
-Figure 4.1.1. Layout of `Students` tab when there is at least one student
+<p align="center"> <sub> <b>Figure 4.1.1</b>: Layout of `Students` tab when there is at least one student </sub> </p>
 
 Notes:
    * **Student list box**: Contains a list of students and their particulars such as their name, matriculation number, NUS email address and tags (if any). <span style="background-color: #089788; color: white">Tags</span> are highlighted in a turquoise colour and students are arranged in the order that you add them. 
@@ -218,8 +217,7 @@ Notes:
 If there are no students in your list, you will see a message indicating as such.
 
 ![EmptyStudentsLayout](images/user-guide/4.1.2-EmptyStudentsLayout.png)
-
-Figure 4.1.2. Layout of `Students` tab when there are no students
+<p align="center"> <sub> <b>Figure 4.1.2</b>: Layout of `Students` tab when there are no students </sub> </p>
    
 To find out which features are supported by the `Students` tab, you can head over to [Section 5.3 - Students](#53-students).
 
@@ -232,8 +230,7 @@ To find out which features are supported by the `Students` tab, you can head ove
 The following is how the `Sessions` tab looks like:
 
 ![SessionsLayout](images/user-guide/4.2.1-SessionsLayout.png)
-
-Figure 4.2.1. Layout of `Sessions` tab when there is at least one session
+<p align="center"> <sub> <b>Figure 4.2.1</b>: Layout of `Sessions` tab when there is at least one session </sub> </p>
 
 Notes:
    * **Student list box**: Contains a list of sessions and their details such as their name and date. Sessions are arranged by their dates, starting from the latest at the top.
@@ -254,8 +251,7 @@ Notes:
 If there are no sessions in your list, you will see a message indicating as such.
 
 ![EmptySessionsLayout](images/user-guide/4.2.2-EmptySessionsLayout.png)
-
-Figure 4.2.2. Layout of `Sessions` tab when there are no sessions
+<p align="center"> <sub> <b>Figure 4.2.2</b>: Layout of `Sessions` tab when there are no sessions </sub> </p>
 
 To find out which features are supported by the `Sessions` tab, you can head over to [Section 5.4 - Sessions](#54-sessions).
 
@@ -268,8 +264,7 @@ To find out which features are supported by the `Sessions` tab, you can head ove
 The following is how the `Current Session` tab looks like:
 
 ![CurrentSessionLayout](images/user-guide/4.3.1-CurrentSessionLayout.png)
-
-Figure 4.3.1. Layout of `Current Session` tab when a session is entered
+<p align="center"> <sub> <b>Figure 4.3.1</b>: Layout of `Current Session` tab when a session is entered </sub> </p>
 
 Notes:
    * **Student list box**: Similar to the `Students` tab, this box contains a list of students. However, only their names are shown here. The order of students follows that of the `Students` tab.
@@ -281,8 +276,7 @@ Similar to the [`Students`](#41-students) tab, if there are no students in that 
 If you have not entered any session or left a session (by removing that session), you will see a message indicating as such. You can enter a session by using `enterses INDEX` as described in [Section 5.4.5 - Entering a session](#545-entering-a-session--enterses).
 
 ![NotInCurrentSessionsLayout](images/user-guide/4.3.2-NotInCurrentSessionLayout.png)
-
-Figure 4.3.2. Layout of `Current Session` tab when there are no session is entered
+<p align="center"> <sub> <b>Figure 4.3.2</b>: Layout of `Current Session` tab when there are no session is entered </sub> </p>
 
 To find out which features are supported by the `Current Session` tab, you can head over to [Section 5.5 - Current session](#55-current-session).
 
@@ -295,8 +289,7 @@ To find out which features are supported by the `Current Session` tab, you can h
 The following is how the `Memo` tab looks like:
 
 ![MemoLayout](images/user-guide/4.4.1-MemoLayout.png)
-
-Figure 4.4.1. Layout of `Memo` tab
+<p align="center"> <sub> <b>Figure 4.4.1</b>: Layout of `Memo` tab </sub> </p>
 
 Note:
    * **Memo box**: A text box where you can input any notes that you need for future references. The amount of space you can see is tied to size of your application window, but the actual text space that you can typed in will automatically be extended if you need more space.
@@ -382,14 +375,12 @@ help
 1. A help window that look like the following will open up.
 
 ![HelpWindow](images/user-guide/5.2.1.1-HelpWindow.png)
-
-Figure 5.2.1.1. Help window
+<p align="center"> <sub> <b>Figure 5.2.1.1</b>: Help window </sub> </p>
 
 2. A message indicating a help window has been opened will be displayed in the main **ATAS** window.
 
 ![Help](images/user-guide/5.2.1.2-Help.png)
-
-Figure 5.2.1.2. Main window view after opening help window
+<p align="center"> <sub> <b>Figure 5.2.1.2</b>: Main window view after opening help window </sub> </p>
 
 { end of `features#general#help` written by: Ngoh Wei Yue }
 
@@ -425,8 +416,7 @@ switch TAB_NAME
 
 The sessions tab will be displayed.
 ![Switch](images/user-guide/5.2.2.1-Switch.png)
-
-Figure 5.2.2.1. Application view after switching to the `Sessions` tab
+<p align="center"> <sub> <b>Figure 5.2.2.1</b>: Application view after switching to the `Sessions` tab </sub> </p>
 
 { end of `features#general#switch` written by: Ngoh Wei Yue }
 
@@ -443,7 +433,7 @@ rng
 
 **Outcome:** 
 ![523-rng](images/user-guide/5.2.3-Rng.png)
-Figure 5.2.3.1. Application view after performing the `rng` command
+<p align="center"> <sub> <b>Figure 5.2.3.1</b>: Application view after performing the `rng` command </sub> </p>
 
 { end of `features#general#rng` written by: Masagca Eris Jacey }
 
@@ -488,13 +478,13 @@ The example we are about to use follows that used in [Section 5.3.4 - Deleting a
 1. Suppose we have indeed deleted Alvin Lee from our student list. 
 This change is reflected in the [students' tab](#41-students).
 ![524-undo-1](images/user-guide/5.2.4.1-Undo.png)
-Figure 5.2.4.1. Application view after deleting Alvin Lee as seen in the students' tab
+<p align="center"> <sub> <b>Figure 5.2.4.1</b>: Application view after deleting Alvin Lee as seen in the students` tab </sub> </p>
 
 1. However, we realise that deleting him was mistake.
 He does belong to our class after all!
 In this case, we can revert the deletion we have made with `undo`.
 ![524-undo-2](images/user-guide/5.2.4.2-Undo.png)
-Figure 5.2.4.2. Application view after performing the `undo` command
+<p align="center"> <sub> <b>Figure 5.2.4.2</b>: Application view after performing the `undo` command </sub> </p>
 
 { end of `features#general#undo` written by: Masagca Eris Jacey }
 
@@ -535,7 +525,7 @@ We will be following up from the same example used in [Section 5.2.4 - Undo-ing 
 This means that when we had initially deleted him from our list, it was actually the right thing to do. 
 We can simply reverse the undo we have made using `redo`.
 ![525-redo](images/user-guide/5.2.5-Redo.png)
-Figure 5.2.5.1. Application view after performing the `redo` command as seen in the students' tab
+<p align="center"> <sub> <b>Figure 5.2.5.1</b>: Application view after performing the `redo` command as seen in the students' tab </sub> </p>
 <br> <br>
 As can be seen above, Alvin Lee has been removed from the student list again.
 
@@ -552,7 +542,7 @@ Exits the application.
 exit
 ```
 
-**Expected result:**
+**Outcome:**
 ```
 Program window will be closed.
 ```
@@ -604,7 +594,7 @@ Examples:
 **Outcome**
 
 ![Addstu](images/user-guide/5.3.1-AddStudent.png)
-<p align="center"><b>Figure 5.3.1 - Addstu Command</b></p> 
+<p align="center"> <sub> <b>Figure 5.3.1</b>: Addstu Command </sub> </p>
 
 #### 5.3.2. Locating students by name : `findstu`
 
@@ -637,7 +627,7 @@ Examples:
 **Outcome**
 
 ![Findstu](images/user-guide/5.3.2-FindStudent.png)
-<p align="center"><b>Figure 5.3.2 - Findstu Command</b></p> 
+<p align="center"> <sub> <b>Figure 5.3.2</b>: Findstu Command </sub> </p>
 
 #### 5.3.3. Listing all students : `liststu`
 
@@ -658,7 +648,7 @@ Example:
 **Outcome**
 
 ![Liststu](images/user-guide/5.3.3-ListStudent.png)
-<p align="center"><b>Figure 5.3.3 - Liststu Command</b></p> 
+<p align="center"> <sub> <b>Figure 5.3.3</b>: Liststu Command </sub> </p>
 
 { end of `features#students` written by: Zhang Sheng Yang }
 
@@ -667,6 +657,11 @@ Example:
 #### 5.3.4. Deleting a student : `deletestu`
 
 Removes a student from the student list.
+
+**Format:**
+```
+deletestu INDEX
+```
 
 <div markdown="block" class="alert alert-info">
 
@@ -681,13 +676,6 @@ Removes a student from the student list.
 
 </div>
 
-**Format:**
-```
-deletestu INDEX
-```
-
-:information_source: After receiving the confirmation prompt, enter `yes` to confirm the removal of student at the specified `INDEX`, or reject the command by entering `no`.
-
 <div markdown="block" class="alert alert-success">
 
 :green_book: **Examples:**
@@ -698,12 +686,15 @@ deletestu INDEX
 
 **Outcome**
 
-![DeletestuConfirmation](images/user-guide/5.3.4-1-DeletestuConfirmationPrompt.png)
-<p align="center"> <sub> <b>Figure 5.3.4-1</b>: Confirmation for deleting student 2 </sub> </p>
+![DeletestuConfirmation](images/user-guide/5.3.4.1-DeletestuConfirmationPrompt.png)
+<p align="center"> <sub> <b>Figure 5.3.4.1</b>: Confirmation for deleting student 2 </sub> </p>
+
+<div markdown="block" class="alert alert-info">
+:information_source: After receiving the confirmation prompt, enter `yes` to confirm the removal of student at the specified `INDEX`, or reject the command by entering `no`.
+</div>
    
-![Deletestu](images/user-guide/5.3.4-2-Deletestu.png)
-<p align="center"> <sub> <b>Figure 5.3.4-2</b>: After confirming the deletion of student 2 </sub> </p>   
-   
+![Deletestu](images/user-guide/5.3.4.2-Deletestu.png)
+<p align="center"> <sub> <b>Figure 5.3.4.2</b>: After confirming the deletion of student 2 </sub> </p>   
 
 Examples:
 
@@ -714,6 +705,11 @@ Examples:
 #### 5.3.5. Editing a student's particulars : `editstu`
 
 <div markdown="block" class="alert alert-info">
+
+**Format:**
+```
+editstu INDEX (n/UPDATED_NAME) (e/UPDATED_EMAIL_ADDRESS) (m/UPDATED_MATRICULATION_NUMBER) (t/UPDATED_TAG)
+```
 
 **:information_source: Notes about the usage of this command:**<br>
 
@@ -726,20 +722,13 @@ Examples:
 
 </div>
 
-**Format:**
-```
-editstu INDEX (n/UPDATED_NAME) (e/UPDATED_EMAIL_ADDRESS) (m/UPDATED_MATRICULATION_NUMBER) (t/UPDATED_TAG)
-```
-
 <div markdown="block" class="alert alert-success">
 
 :green_book: **Examples:**
 
-* `editstu 1 n/Alvina Lee` followed by `yes` : Edits the 2nd student (**Figure 5.3.5-1**) in the student list with an updated name `Alvina Lee`.
+* `editstu 1 n/Alvina Lee` followed by `yes`: Edits the 2nd student (**Figure 5.3.5**) in the student list with an updated name `Alvina Lee`.
 * `editstu 3 t/active` followed by `y`: Edits the 3rd student in the student list with an updated tag `active`.
 </div>
-
-:information_source: After receiving the confirmation prompt, enter `yes` to confirm the editing of student's particulars at the specified `INDEX`, or reject the command by entering `no`.
 
 **Outcome:**
 
@@ -754,6 +743,11 @@ editstu INDEX (n/UPDATED_NAME) (e/UPDATED_EMAIL_ADDRESS) (m/UPDATED_MATRICULATIO
 
 Clears and removes all students from the student list.
 
+**Format:**
+```
+clearstu
+```
+
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the usage of this command:**<br>
@@ -763,18 +757,11 @@ Clears and removes all students from the student list.
    
 </div>
 
-**Format:**
-```
-clearstu
-```
-
-:information_source: After receiving the confirmation prompt, enter `yes` to confirm the removal of all students from the student list, or reject the command by entering `no`.
-
 <div markdown="block" class="alert alert-success">
 
 :green_book: **Example:**
 
-* `clearstu` : Clears the students from the student list (**Figure 5.3.6-1**).
+* `clearstu`: Clears the students from the student list (**Figure 5.3.6**).
 </div>
 
 **Outcome:**
@@ -806,20 +793,33 @@ Adds a session to the session list.
 addses s/SESSION_NAME d/SESSION_DATE
 ```
 
-**Expected result:**
-```
-New session added: Tutorial 4 @ 12/07/2020
-```
+<div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the usage of this command:**<br>
 * Adds a session with the specified name and date to the displayed session list.
 * `SESSION_DATE` should be given in the format of d/M/yyyy or dd/MM/yyyy. This means if your day or month is single digit, you do not
 need to add a '0' in front, for e.g., 09/01/2020 and 9/1/2020 are both accepted.
 
+</div>
+
+<div markdown="block" class="alert alert-warning">
+
+You will be exited from any currently entered session upon using the command.
+
+</div>
+
+<div markdown="block" class="alert alert-success">
+
+:green_book: Examples:
+* `addses s/tut1 d/12/7/2020`
+
 :bulb: **Tip:** Two sessions cannot have the same name but they can have the same date
 
-Examples:
-* `addses s/tut1 d/12/7/2020`
+</div>
+
+**Outcome:**
+![addses](images/user-guide/5.4.1-addses.png)
+<p align="center"> <sub> <b>Figure 5.4.1</b>: After adding a session </sub> </p>
 
 #### 5.4.2. Deleting a session : `deleteses`
 
@@ -830,12 +830,7 @@ Deletes a session from the session list.
 deleteses INDEX
 ```
 
-**Expected result:**
-```
-Delete INDEX? (yes/no)
-```
-
-:information_source: After receiving the confirmation prompt, enter `yes` to confirm the removal of session at the specified `INDEX` or reject the command by entering `no`.
+<div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the usage of this command:**<br>
 * Deletes the session from the displayed session list at the specified `INDEX`.
@@ -846,9 +841,25 @@ Delete INDEX? (yes/no)
       * If the specified `INDEX` is invalid, error message will appear.
    * If no: the specified session will not be removed from the session list.
 
-Examples:
+</div>
+
+<div markdown="block" class="alert alert-warning">
+
+You will be exited from any currently entered session upon using the command.
+
+</div>
+
+<div markdown="block" class="alert alert-success">
+
+:green_book: Examples:
 * `deleteses 1` followed by `no` results in nothing changed.
 * `deleteses 2` followed by `yes` deletes the 2nd session in the session list.
+
+</div>
+
+**Outcome:**
+![deleteses](images/user-guide/5.4.2-deleteses.png)
+<p align="center"> <sub> <b>Figure 5.4.2</b>: After deleting a session </sub> </p>
 
 #### 5.4.3. Editing a session : `editses`
 
@@ -859,14 +870,7 @@ Edits a session in the session list.
 editses INDEX s/UPDATED_NAME d/UPDATED_DATE
 ```
 
-**Expected result:**
-```
-Edit INDEX? (yes/no)
-```
-
-:information_source: After receiving the confirmation prompt, enter `yes` to confirm the update of session at the specified `INDEX` or reject the command by entering `no`.
-
-:bulb: **Tip:** The updated session cannot have the same name as any of the other sessions in the list but they can have the same date
+<div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the usage of this command:**<br>
 * Edits the session in the displayed session list at the specified `INDEX` with the specified details.
@@ -876,8 +880,26 @@ Edit INDEX? (yes/no)
    * If yes: the specified session will be updated with the specified details.
    * If no: the specified session will not be updated.
 
-Examples:
-* `editses 2 s/Tutorial1 d/10/10/2020` followed by `yes` edits the 2nd session in the session list with a new session name `Tutorial1` and a new session date `10/10/2020`.
+</div>
+
+<div markdown="block" class="alert alert-warning">
+
+You will be exited from any currently entered session upon using the command.
+
+</div>
+
+<div markdown="block" class="alert alert-success">
+
+:green_book: Examples:
+* `editses 1 s/Tutorial 6 d/10/10/2020` followed by `yes` edits the 1st session in the session list with a new session name `Tutorial 6` and a new session date `10/10/2020`.
+
+:bulb: **Tip:** The updated session cannot have the same name as any of the other sessions in the list but they can have the same date
+
+</div>
+
+**Outcome:**
+![editses](images/user-guide/5.4.3-editses.png)
+<p align="center"> <sub> <b>Figure 5.4.3</b>: After editing a session </sub> </p>
 
 #### 5.4.4. Clearing the session list : `clearses`
 
@@ -888,21 +910,32 @@ Deletes all the sessions in the session list.
 clearses
 ```
 
-**Expected result:**
-```
-Clear session list? (yes/no)
-```
-
-:information_source: After receiving the confirmation prompt, enter `yes` to confirm the clearance of all sessions or reject the command by entering `no`.
+<div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the usage of this command:**<br>
 * Clears all the sessions in the displayed session list.
 * You will be prompted for a confirmation input **`(yes/no)`**.
    * If yes: all sessions will be removed from the session list.
    * If no: no sessions will be removed from the session list.
+
+</div>
+
+<div markdown="block" class="alert alert-warning">
+
+You will be exited from any currently entered session upon using the command.
+
+</div>
+
+<div markdown="block" class="alert alert-success">
    
-Examples:
+:green_book: Examples:
 * `clearses` followed by `yes` deletes all the sessions in the session list. 
+
+</div>
+
+**Outcome:**
+![clearses](images/user-guide/5.4.4-clearses.png)
+<p align="center"> <sub> <b>Figure 5.4.4</b>: After clearing a session </sub> </p>
 
 #### 5.4.5. Entering a session : `enterses`
 
@@ -913,18 +946,31 @@ Enters a session in the session list.
 enterses INDEX
 ```
 
-**Expected result:**
-```
-Session entered: INDEX
-```
+<div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the usage of this command:**<br>
 * Enters the session in the displayed session list at the specified `INDEX`.
 * The index refers to the index number shown in the session list.
 * The index **must be a positive integer** 1, 2, 3, …
 
-Examples:
+</div>
+
+<div markdown="block" class="alert alert-warning">
+
+You cannot be in one session and enter that particular session again.
+
+</div>
+
+<div markdown="block" class="alert alert-success">
+
+:green_book: Examples:
 * `enterses 1` enters the first session and allows you to use PARTICIPATE and PRESENCE commands.
+
+</div>
+
+**Outcome:**
+![enterses](images/user-guide/5.4.5-enterses.png)
+<p align="center"> <sub> <b>Figure 5.4.5</b>: After entering a session</sub> </p>
 
 { end of `sessions` written by: Alvin Chee Teck Weng }
 
@@ -970,7 +1016,7 @@ Examples:
 **Outcome**
 
 ![Participate](images/user-guide/5.5.1-Participate.png)
-<p align="center"><b>Figure 5.5.1 - Participate Command</b></p> 
+<p align="center"> <sub> <b>Figure 5.5.1</b>: Participate Command </sub> </p>
 
 
 
@@ -1002,7 +1048,7 @@ Examples:
 **Outcome**
 
 ![Presence](images/user-guide/5.5.2-Presence.png)
-<p align="center"><b>Figure 5.5.2 - Presence Command</b></p> 
+<p align="center"> <sub> <b>Figure 5.5.2</b>: Presence Command </sub> </p>
 
 
 { end of `features#current_session` written by: Zhang Sheng Yang }
@@ -1053,12 +1099,10 @@ addnote NOTE
 The text "clarify qn 3 with prof" is added onto a new line in the memo box.
 
 ![BeforeAddNote](images/user-guide/5.6.1.1.1-BeforeAddNote.png)
-
-Figure 5.6.1.1.1. Application view before adding a note
+<p align="center"> <sub> <b>Figure 5.6.1.1.1</b>: Application view before adding a note </sub> </p>
 
 ![AfterAddNote](images/user-guide/5.6.1.1.2-AfterAddNote.png)
-
-Figure 5.6.1.1.2. Application view after adding a note
+<p align="center"> <sub> <b>Figure 5.6.1.1.2</b>: Application view after adding a note </sub> </p>
 
 
 { end of `features#memo#addnote` written by: Ngoh Wei Yue }
@@ -1105,8 +1149,7 @@ command + s
 The content in the memo is saved in the hard disk.
 
 ![SaveMemo](images/user-guide/5.6.2.1-SaveMemo.png)
-
-Figure 5.6.2.1. Application view after saving the memo
+<p align="center"> <sub> <b>Figure 5.6.2.1</b>: Application view after saving the memo </sub> </p>
 
 { end of `features#memo#save_memo` written by: Ngoh Wei Yue }
 
@@ -1149,11 +1192,11 @@ clearstu
 
 **Outcome:**
 
-![ClearstuConfirmationExample](images/user-guide/5.7-1-ClearstuConfirmationPrompt.png)
-<p align="center"> <sub> <b>Figure 5.7-1</b>: Confirmation prompt after entering the clear student list command </sub> </p> 
+![ClearstuConfirmationExample](images/user-guide/5.7.1-ClearstuConfirmationPrompt.png)
+<p align="center"> <sub> <b>Figure 5.7.1</b>: Confirmation prompt after entering the clear student list command </sub> </p> 
 
-![ClearstuReject](images/user-guide/5.7-2-ClearstuReject.png)
-<p align="center"> <sub> <b>Figure 5.7-2</b>: Clear student list command is rejected </sub> </p> 
+![ClearstuReject](images/user-guide/5.7.2-ClearstuReject.png)
+<p align="center"> <sub> <b>Figure 5.7.2</b>: Clear student list command is rejected </sub> </p> 
 
 { end of `features#userconfirmation#clearstu` written by: Marcus Tan Wei }
 
