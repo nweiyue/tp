@@ -72,8 +72,8 @@ Specifically, **ATAS** allows you to keep track of four different aspects (see [
 ### 1.3. Preview
 
 The following is the GUI of our application:
-    ![UiPreview](images/user-guide/1.3-UiPreview.png)
-    <p align="center"> <sub> <b>Figure 1.3</b>: UI Preview </sub> </p>
+    ![UiPreview](images/user-guide/1.3-1-UiPreview.png)
+    <p align="center"> <sub> <b>Figure 1.3-1</b>: UI Preview </sub> </p>
     
 
 GUI Components:

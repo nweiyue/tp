@@ -1,4 +1,5 @@
 ---
+---
 layout: page
 title: Developer Guide
 ---
@@ -38,11 +39,12 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ## 3. Design
 
-{ start of `design#architecture` written by: ___________ }
+{ start of `design#architecture` written by: Marcus Tan Wei }
 
 ### 3.1 Architecture
 
-<img src="images/ArchitectureDiagram.png" width="450" />
+<img src="images/developer-guide/3.1-1-ArchitectureDiagram.png" width="450" />
+<p align="center"> <sub> <b>Figure 3.1-1</b>: Architecture Diagram </sub> </p> 
 
 The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
 
@@ -72,17 +74,19 @@ Each of the four components,
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
-![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
+![Class Diagram of the Logic Component](images/developer-guide/3.1-2-LogicClassDiagram.png)
+<p align="center"> <sub> <b>Figure 3.1-2</b>: Logic class diagram </sub> </p> 
 
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `addses s/Tutorial 1 d/10/10/2020`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<img src="images/developer-guide/3.1-3-ArchitectureSequenceDiagram.png" width="574" />
+<p align="center"> <sub> <b>Figure 3.1-3</b>: Architecture sequence diagram </sub> </p> 
 
 The sections below give more details of each component.
 
-{ end of `design#architecture` written by: ___________ }
+{ end of `design#architecture` written by: Marcus Tan Wei }
 
 { start of `design#ui_component` written by: ___________ }
 
@@ -109,7 +113,7 @@ The `UI` component,
 
 ### 3.3. Logic component
 
-![Structure of the Logic Component](images/LogicClassDiagram.png)
+![Structure of the Logic Component](images/developer-guide/3.3-1-LogicClassDiagram.png)
 
 **API** :
 [`Logic.java`](https://github.com/AY2021S1-CS2103T-W16-4/tp/blob/master/src/main/java/atas/logic/Logic.java)
@@ -221,7 +225,7 @@ The following activity diagram summarizes what happens when a user executes a sw
 
 { end of `implementation#switch_between_tabs` written by: ________ }
 
-{ start of `implementation#user_confirmation` written by: ________ }
+{ start of `implementation#user_confirmation` written by: Marcus Tan Wei }
 
 ### 4.2. User confirmation
 
@@ -267,13 +271,18 @@ Step 5. The `ConfirmationAcceptCommand` or `ConfirmationRejectCommand` is then e
 
 The following sequence diagram shows how the user confirmation feature works:
 
-![UserConfirmationSequenceDiagram](images/UserConfirmationSequenceDiagram.png)
+![UserConfirmationSequenceDiagram1](images/developer-guide/4.2-1-UserConfirmationSequenceDiagram1.png)
+<p align="center"> <sub> <b>Figure 4.2-1</b>: User confirmation sequence part 1 </sub> </p> 
+
+![UserConfirmationSequenceDiagram2](images/developer-guide/4.2-2-UserConfirmationSequenceDiagram2.png)
+<p align="center"> <sub> <b>Figure 4.2-2</b>: User confirmation sequence part 2 </sub> </p> 
 
 The following activity diagram summarizes what happens when a user executes a dangerous command (for eg. `DeleteStudentCommand`).
 
-![DeleteStudentActivityDiagram](images/DeleteStudentActivityDiagram.png)
+![DeleteStudentActivityDiagram](images/developer-guide/4.2-3-DeleteStudentActivityDiagram.png)
+<p align="center"> <sub> <b>Figure 4.2-3</b>: Activity diagram for delete student</sub> </p> 
 
-{ end of `implementation#user_confirmation` written by: ________ }
+{ end of `implementation#user_confirmation` written by: Marcus Tan Wei }
 
 { start of `implementation#adding_a_session` written by: Zhang Sheng Yang }
 
@@ -603,23 +612,42 @@ todo
 
 { end of `implementation#exporting_data` written by: ______________ }
 
-{ start of `implementation#data_encryption` written by: ______________ }
+{ start of `implementation#data_encryption` written by: Marcus Tan Wei }
 
-### 4.10. [Proposed] Data encryption
+### 4.10 [Proposed] Data encryption
+Data encryption can be implemented in the future versions. This is to further protect the students' particulars. 
 
-todo
+### 4.10.1 Solution 1
+Encrypt and store data locally.
 
-{ end of `implementation#dat_encryption` written by: ______________ }
+* Pros: 
+   * Easy to implement. One example is through the usage of Java Cryptography API.
+
+* Cons: 
+   * Performance reduction may occur since every call to save to storage requires encrypting a lot of data.
+   * Security issues may still arise if we store the encryption key in the same machine.
+
+### 4.10.2 Solution 2
+Store data outside the user’s machine and issue the user an access token.
+
+* Pros: 
+   * Data will be bounded to multiple machines, hence, can be restored if the user forgets his or her credentials.
+
+* Cons: 
+   * There will be generation of access tokens and checking them.
+   * Require changes to the current implementation to work with external storage.
+
+{ end of `implementation#dat_encryption` written by: Marcus Tan Wei }
 
 --------------------------------------------------------------------------------------------------------------------
 
-{ start of `logging` written by: _____________ }
+{ start of `logging` written by: Marcus Tan Wei }
 
 ## 6. Logging
 
 Refer to this guide [here](Logging.md).
 
-{ end of `logging` written by: _____________ }
+{ end of `logging` written by: Marcus Tan Wei }
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1157,15 +1185,15 @@ Use case ends.
 
 { end of `requirements#non_functional_requirements` written by: ___________ }
 
-{ start of `requirements#glossary` written by: ___________ }
+{ start of `requirements#glossary` written by: Marcus Tan Wei }
 
 ### 10.5. Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Matriculation number**: A unique alphanumeric number attributed to each NUS student. Follows the format A0123456X, where each digit can be from 0-9 and the last letter can be any alphabet A-Z
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Tag**: A word or phrase the user labels the student as.
 
-{ end of `requirements#glossary` written by: ___________ }
+{ end of `requirements#glossary` written by: Marcus Tan Wei }
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1204,25 +1232,44 @@ testers are expected to do more *exploratory* testing.
 
 ### 11.2. Adding a student
 
-1. Deleting a student while all students are being shown
-
-  1. Prerequisites: List all students using the `list` command. Multiple students in the list.
-
-  1. Test case: `delete 1`<br>
-     Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
-  1. Test case: `delete 0`<br>
-     Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
-
-  1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-     Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
 
 { end of `manual_testing#adding_a_student` written by: __________ }
 
-{ start of `manual_testing#deleting_a_student` written by: __________ }
+{ start of `manual_testing#deleting_a_student` written by: Marcus Tan Wei }
 
 ### 11.3. Deleting a student
 
-{ end of `manual_testing#deleting_a_student` written by: __________ }
+1. Deleting a student while all students are being shown
+
+  1. Prerequisites: List all students using the `liststu` command. Multiple (but less than 100) students in the list.
+
+  1. Test case: `deletestu 1`<br>
+     Expected: First contact is deleted from the list. Details of the deleted contact shown in the ResultDisplay.
+
+  1. Test case: `deletestu 0`<br>
+     Expected: No student is deleted. Error details shown in the ResultDisplay. 
+
+  1. Test case: `deletestu 101`<br>
+     Expected: No student is deleted. Error details shown in the ResultDisplay.
+     
+  1. Other incorrect delete commands to try: `deletestu`, `deletestu x`, `...` (where x is larger than the list size)<br>
+     Expected: Similar to previous.
+
+1. Deleting a student while only some students are being shown
+   
+   1. Prerequisites: List some students using `findstu` command. Multiple (but less than 100) students are in the list.
+   One or more (but less than 100) student is shown in the StudentListPanel.
+   
+   1. Test case: `deletestu 1`<br>
+      Expected: First contact is deleted from the list. Details of the deleted contact shown in the ResultDisplay.
+   
+   1. Test case: `deletestu 0`<br>
+      Expected: No student is deleted. Error details shown in the ResultDisplay. 
+   
+   1. Test case: `deletestu 101`<br>
+      Expected: No student is deleted. Error details shown in the ResultDisplay.
+      
+   1. Other incorrect delete commands to try: `deletestu`, `deletestu x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
+{ end of `manual_testing#deleting_a_student` written by: Marcus Tan Wei }
