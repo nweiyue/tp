@@ -18,6 +18,10 @@ title: Developer Guide
 
 ## 1. Introduction
 
+This developer guide provides an overview and details of the system architecture and implementation of **ATAS**.
+Its purpose is to provide a useful reference for other developers who wish to contribute to the ongoing project of **ATAS**,
+or to simply gain a deeper insight into [the team's](AboutUs.md) development process and considerations.
+
 { end of `introduction` written by: Masagca Eris Jacey }
 
 --------------------------------------------------------------------------------------------------------------------
@@ -127,7 +131,8 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ### 3.4. Model component
 
-![Structure of the Model Component](images/ModelClassDiagram.png)
+![Structure of the Model Component](images/developer-guide/3.4-ModelClassDiagram.png)
+Figure 3.4. Class diagram of the Model component
 
 **API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-W16-4/tp/blob/master/src/main/java/atas/model/Model.java)
 
@@ -443,11 +448,13 @@ Step 3. The `Index` returned during the execution of `RngCommand#execute(Model)`
 
 The following sequence diagram shows how the RNG operation works:
 
-![RngSequenceDiagram](images/RngSequenceDiagram.png)
+![RngSequenceDiagram](images/developer-guide/4.6.1-RngSequenceDiagram.png)
+Figure 4.6.1. A sequence diagram showing the implementation of the `rng` command
 
 The following activity diagram summarizes what happens when a user executes an RNG command:
 
-![RngActivityDiagram](images/RngActivityDiagram.png)
+![RngActivityDiagram](images/developer-guide/4.6.2-RngActivityDiagram.png)
+Figure 4.6.2. An activity diagram showing the series of events upon the user entering an `rng` command
 
 { end of `implementation#random_name_generation` written by: Masagca Eris Jacey }
 
@@ -455,81 +462,133 @@ The following activity diagram summarizes what happens when a user executes an R
 
 ### 4.7. Undo/redo feature
 
-todo below
+The undo/redo mechanism is facilitated by `ModelManager`. 
+It contains the following entities:
+* `VersionedStudentList`
+* `VersionedSessionList`
+* `VersionedAttributesList` 
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+Each versioned entity extends its corresponding non-versioned class (e.g. `VersionedStudentList` extends from `StudentList`)
+with an undo/redo history, stored internally as an `<<entity>>StateList` and `currentStatePointer`.
+Additionally, each entity implements the following operations:
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+* `Versioned<<Entity>>List#commit()` — Saves the current entity state in its history.
+* `Versioned<<Entity>>List#undo()` — Restores the previous entity state from its history.
+* `Versioned<<Entity>>List#redo()` — Restores a previously undone entity state from its history.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+The operations above are called in `ModelManager` under their respective methods within the class:
+* `ModelManager#commit()`
+* `ModelManager#undo()`
+* `ModelManager#redo()` 
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+These operations are exposed in the `Model` interface as `Model#commit()`, `Model#undo()` and `Model#redo()` respectively.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+<div markdown="block" class="alert alert-info">
 
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th student in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new student. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+:information_source: **Note:** Whenever a command that commits is made, `Model#commit()` is called, which means that
+ all 3 of `<<Versioned<<Entity>>List>>#commit()` will be called. 
+ A similar mechanism occurs for `Model#undo()` and `Model#redo()`. <br>
 
 </div>
 
-Step 4. The user now decides that adding the student was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-![UndoRedoState3](images/UndoRedoState3.png)
+Step 1. The user launches the application for the first time. Each `Versioned<<Entity>>` will be initialized with the initial entity state, and the `currentStatePointer` pointing to that single entity state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+![UndoRedoState0](images/developer-guide/4.7.1-UndoRedoState0.png)
+Figure 4.7.1. Each versioned entity state upon initialization
+
+Step 2. The user executes `deletestu 5` command to delete the 5th student in the student list. 
+The `deletestu` command calls `Model#commit()`, causing the modified state of all versioned entities after the `deletestu 5` command executes to be saved in the `<<entity>>StateList`,
+ and the `currentStatePointer` for each `Versioned<<Entity>>List>>` is shifted to the newly inserted entity state.
+
+![UndoRedoState1](images/developer-guide/4.7.2-UndoRedoState1.png)
+Figure 4.7.2. Each versioned entity state upon executing the `deletestu` command
+
+Step 3. The user executes `addstu n/David …​` to add a new student. The `addstu` command also calls `Model#commit()`, causing another modified address entity state (for each state) to be saved into the `<<entity>>StateList`.
+
+![UndoRedoState2](images/developer-guide/4.7.3-UndoRedoState2.png)
+Figure 4.7.3. Each versioned entity state upon executing the `addstu` command
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** If a command fails its execution, it will not call `Model#commit()`, so any entity state will not be saved into the `<<entity>>StateList`.
+
+</div>
+
+Step 4. The user now decides that adding the student was a mistake, and decides to undo that action by executing the `undo` command.
+The `undo` command will call `Model#undo()`, which will shift the `currentStatePointer` for *all* versioned entities once to the left, pointing it to the previous entity state, and restores each entity to that state.
+
+![UndoRedoState3](images/developer-guide/4.7.4-UndoRedoState3.png)
+Figure 4.7.4. Each versioned entity state upon executing a single `undo` command
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial entity state, then there are no previous entity states to restore. 
+The `undo` command uses `Model#canUndo()` to check if this is the case. 
+If so, it will return an error to the user rather than attempting to perform the undo.
 
 </div>
 
 The following sequence diagram shows how the undo operation works:
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+![UndoSequenceDiagram](images/developer-guide/4.7.5-UndoSequenceDiagram.png)
+Figure 4.7.5. A sequence diagram showing the implementation of the `undo` operation
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">
 
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+The `redo` command does the opposite — it calls `Model#redo()`, which shifts the `currentStatePointer` for each versioned entity once to the right, pointing to the previously undone state, and restores each entity to that state.
 
-![UndoRedoState4](images/UndoRedoState4.png)
+<div markdown="span" class="alert alert-info">
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+:information_source: **Note:** If the `currentStatePointer` is at index `<<entity>>StateList.size() - 1`, pointing to the latest entity state, then there are no undone entity states to restore. 
+The `redo` command uses `Model#canRedo()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
-![UndoRedoState5](images/UndoRedoState5.png)
+</div>
+
+Step 5. The user then decides to execute the command `liststu`. Commands that do not modify any entity, such as `liststu`, will usually not call `Model#commit()`, `Model#undo()` or `Model#redo()`. 
+Thus, the `<<entity>>StateList` for each versioned entity remains unchanged.
+
+![UndoRedoState4](images/developer-guide/4.7.6-UndoRedoState4.png)
+Figure 4.7.6. Each versioned entity state upon executing the `liststu` command
+
+Step 6. The user executes `clearstu`, which calls `Model#commit()`. 
+Since the `currentStatePointer` for each versioned entity is not pointing at the end of the `<<entity>>StateList`, all entity states after the `currentStatePointer` will be purged. 
+Reason: It no longer makes sense to redo the `addstu n/David …​` command. This is the behavior that most modern desktop applications follow.
+
+![UndoRedoState5](images/developer-guide/4.7.7-UndoRedoState5.png)
+Figure 4.7.7. Each versioned entity state upon executing the `clearstu` command
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
+![CommitActivityDiagram](images/developer-guide/4.7.8-CommitActivityDiagram.png)
+Figure 4.7.8. An activity diagram showing the series of events upon a user executing a command
 
 #### 4.7.1. Design consideration
 
 **Aspect: how undo & redo execute**
 
-* **Alternative 1 (current choice):** Saves the entire address book.
- * Pros: Easy to implement.
- * Cons: May have performance issues in terms of memory usage.
+* **Alternative 1 (current choice):** For each versioned entity, saves the entire entity.
+   * Pros: Easy to implement.
+   * Cons: May have performance issues in terms of memory usage.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
- itself.
- * Pros: Will use less memory (e.g. for `delete`, just save the student being deleted).
- * Cons: We must ensure that the implementation of each individual command are correct.
+* **Alternative 2:** Individual command knows how to undo/redo by itself.
+   * Pros: Will use less memory (e.g. for `deletestu`, just save the student being deleted).
+   * Cons: We must ensure that the implementation of each individual command are correct.
+
+**Aspect: data structure to store the different entity states**
+
+* **Alternative 1 (current choice):** List
+   * Pros: Very straightforward.
+   * Cons: May have performance issues in terms of runtime (linear).
+   
+* **Alternative 2:** Search tree
+   * Pros: Much more time-efficient than a list due to logarithmic time complexity for most its functions (search, add, etc.)
+   * Harder to implement.
 
 { end of `implementation#undo_redo` written by: Masagca Eris Jacey }
 
@@ -674,6 +733,7 @@ Refer to this guide [here](DevOps.md).
 * Bob finds the features on Excel clunky at times and he finds them difficult to learn.
 * Bob is looking for an application with a sleeker and cleaner UI so he doesn’t have to remember where the different features in Excel are.
 * Bob has limited memory in his computer and wants to install smaller softwares.
+* Bob is looking for an application that specifically enhances in-class management efficiency.
 * Bob is a fast typist.
 * Bob hates to move his mouse at all (to save file, to categorise data fields and student data)
 * Bob uses a laptop and doesn’t have a mouse with him all the time(or he doesn’t have a place to use his mouse when on the bus or mrt).
@@ -686,14 +746,20 @@ Refer to this guide [here](DevOps.md).
 * Less memory
 * Intuitive command-line interface - easy to learn and pick up, especially for technologically savvy individuals
 * CS student-friendly
-* Potential Features:
- * Mass sending of emails/files
- * Import/export data files from Excel, csv files
- * Track student’s progress (assignments, tests, class participation)
- * Record student’s attendance
- * Profile pictures for recognisability
- * Schedule consultations/Zoom meeting
- * Automate formation of Telegram groups
+* Current features:
+   * Manage students' particulars (name, matriculation number, email, additional tag(s))
+   * Manage sessions' particulars (name, date)
+   * Track students' progress for each session (attendance/presence, participation)
+   * Random name generation to easily randomly select a student
+   * Memo box for user to note down sticky notes in a pinch
+* Potential features (in future iterations):
+   * Mass sending of emails/files
+   * Import/export data files from Excel, csv files
+   * Track student’s progress (assignments, tests)
+   * Record student’s attendance
+   * Profile pictures for recognisability
+   * Schedule consultations/Zoom meeting
+   * Automate formation of Telegram groups
 
 { end of `requirements#product_scope` written by: Masagca Eris Jacey }
 
@@ -1178,7 +1244,7 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-{ start of `manual_testing#launch_and_shutdown` written by: __________ }
+{ start of `manual_testing#launch_and_shutdown` written by: Masagca Eris Jacey }
 
 ### 11.1. Launch and shutdown
 
@@ -1186,7 +1252,10 @@ testers are expected to do more *exploratory* testing.
 
   1. Download the jar file and copy into an empty folder
 
-  1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+  1. Double-click the jar file Expected: Shows the GUI with a set of sample students and sample sessions. 
+  The window size may not be optimum.
+  [ExpectedLaunchWindow](images/developer-guide/11.1-ExpectedLaunchWindow.png)
+  Figure 11.1.1. Application view of the expected window appearance upon launch
 
 1. Saving window preferences
 
@@ -1195,9 +1264,7 @@ testers are expected to do more *exploratory* testing.
   1. Re-launch the app by double-clicking the jar file.<br>
       Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
-
-{ end of `manual_testing#launch_and_shutdown` written by: __________ }
+{ end of `manual_testing#launch_and_shutdown` written by: Masagca Eris Jacey }
 
 { start of `manual_testing#adding_a_student` written by: Ngoh Wei Yue }
 
