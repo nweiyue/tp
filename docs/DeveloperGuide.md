@@ -1,5 +1,4 @@
 ---
----
 layout: page
 title: Developer Guide
 ---
@@ -43,8 +42,8 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ### 3.1 Architecture
 
-<img src="images/developer-guide/3.1-1-ArchitectureDiagram.png" width="450" />
-<p align="center"> <sub> <b>Figure 3.1-1</b>: Architecture Diagram </sub> </p> 
+<img src="images/developer-guide/3.1.1-ArchitectureDiagram.png" width="450" />
+<p align="center"> <sub> <b>Figure 3.1.1</b>: Architecture Diagram </sub> </p> 
 
 The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
 
@@ -74,15 +73,15 @@ Each of the four components,
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
-![Class Diagram of the Logic Component](images/developer-guide/3.1-2-LogicClassDiagram.png)
-<p align="center"> <sub> <b>Figure 3.1-2</b>: Logic class diagram </sub> </p> 
+![Class Diagram of the Logic Component](images/developer-guide/3.1.2-LogicClassDiagram.png)
+<p align="center"> <sub> <b>Figure 3.1.2</b>: Logic class diagram </sub> </p> 
 
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `addses s/Tutorial 1 d/10/10/2020`.
 
-<img src="images/developer-guide/3.1-3-ArchitectureSequenceDiagram.png" width="574" />
-<p align="center"> <sub> <b>Figure 3.1-3</b>: Architecture sequence diagram </sub> </p> 
+<img src="images/developer-guide/3.1.3-ArchitectureSequenceDiagram.png" width="650" />
+<p align="center"> <sub> <b>Figure 3.1.3</b>: Architecture sequence diagram </sub> </p> 
 
 The sections below give more details of each component.
 
@@ -93,7 +92,7 @@ The sections below give more details of each component.
 ### 3.2. UI component
 
 ![Class Diagram of the UI Component](images/developer-guide/3.2.1-UiClassDiagram.png)
-Figure 3.2.1. Class diagram of the Ui component
+<p align="center"> <sub> <b>Figure 3.2.1</b>: Class diagram of the Ui component </sub> </p> 
 
 **API** :
 [`Ui.java`](https://github.com/AY2021S1-CS2103T-W16-4/tp/blob/master/src/main/java/atas/ui/Ui.java)
@@ -135,8 +134,8 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ### 3.4. Model component
 
-![Structure of the Model Component](images/developer-guide/3.4-ModelClassDiagram.png)
-Figure 3.4. Class diagram of the Model component
+![Structure of the Model Component](images/developer-guide/3.4.1-ModelClassDiagram.png)
+<p align="center"> <sub> <b>Figure 3.4.1</b>: Class diagram of the Model component </sub> </p> 
 
 **API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-W16-4/tp/blob/master/src/main/java/atas/model/Model.java)
 
@@ -157,7 +156,7 @@ The `Model`,
 ### 3.5. Storage component
 
 ![Structure of the Storage Component](images/developer-guide/3.5.1-StorageClassDiagram.png)
-<p align="center"><b>Figure 3.5.1 - Storage</b></p> 
+<p align="center"> <sub> <b>Figure 3.5.1</b>: Storage </sub> </p> 
 
 **API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-W16-4/tp/blob/master/src/main/java/atas/storage/Storage.java)
 
@@ -215,14 +214,12 @@ Step 5. `MainWindow#handleSwitchTab()` will then be called and will check if the
 The following sequence diagram shows how the switch operation works:
 
 ![SwitchTabsSequenceDiagram](images/developer-guide/4.1.1-SwitchTabsSequenceDiagram.png)
-
-Figure 4.1.1. Sequence diagram showing how `Ui` component works with the `Logic` component to switch tabs
+<p align="center"> <sub> <b>Figure 4.1.1</b>: Sequence diagram showing how `Ui` component works with the `Logic` component to switch tabs </sub> </p> 
 
 The following activity diagram summarizes what happens when a user executes a switch command:
 
 ![SwitchTabsActivityDiagram](images/developer-guide/4.1.2-SwitchTabsActivityDiagram.png)
-
-Figure 4.1.2. Activity diagram showing the implementation of switching between tabs
+<p align="center"> <sub> <b>Figure 4.1.2</b>: Activity diagram showing the implementation of switching between tabs </sub> </p> 
 
 #### 4.1.1. Design consideration
 
@@ -276,16 +273,16 @@ Step 5. The `ConfirmationAcceptCommand` or `ConfirmationRejectCommand` is then e
 
 The following sequence diagram shows how the user confirmation feature works:
 
-![UserConfirmationSequenceDiagram1](images/developer-guide/4.2-1-UserConfirmationSequenceDiagram1.png)
-<p align="center"> <sub> <b>Figure 4.2-1</b>: User confirmation sequence part 1 </sub> </p> 
+![UserConfirmationSequenceDiagram1](images/developer-guide/4.2.1-UserConfirmationSequenceDiagram1.png)
+<p align="center"> <sub> <b>Figure 4.2.1</b>: User confirmation sequence part 1 </sub> </p> 
 
-![UserConfirmationSequenceDiagram2](images/developer-guide/4.2-2-UserConfirmationSequenceDiagram2.png)
-<p align="center"> <sub> <b>Figure 4.2-2</b>: User confirmation sequence part 2 </sub> </p> 
+![UserConfirmationSequenceDiagram2](images/developer-guide/4.2.2-UserConfirmationSequenceDiagram2.png)
+<p align="center"> <sub> <b>Figure 4.2.2</b>: User confirmation sequence part 2 </sub> </p> 
 
 The following activity diagram summarizes what happens when a user executes a dangerous command (for eg. `DeleteStudentCommand`).
 
-![DeleteStudentActivityDiagram](images/developer-guide/4.2-3-DeleteStudentActivityDiagram.png)
-<p align="center"> <sub> <b>Figure 4.2-3</b>: Activity diagram for delete student</sub> </p> 
+![DeleteStudentActivityDiagram](images/developer-guide/4.2.3-DeleteStudentActivityDiagram.png)
+<p align="center"> <sub> <b>Figure 4.2.3</b>: Activity diagram for delete student</sub> </p> 
 
 { end of `implementation#user_confirmation` written by: Marcus Tan Wei }
 
@@ -313,7 +310,7 @@ the current session list later.
  back to the `LogicManager`.
 
 ![AddSessionSequenceDiagram1](images/developer-guide/4.3.1-AddSessionSequenceDiagram1.png)
-<p align="center"><b>Figure 4.3.1 - Add Session Sequence Diagram 1</b></p> 
+<p align="center"> <sub> <b>Figure 4.3.1</b>: Add Session Sequence Diagram 1 </sub> </p> 
 
 Step 2: Add session to the model/session list
 
@@ -326,13 +323,12 @@ the internal student list of the session list, then it uses addSession method to
 list.
 
 ![AddSessionSequenceDiagram2](images/developer-guide/4.3.2-AddSessionSequenceDiagram2.png)
-<p align="center"><b>Figure 4.3.2 - Add Session Sequence Diagram 2</b></p> 
-
+<p align="center"> <sub> <b>Figure 4.3.2</b>: Add Session Sequence Diagram 2 </sub> </p> 
 
 The following activity diagram summarizes what happens when a user executes an `addses` command:
 
 ![AddSessionActivityDiagram](images/developer-guide/4.3.3-AddSessionActivityDiagram.png)
-<p align="center"><b>Figure 4.3.3 - Add Session Activity Diagram</b></p> 
+<p align="center"> <sub> <b>Figure 4.3.3</b>: Add Session Activity Diagram </sub> </p> 
 
 { end of `implementation#adding_a_session` written by: Zhang Sheng Yang }
 
@@ -400,7 +396,7 @@ user input and split it into `String` slices. If the input index range is valid,
 a placeholder. The `ParticipateCommand` object created will be passed back to `LogicManager` to execute.
 
 ![ParticipateSequenceDiagram1](images/developer-guide/4.5.1-ParticipateSequenceDiagram1.png)
-<p align="center"><b>Figure 4.5.1 - Participate Sequence Diagram 1</b></p> 
+<p align="center"> <sub> <b>Figure 4.5.1</b>: Participate Sequence Diagram 1 </sub> </p> 
 
 Step 2: Toggling participation
 
@@ -416,13 +412,12 @@ when a matching session is found, `Session#updatePresence()` is called to toggle
 according to the index range. 
 
 ![ParticipateSequenceDiagram2](images/developer-guide/4.5.2-ParticipateSequenceDiagram2.png)
-<p align="center"><b>Figure 4.3.2 - Participate Sequence Diagram 2</b></p> 
-
+<p align="center"> <sub> <b>Figure 4.5.2</b>: Participate Sequence Diagram 2 </sub> </p> 
 
 The following activity diagram summarizes what happens when a user executes an `participate` command:
 
 ![ParticipateActivityDiagram](images/developer-guide/4.5.3-ParticipateActivityDiagram.png)
-<p align="center"><b>Figure 4.3.3 - Participate Activity Diagram</b></p> 
+<p align="center"> <sub> <b>Figure 4.5.3</b>: Participate Activity Diagram </sub> </p> 
 
 
 { end of `implementation#presence_and_participation` written by: Zhang Sheng Yang }
@@ -458,14 +453,12 @@ Step 3. The `Index` returned during the execution of `RngCommand#execute(Model)`
 The following sequence diagram shows how the RNG operation works:
 
 ![RngSequenceDiagram](images/developer-guide/4.6.1-RngSequenceDiagram.png)
-
-Figure 4.6.1. A sequence diagram showing the implementation of the `rng` command
+<p align="center"> <sub> <b>Figure 4.6.1</b>: A sequence diagram showing the implementation of the `rng` command </sub> </p> 
 
 The following activity diagram summarizes what happens when a user executes an RNG command:
 
 ![RngActivityDiagram](images/developer-guide/4.6.2-RngActivityDiagram.png)
-
-Figure 4.6.2. An activity diagram showing the series of events upon the user entering an `rng` command
+<p align="center"> <sub> <b>Figure 4.6.2</b>: An activity diagram showing the series of events upon the user entering an `rng` command </sub> </p>
 
 { end of `implementation#random_name_generation` written by: Masagca Eris Jacey }
 
@@ -507,22 +500,19 @@ Given below is an example usage scenario and how the undo/redo mechanism behaves
 Step 1. The user launches the application for the first time. Each `Versioned<<Entity>>` will be initialized with the initial entity state, and the `currentStatePointer` pointing to that single entity state.
 
 ![UndoRedoState0](images/developer-guide/4.7.1-UndoRedoState0.png)
-
-Figure 4.7.1. Each versioned entity state upon initialization
+<p align="center"> <sub> <b>Figure 4.7.1</b>: Each versioned entity state upon initialization </sub> </p> 
 
 Step 2. The user executes `deletestu 5` command to delete the 5th student in the student list. 
 The `deletestu` command calls `Model#commit()`, causing the modified state of all versioned entities after the `deletestu 5` command executes to be saved in the `<<entity>>StateList`,
  and the `currentStatePointer` for each `Versioned<<Entity>>List>>` is shifted to the newly inserted entity state.
 
 ![UndoRedoState1](images/developer-guide/4.7.2-UndoRedoState1.png)
-
-Figure 4.7.2. Each versioned entity state upon executing the `deletestu` command
+<p align="center"> <sub> <b>Figure 4.7.2</b>: Each versioned entity state upon executing the `deletestu` command </sub> </p> 
 
 Step 3. The user executes `addstu n/David …​` to add a new student. The `addstu` command also calls `Model#commit()`, causing another modified address entity state (for each state) to be saved into the `<<entity>>StateList`.
 
 ![UndoRedoState2](images/developer-guide/4.7.3-UndoRedoState2.png)
-
-Figure 4.7.3. Each versioned entity state upon executing the `addstu` command
+<p align="center"> <sub> <b>Figure 4.7.3</b>: Each versioned entity state upon executing the `addstu` command </sub> </p> 
 
 <div markdown="span" class="alert alert-info">
 
@@ -534,8 +524,7 @@ Step 4. The user now decides that adding the student was a mistake, and decides 
 The `undo` command will call `Model#undo()`, which will shift the `currentStatePointer` for *all* versioned entities once to the left, pointing it to the previous entity state, and restores each entity to that state.
 
 ![UndoRedoState3](images/developer-guide/4.7.4-UndoRedoState3.png)
-
-Figure 4.7.4. Each versioned entity state upon executing a single `undo` command
+<p align="center"> <sub> <b>Figure 4.7.4</b>: Each versioned entity state upon executing a single `undo` command </sub> </p> 
 
 <div markdown="span" class="alert alert-info">
 
@@ -548,8 +537,7 @@ If so, it will return an error to the user rather than attempting to perform the
 The following sequence diagram shows how the undo operation works:
 
 ![UndoSequenceDiagram](images/developer-guide/4.7.5-UndoSequenceDiagram.png)
-
-Figure 4.7.5. A sequence diagram showing the implementation of the `undo` operation
+<p align="center"> <sub> <b>Figure 4.7.5</b>: A sequence diagram showing the implementation of the `undo` operation </sub> </p> 
 
 <div markdown="span" class="alert alert-info">
 
@@ -570,22 +558,19 @@ Step 5. The user then decides to execute the command `liststu`. Commands that do
 Thus, the `<<entity>>StateList` for each versioned entity remains unchanged.
 
 ![UndoRedoState4](images/developer-guide/4.7.6-UndoRedoState4.png)
-
-Figure 4.7.6. Each versioned entity state upon executing the `liststu` command
+<p align="center"> <sub> <b>Figure 4.7.6</b>: Each versioned entity state upon executing the `liststu` command </sub> </p> 
 
 Step 6. The user executes `clearstu`, which calls `Model#commit()`. 
 Since the `currentStatePointer` for each versioned entity is not pointing at the end of the `<<entity>>StateList`, all entity states after the `currentStatePointer` will be purged. 
 Reason: It no longer makes sense to redo the `addstu n/David …​` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/developer-guide/4.7.7-UndoRedoState5.png)
-
-Figure 4.7.7. Each versioned entity state upon executing the `clearstu` command
+<p align="center"> <sub> <b>Figure 4.7.7</b>: Each versioned entity state upon executing the `clearstu` command </sub> </p> 
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
 ![CommitActivityDiagram](images/developer-guide/4.7.8-CommitActivityDiagram.png)
-
-Figure 4.7.8. An activity diagram showing the series of events upon a user executing a command
+<p align="center"> <sub> <b>Figure 4.7.8</b>: An activity diagram showing the series of events upon a user executing a command </sub> </p> 
 
 #### 4.7.1. Design consideration
 
@@ -648,8 +633,7 @@ Step 3. `ModelManager#addNoteToMemo()` calls `Memo#addNote()` which concatenates
 The following sequence diagram shows how adding a note updates the content in `Memo`:
 
 ![AddNoteSequenceDiagram1](images/developer-guide/4.8.1-AddNoteSequenceDiagram.png)
-
-Figure 4.8.1. Sequence diagram showing how the `Logic` component updates the content in `Memo`
+<p align="center"> <sub> <b>Figure 4.8.1</b>: Sequence diagram showing how the `Logic` component updates the content in `Memo` </sub> </p> 
 
 Step 4: After the content in `Memo` is updated, `Storage#saveMemo()` is called.
 
@@ -658,8 +642,7 @@ Step 5: `StorageManager#saveMemo()` calls `TxtMemoStorage#saveMemo()` which retr
 The following sequence diagram shows how adding a note updates the data in the hard disk:
 
 ![AddNoteSequenceDiagram2](images/developer-guide/4.8.2-AddNoteSequenceDiagram.png) 
-
-Figure 4.8.2. Sequence diagram showing how the `Logic` component updates the memo data in the hard disk
+<p align="center"> <sub> <b>Figure 4.8.2</b>: Sequence diagram showing how the `Logic` component updates the memo data in the hard disk </sub> </p> 
 
 Step 5: A `CommandResult` returned from `AddNoteCommand#execute()` is returned to `MainWindow#executeCommand()`. Since the boolean value `isEditMemo` contained in the `CommandResult` is true, `MainWindow#handleEditMemo()` is called.
 
@@ -668,8 +651,7 @@ Step 6: `MainWindow#handleEditMemo()` retrieves the updated `Memo` content using
 The following sequence diagram shows how adding a note updates the text box of `MemoBox` to be displayed to user:
 
 ![AddNoteSequenceDiagram3](images/developer-guide/4.8.3-AddNoteSequenceDiagram.png) 
-
-Figure 4.8.1. Sequence diagram showing how the `Ui` component works with the `Logic` component to update the GUI
+<p align="center"> <sub> <b>Figure 4.8/3</b>: Sequence diagram showing how the `Ui` component works with the `Logic` component to update the GUI </sub> </p> 
 
 { end of `implementation#adding_a_note` written by: Ngoh Wei Yue }
 
@@ -1293,8 +1275,7 @@ testers are expected to do more *exploratory* testing.
   1. Double-click the jar file Expected: Shows the GUI with a set of sample students and sample sessions. 
   The window size may not be optimum.
   [ExpectedLaunchWindow](images/developer-guide/11.1-ExpectedLaunchWindow.png)
-  
-  Figure 11.1.1. Application view of the expected window appearance upon launch
+  <p align="center"> <sub> <b>Figure 11.1.1</b>: Application view of the expected window appearance upon launch </sub> </p> 
 
 1. Saving window preferences
 
@@ -1317,8 +1298,7 @@ testers are expected to do more *exploratory* testing.
      Expected: A student is added to the bottom of the student list. A success message including the particulars of the added student is shown in the result box.
      
      ![AddStudentSuccess](images/developer-guide/11.2.1-AddStudentSuccess.png)
-     
-     Figure 11.2.1. Application view when a student is successfully added
+     <p align="center"> <sub> <b>Figure 11.2.1</b>: Application view when a student is successfully added </sub> </p> 
      
   1. Test case: `addstu n/Cathy Duigan m/A1123456X e/cathyduigan@u.nus.edu t/helpful`<br>
        Expected: Similar to previous.
@@ -1330,8 +1310,7 @@ testers are expected to do more *exploratory* testing.
      Expected: No student is added. Error message indicating an invalid command format is shown in the result box.
      
      ![AddStudentFailure](images/developer-guide/11.2.2-AddStudentFailure.png)
-          
-     Figure 11.2.2. Application view when a student is not successfully added
+     <p align="center"> <sub> <b>Figure 11.2.2</b>: Application view when a student is not successfully added </sub> </p> 
      
   1. Test case: `addstu n/Gina Ho e/ginaho@u.nus.edu`<br>
      Expected: Similar to previous.
