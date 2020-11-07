@@ -127,6 +127,7 @@ The `UI` component,
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("enterses 1")` API call.
 
 ![Interactions Inside the Logic Component for the `enterses 1` Command](images/EnterSessionSequenceDiagram.png)
+<p align="center"> <sub> <b>Figure 3.3.1</b>: Enter Session Sequence Diagram </sub> </p>
 
 { end of `design#logic_component` written by: Alvin Chee Teck Weng }
 
@@ -370,10 +371,12 @@ Step 4. `Model#enterSession()` will be called by `EnterSession#execute()` and th
 The following sequence diagram shows how the enter session operation works:
 
 ![EnterSessionSequenceDiagram](images/EnterSessionSequenceDiagram.png)
+<p align="center"> <sub> <b>Figure 4.4.1</b>: Enter Session Sequence Diagram </sub> </p>
 
 The following activity diagram summarizes what happens when a user executes an enter session command:
 
 ![EnterSessionActivityDiagram](images/EnterSessionActivityDiagram.png)
+<p align="center"> <sub> <b>Figure 4.4.2</b>: Enter Session Activity Diagram </sub> </p>
 
 { end of `implementation#entering_a_session` written by: Alvin Chee Teck Weng }
 
