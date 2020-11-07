@@ -524,10 +524,10 @@ Encrypt and store data locally.
    * Security issues may still arise if we store the encryption key in the same machine.
 
 ### 4.10.2 Solution 2
-Store data outside the user’s machine and issue them access token.
+Store data outside the user’s machine and issue the user an access token.
 
 * Pros: 
-   * Data will not be only bounded to one machine, hence, can be restored if the user forgets their credentials.
+   * Data will be bounded to multiple machines, hence, can be restored if the user forgets his or her credentials.
 
 * Cons: 
    * There will be generation of access tokens and checking them.
