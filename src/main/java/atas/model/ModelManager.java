@@ -146,6 +146,7 @@ public class ModelManager implements Model {
         sessionList.updateStudentList(studentList.getStudentList());
         sessionList.updateAllSessionsAfterClear();
         updateCurrentAttributesList();
+        refreshStatistics();
     }
 
     @Override
