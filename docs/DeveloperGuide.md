@@ -1336,13 +1336,19 @@ testers are expected to do more *exploratory* testing.
   1. Prerequisites: List all students using the `liststu` command. Multiple (but less than 100) students in the list.
 
   1. Test case: `deletestu 1`<br>
-     Expected: Confirmation prompt to delete the first student from the list. Message of confirmation prompt is shown in the ResultDisplay.
-
+     Expected: Confirmation prompt to delete the first student from the list. Message of confirmation prompt is shown in the result box.
+     
+     1. Test case: `yes` <br>
+        Expected: First student on the list is deleted from the list. Message regarding student deletion is shown in the result box.
+              
+     1. Test case: `no` <br>
+        Expected: First student on the list is not deleted from the list. Message regarding command not executed is shown in the result box.  
+     
   1. Test case: `deletestu 0`<br>
-     Expected: No student is deleted. Invalid index error details shown in the ResultDisplay. 
+     Expected: No student is deleted. Invalid index error details shown in the result box. 
 
   1. Test case: `deletestu 101`<br>
-     Expected: No student is deleted. Invalid index error details shown in the ResultDisplay.
+     Expected: No student is deleted. Invalid index error details shown in the result box.
      
   1. Other incorrect delete commands to try: `deletestu`, `deletestu x`, `...` (where x is larger than the list size)<br>
      Expected: Similar to previous.
@@ -1353,13 +1359,19 @@ testers are expected to do more *exploratory* testing.
    One or more (but less than 100) student is shown in the StudentListPanel.
    
    1. Test case: `deletestu 1`<br>
-      Expected: Confirmation prompt to delete the first student from the list. Message of confirmation prompt is shown in the ResultDisplay.
-   
+      Expected: Confirmation prompt to delete the first student from the list. Message of confirmation prompt is shown in the result box.
+      
+      1. Test case: `yes` <br>
+         Expected: First student on the list is deleted from the list. Message regarding student deletion is shown in the result box.
+         
+      1. Test case: `no` <br>
+         Expected: First student on the list is not deleted from the list. Message regarding command not executed is shown in the result box.  
+      
    1. Test case: `deletestu 0`<br>
-      Expected: No student is deleted. Invalid index error details shown in the ResultDisplay. 
+      Expected: No student is deleted. Invalid index error details shown in the result box. 
    
    1. Test case: `deletestu 101`<br>
-      Expected: No student is deleted. Invalid index error details shown in the ResultDisplay.
+      Expected: No student is deleted. Invalid index error details shown in the result box.
       
    1. Other incorrect delete commands to try: `deletestu`, `deletestu x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
@@ -1374,13 +1386,59 @@ todo
 
 { end of `manual_testing#adding_a_session` written by: ________ }
 
-{ start of `manual_testing#deleting_a_session` written by: ________ }
+{ start of `manual_testing#deleting_a_session` written by: Marcus Tan Wei }
 
 ### 11.5. Deleting a session
 
-todo
+1. Deleting sessions in sessions tab
+   
+   1. Prerequisites: Multiple (but less than 100) sessions in the session list.
 
-{ end of `manual_testing#deleting_a_session` written by: ________ }
+   1. Test case: `deleteses 1` <br>
+      Expected: Confirmation prompt to delete the first session from the session list. Message of confirmation prompt is shown in the result box.
+      
+      1. Test case: `yes` <br>
+         Expected: First session on the list is deleted from the list. Message regarding session deletion is shown in the result box.
+         
+      1. Test case: `no` <br>
+         Expected: First session on the list is not deleted from the list. Message regarding command not executed is shown in the result box.  
+      
+   1. Test case: `deleteses 0` <br>
+      Expected: No session is deleted. Invalid index error details shown in the ResultDisplay. 
+      
+   1. Test case: `deleteses 101` <br>
+      Expected: No session is deleted. Invalid index error details shown in the ResultDisplay.
+
+1. Deleting sessions in the students tab
+
+   1. Prerequisites: Multiple (but less than 100) sessions in the session list. Multiple students in the student list.
+      Some sessions have marked participation and presence.
+   
+   1. Test case: `deleteses 1` <br>
+      Expected: Confirmation prompt to delete the first session from the session list. Message of confirmation prompt is shown in the result box.
+      
+      1. Test case: `yes` <br>
+         Expected: First session on the list is deleted from the list. Message regarding session deletion is shown in the result box. Statistics of students will change accordingly, taking into account of removed session.
+         
+         ![StudentsStatisticsBeforeDeleteSession](images/developer-guide/11.5.1-StudentsStatisticsBeforeDeleteSession.png)
+         <p align="center"> <sub> <b>Figure 11.5.1</b>: Application view of students statistics before deleting session </sub> </p> 
+         
+         ![SessionStatisticsBeforeDeleteSesion](images/developer-guide/11.5.2-SessionStatistics.png)
+         <p align="center"> <sub> <b>Figure 11.5.2</b>: Application view of sessions in the session list </sub> </p> 
+         
+         ![StudentsStatisticsAfterDeleteSession](images/developer-guide/11.5.3-StudentsStatisticsAfterDeleteSession.png)
+         <p align="center"> <sub> <b>Figure 11.5.3</b>: Application view of students statistics after session is deleted </sub> </p> 
+         
+      1. Test case: `no` <br>
+         Expected: First session on the list is not deleted from the list. Message regarding command not executed is shown in the result box.
+         
+   1. Test case: `deleteses 0` <br>
+      Expected: No session is deleted. Invalid index error details shown in the result box. 
+      
+   1. Test case: `deleteses 101` <br>
+      Expected: No session is deleted. Invalid index error details shown in the result box.  
+
+{ end of `manual_testing#deleting_a_session` written by: Marcus Tan Wei }
 
 { start of `appendix` written by: _________ }
 
