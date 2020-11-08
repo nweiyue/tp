@@ -54,7 +54,7 @@ Given below are my contributions to the project.
     * Added documentation and UML diagrams for the implementation of switching between tabs (Pull request [\#126](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/126))
     * Added documentation and UML diagrams for the implementation of adding a note (Pull request [\#240](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/240))
     * Updated documentation on NFRs (Pull request [\#240](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/240))
-    * Updated documentation.md and section on documentation (Pull request [\#240](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/240))
+    * Updated Documentation.md and section on documentation (Pull request [\#240](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/240))
     * Added documentation on most instructions for manual testing (Pull request [\#259](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/259))
 
 * **Community**:
