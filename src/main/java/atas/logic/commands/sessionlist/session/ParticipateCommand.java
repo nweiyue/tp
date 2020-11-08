@@ -54,7 +54,7 @@ public class ParticipateCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         if (!model.returnCurrentSessionEnabledStatus()) {
-            throw new CommandException(Messages.MESSAGE_NOT_IN_SESSION_TAB);
+            throw new CommandException(Messages.MESSAGE_NOT_IN_SESSION);
         }
 
         List<Attributes> lastShownList = model.getCurrentAttributesList();

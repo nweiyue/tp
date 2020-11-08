@@ -169,6 +169,11 @@ public interface Model {
     ObservableList<Attributes> getCurrentAttributesList();
 
     /**
+     * Resets the details of the current session in the {@code Model} depending on the current attributes list.
+     */
+    void resetCurrentSessionDetails();
+
+    /**
      * Resets the attribute list to an empty one.
      */
     void resetCurrentAttributesList();
