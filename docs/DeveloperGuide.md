@@ -1277,53 +1277,114 @@ testers are expected to do more *exploratory* testing.
 
 { end of `manual_testing#launch_and_shutdown` written by: Masagca Eris Jacey }
 
+{ start of `manual_testing#switching_between_tabs` written by: Ngoh Wei Yue }
+
+### 11.2. Switching between tabs
+
+1. Prerequisites: Currently on `Students` tab
+
+    1. Test case: `switch sessions`
+   Expected: **ATAS** switches to the `Sessions` tab.
+   
+    1. Test case: `switch current`
+   Expected: Tab is not switched. Error message is shown. 
+   
+    1. Other incorrect switch commands to try: `switch`, `switch x`, `...` (where x is not a valid tab name)<br>
+         Expected: Similar to previous.
+
+{ end of `manual_testing#switching_between_tabs` written by: Ngoh Wei Yue }
+
+{ start of `manual_testing#random_name_generator` written by: Ngoh Wei Yue }
+
+### 11.3. Random name generator
+
+1. Prerequisites: At least 1 student exist.
+
+    1. Test case: `rng`
+    Expected: A student name is randomly generated and displayed to the user.
+    
+1. Prerequisites: No student exist.
+
+    1. Test case: `rng`
+    Expected: No student name is generated. Error message is shown.
+
+
+{ end of `manual_testing#random_name_generator` written by: Ngoh Wei Yue }
+
+{ start of `manual_testing#undo` written by: Ngoh Wei Yue }
+
+### 11.3. Undo
+
+1. Prerequisites: At least 1 command that can be undone is executed beforehand.
+    1. Test case: `undo`
+    Expected: **ATAS** returns to the state prior to performing the previous command that can be undone.
+    
+1. Prerequisites: No command that can be undone is executed beforehand.
+    1. Test case: `undo`
+    Expected: Error message is shown.
+
+{ end of `manual_testing#undo` written by: Ngoh Wei Yue }
+
+{ start of `manual_testing#redo` written by: Ngoh Wei Yue }
+
+### 11.3. Redo
+
+1. Prerequisites: At least 1 command that can be redone is executed beforehand.
+    1. Test case: `redo`
+    Expected: **ATAS** returns to the state after performing the previous command that can be redone.
+    
+1. Prerequisites: No command that can be redone is executed beforehand.
+    1. Test case: `redo`
+    Expected: Error message is shown.
+
+{ end of `manual_testing#redo` written by: Ngoh Wei Yue }
+
 { start of `manual_testing#adding_a_student` written by: Ngoh Wei Yue }
 
 ### 11.2. Adding a student
 
 Adding a student while all students are being shown.
   
-  1. Prerequisites: List all students using the list command. No students with the same matriculation number or NUS email address as any of the students to be added during testing.
-
-  1. Test case: `addstu n/Alvin Boon m/A0123456X e/alvinboon@u.nus.edu`<br>
-     Expected: A student is added to the bottom of the student list. A success message including the particulars of the added student is shown in the result box.
+ 1. Prerequisites: List all students using the list command. No students with the same matriculation number or NUS email address as any of the students to be added during testing.
+    1. Test case: `addstu n/Alvin Boon m/A0123456X e/alvinboon@u.nus.edu`<br>
+    Expected: A student is added to the bottom of the student list. A success message including the particulars of the added student is shown in the result box.
      
-     ![AddStudentSuccess](images/developer-guide/11.2.1-AddStudentSuccess.png)
-     <p align="center"> <sub> <b>Figure 11.2.1</b>: Application view when a student is successfully added </sub> </p> 
+         ![AddStudentSuccess](images/developer-guide/11.2.1-AddStudentSuccess.png)
+         <p align="center"> <sub> <b>Figure 11.2.1</b>: Application view when a student is successfully added </sub> </p> 
      
-  1. Test case: `addstu n/Cathy Duigan m/A1123456X e/cathyduigan@u.nus.edu t/helpful`<br>
-       Expected: Similar to previous.
+    1. Test case: `addstu n/Cathy Duigan m/A1123456X e/cathyduigan@u.nus.edu t/helpful`<br>
+    Expected: Similar to previous.
        
-  1. Test case: `addstu m/A2123456X n/Elbert Foo e/elbertfoo@u.nus.edu`<br>
-       Expected: Similar to previous.
+    1. Test case: `addstu m/A2123456X n/Elbert Foo e/elbertfoo@u.nus.edu`<br>
+    Expected: Similar to previous.
        
-  1. Test case: `addstu n/Gina Ho m/A3123456X`<br>
-     Expected: No student is added. Error message indicating an invalid command format is shown in the result box.
+    1. Test case: `addstu n/Gina Ho m/A3123456X`<br>
+    Expected: No student is added. Error message indicating an invalid command format is shown in the result box.
      
-     ![AddStudentFailure](images/developer-guide/11.2.2-AddStudentFailure.png)
-     <p align="center"> <sub> <b>Figure 11.2.2</b>: Application view when a student is not successfully added </sub> </p> 
+        ![AddStudentFailure](images/developer-guide/11.2.2-AddStudentFailure.png)
+        <p align="center"> <sub> <b>Figure 11.2.2</b>: Application view when a student is not successfully added </sub> </p> 
      
-  1. Test case: `addstu n/Gina Ho e/ginaho@u.nus.edu`<br>
-     Expected: Similar to previous.
+    1. Test case: `addstu n/Gina Ho e/ginaho@u.nus.edu`<br>
+    Expected: Similar to previous.
      
-  1. Test case: `addstu m/A3123456X e/ginaho@u.nus.edu`<br>
-     Expected: Similar to previous.
+    1. Test case: `addstu m/A3123456X e/ginaho@u.nus.edu`<br>
+    Expected: Similar to previous.
        
-  1. Test case: `addstu n/Gina Ho m/A31234567 e/ginaho@u.nus.edu`<br>
-     Expected: No student is added. Error message indicating an invalid matric number is shown in the result box.
+    1. Test case: `addstu n/Gina Ho m/A31234567 e/ginaho@u.nus.edu`<br>
+    Expected: No student is added. Error message indicating an invalid matric number is shown in the result box.
      
-  1. Test case: `addstu n/Gina Ho m/A3123456X e/ginaho@u.ntu.edu`<br>
-     Expected: No student is added. Error message indicating an invalid NUS email address is shown in the result box.
+    1. Test case: `addstu n/Gina Ho m/A3123456X e/ginaho@u.ntu.edu`<br>
+    Expected: No student is added. Error message indicating an invalid NUS email address is shown in the result box.
      
-  1. Test case: `addstu n/Gina Ho m/A0123456X e/ginaho@u.nus.edu`<br>
-       Expected: No student is added. Error message indicating that the student already exists is shown in the result box.
+    1. Test case: `addstu n/Gina Ho m/A0123456X e/ginaho@u.nus.edu`<br>
+    Expected: No student is added. Error message indicating that the student already exists is shown in the result box.
        
-  1. Test case: `addstu n/Gina Ho m/A3123456X e/elbertfoo@u.nus.edu`<br>
-       Expected: No student is added. Error message indicating that the student already exists is shown in the result box.
-     
-  <div markdown="span" class="alert alert-info">:information_source: 
-  **Note:** The above list of test cases is not exhaustive. Please feel free to add more.
-  </div>
+    1. Test case: `addstu n/Gina Ho m/A3123456X e/elbertfoo@u.nus.edu`<br>
+    Expected: No student is added. Error message indicating that the student already exists is shown in the result box.
+       
+    1. Other incorrect commands to try: `addstu`, `addstu Gina Ho`, `...`<br>
+    Expected: Similar to previous.
+    
 
 { end of `manual_testing#adding_a_student` written by: Ngoh Wei Yue }
 
@@ -1333,10 +1394,10 @@ Adding a student while all students are being shown.
 
 Deleting a student while all students are being shown
 
-  1. Prerequisites: List all students using the `liststu` command. Multiple (but less than 100) students in the list.
+1. Prerequisites: List all students using the `liststu` command. Multiple (but less than 100) students in the list.
 
-  1. Test case: `deletestu 1`<br>
-     Expected: Confirmation prompt to delete the first student from the list. Message of confirmation prompt is shown in the result box.
+    1. Test case: `deletestu 1`<br>
+    Expected: Confirmation prompt to delete the first student from the list. Message of confirmation prompt is shown in the result box.
      
      1. Test case 3.1: `yes` <br>
         Expected: First student on the list is deleted from the list. Message regarding student deletion is shown in the result box.
@@ -1344,65 +1405,54 @@ Deleting a student while all students are being shown
      1. Test case 3.2: `no` <br>
         Expected: First student on the list is not deleted from the list. Message regarding command not executed is shown in the result box.  
      
-  1. Test case: `deletestu 0`<br>
-     Expected: No student is deleted. Invalid index error details shown in the result box. 
+     1. Test case: `deletestu 0`<br>
+        Expected: No student is deleted. Invalid index error details shown in the result box. 
 
-  1. Test case: `deletestu 101`<br>
-     Expected: No student is deleted. Invalid index error details shown in the result box.
+    1. Test case: `deletestu 101`<br>
+        Expected: No student is deleted. Invalid index error details shown in the result box.
      
-  1. Other incorrect delete commands to try: `deletestu`, `deletestu x`, `...` (where x is larger than the list size)<br>
-     Expected: Similar to previous.
+    1. Other incorrect delete student commands to try: `deletestu`, `deletestu x`, `...` (where x is larger than the list size)<br>
+        Expected: Similar to previous.
      
-
-Deleting a student while only some students are being shown
    
-   1. Prerequisites: List some students using `findstu` command. Multiple (but less than 100) students are in the list.
+1. Prerequisites: List some students using `findstu` command. Multiple (but less than 100) students are in the list.
    One or more (but less than 100) student is shown in the StudentListPanel.
    
-   1. Test case: `deletestu 1`<br>
+    1. Test case: `deletestu 1`<br>
       Expected: Confirmation prompt to delete the first student from the list. Message of confirmation prompt is shown in the result box.
       
-      1. Test case: `yes` <br>
-         Expected: First student on the list is deleted from the list. Message regarding student deletion is shown in the result box.
+    1. Test case: `yes` <br>
+       Expected: First student on the list is deleted from the list. Message regarding student deletion is shown in the result box.
          
-      1. Test case: `no` <br>
-         Expected: First student on the list is not deleted from the list. Message regarding command not executed is shown in the result box.  
+    1. Test case: `no` <br>
+       Expected: First student on the list is not deleted from the list. Message regarding command not executed is shown in the result box.  
       
-   1. Test case: `deletestu 0`<br>
-      Expected: No student is deleted. Invalid index error details shown in the result box. 
+    1. Test case: `deletestu 0`<br>
+       Expected: No student is deleted. Invalid index error details shown in the result box. 
    
-   1. Test case: `deletestu 101`<br>
-      Expected: No student is deleted. Invalid index error details shown in the result box.
+    1. Test case: `deletestu 101`<br>
+       Expected: No student is deleted. Invalid index error details shown in the result box.
       
-   1. Other incorrect delete commands to try: `deletestu`, `deletestu x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+    1. Other incorrect delete student commands to try: `deletestu`, `deletestu x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
 
 { end of `manual_testing#deleting_a_student` written by: Marcus Tan Wei }
 
 { start of `manual_testing#adding_a_session` written by: ________ }
 
-### 11.4. Adding a session
-
-todo
-
-{ end of `manual_testing#adding_a_session` written by: ________ }
-
-{ start of `manual_testing#deleting_a_session` written by: Marcus Tan Wei }
 
 ### 11.5. Deleting a session
 
-Deleting sessions in sessions tab
-   
-   1. Prerequisites: Multiple (but less than 100) sessions in the session list.
+1. Prerequisites: Multiple (but less than 100) sessions in the session list.
 
    1. Test case: `deleteses 1` <br>
       Expected: Confirmation prompt to delete the first session from the session list. Message of confirmation prompt is shown in the result box.
       
-      1. Test case: `yes` <br>
-         Expected: First session on the list is deleted from the list. Message regarding session deletion is shown in the result box.
+   1. Test case: `yes` <br>
+      Expected: First session on the list is deleted from the list. Message regarding session deletion is shown in the result box.
          
-      1. Test case: `no` <br>
-         Expected: First session on the list is not deleted from the list. Message regarding command not executed is shown in the result box.  
+   1. Test case: `no` <br>
+      Expected: First session on the list is not deleted from the list. Message regarding command not executed is shown in the result box.  
       
    1. Test case: `deleteses 0` <br>
       Expected: No session is deleted. Invalid index error details shown in the ResultDisplay. 
@@ -1410,16 +1460,13 @@ Deleting sessions in sessions tab
    1. Test case: `deleteses 101` <br>
       Expected: No session is deleted. Invalid index error details shown in the ResultDisplay.
 
-Deleting sessions in the students tab
-
-   1. Prerequisites: Multiple (but less than 100) sessions in the session list. Multiple students in the student list.
-      Some sessions have marked participation and presence.
+1. Prerequisites: Multiple (but less than 100) sessions in the session list. Multiple students in the student list. Some sessions have marked participation and presence.
    
    1. Test case: `deleteses 1` <br>
       Expected: Confirmation prompt to delete the first session from the session list. Message of confirmation prompt is shown in the result box.
       
-      1. Test case: `yes` <br>
-         Expected: First session on the list is deleted from the list. Message regarding session deletion is shown in the result box. Statistics of students will change accordingly, taking into account of removed session.
+   1. Test case: `yes` <br>
+      Expected: First session on the list is deleted from the list. Message regarding session deletion is shown in the result box. Statistics of students will change accordingly, taking into account of removed session.
          
          ![StudentsStatisticsBeforeDeleteSession](images/developer-guide/11.5.1-StudentsStatisticsBeforeDeleteSession.png)
          <p align="center"> <sub> <b>Figure 11.5.1</b>: Application view of students statistics before deleting session </sub> </p> 
@@ -1430,8 +1477,8 @@ Deleting sessions in the students tab
          ![StudentsStatisticsAfterDeleteSession](images/developer-guide/11.5.3-StudentsStatisticsAfterDeleteSession.png)
          <p align="center"> <sub> <b>Figure 11.5.3</b>: Application view of students statistics after session is deleted </sub> </p> 
          
-      1. Test case: `no` <br>
-         Expected: First session on the list is not deleted from the list. Message regarding command not executed is shown in the result box.
+   1. Test case: `no` <br>
+      Expected: First session on the list is not deleted from the list. Message regarding command not executed is shown in the result box.
          
    1. Test case: `deleteses 0` <br>
       Expected: No session is deleted. Invalid index error details shown in the result box. 
@@ -1440,6 +1487,124 @@ Deleting sessions in the students tab
       Expected: No session is deleted. Invalid index error details shown in the result box.  
 
 { end of `manual_testing#deleting_a_session` written by: Marcus Tan Wei }
+
+{ start of `manual_testing#enter_session` written by: Ngoh Wei Yue }
+
+### 11.6. Enter session
+
+1. Prerequisites: At least 1 session exist.
+    1. Test case: `enterses 1`
+    Expected: **ATAS** switches to the `Current Session` tab and a `Session` is entered. A simplified student list is shown.
+    
+    1. Test case: `enterses 0`
+        Expected: A session is not entered. Error message is shown.
+    
+    1. Other incorrect enter session commands to try: `enterses`, `enterses x`, `...` (where x is larger than the size of the session list)<br>
+       Expected: Similar to previous.
+    
+1. Prerequisites: No session exist.
+    1. Test case: `enterses 1`
+    Expected: Error message is shown.
+
+{ end of `manual_testing#enter_session` written by: Ngoh Wei Yue }
+
+{ start of `manual_testing#participate` written by: Ngoh Wei Yue }
+
+### 11.7. Participate
+
+1. Prerequisites: User has entered a session. At least five students exist.
+    1. Test case: `participate 1`
+    Expected: Participation label of student at index 1 is toggled and changes color.
+    
+    1. Test case: `participate 1-3`
+        Expected: Participation labels of students at index 1 to 3 are toggled and changes color.
+        
+    1. Test case: `participate 0`
+        Expected: Participation labels remain the same. Error message is shown.  
+    
+    1. Other incorrect participate commands to try: `participate`, `participate x`, `participate 1-x`, `...` (where x is larger than the size of the student list)<br>
+       Expected: Similar to previous.
+    
+1. Prerequisites: User has not entered session.
+    1. Test case: `participate 1`
+    Expected: Error message is shown. **ATAS** prompts user to enter a session.
+    
+    1. Test case: `participate 0`
+    Expected: Similar to previous.
+        
+    1. Other incorrect participate commands to try: `participate`, `participate x`, `participate 1-x`, `...` (where x is larger than the size of the student list)<br>
+    Expected: Similar to previous.
+
+{ end of `manual_testing#participate` written by: Ngoh Wei Yue }
+
+{ start of `manual_testing#presence` written by: Ngoh Wei Yue }
+
+### 11.8. Presence
+
+1. Prerequisites: User has entered a session. At least five students exist.
+    1. Test case: `presence 1`
+    Expected: Presence label of student at index 1 is toggled and changes color. Success message is shown.
+    
+    1. Test case: `presence 1-3`
+        Expected: Presence labels of students at index 1 to 3 are toggled and changes color. Success message is shown.
+        
+    1. Test case: `presence 0`
+        Expected: Presence labels remain the same. Error message is shown.  
+    
+    1. Other incorrect presence commands to try: `presence`, `presence x`, `presence 1-x`, `...` (where x is larger than the size of the student list)<br>
+       Expected: Similar to previous.
+    
+1. Prerequisites: User has not entered session.
+    1. Test case: `presence 1`
+    Expected: Error message is shown. **ATAS** prompts user to enter a session.
+    
+    1. Test case: `presence 0`
+    Expected: Similar to previous.
+        
+    1. Other incorrect presence commands to try: `presence`, `presence x`, `presence 1-x`, `...` (where x is larger than the size of the student list)<br>
+    Expected: Similar to previous.
+
+{ end of `manual_testing#presence` written by: Ngoh Wei Yue }
+
+{ start of `manual_testing#adding_a_note` written by: Ngoh Wei Yue }
+
+### 11.9. Adding a note
+
+1. Prerequisites: None
+    1. Test case: `addnote hello`
+    Expected: "Hello" is added on to a new line at the end of `MemoBox`.
+    
+    1. Test case: `addnote  `
+        Expected: " " is added on to a new line at the end of `MemoBox`.
+        
+    1. Test case: `addnote`
+        Expected: Error message is shown.  
+
+{ end of `manual_testing#adding_a_note` written by: Ngoh Wei Yue }
+
+{ start of `manual_testing#saving_the_memo` written by: Ngoh Wei Yue }
+
+### 11.10. Saving the memo
+
+1. Prerequisites: Focus is on `MemoBox` (outline of `MemoBox` is in turquoise). User is using a Windows/Linux machine.
+    1. Test case: The `ctrl` key is pressed and held down while pressing the `s` key.
+    Expected: Content in `MemoBox` is saved into hard disk.
+    
+    1. Test case: Other keys besides the one mentioned previously is pressed.
+    Expected: Nothing happens.
+    
+1. Prerequisites: Focus is on `MemoBox` (outline of `MemoBox` is in turquoise). User is using a MacOS machine.
+    1. Test case: The `command` key is pressed and held down while pressing the `s` key.
+    Expected: Memo is saved into hard disk. Success message is shown.
+    
+    1. Test case: Other keys or key combinations besides the one mentioned previously is pressed.
+        Expected: Nothing happens.
+        
+1. Prerequisites: User is not in `Memo` tab or focus is not on `MemoBox` (outline of `MemoBox` is not shown).
+    1. Test case: Any keys or key combinations is pressed.
+    Expected: Nothing happens. 
+
+{ end of `manual_testing#saving_the_memo` written by: Ngoh Wei Yue }
 
 { start of `appendix` written by: _________ }
 
