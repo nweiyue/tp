@@ -139,6 +139,7 @@ For the good majority of visual learners, we figured to present information in a
  |:bulb: | Tips |
  |:green_book: | Example(s) |
  |:information_source: | Important information to take note |
+ |:warning: | Warning about the usage of a command |
  |`consolas font` | Representing a key term or a command |
  
 --------------------------------------------------------------------------------------------------------------------
@@ -153,7 +154,7 @@ For the good majority of visual learners, we figured to present information in a
 
 2. Download the latest `atas.jar` from [here](https://github.com/AY2021S1-CS2103T-W16-4/tp/releases). 
 
-3. Copy the file to the folder you want to use as the home folder for your ATAS. All the data related to ATAS will be stored here.
+3. Copy the file to the folder you want to use as the home folder for your **ATAS**. All the data related to **ATAS** will be stored here.
 
 4. Double-click the file to start the app. The GUI similar to the below image should appear in a few seconds. Note how the app contains some sample data.<br>
    ![StartPage](images/StartPage.png)
@@ -559,8 +560,8 @@ This category consists of features related to students.
 Student commands allow you to add a student with `addstu` or remove a student from the student 
 list by using `deletestu`. You can also modify the particulars of a student with `editstu` command.
 Furthermore, if you want to search for certain students in the student list, try out `findstu` and utilize 
-`liststu` to gain a full view of the list again. Lastly, `clearstu` is a easy to remove all the students
-in the current student list.
+`liststu` to gain a full view of the list again. 
+Lastly, `clearstu` allows you to remove all the students in the current student list at once.
 <br/>
 <br/>
 
@@ -775,14 +776,20 @@ clearstu
 ### 5.4. Sessions
 <br/>
 <br/>
-With **ATAS**, you can also manage each tutorial session efficiently!
+This category consists of features related to sessions.
 <br/>
-- First, at the start of each tutorial, you can use `addses` to add a tutorial session. If you have mistyped the session details, simply use `editses` or `deleteses` on the wrongly-typed session.
-- Next, if you wish to change the presence and participation status of your students of a particular session, simply use `enterses` to enter that session to do so.
-- Finally, you may want to take up the same teaching assistant job again for a different class in the next semester. All the tutorial sessions may now contain inaccurate details. In this case, instead of removing 
-the sessions one by one, you can utilize `clearses` to remove all existing sessions.
+Session commands allow you to add a session with `addses`or remove a session from the session list by using `deleteses`. 
+You can also modify the details of a session with `editses` command.
+If you would like to enter a particular session in the session list, try out `enterses`. 
+Lastly, `clearses` allows you to remove all the sessions in the current session list at once.
 <br/>
 <br/>
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about sessions:**
+* Sessions are sorted automatically to their dates in the session list, with the most recent session at the top.
+* Every session command will cause you to exit the currently entered session, with the exception of enterses. Entering the same session will just give you an error. 
 
 #### 5.4.1. Adding a session : `addses`
 
@@ -795,25 +802,25 @@ addses s/SESSION_NAME d/SESSION_DATE
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the usage of this command:**<br>
+**:information_source: Notes about the usage of this command:**
 * Adds a session with the specified name and date to the displayed session list.
 * `SESSION_DATE` should be given in the format of d/M/yyyy or dd/MM/yyyy. This means if your day or month is single digit, you do not
 need to add a '0' in front, for e.g., 09/01/2020 and 9/1/2020 are both accepted.
+* Two sessions cannot have the same name but they can have the same date.
 
 </div>
 
 <div markdown="block" class="alert alert-warning">
 
-You will be exited from any currently entered session upon using the command.
+**:warning: Warning about the usage of this command:**
+* You will be exited from any currently entered session upon using the command.
 
 </div>
 
 <div markdown="block" class="alert alert-success">
 
-:green_book: Examples:
+**:green_book: Examples**:
 * `addses s/tut1 d/12/7/2020`
-
-:bulb: **Tip:** Two sessions cannot have the same name but they can have the same date
 
 </div>
 
@@ -845,13 +852,14 @@ deleteses INDEX
 
 <div markdown="block" class="alert alert-warning">
 
+**:warning: Warning about the usage of this command:**
 You will be exited from any currently entered session upon using the command.
 
 </div>
 
 <div markdown="block" class="alert alert-success">
 
-:green_book: Examples:
+**:green_book: Examples**:
 * `deleteses 1` followed by `no` results in nothing changed.
 * `deleteses 2` followed by `yes` deletes the 2nd session in the session list.
 
@@ -879,21 +887,21 @@ editses INDEX s/UPDATED_NAME d/UPDATED_DATE
 * You will be prompted for a confirmation input **`(yes/no)`**.
    * If yes: the specified session will be updated with the specified details.
    * If no: the specified session will not be updated.
+* The updated session cannot have the same name as any of the other sessions in the list but they can have the same date.
 
 </div>
 
 <div markdown="block" class="alert alert-warning">
 
+**:warning: Warning about the usage of this command:**
 You will be exited from any currently entered session upon using the command.
 
 </div>
 
 <div markdown="block" class="alert alert-success">
 
-:green_book: Examples:
+**:green_book: Examples**:
 * `editses 1 s/Tutorial 6 d/10/10/2020` followed by `yes` edits the 1st session in the session list with a new session name `Tutorial 6` and a new session date `10/10/2020`.
-
-:bulb: **Tip:** The updated session cannot have the same name as any of the other sessions in the list but they can have the same date
 
 </div>
 
@@ -922,13 +930,14 @@ clearses
 
 <div markdown="block" class="alert alert-warning">
 
+**:warning: Warning about the usage of this command:**
 You will be exited from any currently entered session upon using the command.
 
 </div>
 
 <div markdown="block" class="alert alert-success">
    
-:green_book: Examples:
+**:green_book: Examples**:
 * `clearses` followed by `yes` deletes all the sessions in the session list. 
 
 </div>
@@ -957,13 +966,14 @@ enterses INDEX
 
 <div markdown="block" class="alert alert-warning">
 
-You cannot be in one session and enter that particular session again.
+**:warning: Warning about the usage of this command:**
+You cannot enter the session again if you are already in that particular session.
 
 </div>
 
 <div markdown="block" class="alert alert-success">
 
-:green_book: Examples:
+**:green_book: Examples**:
 * `enterses 1` enters the first session and allows you to use PARTICIPATE and PRESENCE commands.
 
 </div>
