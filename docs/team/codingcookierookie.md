@@ -12,15 +12,15 @@ The user interacts with it using a CLI, and it has a GUI created with JavaFX. It
 Given below are my contributions to the project.
 
 * **New Feature**: Added the ability to enter a session.
-  * What it does: allows the user to enter a session to view the presence and participation status of the students.
-  * Justification: This feature limits the user to toggle and view the presence and participation status of each student in a session only if the user has entered that session.
+  * What it does: allows the user to enter a session to view and toggle the presence and participation status of the students.
+  * Justification: This feature limits the user to view and toggle the presence and participation status of each student in a session only if the user has entered that session so that the user would know which session details he or she is editing.
   * Highlights: The implementation was quite tricky as it required changes to existing commands and the usage had to be limited to the current session tab.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=CodingCookieRookie&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Enhancements to existing features**:
   * Updated the status bar footer to show current session details (Pull request [\#167](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/167))
-  * Enabled list to be sorted automatically according to date (Pull request [\#146](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/146))
+  * Enabled session list to be sorted automatically according to the date of each session (Pull request [\#146](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/146))
   * Integrated all the session commands including participation and presence commands into ATAS (Pull request [\#95](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/95))
 
 * **Documentation**:
