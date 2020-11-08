@@ -13,8 +13,8 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added the ability to enter a session.
   * What it does: allows the user to enter a session to view the presence and participation status of the students.
-  * Justification: This feature limits the user to toggle the presence and participation status of the students only when he or she is in a session.
-  * Highlights: The implementation was quite tricky as it required changes to existing commands and the usage had to be limited to a particular tab.
+  * Justification: This feature limits the user to toggle and view the presence and participation status of each student in a session only if the user has entered that session.
+  * Highlights: The implementation was quite tricky as it required changes to existing commands and the usage had to be limited to the current session tab.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=CodingCookieRookie&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
@@ -32,9 +32,10 @@ Given below are my contributions to the project.
   * Developer Guide:
     * Added implementation details of the `enterses` feature. (Pull request [\#128](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/128))
     * Added sequence and activity UML diagrams for the `enterses` feature. (Pull request [\#128](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/128))
+    * Edited and added user stories. (Pull request [\#237](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/237))
     * Added instructions on how to add a session for manual testing (Pull request [\#257](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/257))
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): (Pull request[\#81](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/81)), (Pull request[\#99](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/99)), (Pull request[\#154](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/154)), (Pull request[\#147](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/147)), (Pull request[\#254](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/254))
-  * Contributed to forum discussions (examples: (Pull request[173](https://github.com/nus-cs2103-AY2021S1/forum/issues/173))
+  * Contributed to forum discussions ((Pull request[173](https://github.com/nus-cs2103-AY2021S1/forum/issues/173)))
   * Reported 11 bugs and suggestions for another team during practical dry-run (Pull request[PED](https://github.com/CodingCookieRookie/ped/issues))
