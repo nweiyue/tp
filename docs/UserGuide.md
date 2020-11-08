@@ -167,7 +167,8 @@ For the good majority of visual learners, we figured to present information in a
 5. Now click on the Student tab and notice how the app contains some sample data. <br/>
     ![StudentSampleData](images/user-guide/3.2-StudentSampleData.png)
 
-    <p align="center"> <sub> <b>Figure 3.2.1</b>: Student sample data </sub> </p>
+<p align="center"> <sub> <b>Figure 3.2</b>: Student sample data </sub> </p>
+
    
 6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
