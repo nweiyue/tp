@@ -542,12 +542,6 @@ The following sequence diagram shows how the undo operation works:
 ![UndoSequenceDiagram](images/developer-guide/4.7.5-UndoSequenceDiagram.png)
 <p align="center"> <sub> <b>Figure 4.7.5</b>: A sequence diagram showing the implementation of the `undo` operation </sub> </p> 
 
-<div markdown="span" class="alert alert-info">
-
-:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
 The `redo` command does the opposite — it calls `Model#redo()`, which shifts the `currentStatePointer` for each versioned entity once to the right, pointing to the previously undone state, and restores each entity to that state.
 
 <div markdown="span" class="alert alert-info">
@@ -1276,7 +1270,7 @@ testers are expected to do more *exploratory* testing.
 
   1. Double-click the jar file Expected: Shows the GUI with a set of sample students and sample sessions. 
   The window size may not be optimum.
-  [ExpectedLaunchWindow](images/developer-guide/11.1-ExpectedLaunchWindow.png)
+  ![ExpectedLaunchWindow](images/developer-guide/11.1-ExpectedLaunchWindow.png)
   <p align="center"> <sub> <b>Figure 11.1.1</b>: Application view of the expected window appearance upon launch </sub> </p> 
 
 1. Saving window preferences
@@ -1376,3 +1370,41 @@ testers are expected to do more *exploratory* testing.
       Expected: Similar to previous.
 
 { end of `manual_testing#deleting_a_student` written by: Marcus Tan Wei }
+
+{ start of `manual_testing#adding_a_session` written by: ________ }
+
+### 11.4. Adding a session
+
+todo
+
+{ end of `manual_testing#adding_a_session` written by: ________ }
+
+{ start of `manual_testing#deleting_a_session` written by: ________ }
+
+### 11.5. Deleting a session
+
+todo
+
+{ end of `manual_testing#deleting_a_session` written by: ________ }
+
+{ start of `appendix` written by: _________ }
+
+## 12. Appendix: effort
+
+**Difficulty level:**
+
+* todo
+
+**Challenges faced:**
+
+* todo
+
+**Effort required:**
+
+* todo
+
+**Achievements:**
+
+* todo
+
+{ end of `appendix` written by: _________ }
