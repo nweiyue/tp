@@ -1261,18 +1261,18 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-  1. Download the jar file and copy into an empty folder
+   1. Download the jar file and copy into an empty folder
 
-  1. Double-click the jar file Expected: Shows the GUI with a set of sample students and sample sessions. 
-  The window size may not be optimum.
-  ![ExpectedLaunchWindow](images/developer-guide/11.1-ExpectedLaunchWindow.png)
-  <p align="center"> <sub> <b>Figure 11.1.1</b>: Application view of the expected window appearance upon launch </sub> </p> 
+   1. Double-click the jar file Expected: Shows the GUI with a set of sample students and sample sessions. 
+   The window size may not be optimum.
+   ![ExpectedLaunchWindow](images/developer-guide/11.1-ExpectedLaunchWindow.png)
+   <p align="center"> <sub> <b>Figure 11.1.1</b>: Application view of the expected window appearance upon launch </sub> </p> 
 
 1. Saving window preferences
 
-  1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-  1. Re-launch the app by double-clicking the jar file.<br>
+   1. Re-launch the app by double-clicking the jar file.<br>
       Expected: The most recent window size and location is retained.
 
 { end of `manual_testing#launch_and_shutdown` written by: Masagca Eris Jacey }
@@ -1281,7 +1281,7 @@ testers are expected to do more *exploratory* testing.
 
 ### 11.2. Adding a student
 
-  1. Adding a student while all students are being shown.
+Adding a student while all students are being shown.
   
   1. Prerequisites: List all students using the list command. No students with the same matriculation number or NUS email address as any of the students to be added during testing.
 
@@ -1331,17 +1331,17 @@ testers are expected to do more *exploratory* testing.
 
 ### 11.3. Deleting a student
 
-1. Deleting a student while all students are being shown
+Deleting a student while all students are being shown
 
   1. Prerequisites: List all students using the `liststu` command. Multiple (but less than 100) students in the list.
 
   1. Test case: `deletestu 1`<br>
      Expected: Confirmation prompt to delete the first student from the list. Message of confirmation prompt is shown in the result box.
      
-     1. Test case: `yes` <br>
+     1. Test case 3.1: `yes` <br>
         Expected: First student on the list is deleted from the list. Message regarding student deletion is shown in the result box.
               
-     1. Test case: `no` <br>
+     1. Test case 3.2: `no` <br>
         Expected: First student on the list is not deleted from the list. Message regarding command not executed is shown in the result box.  
      
   1. Test case: `deletestu 0`<br>
@@ -1352,8 +1352,9 @@ testers are expected to do more *exploratory* testing.
      
   1. Other incorrect delete commands to try: `deletestu`, `deletestu x`, `...` (where x is larger than the list size)<br>
      Expected: Similar to previous.
+     
 
-1. Deleting a student while only some students are being shown
+Deleting a student while only some students are being shown
    
    1. Prerequisites: List some students using `findstu` command. Multiple (but less than 100) students are in the list.
    One or more (but less than 100) student is shown in the StudentListPanel.
@@ -1390,7 +1391,7 @@ todo
 
 ### 11.5. Deleting a session
 
-1. Deleting sessions in sessions tab
+Deleting sessions in sessions tab
    
    1. Prerequisites: Multiple (but less than 100) sessions in the session list.
 
@@ -1409,7 +1410,7 @@ todo
    1. Test case: `deleteses 101` <br>
       Expected: No session is deleted. Invalid index error details shown in the ResultDisplay.
 
-1. Deleting sessions in the students tab
+Deleting sessions in the students tab
 
    1. Prerequisites: Multiple (but less than 100) sessions in the session list. Multiple students in the student list.
       Some sessions have marked participation and presence.
