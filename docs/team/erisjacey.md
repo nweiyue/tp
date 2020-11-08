@@ -39,7 +39,10 @@ Given below are my contributions to the project.
       * e.g. `seedu.address` -> `atas`
       * e.g. `seedu.address.logic.commands.sessioncommands` -> `atas.logic.commands.sessionlist.session`
    * Updated the GUI color scheme (pull requests [#114](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/114), [#207](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/207))
-   * Fixed various bugs (pull requests [#162](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/162), [#163](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/163))
+   * Fixed various bugs (pull requests 
+   [#162](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/162), 
+   [#163](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/163),
+   [#232](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/232))
    
 * **Documentation**:
    * User Guide:
@@ -50,17 +53,24 @@ Given below are my contributions to the project.
          * `2. About this user guide`
          * `2.1. Navigation`
          * `5.2.3. Generating the name of a randomly-selected student`
-         * `5.2.5. Undo`
-         * `5.2.6. Redo`
+         * `5.2.4. Undo`
+         * `5.2.5. Redo`
          * `7. Command summary`
          * `7.1. General`
    * Developer Guide:
+      * Updated the AB3 legacy DG skeleton to make it more relevant for **ATAS** (pull request [#225](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/225))
       * Added details to the following parts: (pull request [#51](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/51))
          * Target user profile
          * Value proposition
          * User stories
+      * Added / updated details to the following parts: (pull request [#234](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/234), [#255](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/255))
+         * DevOps
+         * Appendix: requirements -- product scope
+         * Appendix: instructions for manual testing -- launch and shutdown (added pictures)
+         * Appendix: effort   
       * Added architecture details of the `model` component (pull request [#127](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/127))    
       * Added implementation details of the `rng` feature (pull request [#127](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/127))
+      * Added implementation details of the `undo/redo` feautre (pull request [#234](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/234))
       
 * **Community**:
    * PRs reviewed (with non-trivial review comments): 
@@ -79,7 +89,11 @@ Given below are my contributions to the project.
    [#152](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/152),
    [#155](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/155),
    [#158](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/158),
-   [#165](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/165)
+   [#165](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/165),
+   [#235](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/235),
+   [#236](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/236),
+   [#240](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/240),
+   [#249](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/249)
    * Contributed to forum discussions - partook in general discussions 
    (examples: [1](https://github.com/nus-cs2103-AY2021S1/forum/issues/24#issuecomment-675483348),
               [2](https://github.com/nus-cs2103-AY2021S1/forum/issues/66),
