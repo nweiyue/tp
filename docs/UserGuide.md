@@ -156,14 +156,14 @@ For the good majority of visual learners, we figured to present information in a
 3. Copy the file to the folder you want to use as the home folder for your **ATAS**. All the data related to **ATAS** will be stored here.
 
 4. Double-click the file to start the app. The GUI similar to the below image should appear in a few seconds.<br>
-![WelcomePage](images/user-guide/3.1-WelcomePage.png)
+    ![WelcomePage](images/user-guide/3.1-WelcomePage.png)
 
-<p align="center"> <sub> <b>Figure 3.1</b>: Welcome page </sub> </p>
+    <p align="center"> <sub> <b>Figure 3.1</b>: Welcome page </sub> </p>
 
 5. Now click on the Student tab and notice how the app contains some sample data. <br/>
-![StudentSampleData](images/user-guide/3.2-StudentSampleData.png)
+    ![StudentSampleData](images/user-guide/3.2-StudentSampleData.png)
 
-<p align="center"> <sub> <b>Figure 4.2.1</b>: Student sample data </sub> </p>
+    <p align="center"> <sub> <b>Figure 3.2.1</b>: Student sample data </sub> </p>
    
 6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
