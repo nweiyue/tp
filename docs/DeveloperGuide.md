@@ -80,7 +80,7 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `addses s/Tutorial 1 d/10/10/2020`.
 
-<img src="images/developer-guide/3.1.3-ArchitectureSequenceDiagram.png" width="650" />
+[!Achitecture sequence diagram](images/developer-guide/3.1.3-ArchitectureSequenceDiagram.png)
 <p align="center"> <sub> <b>Figure 3.1.3</b>: Architecture sequence diagram </sub> </p> 
 
 The sections below give more details of each component.
@@ -1250,7 +1250,7 @@ Use case ends.
 ### 10.5. Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Matriculation number**: A unique alphanumeric number attributed to each NUS student. Follows the format A0123456X, where each digit can be from 0-9 and the last letter can be any alphabet A-Z
+* **Matriculation number**: A unique alphanumeric number attributed to each NUS student. Follows the format A0123456X, where each digit can be from 0-9 and the last letter can be any alphabet A-Z.
 * **Tag**: A word or phrase the user labels the student as.
 
 { end of `requirements#glossary` written by: Marcus Tan Wei }
@@ -1347,13 +1347,13 @@ testers are expected to do more *exploratory* testing.
   1. Prerequisites: List all students using the `liststu` command. Multiple (but less than 100) students in the list.
 
   1. Test case: `deletestu 1`<br>
-     Expected: First contact is deleted from the list. Details of the deleted contact shown in the ResultDisplay.
+     Expected: Confirmation prompt to delete the first student from the list. Message of confirmation prompt is shown in the ResultDisplay.
 
   1. Test case: `deletestu 0`<br>
-     Expected: No student is deleted. Error details shown in the ResultDisplay. 
+     Expected: No student is deleted. Invalid index error details shown in the ResultDisplay. 
 
   1. Test case: `deletestu 101`<br>
-     Expected: No student is deleted. Error details shown in the ResultDisplay.
+     Expected: No student is deleted. Invalid index error details shown in the ResultDisplay.
      
   1. Other incorrect delete commands to try: `deletestu`, `deletestu x`, `...` (where x is larger than the list size)<br>
      Expected: Similar to previous.
@@ -1364,13 +1364,13 @@ testers are expected to do more *exploratory* testing.
    One or more (but less than 100) student is shown in the StudentListPanel.
    
    1. Test case: `deletestu 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the ResultDisplay.
+      Expected: Confirmation prompt to delete the first student from the list. Message of confirmation prompt is shown in the ResultDisplay.
    
    1. Test case: `deletestu 0`<br>
-      Expected: No student is deleted. Error details shown in the ResultDisplay. 
+      Expected: No student is deleted. Invalid index error details shown in the ResultDisplay. 
    
    1. Test case: `deletestu 101`<br>
-      Expected: No student is deleted. Error details shown in the ResultDisplay.
+      Expected: No student is deleted. Invalid index error details shown in the ResultDisplay.
       
    1. Other incorrect delete commands to try: `deletestu`, `deletestu x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.

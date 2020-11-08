@@ -72,14 +72,17 @@ Specifically, **ATAS** allows you to keep track of four different aspects (see [
 ### 1.3. Preview
 
 The following is the GUI of our application:
-    ![UiPreview](images/user-guide/1.3.1-UiPreview.png)
-    <p align="center"> <sub> <b>Figure 1.3.1</b>: UI Preview </sub> </p>
+
+   ![UiPreview](images/user-guide/1.3.1-UiPreview.png)
+   <p align="center"> <sub> <b>Figure 1.3.1</b>: UI Preview </sub> </p>
     
 
 GUI Components:
    1. **Command box**: where you enter your commands.
-   1. **Result box**: where the result of a command is shown. It can show a success message or a failure message if something wrong happens.
+   1. **Result box**: where the result of a command will be shown. It can show a success message, or a failure message if something wrong happens.
+   1. **Status bar footer**: shows which session you are currently in.
    1. **Tabs**: shows what item type you are viewing.
+   1. **View box**: where the details of the items will be shown.
 
 { end of `introduction#preview` written by: Marcus Tan Wei }
 
@@ -157,13 +160,14 @@ For the good majority of visual learners, we figured to present information in a
 
 4. Double-click the file to start the app. The GUI similar to the below image should appear in a few seconds. Note how the app contains some sample data.<br>
    ![StartPage](images/StartPage.png)
+   <p align="center"> <sub> <b>Figure 3.1</b>: Example of start page </sub> </p>
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * **`liststu`** : Lists out all the students.
 
-   * **`addstu n/John Cena m/A0123456X e/thechamp@u.nus.edu`** : Adds a student named `John Cena` to the student list.
+   * **`addstu n/Jay Chou m/A0123456X e/jaychou@u.nus.edu`** : Adds a student named `Jay Chou` to the student list.
 
    * **`deleteses 3`** : Deletes the 3rd session shown in the current session list.
    
