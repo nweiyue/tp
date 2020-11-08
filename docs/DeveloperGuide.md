@@ -26,13 +26,13 @@ or to simply gain a deeper insight into [the team's](AboutUs.md) development pro
 
 --------------------------------------------------------------------------------------------------------------------
 
-{ start of `setting_up` written by: ___________ }
+{ start of `setting_up` written by: Zhang Sheng Yang }
 
 ## 2. Setting up
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
-{ end of `setting_up` written by: ___________ }
+{ end of `setting_up` written by: Zhang Sheng Yang }
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -51,14 +51,14 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
-[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+[**`Commons`**](#36-common-classes) represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* [**`UI`**](#32-ui-component): The UI of the App.
+* [**`Logic`**](#33-logic-component): The command executor.
+* [**`Model`**](#34-model-component): Holds the data of the App in memory.
+* [**`Storage`**](#35-storage-component): Reads data from, and writes data to, the hard disk.
 
 Each of the four components,
 
@@ -121,7 +121,7 @@ The `UI` component,
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("enterses 1")` API call.
 
-![Interactions Inside the Logic Component for the `enterses 1` Command](images/EnterSessionSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `enterses 1` Command](images/developer-guide/4.4.1-EnterSessionSequenceDiagram.png)
 <p align="center"> <sub> <b>Figure 3.3.1</b>: Enter Session Sequence Diagram </sub> </p>
 
 { end of `design#logic_component` written by: Alvin Chee Teck Weng }
@@ -537,12 +537,6 @@ The following sequence diagram shows how the undo operation works:
 ![UndoSequenceDiagram](images/developer-guide/4.7.5-UndoSequenceDiagram.png)
 <p align="center"> <sub> <b>Figure 4.7.5</b>: Sequence diagram showing how the Logic component works with Model component for the `undo` operation </sub> </p> 
 
-<div markdown="span" class="alert alert-info">
-
-:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
 The `redo` command does the opposite — it calls `Model#redo()`, which shifts the `currentStatePointer` for each versioned entity once to the right, pointing to the previously undone state, and restores each entity to that state.
 
 <div markdown="span" class="alert alert-info">
@@ -670,7 +664,7 @@ Cons: Not easy to implement because it requires the knowledge of how to organise
 ### 4.10 [Proposed] Data encryption
 Data encryption can be implemented in the future versions. This is to further protect the students' particulars. 
 
-### 4.10.1 Solution 1
+#### 4.10.1 Solution 1
 Encrypt and store data locally.
 
 * Pros: 
@@ -680,7 +674,7 @@ Encrypt and store data locally.
    * Performance reduction may occur since every call to save to storage requires encrypting a lot of data.
    * Security issues may still arise if we store the encryption key in the same machine.
 
-### 4.10.2 Solution 2
+#### 4.10.2 Solution 2
 Store data outside the user’s machine and issue the user an access token.
 
 * Pros: 
@@ -1271,7 +1265,7 @@ testers are expected to do more *exploratory* testing.
 
   1. Double-click the jar file Expected: Shows the GUI with a set of sample students and sample sessions. 
   The window size may not be optimum.
-  [ExpectedLaunchWindow](images/developer-guide/11.1-ExpectedLaunchWindow.png)
+  ![ExpectedLaunchWindow](images/developer-guide/11.1-ExpectedLaunchWindow.png)
   <p align="center"> <sub> <b>Figure 11.1.1</b>: Application view of the expected window appearance upon launch </sub> </p> 
 
 1. Saving window preferences
@@ -1371,3 +1365,41 @@ testers are expected to do more *exploratory* testing.
       Expected: Similar to previous.
 
 { end of `manual_testing#deleting_a_student` written by: Marcus Tan Wei }
+
+{ start of `manual_testing#adding_a_session` written by: ________ }
+
+### 11.4. Adding a session
+
+todo
+
+{ end of `manual_testing#adding_a_session` written by: ________ }
+
+{ start of `manual_testing#deleting_a_session` written by: ________ }
+
+### 11.5. Deleting a session
+
+todo
+
+{ end of `manual_testing#deleting_a_session` written by: ________ }
+
+{ start of `appendix` written by: _________ }
+
+## 12. Appendix: effort
+
+**Difficulty level:**
+
+* todo
+
+**Challenges faced:**
+
+* todo
+
+**Effort required:**
+
+* todo
+
+**Achievements:**
+
+* todo
+
+{ end of `appendix` written by: _________ }
