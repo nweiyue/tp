@@ -26,8 +26,10 @@ Given below are my contributions to the project.
 * **Documentation**:
   * User Guide:
     * Added overviews for student and current session features. Command summary for students and current session related commands.: [\#155](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/155)
+    * Amendment of format, style. [\#236](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/236), [\#241](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/241), [\#249](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/249)
   * Developer Guide:
     * Added implementation of storage component. Added feature implementation of adding a session. [\#125](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/125)
+    * Added deature implementation of participate and presence. Add use cases. [\#236](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/236)
   * About Us:
     * Edited personal information  [\#41](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/134)
 
