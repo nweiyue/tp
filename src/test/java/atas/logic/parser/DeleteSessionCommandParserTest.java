@@ -34,4 +34,5 @@ public class DeleteSessionCommandParserTest {
         CommandParserTestUtil.assertParseFailure(parser, "~",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteSessionCommand.MESSAGE_USAGE));
     }
+
 }
