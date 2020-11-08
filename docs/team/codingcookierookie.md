@@ -32,8 +32,9 @@ Given below are my contributions to the project.
   * Developer Guide:
     * Added implementation details of the `enterses` feature. (Pull request [\#128](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/128))
     * Added sequence and activity UML diagrams for the `enterses` feature. (Pull request [\#128](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/128))
+    * Added instructions on how to add a session for manual testing (Pull request [\#257](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/257))
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): (Pull request[\#81](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/81)), (Pull request[\#99](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/99)), (Pull request[\#154](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/154)), (Pull request[\#147](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/147))
+  * PRs reviewed (with non-trivial review comments): (Pull request[\#81](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/81)), (Pull request[\#99](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/99)), (Pull request[\#154](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/154)), (Pull request[\#147](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/147)), (Pull request[\#254](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/254))
   * Contributed to forum discussions (examples: (Pull request[173](https://github.com/nus-cs2103-AY2021S1/forum/issues/173))
   * Reported 11 bugs and suggestions for another team during practical dry-run (Pull request[PED](https://github.com/CodingCookieRookie/ped/issues))
