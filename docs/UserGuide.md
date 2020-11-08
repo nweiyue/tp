@@ -313,7 +313,7 @@ To find out which features are supported by the `Memo` tab, you can head over to
 { start of `features#overview` written by: Ngoh Wei Yue }
 
 ### 5.1. Overview
-In this section, you can find the details of all the available features in **ATAS** such as their descriptions and formats   . We have grouped the features into 7 main groups, namely [General](#52-general), [Students](#53-students), [Sessions](#54-sessions), [Current session](#55-current-session), [Memo](#56-memo), [User confirmation](#57-user-confirmation), and [Saving the data](#58-saving-the-data). 
+In this section, you can find the details of all the available features in **ATAS** such as their descriptions and formats. We have grouped the features into 7 main groups, namely [General](#52-general), [Students](#53-students), [Sessions](#54-sessions), [Current session](#55-current-session), [Memo](#56-memo), [User confirmation](#57-user-confirmation), and [Saving the data](#58-saving-the-data). 
 
 There are 2 main types of features:
 1. Commands that you can execute in the command box or through keyboard shortcut
