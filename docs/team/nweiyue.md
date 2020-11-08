@@ -5,7 +5,7 @@ title: Ngoh Wei Yue's Project Portfolio Page
 
 ## Project: Addendum for Teaching Assitants (ATAS)
 
-**ATAS** is a desktop application designed to be a handy in-class companion for CS1010S Teaching Assistants. It aims to **elevate users' efficiency** and make their experience of handling administrative tasks as **seamless** as possible. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java.
+**ATAS** is a desktop application designed to be a handy in-class companion for CS1010S Teaching Assistants. It aims to **elevate users' efficiency** and make their experience of handling administrative tasks as **seamless** as possible. Users interact with it using a CLI, and it has a GUI created with JavaFX. It is written in Java.
 
 This project is based on the AddressBook-Level3 (AB3) project created by the [SE-EDU initiative](https://se-education.org).
 
@@ -14,13 +14,13 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link to code](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=nweiyue&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **New Feature**: Added a **tab layout**, and the ability to **switch between individual tabs** (Pull request [\#75](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/75))
-  * What it does: Allows the application to have multiple UIs which serves different functions. Users can use `switch TAB_NAME` to switch between tabs. 
-  * Justification: This feature improves the product significantly because we can now display more features without overcrowding the GUI. It also enhances the UX since there is a delegated tab for each aspect of the mains features of **ATAS**. The `switch` command helps optimise the product for fast-typists.
-  * Highlights: This enhancement allows commands like `enterses` to work properly. It required an in-depth analysis of the both the front-end and the back-end of the application. The implementation too was challenging as it required integration between the front-end and back-end code.
+  * What it does: Allows the application to have multiple UIs which serves different functions. Users can use `switch` to switch between tabs. 
+  * Justification: This feature improves the product significantly because we can now display more features without overcrowding the GUI. It also enhances the UX since there is a delegated tab for each aspect of the main features of **ATAS**. The `switch` command helps optimise the product for fast-typists.
+  * Highlights: This enhancement allows commands like `enterses` to work properly. It required an in-depth analysis of both the front-end and the back-end of the application. The implementation too was challenging as it required integration between the front-end and back-end code.
 
 * **New Feature**: Added a **memo** feature (Pull request [\#122](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/122))
   * What it does: Allows users to take down notes in a text box which serves as a memo. Users can type directly into the memo or use `addnote` to add notes to the memo using the CLI. The memo also auto-saves when users make any changes to it.
-  * Justification: This feature improves the product because our application focuses on in-class teaching experience. Taking down notes during a lesson and referring to them afterwards is very common, and our application should allow users to do so without switching to other applications. The `addnote` command helps optimise the product for fast-typists.
+  * Justification: This feature improves the product because our application focuses on in-class teaching experience. Taking down notes during a lesson and referring to them afterwards is very common, and our application should allow users to do so without having to switch to other applications. The `addnote` command helps optimise the product for fast-typists.
   * Highlights: This enhancement required the implementation of all 4 components (`Ui`, `Logic`, `Model` and `Storage`) of memo from scratch. It required an in-depth analysis of the architecture and design alternatives. The implementation too was challenging as it required major addition to many components of the application.
   
 * **Project management**:
