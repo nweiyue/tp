@@ -684,21 +684,21 @@ deletestu INDEX
 
 :green_book: **Examples:**
 
-* `liststu` followed by `deletestu 2` followed by `yes`: Deletes and removes the 2nd student (**Figure 5.3.4-2**) from the student list.
+* `liststu` followed by `deletestu 1` followed by `yes`: Deletes and removes the 1st student (**Figure 5.3.4-2**) from the student list.
 * `findstu Bob` followed by `deletestu 1` followed by `yes`: Deletes and removes the 1st student from the results of the `findstu Bob` command.
 </div>
 
 **Outcome**
 
 ![DeletestuConfirmation](images/user-guide/5.3.4.1-DeletestuConfirmationPrompt.png)
-<p align="center"> <sub> <b>Figure 5.3.4.1</b>: Confirmation for deleting student 2 </sub> </p>
+<p align="center"> <sub> <b>Figure 5.3.4.1</b>: Confirmation for deleting student 1 </sub> </p>
 
 <div markdown="block" class="alert alert-info">
 :information_source: After receiving the confirmation prompt, enter `yes` to confirm the removal of student at the specified `INDEX`, or reject the command by entering `no`.
 </div>
    
 ![Deletestu](images/user-guide/5.3.4.2-Deletestu.png)
-<p align="center"> <sub> <b>Figure 5.3.4.2</b>: After confirming the deletion of student 2 </sub> </p>   
+<p align="center"> <sub> <b>Figure 5.3.4.2</b>: After confirming the deletion of student 1 </sub> </p>   
 
 Examples:
 
