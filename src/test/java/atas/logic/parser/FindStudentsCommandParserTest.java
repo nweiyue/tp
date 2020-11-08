@@ -32,4 +32,14 @@ public class FindStudentsCommandParserTest {
         assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedFindStudentCommand);
     }
 
+    @Test
+    public void parse_validArgs_returnsFindStudentsAsNumbersCommand() {
+        // no leading and trailing whitespaces
+        FindStudentsCommand expectedFindStudentCommand =
+            new FindStudentsCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "2")));
+        assertParseSuccess(parser, "Alice 2", expectedFindStudentCommand);
+
+        // multiple whitespaces between keywords
+        assertParseSuccess(parser, " \n Alice \n \t 2  \t", expectedFindStudentCommand);
+    }
 }
