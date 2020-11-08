@@ -2,8 +2,10 @@ package atas.storage;
 
 import static atas.testutil.TypicalMemos.SAMPLE_MEMO_ONE;
 import static atas.testutil.TypicalStudents.getTypicalStudentList;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.nio.file.Path;
 
@@ -12,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import atas.commons.core.GuiSettings;
+import atas.commons.exceptions.DataConversionException;
 import atas.model.UserPrefs;
 import atas.model.memo.Memo;
 import atas.model.student.ReadOnlyStudentList;
@@ -31,6 +34,9 @@ public class StorageManagerTest {
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
         TxtMemoStorage memoStorage = new TxtMemoStorage(getTempFilePath("memo"));
         storageManager = new StorageManager(sessionListStorage, studentListStorage, userPrefsStorage, memoStorage);
+
+        assertDoesNotThrow(() -> storageManager.readSessionList());
+        assertDoesNotThrow(() -> storageManager.readStudentList());
     }
 
     private Path getTempFilePath(String fileName) {
@@ -80,6 +86,45 @@ public class StorageManagerTest {
     @Test
     public void getMemoFilePath() {
         assertNotNull(storageManager.getMemoFilePath());
+    }
+
+    @Test
+    public void getSessionListFilePath() {
+        assertNotNull(storageManager.getSessionListFilePath());
+    }
+
+    @Test
+    public void getUserPrefsFilePath() {
+        assertNotNull(storageManager.getUserPrefsFilePath());
+    }
+
+    @Test
+    public void readSessionListTest_valid() {
+        assertDoesNotThrow(() -> storageManager.readSessionList());
+    }
+
+    @Test
+    public void readSessionListTest_invalid() {
+        // invalid paths
+        JsonSessionListStorage sessionListStorage = new JsonSessionListStorage(getTempFilePath(""));
+        JsonAtasStorage studentListStorage = new JsonAtasStorage(getTempFilePath("ab"));
+        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
+        TxtMemoStorage memoStorage = new TxtMemoStorage(getTempFilePath("memo"));
+        StorageManager newStorageManager = new StorageManager(sessionListStorage, studentListStorage, userPrefsStorage, memoStorage);
+
+        assertThrows(DataConversionException.class, () -> newStorageManager.readSessionList());
+    }
+
+    @Test
+    public void readStudentListTest_invalid() {
+        // invalid paths
+        JsonSessionListStorage sessionListStorage = new JsonSessionListStorage(getTempFilePath("sl"));
+        JsonAtasStorage studentListStorage = new JsonAtasStorage(getTempFilePath(""));
+        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
+        TxtMemoStorage memoStorage = new TxtMemoStorage(getTempFilePath("memo"));
+        StorageManager newStorageManager = new StorageManager(sessionListStorage, studentListStorage, userPrefsStorage, memoStorage);
+
+        assertThrows(DataConversionException.class, () -> newStorageManager.readStudentList());
     }
 
 }

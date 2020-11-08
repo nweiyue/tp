@@ -32,6 +32,11 @@ import javafx.collections.transformation.FilteredList;
  * Represents the in-memory model of the student list, session list, userPrefs and memo data.
  */
 public class ModelManager implements Model {
+    public static final String MESSAGE_NOT_IN_SESSION = "Currently not in any session";
+    public static final String LEFT_SESSION_DETAIL_FORMAT = "Current Session: %s   Date: %s";
+    public static final String RIGHT_SESSION_DETAIL_FORMAT = "%s    %s";
+    public static final String NULL_RIGHT_SESSION_DETAIL = "";
+
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final VersionedStudentList studentList;
@@ -372,23 +377,21 @@ public class ModelManager implements Model {
     @Override
     public String getLeftSessionDetails() {
         if (sessionId == null) {
-            String nullSessionDetails = "Currently not in any session";
-            return nullSessionDetails;
+            return MESSAGE_NOT_IN_SESSION;
         } else {
             requireNonNull(sessionList);
             Session currentEnteredSession = getCurrentSession();
             requireNonNull(currentEnteredSession);
             String sessionName = currentEnteredSession.getSessionName().toString();
             String sessionDate = currentEnteredSession.getSessionDate().toString();
-            return String.format("Current Session: %s   Date: %s", sessionName, sessionDate);
+            return String.format(LEFT_SESSION_DETAIL_FORMAT, sessionName, sessionDate);
         }
     }
 
     @Override
     public String getRightSessionDetails() {
         if (sessionId == null) {
-            String nullSessionDetails = "";
-            return nullSessionDetails;
+            return NULL_RIGHT_SESSION_DETAIL;
         } else {
             requireNonNull(sessionList);
             Session currentEnteredSession = getCurrentSession();
@@ -397,7 +400,7 @@ public class ModelManager implements Model {
                 .getPresenceStatistics().getDataAsPercentage();
             String participationStats = currentEnteredSession.getSessionStats()
                 .getParticipationStatistics().getDataAsPercentage();
-            return String.format("%s    %s", presenceStats, participationStats);
+            return String.format(RIGHT_SESSION_DETAIL_FORMAT, presenceStats, participationStats);
         }
     }
 

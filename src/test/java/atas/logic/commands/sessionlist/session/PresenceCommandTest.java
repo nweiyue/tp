@@ -1,5 +1,7 @@
 package atas.logic.commands.sessionlist.session;
 
+import static atas.commons.core.Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX_RANGE;
+import static atas.logic.commands.CommandTestUtil.assertCommandFailure;
 import static atas.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static atas.testutil.Assert.assertThrows;
 import static atas.testutil.TypicalSessions.SESSIONDATE_WEEK_ONE;
@@ -26,8 +28,10 @@ public class PresenceCommandTest {
     private static final String INDEXRANGE_ONE_NUMBER = "1";
     private static final String INDEXRANGE_POSITIVE_RANGE = "1-3";
     private static final String INDEXRANGE_SAME_NUMBER = "2-2";
+    private static final String INDEXRANGE_INVALID_RANGE = "1-11";
+    private static final String INDEXRANGE_INVALID_SAME_NUMBER = "11-11";
 
-    private Model model = ModelManagerBuilder.buildTypicalModelManager();
+    private final Model model = ModelManagerBuilder.buildTypicalModelManager();
 
 
     @BeforeEach
@@ -108,6 +112,21 @@ public class PresenceCommandTest {
     }
 
     @Test
+    public void execute_presenceInvalidIndexRange_failure() {
+        Model model = ModelManagerBuilder.buildTypicalModelManager();
+        model.enterSession(Index.fromOneBased(1));
+        IndexRange invalidIndexRange = new IndexRange(INDEXRANGE_INVALID_RANGE);
+        PresenceCommand presenceCommand = new PresenceCommand(SESSIONNAME_WEEK_ONE, invalidIndexRange);
+
+        assertCommandFailure(presenceCommand, model, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX_RANGE);
+
+        IndexRange invalidSameIndex = new IndexRange(INDEXRANGE_INVALID_SAME_NUMBER);
+        presenceCommand = new PresenceCommand(SESSIONNAME_WEEK_ONE, invalidSameIndex);
+
+        assertCommandFailure(presenceCommand, model, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX_RANGE);
+    }
+
+    @Test
     public void execute_notInSessionTab_throwsCommandException() {
         // actual model
         IndexRange indexRange = new IndexRange(INDEXRANGE_ONE_NUMBER);
@@ -127,8 +146,6 @@ public class PresenceCommandTest {
     public void equals() {
         final IndexRange indexRange = new IndexRange(INDEXRANGE_ONE_NUMBER);
         final PresenceCommand presenceCommand = new PresenceCommand(SESSIONNAME_WEEK_ONE, indexRange);
-
-
 
         // same values -> returns true
         IndexRange index = new IndexRange(INDEXRANGE_ONE_NUMBER);

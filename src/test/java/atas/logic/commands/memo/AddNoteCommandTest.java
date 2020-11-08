@@ -1,5 +1,6 @@
 package atas.logic.commands.memo;
 
+import static atas.logic.commands.memo.AddNoteCommand.MESSAGE_EMPTY_NOTE;
 import static atas.testutil.Assert.assertThrows;
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -14,6 +15,7 @@ import org.junit.jupiter.api.Test;
 import atas.commons.core.GuiSettings;
 import atas.commons.core.index.Index;
 import atas.logic.commands.CommandResult;
+import atas.logic.commands.exceptions.CommandException;
 import atas.model.Model;
 import atas.model.ReadOnlyUserPrefs;
 import atas.model.memo.Memo;
@@ -44,6 +46,21 @@ public class AddNoteCommandTest {
 
         assertEquals(AddNoteCommand.MESSAGE_SUCCESS, commandResult.getFeedbackToUser());
         assertEquals(content.concat("\n").concat(note), modelStub.getMemoContent());
+    }
+
+    @Test
+    public void execute_addNoteCommandByModel_invalidNote_failure() {
+        String invalidNote = "";
+        AddNoteCommandTest.ModelStubWithNewMemoContent modelStub = new AddNoteCommandTest
+            .ModelStubWithNewMemoContent(invalidNote);
+
+        assertThrows(CommandException.class, () -> new AddNoteCommand(invalidNote).execute(modelStub));
+
+        try {
+            new AddNoteCommand(invalidNote).execute(modelStub);
+        } catch (CommandException e) {
+            assertEquals(e.getMessage(), MESSAGE_EMPTY_NOTE);
+        }
     }
 
     @Test

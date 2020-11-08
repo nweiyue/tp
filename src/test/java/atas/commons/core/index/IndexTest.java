@@ -13,6 +13,7 @@ public class IndexTest {
     public void createOneBasedIndex() {
         // invalid index
         assertThrows(IndexOutOfBoundsException.class, () -> Index.fromOneBased(0));
+        assertThrows(IndexOutOfBoundsException.class, () -> Index.fromOneBased(-1));
 
         // check equality using the same base
         assertEquals(1, Index.fromOneBased(1).getOneBased());
@@ -56,5 +57,17 @@ public class IndexTest {
 
         // different index -> returns false
         assertFalse(fifthStudentIndex.equals(Index.fromOneBased(1)));
+    }
+
+    @Test
+    public void toString_Test() {
+        Index firstStudentIndex = Index.fromOneBased(1);
+        Index secondStudentIndex = Index.fromOneBased(2);
+        Index thirdStudentIndex = Index.fromOneBased(3);
+
+        // returns zeroBasedValue in String
+        assertEquals(firstStudentIndex.toString(), "0");
+        assertEquals(secondStudentIndex.toString(), "1");
+        assertEquals(thirdStudentIndex.toString(), "2");
     }
 }

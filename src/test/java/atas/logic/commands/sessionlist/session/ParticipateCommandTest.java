@@ -1,5 +1,7 @@
 package atas.logic.commands.sessionlist.session;
 
+import static atas.commons.core.Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX_RANGE;
+import static atas.logic.commands.CommandTestUtil.assertCommandFailure;
 import static atas.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static atas.testutil.Assert.assertThrows;
 import static atas.testutil.TypicalSessions.SESSIONDATE_WEEK_ONE;
@@ -27,8 +29,10 @@ public class ParticipateCommandTest {
     private static final String INDEXRANGE_ONE_NUMBER = "1";
     private static final String INDEXRANGE_POSITIVE_RANGE = "1-3";
     private static final String INDEXRANGE_SAME_NUMBER = "2-2";
+    private static final String INDEXRANGE_INVALID_RANGE = "1-11";
+    private static final String INDEXRANGE_INVALID_SAME_NUMBER = "11-11";
 
-    private Model model = ModelManagerBuilder.buildTypicalModelManager();
+    private final Model model = ModelManagerBuilder.buildTypicalModelManager();
 
 
     @BeforeEach
@@ -106,6 +110,21 @@ public class ParticipateCommandTest {
                 assertTrue(s.getAttributeList().get(1).getParticipationStatus());
             }
         }
+    }
+
+    @Test
+    public void execute_participateInvalidIndexRange_failure() {
+        Model model = ModelManagerBuilder.buildTypicalModelManager();
+        model.enterSession(Index.fromOneBased(1));
+        IndexRange invalidIndexRange = new IndexRange(INDEXRANGE_INVALID_RANGE);
+        ParticipateCommand participateCommand = new ParticipateCommand(SESSIONNAME_WEEK_ONE, invalidIndexRange);
+
+        assertCommandFailure(participateCommand, model, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX_RANGE);
+
+        IndexRange invalidSameIndex = new IndexRange(INDEXRANGE_INVALID_SAME_NUMBER);
+        participateCommand = new ParticipateCommand(SESSIONNAME_WEEK_ONE, invalidSameIndex);
+
+        assertCommandFailure(participateCommand, model, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX_RANGE);
     }
 
     @Test
