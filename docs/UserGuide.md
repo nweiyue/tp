@@ -54,7 +54,7 @@ Specifically, **ATAS** allows you to keep track of four different aspects (see [
 
 1. [Students](#41-students)
    * Keep track of all students assigned to you
-   * Store their matriculation number, NUS e-mail, and relevant [tag(s)](#22-glossary) (if any)
+   * Store their matriculation number, NUS email address, and relevant [tag(s)](#22-glossary) (if any)
 1. [Sessions](#42-sessions)
    * Keep track of all sessions you will be holding for the academic year
    * These will likely mostly consist of tutorial sessions, but can include consultations as well
@@ -153,7 +153,7 @@ For the good majority of visual learners, we figured to present information in a
 
 2. Download the latest `atas.jar` from [here](https://github.com/AY2021S1-CS2103T-W16-4/tp/releases). 
 
-3. Copy the file to the folder you want to use as the home folder for your ATAS. All the data related to ATAS will be stored here.
+3. Copy the file to the folder you want to use as the home folder for your **ATAS**. All the data related to **ATAS** will be stored here.
 
 4. Double-click the file to start the app. The GUI similar to the below image should appear in a few seconds. Note how the app contains some sample data.<br>
    ![StartPage](images/StartPage.png)
@@ -163,7 +163,7 @@ For the good majority of visual learners, we figured to present information in a
 
    * **`liststu`** : Lists out all the students.
 
-   * **`addstu n/John Cena m/A0123456X e/thechamp@u.nus.edu`** : Adds a student named `John Cena` to the student list.
+   * **`addstu n/Elvin Ng m/A0123456X e/elvinng@u.nus.edu`** : Adds a student named `Elvin Ng` to the student list.
 
    * **`deleteses 3`** : Deletes the 3rd session shown in the current session list.
    
@@ -173,7 +173,7 @@ For the good majority of visual learners, we figured to present information in a
 
    * **`exit`** : Exits out of the application.
 
-6. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#5-features) below for details of each command.
 
 { end of `quick_start` written by: Alvin Chee Teck Weng }
 
@@ -199,7 +199,7 @@ The following is how the `Students` tab looks like:
 <p align="center"> <sub> <b>Figure 4.1.1</b>: Layout of `Students` tab when there is at least one student </sub> </p>
 
 Notes:
-   * **Student list box**: Contains a list of students and their particulars such as their name, matriculation number, NUS email address and tags (if any). <span style="background-color: #089788; color: white">Tags</span> are highlighted in a turquoise colour and students are arranged in the order that you add them. 
+   * **Student list box**: Contains a list of students and their particulars such as their name, matriculation number, NUS email address and [tag(s)](#22-glossary) (if any). <span style="background-color: #089788; color: white">Tags</span> are highlighted in a turquoise colour and students are arranged in the order that you add them. 
    * **Statistics**: Calculated as a percentage of the number of sessions the student was present or has participated out of all the available sessions.
 
 <div markdown="block" class="alert alert-info">
@@ -209,7 +209,7 @@ Notes:
 |Colour | Meaning |
  |--------------|-------------|
  | <span style="background-color: #E6E6E6; color: black">Grey</span> | There are no sessions |
- | <span style="background-color: crimson; color: white">Red</span> | Student was not present or did not participated in all the sessions (<100%) |
+ | <span style="background-color: crimson; color: white">Red</span> | Student was not present or did not participate in all the sessions (<100%) |
  | <span style="background-color: green; color: white">Green</span> | Student was present or has participated in all the sessions (100%) |
 
 </div>
@@ -233,7 +233,7 @@ The following is how the `Sessions` tab looks like:
 <p align="center"> <sub> <b>Figure 4.2.1</b>: Layout of `Sessions` tab when there is at least one session </sub> </p>
 
 Notes:
-   * **Student list box**: Contains a list of sessions and their details such as their name and date. Sessions are arranged by their dates, starting from the latest at the top.
+   * **Session list box**: Contains a list of sessions and their details such as their name and date. Sessions are arranged by their dates, starting from the latest at the top.
    * **Statistics**: Calculated as a percentage of the number of students that was present or has participated out of all the students.
 
 <div markdown="block" class="alert alert-info">
@@ -308,7 +308,7 @@ To find out which features are supported by the `Memo` tab, you can head over to
 In this section, you can find the details of all the available features in **ATAS** such as their descriptions and formats   . We have grouped the features into 7 main groups, namely [General](#52-general), [Students](#53-students), [Sessions](#54-sessions), [Current session](#55-current-session), [Memo](#56-memo), [User confirmation](#57-user-confirmation), and [Saving the data](#58-saving-the-data). 
 
 There are 2 main types of features:
-1. Commands that you can execute in the command box or through keyboard shortcuts
+1. Commands that you can execute in the command box or through keyboard shortcut
 1. Features that are already inplace and require no actions from you
 
 With the exception of [saving the memo](#562-saving-the-memo), all commands that are available can be executed regardless of which tab you are in.
@@ -373,14 +373,12 @@ help
 **Outcome:**
 
 1. A help window that look like the following will open up.
-
 ![HelpWindow](images/user-guide/5.2.1.1-HelpWindow.png)
-<p align="center"> <sub> <b>Figure 5.2.1.1</b>: Help window </sub> </p>
+    <p align="center"> <sub> <b>Figure 5.2.1.1</b>: Help window </sub> </p>
 
-2. A message indicating a help window has been opened will be displayed in the main **ATAS** window.
-
+1. A message indicating a help window has been opened will be displayed in the main **ATAS** window.
 ![Help](images/user-guide/5.2.1.2-Help.png)
-<p align="center"> <sub> <b>Figure 5.2.1.2</b>: Main window view after opening help window </sub> </p>
+    <p align="center"> <sub> <b>Figure 5.2.1.2</b>: Main window view after opening help window </sub> </p>
 
 { end of `features#general#help` written by: Ngoh Wei Yue }
 
@@ -441,7 +439,7 @@ rng
 
 #### 5.2.4. Undo-ing a command : `undo`
 
-Undoes a command and essentially returns ATAS to the state prior to performing that command.
+Undoes a command and essentially returns **ATAS** to the state prior to performing that command.
 
 <div markdown="block" class="alert alert-info">
 
@@ -477,14 +475,14 @@ The example we are about to use follows that used in [Section 5.3.4 - Deleting a
 
 1. Suppose we have indeed deleted Alvin Lee from our student list. 
 This change is reflected in the [students' tab](#41-students).
-![524-undo-1](images/user-guide/5.2.4.1-Undo.png)
-<p align="center"> <sub> <b>Figure 5.2.4.1</b>: Application view after deleting Alvin Lee as seen in the students` tab </sub> </p>
+    ![524-undo-1](images/user-guide/5.2.4.1-Undo.png)
+    <p align="center"> <sub> <b>Figure 5.2.4.1</b>: Application view after deleting Alvin Lee as seen in the students` tab </sub> </p>
 
 1. However, we realise that deleting him was mistake.
 He does belong to our class after all!
 In this case, we can revert the deletion we have made with `undo`.
-![524-undo-2](images/user-guide/5.2.4.2-Undo.png)
-<p align="center"> <sub> <b>Figure 5.2.4.2</b>: Application view after performing the `undo` command </sub> </p>
+    ![524-undo-2](images/user-guide/5.2.4.2-Undo.png)
+    <p align="center"> <sub> <b>Figure 5.2.4.2</b>: Application view after performing the `undo` command </sub> </p>
 
 { end of `features#general#undo` written by: Masagca Eris Jacey }
 
@@ -492,7 +490,7 @@ In this case, we can revert the deletion we have made with `undo`.
 
 #### 5.2.5. Redo-ing a command : `redo`
 
-Redoes a command that was most recently undone and returns ATAS to the state *after* having performed that command.
+Redoes a command that was most recently undone and returns **ATAS** to the state *after* having performed that command.
 
 Essentially the reverse of undo-ing a command.
 
@@ -578,7 +576,7 @@ addstu n/NAME m/MATRICULATION_NUMBER e/NUS_EMAIL_ADDRESS [t/TAG]…
 :information_source: **Notes about the usage of this command:** 
 * The name of a student should not contain special characters.
 * The matriculation number of a student should be in the form of A0123456X
-* ATAS only accepts NUS emails, i.e. xxx@u.nus.edu
+* **ATAS** only accepts NUS email address, i.e. xxx@u.nus.edu
 * A student can have any number of tags (including 0) 
 
 </div>
@@ -1057,7 +1055,7 @@ Examples:
 
 ### 5.6. Memo
 
-This category consists of features related to `Memo`. They allow you to add text by typing into the memo box or by adding a note (`addnote`) to the memo. You can also manually save the content in the memo box using certain keyboard shortcuts.
+This category consists of features related to `Memo`. They allow you to add text by typing into the memo box or by adding a note (`addnote`). You can also manually save the content in the memo box using certain keyboard shortcut.
 
 { end of `features#memo` written by: Ngoh Wei Yue }
 
@@ -1116,7 +1114,7 @@ Saves the content of the memo in the hard disk.
 
 Unlike the above commands that you can execute by typing into the command box, this feature requires you to press a series of keys on your keyboard.
 
-**Keyboard shortcuts:**
+**Keyboard shortcut:**
 
 1. Click on the memo box in memo tab to bring focus to the memo box. Memo box should have a turquoise outline when under focus **(Figure 5.6.2.1.)**.
 
@@ -1158,7 +1156,7 @@ The content in the memo is saved in the hard disk.
 ### 5.7. User confirmation
 
 Some commands have the ability to alter the data stored in the hard disk.
-ATAS aims to make careful decisions and further prompts user to confirm the execution of those commands.
+**ATAS** aims to make careful decisions and further prompts user to confirm the execution of those commands.
 These commands are: [`deletestu`](#534-deleting-a-student--deletestu), [`editstu`](#535-editing-a-students-particulars--editstu),[`clearstu`](#536-clearing-the-student-list--clearstu),
 [`deleteses`](#542-deleting-a-session--deleteses), [`editses`](#543-editing-a-session--editses) and [`clearses`](#544-clearing-the-session-list--clearses).
 
@@ -1211,7 +1209,7 @@ The following are the names of the files that contains the respective data:
 |Data |File name |
 |-----|------------|
 |Students' particulars | `studentlist.json` |
-|Sessions' details | `sessionlist.json` |
+|Sessions' details including the students' presence and participation records  | `sessionlist.json` |
 |Text in memo box | ` memo.txt` |
 
 You can find all the three files in the `data` folder located in the same directory as your `atas.jar` file.
@@ -1246,6 +1244,8 @@ The following is a summary of all available commands for your reference.
 
 ### 7.1. General
 
+The following is a summary of general commands.
+
 Command | Format, Examples
 --------|------------------
 **Help** | `help`
@@ -1257,11 +1257,10 @@ Command | Format, Examples
 
 { end of `command_summary#general` written by: Masagca Eris Jacey }
 
+{ start of `command_summary#students` written by: Zhang Sheng Yang }
+
 ### 7.2. Students
 
-{ start of `command_summary#students` written by: Zhang Sheng Yang }
-<br/>
-<br/>
 The following is a summary of commands related to students.
 
 Command | Format, Examples
@@ -1273,13 +1272,13 @@ Command | Format, Examples
 **Delete** | `deletestu INDEX` <br/> e.g.,<br/> `deletestu 2`
 **Clear** | `clearstu`
 
-<br/>
-
 { end of `command_summary#students` written by: Zhang Sheng Yang }
 
 { start of `command_summary#sessions` written by: Marcus Tan Wei}
 
 ### 7.3. Sessions
+
+The following is a summary of commands related to sessions.
 
 Command | Format, Examples
 --------|------------------
@@ -1291,19 +1290,16 @@ Command | Format, Examples
 
 { end of `command_summary#sessions` written by: Marcus Tan Wei}
 
+{ start of `command_summary#current_session` written by: Zhang Sheng Yang }
+
 ### 7.4. Current session
 
-{ start of `command_summary#current_session` written by: Zhang Sheng Yang }
-<br/>
-<br/>
-The following is a summary relevant commands after entering a session.
+The following is a summary of commands related to current session.
 
 Command | Format, Examples
 --------|------------------
 **Participate** | `participate INDEX_RANGE` <br/> e.g., `participate 1-4`, `participate 3`
 **Presence** | `presence INDEX_RANGE` <br/> e.g., `presence 2-3`, `presence 7`
-
-<br/>
 
 { end of `command_summary#current_session` written by: Zhang Sheng Yang }
 
@@ -1311,9 +1307,11 @@ Command | Format, Examples
 
 ### 7.5. Memo
 
+The following is a summary of commands related to memo.
+
 Command | Format, Examples
 --------|------------------
 **Add Note** | `addnote NOTE`<br> e.g., `addnote clarify qn 3 with prof`
-**Save Memo** | Keyboard shortcut: `Ctrl + s` for Windows/Linux and `Command + s` for MacOS
+**Save Memo** | Keyboard shortcut: `ctrl + s` for Windows/Linux and `command + s` for MacOS
 
 { end of `command_summary#memo` written by: Ngoh Wei Yue }
