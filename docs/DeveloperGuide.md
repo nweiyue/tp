@@ -42,16 +42,10 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ### 3.1 Architecture
 
-<img src="images/developer-guide/3.1.1-ArchitectureDiagram.png" width="450" />
+![ArchitectureDiagram](images/developer-guide/3.1.1-ArchitectureDiagram.png)
 <p align="center"> <sub> <b>Figure 3.1.1</b>: Architecture Diagram </sub> </p> 
 
 The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
-
-<div markdown="span" class="alert alert-primary">
-
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
-
-</div>
 
 **`Main`** has two classes called [`Main`](https://github.com/AY2021S1-CS2103T-W16-4/tp/blob/master/src/main/java/atas/Main.java) and [`MainApp`](https://github.com/AY2021S1-CS2103T-W16-4/tp/blob/master/src/main/java/atas/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
@@ -80,7 +74,7 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `addses s/Tutorial 1 d/10/10/2020`.
 
-[!Achitecture sequence diagram](images/developer-guide/3.1.3-ArchitectureSequenceDiagram.png)
+![Architecture sequence diagram](images/developer-guide/3.1.3-ArchitectureSequenceDiagram.png)
 <p align="center"> <sub> <b>Figure 3.1.3</b>: Architecture sequence diagram </sub> </p> 
 
 The sections below give more details of each component.
