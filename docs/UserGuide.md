@@ -601,7 +601,7 @@ addstu n/NAME m/MATRICULATION_NUMBER e/NUS_EMAIL_ADDRESS [t/TAG]…
 * **ATAS** only accepts NUS email address, i.e. xxx@u.nus.edu.
 * A student can have any number of tags (including 0) .
 * A tag is made up of one single word.
-* Students added can have the same name, but they cannot have the same Matriculation number or NUS email as other students in the list.
+* Students added can have the same name, but they cannot have the same matriculation number or NUS email as other students in the list.
 
 </div>
 
