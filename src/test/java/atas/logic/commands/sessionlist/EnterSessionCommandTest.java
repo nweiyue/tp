@@ -7,7 +7,6 @@ import static atas.testutil.TypicalIndexes.INDEX_FIRST_SESSION;
 import static atas.testutil.TypicalIndexes.INDEX_SECOND_SESSION;
 import static atas.testutil.TypicalSessions.SESSION_WEEK_ONE;
 import static atas.testutil.TypicalSessions.SESSION_WEEK_TWO;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -19,7 +18,6 @@ import atas.logic.commands.CommandResult;
 import atas.logic.commands.exceptions.CommandException;
 import atas.model.Model;
 import atas.model.ModelManager;
-import atas.model.session.exceptions.SameSessionException;
 import atas.testutil.ModelManagerBuilder;
 
 public class EnterSessionCommandTest {

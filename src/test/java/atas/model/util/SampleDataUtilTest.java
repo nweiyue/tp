@@ -5,6 +5,7 @@ import static atas.model.util.SampleDataUtil.getSampleStudents;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
+
 import atas.model.session.Session;
 import atas.model.student.Student;
 
@@ -36,7 +37,8 @@ public class SampleDataUtilTest {
         assertEquals(sampleStudents[3].getEmail().value, "diannecap5@u.nus.edu");
         assertEquals(sampleStudents[4].getEmail().value, "tesloft@u.nus.edu");
     }
-    
+
+
     @Test
     public void getSampleSessionsTest() {
         Session[] sessions = getSampleSessions();

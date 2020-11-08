@@ -60,7 +60,7 @@ public class IndexTest {
     }
 
     @Test
-    public void toString_Test() {
+    public void toStringTest() {
         Index firstStudentIndex = Index.fromOneBased(1);
         Index secondStudentIndex = Index.fromOneBased(2);
         Index thirdStudentIndex = Index.fromOneBased(3);

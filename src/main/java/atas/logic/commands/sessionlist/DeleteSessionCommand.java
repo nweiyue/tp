@@ -46,9 +46,9 @@ public class DeleteSessionCommand extends DangerousCommand implements IndexedSes
 
         Session sessionToDelete = lastShownList.get(targetIndex.getZeroBased());
 
-//        if (!model.hasSession(sessionToDelete)) {
-//            throw new CommandException(MESSAGE_SESSION_NOT_FOUND);
-//        }
+        if (!model.hasSession(sessionToDelete)) {
+            throw new CommandException(MESSAGE_SESSION_NOT_FOUND);
+        }
 
         model.deleteSession(sessionToDelete, targetIndex);
         model.commit();

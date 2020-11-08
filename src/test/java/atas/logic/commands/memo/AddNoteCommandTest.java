@@ -36,7 +36,7 @@ public class AddNoteCommandTest {
     }
 
     @Test
-    public void execute_noteAcceptedByModel_addSuccessful() throws Exception {
+    public void executeTest_noteAcceptedByModel_addSuccessful() throws Exception {
         String content = "content";
         String note = "note";
         AddNoteCommandTest.ModelStubWithNewMemoContent modelStub = new AddNoteCommandTest
@@ -49,7 +49,7 @@ public class AddNoteCommandTest {
     }
 
     @Test
-    public void execute_addNoteCommandByModel_invalidNote_failure() {
+    public void executeTest_addInvalidNote_failure() {
         String invalidNote = "";
         AddNoteCommandTest.ModelStubWithNewMemoContent modelStub = new AddNoteCommandTest
             .ModelStubWithNewMemoContent(invalidNote);

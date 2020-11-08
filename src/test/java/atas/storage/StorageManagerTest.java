@@ -110,7 +110,8 @@ public class StorageManagerTest {
         JsonAtasStorage studentListStorage = new JsonAtasStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
         TxtMemoStorage memoStorage = new TxtMemoStorage(getTempFilePath("memo"));
-        StorageManager newStorageManager = new StorageManager(sessionListStorage, studentListStorage, userPrefsStorage, memoStorage);
+        StorageManager newStorageManager = new StorageManager(sessionListStorage,
+                studentListStorage, userPrefsStorage, memoStorage);
 
         assertThrows(DataConversionException.class, () -> newStorageManager.readSessionList());
     }
@@ -122,7 +123,8 @@ public class StorageManagerTest {
         JsonAtasStorage studentListStorage = new JsonAtasStorage(getTempFilePath(""));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
         TxtMemoStorage memoStorage = new TxtMemoStorage(getTempFilePath("memo"));
-        StorageManager newStorageManager = new StorageManager(sessionListStorage, studentListStorage, userPrefsStorage, memoStorage);
+        StorageManager newStorageManager = new StorageManager(sessionListStorage,
+                studentListStorage, userPrefsStorage, memoStorage);
 
         assertThrows(DataConversionException.class, () -> newStorageManager.readStudentList());
     }
