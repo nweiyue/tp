@@ -268,8 +268,9 @@ The following is how the `Current Session` tab looks like:
 
 Notes:
    * **Student list box**: Similar to the `Students` tab, this box contains a list of students. However, only their names are shown here. The order of students follows that of the `Students` tab.
-   * **Presence/Participation Status**: If student is absent or has not participated, <span style="background-color: crimson; color: white">label</span> will be red, whereas if student is present or has participated, then <span style="background-color: green; color: white">label</span> is green.
-   * **Statistics**: Calculated as a percentage of the number of students that was present or has participated out of all the students.
+   * **Presence/Participation status**: If student is absent or has not participated, <span style="background-color: crimson; color: white">label</span> will be red, whereas if student is present or has participated, then <span style="background-color: green; color: white">label</span> is green.
+   * **Current session's status**: Contains the session's name and date that you are currently in. You will see "Currently not in session" if you are not in any session. This can be seen in all the tabs.
+   * **Statistics**: Calculated as a percentage of the number of students that was present or has participated out of all the students. You will see nothing here if you are not in any session. This can be seen in all the tabs.
 
 Similar to the [`Students`](#41-students) tab, if there are no students in that session, you will see a similar message as shown in **Figure 4.1.2**.
 
@@ -547,9 +548,10 @@ Program window will be closed.
 
 { end of `features#general#exit` written by: Alvin Chee Teck Weng }
 
+{ start of `features#students` written by: Zhang Sheng Yang }
+
 ### 5.3. Students
 
-{ start of `features#students` written by: Zhang Sheng Yang }
 <br/>
 <br/>
 This category consists of features related to students.
@@ -972,9 +974,9 @@ You cannot be in one session and enter that particular session again.
 
 { end of `sessions` written by: Alvin Chee Teck Weng }
 
-### 5.5. Current session
-
 { start of `features#current_session` written by: Zhang Sheng Yang }
+
+### 5.5. Current session
 
 <br/>
 This category consists of features related to students.
@@ -1059,7 +1061,7 @@ This category consists of features related to `Memo`. They allow you to add text
 
 { end of `features#memo` written by: Ngoh Wei Yue }
 
-{ start of `features#memo#addnote` written by: Ngoh Wei Yue }
+{ start of `features#memo#adding_text_into_memo` written by: Ngoh Wei Yue }
 
 #### 5.6.1. Adding text into memo
 
@@ -1067,6 +1069,10 @@ You can add text into the memo in 2 ways:
 
 1. Type directly into the memo box in `Memo` tab.
 2. [Add a note](#5611-adding-a-note--addnote).
+
+{ end of `features#memo#adding_text_into_memo` written by: Ngoh Wei Yue }
+
+{ start of `features#memo#adding_text_into_memo#addnote` written by: Ngoh Wei Yue }
 
 ##### 5.6.1.1. Adding a note : `addnote`
 
@@ -1103,8 +1109,7 @@ The text "clarify qn 3 with prof" is added onto a new line in the memo box.
 <p align="center"> <sub> <b>Figure 5.6.1.1.2</b>: Application view after adding a note </sub> </p>
 
 
-{ end of `features#memo#addnote` written by: Ngoh Wei Yue }
-
+{ end of `features#memo#adding_text_into_memo#addnote` written by: Ngoh Wei Yue }
 
 { start of `features#memo#save_memo` written by: Ngoh Wei Yue }
 
