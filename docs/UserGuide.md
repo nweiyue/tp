@@ -596,9 +596,11 @@ addstu n/NAME m/MATRICULATION_NUMBER e/NUS_EMAIL_ADDRESS [t/TAG]…
 
 :information_source: **Notes about the usage of this command:** 
 * The name of a student should not contain special characters.
-* The matriculation number of a student should be in the form of A0123456X
-* **ATAS** only accepts NUS email address, i.e. xxx@u.nus.edu
-* A student can have any number of tags (including 0) 
+* The matriculation number of a student should be in the form of A0123456X.
+* **ATAS** only accepts NUS email address, i.e. xxx@u.nus.edu.
+* A student can have any number of tags (including 0) .
+* A tag is made up of one single word.
+* Students added can have the same name, but they cannot have the same Matriculation number or NUS email as other students in the list.
 
 </div>
 
@@ -740,6 +742,8 @@ editstu INDEX (n/UPDATED_NAME) (e/UPDATED_EMAIL_ADDRESS) (m/UPDATED_MATRICULATIO
 * You will then be prompted for a confirmation input **`Edit student INDEX? (yes/no)`**.
    * If yes: edits and updates the particulars of the specified student from the student list.
    * If no: the specified student's particulars remains the same.
+* A tag is made up of one single word.
+* Students edited can have the same name, but they cannot have the same Matriculation number or NUS email as other students in the list.
 
 </div>
 
