@@ -1,7 +1,10 @@
 package atas.logic.commands.sessionlist;
 
 import static atas.commons.core.Messages.MESSAGE_INVALID_SESSION_DISPLAYED_INDEX;
+import static atas.logic.commands.sessionlist.EnterSessionCommand.MESSAGE_ALREADY_IN_SESSION;
 import static atas.testutil.Assert.assertThrows;
+import static atas.testutil.TypicalSessions.SESSION_WEEK_ONE;
+import static atas.testutil.TypicalSessions.SESSION_WEEK_TWO;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -68,7 +71,7 @@ public class EnterSessionCommandTest {
         assertThrows(CommandException.class, expectedMessage, () -> enterSessionSixCommand.execute(model));
     }
 
-    /*    @Test
+    @Test
     public void execute_alreadyInSession_throwsCommandException() {
         Index index = Index.fromOneBased(2);
         EnterSessionCommand enterSessionTwoCommand = new EnterSessionCommand(index);
@@ -78,7 +81,7 @@ public class EnterSessionCommandTest {
         String expectedMessage = String.format(MESSAGE_ALREADY_IN_SESSION, 2);
 
         assertThrows(CommandException.class, expectedMessage, () -> enterSessionTwoCommand.execute(model));
-    }*/
+    }
 
     @Test
     public void equals() {
