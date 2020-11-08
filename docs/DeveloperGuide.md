@@ -1447,7 +1447,7 @@ Deleting sessions in the students tab
 
 **Difficulty level:**
 
-The overall difficulty level of the project was relatively moderate. 
+The overall difficulty level of the project was relatively high. 
 For most of our team, this was our first significant foray into the world of software engineering, and specifically
 our first time working in a group to develop a medium-sized application.
 
