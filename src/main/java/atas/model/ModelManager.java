@@ -283,6 +283,16 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void resetCurrentSessionDetails() {
+        sessionId = attributesList.getCurrentSessionIndexValue();
+        if (sessionId != null) {
+            setCurrentSessionTrue();
+        } else {
+            setCurrentSessionFalse();
+        }
+    }
+
+    @Override
     public void resetCurrentAttributesList() {
         sessionId = null;
         setCurrentSessionFalse();
@@ -491,7 +501,7 @@ public class ModelManager implements Model {
         studentList.undo();
         sessionList.undo();
         attributesList.undo();
-        sessionId = attributesList.getCurrentSessionIndexValue();
+        resetCurrentSessionDetails();
         refreshStatistics();
     }
 
@@ -507,7 +517,8 @@ public class ModelManager implements Model {
         studentList.redo();
         sessionList.redo();
         attributesList.redo();
-        sessionId = attributesList.getCurrentSessionIndexValue();
+        resetCurrentSessionDetails();
         refreshStatistics();
     }
+
 }

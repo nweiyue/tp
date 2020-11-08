@@ -140,7 +140,7 @@ public class ParticipateCommandTest {
         session.updateParticipation(indexRange);
 
         assertThrows(CommandException.class,
-                Messages.MESSAGE_NOT_IN_SESSION_TAB, () -> participateCommand.execute(expectedModel));
+                Messages.MESSAGE_NOT_IN_SESSION, () -> participateCommand.execute(expectedModel));
     }
 
     @Test

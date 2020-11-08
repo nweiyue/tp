@@ -1379,13 +1379,36 @@ Deleting a student while only some students are being shown
 
 { end of `manual_testing#deleting_a_student` written by: Marcus Tan Wei }
 
-{ start of `manual_testing#adding_a_session` written by: ________ }
+{ start of `manual_testing#adding_a_session` written by: Alvin Chee Teck Weng }
 
 ### 11.4. Adding a session
 
-todo
+Adding a session while all sessions are being shown.
 
-{ end of `manual_testing#adding_a_session` written by: ________ }
+   1. Prerequisites: Multiple (but less than 100) sessions in the session list.
+ 
+   1. Test case: `addses s/Tutorial 6 d/12/7/2020`<br>
+      Expected: A session is added to the bottom of the session list. A success message including the details of the added session is shown in the result box.
+      
+   1. Test case: `addses s/Tutorial 7 d/25/12/2020`<br>
+      Expected: A session is added to the top of the session list. A success message including the details of the added session is shown in the result box.
+        
+   1. Test case: `addses s/Tutorial 8 d/30/12/2020`<br>
+       Expected: Similar to previous.
+        
+   1. Test case: `addses s/Tutorial 9`<br>
+      Expected: No session is added. Error message indicating an invalid command format is shown in the result box.
+      
+   1. Test case: `addses d/30/12/2020`<br>
+      Expected: Similar to previous.
+      
+   1. Test case: `addses s/Tutorial 6 d/25/7/2020`<br>
+      Expected: No session is added. Error message indicating that the session already exists is shown in the result box.
+        
+   1. Test case: `addses s/Tutorial 8 d/30/12/2020`<br>
+      Expected: No session is added. Error message indicating that the session already exists is shown in the result box.
+   
+{ end of `manual_testing#adding_a_session` written by: Alvin Chee Teck Weng }
 
 { start of `manual_testing#deleting_a_session` written by: Marcus Tan Wei }
 
@@ -1424,7 +1447,7 @@ Deleting sessions in the students tab
          ![StudentsStatisticsBeforeDeleteSession](images/developer-guide/11.5.1-StudentsStatisticsBeforeDeleteSession.png)
          <p align="center"> <sub> <b>Figure 11.5.1</b>: Application view of students statistics before deleting session </sub> </p> 
          
-         ![SessionStatisticsBeforeDeleteSesion](images/developer-guide/11.5.2-SessionStatistics.png)
+         ![SessionStatisticsBeforeDeleteSession](images/developer-guide/11.5.2-SessionStatistics.png)
          <p align="center"> <sub> <b>Figure 11.5.2</b>: Application view of sessions in the session list </sub> </p> 
          
          ![StudentsStatisticsAfterDeleteSession](images/developer-guide/11.5.3-StudentsStatisticsAfterDeleteSession.png)
@@ -1441,24 +1464,54 @@ Deleting sessions in the students tab
 
 { end of `manual_testing#deleting_a_session` written by: Marcus Tan Wei }
 
-{ start of `appendix` written by: _________ }
+{ start of `appendix` written by: Masagca Eris Jacey }
 
 ## 12. Appendix: effort
 
 **Difficulty level:**
 
-* todo
+The overall difficulty level of the project was relatively high. 
+For most of our team, this was our first significant foray into the world of software engineering, and specifically
+our first time working in a group to develop a medium-sized application.
 
 **Challenges faced:**
 
-* todo
+* It was our first time working on a brown-field project, so a few weeks were needed just to get used to the existing codebase.
+* It was also our first time dealing with some of the libraries and frameworks used in this project (like Jackson), 
+  so a bit of time was needed to be familiar with them.
+* (in the beginning especially) We faced issues regarding project management (specifically role delegation), and
+  we had troubles with resolving merge conflicts and meeting deadlines in our first iteration.
+* With each new iteration, we would sometimes face regression issues, as some new features would cause older ones to be buggy. 
+* AB3 only dealt with a single entity type, but for **ATAS**, we had to deal with multiple entity types (students, 
+  sessions, attributes) which had their own specific set of complications and subtle differences in implementations.  
+* Significant time had to be spent on fixing and refining the following features: 
+   * "current session": This was an integration feature done during an early iteration when we were still relatively unfamiliar with the codebase.
+   * "undo/redo": This was a feature that was hard to get right because of the different entity types being slightly different in nature.
+     ("students" were a "one-layer" entity while each "session" had their own list of "attributes", making it a "two-layer" entity)
 
 **Effort required:**
 
-* todo
+* Weekly meetings were held (about 2 hours every Wednesday) to review what had been done in the week prior, as well as 
+  discuss future tasks for the next week.
+* Our team worked tirelessly week in and week out for several (~7) weeks, sparing no effort during each iteration 
+  (on both new implementations as well as making sure the older ones aren't buggy).
+* We emphasized on communication being key and ensured the following:
+   * No PR (made by one teammate) would be merged unless explicitly reviewed and approved by another teammate.
+   * Queries, no matter how small, would be answered promptly in our shared Telegram group channel.
+   * Each meeting was productive and preparations were made prior to each in the form of a meeting agenda.
+   * Conflicts were resolved amicably. 
 
 **Achievements:**
 
-* todo
+* Overall, we managed to develop a product that we could be proud of.
+* Each team member was absolutely vital to the success of the completion of **ATAS**. Everyone had a distinct role to play
+  and was more than willing to help one another out with their respective tasks.
+* Our team has learned a lot throughout the development of **ATAS**. 
+  We have become significantly more adept to handling the different aspects of software engineering, including (but not limited to):
+   * General programming competencies (especially in Java) (adhering to code style, improved OOP skills, etc.)
+   * Project management (meeting deadlines and deliverables)
+   * Good documentation writing (user guide, developer guide, etc.)
+   * Conflict resolution
+* This project has only made us hungrier and ready to overcome more challenges in the realm of software development in the future. 
 
-{ end of `appendix` written by: _________ }
+{ end of `appendix` written by: Masagca Eris Jacey }

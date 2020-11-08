@@ -3,6 +3,7 @@ package atas.logic.commands.sessionlist;
 import static atas.commons.core.Messages.MESSAGE_INVALID_SESSION_DISPLAYED_INDEX;
 import static atas.logic.commands.sessionlist.EnterSessionCommand.MESSAGE_ALREADY_IN_SESSION;
 import static atas.testutil.Assert.assertThrows;
+
 import static atas.testutil.TypicalIndexes.INDEX_FIRST_SESSION;
 import static atas.testutil.TypicalIndexes.INDEX_SECOND_SESSION;
 import static atas.testutil.TypicalSessions.SESSION_WEEK_ONE;

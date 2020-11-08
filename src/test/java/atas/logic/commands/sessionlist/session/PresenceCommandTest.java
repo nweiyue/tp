@@ -139,7 +139,7 @@ public class PresenceCommandTest {
         session.updatePresence(indexRange);
 
         assertThrows(CommandException.class,
-                Messages.MESSAGE_NOT_IN_SESSION_TAB, () -> presenceCommand.execute(expectedModel));
+                Messages.MESSAGE_NOT_IN_SESSION, () -> presenceCommand.execute(expectedModel));
     }
 
     @Test
