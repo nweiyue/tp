@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import atas.commons.core.index.Index;
 import atas.logic.commands.sessionlist.EnterSessionCommand;
+import atas.logic.parser.exceptions.ParseException;
 
 public class EnterSessionCommandParserTest {
 
@@ -55,8 +56,14 @@ public class EnterSessionCommandParserTest {
     }
 
     @Test
-    public void parse_invalidSessionIndexZero_throwsParseException() {
+    public void parse_invalidSessionIndexNegative_throwsParseException() throws ParseException {
         CommandParserTestUtil.assertParseFailure(parser, " " + "-1",
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, EnterSessionCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_invalidSessionIndexAlphabet_throwsParseException() throws ParseException {
+        CommandParserTestUtil.assertParseFailure(parser, " " + "a",
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EnterSessionCommand.MESSAGE_USAGE));
     }
 }

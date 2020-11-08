@@ -1313,7 +1313,7 @@ testers are expected to do more *exploratory* testing.
 
 { start of `manual_testing#undo` written by: Ngoh Wei Yue }
 
-### 11.3. Undo
+### 11.4. Undo
 
 1. Prerequisites: At least 1 command that can be undone is executed beforehand.
     1. Test case: `undo`
@@ -1327,7 +1327,7 @@ testers are expected to do more *exploratory* testing.
 
 { start of `manual_testing#redo` written by: Ngoh Wei Yue }
 
-### 11.3. Redo
+### 11.5. Redo
 
 1. Prerequisites: At least 1 command that can be redone is executed beforehand.
     1. Test case: `redo`
@@ -1341,7 +1341,7 @@ testers are expected to do more *exploratory* testing.
 
 { start of `manual_testing#adding_a_student` written by: Ngoh Wei Yue }
 
-### 11.2. Adding a student
+### 11.6. Adding a student
 
 Adding a student while all students are being shown.
   
@@ -1390,7 +1390,7 @@ Adding a student while all students are being shown.
 
 { start of `manual_testing#deleting_a_student` written by: Marcus Tan Wei }
 
-### 11.3. Deleting a student
+### 11.8. Deleting a student
 
 Deleting a student while all students are being shown
 
@@ -1415,11 +1415,10 @@ Deleting a student while all students are being shown
         Expected: Similar to previous.
      
    
-1. Prerequisites: List some students using `findstu` command. Multiple (but less than 100) students are in the list.
-   One or more (but less than 100) student is shown in the StudentListPanel.
-   
+1. Prerequisites: List some students using `findstu` command. Multiple (but less than 100) students are in the list. One or more (but less than 100) student is shown in the StudentListPanel.
+    
     1. Test case: `deletestu 1`<br>
-      Expected: Confirmation prompt to delete the first student from the list. Message of confirmation prompt is shown in the result box.
+       Expected: Confirmation prompt to delete the first student from the list. Message of confirmation prompt is shown in the result box.
       
     1. Test case: `yes` <br>
        Expected: First student on the list is deleted from the list. Message regarding student deletion is shown in the result box.
@@ -1438,10 +1437,38 @@ Deleting a student while all students are being shown
 
 { end of `manual_testing#deleting_a_student` written by: Marcus Tan Wei }
 
-{ start of `manual_testing#adding_a_session` written by: ________ }
+{ start of `manual_testing#adding_a_session` written by: Alvin Chee Teck Weng }
 
+### 11.9. Adding a session
 
-### 11.5. Deleting a session
+1. Prerequisites: Multiple (but less than 100) sessions in the session list.
+ 
+   1. Test case: `addses s/Tutorial 6 d/12/7/2020`<br>
+      Expected: A session is added to the bottom of the session list. A success message including the details of the added session is shown in the result box.
+      
+   1. Test case: `addses s/Tutorial 7 d/25/12/2020`<br>
+      Expected: A session is added to the top of the session list. A success message including the details of the added session is shown in the result box.
+        
+   1. Test case: `addses s/Tutorial 8 d/30/12/2020`<br>
+       Expected: Similar to previous.
+        
+   1. Test case: `addses s/Tutorial 9`<br>
+      Expected: No session is added. Error message indicating an invalid command format is shown in the result box.
+      
+   1. Test case: `addses d/30/12/2020`<br>
+      Expected: Similar to previous.
+      
+   1. Test case: `addses s/Tutorial 6 d/25/7/2020`<br>
+      Expected: No session is added. Error message indicating that the session already exists is shown in the result box.
+        
+   1. Test case: `addses s/Tutorial 8 d/30/12/2020`<br>
+      Expected: No session is added. Error message indicating that the session already exists is shown in the result box.
+   
+{ end of `manual_testing#adding_a_session` written by: Alvin Chee Teck Weng }
+
+{ start of `manual_testing#deleting_a_session` written by: Marcus Tan Wei }
+
+### 11.10. Deleting a session
 
 1. Prerequisites: Multiple (but less than 100) sessions in the session list.
 
@@ -1471,7 +1498,7 @@ Deleting a student while all students are being shown
          ![StudentsStatisticsBeforeDeleteSession](images/developer-guide/11.5.1-StudentsStatisticsBeforeDeleteSession.png)
          <p align="center"> <sub> <b>Figure 11.5.1</b>: Application view of students statistics before deleting session </sub> </p> 
          
-         ![SessionStatisticsBeforeDeleteSesion](images/developer-guide/11.5.2-SessionStatistics.png)
+         ![SessionStatisticsBeforeDeleteSession](images/developer-guide/11.5.2-SessionStatistics.png)
          <p align="center"> <sub> <b>Figure 11.5.2</b>: Application view of sessions in the session list </sub> </p> 
          
          ![StudentsStatisticsAfterDeleteSession](images/developer-guide/11.5.3-StudentsStatisticsAfterDeleteSession.png)
@@ -1490,7 +1517,7 @@ Deleting a student while all students are being shown
 
 { start of `manual_testing#enter_session` written by: Ngoh Wei Yue }
 
-### 11.6. Enter session
+### 11.11. Enter session
 
 1. Prerequisites: At least 1 session exist.
     1. Test case: `enterses 1`
@@ -1510,7 +1537,7 @@ Deleting a student while all students are being shown
 
 { start of `manual_testing#participate` written by: Ngoh Wei Yue }
 
-### 11.7. Participate
+### 11.12. Participate
 
 1. Prerequisites: User has entered a session. At least five students exist.
     1. Test case: `participate 1`
@@ -1539,7 +1566,7 @@ Deleting a student while all students are being shown
 
 { start of `manual_testing#presence` written by: Ngoh Wei Yue }
 
-### 11.8. Presence
+### 11.13. Presence
 
 1. Prerequisites: User has entered a session. At least five students exist.
     1. Test case: `presence 1`
@@ -1568,7 +1595,7 @@ Deleting a student while all students are being shown
 
 { start of `manual_testing#adding_a_note` written by: Ngoh Wei Yue }
 
-### 11.9. Adding a note
+### 11.14. Adding a note
 
 1. Prerequisites: None
     1. Test case: `addnote hello`
@@ -1584,7 +1611,7 @@ Deleting a student while all students are being shown
 
 { start of `manual_testing#saving_the_memo` written by: Ngoh Wei Yue }
 
-### 11.10. Saving the memo
+### 11.15. Saving the memo
 
 1. Prerequisites: Focus is on `MemoBox` (outline of `MemoBox` is in turquoise). User is using a Windows/Linux machine.
     1. Test case: The `ctrl` key is pressed and held down while pressing the `s` key.
@@ -1606,24 +1633,54 @@ Deleting a student while all students are being shown
 
 { end of `manual_testing#saving_the_memo` written by: Ngoh Wei Yue }
 
-{ start of `appendix` written by: _________ }
+{ start of `appendix` written by: Masagca Eris Jacey }
 
 ## 12. Appendix: effort
 
 **Difficulty level:**
 
-* todo
+The overall difficulty level of the project was relatively high. 
+For most of our team, this was our first significant foray into the world of software engineering, and specifically
+our first time working in a group to develop a medium-sized application.
 
 **Challenges faced:**
 
-* todo
+* It was our first time working on a brown-field project, so a few weeks were needed just to get used to the existing codebase.
+* It was also our first time dealing with some of the libraries and frameworks used in this project (like Jackson), 
+  so a bit of time was needed to be familiar with them.
+* (in the beginning especially) We faced issues regarding project management (specifically role delegation), and
+  we had troubles with resolving merge conflicts and meeting deadlines in our first iteration.
+* With each new iteration, we would sometimes face regression issues, as some new features would cause older ones to be buggy. 
+* AB3 only dealt with a single entity type, but for **ATAS**, we had to deal with multiple entity types (students, 
+  sessions, attributes) which had their own specific set of complications and subtle differences in implementations.  
+* Significant time had to be spent on fixing and refining the following features: 
+   * "current session": This was an integration feature done during an early iteration when we were still relatively unfamiliar with the codebase.
+   * "undo/redo": This was a feature that was hard to get right because of the different entity types being slightly different in nature.
+     ("students" were a "one-layer" entity while each "session" had their own list of "attributes", making it a "two-layer" entity)
 
 **Effort required:**
 
-* todo
+* Weekly meetings were held (about 2 hours every Wednesday) to review what had been done in the week prior, as well as 
+  discuss future tasks for the next week.
+* Our team worked tirelessly week in and week out for several (~7) weeks, sparing no effort during each iteration 
+  (on both new implementations as well as making sure the older ones aren't buggy).
+* We emphasized on communication being key and ensured the following:
+   * No PR (made by one teammate) would be merged unless explicitly reviewed and approved by another teammate.
+   * Queries, no matter how small, would be answered promptly in our shared Telegram group channel.
+   * Each meeting was productive and preparations were made prior to each in the form of a meeting agenda.
+   * Conflicts were resolved amicably. 
 
 **Achievements:**
 
-* todo
+* Overall, we managed to develop a product that we could be proud of.
+* Each team member was absolutely vital to the success of the completion of **ATAS**. Everyone had a distinct role to play
+  and was more than willing to help one another out with their respective tasks.
+* Our team has learned a lot throughout the development of **ATAS**. 
+  We have become significantly more adept to handling the different aspects of software engineering, including (but not limited to):
+   * General programming competencies (especially in Java) (adhering to code style, improved OOP skills, etc.)
+   * Project management (meeting deadlines and deliverables)
+   * Good documentation writing (user guide, developer guide, etc.)
+   * Conflict resolution
+* This project has only made us hungrier and ready to overcome more challenges in the realm of software development in the future. 
 
-{ end of `appendix` written by: _________ }
+{ end of `appendix` written by: Masagca Eris Jacey }

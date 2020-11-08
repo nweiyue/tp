@@ -167,7 +167,8 @@ For the good majority of visual learners, we figured to present information in a
 5. Now click on the Student tab and notice how the app contains some sample data. <br/>
     ![StudentSampleData](images/user-guide/3.2-StudentSampleData.png)
 
-    <p align="center"> <sub> <b>Figure 3.2.1</b>: Student sample data </sub> </p>
+<p align="center"> <sub> <b>Figure 3.2</b>: Student sample data </sub> </p>
+
    
 6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -596,9 +597,11 @@ addstu n/NAME m/MATRICULATION_NUMBER e/NUS_EMAIL_ADDRESS [t/TAG]…
 
 :information_source: **Notes about the usage of this command:** 
 * The name of a student should not contain special characters.
-* The matriculation number of a student should be in the form of A0123456X
-* **ATAS** only accepts NUS email address, i.e. xxx@u.nus.edu
-* A student can have any number of tags (including 0) 
+* The matriculation number of a student should be in the form of A0123456X.
+* **ATAS** only accepts NUS email address, i.e. xxx@u.nus.edu.
+* A student can have any number of tags (including 0) .
+* A tag is made up of one single word.
+* Students added can have the same name, but they cannot have the same matriculation number or NUS email as other students in the list.
 
 </div>
 
@@ -740,6 +743,8 @@ editstu INDEX (n/UPDATED_NAME) (e/UPDATED_EMAIL_ADDRESS) (m/UPDATED_MATRICULATIO
 * You will then be prompted for a confirmation input **`Edit student INDEX? (yes/no)`**.
    * If yes: edits and updates the particulars of the specified student from the student list.
    * If no: the specified student's particulars remains the same.
+* A tag is made up of one single word.
+* Students edited can have the same name, but they cannot have the same Matriculation number or NUS email as other students in the list.
 
 </div>
 
