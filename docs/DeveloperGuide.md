@@ -1388,10 +1388,10 @@ Adding a session while all sessions are being shown.
    1. Prerequisites: Multiple (but less than 100) sessions in the session list.
  
    1. Test case: `addses s/Tutorial 6 d/12/7/2020`<br>
-      Expected: A session is added to the bottom of the session list. A success message including the particulars of the added student is shown in the result box.
+      Expected: A session is added to the bottom of the session list. A success message including the details of the added session is shown in the result box.
       
    1. Test case: `addses s/Tutorial 7 d/25/12/2020`<br>
-      Expected: A session is added to the top of the session list. A success message including the particulars of the added student is shown in the result box.
+      Expected: A session is added to the top of the session list. A success message including the details of the added session is shown in the result box.
         
    1. Test case: `addses s/Tutorial 8 d/30/12/2020`<br>
        Expected: Similar to previous.
@@ -1408,7 +1408,7 @@ Adding a session while all sessions are being shown.
    1. Test case: `addses s/Tutorial 8 d/30/12/2020`<br>
       Expected: No session is added. Error message indicating that the session already exists is shown in the result box.
    
-{ end of `manual_testing#adding_a_session` written by: Alvin Chee Teck Weng}
+{ end of `manual_testing#adding_a_session` written by: Alvin Chee Teck Weng }
 
 { start of `manual_testing#deleting_a_session` written by: Marcus Tan Wei }
 
