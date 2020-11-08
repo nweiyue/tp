@@ -42,16 +42,10 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ### 3.1 Architecture
 
-<img src="images/developer-guide/3.1.1-ArchitectureDiagram.png" width="450" />
+![ArchitectureDiagram](images/developer-guide/3.1.1-ArchitectureDiagram.png)
 <p align="center"> <sub> <b>Figure 3.1.1</b>: Architecture Diagram </sub> </p> 
 
 The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
-
-<div markdown="span" class="alert alert-primary">
-
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
-
-</div>
 
 **`Main`** has two classes called [`Main`](https://github.com/AY2021S1-CS2103T-W16-4/tp/blob/master/src/main/java/atas/Main.java) and [`MainApp`](https://github.com/AY2021S1-CS2103T-W16-4/tp/blob/master/src/main/java/atas/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
@@ -74,13 +68,13 @@ Each of the four components,
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
 ![Class Diagram of the Logic Component](images/developer-guide/3.1.2-LogicClassDiagram.png)
-<p align="center"> <sub> <b>Figure 3.1.2</b>: Logic class diagram </sub> </p> 
+<p align="center"> <sub> <b>Figure 3.1.2</b>: Example of class diagram for Logic component </sub> </p> 
 
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `addses s/Tutorial 1 d/10/10/2020`.
 
-<img src="images/developer-guide/3.1.3-ArchitectureSequenceDiagram.png" width="650" />
+![Architecture sequence diagram](images/developer-guide/3.1.3-ArchitectureSequenceDiagram.png)
 <p align="center"> <sub> <b>Figure 3.1.3</b>: Architecture sequence diagram </sub> </p> 
 
 The sections below give more details of each component.
@@ -114,6 +108,7 @@ The `UI` component,
 ### 3.3. Logic component
 
 ![Structure of the Logic Component](images/developer-guide/3.3-1-LogicClassDiagram.png)
+<p align="center"> <sub> <b>Figure 3.3.1</b>: Class diagram of the Logic component </sub> </p> 
 
 **API** :
 [`Logic.java`](https://github.com/AY2021S1-CS2103T-W16-4/tp/blob/master/src/main/java/atas/logic/Logic.java)
@@ -157,7 +152,7 @@ The `Model`,
 ### 3.5. Storage component
 
 ![Structure of the Storage Component](images/developer-guide/3.5.1-StorageClassDiagram.png)
-<p align="center"> <sub> <b>Figure 3.5.1</b>: Storage </sub> </p> 
+<p align="center"> <sub> <b>Figure 3.5.1</b>: Class diagram of the Storage component </sub> </p> 
 
 **API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-W16-4/tp/blob/master/src/main/java/atas/storage/Storage.java)
 
@@ -215,7 +210,7 @@ Step 5. `MainWindow#handleSwitchTab()` will then be called and will check if the
 The following sequence diagram shows how the switch operation works:
 
 ![SwitchTabsSequenceDiagram](images/developer-guide/4.1.1-SwitchTabsSequenceDiagram.png)
-<p align="center"> <sub> <b>Figure 4.1.1</b>: Sequence diagram showing how `Ui` component works with the `Logic` component to switch tabs </sub> </p> 
+<p align="center"> <sub> <b>Figure 4.1.1</b>: Sequence diagram showing how Ui component works with the Logic component to switch tabs </sub> </p> 
 
 The following activity diagram summarizes what happens when a user executes a switch command:
 
@@ -275,15 +270,15 @@ Step 5. The `ConfirmationAcceptCommand` or `ConfirmationRejectCommand` is then e
 The following sequence diagram shows how the user confirmation feature works:
 
 ![UserConfirmationSequenceDiagram1](images/developer-guide/4.2.1-UserConfirmationSequenceDiagram1.png)
-<p align="center"> <sub> <b>Figure 4.2.1</b>: User confirmation sequence part 1 </sub> </p> 
+<p align="center"> <sub> <b>Figure 4.2.1</b>: Sequence diagram to show how Logic component works with Model component to provide user confirmation of delete student command </sub> </p> 
 
 ![UserConfirmationSequenceDiagram2](images/developer-guide/4.2.2-UserConfirmationSequenceDiagram2.png)
-<p align="center"> <sub> <b>Figure 4.2.2</b>: User confirmation sequence part 2 </sub> </p> 
+<p align="center"> <sub> <b>Figure 4.2.2</b>: Sequence diagram to show how Logic component works with Model component after entering user confirmation </sub> </p> 
 
 The following activity diagram summarizes what happens when a user executes a dangerous command (for eg. `DeleteStudentCommand`).
 
 ![DeleteStudentActivityDiagram](images/developer-guide/4.2.3-DeleteStudentActivityDiagram.png)
-<p align="center"> <sub> <b>Figure 4.2.3</b>: Activity diagram for delete student</sub> </p> 
+<p align="center"> <sub> <b>Figure 4.2.3</b>: Activity diagram showing the implementation of delete student command </sub> </p> 
 
 { end of `implementation#user_confirmation` written by: Marcus Tan Wei }
 
@@ -311,7 +306,7 @@ the current session list later.
  back to the `LogicManager`.
 
 ![AddSessionSequenceDiagram1](images/developer-guide/4.3.1-AddSessionSequenceDiagram1.png)
-<p align="center"> <sub> <b>Figure 4.3.1</b>: Add Session Sequence Diagram 1 </sub> </p> 
+<p align="center"> <sub> <b>Figure 4.3.1</b>: Sequence diagram showing the Logic component when adding session command </sub> </p> 
 
 Step 2: Add session to the model/session list
 
@@ -324,12 +319,12 @@ the internal student list of the session list, then it uses addSession method to
 list.
 
 ![AddSessionSequenceDiagram2](images/developer-guide/4.3.2-AddSessionSequenceDiagram2.png)
-<p align="center"> <sub> <b>Figure 4.3.2</b>: Add Session Sequence Diagram 2 </sub> </p> 
+<p align="center"> <sub> <b>Figure 4.3.2</b>: Sequence diagram showing how Logic component works with Model component to add session command</sub> </p> 
 
 The following activity diagram summarizes what happens when a user executes an `addses` command:
 
 ![AddSessionActivityDiagram](images/developer-guide/4.3.3-AddSessionActivityDiagram.png)
-<p align="center"> <sub> <b>Figure 4.3.3</b>: Add Session Activity Diagram </sub> </p> 
+<p align="center"> <sub> <b>Figure 4.3.3</b>: Activity diagram showing the implementation of add session command </sub> </p> 
 
 { end of `implementation#adding_a_session` written by: Zhang Sheng Yang }
 
@@ -367,13 +362,13 @@ Step 4. `Model#enterSession()` will be called by `EnterSession#execute()` and th
 
 The following sequence diagram shows how the enter session operation works:
 
-![EnterSessionSequenceDiagram](images/developer-guide/4.4.1-EnterSessionSequenceDiagram.png)
-<p align="center"> <sub> <b>Figure 4.4.1</b>: Enter Session Sequence Diagram </sub> </p>
+![EnterSessionSequenceDiagram](images/EnterSessionSequenceDiagram.png)
+<p align="center"> <sub> <b>Figure 4.4.1</b>: Sequence diagram showing how Logic component works with Model component to enter session command</sub> </p>
 
 The following activity diagram summarizes what happens when a user executes an enter session command:
 
-![EnterSessionActivityDiagram](images/developer-guide/4.4.2-EnterSessionActivityDiagram.png)
-<p align="center"> <sub> <b>Figure 4.4.2</b>: Enter Session Activity Diagram </sub> </p>
+![EnterSessionActivityDiagram](images/EnterSessionActivityDiagram.png)
+<p align="center"> <sub> <b>Figure 4.4.2</b>: Activity diagram showing the implementation of enter session command</sub> </p>
 
 { end of `implementation#entering_a_session` written by: Alvin Chee Teck Weng }
 
@@ -399,7 +394,7 @@ user input and split it into `String` slices. If the input index range is valid,
 a placeholder. The `ParticipateCommand` object created will be passed back to `LogicManager` to execute.
 
 ![ParticipateSequenceDiagram1](images/developer-guide/4.5.1-ParticipateSequenceDiagram1.png)
-<p align="center"> <sub> <b>Figure 4.5.1</b>: Participate Sequence Diagram 1 </sub> </p> 
+<p align="center"> <sub> <b>Figure 4.5.1</b>: Sequence diagram showing the Logic component for participate command </sub> </p> 
 
 Step 2: Toggling participation
 
@@ -415,12 +410,12 @@ when a matching session is found, `Session#updatePresence()` is called to toggle
 according to the index range. 
 
 ![ParticipateSequenceDiagram2](images/developer-guide/4.5.2-ParticipateSequenceDiagram2.png)
-<p align="center"> <sub> <b>Figure 4.5.2</b>: Participate Sequence Diagram 2 </sub> </p> 
+<p align="center"> <sub> <b>Figure 4.5.2</b>: Sequence diagram showing how Logic component works with Model component for participate command</sub> </p> 
 
 The following activity diagram summarizes what happens when a user executes an `participate` command:
 
 ![ParticipateActivityDiagram](images/developer-guide/4.5.3-ParticipateActivityDiagram.png)
-<p align="center"> <sub> <b>Figure 4.5.3</b>: Participate Activity Diagram </sub> </p> 
+<p align="center"> <sub> <b>Figure 4.5.3</b>: Activity diagram showing the implementation of participate command </sub> </p> 
 
 
 { end of `implementation#presence_and_participation` written by: Zhang Sheng Yang }
@@ -456,12 +451,12 @@ Step 3. The `Index` returned during the execution of `RngCommand#execute(Model)`
 The following sequence diagram shows how the RNG operation works:
 
 ![RngSequenceDiagram](images/developer-guide/4.6.1-RngSequenceDiagram.png)
-<p align="center"> <sub> <b>Figure 4.6.1</b>: A sequence diagram showing the implementation of the `rng` command </sub> </p> 
+<p align="center"> <sub> <b>Figure 4.6.1</b>: Sequence diagram showing how Logic component works with Model component for the rng command </sub> </p> 
 
 The following activity diagram summarizes what happens when a user executes an RNG command:
 
 ![RngActivityDiagram](images/developer-guide/4.6.2-RngActivityDiagram.png)
-<p align="center"> <sub> <b>Figure 4.6.2</b>: An activity diagram showing the series of events upon the user entering an `rng` command </sub> </p>
+<p align="center"> <sub> <b>Figure 4.6.2</b>: Activity diagram showing the series of events upon the user entering an rng command </sub> </p>
 
 { end of `implementation#random_name_generation` written by: Masagca Eris Jacey }
 
@@ -540,7 +535,7 @@ If so, it will return an error to the user rather than attempting to perform the
 The following sequence diagram shows how the undo operation works:
 
 ![UndoSequenceDiagram](images/developer-guide/4.7.5-UndoSequenceDiagram.png)
-<p align="center"> <sub> <b>Figure 4.7.5</b>: A sequence diagram showing the implementation of the `undo` operation </sub> </p> 
+<p align="center"> <sub> <b>Figure 4.7.5</b>: Sequence diagram showing how the Logic component works with Model component for the `undo` operation </sub> </p> 
 
 The `redo` command does the opposite — it calls `Model#redo()`, which shifts the `currentStatePointer` for each versioned entity once to the right, pointing to the previously undone state, and restores each entity to that state.
 
@@ -630,7 +625,7 @@ Step 3. `ModelManager#addNoteToMemo()` calls `Memo#addNote()` which concatenates
 The following sequence diagram shows how adding a note updates the content in `Memo`:
 
 ![AddNoteSequenceDiagram1](images/developer-guide/4.8.1-AddNoteSequenceDiagram.png)
-<p align="center"> <sub> <b>Figure 4.8.1</b>: Sequence diagram showing how the `Logic` component updates the content in `Memo` </sub> </p> 
+<p align="center"> <sub> <b>Figure 4.8.1</b>: Sequence diagram showing how the Logic component updates the content in `Memo` </sub> </p> 
 
 Step 4: After the content in `Memo` is updated, `Storage#saveMemo()` is called.
 
@@ -639,7 +634,7 @@ Step 5: `StorageManager#saveMemo()` calls `TxtMemoStorage#saveMemo()` which retr
 The following sequence diagram shows how adding a note updates the data in the hard disk:
 
 ![AddNoteSequenceDiagram2](images/developer-guide/4.8.2-AddNoteSequenceDiagram.png) 
-<p align="center"> <sub> <b>Figure 4.8.2</b>: Sequence diagram showing how the `Logic` component updates the memo data in the hard disk </sub> </p> 
+<p align="center"> <sub> <b>Figure 4.8.2</b>: Sequence diagram showing how the Logic component updates the memo data in the hard disk </sub> </p> 
 
 Step 5: A `CommandResult` returned from `AddNoteCommand#execute()` is returned to `MainWindow#executeCommand()`. Since the boolean value `isEditMemo` contained in the `CommandResult` is true, `MainWindow#handleEditMemo()` is called.
 
@@ -648,7 +643,7 @@ Step 6: `MainWindow#handleEditMemo()` retrieves the updated `Memo` content using
 The following sequence diagram shows how adding a note updates the text box of `MemoBox` to be displayed to user:
 
 ![AddNoteSequenceDiagram3](images/developer-guide/4.8.3-AddNoteSequenceDiagram.png) 
-<p align="center"> <sub> <b>Figure 4.8/3</b>: Sequence diagram showing how the `Ui` component works with the `Logic` component to update the GUI </sub> </p> 
+<p align="center"> <sub> <b>Figure 4.8/3</b>: Sequence diagram showing how the Ui component works with the Logic component to update the GUI </sub> </p> 
 
 { end of `implementation#adding_a_note` written by: Ngoh Wei Yue }
 
@@ -1243,8 +1238,8 @@ Use case ends.
 
 ### 10.5. Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Matriculation number**: A unique alphanumeric number attributed to each NUS student. Follows the format A0123456X, where each digit can be from 0-9 and the last letter can be any alphabet A-Z
+* **Mainstream OS**: Windows, Linux, Unix, OS-X.
+* **Matriculation number**: A unique alphanumeric number attributed to each NUS student. Follows the format A0123456X, where each digit can be from 0-9 and the last letter can be any alphabet A-Z.
 * **Tag**: A word or phrase the user labels the student as.
 
 { end of `requirements#glossary` written by: Marcus Tan Wei }
@@ -1266,18 +1261,18 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-  1. Download the jar file and copy into an empty folder
+   1. Download the jar file and copy into an empty folder
 
-  1. Double-click the jar file Expected: Shows the GUI with a set of sample students and sample sessions. 
-  The window size may not be optimum.
-  ![ExpectedLaunchWindow](images/developer-guide/11.1-ExpectedLaunchWindow.png)
-  <p align="center"> <sub> <b>Figure 11.1.1</b>: Application view of the expected window appearance upon launch </sub> </p> 
+   1. Double-click the jar file Expected: Shows the GUI with a set of sample students and sample sessions. 
+   The window size may not be optimum.
+   ![ExpectedLaunchWindow](images/developer-guide/11.1-ExpectedLaunchWindow.png)
+   <p align="center"> <sub> <b>Figure 11.1.1</b>: Application view of the expected window appearance upon launch </sub> </p> 
 
 1. Saving window preferences
 
-  1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-  1. Re-launch the app by double-clicking the jar file.<br>
+   1. Re-launch the app by double-clicking the jar file.<br>
       Expected: The most recent window size and location is retained.
 
 { end of `manual_testing#launch_and_shutdown` written by: Masagca Eris Jacey }
@@ -1286,7 +1281,7 @@ testers are expected to do more *exploratory* testing.
 
 ### 11.2. Adding a student
 
-  1. Adding a student while all students are being shown.
+Adding a student while all students are being shown.
   
   1. Prerequisites: List all students using the list command. No students with the same matriculation number or NUS email address as any of the students to be added during testing.
 
@@ -1336,35 +1331,48 @@ testers are expected to do more *exploratory* testing.
 
 ### 11.3. Deleting a student
 
-1. Deleting a student while all students are being shown
+Deleting a student while all students are being shown
 
   1. Prerequisites: List all students using the `liststu` command. Multiple (but less than 100) students in the list.
 
   1. Test case: `deletestu 1`<br>
-     Expected: First contact is deleted from the list. Details of the deleted contact shown in the ResultDisplay.
-
+     Expected: Confirmation prompt to delete the first student from the list. Message of confirmation prompt is shown in the result box.
+     
+     1. Test case 3.1: `yes` <br>
+        Expected: First student on the list is deleted from the list. Message regarding student deletion is shown in the result box.
+              
+     1. Test case 3.2: `no` <br>
+        Expected: First student on the list is not deleted from the list. Message regarding command not executed is shown in the result box.  
+     
   1. Test case: `deletestu 0`<br>
-     Expected: No student is deleted. Error details shown in the ResultDisplay. 
+     Expected: No student is deleted. Invalid index error details shown in the result box. 
 
   1. Test case: `deletestu 101`<br>
-     Expected: No student is deleted. Error details shown in the ResultDisplay.
+     Expected: No student is deleted. Invalid index error details shown in the result box.
      
   1. Other incorrect delete commands to try: `deletestu`, `deletestu x`, `...` (where x is larger than the list size)<br>
      Expected: Similar to previous.
+     
 
-1. Deleting a student while only some students are being shown
+Deleting a student while only some students are being shown
    
    1. Prerequisites: List some students using `findstu` command. Multiple (but less than 100) students are in the list.
    One or more (but less than 100) student is shown in the StudentListPanel.
    
    1. Test case: `deletestu 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the ResultDisplay.
-   
+      Expected: Confirmation prompt to delete the first student from the list. Message of confirmation prompt is shown in the result box.
+      
+      1. Test case: `yes` <br>
+         Expected: First student on the list is deleted from the list. Message regarding student deletion is shown in the result box.
+         
+      1. Test case: `no` <br>
+         Expected: First student on the list is not deleted from the list. Message regarding command not executed is shown in the result box.  
+      
    1. Test case: `deletestu 0`<br>
-      Expected: No student is deleted. Error details shown in the ResultDisplay. 
+      Expected: No student is deleted. Invalid index error details shown in the result box. 
    
    1. Test case: `deletestu 101`<br>
-      Expected: No student is deleted. Error details shown in the ResultDisplay.
+      Expected: No student is deleted. Invalid index error details shown in the result box.
       
    1. Other incorrect delete commands to try: `deletestu`, `deletestu x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
@@ -1379,13 +1387,59 @@ todo
 
 { end of `manual_testing#adding_a_session` written by: ________ }
 
-{ start of `manual_testing#deleting_a_session` written by: ________ }
+{ start of `manual_testing#deleting_a_session` written by: Marcus Tan Wei }
 
 ### 11.5. Deleting a session
 
-todo
+Deleting sessions in sessions tab
+   
+   1. Prerequisites: Multiple (but less than 100) sessions in the session list.
 
-{ end of `manual_testing#deleting_a_session` written by: ________ }
+   1. Test case: `deleteses 1` <br>
+      Expected: Confirmation prompt to delete the first session from the session list. Message of confirmation prompt is shown in the result box.
+      
+      1. Test case: `yes` <br>
+         Expected: First session on the list is deleted from the list. Message regarding session deletion is shown in the result box.
+         
+      1. Test case: `no` <br>
+         Expected: First session on the list is not deleted from the list. Message regarding command not executed is shown in the result box.  
+      
+   1. Test case: `deleteses 0` <br>
+      Expected: No session is deleted. Invalid index error details shown in the ResultDisplay. 
+      
+   1. Test case: `deleteses 101` <br>
+      Expected: No session is deleted. Invalid index error details shown in the ResultDisplay.
+
+Deleting sessions in the students tab
+
+   1. Prerequisites: Multiple (but less than 100) sessions in the session list. Multiple students in the student list.
+      Some sessions have marked participation and presence.
+   
+   1. Test case: `deleteses 1` <br>
+      Expected: Confirmation prompt to delete the first session from the session list. Message of confirmation prompt is shown in the result box.
+      
+      1. Test case: `yes` <br>
+         Expected: First session on the list is deleted from the list. Message regarding session deletion is shown in the result box. Statistics of students will change accordingly, taking into account of removed session.
+         
+         ![StudentsStatisticsBeforeDeleteSession](images/developer-guide/11.5.1-StudentsStatisticsBeforeDeleteSession.png)
+         <p align="center"> <sub> <b>Figure 11.5.1</b>: Application view of students statistics before deleting session </sub> </p> 
+         
+         ![SessionStatisticsBeforeDeleteSesion](images/developer-guide/11.5.2-SessionStatistics.png)
+         <p align="center"> <sub> <b>Figure 11.5.2</b>: Application view of sessions in the session list </sub> </p> 
+         
+         ![StudentsStatisticsAfterDeleteSession](images/developer-guide/11.5.3-StudentsStatisticsAfterDeleteSession.png)
+         <p align="center"> <sub> <b>Figure 11.5.3</b>: Application view of students statistics after session is deleted </sub> </p> 
+         
+      1. Test case: `no` <br>
+         Expected: First session on the list is not deleted from the list. Message regarding command not executed is shown in the result box.
+         
+   1. Test case: `deleteses 0` <br>
+      Expected: No session is deleted. Invalid index error details shown in the result box. 
+      
+   1. Test case: `deleteses 101` <br>
+      Expected: No session is deleted. Invalid index error details shown in the result box.  
+
+{ end of `manual_testing#deleting_a_session` written by: Marcus Tan Wei }
 
 { start of `appendix` written by: _________ }
 
