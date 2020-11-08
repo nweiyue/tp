@@ -26,13 +26,13 @@ or to simply gain a deeper insight into [the team's](AboutUs.md) development pro
 
 --------------------------------------------------------------------------------------------------------------------
 
-{ start of `setting_up` written by: ___________ }
+{ start of `setting_up` written by: Zhang Sheng Yang }
 
 ## 2. Setting up
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
-{ end of `setting_up` written by: ___________ }
+{ end of `setting_up` written by: Zhang Sheng Yang }
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -57,14 +57,14 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
-[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+[**`Commons`**](#36-common-classes) represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* [**`UI`**](#32-ui-component): The UI of the App.
+* [**`Logic`**](#33-logic-component): The command executor.
+* [**`Model`**](#34-model-component): Holds the data of the App in memory.
+* [**`Storage`**](#35-storage-component): Reads data from, and writes data to, the hard disk.
 
 Each of the four components,
 
@@ -126,7 +126,7 @@ The `UI` component,
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("enterses 1")` API call.
 
-![Interactions Inside the Logic Component for the `enterses 1` Command](images/EnterSessionSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `enterses 1` Command](images/developer-guide/4.4.1-EnterSessionSequenceDiagram.png)
 <p align="center"> <sub> <b>Figure 3.3.1</b>: Enter Session Sequence Diagram </sub> </p>
 
 { end of `design#logic_component` written by: Alvin Chee Teck Weng }
@@ -367,12 +367,12 @@ Step 4. `Model#enterSession()` will be called by `EnterSession#execute()` and th
 
 The following sequence diagram shows how the enter session operation works:
 
-![EnterSessionSequenceDiagram](images/EnterSessionSequenceDiagram.png)
+![EnterSessionSequenceDiagram](images/developer-guide/4.4.1-EnterSessionSequenceDiagram.png)
 <p align="center"> <sub> <b>Figure 4.4.1</b>: Enter Session Sequence Diagram </sub> </p>
 
 The following activity diagram summarizes what happens when a user executes an enter session command:
 
-![EnterSessionActivityDiagram](images/EnterSessionActivityDiagram.png)
+![EnterSessionActivityDiagram](images/developer-guide/4.4.2-EnterSessionActivityDiagram.png)
 <p align="center"> <sub> <b>Figure 4.4.2</b>: Enter Session Activity Diagram </sub> </p>
 
 { end of `implementation#entering_a_session` written by: Alvin Chee Teck Weng }
