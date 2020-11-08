@@ -29,7 +29,7 @@ Given below are my contributions to the project.
     * Amendment of format, style. [\#236](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/236), [\#241](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/241), [\#249](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/249)
   * Developer Guide:
     * Added implementation of storage component. Added feature implementation of adding a session. [\#125](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/125)
-    * Added deature implementation of participate and presence. Add use cases. [\#236](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/236)
+    * Added feature implementation of participate and presence. Add use cases. [\#236](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/236)
   * About Us:
     * Edited personal information  [\#41](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/134)
 
