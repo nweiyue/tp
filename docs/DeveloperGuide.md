@@ -1238,7 +1238,7 @@ Use case ends.
 
 ### 10.5. Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Mainstream OS**: Windows, Linux, Unix, OS-X.
 * **Matriculation number**: A unique alphanumeric number attributed to each NUS student. Follows the format A0123456X, where each digit can be from 0-9 and the last letter can be any alphabet A-Z.
 * **Tag**: A word or phrase the user labels the student as.
 
