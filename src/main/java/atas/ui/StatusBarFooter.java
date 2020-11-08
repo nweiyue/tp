@@ -10,7 +10,6 @@ import javafx.scene.layout.Region;
 public class StatusBarFooter extends UiPart<Region> {
 
     private static final String FXML = "StatusBarFooter.fxml";
-    private static final String SPACE = "   ";
 
     @FXML
     private Label currentSessionLeftStatus;
@@ -19,20 +18,18 @@ public class StatusBarFooter extends UiPart<Region> {
     private Label currentSessionRightStatus;
 
     @FXML
-    private Label emptyLeft;
+    private Region emptyLeft;
 
     @FXML
-    private Label emptyRight;
+    private Region emptyRight;
 
     /**
      * Creates a {@code StatusBarFooterLeft} with the given {@code Path}.
      */
     public StatusBarFooter(String sessionStatusLeft , String sessionStatusRight) {
         super(FXML);
-        emptyLeft.setText(SPACE);
         currentSessionLeftStatus.setText(sessionStatusLeft);
         currentSessionRightStatus.setText(sessionStatusRight);
-        emptyRight.setText(SPACE);
     }
 
 }

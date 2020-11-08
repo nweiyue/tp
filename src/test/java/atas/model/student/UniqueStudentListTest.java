@@ -4,6 +4,8 @@ import static atas.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static atas.testutil.Assert.assertThrows;
 import static atas.testutil.TypicalStudents.ALICE;
 import static atas.testutil.TypicalStudents.BOB;
+import static atas.testutil.TypicalStudents.UNUSED_VALID_EMAIL;
+import static atas.testutil.TypicalStudents.UNUSED_VALID_MATRICULATION;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -54,7 +56,31 @@ public class UniqueStudentListTest {
     @Test
     public void add_duplicateStudent_throwsDuplicateStudentException() {
         uniqueStudentList.add(ALICE);
+        // ALICE will have same email and matriculation as ALICE.
+        assertTrue(ALICE.isSameStudent(ALICE));
         assertThrows(DuplicateStudentException.class, () -> uniqueStudentList.add(ALICE));
+    }
+
+    @Test
+    public void add_studentWithUsedEmail_throwsDuplicateStudentException() {
+        // Student to be added has email that belongs to a student in the student list.
+        // studentWithUsedEmail has same email but different matriculation from Alice.
+        Student studentWithUsedEmail = new StudentBuilder(ALICE).withMatriculation(UNUSED_VALID_MATRICULATION).build();
+        assertFalse(studentWithUsedEmail.isSameStudent(ALICE));
+        assertTrue(studentWithUsedEmail.hasSameField(ALICE));
+        uniqueStudentList.add(ALICE);
+        assertThrows(DuplicateStudentException.class, () -> uniqueStudentList.add(studentWithUsedEmail));
+    }
+
+    @Test
+    public void add_studentWithUsedMatriculation_throwsDuplicateStudentException() {
+        // Student to be added has email that belongs to a student in the student list.
+        // studentWithUsedEmail has same matriculation but different email from Alice.
+        Student studentWithUsedMatriculation = new StudentBuilder(ALICE).withEmail(UNUSED_VALID_EMAIL).build();
+        assertFalse(studentWithUsedMatriculation.isSameStudent(ALICE));
+        assertTrue(studentWithUsedMatriculation.hasSameField(ALICE));
+        uniqueStudentList.add(ALICE);
+        assertThrows(DuplicateStudentException.class, () -> uniqueStudentList.add(studentWithUsedMatriculation));
     }
 
     @Test

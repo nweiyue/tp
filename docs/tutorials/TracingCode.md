@@ -16,12 +16,12 @@ When trying to understand an unfamiliar code base, one common strategy used is t
 
 Before we jump into the code, it is useful to get an idea of the overall structure and the high-level behavior of the application. This is provided in the 'Architecture' section of the developer guide. In particular, the architecture diagram (reproduced below), tells us that the App consists of several components.
 
-![ArchitectureDiagram](../images/ArchitectureDiagram.png)
+![ArchitectureDiagram](../images/developer-guide/3.1.1-ArchitectureDiagram.png)
 
 It also has a sequence diagram (reproduced below) that tells us how a command propagates through the App.
 
 ![Architecture sequence diagram from the developer
-guide](../images/ArchitectureSequenceDiagram.png)
+guide](../images/developer-guide/3.1.3-ArchitectureSequenceDiagram.png)
 
 Note how the diagram shows only how the execution flows *between* the main components. That is, it does not show details of the execution path *inside* each component. By hiding those details, the diagram succeeds in informing the reader about the overall execution path of a command without overwhelming the reader with too much details. In this tutorial, you aim to find those omitted details so that you get a more in-depth understanding of the code base.
 

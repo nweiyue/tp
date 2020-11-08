@@ -18,48 +18,47 @@ title: Developer Guide
 
 ## 1. Introduction
 
+This developer guide provides an overview and details of the system architecture and implementation of **ATAS**.
+Its purpose is to provide a useful reference for other developers who wish to contribute to the ongoing project of **ATAS**,
+or to simply gain a deeper insight into [the team's](AboutUs.md) development process and considerations.
+
 { end of `introduction` written by: Masagca Eris Jacey }
 
 --------------------------------------------------------------------------------------------------------------------
 
-{ start of `setting_up` written by: ___________ }
+{ start of `setting_up` written by: Zhang Sheng Yang }
 
 ## 2. Setting up
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
-{ end of `setting_up` written by: ___________ }
+{ end of `setting_up` written by: Zhang Sheng Yang }
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## 3. Design
 
-{ start of `design#architecture` written by: ___________ }
+{ start of `design#architecture` written by: Marcus Tan Wei }
 
 ### 3.1 Architecture
 
-<img src="images/ArchitectureDiagram.png" width="450" />
+![ArchitectureDiagram](images/developer-guide/3.1.1-ArchitectureDiagram.png)
+<p align="center"> <sub> <b>Figure 3.1.1</b>: Architecture Diagram </sub> </p> 
 
 The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
-
-<div markdown="span" class="alert alert-primary">
-
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
-
-</div>
 
 **`Main`** has two classes called [`Main`](https://github.com/AY2021S1-CS2103T-W16-4/tp/blob/master/src/main/java/atas/Main.java) and [`MainApp`](https://github.com/AY2021S1-CS2103T-W16-4/tp/blob/master/src/main/java/atas/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
-[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+[**`Commons`**](#36-common-classes) represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* [**`UI`**](#32-ui-component): The UI of the App.
+* [**`Logic`**](#33-logic-component): The command executor.
+* [**`Model`**](#34-model-component): Holds the data of the App in memory.
+* [**`Storage`**](#35-storage-component): Reads data from, and writes data to, the hard disk.
 
 Each of the four components,
 
@@ -68,23 +67,26 @@ Each of the four components,
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
-![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
+![Class Diagram of the Logic Component](images/developer-guide/3.1.2-LogicClassDiagram.png)
+<p align="center"> <sub> <b>Figure 3.1.2</b>: Example of class diagram for Logic component </sub> </p> 
 
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `addses s/Tutorial 1 d/10/10/2020`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+![Architecture sequence diagram](images/developer-guide/3.1.3-ArchitectureSequenceDiagram.png)
+<p align="center"> <sub> <b>Figure 3.1.3</b>: Architecture sequence diagram </sub> </p> 
 
 The sections below give more details of each component.
 
-{ end of `design#architecture` written by: ___________ }
+{ end of `design#architecture` written by: Marcus Tan Wei }
 
-{ start of `design#ui_component` written by: ___________ }
+{ start of `design#ui_component` written by: Ngoh Wei Yue }
 
 ### 3.2. UI component
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+![Class Diagram of the UI Component](images/developer-guide/3.2.1-UiClassDiagram.png)
+<p align="center"> <sub> <b>Figure 3.2.1</b>: Class diagram of the Ui component </sub> </p> 
 
 **API** :
 [`Ui.java`](https://github.com/AY2021S1-CS2103T-W16-4/tp/blob/master/src/main/java/atas/ui/Ui.java)
@@ -99,13 +101,14 @@ The `UI` component,
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 * Displays results to user if any.
 
-{ end of `design#ui_component` written by: ___________ }
+{ end of `design#ui_component` written by: Ngoh Wei Yue }
 
-{ start of `design#logic_component` written by: ___________ }
+{ start of `design#logic_component` written by: Alvin Chee Teck Weng }
 
 ### 3.3. Logic component
 
-![Structure of the Logic Component](images/LogicClassDiagram.png)
+![Structure of the Logic Component](images/developer-guide/3.3-1-LogicClassDiagram.png)
+<p align="center"> <sub> <b>Figure 3.3.1</b>: Class diagram of the Logic component </sub> </p> 
 
 **API** :
 [`Logic.java`](https://github.com/AY2021S1-CS2103T-W16-4/tp/blob/master/src/main/java/atas/logic/Logic.java)
@@ -118,15 +121,17 @@ The `UI` component,
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("enterses 1")` API call.
 
-![Interactions Inside the Logic Component for the `enterses 1` Command](images/EnterSessionSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `enterses 1` Command](images/developer-guide/4.4.1-EnterSessionSequenceDiagram.png)
+<p align="center"> <sub> <b>Figure 3.3.1</b>: Enter Session Sequence Diagram </sub> </p>
 
-{ end of `design#logic_component` written by: ___________ }
+{ end of `design#logic_component` written by: Alvin Chee Teck Weng }
 
 { start of `design#model_component` written by: Masagca Eris Jacey }
 
 ### 3.4. Model component
 
-![Structure of the Model Component](images/ModelClassDiagram.png)
+![Structure of the Model Component](images/developer-guide/3.4.1-ModelClassDiagram.png)
+<p align="center"> <sub> <b>Figure 3.4.1</b>: Class diagram of the Model component </sub> </p> 
 
 **API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-W16-4/tp/blob/master/src/main/java/atas/model/Model.java)
 
@@ -142,11 +147,12 @@ The `Model`,
 
 { end of `design#model_component` written by: Masagca Eris Jacey }
 
-{ start of `design#storage_component` written by: Masagca Eris Jacey }
+{ start of `design#storage_component` written by: Zhang Sheng Yang }
 
 ### 3.5. Storage component
 
-![Structure of the Storage Component](images/StorageClassDiagram.png)
+![Structure of the Storage Component](images/developer-guide/3.5.1-StorageClassDiagram.png)
+<p align="center"> <sub> <b>Figure 3.5.1</b>: Class diagram of the Storage component </sub> </p> 
 
 **API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-W16-4/tp/blob/master/src/main/java/atas/storage/Storage.java)
 
@@ -156,15 +162,15 @@ The `Storage` component,
 * can save the session list data in json format and read it back.
 * can save the memo data in txt file and read it back.
 
-{ end of `design#storage_component` written by: Masagca Eris Jacey }
+{ end of `design#storage_component` written by: Zhang Sheng Yang }
 
-{ start of `design#common_classes` written by: Masagca Eris Jacey }
+{ start of `design#common_classes` written by: Zhang Sheng Yang }
 
 ### 3.6. Common classes
 
-Classes used by multiple components are in the `seedu.atas.commons` package.
+Classes used by multiple components are in the `atas.commons` package.
 
-{ end of `design#common_classes` written by: Masagca Eris Jacey }
+{ end of `design#common_classes` written by: Zhang Sheng Yang }
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -172,7 +178,7 @@ Classes used by multiple components are in the `seedu.atas.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-{ start of `implementation#switch_between_tabs` written by: ________ }
+{ start of `implementation#switch_between_tabs` written by: Ngoh Wei Yue }
 
 ### 4.1. Switching between different tabs
 
@@ -203,19 +209,21 @@ Step 5. `MainWindow#handleSwitchTab()` will then be called and will check if the
 
 The following sequence diagram shows how the switch operation works:
 
-![SwitchTabsSequenceDiagram](images/SwitchTabsSequenceDiagram.png)
+![SwitchTabsSequenceDiagram](images/developer-guide/4.1.1-SwitchTabsSequenceDiagram.png)
+<p align="center"> <sub> <b>Figure 4.1.1</b>: Sequence diagram showing how Ui component works with the Logic component to switch tabs </sub> </p> 
 
 The following activity diagram summarizes what happens when a user executes a switch command:
 
-![SwitchTabsActivityDiagram](images/SwitchTabsActivityDiagram.png)
+![SwitchTabsActivityDiagram](images/developer-guide/4.1.2-SwitchTabsActivityDiagram.png)
+<p align="center"> <sub> <b>Figure 4.1.2</b>: Activity diagram showing the implementation of switching between tabs </sub> </p> 
 
 #### 4.1.1. Design consideration
 
 * `Tab` is being implemented as an enum class because there is a fixed set of tabs that are available to be switched to. This prevents invalid values to be assigned to `Tab`.
 
-{ end of `implementation#switch_between_tabs` written by: ________ }
+{ end of `implementation#switch_between_tabs` written by: Ngoh Wei Yue }
 
-{ start of `implementation#user_confirmation` written by: ________ }
+{ start of `implementation#user_confirmation` written by: Marcus Tan Wei }
 
 ### 4.2. User confirmation
 
@@ -261,20 +269,25 @@ Step 5. The `ConfirmationAcceptCommand` or `ConfirmationRejectCommand` is then e
 
 The following sequence diagram shows how the user confirmation feature works:
 
-![UserConfirmationSequenceDiagram](images/UserConfirmationSequenceDiagram.png)
+![UserConfirmationSequenceDiagram1](images/developer-guide/4.2.1-UserConfirmationSequenceDiagram1.png)
+<p align="center"> <sub> <b>Figure 4.2.1</b>: Sequence diagram to show how Logic component works with Model component to provide user confirmation of delete student command </sub> </p> 
+
+![UserConfirmationSequenceDiagram2](images/developer-guide/4.2.2-UserConfirmationSequenceDiagram2.png)
+<p align="center"> <sub> <b>Figure 4.2.2</b>: Sequence diagram to show how Logic component works with Model component after entering user confirmation </sub> </p> 
 
 The following activity diagram summarizes what happens when a user executes a dangerous command (for eg. `DeleteStudentCommand`).
 
-![DeleteStudentActivityDiagram](images/DeleteStudentActivityDiagram.png)
+![DeleteStudentActivityDiagram](images/developer-guide/4.2.3-DeleteStudentActivityDiagram.png)
+<p align="center"> <sub> <b>Figure 4.2.3</b>: Activity diagram showing the implementation of delete student command </sub> </p> 
 
-{ end of `implementation#user_confirmation` written by: ________ }
+{ end of `implementation#user_confirmation` written by: Marcus Tan Wei }
 
-{ start of `implementation#adding_a_session` written by: ________ }
+{ start of `implementation#adding_a_session` written by: Zhang Sheng Yang }
 
 ### 4.3. Adding a session
 
-Adding a session to a class requires user input from the CLI. Adding a session to a class requires user input from
-the CLI. The parser will then parse the user input to obtain the name and the date of the session. The newly added
+Adding a session to a class requires user input from the CLI. 
+The parser will parse the user input to obtain the name and the date of the session. The newly added
 session will also be filled with students' default presence and participation.
 
 The below example given assumes that the user inputs `addses s/Tutorial 1 d/1/1/2020`, which 'Tutorial 1' and
@@ -292,7 +305,8 @@ the current session list later.
 `AddSessionCommandParser#parse()` returns a `AddSessionCommand` object that contains the session object
  back to the `LogicManager`.
 
-![AddSessionSequenceDiagram1](images/AddSessionSequenceDiagram1.png)
+![AddSessionSequenceDiagram1](images/developer-guide/4.3.1-AddSessionSequenceDiagram1.png)
+<p align="center"> <sub> <b>Figure 4.3.1</b>: Sequence diagram showing the Logic component when adding session command </sub> </p> 
 
 Step 2: Add session to the model/session list
 
@@ -304,16 +318,17 @@ Assuming that the session to add is not a session already in the list, `ModelMan
 the internal student list of the session list, then it uses addSession method to add the session to the
 list.
 
-![AddSessionSequenceDiagram2](images/AddSessionSequenceDiagram2.png)
-
+![AddSessionSequenceDiagram2](images/developer-guide/4.3.2-AddSessionSequenceDiagram2.png)
+<p align="center"> <sub> <b>Figure 4.3.2</b>: Sequence diagram showing how Logic component works with Model component to add session command</sub> </p> 
 
 The following activity diagram summarizes what happens when a user executes an `addses` command:
 
-![AddSessionActivityDiagram](images/AddSessionActivityDiagram.png)
+![AddSessionActivityDiagram](images/developer-guide/4.3.3-AddSessionActivityDiagram.png)
+<p align="center"> <sub> <b>Figure 4.3.3</b>: Activity diagram showing the implementation of add session command </sub> </p> 
 
-{ end of `implementation#adding_a_session` written by: ________ }
+{ end of `implementation#adding_a_session` written by: Zhang Sheng Yang }
 
-{ start of `implementation#entering_a_session` written by: ________ }
+{ start of `implementation#entering_a_session` written by: Alvin Chee Teck Weng }
 
 ### 4.4. Entering a session
 
@@ -348,20 +363,62 @@ Step 4. `Model#enterSession()` will be called by `EnterSession#execute()` and th
 The following sequence diagram shows how the enter session operation works:
 
 ![EnterSessionSequenceDiagram](images/EnterSessionSequenceDiagram.png)
+<p align="center"> <sub> <b>Figure 4.4.1</b>: Sequence diagram showing how Logic component works with Model component to enter session command</sub> </p>
 
 The following activity diagram summarizes what happens when a user executes an enter session command:
 
 ![EnterSessionActivityDiagram](images/EnterSessionActivityDiagram.png)
+<p align="center"> <sub> <b>Figure 4.4.2</b>: Activity diagram showing the implementation of enter session command</sub> </p>
 
-{ end of `implementation#entering_a_session` written by: ________ }
+{ end of `implementation#entering_a_session` written by: Alvin Chee Teck Weng }
 
-{ start of `implementation#presence_and_participation` written by: ________ }
+{ start of `implementation#presence_and_participation` written by: Zhang Sheng Yang }
 
 ### 4.5. Presence and participation
 
-todo
+Below only shows the flow of `participate` command since `presence` command works the same way.
 
-{ end of `implementation#presence_and_participation` written by: ________ }
+Toggling the presence and participation status of students requires CLI input.
+The parser will parse the user input to obtain an index range in order to toggle students in that range. 
+The toggled presence or participation will change in color(either green or red) and statistics will be affected.
+
+The below example given assumes that the user inputs `participate 1-4`, which '1-4' is the index range
+, and `participate` command has already been parsed.
+
+Step 1: Parse input
+
+An `ParticipateCommandParser` is created by `LogicManager` and calls `ParticipateCommandParser#parse()` 
+with the given user input. Input is parsed according as a preamble to identify the parts of the
+user input and split it into `String` slices. If the input index range is valid, checked by validation method in 
+`IndexRange` class itself, a `IndexRange` object will be created and initialized with the a default session name as 
+a placeholder. The `ParticipateCommand` object created will be passed back to `LogicManager` to execute.
+
+![ParticipateSequenceDiagram1](images/developer-guide/4.5.1-ParticipateSequenceDiagram1.png)
+<p align="center"> <sub> <b>Figure 4.5.1</b>: Sequence diagram showing the Logic component for participate command </sub> </p> 
+
+Step 2: Toggling participation
+
+`LogicManager` calls `ParticipateCommand#execute()` to proceed on to toggling the participation status of students in 
+the student list in this current session.
+The `ParticipateCommand` will first check if we have entered a session, if `model#returnCurrentSessionEnabledStatus()` 
+return false, then an exception will be thrown to signal that we are currently not in a session.
+
+Assuming that we are in a session, `ModelManager#updateParticipationBySessionName()` will be called. The session 
+name of the current session is obtained and passed as a parameter together with index range during the invocation 
+of `SessionList#updateStudentPresence()`. Session list will now search through the list of sessions for a match, 
+when a matching session is found, `Session#updatePresence()` is called to toggle the participation status of students 
+according to the index range. 
+
+![ParticipateSequenceDiagram2](images/developer-guide/4.5.2-ParticipateSequenceDiagram2.png)
+<p align="center"> <sub> <b>Figure 4.5.2</b>: Sequence diagram showing how Logic component works with Model component for participate command</sub> </p> 
+
+The following activity diagram summarizes what happens when a user executes an `participate` command:
+
+![ParticipateActivityDiagram](images/developer-guide/4.5.3-ParticipateActivityDiagram.png)
+<p align="center"> <sub> <b>Figure 4.5.3</b>: Activity diagram showing the implementation of participate command </sub> </p> 
+
+
+{ end of `implementation#presence_and_participation` written by: Zhang Sheng Yang }
 
 { start of `implementation#random_name_generation` written by: Masagca Eris Jacey }
 
@@ -393,11 +450,13 @@ Step 3. The `Index` returned during the execution of `RngCommand#execute(Model)`
 
 The following sequence diagram shows how the RNG operation works:
 
-![RngSequenceDiagram](images/RngSequenceDiagram.png)
+![RngSequenceDiagram](images/developer-guide/4.6.1-RngSequenceDiagram.png)
+<p align="center"> <sub> <b>Figure 4.6.1</b>: Sequence diagram showing how Logic component works with Model component for the rng command </sub> </p> 
 
 The following activity diagram summarizes what happens when a user executes an RNG command:
 
-![RngActivityDiagram](images/RngActivityDiagram.png)
+![RngActivityDiagram](images/developer-guide/4.6.2-RngActivityDiagram.png)
+<p align="center"> <sub> <b>Figure 4.6.2</b>: Activity diagram showing the series of events upon the user entering an rng command </sub> </p>
 
 { end of `implementation#random_name_generation` written by: Masagca Eris Jacey }
 
@@ -405,137 +464,265 @@ The following activity diagram summarizes what happens when a user executes an R
 
 ### 4.7. Undo/redo feature
 
-todo below
+The undo/redo mechanism is facilitated by `ModelManager`. 
+It contains the following entities:
+* `VersionedStudentList`
+* `VersionedSessionList`
+* `VersionedAttributesList` 
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+Each versioned entity extends its corresponding non-versioned class (e.g. `VersionedStudentList` extends from `StudentList`)
+with an undo/redo history, stored internally as an `<<entity>>StateList` and `currentStatePointer`.
+Additionally, each entity implements the following operations:
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+* `Versioned<<Entity>>List#commit()` — Saves the current entity state in its history.
+* `Versioned<<Entity>>List#undo()` — Restores the previous entity state from its history.
+* `Versioned<<Entity>>List#redo()` — Restores a previously undone entity state from its history.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+The operations above are called in `ModelManager` under their respective methods within the class:
+* `ModelManager#commit()`
+* `ModelManager#undo()`
+* `ModelManager#redo()` 
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+These operations are exposed in the `Model` interface as `Model#commit()`, `Model#undo()` and `Model#redo()` respectively.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+<div markdown="block" class="alert alert-info">
 
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th student in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new student. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+:information_source: **Note:** Whenever a command that commits is made, `Model#commit()` is called, which means that
+ all 3 of `<<Versioned<<Entity>>List>>#commit()` will be called. 
+ A similar mechanism occurs for `Model#undo()` and `Model#redo()`. <br>
 
 </div>
 
-Step 4. The user now decides that adding the student was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-![UndoRedoState3](images/UndoRedoState3.png)
+Step 1. The user launches the application for the first time. Each `Versioned<<Entity>>` will be initialized with the initial entity state, and the `currentStatePointer` pointing to that single entity state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+![UndoRedoState0](images/developer-guide/4.7.1-UndoRedoState0.png)
+<p align="center"> <sub> <b>Figure 4.7.1</b>: Each versioned entity state upon initialization </sub> </p> 
+
+Step 2. The user executes `deletestu 5` command to delete the 5th student in the student list. 
+The `deletestu` command calls `Model#commit()`, causing the modified state of all versioned entities after the `deletestu 5` command executes to be saved in the `<<entity>>StateList`,
+ and the `currentStatePointer` for each `Versioned<<Entity>>List>>` is shifted to the newly inserted entity state.
+
+![UndoRedoState1](images/developer-guide/4.7.2-UndoRedoState1.png)
+<p align="center"> <sub> <b>Figure 4.7.2</b>: Each versioned entity state upon executing the `deletestu` command </sub> </p> 
+
+Step 3. The user executes `addstu n/David …​` to add a new student. The `addstu` command also calls `Model#commit()`, causing another modified address entity state (for each state) to be saved into the `<<entity>>StateList`.
+
+![UndoRedoState2](images/developer-guide/4.7.3-UndoRedoState2.png)
+<p align="center"> <sub> <b>Figure 4.7.3</b>: Each versioned entity state upon executing the `addstu` command </sub> </p> 
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** If a command fails its execution, it will not call `Model#commit()`, so any entity state will not be saved into the `<<entity>>StateList`.
+
+</div>
+
+Step 4. The user now decides that adding the student was a mistake, and decides to undo that action by executing the `undo` command.
+The `undo` command will call `Model#undo()`, which will shift the `currentStatePointer` for *all* versioned entities once to the left, pointing it to the previous entity state, and restores each entity to that state.
+
+![UndoRedoState3](images/developer-guide/4.7.4-UndoRedoState3.png)
+<p align="center"> <sub> <b>Figure 4.7.4</b>: Each versioned entity state upon executing a single `undo` command </sub> </p> 
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial entity state, then there are no previous entity states to restore. 
+The `undo` command uses `Model#canUndo()` to check if this is the case. 
+If so, it will return an error to the user rather than attempting to perform the undo.
 
 </div>
 
 The following sequence diagram shows how the undo operation works:
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+![UndoSequenceDiagram](images/developer-guide/4.7.5-UndoSequenceDiagram.png)
+<p align="center"> <sub> <b>Figure 4.7.5</b>: Sequence diagram showing how the Logic component works with Model component for the `undo` operation </sub> </p> 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+The `redo` command does the opposite — it calls `Model#redo()`, which shifts the `currentStatePointer` for each versioned entity once to the right, pointing to the previously undone state, and restores each entity to that state.
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** If the `currentStatePointer` is at index `<<entity>>StateList.size() - 1`, pointing to the latest entity state, then there are no undone entity states to restore. 
+The `redo` command uses `Model#canRedo()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+Step 5. The user then decides to execute the command `liststu`. Commands that do not modify any entity, such as `liststu`, will usually not call `Model#commit()`, `Model#undo()` or `Model#redo()`. 
+Thus, the `<<entity>>StateList` for each versioned entity remains unchanged.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+![UndoRedoState4](images/developer-guide/4.7.6-UndoRedoState4.png)
+<p align="center"> <sub> <b>Figure 4.7.6</b>: Each versioned entity state upon executing the `liststu` command </sub> </p> 
 
-</div>
+Step 6. The user executes `clearstu`, which calls `Model#commit()`. 
+Since the `currentStatePointer` for each versioned entity is not pointing at the end of the `<<entity>>StateList`, all entity states after the `currentStatePointer` will be purged. 
+Reason: It no longer makes sense to redo the `addstu n/David …​` command. This is the behavior that most modern desktop applications follow.
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
+![UndoRedoState5](images/developer-guide/4.7.7-UndoRedoState5.png)
+<p align="center"> <sub> <b>Figure 4.7.7</b>: Each versioned entity state upon executing the `clearstu` command </sub> </p> 
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
+![CommitActivityDiagram](images/developer-guide/4.7.8-CommitActivityDiagram.png)
+<p align="center"> <sub> <b>Figure 4.7.8</b>: An activity diagram showing the series of events upon a user executing a command </sub> </p> 
 
 #### 4.7.1. Design consideration
 
 **Aspect: how undo & redo execute**
 
-* **Alternative 1 (current choice):** Saves the entire address book.
- * Pros: Easy to implement.
- * Cons: May have performance issues in terms of memory usage.
+* **Alternative 1 (current choice):** For each versioned entity, saves the entire entity.
+   * Pros: Easy to implement.
+   * Cons: May have performance issues in terms of memory usage.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
- itself.
- * Pros: Will use less memory (e.g. for `delete`, just save the student being deleted).
- * Cons: We must ensure that the implementation of each individual command are correct.
+* **Alternative 2:** Individual command knows how to undo/redo by itself.
+   * Pros: Will use less memory (e.g. for `deletestu`, just save the student being deleted).
+   * Cons: We must ensure that the implementation of each individual command are correct.
+
+**Aspect: data structure to store the different entity states**
+
+* **Alternative 1 (current choice):** List
+   * Pros: Very straightforward.
+   * Cons: May have performance issues in terms of runtime (linear).
+   
+* **Alternative 2:** Search tree
+   * Pros: Much more time-efficient than a list due to logarithmic time complexity for most its functions (search, add, etc.)
+   * Harder to implement.
 
 { end of `implementation#undo_redo` written by: Masagca Eris Jacey }
 
-{ start of `implementation#adding_a_note` written by: ______________ }
+{ start of `implementation#adding-a-note` written by: Ngoh Wei Yue }
 
 ### 4.8. Adding a note
 
-todo
+**Adding a note** is facilitated by `AddNoteCommand`, `Memo`, `TxtMemoStorage` and `MemoBox`.
 
-{ end of `implementation#adding_a_note` written by: ______________ }
+This implementation of this feature can be split into 3 main parts:
+1. Updating the content in `Memo`.
+2. Updating the data in the hard disk.
+3. Updating the content in `MemoBox` to be displayed to the user.
 
-{ start of `implementation#exporting_data` written by: ______________ }
+`AddNoteCommand` implements the method:
+
+* `AddNoteCommand#execute(Model)` — Calls `Model#addNoteCommand()` and returns a `CommandResult` which notifies the `Ui` component to edit the content in the `MemoBox`.
+
+`Memo` is contained in `Model`. It implements the method:
+
+* `Memo#addNote()` — Appends the note to the current content and sets the new content to be the new content of `Memo`.
+
+`MemoStorage` implements `MemoStorage` which is contained in `Storage`. It implements the method:
+
+* `TxtMemoStorage#saveMemo()` — Writes the content in `Memo` to the hard disk.
+
+`MemoBox` implements the method:
+* `Memo#setTextContent()` — Sets text into a text box contained on `MemoBox` to be displayed to the user.
+
+Given below is an example usage scenario and how adding a note behaves at each step.
+
+Step 1. The user executes `addnote note` to add the word "note" onto a new line in the memo box.
+
+Step 2. An `AddNoteCommand` is created, and the `AddNoteCommand#execute()` is called which in turn calls `Model#addNoteToMemo()`.
+
+Step 3. `ModelManager#addNoteToMemo()` calls `Memo#addNote()` which concatenates "note" to the end of the original content and sets it to be the new content.
+
+The following sequence diagram shows how adding a note updates the content in `Memo`:
+
+![AddNoteSequenceDiagram1](images/developer-guide/4.8.1-AddNoteSequenceDiagram.png)
+<p align="center"> <sub> <b>Figure 4.8.1</b>: Sequence diagram showing how the Logic component updates the content in `Memo` </sub> </p> 
+
+Step 4: After the content in `Memo` is updated, `Storage#saveMemo()` is called.
+
+Step 5: `StorageManager#saveMemo()` calls `TxtMemoStorage#saveMemo()` which retrieves the updated content in `Memo` and writes in to a hard disk, following a specified file path.
+
+The following sequence diagram shows how adding a note updates the data in the hard disk:
+
+![AddNoteSequenceDiagram2](images/developer-guide/4.8.2-AddNoteSequenceDiagram.png) 
+<p align="center"> <sub> <b>Figure 4.8.2</b>: Sequence diagram showing how the Logic component updates the memo data in the hard disk </sub> </p> 
+
+Step 5: A `CommandResult` returned from `AddNoteCommand#execute()` is returned to `MainWindow#executeCommand()`. Since the boolean value `isEditMemo` contained in the `CommandResult` is true, `MainWindow#handleEditMemo()` is called.
+
+Step 6: `MainWindow#handleEditMemo()` retrieves the updated `Memo` content using `Logic#getMemoContent()` and calls `MemoBox#setTextContent()` to sets the updated content into the text box contained in `MemoBox`.
+
+The following sequence diagram shows how adding a note updates the text box of `MemoBox` to be displayed to user:
+
+![AddNoteSequenceDiagram3](images/developer-guide/4.8.3-AddNoteSequenceDiagram.png) 
+<p align="center"> <sub> <b>Figure 4.8/3</b>: Sequence diagram showing how the Ui component works with the Logic component to update the GUI </sub> </p> 
+
+{ end of `implementation#adding_a_note` written by: Ngoh Wei Yue }
+
+{ start of `implementation#exporting_data` written by: Alvin Chee Teck Weng }
 
 ### 4.9. [Proposed] Exporting data to csv
 
-todo
+A data exporting feature to csv can be implemented in the future.
 
-{ end of `implementation#exporting_data` written by: ______________ }
+Pros: Data are now more organised can be opened by apps such as Microsoft Excel.
 
-{ start of `implementation#data_encryption` written by: ______________ }
+Cons: Not easy to implement because it requires the knowledge of how to organise the data into csv format.
 
-### 4.10. [Proposed] Data encryption
+{ end of `implementation#exporting_data` written by: Alvin Chee Teck Weng }
 
-todo
+{ start of `implementation#data_encryption` written by: Marcus Tan Wei }
 
-{ end of `implementation#dat_encryption` written by: ______________ }
+### 4.10 [Proposed] Data encryption
+Data encryption can be implemented in the future versions. This is to further protect the students' particulars. 
+
+#### 4.10.1 Solution 1
+Encrypt and store data locally.
+
+* Pros: 
+   * Easy to implement. One example is through the usage of Java Cryptography API.
+
+* Cons: 
+   * Performance reduction may occur since every call to save to storage requires encrypting a lot of data.
+   * Security issues may still arise if we store the encryption key in the same machine.
+
+#### 4.10.2 Solution 2
+Store data outside the user’s machine and issue the user an access token.
+
+* Pros: 
+   * Data will be bounded to multiple machines, hence, can be restored if the user forgets his or her credentials.
+
+* Cons: 
+   * There will be generation of access tokens and checking them.
+   * Require changes to the current implementation to work with external storage.
+
+{ end of `implementation#dat_encryption` written by: Marcus Tan Wei }
 
 --------------------------------------------------------------------------------------------------------------------
 
-{ start of `logging` written by: _____________ }
+{ start of `documentation` written by: Ngoh Wei Yue }
+
+## 5. Documentation
+
+Refer to this guide [here](Documentation.md).
+
+{ end of `documentation` written by: Ngoh Wei Yue }
+
+{ start of `logging` written by: Marcus Tan Wei }
 
 ## 6. Logging
 
 Refer to this guide [here](Logging.md).
 
-{ end of `logging` written by: _____________ }
+{ end of `logging` written by: Marcus Tan Wei }
 
 --------------------------------------------------------------------------------------------------------------------
 
-{ start of `testing` written by: _____________ }
+{ start of `testing` written by: Alvin Chee Teck Weng }
 
 ## 7. Testing
 
 Refer to this guide [here](Testing.md).
 
-{ end of `testing` written by: _____________ }
+{ end of `testing` written by: Alvin Chee Teck Weng }
 
 --------------------------------------------------------------------------------------------------------------------
 
-{ start of `configuration` written by: _____________ }
+{ start of `configuration` written by: Zhang Sheng Yang }
 
 ## 8. Configuration
 
 Refer to this guide [here](Configuration.md).
 
-{ end of `configuration` written by: _____________ }
+{ end of `configuration` written by: Zhang Sheng Yang }
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -562,6 +749,7 @@ Refer to this guide [here](DevOps.md).
 * Bob finds the features on Excel clunky at times and he finds them difficult to learn.
 * Bob is looking for an application with a sleeker and cleaner UI so he doesn’t have to remember where the different features in Excel are.
 * Bob has limited memory in his computer and wants to install smaller softwares.
+* Bob is looking for an application that specifically enhances in-class management efficiency.
 * Bob is a fast typist.
 * Bob hates to move his mouse at all (to save file, to categorise data fields and student data)
 * Bob uses a laptop and doesn’t have a mouse with him all the time(or he doesn’t have a place to use his mouse when on the bus or mrt).
@@ -574,72 +762,108 @@ Refer to this guide [here](DevOps.md).
 * Less memory
 * Intuitive command-line interface - easy to learn and pick up, especially for technologically savvy individuals
 * CS student-friendly
-* Potential Features:
- * Mass sending of emails/files
- * Import/export data files from Excel, csv files
- * Track student’s progress (assignments, tests, class participation)
- * Record student’s attendance
- * Profile pictures for recognisability
- * Schedule consultations/Zoom meeting
- * Automate formation of Telegram groups
+* Current features:
+   * Manage students' particulars (name, matriculation number, email, additional tag(s))
+   * Manage sessions' particulars (name, date)
+   * Track students' progress for each session (attendance/presence, participation)
+   * Random name generation to easily randomly select a student
+   * Memo box for user to note down sticky notes in a pinch
+* Potential features (in future iterations):
+   * Mass sending of emails/files
+   * Import/export data files from Excel, csv files
+   * Track student’s progress (assignments, tests)
+   * Record student’s attendance
+   * Profile pictures for recognisability
+   * Schedule consultations/Zoom meeting
+   * Automate formation of Telegram groups
 
 { end of `requirements#product_scope` written by: Masagca Eris Jacey }
 
-{ start of `requirements#user_stories` written by: ___________ }
+{ start of `requirements#user_stories` written by: Alvin Chee Teck Weng }
 
 ### 10.2. User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
+| Priority | As a …​                                    | I want to …​                   | So that I can…​                                                         |
 | -------- | ------------------------------------------ | ------------------------------ | ----------------------------------------------------------------------- |
 | `* * *`  | user                                       | see usage instructions         | refer to instructions when I forget how to use the App                  |
-| `* * *`  | user                                       | add a new student              |                                                                         |
-| `* * *`  | user                                       | delete a student               | remove students no longer taking the module                             |
-| `* * *`  | user                                       | track all students in my class | so that I will know who is missing from my class                        |
-| `* * *`  | user                                       | find a student by name         | locate details of students without having to go through the entire list |
-| `* * *`  | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                 |
-| `* * *`  | user with many students in my class        | sort students by name          | locate a student easily                                                 |
-| `* *  `  | user                                       | track my students' attendance  | take note of the tutorial participation for each student                |
-| `* *  `  | user who has trouble putting face to name  | easily identify each student with a profile photo | recognise students through their faces more easily   |
-| `* *  `  | user who yearns for efficiency due to limited class time | have a random number generator | get a random student to answer my question instead of having to rely on online generators |
-| `* *  `  | user                                       | add non-registered Christian names or nicknames to my students | remember them more easily               |
-| `* *  `  | user                                       | send important emails to my students | not have to rely on Microsoft Outlook/LumiNUS                     |
-| `* *  `  | user                                       | have diagrams tracking students' progress | tell from one look that a student is not catching up with lecture material |
+| `* * *`  | tutor                                       | add a new student              | add details of the students in my class                                |                     
+| `* * *`  | tutor                                       | delete a student               | remove details of the students no longer taking the module             |                 
+| `* * *`  | tutor                                       | find a student by name         | locate details of students without having to go through the entire list|
+| `* * *`  | tutor with many students in my class        | sort students by name          | locate a student easily                                                |
+| `* *  `  | tutor                                       | track my students' attendance  | take note of the tutorial participation for each student               |
+| `* *  `  | tutor with limited class time | have a random number generator that generates a random number quickly | get a random student to answer my question more efficiently instead of having to rely on online generators |
+| `* *  `  | tutor                                       | add non-registered Christian names or nicknames to my students | remember my students more easily       |
+| `* *  `  | tutor who likes to do my administrative work on just one platform | send important emails to my students | not have to rely on external apps like Microsoft Outlook/LumiNUS |
+| `* *  `  | tutor                                       | have diagrams tracking students' progress | pick out easily which student is not catching up with lecture material |
 | `* *  `  | tutor who can be quite forgetful           | create a list of announcements | remember to convey them to my students                                  |
 | `* *  `  | tutor who wants to protect the particulars of my students | encrypt files with passwords | keep the module and students' data safe                    |
 | `* *  `  | tutor who often overshoots the time allocated for my lesson | be reminded at certain intervals | be on track throughout the lesson                    |
-| `* *  `  | tutor who wants the class to participate actively in class discussions | quickly record who has/has not spoken yet | call on those who haven't spoken for subsequent questions |
+| `* *  `  | tutor who wants the class to participate actively in class discussions | quickly record who has spoken | call on those who haven't spoken for subsequent questions |
 | `*    `  | user who likes customization               | customize my own keyboard shortcuts |                                                                    |
 | `*    `  | user who likes colors                      | customize the UI to whatever color scheme I want | enjoy using the App more                              |
 
-*{More to be added}*
+{ end of `requirements#user_stories` written by: Alvin Chee Teck Weng }
 
-{ end of `requirements#user_stories` written by: ___________ }
-
-{ start of `requirements#use_cases` written by: ___________ }
+{ start of `requirements#use_cases` written by: Zhang Sheng Yang }
 
 ### 10.3. Use cases
 
 (For all use cases below, the **System** is the `ATAS` and the **Actor** is the `user`, unless specified otherwise)
 
+<div markdown="block" class="alert alert-info">
+
 **Use case: UC01 - Add a student**
+
+**Guarantees :**
+* Student will be added only if the input name, Matriculation number, NUS email and tags are valid.
+* The student list will not have duplicate students.
 
 **MSS**
 
-1. User requests to add a student with specified Matriculation number and NUS email, as well as any additional tags (if any)
-1. ATAS adds the student
+1. User requests to add a student with specified Matriculation number and NUS email, as well as any additional tags (if any).
+1. ATAS checks if the input is valid and scans through the student list for duplication.
+1. ATAS adds the student.
 
 Use case ends.
+
+**Extensions**
+
+* 2a. A student in the list has the same Matriculation number.
+   * 2b1. ATAS shows an error message.
+   
+   Use case ends.
+
+* 2b. Matriculation number provided is invalid.
+  * 2b1. ATAS shows an error message.
+  
+  Use case ends.
+  
+* 2c. A student in the list has the same NUS email.
+  * 2c1. ATAS shows an error message.
+  
+  Use case ends.
+  
+* 2d. The email provided is not NUS email.
+  * 2d1. ATAS shows an error message.
+  
+  Use case ends.
+  
+</div>
+
+<div markdown="block" class="alert alert-info">
 
 **Use case: UC02 - Delete a student**
 
 **MSS**
 
-1.  User requests to list students
-1.  ATAS shows a list of students
-1.  User requests to delete a specific student in the list
-1.  ATAS deletes the student
+1.  User requests to list students.
+1.  ATAS shows a list of students.
+1.  User requests to delete a specific student in the list.
+1.  ATAS sends confirmation message.
+1.  User confirms.
+1.  ATAS deletes the student.
 
 Use case ends.
 
@@ -650,52 +874,337 @@ Use case ends.
    Use case ends.
 
 * 3a. The given index is invalid.
-
   * 3a1. ATAS shows an error message.
+  
+   Use case resumes at step 2.
 
-      Use case resumes at step 2.
+* 4a. User denies confirmation
 
-**Use case: UC03 - Clear the class list**
+   Use case ends.
+   
+
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+**Use case: UC03 - Edit a student**
+
+**Guarantees :**
+* Student will be edited only if the edited name, Matriculation number, NUS email and tags are valid.
+* The student list will not have duplicate students after edit.
 
 **MSS**
 
-1.  User requests to clear the class list
-1.  ATAS clears the class list
+1.  User requests to edit a student with name, Matriculation number, NUS email and tags with the student index of that student.
+1.  ATAS checks if the input is valid and scans through the student list for duplication.
+1.  ATAS sends confirmation message.
+1.  User confirms.
+1.  ATAS edits the student.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. A student in the list has the same Matriculation number.
+   * 2b1. ATAS shows an error message.
+   
+   Use case ends.
+
+* 2b. Matriculation number provided is invalid.
+  * 2b1. ATAS shows an error message.
+  
+  Use case ends.
+  
+* 2c. A student in the list has the same NUS email.
+  * 2c1. ATAS shows an error message.
+  
+  Use case ends.
+  
+* 2d. The email provided is not NUS email.
+  * 2d1. ATAS shows an error message.
+  
+  Use case ends.
+  
+* 2e. The given student index is invalid.
+  * 2e1. ATAS shows an error message.
+  
+  Use case ends.
+  
+* 3a. User denies confirmation.
+
+  Use case ends.
+  
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+**Use case: UC04 - Clear the student list**
+
+**MSS**
+
+1.  User requests to clear the student list.
+1.  ATAS ask for confirmation.
+1.  User confirms.
+1.  ATAS clears the student list.
 
 Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+   Use case ends.
+
+* 2a. User denies confirmation.
+
+  Use case ends.
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+**Use case: UC05 - List the registered students**
+
+**MSS**
+
+1. User requests to see the list of students that have been added to ATAS.
+1. ATAS shows the list of students.
+
+Use case ends.
+
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+**Use case: UC06 - Find a student**
+
+**MSS**
+
+1.  User requests to find a student with one or more keywords.
+1.  ATAS searches for students’ names that contain any of the keywords.
+1.  ATAS shows the filtered list of students to User.
+
+   Use case ends.
 
 **Extensions**
 
 * 2a. The list is empty.
 
    Use case ends.
+   
+</div>
 
-**Use case: UC04 - List the registered students**
+<div markdown="block" class="alert alert-info">
+
+**Use case: UC07 - Add a session**
+
+**Guarantees :**
+* Session will be added only if the input session name and session date are valid.
+* The session list will not have duplicate sessions after adding.
 
 **MSS**
 
-1. User requests to see the list of students that have been added to ATAS
-1. ATAS shows the list of students
-
-Use case ends.
-
-**Use case: UC05 - Find a student**
-
-**MSS**
-
-1.  User requests to find a student with one or more keywords
-1.  ATAS searches for students’ names that contain any of the keywords
-1.  ATAS shows the filtered list of students to User
+1.  User requests to add a session with a session name and date.
+1.  ATAS checks if the inputs are valid and scans though the session list for duplication.
+1.  ATAS adds the session to the session list.
+1.  ATAS sorts the session list according to date.
 
    Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The given date is invalid.
+  * 2a1. ATAS shows an error message.
+  
+  Use case ends.
+  
+* 2b. A session in the session list has the same session name.
+  * 2b1. ATAS shows an error message.
+  
+  Use case ends.
+  
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+**Use case: UC08 - Delete a session**
+
+**MSS**
+
+1.  User requests to delete a session with the given index.
+1.  ATAS asks for confirmation.
+1.  User confirms.
+1.  ATAS deletes the session.
 
    Use case ends.
 
-**Use case: UC06 - Exit ATAS**
+**Extensions**
+
+* 1a. The given session index is invalid.
+  * 1a1. ATAS shows an error message.
+  
+  Use case ends.
+
+* 2a. User denies confirmation.
+
+  Use case ends.
+  
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+**Use case: UC09 - Edit a session**
+
+**Guarantees :**
+* Session will be edited only if the edited session name and session date are valid.
+* The session list will not have duplicate sessions after edit.
+
+**MSS**
+
+1.  User requests to edit a session with session name and date with the session index of that session.
+1.  ATAS checks if the input is valid and scans through the session list for duplication.
+1.  ATAS asks for confirmation.
+1.  User confirms.
+1.  ATAS edits the session
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given session index is invalid
+   * 2a1. ATAS shows an error message.
+   
+   Use case ends.
+
+* 2b. The session date given is invalid
+  * 2b1. ATAS shows an error message.
+  
+  Use case ends.
+
+* 3a. User denies confirmation.
+
+  Use case ends.
+
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+**Use case: UC10 - Clear the session list**
+
+**MSS**
+
+1.  User requests to clear the session list.
+1.  ATAS asks for confirmation.
+1.  User confirms.
+1.  ATAS clears the session list.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The session list is empty
+   * 1a1. ATAS shows an empty session list.
+   
+   Use case ends.
+   
+* 2a. User denies confirmation.
+
+  Use case ends.
+   
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+**Use case: UC11 - Enter a session**
+
+**MSS**
+
+1.  User requests to enter a session with a session index.
+1.  ATAS shows the attributes of that session.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The session index is invalid.
+   * 1a1. ATAS shows an error message.
+   
+   Use case ends.
+
+* 1b. The session index is the same as current session.
+   * 1b1. ATAS shows an error message.
+   
+   Use case ends.
+
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+**Use case: UC12 - Toggle presence**
+
+**Preconditions : User has entered a session**
+
+**MSS**
+
+1.  User requests to toggle students' presence status of the given student index range.
+1.  ATAS toggles the presence status of students.
+1.  ATAS updates the statistics in session and student list.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given index range is invalid.
+   * 1a1. ATAS shows an error message.
+   
+   Use case ends.
+   
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+**Use case: UC13 - Toggle participation**
+
+**Preconditions : User has entered a session**
+
+**MSS**
+
+1.  User requests to toggle students' participation status of the given student index range.
+1.  ATAS toggles the participation status of students.
+1.  ATAS updates the statistics in session and student list.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given index range is invalid.
+   * 1a1. ATAS shows an error message.
+   
+   Use case ends.
+   
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+**Use case: UC14 - Choose random name**
+
+**MSS**
+
+1.  User requests to choose a random name from the student list.
+1.  ATAS shows the name of a random student in the student list.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The student list is empty
+   * 1a1. ATAS shows an error message.
+   
+   Use case ends.
+   
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+**Use case: UC15 - Exit ATAS**
 
 **MSS**
 
@@ -704,36 +1213,36 @@ Use case ends.
 
 Use case ends.
 
-*{More to be added}*
+</div>
 
-{ end of `requirements#use_cases` written by: ___________ }
 
-{ start of `requirements#non_functional_requirements` written by: ___________ }
+{ end of `requirements#use_cases` written by: Zhang Sheng Yang }
+
+{ start of `requirements#non_functional_requirements` written by: Ngoh Wei Yue }
 
 ### 10.4. Non-functional requirements
 
-1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-1. Should be able to hold up to 1000 students without a noticeable sluggishness in performance for typical usage.
-1. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-1. Should be for a single user and not a multi-user product.
-1. Should not depend on remote servers.
-1. Should be able to function without having to rely on being connected to a network.
-1. Should be able to work without requiring an installer.
-1. Should not contain very large file sizes (JAR files - 100Mb, PDF files - 15Mb/file).
+1. This product should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+1. This product should be able to hold up to 500 students and 500 sessions without a noticeable sluggishness in performance for typical usage.
+1. This product should be optimised for users who can type regular English text (i.e. not code, not system admin commands) fast and prefer typing over other means of input (e.g., mouse).
+1. This product should be for a single user and should not be a multi-user product.
+1. This product should not depend on remote servers.
+1. This product should be able to function without being connected to a network.
+1. This product should be able to work without requiring an installer.
+1. Data generated by the product should be stored locally in human-editable file.
+1. This product should not contain very large file sizes (JAR files - 100Mb, PDF files - 15Mb/file).
 
-*{More to be added}*
+{ end of `requirements#non_functional_requirements` written by: Ngoh Wei Yue }
 
-{ end of `requirements#non_functional_requirements` written by: ___________ }
-
-{ start of `requirements#glossary` written by: ___________ }
+{ start of `requirements#glossary` written by: Marcus Tan Wei }
 
 ### 10.5. Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Matriculation number**: A unique alphanumeric number attributed to each NUS student. Follows the format A0123456X, where each digit can be from 0-9 and the last letter can be any alphabet A-Z
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Mainstream OS**: Windows, Linux, Unix, OS-X.
+* **Matriculation number**: A unique alphanumeric number attributed to each NUS student. Follows the format A0123456X, where each digit can be from 0-9 and the last letter can be any alphabet A-Z.
+* **Tag**: A word or phrase the user labels the student as.
 
-{ end of `requirements#glossary` written by: ___________ }
+{ end of `requirements#glossary` written by: Marcus Tan Wei }
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -746,50 +1255,210 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-{ start of `manual_testing#launch_and_shutdown` written by: __________ }
+{ start of `manual_testing#launch_and_shutdown` written by: Masagca Eris Jacey }
 
 ### 11.1. Launch and shutdown
 
 1. Initial launch
 
-  1. Download the jar file and copy into an empty folder
+   1. Download the jar file and copy into an empty folder
 
-  1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file Expected: Shows the GUI with a set of sample students and sample sessions. 
+   The window size may not be optimum.
+   ![ExpectedLaunchWindow](images/developer-guide/11.1-ExpectedLaunchWindow.png)
+   <p align="center"> <sub> <b>Figure 11.1.1</b>: Application view of the expected window appearance upon launch </sub> </p> 
 
 1. Saving window preferences
 
-  1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-  1. Re-launch the app by double-clicking the jar file.<br>
+   1. Re-launch the app by double-clicking the jar file.<br>
       Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+{ end of `manual_testing#launch_and_shutdown` written by: Masagca Eris Jacey }
 
-{ end of `manual_testing#launch_and_shutdown` written by: __________ }
-
-{ start of `manual_testing#adding_a_student` written by: __________ }
+{ start of `manual_testing#adding_a_student` written by: Ngoh Wei Yue }
 
 ### 11.2. Adding a student
 
-1. Deleting a student while all students are being shown
+Adding a student while all students are being shown.
+  
+  1. Prerequisites: List all students using the list command. No students with the same matriculation number or NUS email address as any of the students to be added during testing.
 
-  1. Prerequisites: List all students using the `list` command. Multiple students in the list.
-
-  1. Test case: `delete 1`<br>
-     Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
-  1. Test case: `delete 0`<br>
-     Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
-
-  1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+  1. Test case: `addstu n/Alvin Boon m/A0123456X e/alvinboon@u.nus.edu`<br>
+     Expected: A student is added to the bottom of the student list. A success message including the particulars of the added student is shown in the result box.
+     
+     ![AddStudentSuccess](images/developer-guide/11.2.1-AddStudentSuccess.png)
+     <p align="center"> <sub> <b>Figure 11.2.1</b>: Application view when a student is successfully added </sub> </p> 
+     
+  1. Test case: `addstu n/Cathy Duigan m/A1123456X e/cathyduigan@u.nus.edu t/helpful`<br>
+       Expected: Similar to previous.
+       
+  1. Test case: `addstu m/A2123456X n/Elbert Foo e/elbertfoo@u.nus.edu`<br>
+       Expected: Similar to previous.
+       
+  1. Test case: `addstu n/Gina Ho m/A3123456X`<br>
+     Expected: No student is added. Error message indicating an invalid command format is shown in the result box.
+     
+     ![AddStudentFailure](images/developer-guide/11.2.2-AddStudentFailure.png)
+     <p align="center"> <sub> <b>Figure 11.2.2</b>: Application view when a student is not successfully added </sub> </p> 
+     
+  1. Test case: `addstu n/Gina Ho e/ginaho@u.nus.edu`<br>
      Expected: Similar to previous.
+     
+  1. Test case: `addstu m/A3123456X e/ginaho@u.nus.edu`<br>
+     Expected: Similar to previous.
+       
+  1. Test case: `addstu n/Gina Ho m/A31234567 e/ginaho@u.nus.edu`<br>
+     Expected: No student is added. Error message indicating an invalid matric number is shown in the result box.
+     
+  1. Test case: `addstu n/Gina Ho m/A3123456X e/ginaho@u.ntu.edu`<br>
+     Expected: No student is added. Error message indicating an invalid NUS email address is shown in the result box.
+     
+  1. Test case: `addstu n/Gina Ho m/A0123456X e/ginaho@u.nus.edu`<br>
+       Expected: No student is added. Error message indicating that the student already exists is shown in the result box.
+       
+  1. Test case: `addstu n/Gina Ho m/A3123456X e/elbertfoo@u.nus.edu`<br>
+       Expected: No student is added. Error message indicating that the student already exists is shown in the result box.
+     
+  <div markdown="span" class="alert alert-info">:information_source: 
+  **Note:** The above list of test cases is not exhaustive. Please feel free to add more.
+  </div>
 
-1. _{ more test cases …​ }_
+{ end of `manual_testing#adding_a_student` written by: Ngoh Wei Yue }
 
-{ end of `manual_testing#adding_a_student` written by: __________ }
-
-{ start of `manual_testing#deleting_a_student` written by: __________ }
+{ start of `manual_testing#deleting_a_student` written by: Marcus Tan Wei }
 
 ### 11.3. Deleting a student
 
-{ end of `manual_testing#deleting_a_student` written by: __________ }
+Deleting a student while all students are being shown
+
+  1. Prerequisites: List all students using the `liststu` command. Multiple (but less than 100) students in the list.
+
+  1. Test case: `deletestu 1`<br>
+     Expected: Confirmation prompt to delete the first student from the list. Message of confirmation prompt is shown in the result box.
+     
+     1. Test case 3.1: `yes` <br>
+        Expected: First student on the list is deleted from the list. Message regarding student deletion is shown in the result box.
+              
+     1. Test case 3.2: `no` <br>
+        Expected: First student on the list is not deleted from the list. Message regarding command not executed is shown in the result box.  
+     
+  1. Test case: `deletestu 0`<br>
+     Expected: No student is deleted. Invalid index error details shown in the result box. 
+
+  1. Test case: `deletestu 101`<br>
+     Expected: No student is deleted. Invalid index error details shown in the result box.
+     
+  1. Other incorrect delete commands to try: `deletestu`, `deletestu x`, `...` (where x is larger than the list size)<br>
+     Expected: Similar to previous.
+     
+
+Deleting a student while only some students are being shown
+   
+   1. Prerequisites: List some students using `findstu` command. Multiple (but less than 100) students are in the list.
+   One or more (but less than 100) student is shown in the StudentListPanel.
+   
+   1. Test case: `deletestu 1`<br>
+      Expected: Confirmation prompt to delete the first student from the list. Message of confirmation prompt is shown in the result box.
+      
+      1. Test case: `yes` <br>
+         Expected: First student on the list is deleted from the list. Message regarding student deletion is shown in the result box.
+         
+      1. Test case: `no` <br>
+         Expected: First student on the list is not deleted from the list. Message regarding command not executed is shown in the result box.  
+      
+   1. Test case: `deletestu 0`<br>
+      Expected: No student is deleted. Invalid index error details shown in the result box. 
+   
+   1. Test case: `deletestu 101`<br>
+      Expected: No student is deleted. Invalid index error details shown in the result box.
+      
+   1. Other incorrect delete commands to try: `deletestu`, `deletestu x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
+{ end of `manual_testing#deleting_a_student` written by: Marcus Tan Wei }
+
+{ start of `manual_testing#adding_a_session` written by: ________ }
+
+### 11.4. Adding a session
+
+todo
+
+{ end of `manual_testing#adding_a_session` written by: ________ }
+
+{ start of `manual_testing#deleting_a_session` written by: Marcus Tan Wei }
+
+### 11.5. Deleting a session
+
+Deleting sessions in sessions tab
+   
+   1. Prerequisites: Multiple (but less than 100) sessions in the session list.
+
+   1. Test case: `deleteses 1` <br>
+      Expected: Confirmation prompt to delete the first session from the session list. Message of confirmation prompt is shown in the result box.
+      
+      1. Test case: `yes` <br>
+         Expected: First session on the list is deleted from the list. Message regarding session deletion is shown in the result box.
+         
+      1. Test case: `no` <br>
+         Expected: First session on the list is not deleted from the list. Message regarding command not executed is shown in the result box.  
+      
+   1. Test case: `deleteses 0` <br>
+      Expected: No session is deleted. Invalid index error details shown in the ResultDisplay. 
+      
+   1. Test case: `deleteses 101` <br>
+      Expected: No session is deleted. Invalid index error details shown in the ResultDisplay.
+
+Deleting sessions in the students tab
+
+   1. Prerequisites: Multiple (but less than 100) sessions in the session list. Multiple students in the student list.
+      Some sessions have marked participation and presence.
+   
+   1. Test case: `deleteses 1` <br>
+      Expected: Confirmation prompt to delete the first session from the session list. Message of confirmation prompt is shown in the result box.
+      
+      1. Test case: `yes` <br>
+         Expected: First session on the list is deleted from the list. Message regarding session deletion is shown in the result box. Statistics of students will change accordingly, taking into account of removed session.
+         
+         ![StudentsStatisticsBeforeDeleteSession](images/developer-guide/11.5.1-StudentsStatisticsBeforeDeleteSession.png)
+         <p align="center"> <sub> <b>Figure 11.5.1</b>: Application view of students statistics before deleting session </sub> </p> 
+         
+         ![SessionStatisticsBeforeDeleteSesion](images/developer-guide/11.5.2-SessionStatistics.png)
+         <p align="center"> <sub> <b>Figure 11.5.2</b>: Application view of sessions in the session list </sub> </p> 
+         
+         ![StudentsStatisticsAfterDeleteSession](images/developer-guide/11.5.3-StudentsStatisticsAfterDeleteSession.png)
+         <p align="center"> <sub> <b>Figure 11.5.3</b>: Application view of students statistics after session is deleted </sub> </p> 
+         
+      1. Test case: `no` <br>
+         Expected: First session on the list is not deleted from the list. Message regarding command not executed is shown in the result box.
+         
+   1. Test case: `deleteses 0` <br>
+      Expected: No session is deleted. Invalid index error details shown in the result box. 
+      
+   1. Test case: `deleteses 101` <br>
+      Expected: No session is deleted. Invalid index error details shown in the result box.  
+
+{ end of `manual_testing#deleting_a_session` written by: Marcus Tan Wei }
+
+{ start of `appendix` written by: _________ }
+
+## 12. Appendix: effort
+
+**Difficulty level:**
+
+* todo
+
+**Challenges faced:**
+
+* todo
+
+**Effort required:**
+
+* todo
+
+**Achievements:**
+
+* todo
+
+{ end of `appendix` written by: _________ }

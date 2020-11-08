@@ -79,7 +79,7 @@ public class EditSessionCommand extends DangerousCommand implements IndexedSessi
     @Override
     public String toString() {
         String oneBasedIndex = String.valueOf(targetIndex.getOneBased());
-        return "Edit " + oneBasedIndex;
+        return "Edit session " + oneBasedIndex;
     }
 
     /**

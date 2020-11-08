@@ -169,6 +169,11 @@ public interface Model {
     ObservableList<Attributes> getCurrentAttributesList();
 
     /**
+     * Resets the attribute list to an empty one.
+     */
+    void resetCurrentAttributesList();
+
+    /**
      * Updates the attribute list in current session if a session has been entered into.
      */
     void updateCurrentAttributesList();
