@@ -72,14 +72,17 @@ Specifically, **ATAS** allows you to keep track of four different aspects (see [
 ### 1.3. Preview
 
 The following is the GUI of our application:
-    ![UiPreview](images/user-guide/1.3.1-UiPreview.png)
-    <p align="center"> <sub> <b>Figure 1.3.1</b>: UI Preview </sub> </p>
+
+   ![UiPreview](images/user-guide/1.3.1-UiPreview.png)
+   <p align="center"> <sub> <b>Figure 1.3.1</b>: UI Preview </sub> </p>
     
 
 GUI Components:
    1. **Command box**: where you enter your commands.
-   1. **Result box**: where the result of a command is shown. It can show a success message or a failure message if something wrong happens.
+   1. **Result box**: where the result of a command will be shown. It can show a success message, or a failure message if something wrong happens.
+   1. **Status bar footer**: shows which session you are currently in.
    1. **Tabs**: shows what item type you are viewing.
+   1. **View box**: where the details of the items will be shown.
 
 { end of `introduction#preview` written by: Marcus Tan Wei }
 
@@ -170,7 +173,7 @@ For the good majority of visual learners, we figured to present information in a
 
    * **`liststu`** : Lists out all the students.
 
-   * **`addstu n/John Cena m/A0123456X e/thechamp@u.nus.edu`** : Adds a student named `John Cena` to the student list.
+   * **`addstu n/Jay Chou m/A0123456X e/jaychou@u.nus.edu`** : Adds a student named `Jay Chou` to the student list.
 
    * **`deleteses 3`** : Deletes the 3rd session shown in the current session list.
    
@@ -695,21 +698,21 @@ deletestu INDEX
 
 :green_book: **Examples:**
 
-* `liststu` followed by `deletestu 2` followed by `yes`: Deletes and removes the 2nd student (**Figure 5.3.4-2**) from the student list.
+* `liststu` followed by `deletestu 1` followed by `yes`: Deletes and removes the 1st student (**Figure 5.3.4-2**) from the student list.
 * `findstu Bob` followed by `deletestu 1` followed by `yes`: Deletes and removes the 1st student from the results of the `findstu Bob` command.
 </div>
 
 **Outcome:**
 
 ![DeletestuConfirmation](images/user-guide/5.3.4.1-DeletestuConfirmationPrompt.png)
-<p align="center"> <sub> <b>Figure 5.3.4.1</b>: Confirmation for deleting student 2 </sub> </p>
+<p align="center"> <sub> <b>Figure 5.3.4.1</b>: Confirmation for deleting student 1 </sub> </p>
 
 <div markdown="block" class="alert alert-info">
 :information_source: After receiving the confirmation prompt, enter `yes` to confirm the removal of student at the specified `INDEX`, or reject the command by entering `no`.
 </div>
    
 ![Deletestu](images/user-guide/5.3.4.2-Deletestu.png)
-<p align="center"> <sub> <b>Figure 5.3.4.2</b>: After confirming the deletion of student 2 </sub> </p>   
+<p align="center"> <sub> <b>Figure 5.3.4.2</b>: After confirming the deletion of student 1 </sub> </p>   
 
 Examples:
 
