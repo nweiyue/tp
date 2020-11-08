@@ -1,5 +1,6 @@
 package atas.model.session;
 
+import static atas.commons.core.Messages.MESSAGE_NOT_IN_SESSION;
 import static atas.logic.commands.CommandTestUtil.assertCommandFailure;
 import static atas.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static atas.testutil.TypicalMemoContents.EMPTY_MEMO_CONTENT;
@@ -32,7 +33,7 @@ class ParticipationTest {
         IndexRange indexRange = new IndexRange("1-4");
         model.addSession(SESSION_WEEK_ONE);
         assertCommandFailure(new ParticipateCommand(indexRange), model,
-            "You have to be in the session tab to use this!");
+                MESSAGE_NOT_IN_SESSION);
         model.enterSession(Index.fromZeroBased(1));
         model.updateParticipationBySessionName(SESSION_WEEK_ONE.getSessionName(), indexRange);
 

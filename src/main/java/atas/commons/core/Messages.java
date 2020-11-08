@@ -18,7 +18,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_CONFIRMATION_INPUT = "Confirmation input is invalid! "
             + "Try again? (yes/no)";
     public static final String MESSAGE_NOT_ON_CURRENT_SESSION = "You can only use this on the current session tab!";
-    public static final String MESSAGE_NOT_IN_SESSION_TAB = "You have to be in the session tab to use this!";
+    public static final String MESSAGE_NOT_IN_SESSION = "You have to be in a session to use this!";
 
     /**
      * Retrieves the correct message to be displayed to the user
