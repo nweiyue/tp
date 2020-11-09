@@ -56,8 +56,15 @@ Given below are my contributions to the project.
     * Updated Architecture Sequence Diagram
     * Added documentation and UML diagrams on User Confirmation Prompt
     * Updated UML diagram for the `Logic` component of the application
+    * Added documentation on manual testing
+    * Added documentation on on a proposed feature (encrypting data) for future versions
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#75](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/75), [\#99](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/99), [\#152](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/152), [\#157](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/157)
+  * PRs reviewed (with non-trivial review comments):
+     [\#75](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/75), 
+     [\#99](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/99),
+     [\#152](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/152),
+     [\#157](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/157),
+     [\237](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/237)
   * Contributed to forum discussions (Issue [\#196](https://github.com/nus-cs2103-AY2021S1/forum/issues/196), [\#213](https://github.com/nus-cs2103-AY2021S1/forum/issues/213), [\#278](https://github.com/nus-cs2103-AY2021S1/forum/issues/278))
   * Reported 6 bugs and suggestions for another team during practical dry-run ([PED](https://github.com/MarcusTw/ped/issues))]
