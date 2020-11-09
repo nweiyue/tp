@@ -368,11 +368,10 @@ Step 2. The user executes `enterses 1` to enter session 1. The `enterses 1` comm
 
 Step 3. `EnterSessionCommandParser#parse()` checks if there argument passed is valid. If the argument is valid, a `EnterSessionCommand` will be created and `EnterSessionCommand#execute()` will be called by the `LogicManager`.
 
-Step 4. `ModelManager#enterSession()` will be called by `EnterSession#execute()` and the displayed tab will be switched to Current Session. Details of session 2 will be displayed to the user.
-
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If an invalid argument is found, a `ParseException` will be thrown and the execution terminates.
-
 </div><br>
+
+Step 4. `ModelManager#enterSession()` will be called by `EnterSession#execute()` and the displayed tab will be switched to Current Session. Details of session 2 will be displayed to the user.
 
 The following sequence diagram shows how the enter session operation works:
 
