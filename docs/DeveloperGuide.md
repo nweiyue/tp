@@ -91,15 +91,19 @@ The sections below give more details of each component.
 **API** :
 [`Ui.java`](https://github.com/AY2021S1-CS2103T-W16-4/tp/blob/master/src/main/java/atas/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StudentListPanel`, `StatusBarFooterLeft` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class except `Tab`.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StudentListPanel`, `StatusBarFooterLeft` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class except `Tab`, which is an enum class.
+
+The `Help Window` contains the `CommandSummary` for each command, so as to display the commands in tables.
+
+Specialised labels like `AttributesLabel` are contained in the `SessionStudentCard` while `StatisticsLabel` are contained in `Studentcard` and `SessionCard`.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103T-W16-4/tp/blob/master/src/main/java/atas/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103T-W16-4/tp/blob/master/src/main/resources/view/MainWindow.fxml).
 
 The `UI` component,
 
-* Executes user commands using the `Logic` component.
-* Listens for changes to `Model` data so that the UI can be updated with the modified data.
-* Displays results to user if any.
+* executes user commands using the `Logic` component.
+* listens for changes to `Model` data so that the UI can be updated with the modified data.
+* displays results to user if any.
 
 { end of `design#ui_component` written by: Ngoh Wei Yue }
 
@@ -122,7 +126,7 @@ The `UI` component,
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("enterses 1")` API call.
 
 ![Interactions Inside the Logic Component for the `enterses 1` Command](images/developer-guide/4.4.1-EnterSessionSequenceDiagram.png)
-<p align="center"> <sub> <b>Figure 3.3.1</b>: Enter Session Sequence Diagram </sub> </p>
+<p align="center"> <sub> <b>Figure 3.3.2</b>: Enter Session Sequence Diagram </sub> </p>
 
 { end of `design#logic_component` written by: Alvin Chee Teck Weng }
 
@@ -182,11 +186,21 @@ This section describes some noteworthy details on how certain features are imple
 
 ### 4.1. Switching between different tabs
 
-The switching of tabs is facilitated by `SwitchCommand`, `LogicManager`, `MainWindow` and `Tab`. `Tab` is an enum class that represents the various tabs that exist in ATAS.
+To allow users to switch between tabs using the CLI, the `switch` command is implemented.
 
-Given below is an example usage scenario and how the switch mechanism behaves at each step.
+The switching of tabs is facilitated by `SwitchCommand`, `LogicManager`, `MainWindow` and `Tab`. `Tab` is contained in `Ui` and is an enum class that represents the various tabs that exist in ATAS.
 
-Step 1. The user launches the application for the first time. The default "Students" tab is displayed.
+`SwitchCommand` implements the method:
+
+* `SwitchCommand#execute(Model)` — Returns a `CommandResult` containing the `Tab` to be switched to.
+
+`MainWindow` implements the method:
+
+* `MainWindow#handleSwitchTab()` — Switches the `TabPane` to the specified `Tab`
+
+Given below is an example usage scenario and how the `switch` mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The default `ATAS` tab is displayed.
 
 Step 2. The user executes `switch sessions` command to view the sessions tab. `MainWindow#executeCommand()` is called and `LogicManager` calls `AtasParser#parseCommand()`. This results in the creation of a `SwitchCommandParser` to parse the user input.
 
@@ -196,26 +210,26 @@ Step 3. `SwitchCommandParser#parse()` checks if there is an argument being passe
 
 </div><br>
 
-Step 4. `SwitchCommand#execute()` will check if the argument passed in is an existing tab name. If the argument is valid, a `CommandResult` containing a variable `switchTab` with the value of the target `Tab` will be return to `MainWindow`.
+Step 4. `SwitchCommand#execute()` will check if the argument passed in is an existing tab name. If the argument is valid, a `CommandResult` containing a variable `switchTab` with the value of the target `Tab` will be returned to `MainWindow`.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the argument is not a valid tab name, a `CommandException` will be thrown and the execution terminates.
 
 </div><br>
 
-Step 5. `MainWindow#handleSwitchTab()` will then be called and will check if the current `Tab` is the same as the target `Tab` to switched to. If it is not the same, `MainWindow` will utilise `tabPane` to execute the switch, thus updating the screen for the user.
+Step 5. `MainWindow#handleSwitchTab()` will then be called, which will check if the current `Tab` is the same as the target `Tab` to switched to. If it is not the same, `MainWindow` will utilise `TabPane` to execute the switch, thus updating the screen for the user.
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the current `Tab` is the same as the target `Tab`, a `CommandException` will be thrown and the execution terminates.
 
 </div><br>
 
-The following sequence diagram shows how the switch operation works:
+The following sequence diagram shows how the `switch` operation works:
 
 ![SwitchTabsSequenceDiagram](images/developer-guide/4.1.1-SwitchTabsSequenceDiagram.png)
-<p align="center"> <sub> <b>Figure 4.1.1</b>: Sequence diagram showing how Ui component works with the Logic component to switch tabs </sub> </p> 
+<p align="center"> <sub> <b>Figure 4.1.1</b>: Sequence diagram showing the switching of tabs </sub> </p> 
 
-The following activity diagram summarizes what happens when a user executes a switch command:
+The following activity diagram summarizes what happens when a user executes a `switch` command:
 
 ![SwitchTabsActivityDiagram](images/developer-guide/4.1.2-SwitchTabsActivityDiagram.png)
-<p align="center"> <sub> <b>Figure 4.1.2</b>: Activity diagram showing the implementation of switching between tabs </sub> </p> 
+<p align="center"> <sub> <b>Figure 4.1.2</b>: Activity diagram showing the switching of tabs </sub> </p> 
 
 #### 4.1.1. Design consideration
 
@@ -227,7 +241,7 @@ The following activity diagram summarizes what happens when a user executes a sw
 
 ### 4.2. User confirmation
 
-This feature (henceforth referred to as 'user confirmation') is facilitated by 'ConfirmCommand', 'DangerousCommand', 'Logic', and 'Model'.
+This feature (henceforth referred to as 'user confirmation') is facilitated by `ConfirmCommand`, `DangerousCommand`, `Logic`, and `Model`.
 
 There are 6 DangerousCommand(s) that will change the existing local data upon execution, namely:
 1. deletestu (deleting a student)
@@ -592,7 +606,9 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ### 4.8. Adding a note
 
-**Adding a note** is facilitated by `AddNoteCommand`, `Memo`, `TxtMemoStorage` and `MemoBox`.
+To allow users to add notes into the memo without switching to the `Memo` tab, adding a note is implemented.
+
+Adding a note is facilitated by `AddNoteCommand`, `Memo`, `TxtMemoStorage` and `MemoBox`.
 
 This implementation of this feature can be split into 3 main parts:
 1. Updating the content in `Memo`.
@@ -601,49 +617,51 @@ This implementation of this feature can be split into 3 main parts:
 
 `AddNoteCommand` implements the method:
 
-* `AddNoteCommand#execute(Model)` — Calls `Model#addNoteCommand()` and returns a `CommandResult` which notifies the `Ui` component to edit the content in the `MemoBox`.
+* `AddNoteCommand#execute()` — Calls `Model#addNoteCommand()` and returns a `CommandResult` which notifies the `Ui` component to edit the content in `MemoBox`.
 
 `Memo` is contained in `Model`. It implements the method:
 
 * `Memo#addNote()` — Appends the note to the current content and sets the new content to be the new content of `Memo`.
 
-`MemoStorage` implements `MemoStorage` which is contained in `Storage`. It implements the method:
+`TxtMemoStorage` implements `MemoStorage` which is contained in `Storage`. It implements the method:
 
 * `TxtMemoStorage#saveMemo()` — Writes the content in `Memo` to the hard disk.
 
-`MemoBox` implements the method:
+`MemoBox` is contained in `Ui`. It implements the method:
 * `Memo#setTextContent()` — Sets text into a text box contained on `MemoBox` to be displayed to the user.
 
-Given below is an example usage scenario and how adding a note behaves at each step.
+Given below is an example usage scenario and how `addnote` behaves at each step.
 
 Step 1. The user executes `addnote note` to add the word "note" onto a new line in the memo box.
 
-Step 2. An `AddNoteCommand` is created, and the `AddNoteCommand#execute()` is called which in turn calls `Model#addNoteToMemo()`.
+Step 2. An `AddNoteCommand` is created, and the `AddNoteCommand#execute()` is called by the `LogicManager`. 
 
-Step 3. `ModelManager#addNoteToMemo()` calls `Memo#addNote()` which concatenates "note" to the end of the original content and sets it to be the new content.
+Step 3. `AddNoteCommand#execute()` will then call `Model#addNoteToMemo()` to update the content in `Memo`.
+
+Step 4. `ModelManager#addNoteToMemo()` calls `Memo#addNote()` which concatenates "note" to the end of the original content and sets it to be the new content of `Memo`.
 
 The following sequence diagram shows how adding a note updates the content in `Memo`:
 
 ![AddNoteSequenceDiagram1](images/developer-guide/4.8.1-AddNoteSequenceDiagram.png)
-<p align="center"> <sub> <b>Figure 4.8.1</b>: Sequence diagram showing how the Logic component updates the content in `Memo` </sub> </p> 
+<p align="center"> <sub> <b>Figure 4.8.1</b>: Sequence diagram showing how the content in `Memo` is updated</sub> </p> 
 
-Step 4: After the content in `Memo` is updated, `Storage#saveMemo()` is called.
+Step 5: After the content in `Memo` is updated, `Storage#saveMemo()` is called by the `LogicManager`.
 
-Step 5: `StorageManager#saveMemo()` calls `TxtMemoStorage#saveMemo()` which retrieves the updated content in `Memo` and writes in to a hard disk, following a specified file path.
+Step 6: `StorageManager#saveMemo()` calls `TxtMemoStorage#saveMemo()` which retrieves the updated content in `Memo` and writes in to a hard disk, following a specified file path.
 
 The following sequence diagram shows how adding a note updates the data in the hard disk:
 
 ![AddNoteSequenceDiagram2](images/developer-guide/4.8.2-AddNoteSequenceDiagram.png) 
-<p align="center"> <sub> <b>Figure 4.8.2</b>: Sequence diagram showing how the Logic component updates the memo data in the hard disk </sub> </p> 
+<p align="center"> <sub> <b>Figure 4.8.2</b>: Sequence diagram showing how the memo content in the hard disk is updated </sub> </p> 
 
-Step 5: A `CommandResult` returned from `AddNoteCommand#execute()` is returned to `MainWindow#executeCommand()`. Since the boolean value `isEditMemo` contained in the `CommandResult` is true, `MainWindow#handleEditMemo()` is called.
+Step 7: A `CommandResult` containing a variable `isEditMemo` with the value `True`, returned from `AddNoteCommand#execute()` is returned to `MainWindow#executeCommand()`. This results in `MainWindow#handleEditMemo()` being called.
 
-Step 6: `MainWindow#handleEditMemo()` retrieves the updated `Memo` content using `Logic#getMemoContent()` and calls `MemoBox#setTextContent()` to sets the updated content into the text box contained in `MemoBox`.
+Step 8: `MainWindow#handleEditMemo()` retrieves the updated `Memo` content using `LogicManager#getMemoContent()` and calls `MemoBox#setTextContent()` to set the updated content into the text box contained in `MemoBox`.
 
-The following sequence diagram shows how adding a note updates the text box of `MemoBox` to be displayed to user:
+The following sequence diagram shows how adding a note updates the text box of `MemoBox` to be displayed to the user:
 
 ![AddNoteSequenceDiagram3](images/developer-guide/4.8.3-AddNoteSequenceDiagram.png) 
-<p align="center"> <sub> <b>Figure 4.8/3</b>: Sequence diagram showing how the Ui component works with the Logic component to update the GUI </sub> </p> 
+<p align="center"> <sub> <b>Figure 4.8.3</b>: Sequence diagram showing how the `MemoBox` content is updated </sub> </p> 
 
 { end of `implementation#adding_a_note` written by: Ngoh Wei Yue }
 
@@ -1277,66 +1295,127 @@ testers are expected to do more *exploratory* testing.
 
 { end of `manual_testing#launch_and_shutdown` written by: Masagca Eris Jacey }
 
+{ start of `manual_testing#switching_between_tabs` written by: Ngoh Wei Yue }
+
+### 11.2. Switching between tabs
+
+1. Prerequisites: Currently on `Students` tab
+
+    1. Test case: `switch sessions`
+   Expected: **ATAS** switches to the `Sessions` tab.
+   
+    1. Test case: `switch current`
+   Expected: Tab is not switched. Error message is shown. 
+   
+    1. Other incorrect switch commands to try: `switch`, `switch x`, `...` (where x is not a valid tab name)<br>
+         Expected: Similar to previous.
+
+{ end of `manual_testing#switching_between_tabs` written by: Ngoh Wei Yue }
+
+{ start of `manual_testing#random_name_generator` written by: Ngoh Wei Yue }
+
+### 11.3. Random name generator
+
+1. Prerequisites: At least 1 student exist.
+
+    1. Test case: `rng`
+    Expected: A student name is randomly generated and displayed to the user.
+    
+1. Prerequisites: No student exist.
+
+    1. Test case: `rng`
+    Expected: No student name is generated. Error message is shown.
+
+
+{ end of `manual_testing#random_name_generator` written by: Ngoh Wei Yue }
+
+{ start of `manual_testing#undo` written by: Ngoh Wei Yue }
+
+### 11.4. Undo
+
+1. Prerequisites: At least 1 command that can be undone is executed beforehand.
+    1. Test case: `undo`
+    Expected: **ATAS** returns to the state prior to performing the previous command that can be undone.
+    
+1. Prerequisites: No command that can be undone is executed beforehand.
+    1. Test case: `undo`
+    Expected: Error message is shown.
+
+{ end of `manual_testing#undo` written by: Ngoh Wei Yue }
+
+{ start of `manual_testing#redo` written by: Ngoh Wei Yue }
+
+### 11.5. Redo
+
+1. Prerequisites: At least 1 command that can be redone is executed beforehand.
+    1. Test case: `redo`
+    Expected: **ATAS** returns to the state after performing the previous command that can be redone.
+    
+1. Prerequisites: No command that can be redone is executed beforehand.
+    1. Test case: `redo`
+    Expected: Error message is shown.
+
+{ end of `manual_testing#redo` written by: Ngoh Wei Yue }
+
 { start of `manual_testing#adding_a_student` written by: Ngoh Wei Yue }
 
-### 11.2. Adding a student
+### 11.6. Adding a student
 
 Adding a student while all students are being shown.
   
-  1. Prerequisites: List all students using the list command. No students with the same matriculation number or NUS email address as any of the students to be added during testing.
-
-  1. Test case: `addstu n/Alvin Boon m/A0123456X e/alvinboon@u.nus.edu`<br>
-     Expected: A student is added to the bottom of the student list. A success message including the particulars of the added student is shown in the result box.
+ 1. Prerequisites: List all students using the list command. No students with the same matriculation number or NUS email address as any of the students to be added during testing.
+    1. Test case: `addstu n/Alvin Boon m/A0123456X e/alvinboon@u.nus.edu`<br>
+    Expected: A student is added to the bottom of the student list. A success message including the particulars of the added student is shown in the result box.
      
-     ![AddStudentSuccess](images/developer-guide/11.2.1-AddStudentSuccess.png)
-     <p align="center"> <sub> <b>Figure 11.2.1</b>: Application view when a student is successfully added </sub> </p> 
+         ![AddStudentSuccess](images/developer-guide/11.2.1-AddStudentSuccess.png)
+         <p align="center"> <sub> <b>Figure 11.2.1</b>: Application view when a student is successfully added </sub> </p> 
      
-  1. Test case: `addstu n/Cathy Duigan m/A1123456X e/cathyduigan@u.nus.edu t/helpful`<br>
-       Expected: Similar to previous.
+    1. Test case: `addstu n/Cathy Duigan m/A1123456X e/cathyduigan@u.nus.edu t/helpful`<br>
+    Expected: Similar to previous.
        
-  1. Test case: `addstu m/A2123456X n/Elbert Foo e/elbertfoo@u.nus.edu`<br>
-       Expected: Similar to previous.
+    1. Test case: `addstu m/A2123456X n/Elbert Foo e/elbertfoo@u.nus.edu`<br>
+    Expected: Similar to previous.
        
-  1. Test case: `addstu n/Gina Ho m/A3123456X`<br>
-     Expected: No student is added. Error message indicating an invalid command format is shown in the result box.
+    1. Test case: `addstu n/Gina Ho m/A3123456X`<br>
+    Expected: No student is added. Error message indicating an invalid command format is shown in the result box.
      
-     ![AddStudentFailure](images/developer-guide/11.2.2-AddStudentFailure.png)
-     <p align="center"> <sub> <b>Figure 11.2.2</b>: Application view when a student is not successfully added </sub> </p> 
+        ![AddStudentFailure](images/developer-guide/11.2.2-AddStudentFailure.png)
+        <p align="center"> <sub> <b>Figure 11.2.2</b>: Application view when a student is not successfully added </sub> </p> 
      
-  1. Test case: `addstu n/Gina Ho e/ginaho@u.nus.edu`<br>
-     Expected: Similar to previous.
+    1. Test case: `addstu n/Gina Ho e/ginaho@u.nus.edu`<br>
+    Expected: Similar to previous.
      
-  1. Test case: `addstu m/A3123456X e/ginaho@u.nus.edu`<br>
-     Expected: Similar to previous.
+    1. Test case: `addstu m/A3123456X e/ginaho@u.nus.edu`<br>
+    Expected: Similar to previous.
        
-  1. Test case: `addstu n/Gina Ho m/A31234567 e/ginaho@u.nus.edu`<br>
-     Expected: No student is added. Error message indicating an invalid matric number is shown in the result box.
+    1. Test case: `addstu n/Gina Ho m/A31234567 e/ginaho@u.nus.edu`<br>
+    Expected: No student is added. Error message indicating an invalid matric number is shown in the result box.
      
-  1. Test case: `addstu n/Gina Ho m/A3123456X e/ginaho@u.ntu.edu`<br>
-     Expected: No student is added. Error message indicating an invalid NUS email address is shown in the result box.
+    1. Test case: `addstu n/Gina Ho m/A3123456X e/ginaho@u.ntu.edu`<br>
+    Expected: No student is added. Error message indicating an invalid NUS email address is shown in the result box.
      
-  1. Test case: `addstu n/Gina Ho m/A0123456X e/ginaho@u.nus.edu`<br>
-       Expected: No student is added. Error message indicating that the student already exists is shown in the result box.
+    1. Test case: `addstu n/Gina Ho m/A0123456X e/ginaho@u.nus.edu`<br>
+    Expected: No student is added. Error message indicating that the student already exists is shown in the result box.
        
-  1. Test case: `addstu n/Gina Ho m/A3123456X e/elbertfoo@u.nus.edu`<br>
-       Expected: No student is added. Error message indicating that the student already exists is shown in the result box.
-     
-  <div markdown="span" class="alert alert-info">:information_source: 
-  **Note:** The above list of test cases is not exhaustive. Please feel free to add more.
-  </div>
+    1. Test case: `addstu n/Gina Ho m/A3123456X e/elbertfoo@u.nus.edu`<br>
+    Expected: No student is added. Error message indicating that the student already exists is shown in the result box.
+       
+    1. Other incorrect commands to try: `addstu`, `addstu Gina Ho`, `...`<br>
+    Expected: Similar to previous.
+    
 
 { end of `manual_testing#adding_a_student` written by: Ngoh Wei Yue }
 
 { start of `manual_testing#deleting_a_student` written by: Marcus Tan Wei }
 
-### 11.3. Deleting a student
+### 11.8. Deleting a student
 
 Deleting a student while all students are being shown
 
-  1. Prerequisites: List all students using the `liststu` command. Multiple (but less than 100) students in the list.
+1. Prerequisites: List all students using the `liststu` command. Multiple (but less than 100) students in the list.
 
-  1. Test case: `deletestu 1`<br>
-     Expected: Confirmation prompt to delete the first student from the list. Message of confirmation prompt is shown in the result box.
+    1. Test case: `deletestu 1`<br>
+    Expected: Confirmation prompt to delete the first student from the list. Message of confirmation prompt is shown in the result box.
      
      1. Test case 3.1: `yes` <br>
         Expected: First student on the list is deleted from the list. Message regarding student deletion is shown in the result box.
@@ -1344,48 +1423,44 @@ Deleting a student while all students are being shown
      1. Test case 3.2: `no` <br>
         Expected: First student on the list is not deleted from the list. Message regarding command not executed is shown in the result box.  
      
-  1. Test case: `deletestu 0`<br>
-     Expected: No student is deleted. Invalid index error details shown in the result box. 
+     1. Test case: `deletestu 0`<br>
+        Expected: No student is deleted. Invalid index error details shown in the result box. 
 
-  1. Test case: `deletestu 101`<br>
-     Expected: No student is deleted. Invalid index error details shown in the result box.
+    1. Test case: `deletestu 101`<br>
+        Expected: No student is deleted. Invalid index error details shown in the result box.
      
-  1. Other incorrect delete commands to try: `deletestu`, `deletestu x`, `...` (where x is larger than the list size)<br>
-     Expected: Similar to previous.
+    1. Other incorrect delete student commands to try: `deletestu`, `deletestu x`, `...` (where x is larger than the list size)<br>
+        Expected: Similar to previous.
      
-
-Deleting a student while only some students are being shown
    
-   1. Prerequisites: List some students using `findstu` command. Multiple (but less than 100) students are in the list.
-   One or more (but less than 100) student is shown in the StudentListPanel.
-   
-   1. Test case: `deletestu 1`<br>
-      Expected: Confirmation prompt to delete the first student from the list. Message of confirmation prompt is shown in the result box.
+1. Prerequisites: List some students using `findstu` command. Multiple (but less than 100) students are in the list. One or more (but less than 100) student is shown in the StudentListPanel.
+    
+    1. Test case: `deletestu 1`<br>
+       Expected: Confirmation prompt to delete the first student from the list. Message of confirmation prompt is shown in the result box.
       
-      1. Test case: `yes` <br>
-         Expected: First student on the list is deleted from the list. Message regarding student deletion is shown in the result box.
+    1. Test case: `yes` <br>
+       Expected: First student on the list is deleted from the list. Message regarding student deletion is shown in the result box.
          
-      1. Test case: `no` <br>
-         Expected: First student on the list is not deleted from the list. Message regarding command not executed is shown in the result box.  
+    1. Test case: `no` <br>
+       Expected: First student on the list is not deleted from the list. Message regarding command not executed is shown in the result box.  
       
-   1. Test case: `deletestu 0`<br>
-      Expected: No student is deleted. Invalid index error details shown in the result box. 
+    1. Test case: `deletestu 0`<br>
+       Expected: No student is deleted. Invalid index error details shown in the result box. 
    
-   1. Test case: `deletestu 101`<br>
-      Expected: No student is deleted. Invalid index error details shown in the result box.
+    1. Test case: `deletestu 101`<br>
+       Expected: No student is deleted. Invalid index error details shown in the result box.
       
-   1. Other incorrect delete commands to try: `deletestu`, `deletestu x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+    1. Other incorrect delete student commands to try: `deletestu`, `deletestu x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
 
 { end of `manual_testing#deleting_a_student` written by: Marcus Tan Wei }
 
 { start of `manual_testing#adding_a_session` written by: Alvin Chee Teck Weng }
 
-### 11.4. Adding a session
 
-Adding a session while all sessions are being shown.
+### 11.9. Adding a session
 
-   1. Prerequisites: Multiple (but less than 100) sessions in the session list.
+1. Prerequisites: Multiple (but less than 100) sessions in the session list.
  
    1. Test case: `addses s/Tutorial 6 d/12/7/2020`<br>
       Expected: A session is added to the bottom of the session list. A success message including the details of the added session is shown in the result box.
@@ -1412,20 +1487,18 @@ Adding a session while all sessions are being shown.
 
 { start of `manual_testing#deleting_a_session` written by: Marcus Tan Wei }
 
-### 11.5. Deleting a session
+### 11.10. Deleting a session
 
-Deleting sessions in sessions tab
-   
-   1. Prerequisites: Multiple (but less than 100) sessions in the session list.
+1. Prerequisites: Multiple (but less than 100) sessions in the session list.
 
    1. Test case: `deleteses 1` <br>
       Expected: Confirmation prompt to delete the first session from the session list. Message of confirmation prompt is shown in the result box.
       
-      1. Test case: `yes` <br>
-         Expected: First session on the list is deleted from the list. Message regarding session deletion is shown in the result box.
+   1. Test case: `yes` <br>
+      Expected: First session on the list is deleted from the list. Message regarding session deletion is shown in the result box.
          
-      1. Test case: `no` <br>
-         Expected: First session on the list is not deleted from the list. Message regarding command not executed is shown in the result box.  
+   1. Test case: `no` <br>
+      Expected: First session on the list is not deleted from the list. Message regarding command not executed is shown in the result box.  
       
    1. Test case: `deleteses 0` <br>
       Expected: No session is deleted. Invalid index error details shown in the ResultDisplay. 
@@ -1433,16 +1506,13 @@ Deleting sessions in sessions tab
    1. Test case: `deleteses 101` <br>
       Expected: No session is deleted. Invalid index error details shown in the ResultDisplay.
 
-Deleting sessions in the students tab
-
-   1. Prerequisites: Multiple (but less than 100) sessions in the session list. Multiple students in the student list.
-      Some sessions have marked participation and presence.
+1. Prerequisites: Multiple (but less than 100) sessions in the session list. Multiple students in the student list. Some sessions have marked participation and presence.
    
    1. Test case: `deleteses 1` <br>
       Expected: Confirmation prompt to delete the first session from the session list. Message of confirmation prompt is shown in the result box.
       
-      1. Test case: `yes` <br>
-         Expected: First session on the list is deleted from the list. Message regarding session deletion is shown in the result box. Statistics of students will change accordingly, taking into account of removed session.
+   1. Test case: `yes` <br>
+      Expected: First session on the list is deleted from the list. Message regarding session deletion is shown in the result box. Statistics of students will change accordingly, taking into account of removed session.
          
          ![StudentsStatisticsBeforeDeleteSession](images/developer-guide/11.5.1-StudentsStatisticsBeforeDeleteSession.png)
          <p align="center"> <sub> <b>Figure 11.5.1</b>: Application view of students statistics before deleting session </sub> </p> 
@@ -1453,8 +1523,8 @@ Deleting sessions in the students tab
          ![StudentsStatisticsAfterDeleteSession](images/developer-guide/11.5.3-StudentsStatisticsAfterDeleteSession.png)
          <p align="center"> <sub> <b>Figure 11.5.3</b>: Application view of students statistics after session is deleted </sub> </p> 
          
-      1. Test case: `no` <br>
-         Expected: First session on the list is not deleted from the list. Message regarding command not executed is shown in the result box.
+   1. Test case: `no` <br>
+      Expected: First session on the list is not deleted from the list. Message regarding command not executed is shown in the result box.
          
    1. Test case: `deleteses 0` <br>
       Expected: No session is deleted. Invalid index error details shown in the result box. 
@@ -1463,6 +1533,124 @@ Deleting sessions in the students tab
       Expected: No session is deleted. Invalid index error details shown in the result box.  
 
 { end of `manual_testing#deleting_a_session` written by: Marcus Tan Wei }
+
+{ start of `manual_testing#enter_session` written by: Ngoh Wei Yue }
+
+### 11.11. Enter session
+
+1. Prerequisites: At least 1 session exist.
+    1. Test case: `enterses 1`
+    Expected: **ATAS** switches to the `Current Session` tab and a `Session` is entered. A simplified student list is shown.
+    
+    1. Test case: `enterses 0`
+        Expected: A session is not entered. Error message is shown.
+    
+    1. Other incorrect enter session commands to try: `enterses`, `enterses x`, `...` (where x is larger than the size of the session list)<br>
+       Expected: Similar to previous.
+    
+1. Prerequisites: No session exist.
+    1. Test case: `enterses 1`
+    Expected: Error message is shown.
+
+{ end of `manual_testing#enter_session` written by: Ngoh Wei Yue }
+
+{ start of `manual_testing#participate` written by: Ngoh Wei Yue }
+
+### 11.12. Participate
+
+1. Prerequisites: User has entered a session. At least five students exist.
+    1. Test case: `participate 1`
+    Expected: Participation label of student at index 1 is toggled and changes color.
+    
+    1. Test case: `participate 1-3`
+        Expected: Participation labels of students at index 1 to 3 are toggled and changes color.
+        
+    1. Test case: `participate 0`
+        Expected: Participation labels remain the same. Error message is shown.  
+    
+    1. Other incorrect participate commands to try: `participate`, `participate x`, `participate 1-x`, `...` (where x is larger than the size of the student list)<br>
+       Expected: Similar to previous.
+    
+1. Prerequisites: User has not entered session.
+    1. Test case: `participate 1`
+    Expected: Error message is shown. **ATAS** prompts user to enter a session.
+    
+    1. Test case: `participate 0`
+    Expected: Similar to previous.
+        
+    1. Other incorrect participate commands to try: `participate`, `participate x`, `participate 1-x`, `...` (where x is larger than the size of the student list)<br>
+    Expected: Similar to previous.
+
+{ end of `manual_testing#participate` written by: Ngoh Wei Yue }
+
+{ start of `manual_testing#presence` written by: Ngoh Wei Yue }
+
+### 11.13. Presence
+
+1. Prerequisites: User has entered a session. At least five students exist.
+    1. Test case: `presence 1`
+    Expected: Presence label of student at index 1 is toggled and changes color. Success message is shown.
+    
+    1. Test case: `presence 1-3`
+        Expected: Presence labels of students at index 1 to 3 are toggled and changes color. Success message is shown.
+        
+    1. Test case: `presence 0`
+        Expected: Presence labels remain the same. Error message is shown.  
+    
+    1. Other incorrect presence commands to try: `presence`, `presence x`, `presence 1-x`, `...` (where x is larger than the size of the student list)<br>
+       Expected: Similar to previous.
+    
+1. Prerequisites: User has not entered session.
+    1. Test case: `presence 1`
+    Expected: Error message is shown. **ATAS** prompts user to enter a session.
+    
+    1. Test case: `presence 0`
+    Expected: Similar to previous.
+        
+    1. Other incorrect presence commands to try: `presence`, `presence x`, `presence 1-x`, `...` (where x is larger than the size of the student list)<br>
+    Expected: Similar to previous.
+
+{ end of `manual_testing#presence` written by: Ngoh Wei Yue }
+
+{ start of `manual_testing#adding_a_note` written by: Ngoh Wei Yue }
+
+### 11.14. Adding a note
+
+1. Prerequisites: None
+    1. Test case: `addnote hello`
+    Expected: "Hello" is added on to a new line at the end of `MemoBox`.
+    
+    1. Test case: `addnote  `
+        Expected: " " is added on to a new line at the end of `MemoBox`.
+        
+    1. Test case: `addnote`
+        Expected: Error message is shown.  
+
+{ end of `manual_testing#adding_a_note` written by: Ngoh Wei Yue }
+
+{ start of `manual_testing#saving_the_memo` written by: Ngoh Wei Yue }
+
+### 11.15. Saving the memo
+
+1. Prerequisites: Focus is on `MemoBox` (outline of `MemoBox` is in turquoise). User is using a Windows/Linux machine.
+    1. Test case: The `ctrl` key is pressed and held down while pressing the `s` key.
+    Expected: Content in `MemoBox` is saved into hard disk.
+    
+    1. Test case: Other keys besides the one mentioned previously is pressed.
+    Expected: Nothing happens.
+    
+1. Prerequisites: Focus is on `MemoBox` (outline of `MemoBox` is in turquoise). User is using a MacOS machine.
+    1. Test case: The `command` key is pressed and held down while pressing the `s` key.
+    Expected: Memo is saved into hard disk. Success message is shown.
+    
+    1. Test case: Other keys or key combinations besides the one mentioned previously is pressed.
+        Expected: Nothing happens.
+        
+1. Prerequisites: User is not in `Memo` tab or focus is not on `MemoBox` (outline of `MemoBox` is not shown).
+    1. Test case: Any keys or key combinations is pressed.
+    Expected: Nothing happens. 
+
+{ end of `manual_testing#saving_the_memo` written by: Ngoh Wei Yue }
 
 { start of `appendix` written by: Masagca Eris Jacey }
 
