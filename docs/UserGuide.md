@@ -442,6 +442,18 @@ Chooses a student at random from the student list.
 rng
 ```
 
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Notes about the usage of this command:** 
+* The student list that **ATAS** references will be whatever list is shown on the student's tab.
+   * If the full list is shown (say after [`liststu`](#533-listing-all-students--liststu)),
+     then the student selected can be from anyone already in the overall student list.
+   * If only a partial / no list is shown (say after [`findstu`](#532-locating-students-by-name--findstu)),
+     then the student selected will be someone from that truncated list.
+     If the list is empty, then an error will be shown -- there is no student to select from!
+
+</div>
+
 <div markdown="block" class="alert alert-success">
 
 :green_book: **Example:**
