@@ -9,7 +9,7 @@ import atas.model.Model;
 import atas.ui.Tab;
 
 /**
- * Switches tab using the name of the destination tab.
+ * Switches tabs using the name of the destination tab.
  * Name of destination tab is case insensitive.
  */
 public class SwitchCommand extends Command {
@@ -19,6 +19,7 @@ public class SwitchCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Switches to the specified tab (case-insensitive).\n"
             + "Parameters: TAB_NAME (must be an existing tab)\n"
             + "Examples: "
+            + COMMAND_WORD + " atas, "
             + COMMAND_WORD + " students, "
             + COMMAND_WORD + " sessions, "
             + COMMAND_WORD + " current, "
@@ -32,14 +33,21 @@ public class SwitchCommand extends Command {
 
     private final String tabName;
 
+    /**
+     * Constructs a SwitchCommand.
+     *
+     * @param tabName Name of the tab to switch to.
+     */
     public SwitchCommand(String tabName) {
         this.tabName = tabName;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        Tab tab = Tab.ATAS;
+        Tab tab;
         requireNonNull(tabName);
+        assert !tabName.equals("") : "tabName should not be empty.";
+
         String trimmedTab = tabName.toLowerCase();
         switch(trimmedTab) {
         case "atas":

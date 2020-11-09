@@ -12,5 +12,4 @@
     <Label fx:id="emptySessionListMessage" text="Label" prefWidth="Infinity">
     </Label>
   </VBox>
-
 </StackPane>

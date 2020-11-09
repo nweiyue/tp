@@ -44,7 +44,7 @@ public class UiManager implements Ui {
             mainWindow = new MainWindow(primaryStage, logic);
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts(); //This should be called before setting listener for saving of Memo
-            mainWindow.setSaveMemoListener();
+            mainWindow.setMemoListener();
 
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));

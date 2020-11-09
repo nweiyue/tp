@@ -48,7 +48,7 @@ public class SessionStudentListPanel extends UiPart<Region> {
     public void showNotInSession() {
         displayMessage.setText(NOT_IN_SESSION);
         sessionStudentListView.setVisible(false);
-        displayMessage.setVisible(true);
+        labelView.setVisible(true);
     }
 
     /**
@@ -73,7 +73,7 @@ public class SessionStudentListPanel extends UiPart<Region> {
      */
     private void showAttributesList() {
         sessionStudentListView.setVisible(true);
-        displayMessage.setVisible(false);
+        labelView.setVisible(false);
     }
 
     /**
@@ -82,7 +82,7 @@ public class SessionStudentListPanel extends UiPart<Region> {
     private void showEmptyAttributesState() {
         displayMessage.setText(NO_SESSION_STUDENTS_MESSAGE);
         sessionStudentListView.setVisible(false);
-        displayMessage.setVisible(true);
+        labelView.setVisible(true);
     }
 
     /**
