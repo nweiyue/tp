@@ -337,7 +337,7 @@ With the exception of [saving the memo](#562-saving-the-memo), all commands that
   e.g., you can use `n/NAME [t/TAG]` as `n/Elvin Ng t/helpful` or simply as `n/Elvin Ng`.
   
 * If there are multiple items in round brackets, at least one of them should be supplied.<br>
-  e.g., you should use `(n/UPDATED_NAME) (e/UPDATED_EMAIL_ADDRESS)` separately as `n\Elvin Ng` / `e/elvinng@u.nus.edu` (i.e. 1 parameter), or together like `n\Elvin Ng e/elvinng@u.nus.edu`(i.e. 2 parameters).
+  e.g., you should use `(n/UPDATED_NAME) (e/UPDATED_EMAIL_ADDRESS)` separately as `n/Elvin Ng` / `e/elvinng@u.nus.edu` (i.e. 1 parameter), or together like `n/Elvin Ng e/elvinng@u.nus.edu`(i.e. 2 parameters).
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g., you can use `[t/TAG]…​` as ` ` (i.e. 0 times), `t/helpful`(i.e. 1 time), `t/helpful t/outspoken`(i.e. 2 times) etc.
