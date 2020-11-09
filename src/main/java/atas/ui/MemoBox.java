@@ -7,7 +7,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.Region;
 
 /**
- * A ui for the memo box that is displayed at the middle of the memo tab.
+ * Contains a TextArea that is displayed at the middle of the Memo tab.
  */
 public class MemoBox extends UiPart<Region> {
 
@@ -17,8 +17,9 @@ public class MemoBox extends UiPart<Region> {
     private TextArea memoTextBox;
 
     /**
-     * Creates a memo box to display.
-     * @param content String content of the Memo of the application.
+     * Constructs a MemoBox to be displayed.
+     *
+     * @param content String content of the Memo of ATAS.
      */
     public MemoBox(String content) {
         super(FXML);
@@ -26,8 +27,9 @@ public class MemoBox extends UiPart<Region> {
     }
 
     /**
-     * Writes text into the memo box.
-     * @param content String content to be displayed in the TextArea.
+     * Writes text into the MemoBox.
+     *
+     * @param content String content to be displayed in the MemoBox.
      */
     public void setTextContent(String content) {
         requireNonNull(content);
@@ -35,8 +37,9 @@ public class MemoBox extends UiPart<Region> {
     }
 
     /**
-     * Reads text from the memo box.
-     * @return content in the memo box.
+     * Reads text from the MemoBox.
+     *
+     * @return String content in the MemoBox.
      */
     public String getTextContent() {
         String content = memoTextBox.getText();
@@ -45,7 +48,8 @@ public class MemoBox extends UiPart<Region> {
     }
 
     /**
-     * Returns the text box component of the memo box.
+     * Returns the text box component of the MemoBox.
+     *
      * @return JavaFx's TextArea component.
      */
     public TextArea getMemoTextBox() {

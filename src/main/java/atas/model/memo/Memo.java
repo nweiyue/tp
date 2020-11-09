@@ -1,6 +1,6 @@
 package atas.model.memo;
 
-import static atas.commons.util.CollectionUtil.requireAllNonNull;
+import static java.util.Objects.requireNonNull;
 
 /**
  * Represents a Memo pad.
@@ -21,7 +21,7 @@ public class Memo {
     /**
      * Constructs a Memo object with a specified content.
      *
-     * @param content String content to be shown in Memo.
+     * @param content String content to be stored in Memo.
      */
     public Memo(String content) {
         this.content = content;
@@ -30,7 +30,7 @@ public class Memo {
     /**
      * Returns the content of the Memo.
      *
-     * @return content of the Memo.
+     * @return String content of the Memo.
      */
     public String getContent() {
         return content;
@@ -42,7 +42,7 @@ public class Memo {
      * @param content String content to be written to the Memo.
      */
     public void setContent(String content) {
-        requireAllNonNull(content);
+        requireNonNull(content);
         this.content = content;
     }
 
@@ -52,8 +52,9 @@ public class Memo {
      * @param note String text to be appended.
      */
     public void addNote(String note) {
-        requireAllNonNull(note);
-        String newContent = getContent().concat("\n").concat(note);
+        requireNonNull(note);
+        String oldContent = getContent();
+        String newContent = oldContent.concat("\n").concat(note);
         setContent(newContent);
     }
 
