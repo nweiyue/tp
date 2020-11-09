@@ -15,6 +15,7 @@ public class AddNoteCommandParser implements Parser<AddNoteCommand> {
     /**
      * Parses the given {@code String} of argument in the context of the AddNoteCommand
      * and returns an AddNoteCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddNoteCommand parse(String args) throws ParseException {
@@ -22,8 +23,10 @@ public class AddNoteCommandParser implements Parser<AddNoteCommand> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
         }
-        // substring() to get rid of additional whitespace after command word
-        return new AddNoteCommand(args.substring(1));
+
+        // substring() to get rid of additional whitespace between command word and argument
+        String actualNoteToAdd = args.substring(1);
+        return new AddNoteCommand(actualNoteToAdd);
     }
 
 }

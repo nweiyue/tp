@@ -66,11 +66,15 @@ public interface Logic {
 
     /**
      * Returns the id of the current session.
+     *
+     * @return Id of the current session.
      */
     Index getSessionId();
 
     /**
      * Returns the Memo content.
+     *
+     * @return Text contained in Memo.
      */
     String getMemoContent();
 

@@ -1,7 +1,7 @@
 package atas.testutil;
 
 /**
- * A utility class containing a list of {@code Tab} objects to be used in tests.
+ * A utility class containing a list of tab names to be used in tests.
  */
 public class TypicalTabNames {
     public static final String ATAS_TAB_NAME = "atas";

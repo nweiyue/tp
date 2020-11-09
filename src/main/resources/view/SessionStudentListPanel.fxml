@@ -6,12 +6,10 @@
 <?import javafx.scene.control.Label?>
 
 <StackPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-
   <VBox fx:id="labelView" styleClass="empty-state" alignment="CENTER" >
     <Label fx:id="displayMessage" text="Label" prefWidth="Infinity">
     </Label>
   </VBox>
 
   <ListView fx:id="sessionStudentListView" VBox.vgrow="ALWAYS" />
-
 </StackPane>
