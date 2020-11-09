@@ -708,8 +708,8 @@ deletestu INDEX
 
 :green_book: **Examples:**
 
-* `liststu` followed by `deletestu 1` followed by `yes`: Deletes and removes the 1st student (**Figure 5.3.4-2**) from the student list.
-* `findstu Bob` followed by `deletestu 1` followed by `yes`: Deletes and removes the 1st student from the results of the `findstu Bob` command.
+* `liststu` followed by `deletestu 1` followed by `yes` deletes the 1st student (**Figure 5.3.4-2**) from the student list.
+* `findstu Bob` followed by `deletestu 1` followed by `yes` deletes the 1st student from the results of the `findstu Bob` command.
 </div>
 
 **Outcome:**
@@ -736,7 +736,7 @@ Examples:
 
 **Format:**
 ```
-`editstu INDEX (n/UPDATED_NAME) (m/UPDATED_MATRICULATION) (e/UPDATED_EMAIL_ADDRESS) (t/UPDATED_TAG …​)`
+editstu INDEX (n/UPDATED_NAME) (m/UPDATED_MATRICULATION) (e/UPDATED_EMAIL_ADDRESS) (t/UPDATED_TAG)…
 ```
 
 <div markdown="block" class="alert alert-info">
@@ -758,8 +758,8 @@ Examples:
 
 :green_book: **Examples:**
 
-* `editstu 1 n/Alvina Lee` followed by `yes`: Edits the 2nd student (**Figure 5.3.5**) in the student list with an updated name `Alvina Lee`.
-* `editstu 3 t/active` followed by `y`: Edits the 3rd student in the student list with an updated tag `active`.
+* `editstu 1 n/Alvina Lee` followed by `yes` edits the 2nd student (**Figure 5.3.5**) in the student list with an updated name `Alvina Lee`.
+* `editstu 3 t/active` followed by `yes` edits the 3rd student in the student list with an updated tag `active`.
 </div>
 
 **Outcome:**
@@ -793,7 +793,7 @@ clearstu
 
 :green_book: **Example:**
 
-* `clearstu`: Clears the students from the student list (**Figure 5.3.6**).
+* `clearstu` followed by `yes` clears the students from the student list (**Figure 5.3.6**).
 </div>
 
 **Outcome:**
@@ -849,8 +849,8 @@ need to add a '0' in front, for e.g., 09/01/2020 and 9/1/2020 are both accepted.
 <div markdown="block" class="alert alert-success">
 
 **:green_book: Examples**:
-* `addses s/tut1 d/12/7/2020`
-* `addses s/lab3 d/2/11/2020`
+* `addses s/Tutorial 6 d/12/7/2020` (**Figure 5.4.1**)
+* `addses s/Lab 3 d/2/11/2020`
 
 </div>
 
@@ -905,7 +905,7 @@ Edits a session in the session list.
 
 **Format:**
 ```
-editses INDEX s/UPDATED_NAME d/UPDATED_DATE
+editses INDEX (s/UPDATED_NAME) (d/UPDATED_DATE)
 ```
 
 <div markdown="block" class="alert alert-info">
@@ -1048,8 +1048,9 @@ participate INDEX_RANGE
 
 <div markdown="block" class="alert alert-success">
 
-:green_book: **Example:**
+:green_book: **Examples:**
 * `participate 1-4` toggles the participation status of students 1 to 4. **(Figure 5.5.1)**
+* `participate 2` toggles the participation status of student 2.
 
 </div>
 
@@ -1080,8 +1081,9 @@ presence INDEX_RANGE
 
 <div markdown="block" class="alert alert-success">
 
-:green_book: **Example:**
+:green_book: **Examples:**
 * `presence 1-4` toggles the presence status of students 1 to 4. **(Figure 5.5.2)**
+* `presence 2` toggles the presence status of student 2. 
 
 </div>
 
@@ -1231,7 +1233,7 @@ clearstu
 
 :green_book: **Example:**
 
-* `clearstu` followed by `no`: No removal of any students from the student list.
+* `clearstu` followed by `no` results in no removal of students from the student list.
 </div>
 
 **Outcome:**
