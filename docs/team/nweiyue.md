@@ -25,6 +25,7 @@ Given below are my contributions to the project.
   * What it does: Allows users to take down notes in a text box which serves as a memo. Users can type directly into the memo or use `addnote` to add notes to the memo. The memo also auto-saves when users make any changes to it.
   * Justification: This feature improves the product because **ATAS** focuses on in-class teaching experience. Taking down notes during a lesson and referring to them afterwards is very common, and **ATAS** should allow users to do so without having to switch to other applications.
   * Highlights: This enhancement required the implementation of all 4 components (`Ui`, `Logic`, `Model` and `Storage`) of memo from scratch. It required an in-depth analysis of the architecture and design alternatives. The implementation too was challenging as it required major addition to many components of the application.
+  <div style="page-break-after: always;"></div>
   
 * **Project management**:
   * Designed the initial UI mockup (Pull request [\#56](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/56))
