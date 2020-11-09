@@ -31,6 +31,7 @@ Given below are my contributions to the project.
 * **Enhancements to existing features**:
   * Refactored most class names. Examples: `Person` -> `Student`, `AddressBook` -> `Atas` or `StudentList` (Pull request [\#98](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/98))
   * Changed the size 'File' and 'Help' button. [\#136](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/136)
+  
   * Updated `Email` to show capability of using '_' in email. [\#211](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/211)
   * Updated `Matriculation` to allow user entering lower case letter for first and last letter of a matriculation number, for example, `a0149980n` is allowed and converted to `A0149980N` by `Matriculation`.
   [\#211](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/211)
