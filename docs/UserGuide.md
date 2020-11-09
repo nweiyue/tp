@@ -133,6 +133,8 @@ You will come across some of these terms in this document, and it will be good t
 
 { end of `about_this_user_guide#glossary` written by: Marcus Tan Wei }
 
+{ start of `about_this_user_guide#symbols_and_formatting` written by: Marcus Tan Wei }
+
 ### 2.3. Symbols and formatting
 
 For the good majority of visual learners, we figured to present information in a unique format with symbols of different shapes and colours to help you along reading this guide.
@@ -144,6 +146,8 @@ For the good majority of visual learners, we figured to present information in a
  |:information_source: | Important information to take note |
  |:warning: | Warning about the usage of a command |
  |`consolas font` | Representing a key term or a command |
+
+{ end of `about_this_user_guide#symbols_and_formatting` written by: Marcus Tan Wei }
  
 --------------------------------------------------------------------------------------------------------------------
 
