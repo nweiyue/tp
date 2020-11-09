@@ -799,7 +799,7 @@ clearstu
 
 :green_book: **Example:**
 
-* `clearstu`: Clears the students from the student list (**Figure 5.3.6**).
+* `clearstu` followed by `yes`: Clears the students from the student list (**Figure 5.3.6**).
 </div>
 
 **Outcome:**
@@ -855,8 +855,8 @@ need to add a '0' in front, for e.g., 09/01/2020 and 9/1/2020 are both accepted.
 <div markdown="block" class="alert alert-success">
 
 **:green_book: Examples**:
-* `addses s/tut1 d/12/7/2020`
-* `addses s/lab3 d/2/11/2020`
+* `addses s/Tutorial 6 d/12/7/2020` (**Figure 5.4.1**)
+* `addses s/Lab 3 d/2/11/2020`
 
 </div>
 
@@ -936,8 +936,8 @@ editses INDEX s/UPDATED_NAME d/UPDATED_DATE
 
 <div markdown="block" class="alert alert-success">
 
-**:green_book: Examples**:
-* `editses 1 s/Tutorial 6 d/10/10/2020` followed by `yes` edits the 1st session in the session list with a new session name `Tutorial 6` and a new session date `10/10/2020`.
+**:green_book: Example**:
+* `editses 1 s/Tutorial 6 d/10/10/2020` followed by `yes` edits the 1st session in the session list with a new session name `Tutorial 6` and a new session date `10/10/2020`. (**Figure 5.4.3**)
 
 </div>
 
@@ -974,7 +974,7 @@ clearses
 <div markdown="block" class="alert alert-success">
    
 **:green_book: Examples**:
-* `clearses` followed by `yes` deletes all the sessions in the session list. 
+* `clearses` followed by `yes` deletes all the sessions in the session list. (**Figure 5.4.4**)
 
 </div>
 
@@ -1009,8 +1009,8 @@ enterses INDEX
 
 <div markdown="block" class="alert alert-success">
 
-**:green_book: Examples**:
-* `enterses 1` enters the first session and allows you to use PARTICIPATE and PRESENCE commands.
+**:green_book: Example**:
+* `enterses 1` enters the first session and allows you to use PARTICIPATE and PRESENCE commands. (**Figure 5.4.5**)
 
 </div>
 
