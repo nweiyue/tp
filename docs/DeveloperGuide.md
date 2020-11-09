@@ -762,7 +762,7 @@ Refer to this guide [here](DevOps.md).
 
 **Target user profile**:
 
-* Bob is a passionate CS1010 TA and he likes to track his students’ progress.
+* Bob is a passionate CS1010S TA and he likes to track his students’ progress.
 * Bob currently uses Excel to keep track of his student’s particulars.
 * Bob finds the features on Excel clunky at times and he finds them difficult to learn.
 * Bob is looking for an application with a sleeker and cleaner UI so he doesn’t have to remember where the different features in Excel are.
