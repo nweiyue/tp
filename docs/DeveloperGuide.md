@@ -1517,13 +1517,13 @@ Delete a student while SOME student(s) are shown:
     Expected: First session on the list is deleted from the list. Message regarding session deletion is shown in the result box. Statistics of students will change accordingly, taking into account of removed session.
          
         ![StudentsStatisticsBeforeDeleteSession](images/developer-guide/11.9.1-StudentsStatisticsBeforeDeleteSession.png)
-        <p align="center"> <sub> <b>Figure 11.5.1</b>: Application view of students statistics before deleting session </sub> </p> 
+        <p align="center"> <sub> <b>Figure 11.9.1</b>: Application view of students statistics before deleting session </sub> </p> 
          
         ![SessionStatisticsBeforeDeleteSession](images/developer-guide/11.9.2-SessionStatistics.png)
-        <p align="center"> <sub> <b>Figure 11.5.2</b>: Application view of sessions in the session list </sub> </p> 
+        <p align="center"> <sub> <b>Figure 11.9.2</b>: Application view of sessions in the session list </sub> </p> 
          
         ![StudentsStatisticsAfterDeleteSession](images/developer-guide/11.9.3-StudentsStatisticsAfterDeleteSession.png)
-        <p align="center"> <sub> <b>Figure 11.5.3</b>: Application view of students statistics after session is deleted </sub> </p> 
+        <p align="center"> <sub> <b>Figure 11.9.3</b>: Application view of students statistics after session is deleted </sub> </p> 
          
     1. Test case: `no` <br>
     Expected: First session on the list is not deleted from the list. Message regarding command not executed is shown in the result box.
