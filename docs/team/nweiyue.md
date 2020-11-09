@@ -15,12 +15,13 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added a **tab layout**, and the ability to **switch between individual tabs** (Pull request [\#75](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/75))
   * What it does: Allows the application to have multiple UIs which serves different functions. Users can use `switch` to switch between tabs. 
-  * Justification: This feature improves the product significantly because we can now display more features without overcrowding the GUI. It also enhances the UX since there is a delegated tab for each aspect of the main features of **ATAS**. The `switch` command helps optimise the product for fast-typists.
+  * Justification: This feature improves the product significantly because we can now display more features without overcrowding the GUI. It also enhances the UX since there is a delegated tab for each aspect of the main features of **ATAS**.
   * Highlights: This enhancement allows commands like `enterses` to work properly. It required an in-depth analysis of both the front-end and the back-end of the application. The implementation too was challenging as it required integration between the front-end and back-end code.
 
 * **New Feature**: Added a **memo** feature (Pull request [\#122](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/122))
   * What it does: Allows users to take down notes in a text box which serves as a memo. Users can type directly into the memo or use `addnote` to add notes to the memo using the CLI. The memo also auto-saves when users make any changes to it.
-  * Justification: This feature improves the product because our application focuses on in-class teaching experience. Taking down notes during a lesson and referring to them afterwards is very common, and our application should allow users to do so without having to switch to other applications. The `addnote` command helps optimise the product for fast-typists.
+  * Justification: This feature improves the product because our application focuses on in-class teaching experience. Taking down notes during a lesson and referring to them afterwards is very common, and our application should allow users to do so without having to switch to other applications.
+  <div style="page-break-after: always;"></div>
   * Highlights: This enhancement required the implementation of all 4 components (`Ui`, `Logic`, `Model` and `Storage`) of memo from scratch. It required an in-depth analysis of the architecture and design alternatives. The implementation too was challenging as it required major addition to many components of the application.
   
 * **Project management**:
@@ -41,12 +42,7 @@ Given below are my contributions to the project.
   * User Guide: (Pull requests [\#158](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/158), [\#239](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/239), [\#250](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/250))
     * Added documentation and UI diagrams for the layout of the application
     * Added documentation for the overview of the features of the application and FAQ
-    * Added documentation for the following features:
-        * General:
-            * `help`, `switch`
-        * Memo:
-            * `addnote`, Save memo
-        * Saving the data
+    * Added documentation for the following features: `help`, `switch`, `addnote`, Saving the memo, Saving the data
     * Added command summary for features related to memo
   * Developer Guide:
     * Added use cases, NFRs and update glossary with [erisjacey](https://github.com/erisjacey) (Pull request [\#63](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/63))

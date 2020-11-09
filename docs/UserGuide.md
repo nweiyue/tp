@@ -289,7 +289,7 @@ Similar to the [`Students`](#41-students) tab, if there are no students in that 
 If you have not entered any session or left a session (by removing that session), you will see a message indicating as such. You can enter a session by using `enterses INDEX` as described in [Section 5.4.5 - Entering a session](#545-entering-a-session--enterses).
 
 ![NotInCurrentSessionsLayout](images/user-guide/4.3.2-NotInCurrentSessionLayout.png)
-<p align="center"> <sub> <b>Figure 4.3.2</b>: Layout of `Current Session` tab when there are no session is entered </sub> </p>
+<p align="center"> <sub> <b>Figure 4.3.2</b>: Layout of `Current Session` tab when no session is entered </sub> </p>
 
 To find out which features are supported by the `Current Session` tab, you can head over to [Section 5.5 - Current session](#55-current-session).
 
