@@ -241,7 +241,7 @@ The following activity diagram summarizes what happens when a user executes a `s
 
 ### 4.2. User confirmation
 
-This feature (henceforth referred to as 'user confirmation') is facilitated by `ConfirmCommand`, `DangerousCommand`, `Logic`, and `Model`.
+This feature (henceforth referred to as 'user confirmation') is facilitated by `ConfirmCommand`, `DangerousCommand`, `Logic`, `LogicManager`, `Model` and `ModelManager`.
 
 There are 6 DangerousCommand(s) that will change the existing local data upon execution, namely:
 1. deletestu (deleting a student)
@@ -346,19 +346,19 @@ The following activity diagram summarizes what happens when a user executes an `
 
 ### 4.4. Entering a session
 
-This feature (henceforth referred to as 'enter session') is facilitated by `EnterSessionCommand`, `LogicManager` and `Model`.
+This feature (henceforth referred to as 'enter session') is facilitated by `EnterSessionCommand`, `Logic`, `LogicManager`, `Model` and `ModelManager`.
 
 `LogicManager` implements the method:
 
 * `LogicManager#execute(Model)` — Returns a `CommandResult` containing the session index of the session.
 
-`EnterSessionCommand` implements the method from `LogicManager`:
+`EnterSessionCommand` implements the method:
 
 * `EnterSessionCommand#execute(Model)` — Returns a `CommandResult` containing the session index of the session.
 
-`Model` implements the method:
+`ModelManager` implements the method:
 
-* `Model#enterSession(Index)` — Enters a session based on session index.
+* `ModelManager#enterSession(Index)` — Enters a session based on session index.
 
 Given below is an example usage scenario and how the enter session mechanism behaves at each step.
 
@@ -368,11 +368,11 @@ Step 2. The user executes `enterses 1` to enter session 1. The `enterses 1` comm
 
 Step 3. `EnterSessionCommandParser#parse()` checks if there argument passed is valid. If the argument is valid, a `EnterSessionCommand` will be created and `EnterSessionCommand#execute()` will be called by the `LogicManager`.
 
+Step 4. `ModelManager#enterSession()` will be called by `EnterSession#execute()` and the displayed tab will be switched to Current Session. Details of session 2 will be displayed to the user.
+
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If an invalid argument is found, a `ParseException` will be thrown and the execution terminates.
 
 </div><br>
-
-Step 4. `Model#enterSession()` will be called by `EnterSession#execute()` and the displayed tab will be switched to Current Session. Details of session 2 will be displayed to the user.
 
 The following sequence diagram shows how the enter session operation works:
 

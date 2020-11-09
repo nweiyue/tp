@@ -11,7 +11,7 @@ This project is based on the AddressBook-Level3 (AB3) project created by the [SE
 
 Given below are my contributions to the project.
 
-* **Code contributed**: [RepoSense link to code](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=nweiyue&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
+* **Code contributed**: [RepoSense link to code](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-08-14&until=2020-11-09&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=nweiyue&tabRepo=AY2021S1-CS2103T-W16-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
 
 * **New Feature**: Added a **tab layout**, and the ability to **switch between individual tabs** (Pull request [\#75](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/75))
   * What it does: Allows the application to have multiple UIs which serves different functions. Users can use `switch` to switch between tabs. 
