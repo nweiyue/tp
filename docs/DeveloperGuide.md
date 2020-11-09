@@ -805,7 +805,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                   | So that I can…​                                                         |
 | -------- | ------------------------------------------ | ------------------------------ | ----------------------------------------------------------------------- |
-| `* * *`  | user                                       | see usage instructions         | refer to instructions when I forget how to use the App                  |
+| `* * *`  | user                                       | see usage instructions         | refer to instructions when I forget how to use the app                  |
 | `* * *`  | tutor                                       | add a new student              | add details of the students in my class                                |                     
 | `* * *`  | tutor                                       | delete a student               | remove details of the students no longer taking the module             |                 
 | `* * *`  | tutor                                       | find a student by name         | locate details of students without having to go through the entire list|
@@ -819,8 +819,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *  `  | tutor who wants to protect the particulars of my students | encrypt files with passwords | keep the module and students' data safe                    |
 | `* *  `  | tutor who often overshoots the time allocated for my lesson | be reminded at certain intervals | be on track throughout the lesson                    |
 | `* *  `  | tutor who wants the class to participate actively in class discussions | quickly record who has spoken | call on those who haven't spoken for subsequent questions |
-| `*    `  | user who likes customization               | customize my own keyboard shortcuts |                                                                    |
-| `*    `  | user who likes colors                      | customize the UI to whatever color scheme I want | enjoy using the App more                              |
+| `*    `  | user who likes customization               | customize my own keyboard shortcuts | so I can update session and student details more efficiently |
+| `*    `  | user who likes colors                      | customize the UI to whatever color scheme I want | enjoy using the app more                              |
 
 { end of `requirements#user_stories` written by: Alvin Chee Teck Weng }
 
