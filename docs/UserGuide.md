@@ -635,7 +635,7 @@ findstu KEYWORD [MORE_KEYWORDS]
 * Only full words will be matched e.g. `Jon` will not match `John` 
 * Students matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `John Cena` will return `John Tan`, `Mark Cena`
-
+* If there are no students found, you will see a message similar to [**Figure 4.1.2**](#41-students).
 </div>
 
 <div markdown="block" class="alert alert-success">

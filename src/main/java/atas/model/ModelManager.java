@@ -438,7 +438,7 @@ public class ModelManager implements Model {
 
     @Override
     public void saveMemoContent(String content) {
-        requireAllNonNull(content);
+        requireNonNull(content);
         memo.setContent(content);
     }
 

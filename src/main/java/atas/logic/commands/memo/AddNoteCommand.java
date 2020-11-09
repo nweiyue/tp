@@ -26,7 +26,9 @@ public class AddNoteCommand extends Command {
     private final String toAdd;
 
     /**
-     * Creates an AddNoteCommand to add the specified String of text.
+     * Constructs an AddNoteCommand to add the specified String of text.
+     *
+     * @param note String to add to the end of memo.
      */
     public AddNoteCommand(String note) {
         requireNonNull(note);

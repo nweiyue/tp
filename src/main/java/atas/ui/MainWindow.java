@@ -64,7 +64,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane studentListPanelPlaceholder;
 
     @FXML
     private StackPane sessionListPanelPlaceholder;
@@ -154,7 +154,7 @@ public class MainWindow extends UiPart<Stage> {
         startDisplayPlaceHolder.getChildren().add(startDisplay.getRoot());
 
         studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
-        personListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+        studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
 
         sessionListPanel = new SessionListPanel(logic.getFilteredSessionList());
         sessionListPanelPlaceholder.getChildren().add(sessionListPanel.getRoot());
@@ -177,25 +177,35 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Sets up listener for keyboard command to save Memo.
+     * Sets up listeners for Memo.
      */
-    public void setSaveMemoListener() {
+    public void setMemoListener() {
         memoTextBox = memoBox.getMemoTextBox();
-        memoTextBox.setOnKeyPressed(event -> {
+        setSaveMemoCommandListener(memoTextBox);
+        setAutoSaveMemo(memoTextBox);
+    }
+
+    /**
+     * Sets up listener for keyboard command to save Memo.
+     *
+     * @param textBox TextArea to listen to.
+     */
+    private void setSaveMemoCommandListener(TextArea textBox) {
+        textBox.setOnKeyPressed(event -> {
             if (new KeyCodeCombination(KeyCode.S, KeyCombination.SHORTCUT_DOWN).match(event)) {
-                try {
-                    logger.info("----------------[USER COMMAND][SHORTCUT_DOWN + KeyCode.S)]");
-                    logic.saveMemoContent(memoTextBox.getText());
-                    resultDisplay.setFeedbackToUser("Memo saved!");
-                } catch (CommandException e) {
-                    logger.info("Error in creating memo.txt");
-                    resultDisplay.setFeedbackToUser("Memo.txt cannot be created.");
-                }
+                logger.info("----------------[USER COMMAND][SHORTCUT_DOWN + KeyCode.S)]");
+                resultDisplay.setFeedbackToUser("Memo saved!");
             }
         });
+    }
 
-        // auto saves memo upon changes
-        memoTextBox.textProperty().addListener(new ChangeListener<String>() {
+    /**
+     * Sets up listener to save any changes in Memo.
+     *
+     * @param textBox TextArea to listen to.
+     */
+    private void setAutoSaveMemo(TextArea textBox) {
+        textBox.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 try {
@@ -240,6 +250,7 @@ public class MainWindow extends UiPart<Stage> {
      * Switches to the specified tab.
      *
      * @param tab tab to switch to.
+     * @throws CommandException If if user is already on the Tab or Tab to switch to is not a valid tab.
      */
     @FXML
     private void handleSwitchTab(Tab tab) throws CommandException {
@@ -253,11 +264,10 @@ public class MainWindow extends UiPart<Stage> {
             throw new CommandException(String.format(MESSAGE_ALREADY_ON_TAB, tab.toDisplayName()));
         }
 
-        if (tab.isValid()) {
-            tabPane.getSelectionModel().select(toSwitchTabIndex);
-        } else {
+        if (!tab.isValid()) {
             throw new CommandException(MESSAGE_INVALID_TAB);
         }
+        tabPane.getSelectionModel().select(toSwitchTabIndex);
     }
 
     /**

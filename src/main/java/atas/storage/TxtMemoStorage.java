@@ -22,6 +22,11 @@ public class TxtMemoStorage implements MemoStorage {
 
     private Path filePath;
 
+    /**
+     * Constructs a TxtMemoStorage with a specified file path.
+     *
+     * @param filePath File path to store Memo.
+     */
     public TxtMemoStorage(Path filePath) {
         this.filePath = filePath;
     }
@@ -63,8 +68,8 @@ public class TxtMemoStorage implements MemoStorage {
     public void saveMemo(Memo memo, Path filePath) throws IOException {
         requireNonNull(memo);
         requireNonNull(filePath);
-
         createIfMissing(filePath);
+
         FileWriter fw = new FileWriter(String.valueOf(filePath));
         String memoContent = memo.getContent();
         fw.write(memoContent);
