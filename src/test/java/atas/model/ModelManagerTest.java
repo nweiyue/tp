@@ -1,14 +1,21 @@
 package atas.model;
 
 import static atas.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
+import static atas.model.ModelManager.LEFT_SESSION_DETAIL_FORMAT;
+import static atas.model.ModelManager.MESSAGE_NOT_IN_SESSION;
+import static atas.model.ModelManager.NULL_RIGHT_SESSION_DETAIL;
+import static atas.model.ModelManager.RIGHT_SESSION_DETAIL_FORMAT;
 import static atas.testutil.Assert.assertThrows;
 import static atas.testutil.TypicalMemoContents.EMPTY_MEMO_CONTENT;
 import static atas.testutil.TypicalMemoContents.SAMPLE_MEMO_CONTENT_ONE;
 import static atas.testutil.TypicalMemoContents.SAMPLE_MEMO_CONTENT_TWO;
 import static atas.testutil.TypicalMemoContents.SAMPLE_MEMO_NOTE_ONE;
+import static atas.testutil.TypicalSessions.SESSION_WEEK_ONE;
+import static atas.testutil.TypicalSessions.SESSION_WEEK_TWO;
 import static atas.testutil.TypicalSessions.getTypicalSessionList;
 import static atas.testutil.TypicalStudents.ALICE;
 import static atas.testutil.TypicalStudents.BENSON;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -23,6 +30,7 @@ import atas.commons.core.GuiSettings;
 import atas.commons.core.index.Index;
 import atas.model.memo.Memo;
 import atas.model.session.VersionedSessionList;
+import atas.model.session.exceptions.SameSessionException;
 import atas.model.student.NameContainsKeywordsPredicate;
 import atas.model.student.StudentList;
 import atas.model.student.VersionedStudentList;
@@ -242,4 +250,43 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(getTypicalSessionList(studentList.getStudentList()),
                 studentList, userPrefs, SAMPLE_MEMO_CONTENT_ONE)));
     }
+
+    @Test
+    public void enterSession_sameSession_throwsSameSessionException() {
+        Index index = Index.fromOneBased(1);
+        modelManager.addSession(SESSION_WEEK_ONE);
+        modelManager.addSession(SESSION_WEEK_TWO);
+        assertDoesNotThrow(() -> modelManager.enterSession(index));
+        assertThrows(SameSessionException.class, () -> modelManager.enterSession(index));
+        try {
+            modelManager.enterSession(index);
+        } catch (SameSessionException e) {
+            assertEquals(e.getSessionIndex(), index);
+        }
+    }
+
+    @Test
+    public void getLeftSessionDetailsTest_valid() {
+        modelManager.resetCurrentAttributesList();
+        assertEquals(modelManager.getLeftSessionDetails(), MESSAGE_NOT_IN_SESSION);
+        modelManager.addSession(SESSION_WEEK_ONE);
+        modelManager.enterSession(Index.fromOneBased(1));
+        String expectedMessage = String.format(LEFT_SESSION_DETAIL_FORMAT,
+                SESSION_WEEK_ONE.getSessionName(), SESSION_WEEK_ONE.getSessionDate());
+        assertEquals(modelManager.getLeftSessionDetails(), expectedMessage);
+    }
+
+    @Test
+    public void getRightSessionDetailsTest_valid() {
+        Model modelManager = ModelManagerBuilder.buildTypicalModelManager();
+        modelManager.resetCurrentAttributesList();
+        assertEquals(modelManager.getRightSessionDetails(), NULL_RIGHT_SESSION_DETAIL);
+        modelManager.addSession(SESSION_WEEK_ONE);
+        modelManager.enterSession(Index.fromOneBased(1));
+        // no presence or participate called
+        String expectedMessage = String.format(RIGHT_SESSION_DETAIL_FORMAT,
+                "Presence : 0%", "Participation : 0%");
+        assertEquals(modelManager.getRightSessionDetails(), expectedMessage);
+    }
+
 }

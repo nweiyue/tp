@@ -586,7 +586,7 @@ Adds a student to the student list.
 
 **Format:**
 ```
-addstu n/NAME m/MATRICULATION_NUMBER e/NUS_EMAIL_ADDRESS [t/TAG]…
+addstu n/NAME m/MATRICULATION_NUMBER e/NUS_EMAIL_ADDRESS [t/TAG]…​
 ```
 
 <div markdown="block" class="alert alert-info">
@@ -726,7 +726,7 @@ Examples:
 
 **Format:**
 ```
-editstu INDEX (n/UPDATED_NAME) (e/UPDATED_EMAIL_ADDRESS) (m/UPDATED_MATRICULATION_NUMBER) (t/UPDATED_TAG)
+`editstu INDEX (n/UPDATED_NAME) (m/UPDATED_MATRICULATION) (e/UPDATED_EMAIL_ADDRESS) (t/UPDATED_TAG …​)`
 ```
 
 <div markdown="block" class="alert alert-info">
@@ -1301,12 +1301,12 @@ The following is a summary of commands related to students.
 
 Command | Format, Examples
 --------|------------------
-**Add Student** | `addstu n/NAME m/MATRICULATION_NUMBER e/NUS_EMAIL_ADDRESS [t/TAG]…` <br/> e.g.,<br/> `addstu n/John Cena m/A0123456J e/thechamp@u.nus.edu`,<br/> `addstu n/Alvina Handsome m/A0123456X e/handsome.alvina@u.nus.edu t/new`
-**List Students** | `liststu`
+**Add Student** | `addstu n/NAME m/MATRICULATION_NUMBER e/NUS_EMAIL_ADDRESS [t/TAG]…` <br/> e.g.,<br/> `addstu n/Elvin Ng m/A0123456J e/elvinng@u.nus.edu`,<br/> `addstu n/Bobby Tan m/A0123456X e/bobbytan@u.nus.edu t/new`
+**List Student(s)** | `liststu`
 **Find Student(s)** | `findstu KEYWORD [MORE_KEYWORDS]` <br/> e.g.,<br/> `findstu John`,<br/> `findstu kent ridge`
-**Edit Student** | `editstu INDEX n/UPDATED_NAME` <br/> e.g.,<br/> `editstu 2 n/John Cena`,<br/> `editstu 3 t/Joker`
+**Edit Student** | `editstu INDEX (n/UPDATED_NAME) (m/UPDATED_MATRICULATION) (e/UPDATED_EMAIL_ADDRESS) (t/UPDATED_TAG …​)` <br/> e.g.,<br/> `editstu 2 n/Elvin Ng`,<br/> `editstu 3 t/active`
 **Delete Student** | `deletestu INDEX` <br/> e.g.,<br/> `deletestu 2`
-**Clear Students** | `clearstu`
+**Clear Student(s)** | `clearstu`
 
 { end of `command_summary#students` written by: Zhang Sheng Yang }
 
@@ -1319,9 +1319,9 @@ The following is a summary of commands related to sessions.
 Command | Format, Examples
 --------|------------------
 **Add Session** | `addses s/SESSION_NAME d/SESSION_DATE` <br> e.g., `addses s/Tutorial 1 d/11/11/2020`
-**Clear Sessions** | `clearses`
+**Clear Session(s)** | `clearses`
 **Delete Session** | `deleteses INDEX`
-**Edit Session** | `editses` <br> e.g., `editses 1 s/Lab 1`
+**Edit Session** | `editses INDEX (s/UPDATED_SESSION_NAME) (d/UPDATED_SESSION_DATE)` <br> e.g., `editses 1 s/Lab 1`
 **Enter Session** | `enterses INDEX`
 
 { end of `command_summary#sessions` written by: Marcus Tan Wei}
