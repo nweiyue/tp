@@ -66,13 +66,17 @@ public interface Model {
 
     /**
      * Returns the user prefs' memo file path.
+     *
+     * @return File path of Memo.
      */
     Path getMemoFilePath();
 
     /**
      * Sets the user prefs' memo file path.
+     *
+     * @param memoFilePath File path of Memo.
      */
-    void setMemoFilePath(Path memoPadFilePath);
+    void setMemoFilePath(Path memoFilePath);
 
     /**
      * Clears the student list.
@@ -229,26 +233,29 @@ public interface Model {
 
     /**
      * Returns the Memo.
+     *
+     * @return Memo of ATAS.
      */
     Memo getMemo();
 
     /**
      * Retrieves the String content in the memo.
      *
-     * @return String of text present in the memo.
+     * @return String content present in the memo.
      */
     String getMemoContent();
 
     /**
      * Writes a String of text into the memo.
      *
-     * @param content Sting of text to be written.
+     * @param content String content to be written.
      */
     void saveMemoContent(String content);
 
     /**
      * Appends a String of text at the end of the Memo.
-     * @param note String text to be appended.
+     *
+     * @param note String note to be appended.
      */
     void addNoteToMemo(String note);
 

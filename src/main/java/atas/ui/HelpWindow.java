@@ -18,6 +18,7 @@ import javafx.stage.Stage;
  * Controller for a help page
  */
 public class HelpWindow extends UiPart<Stage> {
+
     public static final String HELP_MESSAGE = "Here is the list of commands you can try with ATAS:\n";
     public static final String USERGUIDE_URL = "https://ay2021s1-cs2103t-w16-4.github.io/tp/UserGuide.html";
     public static final String LINK_MESSAGE = "Link to the full user guide: " + USERGUIDE_URL;
@@ -25,6 +26,7 @@ public class HelpWindow extends UiPart<Stage> {
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
 
+    // general commands
     private final CommandSummary helpCmd =
             new CommandSummary("Get help", "help");
     private final CommandSummary switchCmd =
@@ -37,10 +39,10 @@ public class HelpWindow extends UiPart<Stage> {
             new CommandSummary("Redo a command", "redo");
     private final CommandSummary exitCmd =
             new CommandSummary("Exit ATAS", "exit");
-
     public final ObservableList<CommandSummary> generalCmds = FXCollections
             .observableArrayList(helpCmd, switchCmd, rngCmd, undoCmd, redoCmd, exitCmd);
 
+    // students commands
     private final CommandSummary addStuCmd =
             new CommandSummary("Add a student",
                     "addstu n/NAME m/MATRICULATION_NUMBER e/NUS_EMAIL_ADDRESS [t/TAG]…\u200B");
@@ -50,15 +52,16 @@ public class HelpWindow extends UiPart<Stage> {
             new CommandSummary("Find student(s)", "findstu KEYWORD [MORE_KEYWORDS]");
     private final CommandSummary editStuCmd =
             new CommandSummary("Edit a student's particulars",
-                    "editstu INDEX [n/NAME] [m/MATRICULATION_NUMBER] [e/NUS_EMAIL_ADDRESS] [t/TAG]…\u200B");
+                    "editstu INDEX (n/UPDATED_NAME) (m/UPDATED_MATRICULATION)"
+                            + " (e/UPDATED_EMAIL_ADDRESS) (t/UPDATED_TAG…\u200B)");
     private final CommandSummary deleteStuCmd =
             new CommandSummary("Delete a student", "deletestu INDEX");
     private final CommandSummary clearStuCmd =
             new CommandSummary("Clear the student list", "clearstu");
-
     public final ObservableList<CommandSummary> studentsCmds = FXCollections
             .observableArrayList(addStuCmd, listStuCmd, findStuCmd, editStuCmd, deleteStuCmd, clearStuCmd);
 
+    // sessions commands
     private final CommandSummary addSesCmd =
             new CommandSummary("Add a session", "addses s/SESSION_NAME d/SESSION_DATE");
     private final CommandSummary clearSesCmd =
@@ -66,26 +69,25 @@ public class HelpWindow extends UiPart<Stage> {
     private final CommandSummary deleteSesCmd =
             new CommandSummary("Delete a session", "deleteses INDEX");
     private final CommandSummary editSesCmd =
-            new CommandSummary("Edit a session", "editses INDEX [s/SESSION_NAME] [d/SESSION_DATE]");
+            new CommandSummary("Edit a session", "editses INDEX (s/UPDATED_NAME) (d/UPDATED_DATE)");
     private final CommandSummary enterSesCmd =
             new CommandSummary("Enter a session", "enterses INDEX");
 
     public final ObservableList<CommandSummary> sessionsCmds = FXCollections
             .observableArrayList(addSesCmd, clearSesCmd, deleteSesCmd, editSesCmd, enterSesCmd);
-
+    // current session commands
     private final CommandSummary participateCmd =
             new CommandSummary("Toggle the participation status of student(s)", "participate INDEX_RANGE");
     private final CommandSummary presenceCmd =
             new CommandSummary("Toggle the presence status of student(s)", "presence INDEX_RANGE");
-
     public final ObservableList<CommandSummary> currentSessionCmds = FXCollections
             .observableArrayList(participateCmd, presenceCmd);
 
+    // memo commands
     private final CommandSummary addNoteCmd =
             new CommandSummary("Add a note", "addnote NOTE");
     private final CommandSummary saveMemoCmd =
-            new CommandSummary("Save memo", "Keyboard shortcut: \"Ctrl + s\" or \"Cmd + s\" for MacOs");
-
+            new CommandSummary("Save memo", "Keyboard shortcut: \"ctrl + s\" or \"command + s\" for MacOS");
     public final ObservableList<CommandSummary> memoCmds = FXCollections
             .observableArrayList(addNoteCmd, saveMemoCmd);
 
@@ -206,11 +208,15 @@ public class HelpWindow extends UiPart<Stage> {
      * @params table Table to resize.
      */
     private void resizeTableHeight(TableView<CommandSummary> table) {
+        //@@author eckig-reused
+        //Reused from https://stackoverflow.com/questions/27945817/javafx-adapt-tableview-height-to-number-of-rows
+        // with minor modifications
         table.setFixedCellSize(25);
         table.prefHeightProperty().bind(table.fixedCellSizeProperty()
                 .multiply(Bindings.size(table.getItems()).add(1.9)));
         table.minHeightProperty().bind(table.prefHeightProperty());
         table.maxHeightProperty().bind(table.prefHeightProperty());
+        //@@author
     }
 
     /**

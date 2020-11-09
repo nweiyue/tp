@@ -14,7 +14,7 @@
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.ScrollPane?>
-<fx:root title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" minWidth="1000.0" minHeight="600.0">
+<fx:root title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" minWidth="1300.0" minHeight="600.0">
   <icons>
     <Image url="@/images/help_icon.png" />
   </icons>
@@ -41,6 +41,7 @@
                 </HBox>
                 <Label styleClass="tableHeader" text="General:">
                 </Label>
+                <!--Solution below adapted from https://github.com/AY2021S1-CS2103T-W15-3/tp/blob/master/src/main/resources/view/HelpWindow.fxml-->
                 <TableView id="generalCommandTable" fx:id="generalCommandTable" stylesheets="@DarkTheme.css" VBox.vgrow="SOMETIMES" focusTraversable="false">
                     <columns>
                         <TableColumn styleClass="actionColumn" editable="false" minWidth="200.0" prefWidth="-1.0" text="Action" sortable="false">
