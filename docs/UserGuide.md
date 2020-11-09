@@ -1010,7 +1010,7 @@ enterses INDEX
 <div markdown="block" class="alert alert-success">
 
 **:green_book: Example**:
-* `enterses 1` enters the first session and allows you to use PARTICIPATE and PRESENCE commands. (**Figure 5.4.5**)
+* `enterses 1` enters the first session and allows you to use `participate` and `presence` commands. (**Figure 5.4.5**)
 
 </div>
 
