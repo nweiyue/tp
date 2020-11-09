@@ -4,12 +4,10 @@ import javafx.beans.property.SimpleStringProperty;
 
 /**
  *  Represents the command summaries to be displayed in the {@code HelpWindow}.
- *
- * //@@author Alla Redko-reused
- * //Reused from https://docs.oracle.com/javafx/2/ui_controls/table-view.htm with minor modifications
  */
 public class CommandSummary {
-
+    //@@author Alla Redko-reused
+    //Reused from https://docs.oracle.com/javafx/2/ui_controls/table-view.htm with minor modifications
     private final SimpleStringProperty action = new SimpleStringProperty("");
     private final SimpleStringProperty commandFormat = new SimpleStringProperty("");
 
