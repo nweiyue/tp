@@ -25,8 +25,8 @@ public class EditSessionCommand extends DangerousCommand implements IndexedSessi
             + "by the index number used in the displayed session list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + CliSyntax.PREFIX_SESSION_NAME + "SESSION_NAME] "
-            + "[" + CliSyntax.PREFIX_SESSION_DATE + "DATE] \n"
+            + "(" + CliSyntax.PREFIX_SESSION_NAME + "SESSION_NAME) "
+            + "(" + CliSyntax.PREFIX_SESSION_DATE + "DATE) \n"
             + "Example: " + COMMAND_WORD + " 1 "
             + CliSyntax.PREFIX_SESSION_NAME + "Tutorial 1 "
             + CliSyntax.PREFIX_SESSION_DATE + "10/10/2020";

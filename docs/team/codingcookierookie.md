@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Alvin's Project Portfolio Page
+title: Alvin Chee Teck Weng's Project Portfolio Page
 ---
 
 ## Project: Addendum for Teaching Assistants (ATAS)
@@ -8,6 +8,9 @@ title: Alvin's Project Portfolio Page
 **ATAS** is a desktop application designed to be a handy in-class companion for CS1010S Teaching Assistants. 
 It aims to **elevate users' efficiency** and make their experience of handling administrative tasks as **seamless** as possible. 
 The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java.
+
+This project is based on the AddressBook-Level3 (AB3) project created by the [SE-EDU initiative](https://se-education.org).
+AB3 has about 10 kLoC, while **ATAS** has about 20 kLoC modified/added on top.
 
 Given below are my contributions to the project.
 

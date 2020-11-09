@@ -133,6 +133,8 @@ You will come across some of these terms in this document, and it will be good t
 
 { end of `about_this_user_guide#glossary` written by: Marcus Tan Wei }
 
+{ start of `about_this_user_guide#symbols_and_formatting` written by: Marcus Tan Wei }
+
 ### 2.3. Symbols and formatting
 
 For the good majority of visual learners, we figured to present information in a unique format with symbols of different shapes and colours to help you along reading this guide.
@@ -144,6 +146,8 @@ For the good majority of visual learners, we figured to present information in a
  |:information_source: | Important information to take note |
  |:warning: | Warning about the usage of a command |
  |`consolas font` | Representing a key term or a command |
+
+{ end of `about_this_user_guide#symbols_and_formatting` written by: Marcus Tan Wei }
  
 --------------------------------------------------------------------------------------------------------------------
 
@@ -303,7 +307,7 @@ Similar to the [`Students`](#41-students) tab, if there are no students in that 
 If you have not entered any session or left a session (by removing that session), you will see a message indicating as such. You can enter a session by using `enterses INDEX` as described in [Section 5.4.5 - Entering a session](#545-entering-a-session--enterses).
 
 ![NotInCurrentSessionsLayout](images/user-guide/4.3.2-NotInCurrentSessionLayout.png)
-<p align="center"> <sub> <b>Figure 4.3.2</b>: Layout of `Current Session` tab when there are no session is entered </sub> </p>
+<p align="center"> <sub> <b>Figure 4.3.2</b>: Layout of `Current Session` tab when no session is entered </sub> </p>
 
 To find out which features are supported by the `Current Session` tab, you can head over to [Section 5.5 - Current session](#55-current-session).
 
@@ -455,6 +459,18 @@ Chooses a student at random from the student list.
 ```
 rng
 ```
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Notes about the usage of this command:** 
+* The student list that **ATAS** references will be whatever list is shown on the student's tab.
+   * If the full list is shown (say after [`liststu`](#533-listing-all-students--liststu)),
+     then the student selected can be from anyone already in the overall student list.
+   * If only a partial / no list is shown (say after [`findstu`](#532-locating-students-by-name--findstu)),
+     then the student selected will be someone from that truncated list.
+     If the list is empty, then an error will be shown -- there is no student to select from!
+
+</div>
 
 <div markdown="block" class="alert alert-success">
 
@@ -645,7 +661,7 @@ findstu KEYWORD [MORE_KEYWORDS]
 * Only full words will be matched e.g. `Jon` will not match `John` 
 * Students matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `John Cena` will return `John Tan`, `Mark Cena`
-
+* If there are no students found, you will see a message similar to [**Figure 4.1.2**](#41-students).
 </div>
 
 <div markdown="block" class="alert alert-success">
@@ -714,7 +730,6 @@ deletestu INDEX
 
 * `liststu` followed by `deletestu 1` followed by `yes` deletes the 1st student (**Figure 5.3.4-2**) from the student list.
 * `findstu Bob` followed by `deletestu 1` followed by `yes` deletes the 1st student from the results of the `findstu Bob` command.
-</div>
 
 **Outcome:**
 
@@ -888,7 +903,6 @@ deleteses INDEX
 
 **:warning: Warning about the usage of this command:**
 * You will be exited from any currently entered session upon using this command.
-
 </div>
 
 <div markdown="block" class="alert alert-success">
@@ -934,8 +948,8 @@ editses INDEX (s/UPDATED_NAME) (d/UPDATED_DATE)
 
 <div markdown="block" class="alert alert-success">
 
-**:green_book: Examples**:
-* `editses 1 s/Tutorial 6 d/10/10/2020` followed by `yes` edits the 1st session in the session list with a new session name `Tutorial 6` and a new session date `10/10/2020`.
+**:green_book: Example**:
+* `editses 1 s/Tutorial 6 d/10/10/2020` followed by `yes` edits the 1st session in the session list with a new session name `Tutorial 6` and a new session date `10/10/2020`. (**Figure 5.4.3**)
 
 </div>
 
@@ -972,7 +986,7 @@ clearses
 <div markdown="block" class="alert alert-success">
    
 **:green_book: Examples**:
-* `clearses` followed by `yes` deletes all the sessions in the session list. 
+* `clearses` followed by `yes` deletes all the sessions in the session list. (**Figure 5.4.4**)
 
 </div>
 
@@ -1007,8 +1021,8 @@ enterses INDEX
 
 <div markdown="block" class="alert alert-success">
 
-**:green_book: Examples**:
-* `enterses 1` enters the first session and allows you to use PARTICIPATE and PRESENCE commands.
+**:green_book: Example**:
+* `enterses 1` enters the first session and allows you to use `participate` and `presence` commands. (**Figure 5.4.5**)
 
 </div>
 
@@ -1219,14 +1233,14 @@ These commands are: [`deletestu`](#534-deleting-a-student--deletestu), [`editstu
 :green_book: **Examples:**
 * `deletestu 1` is followed with the following displayed message `Delete student 1? (yes/no)`.
 * `editstu 3 n/UPDATED_STUDENT_NAME` is followed with the following displayed message `Edit student 3? (yes/no)`.
-* `clearstu` is followed with the following displayed message `Clear student list? (yes/no)` (**Figure 5.7-1**).
+* `clearstu` is followed with the following displayed message `Clear student list? (yes/no)` **(Figure 5.7-1)**.
 * `deleteses 2` is followed with the following displayed message `Delete session 2? (yes/no)`.
 * `editses 2 s/UPDATED_SESSION_NAME` is followed with the following displayed message `Edit session 3? (yes/no)`.
 * `clearses` is followed with the following displayed message `Clear student list? (yes/no)`.
 </div>
 
 For example, confirmation of `clearstu` is shown above at [Section 5.3.6 - Clearing the student list](#536-clearing-the-student-list--clearstu).
-In this case, we will show an example of the confirmation prompt following the `clearstu` command (**Figure 5.7-1**) and result of rejecting a `clearstu` command (**Figure 5.7-2**).
+In this case, we will show an example of the confirmation prompt following the `clearstu` command **(Figure 5.7-1)** and result of rejecting a `clearstu` command **(Figure 5.7-2)**.
 
 **Format:**
 ```
@@ -1320,7 +1334,7 @@ Command | Format, Examples
 **Add Student** | `addstu n/NAME m/MATRICULATION_NUMBER e/NUS_EMAIL_ADDRESS [t/TAG]…` <br/> e.g.,<br/> `addstu n/Elvin Ng m/A0123456J e/elvinng@u.nus.edu`,<br/> `addstu n/Bobby Tan m/A0123456X e/bobbytan@u.nus.edu t/new`
 **List Student(s)** | `liststu`
 **Find Student(s)** | `findstu KEYWORD [MORE_KEYWORDS]` <br/> e.g.,<br/> `findstu John`,<br/> `findstu kent ridge`
-**Edit Student** | `editstu INDEX (n/UPDATED_NAME) (m/UPDATED_MATRICULATION) (e/UPDATED_EMAIL_ADDRESS) (t/UPDATED_TAG …​)` <br/> e.g.,<br/> `editstu 2 n/Elvin Ng`,<br/> `editstu 3 t/active`
+**Edit Student** | `editstu INDEX (n/UPDATED_NAME) (m/UPDATED_MATRICULATION) (e/UPDATED_EMAIL_ADDRESS) (t/UPDATED_TAG)…​` <br/> e.g.,<br/> `editstu 2 n/Elvin Ng`,<br/> `editstu 3 t/active`
 **Delete Student** | `deletestu INDEX` <br/> e.g.,<br/> `deletestu 2`
 **Clear Student(s)** | `clearstu`
 

@@ -78,6 +78,7 @@ public class AtasParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments;
 
+        // addnote command should except whitespaces as valid arguments
         if (commandWord.equals(AddNoteCommand.COMMAND_WORD)) {
             arguments = userInput.substring(AddNoteCommand.COMMAND_WORD.length());
         } else {

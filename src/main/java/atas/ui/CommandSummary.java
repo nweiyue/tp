@@ -6,15 +6,16 @@ import javafx.beans.property.SimpleStringProperty;
  *  Represents the command summaries to be displayed in the {@code HelpWindow}.
  */
 public class CommandSummary {
+    //@@author Alla Redko-reused
+    //Reused from https://docs.oracle.com/javafx/2/ui_controls/table-view.htm with minor modifications
     private final SimpleStringProperty action = new SimpleStringProperty("");
     private final SimpleStringProperty commandFormat = new SimpleStringProperty("");
 
     /**
-     *  Constructs a CommandSummary of a command.
+     * Constructs a CommandSummary of a command.
      *
-     * @param action String value to describe the action of the command.
-     * @param commandFormat String value to describe the format that should be used for the command.
-     *
+     * @param action String to describe the action of the command.
+     * @param commandFormat String to describe the format that should be used for the command.
      * @return CommandSummary
      */
     public CommandSummary(String action, String commandFormat) {
@@ -24,7 +25,8 @@ public class CommandSummary {
 
     /**
      * Returns the action name.
-     * @return String value of the action.
+     *
+     * @return action of the command.
      */
     public String getAction() {
         return action.get();
@@ -32,7 +34,8 @@ public class CommandSummary {
 
     /**
      * Sets the action name.
-     * @param action String value of the action.
+     *
+     * @param action action of the command.
      */
     public void setAction(String action) {
         this.action.set(action);
@@ -40,7 +43,8 @@ public class CommandSummary {
 
     /**
      * Returns the command format.
-     * @return String value of the the command format.
+     *
+     * @return command format of the command.
      */
     public String getCommandFormat() {
         return commandFormat.get();
@@ -48,9 +52,11 @@ public class CommandSummary {
 
     /**
      * Sets the command format.
-     * @param commandFormat String value of the command format.
+     *
+     * @param commandFormat command format of the command.
      */
     public void setCommandFormat(String commandFormat) {
         this.commandFormat.set(commandFormat);
     }
+    //@@author
 }

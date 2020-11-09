@@ -12,24 +12,32 @@ import atas.model.memo.Memo;
 public interface MemoStorage {
 
     /** Message to be shown if data file does not exist when application starts */
-    String DEFAULT_MEMO_CONTENT = "Here is a free working space. Press \"Ctrl + s\" or \"Cmd + s\" for MacOS to save.";
+    String DEFAULT_MEMO_CONTENT = "Here is a free working space. Press \"ctrl + s\" or \"command + s\""
+            + " for MacOS to save.";
 
     /**
      * Returns the file path of the data file.
+     *
+     * @return File path of Memo.
      */
     Path getMemoFilePath();
 
     /**
-     * Returns the memo content as a String.
+     * Returns the Memo content as a String.
      *
-     * @return memo content.
-     * @throws DataConversionException if the data in storage is not in the expected format.
-     * @throws IOException if there was any problem when reading from the storage.
+     * @return Memo content.
+     * @throws DataConversionException If the data in storage is not in the expected format.
+     * @throws IOException If there was any problem when reading from the storage.
      */
-    String readMemo() throws IOException, DataConversionException;
+    String readMemo() throws DataConversionException, IOException;
 
     /**
-     * @see #getMemoFilePath()
+     * Similar to {@link #readMemo()}.
+     *
+     * @param filePath location of the data. Cannot be null.
+     * @return Memo content.
+     * @throws DataConversionException If the file is not in the correct format.
+     * @throws IOException If there was any problem when reading from the storage.
      */
     String readMemo(Path filePath) throws DataConversionException, IOException;
 
@@ -37,11 +45,16 @@ public interface MemoStorage {
      * Saves the given {@link Memo} to the storage.
      *
      * @param memo Memo to be saved.
+     * @throws IOException If there was any problem when writing into the storage.
      */
     void saveMemo(Memo memo) throws IOException;
 
     /**
-     * @see #saveMemo(Memo)
+     * Similar to {@link #saveMemo(Memo)}.
+     *
+     * @param filePath location of the data. Cannot be null.
+     * @param memo Memo to be saved.
+     * @throws IOException If there was any problem when writing into the storage.
      */
     void saveMemo(Memo memo, Path filePath) throws IOException;
 

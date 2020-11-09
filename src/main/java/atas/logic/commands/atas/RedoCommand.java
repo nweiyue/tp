@@ -10,7 +10,7 @@ import atas.model.Model;
 import atas.model.exceptions.UnableToRedoException;
 
 /**
- * Undoes a the effects of the previous command, if possible.
+ * Redoes a the effects of the previous command, if possible.
  */
 public class RedoCommand extends Command {
     public static final String COMMAND_WORD = "redo";
