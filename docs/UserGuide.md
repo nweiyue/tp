@@ -133,6 +133,8 @@ You will come across some of these terms in this document, and it will be good t
 
 { end of `about_this_user_guide#glossary` written by: Marcus Tan Wei }
 
+{ start of `about_this_user_guide#symbols_and_formatting` written by: Marcus Tan Wei }
+
 ### 2.3. Symbols and formatting
 
 For the good majority of visual learners, we figured to present information in a unique format with symbols of different shapes and colours to help you along reading this guide.
@@ -144,6 +146,8 @@ For the good majority of visual learners, we figured to present information in a
  |:information_source: | Important information to take note |
  |:warning: | Warning about the usage of a command |
  |`consolas font` | Representing a key term or a command |
+
+{ end of `about_this_user_guide#symbols_and_formatting` written by: Marcus Tan Wei }
  
 --------------------------------------------------------------------------------------------------------------------
 
@@ -442,6 +446,18 @@ Chooses a student at random from the student list.
 rng
 ```
 
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Notes about the usage of this command:** 
+* The student list that **ATAS** references will be whatever list is shown on the student's tab.
+   * If the full list is shown (say after [`liststu`](#533-listing-all-students--liststu)),
+     then the student selected can be from anyone already in the overall student list.
+   * If only a partial / no list is shown (say after [`findstu`](#532-locating-students-by-name--findstu)),
+     then the student selected will be someone from that truncated list.
+     If the list is empty, then an error will be shown -- there is no student to select from!
+
+</div>
+
 <div markdown="block" class="alert alert-success">
 
 :green_book: **Example:**
@@ -698,7 +714,7 @@ deletestu INDEX
 
 :green_book: **Examples:**
 
-* `liststu` followed by `deletestu 1` followed by `yes`: Deletes and removes the 1st student (**Figure 5.3.4-2**) from the student list.
+* `liststu` followed by `deletestu 1` followed by `yes`: Deletes and removes the 1st student **(Figure 5.3.4-2)** from the student list.
 * `findstu Bob` followed by `deletestu 1` followed by `yes`: Deletes and removes the 1st student from the results of the `findstu Bob` command.
 </div>
 
@@ -726,7 +742,7 @@ Examples:
 
 **Format:**
 ```
-`editstu INDEX (n/UPDATED_NAME) (m/UPDATED_MATRICULATION) (e/UPDATED_EMAIL_ADDRESS) (t/UPDATED_TAG …​)`
+editstu INDEX (n/UPDATED_NAME) (m/UPDATED_MATRICULATION) (e/UPDATED_EMAIL_ADDRESS) (t/UPDATED_TAG)…​
 ```
 
 <div markdown="block" class="alert alert-info">
@@ -748,7 +764,7 @@ Examples:
 
 :green_book: **Examples:**
 
-* `editstu 1 n/Alvina Lee` followed by `yes`: Edits the 2nd student (**Figure 5.3.5**) in the student list with an updated name `Alvina Lee`.
+* `editstu 1 n/Alvina Lee` followed by `yes`: Edits the 2nd student **(Figure 5.3.5)** in the student list with an updated name `Alvina Lee`.
 * `editstu 3 t/active` followed by `y`: Edits the 3rd student in the student list with an updated tag `active`.
 </div>
 
@@ -783,7 +799,8 @@ clearstu
 
 :green_book: **Example:**
 
-* `clearstu`: Clears the students from the student list (**Figure 5.3.6**).
+* `clearstu` followed by `yes`: Clears the students from the student list **(Figure 5.3.6)**.
+
 </div>
 
 **Outcome:**
@@ -839,8 +856,8 @@ need to add a '0' in front, for e.g., 09/01/2020 and 9/1/2020 are both accepted.
 <div markdown="block" class="alert alert-success">
 
 **:green_book: Examples**:
-* `addses s/tut1 d/12/7/2020`
-* `addses s/lab3 d/2/11/2020`
+* `addses s/Tutorial 6 d/12/7/2020` (**Figure 5.4.1**)
+* `addses s/Lab 3 d/2/11/2020`
 
 </div>
 
@@ -873,7 +890,7 @@ deleteses INDEX
 <div markdown="block" class="alert alert-warning">
 
 **:warning: Warning about the usage of this command:**
-You will be exited from any currently entered session upon using the command.
+* You will be exited from any currently entered session upon using the command.
 
 </div>
 
@@ -895,7 +912,7 @@ Edits a session in the session list.
 
 **Format:**
 ```
-editses INDEX s/UPDATED_NAME d/UPDATED_DATE
+editses INDEX (s/UPDATED_NAME) (d/UPDATED_DATE)
 ```
 
 <div markdown="block" class="alert alert-info">
@@ -914,14 +931,14 @@ editses INDEX s/UPDATED_NAME d/UPDATED_DATE
 <div markdown="block" class="alert alert-warning">
 
 **:warning: Warning about the usage of this command:**
-You will be exited from any currently entered session upon using the command.
+* You will be exited from any currently entered session upon using the command.
 
 </div>
 
 <div markdown="block" class="alert alert-success">
 
-**:green_book: Examples**:
-* `editses 1 s/Tutorial 6 d/10/10/2020` followed by `yes` edits the 1st session in the session list with a new session name `Tutorial 6` and a new session date `10/10/2020`.
+**:green_book: Example**:
+* `editses 1 s/Tutorial 6 d/10/10/2020` followed by `yes` edits the 1st session in the session list with a new session name `Tutorial 6` and a new session date `10/10/2020`. (**Figure 5.4.3**)
 
 </div>
 
@@ -951,14 +968,14 @@ clearses
 <div markdown="block" class="alert alert-warning">
 
 **:warning: Warning about the usage of this command:**
-You will be exited from any currently entered session upon using the command.
+* You will be exited from any currently entered session upon using the command.
 
 </div>
 
 <div markdown="block" class="alert alert-success">
    
 **:green_book: Examples**:
-* `clearses` followed by `yes` deletes all the sessions in the session list. 
+* `clearses` followed by `yes` deletes all the sessions in the session list. (**Figure 5.4.4**)
 
 </div>
 
@@ -987,14 +1004,14 @@ enterses INDEX
 <div markdown="block" class="alert alert-warning">
 
 **:warning: Warning about the usage of this command:**
-You cannot enter the session again if you are already in that particular session.
+* You cannot enter the session again if you are already in that particular session.
 
 </div>
 
 <div markdown="block" class="alert alert-success">
 
-**:green_book: Examples**:
-* `enterses 1` enters the first session and allows you to use PARTICIPATE and PRESENCE commands.
+**:green_book: Example**:
+* `enterses 1` enters the first session and allows you to use `participate` and `presence` commands. (**Figure 5.4.5**)
 
 </div>
 
@@ -1039,6 +1056,7 @@ participate INDEX_RANGE
 <div markdown="block" class="alert alert-success">
 
 :green_book: **Example:**
+* `participate 2` toggles the participation status of student 2.
 * `participate 1-4` toggles the participation status of students 1 to 4. **(Figure 5.5.1)**
 
 </div>
@@ -1071,6 +1089,7 @@ presence INDEX_RANGE
 <div markdown="block" class="alert alert-success">
 
 :green_book: **Example:**
+* `presence 2` toggles the presence status of student 2.
 * `presence 1-4` toggles the presence status of students 1 to 4. **(Figure 5.5.2)**
 
 </div>
@@ -1203,14 +1222,14 @@ These commands are: [`deletestu`](#534-deleting-a-student--deletestu), [`editstu
 :green_book: **Examples:**
 * `deletestu 1` is followed with the following displayed message `Delete student 1? (yes/no)`.
 * `editstu 3 n/UPDATED_STUDENT_NAME` is followed with the following displayed message `Edit student 3? (yes/no)`.
-* `clearstu` is followed with the following displayed message `Clear student list? (yes/no)` (**Figure 5.7-1**).
+* `clearstu` is followed with the following displayed message `Clear student list? (yes/no)` **(Figure 5.7-1)**.
 * `deleteses 2` is followed with the following displayed message `Delete session 2? (yes/no)`.
 * `editses 2 s/UPDATED_SESSION_NAME` is followed with the following displayed message `Edit session 3? (yes/no)`.
 * `clearses` is followed with the following displayed message `Clear student list? (yes/no)`.
 </div>
 
 For example, confirmation of `clearstu` is shown above at [Section 5.3.6 - Clearing the student list](#536-clearing-the-student-list--clearstu).
-In this case, we will show an example of the confirmation prompt following the `clearstu` command (**Figure 5.7-1**) and result of rejecting a `clearstu` command (**Figure 5.7-2**).
+In this case, we will show an example of the confirmation prompt following the `clearstu` command **(Figure 5.7-1)** and result of rejecting a `clearstu` command **(Figure 5.7-2)**.
 
 **Format:**
 ```
@@ -1304,7 +1323,7 @@ Command | Format, Examples
 **Add Student** | `addstu n/NAME m/MATRICULATION_NUMBER e/NUS_EMAIL_ADDRESS [t/TAG]…` <br/> e.g.,<br/> `addstu n/Elvin Ng m/A0123456J e/elvinng@u.nus.edu`,<br/> `addstu n/Bobby Tan m/A0123456X e/bobbytan@u.nus.edu t/new`
 **List Student(s)** | `liststu`
 **Find Student(s)** | `findstu KEYWORD [MORE_KEYWORDS]` <br/> e.g.,<br/> `findstu John`,<br/> `findstu kent ridge`
-**Edit Student** | `editstu INDEX (n/UPDATED_NAME) (m/UPDATED_MATRICULATION) (e/UPDATED_EMAIL_ADDRESS) (t/UPDATED_TAG …​)` <br/> e.g.,<br/> `editstu 2 n/Elvin Ng`,<br/> `editstu 3 t/active`
+**Edit Student** | `editstu INDEX (n/UPDATED_NAME) (m/UPDATED_MATRICULATION) (e/UPDATED_EMAIL_ADDRESS) (t/UPDATED_TAG)…​` <br/> e.g.,<br/> `editstu 2 n/Elvin Ng`,<br/> `editstu 3 t/active`
 **Delete Student** | `deletestu INDEX` <br/> e.g.,<br/> `deletestu 2`
 **Clear Student(s)** | `clearstu`
 

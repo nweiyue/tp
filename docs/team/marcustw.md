@@ -3,14 +3,14 @@ layout: page
 title: Marcus Tan Wei's Project Portfolio Page
 ---
 
-## Project: Addendum for Teaching Assitants (ATAS)
+## Project: Addendum for Teaching Assistants (ATAS)
 
-**ATAS** is a desktop application designed to be a handy in-class companion for CS1010S Teaching Assistants.
-It aims to **elevate users' efficiency** and make their experience of handling administrative tasks as **seamless** as possible.
+**ATAS** is a desktop application designed to be a handy in-class companion for CS1010S Teaching Assistants. 
+It aims to **elevate users' efficiency** and make their experience of handling administrative tasks as **seamless** as possible. 
 The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java.
 
 This project is based on the AddressBook-Level3 (AB3) project created by the [SE-EDU initiative](https://se-education.org).
-AB3 has about 10 kLoC, while **ATAS** has about 17.3 kLoC modified/added on top.
+AB3 has about 10 kLoC, while **ATAS** has about 20 kLoC modified/added on top.
 
 Given below are my contributions to the project.
 
@@ -27,7 +27,7 @@ Given below are my contributions to the project.
   * Managed release `v1.3.1` on GitHub
   * Completed Demo showcase for `v1.3`
   * Update Ui image [\#154](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/154)
-
+  
 * **Enhancements to existing features**:
   * Refactored most class names. Examples: `Person` -> `Student`, `AddressBook` -> `Atas` or `StudentList` (Pull request [\#98](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/98))
   * Changed the size 'File' and 'Help' button. [\#136](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/136)
@@ -67,4 +67,4 @@ Given below are my contributions to the project.
      [\#157](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/157),
      [\#237](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/237)
   * Contributed to forum discussions (Issue [\#196](https://github.com/nus-cs2103-AY2021S1/forum/issues/196), [\#213](https://github.com/nus-cs2103-AY2021S1/forum/issues/213), [\#278](https://github.com/nus-cs2103-AY2021S1/forum/issues/278))
-  * Reported 6 bugs and suggestions for another team during practical dry-run ([PED](https://github.com/MarcusTw/ped/issues))]
+  * Reported 6 bugs and suggestions for another team during practical dry-run ([PED](https://github.com/MarcusTw/ped/issues))

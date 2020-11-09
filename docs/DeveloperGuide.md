@@ -188,7 +188,7 @@ This section describes some noteworthy details on how certain features are imple
 
 To allow users to switch between tabs using the CLI, the `switch` command is implemented.
 
-The switching of tabs is facilitated by `SwitchCommand`, `LogicManager`, `MainWindow` and `Tab`. `Tab` is contained in `Ui` and is an enum class that represents the various tabs that exist in ATAS.
+The switching of tabs is facilitated by `SwitchCommand`, `LogicManager`, `MainWindow` and `Tab`. `Tab` is contained in `Ui` and is an enum class that represents the various tabs that exist in **ATAS**.
 
 `SwitchCommand` implements the method:
 
@@ -762,7 +762,7 @@ Refer to this guide [here](DevOps.md).
 
 **Target user profile**:
 
-* Bob is a passionate CS1010 TA and he likes to track his students’ progress.
+* Bob is a passionate CS1010S TA and he likes to track his students’ progress.
 * Bob currently uses Excel to keep track of his student’s particulars.
 * Bob finds the features on Excel clunky at times and he finds them difficult to learn.
 * Bob is looking for an application with a sleeker and cleaner UI so he doesn’t have to remember where the different features in Excel are.
@@ -828,7 +828,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### 10.3. Use cases
 
-(For all use cases below, the **System** is the `ATAS` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is **ATAS** and the **Actor** is the `user`, unless specified otherwise)
 
 <div markdown="block" class="alert alert-info">
 
@@ -841,30 +841,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to add a student with specified Matriculation number and NUS email, as well as any additional tags (if any).
-1. ATAS checks if the input is valid and scans through the student list for duplication.
-1. ATAS adds the student.
+1. **ATAS** checks if the input is valid and scans through the student list for duplication.
+1. **ATAS** adds the student.
 
 Use case ends.
 
 **Extensions**
 
 * 2a. A student in the list has the same Matriculation number.
-   * 2b1. ATAS shows an error message.
+   * 2b1. **ATAS** shows an error message.
    
    Use case ends.
 
 * 2b. Matriculation number provided is invalid.
-  * 2b1. ATAS shows an error message.
+  * 2b1. **ATAS** shows an error message.
   
   Use case ends.
   
 * 2c. A student in the list has the same NUS email.
-  * 2c1. ATAS shows an error message.
+  * 2c1. **ATAS** shows an error message.
   
   Use case ends.
   
 * 2d. The email provided is not NUS email.
-  * 2d1. ATAS shows an error message.
+  * 2d1. **ATAS** shows an error message.
   
   Use case ends.
   
@@ -877,11 +877,11 @@ Use case ends.
 **MSS**
 
 1.  User requests to list students.
-1.  ATAS shows a list of students.
+1.  **ATAS** shows a list of students.
 1.  User requests to delete a specific student in the list.
-1.  ATAS sends confirmation message.
+1.  **ATAS** sends confirmation message.
 1.  User confirms.
-1.  ATAS deletes the student.
+1.  **ATAS** deletes the student.
 
 Use case ends.
 
@@ -892,7 +892,7 @@ Use case ends.
    Use case ends.
 
 * 3a. The given index is invalid.
-  * 3a1. ATAS shows an error message.
+  * 3a1. **ATAS** shows an error message.
   
    Use case resumes at step 2.
 
@@ -914,37 +914,37 @@ Use case ends.
 **MSS**
 
 1.  User requests to edit a student with name, Matriculation number, NUS email and tags with the student index of that student.
-1.  ATAS checks if the input is valid and scans through the student list for duplication.
-1.  ATAS sends confirmation message.
+1.  **ATAS** checks if the input is valid and scans through the student list for duplication.
+1.  **ATAS** sends confirmation message.
 1.  User confirms.
-1.  ATAS edits the student.
+1.  **ATAS** edits the student.
 
    Use case ends.
 
 **Extensions**
 
 * 2a. A student in the list has the same Matriculation number.
-   * 2b1. ATAS shows an error message.
+   * 2b1. **ATAS** shows an error message.
    
    Use case ends.
 
 * 2b. Matriculation number provided is invalid.
-  * 2b1. ATAS shows an error message.
+  * 2b1. **ATAS** shows an error message.
   
   Use case ends.
   
 * 2c. A student in the list has the same NUS email.
-  * 2c1. ATAS shows an error message.
+  * 2c1. **ATAS** shows an error message.
   
   Use case ends.
   
 * 2d. The email provided is not NUS email.
-  * 2d1. ATAS shows an error message.
+  * 2d1. **ATAS** shows an error message.
   
   Use case ends.
   
 * 2e. The given student index is invalid.
-  * 2e1. ATAS shows an error message.
+  * 2e1. **ATAS** shows an error message.
   
   Use case ends.
   
@@ -961,9 +961,9 @@ Use case ends.
 **MSS**
 
 1.  User requests to clear the student list.
-1.  ATAS ask for confirmation.
+1.  **ATAS** ask for confirmation.
 1.  User confirms.
-1.  ATAS clears the student list.
+1.  **ATAS** clears the student list.
 
 Use case ends.
 
@@ -983,8 +983,8 @@ Use case ends.
 
 **MSS**
 
-1. User requests to see the list of students that have been added to ATAS.
-1. ATAS shows the list of students.
+1. User requests to see the list of students that have been added to **ATAS**.
+1. **ATAS** shows the list of students.
 
 Use case ends.
 
@@ -997,8 +997,8 @@ Use case ends.
 **MSS**
 
 1.  User requests to find a student with one or more keywords.
-1.  ATAS searches for students’ names that contain any of the keywords.
-1.  ATAS shows the filtered list of students to User.
+1. **ATAS** searches for students’ names that contain any of the keywords.
+1. **ATAS** shows the filtered list of students to User.
 
    Use case ends.
 
@@ -1021,21 +1021,21 @@ Use case ends.
 **MSS**
 
 1.  User requests to add a session with a session name and date.
-1.  ATAS checks if the inputs are valid and scans though the session list for duplication.
-1.  ATAS adds the session to the session list.
-1.  ATAS sorts the session list according to date.
+1. **ATAS** checks if the inputs are valid and scans though the session list for duplication.
+1. **ATAS** adds the session to the session list.
+1. **ATAS** sorts the session list according to date.
 
    Use case ends.
 
 **Extensions**
 
 * 2a. The given date is invalid.
-  * 2a1. ATAS shows an error message.
+  * 2a1. **ATAS** shows an error message.
   
   Use case ends.
   
 * 2b. A session in the session list has the same session name.
-  * 2b1. ATAS shows an error message.
+  * 2b1. **ATAS** shows an error message.
   
   Use case ends.
   
@@ -1048,16 +1048,16 @@ Use case ends.
 **MSS**
 
 1.  User requests to delete a session with the given index.
-1.  ATAS asks for confirmation.
+1.  **ATAS** asks for confirmation.
 1.  User confirms.
-1.  ATAS deletes the session.
+1.  **ATAS** deletes the session.
 
    Use case ends.
 
 **Extensions**
 
 * 1a. The given session index is invalid.
-  * 1a1. ATAS shows an error message.
+  * 1a1. **ATAS** shows an error message.
   
   Use case ends.
 
@@ -1078,22 +1078,22 @@ Use case ends.
 **MSS**
 
 1.  User requests to edit a session with session name and date with the session index of that session.
-1.  ATAS checks if the input is valid and scans through the session list for duplication.
-1.  ATAS asks for confirmation.
+1.  **ATAS** checks if the input is valid and scans through the session list for duplication.
+1.  **ATAS** asks for confirmation.
 1.  User confirms.
-1.  ATAS edits the session
+1.  **ATAS** edits the session
 
    Use case ends.
 
 **Extensions**
 
 * 2a. The given session index is invalid
-   * 2a1. ATAS shows an error message.
+   * 2a1. **ATAS** shows an error message.
    
    Use case ends.
 
 * 2b. The session date given is invalid
-  * 2b1. ATAS shows an error message.
+  * 2b1. **ATAS** shows an error message.
   
   Use case ends.
 
@@ -1110,16 +1110,16 @@ Use case ends.
 **MSS**
 
 1.  User requests to clear the session list.
-1.  ATAS asks for confirmation.
+1.  **ATAS** asks for confirmation.
 1.  User confirms.
-1.  ATAS clears the session list.
+1.  **ATAS** clears the session list.
 
    Use case ends.
 
 **Extensions**
 
 * 1a. The session list is empty
-   * 1a1. ATAS shows an empty session list.
+   * 1a1. **ATAS** shows an empty session list.
    
    Use case ends.
    
@@ -1136,19 +1136,19 @@ Use case ends.
 **MSS**
 
 1.  User requests to enter a session with a session index.
-1.  ATAS shows the attributes of that session.
+1.  **ATAS** shows the attributes of that session.
 
    Use case ends.
 
 **Extensions**
 
 * 1a. The session index is invalid.
-   * 1a1. ATAS shows an error message.
+   * 1a1. **ATAS** shows an error message.
    
    Use case ends.
 
 * 1b. The session index is the same as current session.
-   * 1b1. ATAS shows an error message.
+   * 1b1. **ATAS** shows an error message.
    
    Use case ends.
 
@@ -1163,15 +1163,15 @@ Use case ends.
 **MSS**
 
 1.  User requests to toggle students' presence status of the given student index range.
-1.  ATAS toggles the presence status of students.
-1.  ATAS updates the statistics in session and student list.
+1.  **ATAS** toggles the presence status of students.
+1.  **ATAS** updates the statistics in session and student list.
 
    Use case ends.
 
 **Extensions**
 
 * 1a. The given index range is invalid.
-   * 1a1. ATAS shows an error message.
+   * 1a1. **ATAS** shows an error message.
    
    Use case ends.
    
@@ -1186,15 +1186,15 @@ Use case ends.
 **MSS**
 
 1.  User requests to toggle students' participation status of the given student index range.
-1.  ATAS toggles the participation status of students.
-1.  ATAS updates the statistics in session and student list.
+1.  **ATAS** toggles the participation status of students.
+1.  **ATAS** updates the statistics in session and student list.
 
    Use case ends.
 
 **Extensions**
 
 * 1a. The given index range is invalid.
-   * 1a1. ATAS shows an error message.
+   * 1a1. **ATAS** shows an error message.
    
    Use case ends.
    
@@ -1207,14 +1207,14 @@ Use case ends.
 **MSS**
 
 1.  User requests to choose a random name from the student list.
-1.  ATAS shows the name of a random student in the student list.
+1.  **ATAS** shows the name of a random student in the student list.
 
    Use case ends.
 
 **Extensions**
 
 * 1a. The student list is empty
-   * 1a1. ATAS shows an error message.
+   * 1a1. **ATAS** shows an error message.
    
    Use case ends.
    
@@ -1226,8 +1226,8 @@ Use case ends.
 
 **MSS**
 
-1. User requests to exit ATAS
-1. ATAS closes
+1. User requests to exit **ATAS**
+1. **ATAS** closes
 
 Use case ends.
 
@@ -1369,8 +1369,8 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `addstu n/Alvin Boon m/A0123456X e/alvinboon@u.nus.edu`<br>
     Expected: A student is added to the bottom of the student list. A success message including the particulars of the added student is shown in the result box.
      
-         ![AddStudentSuccess](images/developer-guide/11.2.1-AddStudentSuccess.png)
-         <p align="center"> <sub> <b>Figure 11.2.1</b>: Application view when a student is successfully added </sub> </p> 
+         ![AddStudentSuccess](images/developer-guide/11.6.1-AddStudentSuccess.png)
+         <p align="center"> <sub> <b>Figure 11.6.1</b>: Application view when a student is successfully added </sub> </p> 
      
     1. Test case: `addstu n/Cathy Duigan m/A1123456X e/cathyduigan@u.nus.edu t/helpful`<br>
     Expected: Similar to previous.
@@ -1381,8 +1381,8 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `addstu n/Gina Ho m/A3123456X`<br>
     Expected: No student is added. Error message indicating an invalid command format is shown in the result box.
      
-        ![AddStudentFailure](images/developer-guide/11.2.2-AddStudentFailure.png)
-        <p align="center"> <sub> <b>Figure 11.2.2</b>: Application view when a student is not successfully added </sub> </p> 
+        ![AddStudentFailure](images/developer-guide/11.6.2-AddStudentFailure.png)
+        <p align="center"> <sub> <b>Figure 11.6.2</b>: Application view when a student is not successfully added </sub> </p> 
      
     1. Test case: `addstu n/Gina Ho e/ginaho@u.nus.edu`<br>
     Expected: Similar to previous.
@@ -1517,13 +1517,13 @@ Delete a student while SOME student(s) are shown:
     1. Test case: `yes` <br>
     Expected: First session on the list is deleted from the list. Message regarding session deletion is shown in the result box. Statistics of students will change accordingly, taking into account of removed session.
          
-        ![StudentsStatisticsBeforeDeleteSession](images/developer-guide/11.5.1-StudentsStatisticsBeforeDeleteSession.png)
+        ![StudentsStatisticsBeforeDeleteSession](images/developer-guide/11.9.1-StudentsStatisticsBeforeDeleteSession.png)
         <p align="center"> <sub> <b>Figure 11.5.1</b>: Application view of students statistics before deleting session </sub> </p> 
          
-        ![SessionStatisticsBeforeDeleteSession](images/developer-guide/11.5.2-SessionStatistics.png)
+        ![SessionStatisticsBeforeDeleteSession](images/developer-guide/11.9.2-SessionStatistics.png)
         <p align="center"> <sub> <b>Figure 11.5.2</b>: Application view of sessions in the session list </sub> </p> 
          
-        ![StudentsStatisticsAfterDeleteSession](images/developer-guide/11.5.3-StudentsStatisticsAfterDeleteSession.png)
+        ![StudentsStatisticsAfterDeleteSession](images/developer-guide/11.9.3-StudentsStatisticsAfterDeleteSession.png)
         <p align="center"> <sub> <b>Figure 11.5.3</b>: Application view of students statistics after session is deleted </sub> </p> 
          
     1. Test case: `no` <br>
