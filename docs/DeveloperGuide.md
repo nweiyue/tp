@@ -111,7 +111,7 @@ The `UI` component,
 
 ### 3.3. Logic component
 
-![Structure of the Logic Component](images/developer-guide/3.3.1-LogicClassDiagram.png)
+![Structure of the Logic Component](images/developer-guide/3.1.2-LogicClassDiagram.png)
 <p align="center"> <sub> <b>Figure 3.3.1</b>: Class diagram of the Logic component </sub> </p> 
 
 **API** :
@@ -241,7 +241,7 @@ The following activity diagram summarizes what happens when a user executes a `s
 
 ### 4.2. User confirmation
 
-This feature (henceforth referred to as 'user confirmation') is facilitated by `ConfirmCommand`, `DangerousCommand`, `Logic`, and `Model`.
+This feature (henceforth referred to as 'user confirmation') is facilitated by `ConfirmCommand`, `DangerousCommand`, `Logic`, `LogicManager`, `Model` and `ModelManager`.
 
 There are 6 DangerousCommand(s) that will change the existing local data upon execution, namely:
 1. deletestu (deleting a student)
@@ -346,19 +346,19 @@ The following activity diagram summarizes what happens when a user executes an `
 
 ### 4.4. Entering a session
 
-This feature (henceforth referred to as 'enter session') is facilitated by `EnterSessionCommand`, `LogicManager` and `Model`.
+This feature (henceforth referred to as 'enter session') is facilitated by `EnterSessionCommand`, `Logic`, `LogicManager`, `Model` and `ModelManager`.
 
 `LogicManager` implements the method:
 
 * `LogicManager#execute(Model)` — Returns a `CommandResult` containing the session index of the session.
 
-`EnterSessionCommand` implements the method from `LogicManager`:
+`EnterSessionCommand` implements the method:
 
 * `EnterSessionCommand#execute(Model)` — Returns a `CommandResult` containing the session index of the session.
 
-`Model` implements the method:
+`ModelManager` implements the method:
 
-* `Model#enterSession(Index)` — Enters a session based on session index.
+* `ModelManager#enterSession(Index)` — Enters a session based on session index.
 
 Given below is an example usage scenario and how the enter session mechanism behaves at each step.
 
@@ -369,19 +369,18 @@ Step 2. The user executes `enterses 1` to enter session 1. The `enterses 1` comm
 Step 3. `EnterSessionCommandParser#parse()` checks if there argument passed is valid. If the argument is valid, a `EnterSessionCommand` will be created and `EnterSessionCommand#execute()` will be called by the `LogicManager`.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If an invalid argument is found, a `ParseException` will be thrown and the execution terminates.
-
 </div><br>
 
-Step 4. `Model#enterSession()` will be called by `EnterSession#execute()` and the displayed tab will be switched to Current Session. Details of session 2 will be displayed to the user.
+Step 4. `ModelManager#enterSession()` will be called by `EnterSession#execute()` and the displayed tab will be switched to Current Session. Details of session 2 will be displayed to the user.
 
 The following sequence diagram shows how the enter session operation works:
 
-![EnterSessionSequenceDiagram](images/EnterSessionSequenceDiagram.png)
+![EnterSessionSequenceDiagram](images/developer-guide/4.4.1-EnterSessionSequenceDiagram.png)
 <p align="center"> <sub> <b>Figure 4.4.1</b>: Sequence diagram showing how Logic component works with Model component to enter session command</sub> </p>
 
 The following activity diagram summarizes what happens when a user executes an enter session command:
 
-![EnterSessionActivityDiagram](images/EnterSessionActivityDiagram.png)
+![EnterSessionActivityDiagram](images/developer-guide/4.4.2-EnterSessionActivityDiagram.png)
 <p align="center"> <sub> <b>Figure 4.4.2</b>: Activity diagram showing the implementation of enter session command</sub> </p>
 
 { end of `implementation#entering_a_session` written by: Alvin Chee Teck Weng }
@@ -805,9 +804,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                   | So that I can…​                                                         |
 | -------- | ------------------------------------------ | ------------------------------ | ----------------------------------------------------------------------- |
-| `* * *`  | user                                       | see usage instructions         | refer to instructions when I forget how to use the App                  |
+| `* * *`  | user                                       | see usage instructions         | refer to instructions when I forget how to use the app                  |
 | `* * *`  | tutor                                       | add a new student              | add details of the students in my class                                |                     
-| `* * *`  | tutor                                       | delete a student               | remove details of the students no longer taking the module             |                 
+| `* * *`  | tutor                                       | delete a student               | remove details of the students who are no longer taking the module     |                 
 | `* * *`  | tutor                                       | find a student by name         | locate details of students without having to go through the entire list|
 | `* * *`  | tutor with many students in my class        | sort students by name          | locate a student easily                                                |
 | `* *  `  | tutor                                       | track my students' attendance  | take note of the tutorial participation for each student               |
@@ -819,8 +818,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *  `  | tutor who wants to protect the particulars of my students | encrypt files with passwords | keep the module and students' data safe                    |
 | `* *  `  | tutor who often overshoots the time allocated for my lesson | be reminded at certain intervals | be on track throughout the lesson                    |
 | `* *  `  | tutor who wants the class to participate actively in class discussions | quickly record who has spoken | call on those who haven't spoken for subsequent questions |
-| `*    `  | user who likes customization               | customize my own keyboard shortcuts |                                                                    |
-| `*    `  | user who likes colors                      | customize the UI to whatever color scheme I want | enjoy using the App more                              |
+| `*    `  | user who likes customization               | customize my own keyboard shortcuts | so I can update session and student details more efficiently |
+| `*    `  | user who likes colors                      | customize the UI to whatever color scheme I want | enjoy using the app more                              |
 
 { end of `requirements#user_stories` written by: Alvin Chee Teck Weng }
 
@@ -1518,13 +1517,13 @@ Delete a student while SOME student(s) are shown:
     Expected: First session on the list is deleted from the list. Message regarding session deletion is shown in the result box. Statistics of students will change accordingly, taking into account of removed session.
          
         ![StudentsStatisticsBeforeDeleteSession](images/developer-guide/11.9.1-StudentsStatisticsBeforeDeleteSession.png)
-        <p align="center"> <sub> <b>Figure 11.5.1</b>: Application view of students statistics before deleting session </sub> </p> 
+        <p align="center"> <sub> <b>Figure 11.9.1</b>: Application view of students statistics before deleting session </sub> </p> 
          
         ![SessionStatisticsBeforeDeleteSession](images/developer-guide/11.9.2-SessionStatistics.png)
-        <p align="center"> <sub> <b>Figure 11.5.2</b>: Application view of sessions in the session list </sub> </p> 
+        <p align="center"> <sub> <b>Figure 11.9.2</b>: Application view of sessions in the session list </sub> </p> 
          
         ![StudentsStatisticsAfterDeleteSession](images/developer-guide/11.9.3-StudentsStatisticsAfterDeleteSession.png)
-        <p align="center"> <sub> <b>Figure 11.5.3</b>: Application view of students statistics after session is deleted </sub> </p> 
+        <p align="center"> <sub> <b>Figure 11.9.3</b>: Application view of students statistics after session is deleted </sub> </p> 
          
     1. Test case: `no` <br>
     Expected: First session on the list is not deleted from the list. Message regarding command not executed is shown in the result box.

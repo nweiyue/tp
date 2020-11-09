@@ -19,7 +19,7 @@ Given below are my contributions to the project.
   * Justification: This feature limits the user to view and toggle the presence and participation status of each student in a session only if the user has entered that session so that the user would know which session details he or she is editing.
   * Highlights: The implementation was quite tricky as it required changes to existing commands and the usage had to be limited to the current session tab.
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=CodingCookieRookie&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=CodingCookieRookie&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&until=2020-11-09&tabOpen=true&tabType=authorship&tabAuthor=CodingCookieRookie&tabRepo=AY2021S1-CS2103T-W16-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code)
 
 * **Enhancements to existing features**:
   * Updated the status bar footer to show current session details (Pull request [\#167](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/167))
@@ -28,7 +28,7 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * Edited quickstart to make it more user-friendly (Pull request[\#157](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/157))
+    * Edited quickstart to make it more user-friendly (Pull request[\#157](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/157))<br>
     * Added documentation to exit feature (Pull request[\#157](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/157))
     * Added documentation to all sessions feature including: (Pull request[\#157](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/157))
          * `addses`, `deleteses`, `editses`, `clearses`, `enterses`
@@ -40,5 +40,5 @@ Given below are my contributions to the project.
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): (Pull request[\#81](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/81)), (Pull request[\#99](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/99)), (Pull request[\#154](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/154)), (Pull request[\#147](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/147)), (Pull request[\#254](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/254))
-  * Contributed to forum discussions ((Pull request[173](https://github.com/nus-cs2103-AY2021S1/forum/issues/173)))
-  * Reported 11 bugs and suggestions for another team during practical dry-run (Pull request[PED](https://github.com/CodingCookieRookie/ped/issues))
+  * Contributed to forum discussions ((Pull request[\#173](https://github.com/nus-cs2103-AY2021S1/forum/issues/173)))
+  * Reported 11 bugs and suggestions for another team during practical dry-run ([PED](https://github.com/CodingCookieRookie/ped/issues))

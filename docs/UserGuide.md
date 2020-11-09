@@ -151,7 +151,7 @@ For the good majority of visual learners, we figured to present information in a
  
 --------------------------------------------------------------------------------------------------------------------
 
-{ start of `quick_start` written by: Alvin Chee Teck Weng }
+{ start of `quick_start` written by: Alvin Chee Teck Weng and Marcus Tan Wei }
 
 ## 3. Quick start
 
@@ -163,18 +163,32 @@ For the good majority of visual learners, we figured to present information in a
 
 3. Copy the file to the folder you want to use as the home folder for your **ATAS**. All the data related to **ATAS** will be stored here.
 
-4. Double-click the file to start the app. The GUI similar to the below image should appear in a few seconds.<br>
-    ![WelcomePage](images/user-guide/3.1-WelcomePage.png)
+4. Double-click the file to start the app. 
 
+5. If double-clicking do not work:
+    
+    1. For Windows users, you can type "cmd" in the folder path bar to open up command prompt in that directory and type "java -jar atas.jar" in the command prompt.
+    ![WindowsCommandPromptStartPage](images/user-guide/3.1-WindowsCommandPromptStartPage.png)
+    
     <p align="center"> <sub> <b>Figure 3.1</b>: Welcome page </sub> </p>
+    
+    1. For Mac users, you can right click the folder you saved atas.jar in and click on "New Terminal at Folder" and type "java -jar atas.jar" in the terminal.
+    ![MacbookTerminalStartPage](images/user-guide/3.2-MacbookTerminalStartPage.png)
+    
+    <p align="center"> <sub> <b>Figure 3.2</b>: Welcome page </sub> </p>
 
-5. Now click on the Student tab and notice how the app contains some sample data. <br/>
-    ![StudentSampleData](images/user-guide/3.2-StudentSampleData.png)
+6. The GUI similar to the below image should appear in a few seconds.<br>
+    ![WelcomePage](images/user-guide/3.3-WelcomePage.png)
 
-<p align="center"> <sub> <b>Figure 3.2</b>: Student sample data </sub> </p>
+    <p align="center"> <sub> <b>Figure 3.3</b>: Welcome page </sub> </p>
+
+7. Now click on the Student tab and notice how the app contains some sample data. <br/>
+    ![StudentSampleData](images/user-guide/3.4-StudentSampleData.png)
+
+    <p align="center"> <sub> <b>Figure 3.4</b>: Student sample data </sub> </p>
 
    
-6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+8. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing the `Enter` key will open the help window.<br>
    Some example commands you can try:
 
    * **`liststu`** : Lists out all the students.
@@ -189,9 +203,9 @@ For the good majority of visual learners, we figured to present information in a
 
    * **`exit`** : Exits out of the application.
 
-6. Refer to the [Features](#5-features) below for details of each command.
+9. Refer to the [Features](#5-features) below for details of each command.
 
-{ end of `quick_start` written by: Alvin Chee Teck Weng }
+{ end of `quick_start` written by: Alvin Chee Teck Weng and Marcus Tan Wei }
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -714,9 +728,8 @@ deletestu INDEX
 
 :green_book: **Examples:**
 
-* `liststu` followed by `deletestu 1` followed by `yes`: Deletes and removes the 1st student **(Figure 5.3.4-2)** from the student list.
-* `findstu Bob` followed by `deletestu 1` followed by `yes`: Deletes and removes the 1st student from the results of the `findstu Bob` command.
-</div>
+* `liststu` followed by `deletestu 1` followed by `yes` deletes the 1st student (**Figure 5.3.4-2**) from the student list.
+* `findstu Bob` followed by `deletestu 1` followed by `yes` deletes the 1st student from the results of the `findstu Bob` command.
 
 **Outcome:**
 
@@ -742,7 +755,7 @@ Examples:
 
 **Format:**
 ```
-editstu INDEX (n/UPDATED_NAME) (m/UPDATED_MATRICULATION) (e/UPDATED_EMAIL_ADDRESS) (t/UPDATED_TAG)…​
+editstu INDEX (n/UPDATED_NAME) (m/UPDATED_MATRICULATION) (e/UPDATED_EMAIL_ADDRESS) (t/UPDATED_TAG)…
 ```
 
 <div markdown="block" class="alert alert-info">
@@ -764,8 +777,8 @@ editstu INDEX (n/UPDATED_NAME) (m/UPDATED_MATRICULATION) (e/UPDATED_EMAIL_ADDRES
 
 :green_book: **Examples:**
 
-* `editstu 1 n/Alvina Lee` followed by `yes`: Edits the 2nd student **(Figure 5.3.5)** in the student list with an updated name `Alvina Lee`.
-* `editstu 3 t/active` followed by `y`: Edits the 3rd student in the student list with an updated tag `active`.
+* `editstu 1 n/Alvina Lee` followed by `yes` edits the 2nd student (**Figure 5.3.5**) in the student list with an updated name `Alvina Lee`.
+* `editstu 3 t/active` followed by `yes` edits the 3rd student in the student list with an updated tag `active`.
 </div>
 
 **Outcome:**
@@ -799,8 +812,7 @@ clearstu
 
 :green_book: **Example:**
 
-* `clearstu` followed by `yes`: Clears the students from the student list **(Figure 5.3.6)**.
-
+* `clearstu` followed by `yes` clears the students from the student list (**Figure 5.3.6**).
 </div>
 
 **Outcome:**
@@ -817,7 +829,7 @@ This category consists of features related to sessions.
 <br/>
 Session commands allow you to add a session with `addses`or remove a session from the session list by using `deleteses`. 
 You can also modify the details of a session with `editses` command.
-If you would like to enter a particular session in the session list, try out `enterses`. 
+If you would like to enter a particular session in the session list, you can use `enterses`. 
 Lastly, `clearses` allows you to remove all the sessions in the current session list at once.
 
 <div markdown="block" class="alert alert-info">
@@ -849,7 +861,7 @@ need to add a '0' in front, for e.g., 09/01/2020 and 9/1/2020 are both accepted.
 <div markdown="block" class="alert alert-warning">
 
 **:warning: Warning about the usage of this command:**
-* You will be exited from any currently entered session upon using the command.
+* You will be exited from any currently entered session upon using this command.
 
 </div>
 
@@ -890,8 +902,7 @@ deleteses INDEX
 <div markdown="block" class="alert alert-warning">
 
 **:warning: Warning about the usage of this command:**
-* You will be exited from any currently entered session upon using the command.
-
+* You will be exited from any currently entered session upon using this command.
 </div>
 
 <div markdown="block" class="alert alert-success">
@@ -931,7 +942,7 @@ editses INDEX (s/UPDATED_NAME) (d/UPDATED_DATE)
 <div markdown="block" class="alert alert-warning">
 
 **:warning: Warning about the usage of this command:**
-* You will be exited from any currently entered session upon using the command.
+* You will be exited from any currently entered session upon using this command.
 
 </div>
 
@@ -968,7 +979,7 @@ clearses
 <div markdown="block" class="alert alert-warning">
 
 **:warning: Warning about the usage of this command:**
-* You will be exited from any currently entered session upon using the command.
+* You will be exited from any currently entered session upon using this command.
 
 </div>
 
@@ -1055,9 +1066,9 @@ participate INDEX_RANGE
 
 <div markdown="block" class="alert alert-success">
 
-:green_book: **Example:**
-* `participate 2` toggles the participation status of student 2.
+:green_book: **Examples:**
 * `participate 1-4` toggles the participation status of students 1 to 4. **(Figure 5.5.1)**
+* `participate 2` toggles the participation status of student 2.
 
 </div>
 
@@ -1088,9 +1099,9 @@ presence INDEX_RANGE
 
 <div markdown="block" class="alert alert-success">
 
-:green_book: **Example:**
-* `presence 2` toggles the presence status of student 2.
+:green_book: **Examples:**
 * `presence 1-4` toggles the presence status of students 1 to 4. **(Figure 5.5.2)**
+* `presence 2` toggles the presence status of student 2. 
 
 </div>
 
@@ -1240,7 +1251,7 @@ clearstu
 
 :green_book: **Example:**
 
-* `clearstu` followed by `no`: No removal of any students from the student list.
+* `clearstu` followed by `no` results in no removal of students from the student list.
 </div>
 
 **Outcome:**
