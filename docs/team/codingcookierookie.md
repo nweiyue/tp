@@ -14,12 +14,12 @@ AB3 has about 10 kLoC, while **ATAS** has about 20 kLoC modified/added on top.
 
 Given below are my contributions to the project.
 
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=CodingCookieRookie&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&until=2020-11-09&tabOpen=true&tabType=authorship&tabAuthor=CodingCookieRookie&tabRepo=AY2021S1-CS2103T-W16-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code)
+
 * **New Feature**: Added the ability to enter a session.
   * What it does: allows the user to enter a session to view and toggle the presence and participation status of the students.
   * Justification: This feature limits the user to view and toggle the presence and participation status of each student in a session only if the user has entered that session so that the user would know which session details he or she is editing.
   * Highlights: The implementation was quite tricky as it required changes to existing commands and the usage had to be limited to the current session tab.
-
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=CodingCookieRookie&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&until=2020-11-09&tabOpen=true&tabType=authorship&tabAuthor=CodingCookieRookie&tabRepo=AY2021S1-CS2103T-W16-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code)
 
 * **Enhancements to existing features**:
   * Updated the status bar footer to show current session details (Pull request [\#167](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/167))
