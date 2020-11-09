@@ -376,12 +376,12 @@ Step 4. `Model#enterSession()` will be called by `EnterSession#execute()` and th
 
 The following sequence diagram shows how the enter session operation works:
 
-![EnterSessionSequenceDiagram](images/EnterSessionSequenceDiagram.png)
+![EnterSessionSequenceDiagram](images/developer-guide/4.4.1-EnterSessionSequenceDiagram.png)
 <p align="center"> <sub> <b>Figure 4.4.1</b>: Sequence diagram showing how Logic component works with Model component to enter session command</sub> </p>
 
 The following activity diagram summarizes what happens when a user executes an enter session command:
 
-![EnterSessionActivityDiagram](images/EnterSessionActivityDiagram.png)
+![EnterSessionActivityDiagram](images/developer-guide/4.4.2-EnterSessionActivityDiagram.png)
 <p align="center"> <sub> <b>Figure 4.4.2</b>: Activity diagram showing the implementation of enter session command</sub> </p>
 
 { end of `implementation#entering_a_session` written by: Alvin Chee Teck Weng }
@@ -807,7 +807,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | -------- | ------------------------------------------ | ------------------------------ | ----------------------------------------------------------------------- |
 | `* * *`  | user                                       | see usage instructions         | refer to instructions when I forget how to use the app                  |
 | `* * *`  | tutor                                       | add a new student              | add details of the students in my class                                |                     
-| `* * *`  | tutor                                       | delete a student               | remove details of the students no longer taking the module             |                 
+| `* * *`  | tutor                                       | delete a student               | remove details of the students who are no longer taking the module     |                 
 | `* * *`  | tutor                                       | find a student by name         | locate details of students without having to go through the entire list|
 | `* * *`  | tutor with many students in my class        | sort students by name          | locate a student easily                                                |
 | `* *  `  | tutor                                       | track my students' attendance  | take note of the tutorial participation for each student               |

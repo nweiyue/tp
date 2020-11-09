@@ -3,7 +3,7 @@ layout: page
 title: Ngoh Wei Yue's Project Portfolio Page
 ---
 
-## Project: Addendum for Teaching Assitants (ATAS)
+## Project: Addendum for Teaching Assistants (ATAS)
 
 **ATAS** is a desktop application designed to be a handy in-class companion for CS1010S Teaching Assistants. It aims to **elevate users' efficiency** and make their experience of handling administrative tasks as **seamless** as possible. Users interact with it using a CLI, and it has a GUI created with JavaFX. It is written in Java.
 

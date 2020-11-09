@@ -3,7 +3,7 @@ layout: page
 title: YuunoKun's Project Portfolio Page
 ---
 
-## Project: ATAS
+## Project: Addendum for Teaching Assistants (ATAS)
 
 ATAS is a desktop class management application used for improving the efficiency when managing sessions of a class. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 17 kLoC.
 

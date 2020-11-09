@@ -166,18 +166,22 @@ For the good majority of visual learners, we figured to present information in a
     1. For Windows users, you can type "cmd" in the folder path bar to open up command prompt in that directory and type "java -jar atas.jar" in the command prompt.
     ![WindowsCommandPromptStartPage](images/user-guide/3.1-WindowsCommandPromptStartPage.png)
     
+    <p align="center"> <sub> <b>Figure 3.1</b>: Welcome page </sub> </p>
+    
     1. For Mac users, you can right click the folder you saved atas.jar in and click on "New Terminal at Folder" and type "java -jar atas.jar" in the terminal.
     ![MacbookTerminalStartPage](images/user-guide/3.2-MacbookTerminalStartPage.png)
+    
+    <p align="center"> <sub> <b>Figure 3.2</b>: Welcome page </sub> </p>
 
 6. The GUI similar to the below image should appear in a few seconds.<br>
     ![WelcomePage](images/user-guide/3.3-WelcomePage.png)
 
-    <p align="center"> <sub> <b>Figure 3.1</b>: Welcome page </sub> </p>
+    <p align="center"> <sub> <b>Figure 3.3</b>: Welcome page </sub> </p>
 
 7. Now click on the Student tab and notice how the app contains some sample data. <br/>
     ![StudentSampleData](images/user-guide/3.4-StudentSampleData.png)
 
-    <p align="center"> <sub> <b>Figure 3.2</b>: Student sample data </sub> </p>
+    <p align="center"> <sub> <b>Figure 3.4</b>: Student sample data </sub> </p>
 
    
 8. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing the `Enter` key will open the help window.<br>
@@ -810,7 +814,7 @@ This category consists of features related to sessions.
 <br/>
 Session commands allow you to add a session with `addses`or remove a session from the session list by using `deleteses`. 
 You can also modify the details of a session with `editses` command.
-If you would like to enter a particular session in the session list, try out `enterses`. 
+If you would like to enter a particular session in the session list, you can use `enterses`. 
 Lastly, `clearses` allows you to remove all the sessions in the current session list at once.
 
 <div markdown="block" class="alert alert-info">
