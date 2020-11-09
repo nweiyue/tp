@@ -27,11 +27,9 @@ Given below are my contributions to the project.
   * Managed release `v1.3.1` on GitHub
   * Completed Demo showcase for `v1.3`
   * Update Ui image [\#154](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/154)
-
+  
 * **Enhancements to existing features**:
   * Refactored most class names. Examples: `Person` -> `Student`, `AddressBook` -> `Atas` or `StudentList` (Pull request [\#98](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/98))
-  
-  
   * Changed the size 'File' and 'Help' button. [\#136](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/136)
   * Updated `Email` to show capability of using '_' in email. [\#211](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/211)
   * Updated `Matriculation` to allow user entering lower case letter for first and last letter of a matriculation number, for example, `a0149980n` is allowed and converted to `A0149980N` by `Matriculation`.
