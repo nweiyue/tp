@@ -111,7 +111,7 @@ The `UI` component,
 
 ### 3.3. Logic component
 
-![Structure of the Logic Component](images/developer-guide/3.3-1-LogicClassDiagram.png)
+![Structure of the Logic Component](images/developer-guide/3.3.1-LogicClassDiagram.png)
 <p align="center"> <sub> <b>Figure 3.3.1</b>: Class diagram of the Logic component </sub> </p> 
 
 **API** :
