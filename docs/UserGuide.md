@@ -572,8 +572,6 @@ Program window will be closed.
 
 ### 5.3. Students
 
-<br/>
-<br/>
 This category consists of features related to students.
 <br/>
 Student commands allow you to add a student with `addstu` or remove a student from the student 
@@ -581,8 +579,6 @@ list by using `deletestu`. You can also modify the particulars of a student with
 Furthermore, if you want to search for certain students in the student list, try out `findstu` and utilize 
 `liststu` to gain a full view of the list again. 
 Lastly, `clearstu` allows you to remove all the students in the current student list at once.
-<br/>
-<br/>
 
 #### 5.3.1. Adding a student : `addstu`
 
@@ -799,22 +795,20 @@ clearstu
 { start of `sessions` written by: Alvin Chee Teck Weng }
 
 ### 5.4. Sessions
-<br/>
-<br/>
+
 This category consists of features related to sessions.
 <br/>
 Session commands allow you to add a session with `addses`or remove a session from the session list by using `deleteses`. 
 You can also modify the details of a session with `editses` command.
 If you would like to enter a particular session in the session list, try out `enterses`. 
 Lastly, `clearses` allows you to remove all the sessions in the current session list at once.
-<br/>
-<br/>
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about sessions:**
 * Sessions are sorted automatically to their dates in the session list, with the most recent session at the top.
 * Every session command will cause you to exit the currently entered session, with the exception of enterses. Entering the same session will just give you an error. 
+</div>
 
 #### 5.4.1. Adding a session : `addses`
 
@@ -1307,12 +1301,12 @@ The following is a summary of commands related to students.
 
 Command | Format, Examples
 --------|------------------
-**Add** | `addstu n/NAME m/MATRICULATION_NUMBER e/NUS_EMAIL_ADDRESS [t/TAG]…` <br/> e.g.,<br/> `addstu n/Elvin Ng m/A0123456J e/elvinng@u.nus.edu`,<br/> `addstu n/Bobby Tan m/A0123456X e/bobbytan@u.nus.edu t/new`
-**List** | `liststu`
-**Find** | `findstu KEYWORD [MORE_KEYWORDS]` <br/> e.g.,<br/> `findstu John`,<br/> `findstu kent ridge`
-**Edit** | `editstu INDEX (n/UPDATED_NAME) (m/UPDATED_MATRICULATION) (e/UPDATED_EMAIL_ADDRESS) (t/UPDATED_TAG …​)` <br/> e.g.,<br/> `editstu 2 n/Elvin Ng`,<br/> `editstu 3 t/active`
-**Delete** | `deletestu INDEX` <br/> e.g.,<br/> `deletestu 2`
-**Clear** | `clearstu`
+**Add Student** | `addstu n/NAME m/MATRICULATION_NUMBER e/NUS_EMAIL_ADDRESS [t/TAG]…` <br/> e.g.,<br/> `addstu n/Elvin Ng m/A0123456J e/elvinng@u.nus.edu`,<br/> `addstu n/Bobby Tan m/A0123456X e/bobbytan@u.nus.edu t/new`
+**List Student(s)** | `liststu`
+**Find Student(s)** | `findstu KEYWORD [MORE_KEYWORDS]` <br/> e.g.,<br/> `findstu John`,<br/> `findstu kent ridge`
+**Edit Student** | `editstu INDEX (n/UPDATED_NAME) (m/UPDATED_MATRICULATION) (e/UPDATED_EMAIL_ADDRESS) (t/UPDATED_TAG …​)` <br/> e.g.,<br/> `editstu 2 n/Elvin Ng`,<br/> `editstu 3 t/active`
+**Delete Student** | `deletestu INDEX` <br/> e.g.,<br/> `deletestu 2`
+**Clear Student(s)** | `clearstu`
 
 { end of `command_summary#students` written by: Zhang Sheng Yang }
 
@@ -1325,7 +1319,7 @@ The following is a summary of commands related to sessions.
 Command | Format, Examples
 --------|------------------
 **Add Session** | `addses s/SESSION_NAME d/SESSION_DATE` <br> e.g., `addses s/Tutorial 1 d/11/11/2020`
-**Clear Sessions** | `clearses`
+**Clear Session(s)** | `clearses`
 **Delete Session** | `deleteses INDEX`
 **Edit Session** | `editses INDEX (s/UPDATED_SESSION_NAME) (d/UPDATED_SESSION_DATE)` <br> e.g., `editses 1 s/Lab 1`
 **Enter Session** | `enterses INDEX`
