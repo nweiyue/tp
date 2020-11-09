@@ -742,7 +742,7 @@ Examples:
 
 **Format:**
 ```
-`editstu INDEX (n/UPDATED_NAME) (m/UPDATED_MATRICULATION) (e/UPDATED_EMAIL_ADDRESS) (t/UPDATED_TAG …​)`
+editstu INDEX (n/UPDATED_NAME) (m/UPDATED_MATRICULATION) (e/UPDATED_EMAIL_ADDRESS) (t/UPDATED_TAG …​)
 ```
 
 <div markdown="block" class="alert alert-info">
