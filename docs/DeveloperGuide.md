@@ -1369,8 +1369,8 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `addstu n/Alvin Boon m/A0123456X e/alvinboon@u.nus.edu`<br>
     Expected: A student is added to the bottom of the student list. A success message including the particulars of the added student is shown in the result box.
      
-         ![AddStudentSuccess](images/developer-guide/11.2.1-AddStudentSuccess.png)
-         <p align="center"> <sub> <b>Figure 11.2.1</b>: Application view when a student is successfully added </sub> </p> 
+         ![AddStudentSuccess](images/developer-guide/11.6.1-AddStudentSuccess.png)
+         <p align="center"> <sub> <b>Figure 11.6.1</b>: Application view when a student is successfully added </sub> </p> 
      
     1. Test case: `addstu n/Cathy Duigan m/A1123456X e/cathyduigan@u.nus.edu t/helpful`<br>
     Expected: Similar to previous.
@@ -1381,8 +1381,8 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `addstu n/Gina Ho m/A3123456X`<br>
     Expected: No student is added. Error message indicating an invalid command format is shown in the result box.
      
-        ![AddStudentFailure](images/developer-guide/11.2.2-AddStudentFailure.png)
-        <p align="center"> <sub> <b>Figure 11.2.2</b>: Application view when a student is not successfully added </sub> </p> 
+        ![AddStudentFailure](images/developer-guide/11.6.2-AddStudentFailure.png)
+        <p align="center"> <sub> <b>Figure 11.6.2</b>: Application view when a student is not successfully added </sub> </p> 
      
     1. Test case: `addstu n/Gina Ho e/ginaho@u.nus.edu`<br>
     Expected: Similar to previous.
@@ -1517,13 +1517,13 @@ Delete a student while SOME student(s) are shown:
     1. Test case: `yes` <br>
     Expected: First session on the list is deleted from the list. Message regarding session deletion is shown in the result box. Statistics of students will change accordingly, taking into account of removed session.
          
-        ![StudentsStatisticsBeforeDeleteSession](images/developer-guide/11.5.1-StudentsStatisticsBeforeDeleteSession.png)
+        ![StudentsStatisticsBeforeDeleteSession](images/developer-guide/11.9.1-StudentsStatisticsBeforeDeleteSession.png)
         <p align="center"> <sub> <b>Figure 11.5.1</b>: Application view of students statistics before deleting session </sub> </p> 
          
-        ![SessionStatisticsBeforeDeleteSession](images/developer-guide/11.5.2-SessionStatistics.png)
+        ![SessionStatisticsBeforeDeleteSession](images/developer-guide/11.9.2-SessionStatistics.png)
         <p align="center"> <sub> <b>Figure 11.5.2</b>: Application view of sessions in the session list </sub> </p> 
          
-        ![StudentsStatisticsAfterDeleteSession](images/developer-guide/11.5.3-StudentsStatisticsAfterDeleteSession.png)
+        ![StudentsStatisticsAfterDeleteSession](images/developer-guide/11.9.3-StudentsStatisticsAfterDeleteSession.png)
         <p align="center"> <sub> <b>Figure 11.5.3</b>: Application view of students statistics after session is deleted </sub> </p> 
          
     1. Test case: `no` <br>
