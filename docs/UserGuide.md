@@ -889,7 +889,7 @@ deleteses INDEX
 <div markdown="block" class="alert alert-warning">
 
 **:warning: Warning about the usage of this command:**
-You will be exited from any currently entered session upon using the command.
+* You will be exited from any currently entered session upon using the command.
 
 </div>
 
@@ -930,7 +930,7 @@ editses INDEX s/UPDATED_NAME d/UPDATED_DATE
 <div markdown="block" class="alert alert-warning">
 
 **:warning: Warning about the usage of this command:**
-You will be exited from any currently entered session upon using the command.
+* You will be exited from any currently entered session upon using the command.
 
 </div>
 
@@ -967,7 +967,7 @@ clearses
 <div markdown="block" class="alert alert-warning">
 
 **:warning: Warning about the usage of this command:**
-You will be exited from any currently entered session upon using the command.
+* You will be exited from any currently entered session upon using the command.
 
 </div>
 
@@ -1003,7 +1003,7 @@ enterses INDEX
 <div markdown="block" class="alert alert-warning">
 
 **:warning: Warning about the usage of this command:**
-You cannot enter the session again if you are already in that particular session.
+* You cannot enter the session again if you are already in that particular session.
 
 </div>
 
