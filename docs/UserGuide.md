@@ -742,7 +742,7 @@ Examples:
 
 **Format:**
 ```
-editstu INDEX (n/UPDATED_NAME) (m/UPDATED_MATRICULATION) (e/UPDATED_EMAIL_ADDRESS) (t/UPDATED_TAG …​)
+editstu INDEX (n/UPDATED_NAME) (m/UPDATED_MATRICULATION) (e/UPDATED_EMAIL_ADDRESS) (t/UPDATED_TAG)…​
 ```
 
 <div markdown="block" class="alert alert-info">
@@ -911,7 +911,7 @@ Edits a session in the session list.
 
 **Format:**
 ```
-editses INDEX s/UPDATED_NAME d/UPDATED_DATE
+editses INDEX (s/UPDATED_NAME) (d/UPDATED_DATE)
 ```
 
 <div markdown="block" class="alert alert-info">
@@ -1055,6 +1055,7 @@ participate INDEX_RANGE
 <div markdown="block" class="alert alert-success">
 
 :green_book: **Example:**
+* `participate 2` toggles the participation status of student 2.
 * `participate 1-4` toggles the participation status of students 1 to 4. **(Figure 5.5.1)**
 
 </div>
@@ -1087,6 +1088,7 @@ presence INDEX_RANGE
 <div markdown="block" class="alert alert-success">
 
 :green_book: **Example:**
+* `presence 2` toggles the presence status of student 2.
 * `presence 1-4` toggles the presence status of students 1 to 4. **(Figure 5.5.2)**
 
 </div>
@@ -1320,7 +1322,7 @@ Command | Format, Examples
 **Add Student** | `addstu n/NAME m/MATRICULATION_NUMBER e/NUS_EMAIL_ADDRESS [t/TAG]…` <br/> e.g.,<br/> `addstu n/Elvin Ng m/A0123456J e/elvinng@u.nus.edu`,<br/> `addstu n/Bobby Tan m/A0123456X e/bobbytan@u.nus.edu t/new`
 **List Student(s)** | `liststu`
 **Find Student(s)** | `findstu KEYWORD [MORE_KEYWORDS]` <br/> e.g.,<br/> `findstu John`,<br/> `findstu kent ridge`
-**Edit Student** | `editstu INDEX (n/UPDATED_NAME) (m/UPDATED_MATRICULATION) (e/UPDATED_EMAIL_ADDRESS) (t/UPDATED_TAG …​)` <br/> e.g.,<br/> `editstu 2 n/Elvin Ng`,<br/> `editstu 3 t/active`
+**Edit Student** | `editstu INDEX (n/UPDATED_NAME) (m/UPDATED_MATRICULATION) (e/UPDATED_EMAIL_ADDRESS) (t/UPDATED_TAG)…​` <br/> e.g.,<br/> `editstu 2 n/Elvin Ng`,<br/> `editstu 3 t/active`
 **Delete Student** | `deletestu INDEX` <br/> e.g.,<br/> `deletestu 2`
 **Clear Student(s)** | `clearstu`
 
