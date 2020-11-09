@@ -1,5 +1,6 @@
 package atas.logic.commands.sessionlist;
 
+import static atas.commons.core.Messages.MESSAGE_INVALID_SESSION_DISPLAYED_INDEX;
 import static atas.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static atas.logic.commands.CommandTestUtil.showSessionAtIndex;
 import static atas.testutil.Assert.assertThrows;
@@ -12,6 +13,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import atas.commons.core.index.Index;
+import atas.logic.commands.exceptions.CommandException;
 import atas.model.Model;
 import atas.model.ModelManager;
 import atas.model.UserPrefs;
@@ -42,6 +45,20 @@ public class DeleteSessionCommandTest {
         expectedModel.deleteSession(sessionToDelete, INDEX_FIRST_SESSION);
         showNoSession(expectedModel);
         assertCommandSuccess(deleteSessionCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_invalidIndex_failure() {
+        showSessionAtIndex(model, INDEX_FIRST_SESSION);
+        DeleteSessionCommand deleteSessionCommand = new DeleteSessionCommand(Index.fromOneBased(6));
+
+        assertThrows(CommandException.class, () -> deleteSessionCommand.execute(model));
+
+        try {
+            deleteSessionCommand.execute(model);
+        } catch (CommandException e) {
+            assertEquals(e.getMessage(), MESSAGE_INVALID_SESSION_DISPLAYED_INDEX);
+        }
     }
 
     /**

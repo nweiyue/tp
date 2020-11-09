@@ -3,6 +3,8 @@ package atas.logic.commands.sessionlist;
 import static atas.commons.core.Messages.MESSAGE_INVALID_SESSION_DISPLAYED_INDEX;
 import static atas.logic.commands.sessionlist.EnterSessionCommand.MESSAGE_ALREADY_IN_SESSION;
 import static atas.testutil.Assert.assertThrows;
+import static atas.testutil.TypicalIndexes.INDEX_FIRST_SESSION;
+import static atas.testutil.TypicalIndexes.INDEX_SECOND_SESSION;
 import static atas.testutil.TypicalSessions.SESSION_WEEK_ONE;
 import static atas.testutil.TypicalSessions.SESSION_WEEK_TWO;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -106,5 +108,14 @@ public class EnterSessionCommandTest {
 
         // different sessionName -> returns false
         assertFalse(enterSessionCommand1.equals(enterSessionCommand2));
+    }
+
+    @Test
+    public void toStringTest() {
+        EnterSessionCommand enterSessionCommand1 = new EnterSessionCommand(INDEX_FIRST_SESSION);
+        EnterSessionCommand enterSessionCommand2 = new EnterSessionCommand(INDEX_SECOND_SESSION);
+
+        assertEquals(enterSessionCommand1.toString(), "Enter 1");
+        assertEquals(enterSessionCommand2.toString(), "Enter 2");
     }
 }

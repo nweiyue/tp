@@ -204,15 +204,6 @@ public class SessionList implements Iterable<Session>, ReadOnlySessionList {
         FXCollections.sort(this.sessions);
     }
 
-    /**
-     * Updates all sessions after the deletion of a session (with a given session ID)
-     */
-    public void updateAllSessionsAfterDeleteSession(Index sessionId) {
-        requireNonNull(sessionId);
-        for (int i = sessionId.getZeroBased(); i < sessions.size(); i++) {
-            sessions.get(i).getSessionIndex().decreaseZeroBasedIndexByOne();
-        }
-    }
 
     /**
      * Finds the session using the given {@code sessionName} and students' participation status
