@@ -714,7 +714,7 @@ deletestu INDEX
 
 :green_book: **Examples:**
 
-* `liststu` followed by `deletestu 1` followed by `yes`: Deletes and removes the 1st student (**Figure 5.3.4-2**) from the student list.
+* `liststu` followed by `deletestu 1` followed by `yes`: Deletes and removes the 1st student **(Figure 5.3.4-2)** from the student list.
 * `findstu Bob` followed by `deletestu 1` followed by `yes`: Deletes and removes the 1st student from the results of the `findstu Bob` command.
 </div>
 
@@ -764,7 +764,7 @@ editstu INDEX (n/UPDATED_NAME) (m/UPDATED_MATRICULATION) (e/UPDATED_EMAIL_ADDRES
 
 :green_book: **Examples:**
 
-* `editstu 1 n/Alvina Lee` followed by `yes`: Edits the 2nd student (**Figure 5.3.5**) in the student list with an updated name `Alvina Lee`.
+* `editstu 1 n/Alvina Lee` followed by `yes`: Edits the 2nd student **(Figure 5.3.5)** in the student list with an updated name `Alvina Lee`.
 * `editstu 3 t/active` followed by `y`: Edits the 3rd student in the student list with an updated tag `active`.
 </div>
 
@@ -799,7 +799,8 @@ clearstu
 
 :green_book: **Example:**
 
-* `clearstu` followed by `yes`: Clears the students from the student list (**Figure 5.3.6**).
+* `clearstu` followed by `yes`: Clears the students from the student list **(Figure 5.3.6)**.
+
 </div>
 
 **Outcome:**
@@ -1221,14 +1222,14 @@ These commands are: [`deletestu`](#534-deleting-a-student--deletestu), [`editstu
 :green_book: **Examples:**
 * `deletestu 1` is followed with the following displayed message `Delete student 1? (yes/no)`.
 * `editstu 3 n/UPDATED_STUDENT_NAME` is followed with the following displayed message `Edit student 3? (yes/no)`.
-* `clearstu` is followed with the following displayed message `Clear student list? (yes/no)` (**Figure 5.7-1**).
+* `clearstu` is followed with the following displayed message `Clear student list? (yes/no)` **(Figure 5.7-1)**.
 * `deleteses 2` is followed with the following displayed message `Delete session 2? (yes/no)`.
 * `editses 2 s/UPDATED_SESSION_NAME` is followed with the following displayed message `Edit session 3? (yes/no)`.
 * `clearses` is followed with the following displayed message `Clear student list? (yes/no)`.
 </div>
 
 For example, confirmation of `clearstu` is shown above at [Section 5.3.6 - Clearing the student list](#536-clearing-the-student-list--clearstu).
-In this case, we will show an example of the confirmation prompt following the `clearstu` command (**Figure 5.7-1**) and result of rejecting a `clearstu` command (**Figure 5.7-2**).
+In this case, we will show an example of the confirmation prompt following the `clearstu` command **(Figure 5.7-1)** and result of rejecting a `clearstu` command **(Figure 5.7-2)**.
 
 **Format:**
 ```
